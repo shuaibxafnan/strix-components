@@ -1,0 +1,233 @@
+"use client";
+
+import { useEffect, useId, useMemo, useState } from "react";
+
+// ─── GlitchImage ─────────────────────────────────────────────────────────────
+//
+// Props
+// ──────────────────────────────────────────────────────────────────────────
+// image            string    unsplash[5]   Background image for every glitch layer
+// title            string    "ethereal"    Overlaid heading (also glitches)
+// bgColor          string    #000000       Page background behind the layers
+// titleColor       string    #ffffff       Heading color
+// titleSize        string    11vw          Heading font size
+// titleOffset      string    35vh          Top margin pushing the heading down
+// titleFont        string    Bungee stack  Heading font family
+// width            string    100vw         Width of the glitch stage
+// height           string    100vh         Height of the glitch stage
+// gapHorizontal    number    10            Horizontal slice displacement (px)
+// gapVertical      number    5             Vertical slice displacement (px)
+// animTime         number    4             Full glitch cycle length (s)
+// animDelay        number    2             Delay before the cycle starts (s)
+// glitchTitle      boolean   true          Apply the glitch cycle to the heading
+// backgroundPosition string  50% 0         Background position of each layer
+// layerColors      string[]  5 colors      Blend color per layer (1–5)
+// layerBlendModes  string[]  5 modes       background-blend-mode per layer (1–5)
+// flashOpacity     number    0.2           Peak opacity of the flash layer
+// ──────────────────────────────────────────────────────────────────────────
+
+const DEFAULT_IMAGE =
+  "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=1920&q=80";
+
+const DEFAULT_LAYER_COLORS = [
+  "transparent",
+  "transparent",
+  "transparent",
+  "#fb909a",
+  "#1c1cc9",
+];
+
+const DEFAULT_LAYER_BLEND_MODES = [
+  "none",
+  "none",
+  "none",
+  "overlay",
+  "overlay",
+];
+
+export default function GlitchImageEffect({
+  image = DEFAULT_IMAGE,
+  title = "ETHEREAL",
+  bgColor = "#000000",
+  titleColor = "#ffffff",
+  titleSize = "11vw",
+  titleOffset = "35vh",
+  titleFont = "'Bungee', Impact, 'Arial Black', sans-serif",
+  width = "100vw",
+  height = "100vh",
+  gapHorizontal = 10,
+  gapVertical = 5,
+  animTime = 4,
+  animDelay = 2,
+  glitchTitle = true,
+  backgroundPosition = "50% 0",
+  layerColors = DEFAULT_LAYER_COLORS,
+  layerBlendModes = DEFAULT_LAYER_BLEND_MODES,
+  flashOpacity = 0.2,
+}) {
+  const rawId = useId();
+  const uid = useMemo(
+    () => "gl-" + rawId.replace(/[^a-zA-Z0-9]/g, ""),
+    [rawId],
+  );
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+    const img = new Image();
+    img.onload = () => setLoaded(true);
+    img.onerror = () => setLoaded(true);
+    img.src = image;
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [image]);
+
+  const gh = `${gapHorizontal}px`;
+  const gv = `${gapVertical}px`;
+
+  const css = `
+.${uid} { --gh: ${gh}; --gv: ${gv}; }
+.${uid}-layer {
+  position: absolute;
+  top: calc(-1 * var(--gv));
+  left: calc(-1 * var(--gh));
+  width: calc(100% + var(--gh) * 2);
+  height: calc(100% + var(--gv) * 2);
+  background-repeat: no-repeat;
+  background-position: ${backgroundPosition};
+  background-size: cover;
+  transform: translate3d(0,0,0);
+}
+.${uid}-layer:nth-child(n+2) { opacity: 0; }
+.${uid}-on .${uid}-layer:nth-child(n+2) {
+  animation-duration: ${animTime}s;
+  animation-delay: ${animDelay}s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.${uid}-on .${uid}-layer:nth-child(2) { animation-name: ${uid}-a1; }
+.${uid}-on .${uid}-layer:nth-child(3) { animation-name: ${uid}-a2; }
+.${uid}-on .${uid}-layer:nth-child(4) { animation-name: ${uid}-a3; }
+.${uid}-on .${uid}-layer:nth-child(5) { animation-name: ${uid}-flash; }
+.${uid}-title {
+  animation-name: ${uid}-text;
+  animation-duration: ${animTime}s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: calc(${animDelay}s + ${animTime}s * 0.2);
+}
+@keyframes ${uid}-a1 {
+  0% { opacity: 1; transform: translate3d(var(--gh),0,0); clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%); }
+  2% { clip-path: polygon(0 15%, 100% 15%, 100% 15%, 0 15%); }
+  4% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
+  6% { clip-path: polygon(0 1%, 100% 1%, 100% 2%, 0 2%); }
+  8% { clip-path: polygon(0 33%, 100% 33%, 100% 33%, 0 33%); }
+  10% { clip-path: polygon(0 44%, 100% 44%, 100% 44%, 0 44%); }
+  12% { clip-path: polygon(0 50%, 100% 50%, 100% 20%, 0 20%); }
+  14% { clip-path: polygon(0 70%, 100% 70%, 100% 70%, 0 70%); }
+  16% { clip-path: polygon(0 80%, 100% 80%, 100% 80%, 0 80%); }
+  18% { clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%); }
+  20% { clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%); }
+  21.9% { opacity: 1; transform: translate3d(var(--gh),0,0); }
+  22%, 100% { opacity: 0; transform: translate3d(0,0,0); clip-path: polygon(0 0, 0 0, 0 0, 0 0); }
+}
+@keyframes ${uid}-a2 {
+  0% { opacity: 1; transform: translate3d(calc(-1 * var(--gh)),0,0); clip-path: polygon(0 25%, 100% 25%, 100% 30%, 0 30%); }
+  3% { clip-path: polygon(0 3%, 100% 3%, 100% 3%, 0 3%); }
+  5% { clip-path: polygon(0 5%, 100% 5%, 100% 20%, 0 20%); }
+  7% { clip-path: polygon(0 20%, 100% 20%, 100% 20%, 0 20%); }
+  9% { clip-path: polygon(0 40%, 100% 40%, 100% 40%, 0 40%); }
+  11% { clip-path: polygon(0 52%, 100% 52%, 100% 59%, 0 59%); }
+  13% { clip-path: polygon(0 60%, 100% 60%, 100% 60%, 0 60%); }
+  15% { clip-path: polygon(0 75%, 100% 75%, 100% 75%, 0 75%); }
+  17% { clip-path: polygon(0 65%, 100% 65%, 100% 40%, 0 40%); }
+  19% { clip-path: polygon(0 45%, 100% 45%, 100% 50%, 0 50%); }
+  20% { clip-path: polygon(0 14%, 100% 14%, 100% 33%, 0 33%); }
+  21.9% { opacity: 1; transform: translate3d(calc(-1 * var(--gh)),0,0); }
+  22%, 100% { opacity: 0; transform: translate3d(0,0,0); clip-path: polygon(0 0, 0 0, 0 0, 0 0); }
+}
+@keyframes ${uid}-a3 {
+  0% { opacity: 1; transform: translate3d(0, calc(-1 * var(--gv)), 0) scale3d(-1,-1,1); clip-path: polygon(0 1%, 100% 1%, 100% 3%, 0 3%); }
+  1.5% { clip-path: polygon(0 10%, 100% 10%, 100% 9%, 0 9%); }
+  2% { clip-path: polygon(0 5%, 100% 5%, 100% 6%, 0 6%); }
+  2.5% { clip-path: polygon(0 20%, 100% 20%, 100% 20%, 0 20%); }
+  3% { clip-path: polygon(0 10%, 100% 10%, 100% 10%, 0 10%); }
+  5% { clip-path: polygon(0 30%, 100% 30%, 100% 25%, 0 25%); }
+  5.5% { clip-path: polygon(0 15%, 100% 15%, 100% 16%, 0 16%); }
+  7% { clip-path: polygon(0 40%, 100% 40%, 100% 39%, 0 39%); }
+  8% { clip-path: polygon(0 20%, 100% 20%, 100% 21%, 0 21%); }
+  9% { clip-path: polygon(0 60%, 100% 60%, 100% 55%, 0 55%); }
+  10.5% { clip-path: polygon(0 30%, 100% 30%, 100% 31%, 0 31%); }
+  11% { clip-path: polygon(0 70%, 100% 70%, 100% 69%, 0 69%); }
+  13% { clip-path: polygon(0 40%, 100% 40%, 100% 41%, 0 41%); }
+  14% { clip-path: polygon(0 80%, 100% 80%, 100% 75%, 0 75%); }
+  14.5% { clip-path: polygon(0 50%, 100% 50%, 100% 51%, 0 51%); }
+  15% { clip-path: polygon(0 90%, 100% 90%, 100% 90%, 0 90%); }
+  16% { clip-path: polygon(0 60%, 100% 60%, 100% 60%, 0 60%); }
+  18% { clip-path: polygon(0 100%, 100% 100%, 100% 99%, 0 99%); }
+  20% { clip-path: polygon(0 70%, 100% 70%, 100% 71%, 0 71%); }
+  21.9% { opacity: 1; transform: translate3d(0, calc(-1 * var(--gv)), 0) scale3d(-1,-1,1); }
+  22%, 100% { opacity: 0; transform: translate3d(0,0,0); clip-path: polygon(0 0, 0 0, 0 0, 0 0); }
+}
+@keyframes ${uid}-text {
+  0% { transform: translate3d(calc(-1 * var(--gh)),0,0) scale3d(-1,-1,1); clip-path: polygon(0 20%, 100% 20%, 100% 21%, 0 21%); }
+  2% { clip-path: polygon(0 33%, 100% 33%, 100% 33%, 0 33%); }
+  4% { clip-path: polygon(0 44%, 100% 44%, 100% 44%, 0 44%); }
+  5% { clip-path: polygon(0 50%, 100% 50%, 100% 20%, 0 20%); }
+  6% { clip-path: polygon(0 70%, 100% 70%, 100% 70%, 0 70%); }
+  7% { clip-path: polygon(0 80%, 100% 80%, 100% 80%, 0 80%); }
+  8% { clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%); }
+  9% { clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%); }
+  9.9% { transform: translate3d(calc(-1 * var(--gh)),0,0) scale3d(-1,-1,1); }
+  10%, 100% { transform: translate3d(0,0,0) scale3d(1,1,1); clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+}
+@keyframes ${uid}-flash {
+  0%, 5% { opacity: ${flashOpacity}; transform: translate3d(var(--gh), var(--gv), 0); }
+  5.5%, 100% { opacity: 0; transform: translate3d(0, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .${uid} .${uid}-layer:nth-child(n+2) { animation: none !important; opacity: 0 !important; }
+  .${uid} .${uid}-title { animation: none !important; }
+}
+`;
+
+  return (
+    <div
+      className={`${uid} ${loaded ? `${uid}-on` : ""} relative flex w-full items-center justify-center overflow-hidden`}
+      style={{ backgroundColor: bgColor, minHeight: height }}
+    >
+      <style dangerouslySetInnerHTML={{ __html: css }} />
+
+      <div
+        className="absolute left-0 top-0 overflow-hidden"
+        style={{ width, height }}
+      >
+        {[0, 1, 2, 3, 4].map((i) => (
+          <div
+            key={i}
+            className={`${uid}-layer`}
+            style={{
+              backgroundImage: `url(${image})`,
+              backgroundColor: layerColors[i] || "transparent",
+              backgroundBlendMode: layerBlendModes[i] || "none",
+            }}
+          />
+        ))}
+      </div>
+
+      <h2
+        className={`${glitchTitle ? `${uid}-title` : ""} relative m-0 leading-none`}
+        style={{
+          color: titleColor,
+          fontFamily: titleFont,
+          fontSize: titleSize,
+          marginTop: titleOffset,
+        }}
+      >
+        {title}
+      </h2>
+    </div>
+  );
+}

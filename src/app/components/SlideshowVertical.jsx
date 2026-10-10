@@ -1,0 +1,282 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
+// ─── SlideshowVertical ───────────────────────────────────────────────────────
+//
+// Props
+// ──────────────────────────────────────────────────────────────────────────
+// images            array    [5 urls]   Image URLs used for each slide
+// bgColor           string   #000       Page/container background color
+// textColor         string   #fff       Color of the scroll hint text
+// transitionDuration number  1.5        Duration of the slide transition (s)
+// transitionEase    string   power4.inOut  GSAP easing for the transition
+// innerParallax     number   30         Parallax % offset applied to the inner image
+// wheelSpeed        number   -1         Wheel direction multiplier (-1 inverts scroll)
+// wheelTolerance    number   10         Minimum wheel/touch delta to trigger navigation
+// showNavButtons    boolean  true       Show/hide the prev/next circular buttons
+// scrollHintText    string   "scroll / drag"  Label shown next to the nav buttons
+// navButtonBg       string   #fff       Background color of the nav buttons
+// navButtonColor    string   #000       Icon/text color of the nav buttons
+// navButtonSize     number   60         Diameter of the nav buttons (px)
+// navButtonHoverBg  string   #ccc       Background color of the nav buttons on hover
+// ──────────────────────────────────────────────────────────────────────────
+
+const DEFAULT_IMAGES = [
+  "https://images.unsplash.com/photo-1780163930838-1502715c3bc1?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=720&q=80",
+];
+
+export default function SlideshowVertical({
+  images = DEFAULT_IMAGES,
+  bgColor = "#000",
+  textColor = "#fff",
+  transitionDuration = 1.5,
+  transitionEase = "power4.inOut",
+  innerParallax = 30,
+  wheelSpeed = -1,
+  wheelTolerance = 10,
+  showNavButtons = true,
+  scrollHintText = "scroll / drag",
+  navButtonBg = "#fff",
+  navButtonColor = "#000",
+  navButtonSize = 60,
+  navButtonHoverBg = "#ccc",
+}) {
+  const containerRef = useRef(null);
+  const slidesRef = useRef([]);
+  const innerRef = useRef([]);
+  const currentRef = useRef(0);
+  const isAnimatingRef = useRef(false);
+  const observerRef = useRef(null);
+  const hoverRef = useRef(null);
+
+  useEffect(() => {
+    slidesRef.current = slidesRef.current.slice(0, images.length);
+    innerRef.current = innerRef.current.slice(0, images.length);
+
+    const loadScript = (src) =>
+      new Promise((resolve, reject) => {
+        if (document.querySelector(`script[data-id="${src}"]`)) {
+          resolve();
+          return;
+        }
+        const el = document.createElement("script");
+        el.src = src;
+        el.setAttribute("data-id", src);
+        el.onload = resolve;
+        el.onerror = () => reject(new Error(`Failed: ${src}`));
+        document.head.appendChild(el);
+      });
+
+    const preloadImages = (urls) =>
+      Promise.all(
+        urls.map(
+          (src) =>
+            new Promise((resolve) => {
+              const img = new Image();
+              img.src = src;
+              img.onload = resolve;
+              img.onerror = resolve;
+            }),
+        ),
+      );
+
+    let cancelled = false;
+
+    Promise.all([
+      loadScript(
+        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
+      ),
+      loadScript(
+        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js",
+      ),
+    ])
+      .then(() => preloadImages(images))
+      .then(() => {
+        if (cancelled) return;
+        const { gsap, Observer } = window;
+        if (!gsap || !Observer || !containerRef.current) return;
+
+        gsap.registerPlugin(Observer);
+        gsap.config({ trialWarn: false });
+
+        const slides = slidesRef.current;
+        const inners = innerRef.current;
+
+        gsap.set(slides, { opacity: 0, pointerEvents: "none" });
+        gsap.set(slides[0], { opacity: 1, pointerEvents: "auto" });
+        gsap.set(containerRef.current, { visibility: "visible" });
+
+        const navigate = (direction) => {
+          if (isAnimatingRef.current) return;
+          isAnimatingRef.current = true;
+
+          const previous = currentRef.current;
+          const total = slides.length;
+          currentRef.current =
+            direction === 1
+              ? previous < total - 1
+                ? previous + 1
+                : 0
+              : previous > 0
+                ? previous - 1
+                : total - 1;
+
+          const currentSlide = slides[previous];
+          const currentInner = inners[previous];
+          const upcomingSlide = slides[currentRef.current];
+          const upcomingInner = inners[currentRef.current];
+
+          gsap
+            .timeline({
+              defaults: {
+                duration: transitionDuration,
+                ease: transitionEase,
+              },
+              onStart: () => {
+                gsap.set(upcomingSlide, {
+                  opacity: 1,
+                  pointerEvents: "auto",
+                });
+              },
+              onComplete: () => {
+                gsap.set(currentSlide, {
+                  opacity: 0,
+                  pointerEvents: "none",
+                });
+                isAnimatingRef.current = false;
+              },
+            })
+            .addLabel("start", 0)
+            .to(currentSlide, { yPercent: -direction * 100 }, "start")
+            .to(currentInner, { yPercent: direction * innerParallax }, "start")
+            .fromTo(
+              upcomingSlide,
+              { yPercent: direction * 100 },
+              { yPercent: 0 },
+              "start",
+            )
+            .fromTo(
+              upcomingInner,
+              { yPercent: -direction * innerParallax },
+              { yPercent: 0 },
+              "start",
+            );
+        };
+
+        hoverRef.current = {
+          next: () => navigate(1),
+          prev: () => navigate(-1),
+        };
+
+        observerRef.current = Observer.create({
+          target: containerRef.current,
+          type: "wheel,touch,pointer",
+          onDown: () => navigate(-1),
+          onUp: () => navigate(1),
+          wheelSpeed,
+          tolerance: wheelTolerance,
+        });
+      })
+      .catch((e) =>
+        console.error("[SlideshowVertical] failed to initialize:", e.message),
+      );
+
+    return () => {
+      cancelled = true;
+      if (observerRef.current) {
+        observerRef.current.kill();
+        observerRef.current = null;
+      }
+    };
+  }, [
+    images,
+    transitionDuration,
+    transitionEase,
+    innerParallax,
+    wheelSpeed,
+    wheelTolerance,
+  ]);
+
+  const handlePrev = () => hoverRef.current && hoverRef.current.prev();
+  const handleNext = () => hoverRef.current && hoverRef.current.next();
+
+  return (
+    <div
+      className="w-full h-screen relative overflow-hidden invisible"
+      style={{ backgroundColor: bgColor }}
+      ref={containerRef}
+    >
+      <div className="absolute inset-0 grid">
+        {images.map((src, i) => (
+          <div
+            key={i}
+            ref={(el) => (slidesRef.current[i] = el)}
+            className="col-start-1 row-start-1 col-end-2 row-end-2 w-full h-full grid place-items-center overflow-hidden opacity-0 pointer-events-none"
+            style={{ willChange: "transform, opacity" }}
+          >
+            <div
+              ref={(el) => (innerRef.current[i] = el)}
+              className="w-full h-full bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url(${src})`,
+                willChange: "transform, opacity",
+              }}
+            />
+          </div>
+        ))}
+      </div>
+
+      {showNavButtons && (
+        <div
+          className="absolute bottom-8 right-8 flex items-center gap-2 z-10"
+          style={{ color: textColor }}
+        >
+          <span className="mr-8 text-sm whitespace-nowrap">
+            {scrollHintText}
+          </span>
+          <button
+            onClick={handlePrev}
+            className="rounded-full grid place-items-center border-0 cursor-pointer transition-colors duration-300"
+            style={{
+              width: navButtonSize,
+              height: navButtonSize,
+              backgroundColor: navButtonBg,
+              color: navButtonColor,
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = navButtonHoverBg)
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = navButtonBg)
+            }
+          >
+            &larr;
+          </button>
+          <button
+            onClick={handleNext}
+            className="rounded-full grid place-items-center border-0 cursor-pointer transition-colors duration-300"
+            style={{
+              width: navButtonSize,
+              height: navButtonSize,
+              backgroundColor: navButtonBg,
+              color: navButtonColor,
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = navButtonHoverBg)
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = navButtonBg)
+            }
+          >
+            &rarr;
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}

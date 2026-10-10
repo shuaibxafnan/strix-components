@@ -1,0 +1,246 @@
+"use client";
+
+import { useEffect, useId, useRef } from "react";
+
+// ─── BackgroundScaleHover ────────────────────────────────────────────────────
+//
+// Props
+// ──────────────────────────────────────────────────────────────────────────
+// items              array    [...]      Menu entries {tag, label, image}
+// bgColor            string   #000       Page background behind the screens
+// itemBgColor        string   #282b27    Fallback color under each screen layer
+// textColor          string   #fff       Base text color
+// titleColor         string   #ffffff    Small frame page title color
+// linkColor          string   #e5e3e0    Frame link color
+// linkHoverColor     string   #fff       Frame link hover color
+// tagColor           string   #ffffff    Small label above each menu link
+// menuLinkColor      string   #d05d3b    Menu link resting color
+// menuLinkHoverColor string   #ffffff    Menu link hover color
+// menuFont           string   Georgia..  Font stack for the big menu links
+// menuFontWeight     number   700        Weight for the big menu links
+// menuFontSize       string   5vw        Desktop size of the big menu links
+// bodyFont           string   Inter..    Font stack for frame text and tags
+// pageTitle          string   "Les…"     Small centered frame title
+// frameTitle         string   "Background…" Small top-left frame heading
+// frameLinks         array    [...]      Top-left nav labels (strings)
+// menuLabel          string   Menu       Top-right frame word
+// clipShapes         array    [...]      clip-path strings for the accent layers
+// fullOpacity        number   0.6        Opacity of the full-bleed layer
+// scaleFrom          number   1.07       Starting scale of the reveal zoom
+// showDuration       number   1.8        Reveal zoom duration (s)
+// hideDuration       number   0.4        Fade-out duration (s)
+// showEase           string   power2.out Easing for the reveal zoom
+// hideEase           string   power2.out Easing for the fade-out
+// activateOnClick    boolean  true       Also switch on tap (touch devices)
+// className          string   ""         Extra classes on the root wrapper
+// ──────────────────────────────────────────────────────────────────────────
+
+const DEFAULT_ITEMS = [
+  {
+    tag: "Adrienne Hoareau",
+    label: "Le printemps",
+    image:
+      "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=1920&q=80",
+  },
+  {
+    tag: "Sylvie Payet",
+    label: "L'été",
+    image:
+      "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=1920&q=80",
+  },
+  {
+    tag: "Lilou Bakame",
+    label: "L'automne",
+    image:
+      "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=1920&q=80",
+  },
+  {
+    tag: "Juliette Esparon",
+    label: "L'hiver",
+    image:
+      "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=1920&q=80",
+  },
+];
+
+const DEFAULT_CLIP_SHAPES = [
+  "circle(41.9% at 19% 99%)",
+  "circle(16.2% at 74% 38%)",
+];
+
+export default function BackgroundScaleEffect({
+  items = DEFAULT_ITEMS,
+  bgColor = "#000000",
+  itemBgColor = "#282b27",
+  textColor = "#ffffff",
+  linkColor = "#e5e3e0",
+  linkHoverColor = "#ffffff",
+  tagColor = "#ffffff",
+  menuLinkColor = "#d05d3b",
+  menuLinkHoverColor = "#ffffff",
+  menuFont = 'Georgia, "Times New Roman", serif',
+  menuFontWeight = 700,
+  menuFontSize = "5vw",
+  bodyFont = 'Inter, "Helvetica Neue", Arial, sans-serif',
+  clipShapes = DEFAULT_CLIP_SHAPES,
+  fullOpacity = 0.6,
+  scaleFrom = 1.07,
+  showDuration = 1.8,
+  hideDuration = 0.4,
+  showEase = "power2.out",
+  hideEase = "power2.out",
+  activateOnClick = true,
+  className = "",
+}) {
+  const uid = `bsh-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
+  const screensRef = useRef([]);
+  const currentRef = useRef(0);
+  const gsapRef = useRef(null);
+
+  useEffect(() => {
+    const loadScript = (src) =>
+      new Promise((resolve, reject) => {
+        if (document.querySelector(`script[data-id="${src}"]`)) {
+          resolve();
+          return;
+        }
+        const el = document.createElement("script");
+        el.src = src;
+        el.setAttribute("data-id", src);
+        el.onload = resolve;
+        el.onerror = () => reject(new Error(`Failed: ${src}`));
+        document.head.appendChild(el);
+      });
+
+    let alive = true;
+    loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
+      .then(() => {
+        if (!alive) return;
+        gsapRef.current = window.gsap || null;
+      })
+      .catch((e) =>
+        console.error("[BackgroundScaleHover] GSAP load failed:", e.message),
+      );
+
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const activate = (position) => {
+    const gsap = gsapRef.current;
+    if (!gsap || position === currentRef.current) return;
+
+    const currentEl = screensRef.current[currentRef.current];
+    const nextEl = screensRef.current[position];
+    if (!currentEl || !nextEl) return;
+    currentRef.current = position;
+
+    const nextFull = nextEl.querySelector("[data-full]");
+    gsap.killTweensOf([currentEl, nextEl, nextFull]);
+
+    gsap
+      .timeline()
+      .set(nextEl, { opacity: 1, zIndex: 1 })
+      .to(nextFull, {
+        duration: showDuration,
+        ease: showEase,
+        startAt: { scale: scaleFrom },
+        scale: 1,
+      });
+
+    gsap
+      .timeline()
+      .set(currentEl, { zIndex: 10 })
+      .to(currentEl, {
+        duration: hideDuration,
+        ease: hideEase,
+        opacity: 0,
+        onComplete: () => gsap.set(currentEl, { zIndex: 1 }),
+      });
+  };
+
+  return (
+    <div
+      className={`relative w-full min-h-screen overflow-hidden md:overflow-hidden ${className}`}
+      style={{ backgroundColor: bgColor, color: textColor }}
+    >
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `#${uid} a{color:${linkColor};text-decoration:none}#${uid} a:hover{color:${linkHoverColor}}#${uid} .${uid}-nav a{text-decoration:underline}#${uid} .${uid}-nav a:hover{text-decoration:none}#${uid} .${uid}-link{color:${menuLinkColor};transition:color .2s}#${uid} .${uid}-link:hover{color:${menuLinkHoverColor}}@media screen and (min-width:53em){#${uid} .${uid}-link{font-size:${menuFontSize}}}`,
+        }}
+      />
+
+      <div id={uid} className="relative w-full min-h-screen">
+        <div
+          className="absolute top-0 left-0 h-full min-h-screen w-full"
+          aria-hidden="true"
+        >
+          {items.map((item, i) => (
+            <div
+              key={item.label}
+              ref={(el) => {
+                screensRef.current[i] = el;
+              }}
+              className="absolute top-0 left-0 h-full min-h-screen w-full"
+              style={{
+                backgroundColor: itemBgColor,
+                opacity: i === 0 ? 1 : 0,
+                zIndex: i === 0 ? 100 : 1,
+              }}
+            >
+              <div
+                data-full
+                className="absolute top-0 left-0 h-full min-h-screen w-full bg-cover bg-center bg-no-repeat will-change-transform"
+                style={{
+                  backgroundImage: `url(${item.image})`,
+                  opacity: fullOpacity,
+                }}
+              />
+              {clipShapes.map((shape, s) => (
+                <div
+                  key={s}
+                  className="absolute top-0 left-0 h-full min-h-screen w-full bg-cover bg-center bg-no-repeat"
+                  style={{
+                    backgroundImage: `url(${item.image})`,
+                    clipPath: shape,
+                  }}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="relative z-[100] flex select-none flex-col p-8 md:h-screen md:items-center md:justify-center">
+          <nav className="md:mx-auto md:block md:max-w-[74vw] md:text-center">
+            {items.map((item, i) => (
+              <span
+                key={item.label}
+                className="my-[2vh] inline-block text-left md:mx-[3vw] md:my-[3vh]"
+              >
+                <span
+                  className="block text-sm md:ml-[0.25vw]"
+                  style={{ color: tagColor, fontFamily: bodyFont }}
+                >
+                  {item.tag}
+                </span>
+                <a
+                  href="#"
+                  className={`${uid}-link block cursor-pointer text-5xl leading-none`}
+                  style={{ fontFamily: menuFont, fontWeight: menuFontWeight }}
+                  onMouseEnter={() => activate(i)}
+                  onFocus={() => activate(i)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (activateOnClick) activate(i);
+                  }}
+                >
+                  {item.label}
+                </a>
+              </span>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </div>
+  );
+}
