@@ -2,38 +2,24 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── CosmicWarpSlideshow ─────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// slidesData       array    List of visual elements containing background images
-// slideTitles      array    Sequential typography overlays loaded side-by-side
-// seriesTitle      string   Context layout header tracking title
-// lineBaseHeight   number   Minimum idle height tracking line elements (px)
-// lineMaxHeight    number   Maximum peak scale height for active wave lines (px)
-// totalDragLines   number   Total inline bars generated inside the tracking container
-// thumbWidth       string   Width mapping rule assigned to every sliding thumbnail
-// hintText         string   Top-right dynamic text element informing usability
-// ──────────────────────────────────────────────────────────────────────────
-
 const COSMIC_SLIDES = [
   {
-    img: "https://cdn.cosmos.so/1d4dbaff-8087-4451-a727-9d3266b573dd?format=jpeg",
+    img: "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    img: "https://cdn.cosmos.so/67ef01f5-09c8-4117-9199-04ec5323d64f?format=jpeg",
+    img: "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    img: "https://cdn.cosmos.so/77f73423-0eb7-4eaa-a782-036457985290?format=jpeg",
+    img: "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    img: "https://cdn.cosmos.so/3dd498a9-169d-4b69-8e2e-df042123c124?format=jpeg",
+    img: "https://images.unsplash.com/photo-1678112553355-a9dab855ebf3?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    img: "https://cdn.cosmos.so/ca346107-04c8-4241-85e6-f26c8b64c85c?format=jpeg",
+    img: "https://images.unsplash.com/photo-1781935307999-e8bb5e62ebb1?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    img: "https://cdn.cosmos.so/7d2c5113-b2d3-4f9d-8215-f46fbb679f31?format=jpeg",
+    img: "https://images.unsplash.com/photo-1749330513873-09ffa91b0aae?auto=format&fit=crop&w=1600&q=80",
   },
 ];
 
@@ -554,9 +540,8 @@ export default function CosmicWarpSlideshow({
             {slidesData.map((slide, index) => (
               <div
                 key={index}
-                className={`js-slide-thumb h-20 bg-cover bg-left bg-no-repeat cursor-pointer opacity-50 hover:opacity-80 transition-opacity duration-300 border-none outline-none shadow-none m-0 relative z-10 ${
-                  index === 0 ? "!opacity-100" : ""
-                }`}
+                className={`js-slide-thumb h-20 bg-cover bg-left bg-no-repeat cursor-pointer opacity-50 hover:opacity-80 transition-opacity duration-300 border-none outline-none shadow-none m-0 relative z-10 ${index === 0 ? "!opacity-100" : ""
+                  }`}
                 style={{
                   width: thumbWidth,
                   backgroundImage: `url(${slide.img})`,

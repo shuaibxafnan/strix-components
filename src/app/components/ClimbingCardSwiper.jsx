@@ -1,173 +1,144 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-// ─── ClimbingCardSwiper ─────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bgColor            string   "#090d16"          Deep premium cosmic dark background
-// cardWidth          string   "420px"            Desktop slide element width
-// cardHeight         string   "540px"            Desktop slide element height
-// accentColor        string   "#3b82f6"          Signature modern focus glow tint (e.g. blue-500)
-// rotateAngle        number   40                 Sleek coverflow perspective rotation angle
-// slideDepth         number   140                Elegant Z-axis depth displacement
-// ──────────────────────────────────────────────────────────────────────────
+const SWIPER_CSS =
+  "https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css";
+const SWIPER_JS =
+  "https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js";
+
+const photo = (id) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=840&h=1080&q=80`;
 
 const DEFAULT_SLIDES = [
   {
-    img: "https://cdn.josetxu.com/img/gp-tonin-rocodromo.jpg",
-    climber: "Carlos Rubio",
-    photo: "Josetxu López",
-    route: "Toñin (7b)",
-    sector: "El Rocodromo",
-    zone: "La Pedriza",
+    img: photo("1749330513873-09ffa91b0aae"),
+    title: "First light",
+    caption: "The hour before anything has a shadow.",
   },
   {
-    img: "https://cdn.josetxu.com/img/gp-normal-caliz.jpg",
-    climber: "Josetxu López",
-    photo: "Uge Garcia",
-    route: "Normal (Ae)",
-    sector: "El Caliz",
-    zone: "La Pedriza",
+    img: photo("1627896157734-4d7d4388f28b"),
+    title: "Slow ground",
+    caption: "Surfaces that remember every season.",
   },
   {
-    img: "https://cdn.josetxu.com/img/gp-cumbre-totem.jpg",
-    climber: "Antonio, Aitor, Uge & Josefer",
-    photo: "Josetxu López",
-    route: "Sur Clasica (6a)",
-    sector: "El Totem",
-    zone: "La Pedriza",
+    img: photo("1778961938903-96617183f739"),
+    title: "Low tide",
+    caption: "What the sea leaves behind when it leaves.",
   },
   {
-    img: "https://cdn.josetxu.com/img/gp-oscar-raul-hueco-hoces2.jpg",
-    climber: "Aitor Saz",
-    photo: "Tximo",
-    route: "Oscar & Raul (6a)",
-    sector: "Hueco de las Hoces",
-    zone: "La Pedriza",
+    img: photo("1678112553355-a9dab855ebf3"),
+    title: "Open air",
+    caption: "Nothing between the horizon and you.",
   },
   {
-    img: "https://cdn.josetxu.com/img/gp-gallego-cueva-mora.jpg",
-    climber: "Jarutxi Mora",
-    photo: "Fernando Bulnes",
-    route: "Gallego (V+)",
-    sector: "Cueva de la Mora",
-    zone: "La Pedriza",
+    img: photo("1743309411498-a0f4f4b96b65"),
+    title: "Last warmth",
+    caption: "The long exhale of a day well spent.",
   },
   {
-    img: "https://cdn.josetxu.com/img/gp-chimenea-tortuga.jpg",
-    climber: "Nacho Ruiz",
-    photo: "Josetxu López",
-    route: "Chimenea (6a)",
-    sector: "La Tortuga",
-    zone: "La Pedriza",
+    img: photo("1490682143684-14369e18dce8"),
+    title: "Quiet hours",
+    caption: "A town with its lights half out.",
   },
   {
-    img: "https://cdn.josetxu.com/img/gp-blues-ojos-bonitos-tres-coronas.jpg",
-    climber: "Marino",
-    photo: "Josetxu López",
-    route: "Blues de los ojos bonitos (6a+)",
-    sector: "Tres Coronas",
-    zone: "La Pedriza",
+    img: photo("1634325232058-e7b8f80cc20b"),
+    title: "Soft weather",
+    caption: "Gray skies and a good excuse to stay in.",
   },
   {
-    img: "https://cdn.josetxu.com/img/gp-capuchon-sarcofago.jpg",
-    climber: "Josetxu & Uge",
-    photo: "Antonio Montes",
-    route: "El Capuchon (6a/A1)",
-    sector: "El Sarcofago",
-    zone: "La Pedriza",
-  },
-  {
-    img: "https://cdn.josetxu.com/img/gp-rosario-cueva-mora.jpg",
-    climber: "Eloy Atajos",
-    photo: "Josetxu López",
-    route: "Rosario (Vº)",
-    sector: "Cueva de la Mora",
-    zone: "La Pedriza",
-  },
-  {
-    img: "https://cdn.josetxu.com/img/gp-me-pesa-hasta-el-aire-dehesilla.jpg",
-    climber: "Indio",
-    photo: "Jarutxi Mora",
-    route: "Me pesa hasta el aire (A2/A3?)",
-    sector: "Risco de la Dehesilla",
-    zone: "La Pedriza",
-  },
-  {
-    img: "https://cdn.josetxu.com/img/gp-anonima-tres-coronas.jpg",
-    climber: "Krispin Talavera",
-    photo: "Josetxu López",
-    route: "Anónima (6c)",
-    sector: "Tres Coronas",
-    zone: "La Pedriza",
+    img: photo("1759458856846-097935f54111"),
+    title: "Cold and clear",
+    caption: "Every edge a little sharper than yesterday.",
   },
 ];
 
+const loadCSS = (href) =>
+  new Promise((resolve, reject) => {
+    const existing = document.querySelector(`link[data-id="${href}"]`);
+    if (existing) {
+      if (existing.dataset.loaded === "true") resolve();
+      else {
+        existing.addEventListener("load", resolve);
+        existing.addEventListener("error", reject);
+      }
+      return;
+    }
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    link.setAttribute("data-id", href);
+    link.onload = () => {
+      link.dataset.loaded = "true";
+      resolve();
+    };
+    link.onerror = reject;
+    document.head.appendChild(link);
+  });
+
+const loadScript = (src) =>
+  new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[data-id="${src}"]`);
+    if (existing) {
+      if (existing.dataset.loaded === "true") resolve();
+      else {
+        existing.addEventListener("load", resolve);
+        existing.addEventListener("error", reject);
+      }
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = src;
+    script.setAttribute("data-id", src);
+    script.onload = () => {
+      script.dataset.loaded = "true";
+      resolve();
+    };
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+
+const TILTS = [
+  "-rotate-[2.5deg]",
+  "rotate-[2deg]",
+  "-rotate-[1deg]",
+  "rotate-[3deg]",
+];
+
 export default function ClimbingCardSwiper({
-  bgColor = "#090d16",
+  slides = DEFAULT_SLIDES,
+  bgColor = "#0a0a0a",
+  fontFamily = "Schibsted Grotesk",
+  titleFont = "Caveat",
   cardWidth = "420px",
   cardHeight = "540px",
-  accentColor = "#3b82f6",
   rotateAngle = 40,
   slideDepth = 140,
-  slides = DEFAULT_SLIDES,
 }) {
   const containerRef = useRef(null);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    let cancelled = false;
+    let swiper;
 
-    const loadCSS = (href) => {
-      if (document.querySelector(`link[href="${href}"]`))
-        return Promise.resolve();
-      return new Promise((resolve, reject) => {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = href;
-        link.onload = resolve;
-        link.onerror = reject;
-        document.head.appendChild(link);
-      });
-    };
-
-    const loadScript = (src) => {
-      if (document.querySelector(`script[data-id="${src}"]`))
-        return Promise.resolve();
-      return new Promise((resolve, reject) => {
-        const script = document.createElement("script");
-        script.src = src;
-        script.setAttribute("data-id", src);
-        script.onload = resolve;
-        script.onerror = reject;
-        document.head.appendChild(script);
-      });
-    };
-
-    Promise.all([
-      loadCSS("https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"),
-      loadScript("https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"),
-    ])
+    Promise.all([loadCSS(SWIPER_CSS), loadScript(SWIPER_JS)])
       .then(() => {
         const { Swiper } = window;
-        if (!Swiper || !containerRef.current) return;
+        if (cancelled || !Swiper || !containerRef.current) return;
 
-        new Swiper(containerRef.current, {
+        swiper = new Swiper(containerRef.current, {
           effect: "coverflow",
           loop: true,
           grabCursor: true,
           centeredSlides: true,
-          slidesPerView: "1",
+          slidesPerView: 1,
           coverflowEffect: {
             rotate: rotateAngle,
             stretch: -20,
             depth: slideDepth,
             modifier: 1,
-            slideShadows: true,
+            slideShadows: false,
           },
-          // Pagination config object omitted entirely to cleanly remove the bottom tabs indicator
           breakpoints: {
             320: { slidesPerView: 1.4 },
             580: { slidesPerView: 1.8 },
@@ -179,153 +150,72 @@ export default function ClimbingCardSwiper({
         });
       })
       .catch((err) =>
-        console.error("[Modern3DGallery] Swiper initialization crash:", err),
+        console.error("[ClimbingCardSwiper] Swiper failed to load:", err),
       );
-  }, [rotateAngle, slideDepth]);
 
-  if (!mounted) {
-    return (
-      <div
-        className="w-full h-screen flex items-center justify-center"
-        style={{ backgroundColor: bgColor }}
-      />
-    );
-  }
+    return () => {
+      cancelled = true;
+      if (swiper) swiper.destroy(true, true);
+    };
+  }, [rotateAngle, slideDepth, slides.length]);
 
   return (
     <div
-      className="w-full min-h-screen flex items-center justify-center overflow-hidden py-16 select-none relative font-sans"
-      style={{ backgroundColor: bgColor }}
+      className="relative flex min-h-screen w-full select-none items-center justify-center overflow-hidden bg-[var(--bg)] py-16 font-[family-name:var(--font)]"
+      style={{
+        "--bg": bgColor,
+        "--font": `"${fontFamily}", sans-serif`,
+        "--title-font": `"${titleFont}", serif`,
+        "--cw": cardWidth,
+        "--ch": cardHeight,
+      }}
     >
-      {/* Background Tech Decorative Ambient Lighting */}
-      <div className="absolute top-0 left-1/4 w-[40vw] h-[40vw] rounded-full bg-blue-500/[0.02] blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[40vw] h-[40vw] rounded-full bg-indigo-500/[0.02] blur-[150px] pointer-events-none" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Schibsted+Grotesk:wght@400;500&display=swap"
+      />
 
-      {/* Main Core Carousel Component Viewport */}
-      <div
-        ref={containerRef}
-        className="swiper w-full pt-8 pb-12 overflow-visible"
-      >
-        <div className="swiper-wrapper">
+      <div ref={containerRef} className="swiper w-full overflow-visible pb-12 pt-8">
+        <div className="swiper-wrapper py-16">
           {slides.map((slide, idx) => (
             <div
               key={idx}
-              className="swiper-slide relative rounded-[28px] overflow-hidden border border-white/[0.06] shadow-[0_30px_70px_-15px_rgba(0,0,0,0.8)] transition-all duration-500 ease-out group p-[2px]"
-              style={{
-                width: cardWidth,
-                height: cardHeight,
-              }}
+              style={{ height: "var(--ch)", width: "var(--cw)" }}
+              className="swiper-slide group"
             >
-              {/* Inner Isolated Canvas to hold clean styling frame layouts */}
-              <div className="w-full h-full relative rounded-[26px] overflow-hidden bg-slate-950">
-                {/* Background Image Frame Layer */}
-                <div
-                  className="absolute inset-0 bg-center bg-cover scale-100 transition-transform duration-[900ms] cubic-bezier(0.16, 1, 0.3, 1) group-hover:scale-105"
-                  style={{ backgroundImage: `url(${slide.img})` }}
-                />
+              <div
+                className={`flex h-full w-full flex-col rounded-[3px] bg-[linear-gradient(180deg,#f8f5ee,#eee8da)] p-[14px] shadow-[0_28px_50px_-14px_rgba(0,0,0,0.75)] brightness-[0.62] transition duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-[.swiper-slide-active]:rotate-0 group-[.swiper-slide-active]:brightness-100 ${TILTS[idx % TILTS.length]
+                  }`}
+              >
+                <div className="relative min-h-0 flex-1 overflow-hidden bg-neutral-300">
+                  <img
+                    src={slide.img}
+                    alt={slide.alt ?? slide.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover contrast-[1.05] saturate-[0.9] transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  />
+                  <span className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.08)]" />
+                </div>
 
-                {/* Modern Lens Flare / Linear Highlight Reflection overlay */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.04] to-white/0 opacity-100 transition-opacity pointer-events-none z-10" />
-
-                {/* Dark Vignette Bottom Gradient Shading Shield */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-95" />
-
-                {/* Fully Remastered Glassmorphic Info Control Board */}
-                <div className="absolute left-4 right-4 bottom-[-80px] opacity-0 scale-95 group-[.swiper-slide-active]:bottom-4 group-[.swiper-slide-active]:opacity-100 group-[.swiper-slide-active]:scale-100 p-5 rounded-[22px] border border-white/[0.08] bg-slate-900/40 backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-[600ms] cubic-bezier(0.16, 1, 0.3, 1) z-20 flex flex-col gap-3.5">
-                  {/* Title Header: Route name and Badge Grade details */}
-                  <div className="text-left border-b border-white/[0.06] pb-2.5">
-                    <span className="text-xs font-semibold tracking-widest text-slate-400 uppercase block mb-0.5">
-                      Route Path
-                    </span>
-                    <h3 className="text-xl font-bold text-white tracking-tight leading-tight">
-                      {slide.route}
-                    </h3>
-                  </div>
-
-                  {/* Metadata Compact Minimal Grid Gridlines Layout */}
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-3">
-                    {/* Item Row 1: Climber Identity */}
-                    <div className="flex flex-col items-start">
-                      <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest text-slate-400 mb-0.5">
-                        <span
-                          className="w-1 h-1 rounded-full"
-                          style={{ backgroundColor: accentColor }}
-                        />
-                        Climber
-                      </div>
-                      <p className="text-xs font-semibold text-white truncate max-w-full">
-                        {slide.climber}
-                      </p>
-                    </div>
-
-                    {/* Item Row 2: Photo Creator Credits */}
-                    <div className="flex flex-col items-start">
-                      <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest text-slate-400 mb-0.5">
-                        <span
-                          className="w-1 h-1 rounded-full"
-                          style={{ backgroundColor: accentColor }}
-                        />
-                        Photo
-                      </div>
-                      <p className="text-xs font-semibold text-white truncate max-w-full">
-                        {slide.photo}
-                      </p>
-                    </div>
-
-                    {/* Item Row 3: Crag Sector Arena */}
-                    <div className="flex flex-col items-start">
-                      <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest text-slate-400 mb-0.5">
-                        <span
-                          className="w-1 h-1 rounded-full"
-                          style={{ backgroundColor: accentColor }}
-                        />
-                        Sector
-                      </div>
-                      <p className="text-xs font-semibold text-white truncate max-w-full">
-                        {slide.sector}
-                      </p>
-                    </div>
-
-                    {/* Item Row 4: Territorial Zone Area */}
-                    <div className="flex flex-col items-start">
-                      <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest text-slate-400 mb-0.5">
-                        <span
-                          className="w-1 h-1 rounded-full"
-                          style={{ backgroundColor: accentColor }}
-                        />
-                        Zone
-                      </div>
-                      <p className="text-xs font-semibold text-white truncate max-w-full">
-                        {slide.zone}
-                      </p>
-                    </div>
-                  </div>
+                <div className="h-[118px] shrink-0 px-1 pt-4 text-[#2a2723]">
+                  <h3 className="font-[family-name:var(--title-font)] text-[2.4rem] font-bold leading-none">
+                    {slide.title}
+                  </h3>
+                  <p className="mt-2 max-w-[34ch] text-[0.8rem] leading-snug text-[#6a645b] [clip-path:inset(0_100%_0_0)] transition-[clip-path] duration-[1200ms] ease-out group-[.swiper-slide-active]:delay-300 group-[.swiper-slide-active]:[clip-path:inset(0_0_0_0)]">
+                    {slide.caption}
+                  </p>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Global CSS Style Variable Overrides Injection to clean structural frames */}
-      <style jsx global>{`
-        .swiper-slide-shadow-left,
-        .swiper-slide-shadow-right {
-          border-radius: 28px !important;
-          background-image: linear-gradient(
-            to left,
-            rgba(0, 0, 0, 0.6),
-            rgba(0, 0, 0, 0)
-          ) !important;
-        }
-        .swiper-slide-shadow-right {
-          background-image: linear-gradient(
-            to right,
-            rgba(0, 0, 0, 0.6),
-            rgba(0, 0, 0, 0)
-          ) !important;
-        }
-      `}</style>
     </div>
   );
 }

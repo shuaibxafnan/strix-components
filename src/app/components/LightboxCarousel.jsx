@@ -2,30 +2,25 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── LightboxCarousel ──────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// width             string   "300px"     Width of the carousel wrapper viewport
-// height            string   "400px"     Height of the carousel wrapper viewport
-// perspective       string   "1000px"    CSS 3D perspective field depth
-// cardWidth         string   "300px"     Explicit width dimensions of image slides
-// cardHeight        string   "200px"     Explicit height dimensions of image slides
-// cardRadius        string   "15px"      Border radius applied to carousel cards
-// radius            number   180         Mathematical 3D cylinder depth offset (px)
-// autoRotateDelay   number   3000        Interval duration for automatic loop sequences (ms)
-// dragSensitivity   number   0.5         Multiplier factor applied to physical pixel drags
-// bodyBg            string   "#111"      Page container wrapper background color
-// cardItems         array    [...]       Image target sources array containing links
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_ITEMS = [
-  { src: "https://iili.io/3MFDjiG.jpg" },
-  { src: "https://iili.io/3MFDNff.jpg" },
-  { src: "https://iili.io/3MFDOl4.jpg" },
-  { src: "https://iili.io/3MFDhVs.jpg" },
-  { src: "https://iili.io/3MFD4Wu.jpg" },
-  { src: "https://iili.io/3MFDrxe.jpg" },
+  {
+    src: "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1779877716206-f441d5d384d4?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1200&q=80",
+  },
 ];
 
 export default function LightboxCarousel({
@@ -185,11 +180,10 @@ export default function LightboxCarousel({
       {/* Lightbox Module Frame */}
       <div
         onClick={(e) => e.target === e.currentTarget && closeLightbox()}
-        className={`fixed inset-0 w-screen h-screen bg-black/80 flex items-center justify-center [z-index:999] transition-opacity duration-300 ease-in-out ${
-          lightbox.isOpen
+        className={`fixed inset-0 w-screen h-screen bg-black/80 flex items-center justify-center [z-index:999] transition-opacity duration-300 ease-in-out ${lightbox.isOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
-        }`}
+          }`}
       >
         <span
           onClick={closeLightbox}

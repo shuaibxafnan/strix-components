@@ -2,36 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── ProfileCards ─────────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────────
-// cards              array    see CARD_DEFAULTS   Array of card data objects
-//   .name            string   "Lukas Meier"       Person name
-//   .description     string   "..."               Short bio
-//   .image           string   url                 Card background image URL
-//   .status          string   "online"|"offline"  Online status
-//   .rating          number   4.5                 Star rating (0–5)
-//   .followers       string   "3.1 K"             Follower count string
-//   .verified        boolean  true                Show verified badge
-//   .buttonLabel     string   "Get In Touch"      CTA button text
-//   .onButtonClick   fn       undefined           Callback for CTA click
-//
-// bgColor            string   "black"             Page/wrapper background
-// cardGap            string   "1rem"              Gap between cards
-// buttonHoverColor   string   "#FF004D"           CTA button hover bg color
-// glowOnHover        boolean  true                Fade overlay + button tint on hover
-// draggable          boolean  true                Enable drag-to-sort (desktop)
-// showHeader         boolean  true                Show "MADE BY TurboKit" header
-// ──────────────────────────────────────────────────────────────────────────────
-
 const CARD_DEFAULTS = [
   {
     name: "Lukas Meier",
     description:
       "Digital product designer crafting intuitive, scalable user journeys",
     image:
-      "https://i.pinimg.com/736x/fd/5d/b0/fd5db03cfc44d0f9b6b4d4b7fdb05340.jpg",
+      "https://images.unsplash.com/photo-1453396450673-3fe83d2db2c4?q=80&w=640&auto=format&fit=crop",
     status: "online",
     rating: 4.5,
     followers: "3.1 K",
@@ -43,7 +20,7 @@ const CARD_DEFAULTS = [
     description:
       "Digital designer turning complex workflows into seamless journeys",
     image:
-      "https://i.pinimg.com/736x/80/b2/ff/80b2ff0b40a7b586cdd4cd8ff264d7a9.jpg",
+      "https://images.unsplash.com/photo-1592700819903-308f4820372d?q=80&w=640&auto=format&fit=crop",
     status: "online",
     rating: 4.0,
     followers: "2.4 K",
@@ -55,7 +32,7 @@ const CARD_DEFAULTS = [
     description:
       "UX strategist designing frictionless, data-driven digital experiences",
     image:
-      "https://i.pinimg.com/736x/37/d4/7b/37d47b1d8979b4fe22014c89bedd5c10.jpg",
+      "https://images.unsplash.com/photo-1720022785516-9653ead7180c?q=80&w640&auto=format&fit=crop",
     status: "offline",
     rating: 5.0,
     followers: "1.7 K",
@@ -64,16 +41,12 @@ const CARD_DEFAULTS = [
   },
 ];
 
-// ─── loadScript ───────────────────────────────────────────────────────────────
-// Injects a <script> tag once and resolves when loaded. Deduplicates by src.
-// Never uses import() — Turbopack cannot bundle external CDN URLs at build time.
 const loadScript = (src) =>
   new Promise((resolve, reject) => {
     const existing = document.querySelector(
       `script[data-cdn-src="${CSS.escape(src)}"]`,
     );
     if (existing) {
-      // Already injected — wait for it if still loading, else resolve immediately
       if (existing.dataset.loaded === "1") {
         resolve();
       } else {
@@ -97,8 +70,6 @@ const loadScript = (src) =>
     document.head.appendChild(el);
   });
 
-// ─── StarRating ───────────────────────────────────────────────────────────────
-// Renders 5 star icons; supports half-star via SVG linear gradient.
 function StarRating({ rating }) {
   return (
     <div className="flex items-center gap-[2px]">
@@ -134,8 +105,6 @@ function StarRating({ rating }) {
   );
 }
 
-// ─── StatusDot ────────────────────────────────────────────────────────────────
-// Pulsing green dot for online; static grey for offline.
 function StatusDot({ status }) {
   const isOnline = status === "online";
   return (
@@ -155,16 +124,12 @@ function StatusDot({ status }) {
   );
 }
 
-// ─── SwappableCard ──────────────────────────────────────────────────────────────
-// Single animated profile card.
-// Motion (window.Motion) is loaded via <script> tag; hover/press are native
-// addEventListener so no dependency on Motion's DOM-only hover/press exports.
 function SwappableCard({
   card,
   index,
   buttonHoverColor,
   glowOnHover,
-  draggable,
+  draggable
 }) {
   const cardRef = useRef(null);
   const bgRef = useRef(null);
@@ -181,7 +146,6 @@ function SwappableCard({
 
     const init = async () => {
       try {
-        // Load Motion UMD → window.Motion  (global confirmed by official docs)
         await loadScript(
           "https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js",
         );
@@ -199,14 +163,12 @@ function SwappableCard({
 
         if (!cardEl) return;
 
-        // 🎬 Entry fade-in per card
         animate(
           cardEl,
           { opacity: [0, 1], filter: ["blur(1rem)", "blur(0)"] },
           { duration: 0.8, delay: index / 4 },
         );
 
-        // 📝 Name + description staggered entry
         if (nameEl)
           animate(
             nameEl,
@@ -220,23 +182,21 @@ function SwappableCard({
             { delay: index / 4 + 0.5 },
           );
 
-        // 🌌 Continuous bg scale pulse
         const startBgAnim = () =>
           bgEl
             ? animate(
-                bgEl,
-                { scale: [1, 1.2] },
-                {
-                  duration: 15,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "linear",
-                },
-              )
+              bgEl,
+              { scale: [1, 1.2] },
+              {
+                duration: 15,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "linear",
+              },
+            )
             : null;
         bgAnimRef.current = startBgAnim();
 
-        // 🖱️ Card hover — native mouseenter/mouseleave, no Motion hover() needed
         if (glowOnHover && fadeEl && buttonEl) {
           const onEnter = () => {
             animate(fadeEl, { opacity: 1 });
@@ -254,7 +214,6 @@ function SwappableCard({
           });
         }
 
-        // 👉 Button press — native pointerdown/pointerup
         if (buttonEl) {
           const onDown = () =>
             animate(buttonEl, { scale: 1.1 }, { duration: 0.1 });
@@ -270,7 +229,6 @@ function SwappableCard({
           });
         }
 
-        // 🎯 Handle hover — card lift + bg zoom
         if (draggable && handleEl && bgEl && cardEl) {
           const onEnter = () => {
             animate(handleEl, { scale: 0.95 }, { duration: 0.2 });
@@ -317,7 +275,6 @@ function SwappableCard({
       cancelled = true;
       cleanups.forEach((fn) => fn());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, buttonHoverColor, glowOnHover, draggable]);
 
   return (
@@ -332,7 +289,6 @@ function SwappableCard({
         padding: "1rem",
       }}
     >
-      {/* 🌆 Background image */}
       <img
         ref={bgRef}
         src={card.image}
@@ -341,10 +297,8 @@ function SwappableCard({
         draggable={false}
       />
 
-      {/* 🟢 Status pill */}
       <StatusDot status={card.status} />
 
-      {/* ✋ Drag handle */}
       {draggable && (
         <div
           ref={handleRef}
@@ -360,9 +314,7 @@ function SwappableCard({
         </div>
       )}
 
-      {/* 💬 Card content */}
       <div className="relative z-[3] w-full px-1">
-        {/* 🙋 Name + verified badge */}
         <div ref={nameRef} className="flex items-center gap-2 my-3 opacity-0">
           <span className="text-white text-xl font-bold">{card.name}</span>
           {card.verified && (
@@ -376,7 +328,6 @@ function SwappableCard({
           )}
         </div>
 
-        {/* ⭐ Tags row */}
         <div className="flex items-center gap-2 my-2">
           <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-2 py-1 rounded-full text-[12px] pointer-events-none">
             <span className="text-white">{card.rating.toFixed(1)}</span>
@@ -394,7 +345,6 @@ function SwappableCard({
           </div>
         </div>
 
-        {/* 🧾 Description */}
         <p
           ref={descRef}
           className="text-white text-[13px] font-light leading-relaxed my-2 mb-4 opacity-0"
@@ -402,7 +352,6 @@ function SwappableCard({
           {card.description}
         </p>
 
-        {/* 📞 CTA Button */}
         <button
           ref={buttonRef}
           onClick={card.onButtonClick}
@@ -427,7 +376,6 @@ function SwappableCard({
         </button>
       </div>
 
-      {/* 🌫️ Bottom fade overlay */}
       <div
         ref={fadeRef}
         className="absolute bottom-0 left-0 w-full h-[20rem] z-0 pointer-events-none"
@@ -441,7 +389,6 @@ function SwappableCard({
   );
 }
 
-// ─── SwappableCards ─────────────────────────────────────────────────────────────
 export default function SwappableCards({
   cards = CARD_DEFAULTS,
   bgColor = "black",
@@ -450,12 +397,13 @@ export default function SwappableCards({
   glowOnHover = true,
   draggable = true,
   showHeader = true,
+  title = "Selected Works",
+  description = "Curated visual studies",
 }) {
   const cardsRef = useRef(null);
   const madeRef = useRef(null);
   const sortableRef = useRef(null);
 
-  // ── Header / footer Motion animations ─────────────────────────────────────
   useEffect(() => {
     let cancelled = false;
     const cleanups = [];
@@ -469,7 +417,6 @@ export default function SwappableCards({
 
         const { animate } = window.Motion;
 
-        // Fade-in + native hover scale for header/footer links
         const attachFade = (el) => {
           if (!el) return;
           animate(
@@ -510,7 +457,6 @@ export default function SwappableCards({
     };
   }, [showHeader]);
 
-  // ── Draggable/Sortable init ────────────────────────────────────────────────
   useEffect(() => {
     if (!draggable || !cardsRef.current) return;
 
@@ -521,19 +467,14 @@ export default function SwappableCards({
         await loadScript(
           "https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js",
         );
-        // Correct UMD path for @shopify/draggable → window.Draggable
         await loadScript(
           "https://cdn.jsdelivr.net/npm/@shopify/draggable@1.1.3/build/umd/index.min.js",
         );
         if (cancelled) return;
 
         const { animate } = window.Motion;
-        // UMD global: window.Draggable — contains Sortable, Plugins etc.
         const { Sortable } = window.Draggable;
 
-        // 🩹 Draggable injects its own stylesheet with `transition: transform` on
-        // .draggable-mirror — that's what makes the ghost clone visually slide/snap
-        // from its origin during drag. One injected override kills it globally.
         if (!document.getElementById("draggable-mirror-fix")) {
           const s = document.createElement("style");
           s.id = "draggable-mirror-fix";
@@ -550,20 +491,15 @@ export default function SwappableCards({
           handle: ".card-handle",
         });
 
-        // ❌ Cancel default mirror destroy and remove it instantly.
-        // Any lingering fade/scale animation on the mirror still shows the ghost
-        // briefly after drop — instant removal is cleanest.
         sortable.on("mirror:destroy", (e) => {
           e.cancel();
           e.mirror.remove();
         });
 
-        // 🟡 Drag start — grabbing cursor on body
         sortable.on("sortable:start", () => {
           document.body.style.cursor = "grabbing";
         });
 
-        // 🟢 Drag stop — spring bounce on dropped card
         sortable.on("sortable:stop", (e) => {
           document.body.style.cursor = "";
           requestAnimationFrame(() => {
@@ -597,33 +533,17 @@ export default function SwappableCards({
       className="flex flex-col min-h-screen py-16"
       style={{ backgroundColor: bgColor, color: "white" }}
     >
-      {/* 📣 Header */}
       {showHeader && (
-        <header className="flex justify-center items-center flex-col mb-16 mt-12">
-          <a
-            ref={madeRef}
-            href="https://turbokit.io/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center text-white no-underline opacity-0"
-          >
-            <span className="text-[8px] tracking-[0.2rem] opacity-50 mb-1 uppercase">
-              Made By
-            </span>
-            <div className="flex items-center justify-center -ml-4">
-              <img
-                src="https://i.imgur.com/aNnuxjo.png"
-                alt="TurboKit logo"
-                className="h-7 mr-1 pointer-events-none select-none"
-                draggable={false}
-              />
-              <span className="font-extrabold text-[21px]">TurboKit</span>
-            </div>
-          </a>
+        <header className="mb-16 mt-12 flex flex-col items-center justify-center text-center">
+          <div ref={madeRef} className="flex flex-col items-center text-white opacity-0">
+            <h1 className="m-0 text-3xl font-extrabold tracking-tight">{title}</h1>
+            <p className="m-0 mt-2 text-[10px] uppercase tracking-[0.2rem] opacity-50">
+              {description}
+            </p>
+          </div>
         </header>
       )}
 
-      {/* 📇 Cards grid */}
       <section
         ref={cardsRef}
         className="flex justify-center items-center flex-wrap w-full"

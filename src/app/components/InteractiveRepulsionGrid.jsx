@@ -2,30 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── InteractiveRepulsionGrid ────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// imageUrl         string   Image file path or external asset URL to mask inside dots
-// stampMainText    string   The text content mapped into the spinning curved layout ring
-// stampFooterYear  string   Secondary text anchored directly beneath the stamp circle
-// baseGridSize     number   Gap distance matching canvas coordinate array offsets (px)
-// baseDotRadius    number   The starting static radius size of unprovoked dots (px)
-// mouseProximity   number   Hover distance circle threshold triggering vector growth (px)
-// maxGrowthAmt     number   Maximum scale multiplier added to circles near cursor (px)
-// easeValue        number   GSAP tracking simulation interpolation factor
-// bgColorClass     string   Tailwind background color modifier utility string
-// fontColorClass   string   Tailwind typography color modifier utility string
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function InteractiveRepulsionGrid({
-  imageUrl = "https://assets.codepen.io/128966/img_repulsion.jpg",
+  imageUrl = "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1080&q=80",
   baseGridSize = 30,
   baseDotRadius = 1,
   mouseProximity = 125,
   maxGrowthAmt = 60,
   easeValue = 0.075,
-  bgColorClass = "bg-[#e0dad5]",
+  bgColorClass = "bg-[#1a1a1a]",
 }) {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);

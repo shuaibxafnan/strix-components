@@ -2,23 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── ScrollDisintegrate ──────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// imageSrc          string   Base64 or URL asset path for target element
-// particleCount     number   Amount of distinct canvas layers to construct (COUNT)
-// fragmentOverlap   number   Redundancy assignment count loop (REPEAT_COUNT)
-// scrubSpeed        number   Smooth scrub mapping delay in seconds
-// scrollDistance    string   Total artificial viewport scroll canvas length
-// containerWidth    string   Tailwind explicitly configured container width bounds
-// containerHeight   string   Tailwind explicitly configured container height bounds
-// maxRotation       number   Maximum randomized structural spin degree variation
-// maxDisplacement   number   Radial structural dispersion offset vector boundary
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function ScrollDisintegrate({
-  imageSrc = "https://ik.imagekit.io/akiAfnan/Odyssey/resorts/pexels-introspectivedsgn-8266881.jpg",
+  imageSrc = "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=1600&q=80",
   particleCount = 75,
   fragmentOverlap = 3,
   scrubSpeed = 1,

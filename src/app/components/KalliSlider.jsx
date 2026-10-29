@@ -2,58 +2,28 @@
 
 import { useEffect, useRef, useCallback } from "react";
 
-// ─── TileSlider ───────────────────────────────────────────────────────────────
-//
-// A full-screen image slideshow with a modern minimal "next" trigger.
-// Core GSAP slide mechanic preserved from original; visual language
-// updated to current-gen portfolio/agency aesthetic:
-//   – small monospaced counter top-left
-//   – compact headline, lowercase, tight tracking
-//   – slim dark pill bottom-right replaces tall white card
-//   – thin progress bar at the very bottom edge
-//
-// Props
-// ─────────────────────────────────────────────────────────────────────────────
-// tiles            array    DEFAULT_TILES   Each item:
-//                                             image     string  Full-size URL
-//                                             thumb     string  Thumb URL
-//                                             title     string  Headline (HTML ok, <br /> ok)
-//                                             category  string  Small label above headline
-//
-// accentColor      string   "#e8ff57"       Progress bar + arrow accent (yellow-green)
-// overlayOpacity   number   0.38            Dark gradient overlay over image (0–1)
-//
-// titleSize        string   "3.6rem"        Headline font-size
-// titleLeft        string   "4rem"          Headline distance from left edge
-//
-// pillBg           string   "rgba(0,0,0,0.72)"  "Next" pill background
-// pillBlur         string   "12px"              backdrop-filter blur on pill
-//
-// swingDuration    number   0.7             Slide transition duration in seconds
-// ─────────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_TILES = [
   {
     image:
-      "https://s3-us-west-2.amazonaws.com/s.cdpn.io/49240/ui8-alex-shutin-kKvQJ6rK6S4-unsplash.jpg",
+      "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1600&q=80",
     thumb:
-      "https://s3-us-west-2.amazonaws.com/s.cdpn.io/49240/ui8-alex-shutin-kKvQJ6rK6S4-unsplash--thumb.jpg",
+      "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=400&q=60",
     title: "Summer treads on<br />the heels of spring.",
     category: "Landscapes",
   },
   {
     image:
-      "https://s3-us-west-2.amazonaws.com/s.cdpn.io/49240/ui8-marat-gilyadzinov-MYadhrkenNg-unsplash.jpg",
+      "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=1600&q=80",
     thumb:
-      "https://s3-us-west-2.amazonaws.com/s.cdpn.io/49240/ui8-marat-gilyadzinov-MYadhrkenNg-unsplash--thumb.jpg",
+      "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=400&q=60",
     title: "Jellyfish make<br />everything better.",
     category: "Ocean",
   },
   {
     image:
-      "https://s3-us-west-2.amazonaws.com/s.cdpn.io/49240/ui8-luca-bravo-bTxMLuJOff4-unsplash.jpg",
+      "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=1600&q=80",
     thumb:
-      "https://s3-us-west-2.amazonaws.com/s.cdpn.io/49240/ui8-luca-bravo-bTxMLuJOff4-unsplash--thumb.jpg",
+      "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=400&q=60",
     title: "Design adds value<br />faster than cost.",
     category: "Abstract",
   },

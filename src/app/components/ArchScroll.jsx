@@ -1,46 +1,32 @@
 "use client";
 
-// ─── ArchScroll ───────────────────────────────────────────────────────────────
-//
-// Apple-to-apple Next.js conversion of the GSAP pinned image mask-reveal-on-scroll
-// CodePen. Uses GSAP ScrollTrigger + Lenis smooth scroll.
-//
-// Deps (install once):
-//   npm install gsap lenis
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────────
-// sections   ArchSection[]   (see default below)   Content + image data
-// bgColors   string[]        ["#EDF9FF","#FFECF2","#FFE8DB"]
-//                            Body background colours cycled during scroll transitions.
-//                            Length should be sections.length - 1.
-// initialBg  string          "#f9ffe7"   Starting body/page background.
-//
-// ArchSection shape:
-//   title      string   Section heading
-//   desc       string   Body copy
-//   linkLabel  string   CTA button label  (default "Learn More")
-//   linkHref   string   CTA href          (default "#")
-//   linkColor  string   CTA pill background colour (hex)
-//   imgSrc     string   Image URL
-//   imgAlt     string   Image alt text
-// ──────────────────────────────────────────────────────────────────────────────
-
 import { useEffect, useRef } from "react";
 
-// ── Icon (original inline SVG, unchanged) ─────────────────────────────────────
+const CLIP_OPEN = "inset(0% 0% 0% 0%)";
+const CLIP_CLOSED = "inset(0% 0% 100% 0%)";
+
+const photo = (id) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1080&h=800&q=80`;
+
 function LeafIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none">
-      <path
-        fill="#121212"
-        d="M5 2c0 1.105-1.895 2-3 2a2 2 0 1 1 0-4c1.105 0 3 .895 3 2ZM11 3.5c0 1.105-.895 3-2 3s-2-1.895-2-3a2 2 0 1 1 4 0ZM6 9a2 2 0 1 1-4 0c0-1.105.895-3 2-3s2 1.895 2 3Z"
-      />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#121212"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-[14px] w-[14px]"
+      aria-hidden="true"
+    >
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
     </svg>
   );
 }
 
-// ── Default section data (mirrors original HTML exactly) ─────────────────────
 const DEFAULT_SECTIONS = [
   {
     title: "Green Cityscape",
@@ -48,8 +34,7 @@ const DEFAULT_SECTIONS = [
     linkLabel: "Learn More",
     linkHref: "#",
     linkColor: "#D5FF37",
-    imgSrc:
-      "https://ik.imagekit.io/kg2nszxjp/GSAP%20pinned%20image%20mask%20reveal%20on%20scroll/cu8978xjlsjjpjk52ta0.webp",
+    imgSrc: photo("1759458856846-097935f54111"),
     imgAlt: "Green Architecture",
   },
   {
@@ -58,8 +43,7 @@ const DEFAULT_SECTIONS = [
     linkLabel: "Learn More",
     linkHref: "#",
     linkColor: "#7DD6FF",
-    imgSrc:
-      "https://ik.imagekit.io/kg2nszxjp/GSAP%20pinned%20image%20mask%20reveal%20on%20scroll/trh7c8ufv1dqfrofdytd.webp",
+    imgSrc: photo("1533387520709-752d83de3630"),
     imgAlt: "Blue Architecture",
   },
   {
@@ -68,8 +52,7 @@ const DEFAULT_SECTIONS = [
     linkLabel: "Learn More",
     linkHref: "#",
     linkColor: "#FFA0B0",
-    imgSrc:
-      "https://ik.imagekit.io/kg2nszxjp/GSAP%20pinned%20image%20mask%20reveal%20on%20scroll/aw6qwur0pggp5r03whjq.webp",
+    imgSrc: photo("1752150127767-77bccbed07e2"),
     imgAlt: "Pink Architecture",
   },
   {
@@ -78,8 +61,7 @@ const DEFAULT_SECTIONS = [
     linkLabel: "Learn More",
     linkHref: "#",
     linkColor: "#FFA17B",
-    imgSrc:
-      "https://ik.imagekit.io/kg2nszxjp/GSAP%20pinned%20image%20mask%20reveal%20on%20scroll/sqwn8u84zd1besgl0zpd.webp",
+    imgSrc: photo("1781935307999-e8bb5e62ebb1"),
     imgAlt: "Orange Architecture",
   },
 ];
@@ -91,317 +73,225 @@ export default function ArchScroll({
   bgColors = DEFAULT_BG_COLORS,
   initialBg = "#f9ffe7",
 }) {
-  const containerRef = useRef(null);
+  const rootRef = useRef(null);
 
   useEffect(() => {
-    let lenis;
-    let ctx;
+    let cancelled = false;
+    let teardown = () => { };
 
-    async function init() {
-      // ── Dynamic imports (avoids SSR issues) ──────────────────────────────
-      const { default: Lenis } = await import("lenis");
-      const gsapMod = await import("gsap");
-      const { gsap } = gsapMod;
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
-
-      if (!containerRef.current) return;
-
-      // ── Lenis smooth scroll (exact original config) ──────────────────────
-      lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true,
-        gestureDirection: "vertical",
-        smoothTouch: true,
-        touchMultiplier: 2,
-      });
-
-      function raf(time) {
-        lenis.raf(time);
-        ScrollTrigger.update();
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-
-      // ── Set z-index for image wrappers (data-index attr) ─────────────────
-      // Original: higher data-index = higher z-index = shown first
-      const root = containerRef.current;
-      root.querySelectorAll(".arch__right .img-wrapper").forEach((el) => {
-        const order = el.getAttribute("data-index");
-        if (order !== null) el.style.zIndex = order;
-      });
-
-      // ── Mobile layout — interleave order ─────────────────────────────────
-      const leftItems = gsap.utils.toArray(".arch__left .arch__info", root);
-      const rightItems = gsap.utils.toArray(".arch__right .img-wrapper", root);
-
-      function handleMobileLayout() {
-        const isMobile = window.matchMedia("(max-width: 768px)").matches;
-        if (isMobile) {
-          leftItems.forEach((item, i) => {
-            item.style.order = i * 2;
-          });
-          rightItems.forEach((item, i) => {
-            item.style.order = i * 2 + 1;
-          });
-        } else {
-          leftItems.forEach((item) => {
-            item.style.order = "";
-          });
-          rightItems.forEach((item) => {
-            item.style.order = "";
-          });
-        }
-      }
-      let resizeTimeout;
-      window.addEventListener("resize", () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(handleMobileLayout, 100);
-      });
-      handleMobileLayout();
-
-      // ── GSAP context (scoped to container) ───────────────────────────────
-      ctx = gsap.context(() => {
-        const imgs = gsap.utils.toArray(".img-wrapper img", root);
-
-        // ── Desktop ───────────────────────────────────────────────────────
-        ScrollTrigger.matchMedia({
-          "(min-width: 769px)": function () {
-            const mainTimeline = gsap.timeline({
-              scrollTrigger: {
-                trigger: root.querySelector(".arch"),
-                start: "top top",
-                end: "bottom bottom",
-                pin: root.querySelector(".arch__right"),
-                scrub: true,
-              },
-            });
-
-            gsap.set(imgs, {
-              clipPath: "inset(0)",
-              objectPosition: "0px 0%",
-            });
-
-            imgs.forEach((_, index) => {
-              const currentImage = imgs[index];
-              const nextImage = imgs[index + 1] ?? null;
-              const sectionTimeline = gsap.timeline();
-
-              if (nextImage) {
-                sectionTimeline
-                  .to(
-                    "body",
-                    {
-                      backgroundColor: bgColors[index],
-                      duration: 1.5,
-                      ease: "power2.inOut",
-                    },
-                    0,
-                  )
-                  .to(
-                    currentImage,
-                    {
-                      clipPath: "inset(0px 0px 100%)",
-                      objectPosition: "0px 60%",
-                      duration: 1.5,
-                      ease: "none",
-                    },
-                    0,
-                  )
-                  .to(
-                    nextImage,
-                    { objectPosition: "0px 40%", duration: 1.5, ease: "none" },
-                    0,
-                  );
-              }
-
-              mainTimeline.add(sectionTimeline);
-            });
-          },
-
-          // ── Mobile ──────────────────────────────────────────────────────
-          "(max-width: 768px)": function () {
-            const mbTimeline = gsap.timeline();
-
-            gsap.set(imgs, { objectPosition: "0px 60%" });
-
-            imgs.forEach((image, index) => {
-              const innerTimeline = gsap.timeline({
-                scrollTrigger: {
-                  trigger: image,
-                  start: "top-=70% top+=50%",
-                  end: "bottom+=200% bottom",
-                  scrub: true,
-                },
-              });
-
-              innerTimeline
-                .to(image, {
-                  objectPosition: "0px 30%",
-                  duration: 5,
-                  ease: "none",
-                })
-                .to("body", {
-                  backgroundColor: bgColors[index],
-                  duration: 1.5,
-                  ease: "power2.inOut",
-                });
-
-              mbTimeline.add(innerTimeline);
-            });
-          },
-        });
-      }, root);
-    }
-
-    // Set initial bg
     document.body.style.backgroundColor = initialBg;
 
-    init();
+    (async () => {
+      const [{ default: Lenis }, { gsap }, { ScrollTrigger }] =
+        await Promise.all([
+          import("lenis"),
+          import("gsap"),
+          import("gsap/ScrollTrigger"),
+        ]);
+
+      const root = rootRef.current;
+      if (cancelled || !root) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        touchMultiplier: 2,
+      });
+      const tick = (time) => lenis.raf(time * 1000);
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(tick);
+      gsap.ticker.lagSmoothing(0);
+
+      const arch = root.querySelector('[data-arch="main"]');
+      const pin = root.querySelector('[data-arch="pin"]');
+      const infos = [...root.querySelectorAll('[data-arch="info"]')];
+      const frames = [...root.querySelectorAll('[data-arch="frame"]')];
+      const imgs = [...root.querySelectorAll('[data-arch="frame"] img')];
+
+      const bgFrom = (index) => (index === 0 ? initialBg : bgColors[index - 1]);
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 769px)", () => {
+        const main = gsap.timeline({
+          scrollTrigger: {
+            trigger: arch,
+            start: "top top",
+            end: "bottom bottom",
+            pin,
+            scrub: true,
+          },
+        });
+
+        gsap.set(imgs, { clipPath: CLIP_OPEN, objectPosition: "0px 0%" });
+
+        imgs.forEach((img, index) => {
+          const next = imgs[index + 1];
+          if (!next) return;
+
+          const step = gsap.timeline();
+
+          if (bgColors[index]) {
+            step.fromTo(
+              "body",
+              { backgroundColor: bgFrom(index) },
+              {
+                backgroundColor: bgColors[index],
+                duration: 1.5,
+                ease: "power2.inOut",
+                immediateRender: false,
+              },
+              0,
+            );
+          }
+
+          step
+            .fromTo(
+              img,
+              {
+                clipPath: CLIP_OPEN,
+                objectPosition: index === 0 ? "0px 0%" : "0px 40%",
+              },
+              {
+                clipPath: CLIP_CLOSED,
+                objectPosition: "0px 60%",
+                duration: 1.5,
+                ease: "none",
+                immediateRender: false,
+              },
+              0,
+            )
+            .fromTo(
+              next,
+              { objectPosition: "0px 0%" },
+              {
+                objectPosition: "0px 40%",
+                duration: 1.5,
+                ease: "none",
+                immediateRender: false,
+              },
+              0,
+            );
+
+          main.add(step);
+        });
+      });
+
+      mm.add("(max-width: 768px)", () => {
+        infos.forEach((el, i) => {
+          el.style.order = String(i * 2);
+        });
+        frames.forEach((el, i) => {
+          el.style.order = String(i * 2 + 1);
+        });
+
+        gsap.set(imgs, { objectPosition: "0px 60%" });
+
+        imgs.forEach((img, index) => {
+          const step = gsap.timeline({
+            scrollTrigger: {
+              trigger: img,
+              start: "top-=70% top+=50%",
+              end: "bottom+=200% bottom",
+              scrub: true,
+            },
+          });
+
+          step.fromTo(
+            img,
+            { objectPosition: "0px 60%" },
+            {
+              objectPosition: "0px 30%",
+              duration: 5,
+              ease: "none",
+              immediateRender: false,
+            },
+          );
+
+          if (bgColors[index]) {
+            step.fromTo(
+              "body",
+              { backgroundColor: bgFrom(index) },
+              {
+                backgroundColor: bgColors[index],
+                duration: 1.5,
+                ease: "power2.inOut",
+                immediateRender: false,
+              },
+            );
+          }
+        });
+
+        return () => {
+          infos.forEach((el) => {
+            el.style.order = "";
+          });
+          frames.forEach((el) => {
+            el.style.order = "";
+          });
+        };
+      });
+
+      teardown = () => {
+        mm.revert();
+        gsap.ticker.remove(tick);
+        lenis.destroy();
+      };
+    })();
 
     return () => {
-      ctx?.revert();
-      lenis?.destroy();
+      cancelled = true;
+      teardown();
       document.body.style.backgroundColor = "";
     };
-  }, []);
+  }, [sections, bgColors, initialBg]);
 
-  // ── Assign data-index values — original counts DOWN from sections.length ──
-  // i.e. first section gets highest z-index (shown on top)
   const total = sections.length;
 
   return (
     <>
-      {/* Font */}
-      <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;800&display=swap");
-      `}</style>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;800&display=swap"
+      />
 
       <div
-        ref={containerRef}
-        className="arch-scroll-root"
-        style={{
-          color: "#121212",
-          fontFamily: '"Outfit", sans-serif',
-        }}
+        ref={rootRef}
+        className="font-['Outfit',sans-serif] text-[#121212]"
       >
-        {/* ── Styles (scoped inside component, exact from original) ── */}
-        <style>{`
-          .arch-scroll-root .container {
-            max-width: 1440px;
-            padding: 2rem;
-          }
-          .arch-scroll-root .spacer {
-            width: 100%;
-            height: 30vh;
-          }
-          .arch-scroll-root .arch {
-            display: flex;
-            gap: 60px;
-            justify-content: space-between;
-            max-width: 1100px;
-            margin-inline: auto;
-          }
-          .arch-scroll-root .arch__left {
-            display: flex;
-            flex-direction: column;
-            min-width: 300px;
-          }
-          .arch-scroll-root .arch__info {
-            max-width: 356px;
-            height: 100vh;
-            display: grid;
-            place-items: center;
-          }
-          .arch-scroll-root h2.header {
-            font-family: Outfit;
-            font-size: 42px;
-            font-weight: 800;
-            letter-spacing: -0.84px;
-            margin: 0;
-          }
-          .arch-scroll-root p.desc {
-            color: rgba(18, 18, 18, 0.8);
-            font-size: 18px;
-            letter-spacing: -0.54px;
-            margin-block: 6px 28px;
-            line-height: normal;
-          }
-          .arch-scroll-root a.link {
-            text-decoration: none;
-            padding: 16px 18px;
-            color: inherit;
-            border-radius: 40px;
-            display: flex;
-            gap: 4px;
-            width: fit-content;
-            align-items: center;
-          }
-          .arch-scroll-root .arch__right {
-            flex-shrink: 1;
-            height: 100vh;
-            width: 100%;
-            max-width: 540px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-          }
-          .arch-scroll-root .img-wrapper {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            height: 400px;
-            width: 100%;
-            border-radius: 16px;
-            overflow: hidden;
-          }
-          .arch-scroll-root .img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-          }
-          @media (max-width: 900px) {
-            .arch-scroll-root .arch { gap: 30px; }
-          }
-          @media (max-width: 768px) {
-            .arch-scroll-root .arch { flex-direction: column; gap: 20px; }
-            .arch-scroll-root .arch__left,
-            .arch-scroll-root .arch__right { display: contents; }
-            .arch-scroll-root .arch__right { height: auto; max-width: 100%; }
-            .arch-scroll-root .arch__right .img-wrapper {
-              position: static;
-              transform: none;
-              height: 360px;
-              width: 100%;
-              margin-bottom: 20px;
-            }
-            .arch-scroll-root .arch__left .arch__info { height: auto; padding: 20px 0; }
-          }
-          @media (max-width: 560px) {
-            .arch-scroll-root .arch { gap: 12px; }
-            .arch-scroll-root .container { padding: 10px; }
-            .arch-scroll-root .arch__right .img-wrapper { border-radius: 10px; height: 280px; }
-          }
-        `}</style>
+        <div className="mx-auto max-w-[1440px] p-8 max-[560px]:p-[10px]">
+          <div className="h-[30vh] w-full" />
 
-        <div className="container">
-          <div className="spacer" />
-
-          <div className="arch">
-            {/* ── Left: text panels ── */}
-            <div className="arch__left">
+          <div
+            data-arch="main"
+            className="mx-auto flex max-w-[1100px] justify-between gap-[60px] max-[900px]:gap-[30px] max-[768px]:flex-col max-[768px]:gap-5 max-[560px]:gap-3"
+          >
+            <div className="flex min-w-[300px] flex-col max-[768px]:contents">
               {sections.map((section) => (
-                <div className="arch__info" key={section.title}>
-                  <div className="content">
-                    <h2 className="header">{section.title}</h2>
-                    <p className="desc">{section.desc}</p>
+                <div
+                  data-arch="info"
+                  key={section.title}
+                  className="grid h-screen max-w-[356px] place-items-center max-[768px]:h-auto max-[768px]:py-5"
+                >
+                  <div>
+                    <h2 className="m-0 text-[42px] font-extrabold tracking-[-0.84px]">
+                      {section.title}
+                    </h2>
+                    <p className="mb-7 mt-[6px] text-[18px] leading-[normal] tracking-[-0.54px] text-[#121212]/80">
+                      {section.desc}
+                    </p>
                     <a
-                      className="link"
                       href={section.linkHref ?? "#"}
                       style={{ backgroundColor: section.linkColor }}
+                      className="flex w-fit items-center gap-1 rounded-[40px] px-[18px] py-4 text-inherit no-underline"
                     >
                       <LeafIcon />
                       <span>{section.linkLabel ?? "Learn More"}</span>
@@ -411,22 +301,28 @@ export default function ArchScroll({
               ))}
             </div>
 
-            {/* ── Right: stacked images ── */}
-            {/* data-index goes from total down to 1 so first section = highest z-index */}
-            <div className="arch__right">
+            <div
+              data-arch="pin"
+              className="relative flex h-screen w-full max-w-[540px] shrink flex-col max-[768px]:contents"
+            >
               {sections.map((section, i) => (
                 <div
                   key={section.imgSrc}
-                  className="img-wrapper"
-                  data-index={total - i}
+                  data-arch="frame"
+                  style={{ zIndex: total - i }}
+                  className="absolute left-0 top-1/2 h-[400px] w-full -translate-y-1/2 overflow-hidden rounded-2xl max-[768px]:static max-[768px]:mb-5 max-[768px]:h-[360px] max-[768px]:translate-y-0 max-[560px]:h-[280px] max-[560px]:rounded-[10px]"
                 >
-                  <img src={section.imgSrc} alt={section.imgAlt} />
+                  <img
+                    src={section.imgSrc}
+                    alt={section.imgAlt}
+                    className="h-full w-full object-cover object-center"
+                  />
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="spacer" />
+          <div className="h-[30vh] w-full" />
         </div>
       </div>
     </>

@@ -1,12 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import gsap from 'gsap';
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+import gsap from "gsap";
 
-// ---------------------------------------------------------------------------
-// Shaders
-// ---------------------------------------------------------------------------
 const bgVertexShader = `
   varying vec2 vUv;
   void main(){
@@ -73,7 +70,6 @@ const ripVertexShader = `
   }
 `;
 
-// Border removed — no white edge forced onto texture
 const ripFragmentShader = `
   uniform sampler2D uMap;
   uniform sampler2D uRip;
@@ -122,472 +118,481 @@ const ripFragmentShader = `
   }
 `;
 
-// ---------------------------------------------------------------------------
-// Default images — dark moody tones
-// ---------------------------------------------------------------------------
+const unsplash = (id) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1500&h=1000&q=80`;
+
 const DEFAULT_IMAGES = [
-  { url: 'https://images.pexels.com/photos/35061233/pexels-photo-35061233.jpeg', colorTop: [18,18,22],   colorBottom: [35,28,38]  },
-  { url: 'https://images.pexels.com/photos/15052472/pexels-photo-15052472.jpeg', colorTop: [14,18,24],   colorBottom: [28,22,18]  },
-  { url: 'https://images.pexels.com/photos/30389345/pexels-photo-30389345.jpeg', colorTop: [20,20,28],   colorBottom: [12,16,20]  },
-  { url: 'https://images.pexels.com/photos/33674865/pexels-photo-33674865.jpeg', colorTop: [22,16,14],   colorBottom: [18,18,22]  },
-  { url: 'https://images.pexels.com/photos/6419332/pexels-photo-6419332.jpeg', colorTop: [12,20,22],   colorBottom: [20,20,16]  },
-  { url: 'https://images.pexels.com/photos/36878627/pexels-photo-36878627.jpeg', colorTop: [18,14,22],   colorBottom: [22,20,24]  },
-  { url: 'https://images.pexels.com/photos/36878624/pexels-photo-36878624.jpeg', colorTop: [16,16,20],   colorBottom: [24,18,16]  },
+  { url: unsplash("photo-1656088239658-ca839d7e8841"), colorTop: [10, 10, 10], colorBottom: [26, 26, 26] },
+  { url: unsplash("photo-1726491079206-36a02e6c9cbb"), colorTop: [14, 14, 14], colorBottom: [22, 22, 22] },
+  { url: unsplash("photo-1738858363202-dd019dadce76"), colorTop: [8, 8, 8], colorBottom: [30, 30, 30] },
+  { url: unsplash("photo-1634017264120-e34cd8606525"), colorTop: [12, 12, 12], colorBottom: [24, 24, 24] },
+  { url: unsplash("photo-1781433869241-1aec734207d2"), colorTop: [10, 10, 10], colorBottom: [28, 28, 28] },
+  { url: unsplash("photo-1771627278991-8922851b9435"), colorTop: [14, 14, 14], colorBottom: [18, 18, 18] },
 ];
 
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
+const createRipTexture = () => {
+  const width = 512;
+  const height = 1024;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  const imageData = ctx.createImageData(width, height);
+
+  const octaves = [
+    [3, 0.12],
+    [7, 0.08],
+    [15, 0.05],
+    [31, 0.03],
+    [63, 0.018],
+    [127, 0.01],
+  ].map(([frequency, amplitude]) => ({
+    frequency,
+    amplitude,
+    phase: Math.random() * Math.PI * 2,
+  }));
+
+  for (let y = 0; y < height; y++) {
+    const t = y / height;
+    let boundary = 0.5 + (Math.random() - 0.5) * 0.012;
+    octaves.forEach(({ frequency, amplitude, phase }) => {
+      boundary += amplitude * Math.sin(Math.PI * 2 * frequency * t + phase);
+    });
+    boundary = Math.min(0.88, Math.max(0.12, boundary));
+
+    for (let x = 0; x < width; x++) {
+      const coverage = Math.min(1, Math.max(0, (boundary - x / width) * (width / 2) + 0.5));
+      const grain = (Math.random() - 0.5) * 10;
+      const i = (y * width + x) * 4;
+      imageData.data[i] = (243 + grain) * coverage;
+      imageData.data[i + 1] = (239 + grain) * coverage;
+      imageData.data[i + 2] = (230 + grain) * coverage;
+      imageData.data[i + 3] = 255;
+    }
+  }
+
+  ctx.putImageData(imageData, 0, 0);
+  return new THREE.CanvasTexture(canvas);
+};
+
 export default function PhotoRip({
-  images               = DEFAULT_IMAGES,
-
-  // Texture assets
-  ripTextureUrl        = 'https://assets.codepen.io/557388/rip.jpg',
-
-  // Photo geometry
-  photoWidth           = 3,
-  photoHeight          = 2,
-  widthSegments        = 30,
-  heightSegments       = 50,
-  tearWidth            = 0.4,
-
-  // Tear physics
-  ripWhiteThreshold    = 0.7,
-  ripCompleteThreshold = 1.5,
-  ripResetThreshold    = 1.15,
-  tearSensitivity      = 2,
-
-  // Left sheet
-  leftTearXAngle       = -0.01,
-  leftTearYAngle       = -0.1,
-  leftTearZAngle       = 0.05,
-  leftShadeAmount      = 0.15,
-
-  // Right sheet
-  rightTearXAngle      = 0.2,
-  rightTearYAngle      = 0.1,
-  rightTearZAngle      = -0.1,
-  rightShadeAmount     = 0.35,
-
-  // Camera
-  fov                  = 30,
-  cameraZ              = 6,
-  cameraZMobile        = 10,
-  mobileBreakpoint     = 800,
-
-  // Hint
-  showHint             = true,
-  hintDelayMs          = 4000,
-
-  // Background defaults
-  defaultColorTop      = [18, 18, 22],
-  defaultColorBottom   = [30, 24, 28],
-
-  // Callbacks
-  onPhotoRipped        = null,
-
-  className            = '',
+  images = DEFAULT_IMAGES,
+  ripTextureUrl = null,
+  photoWidth = 3,
+  photoHeight = 2,
+  widthSegments = 30,
+  heightSegments = 50,
+  tearWidth = 0.4,
+  ripWhiteThreshold = 0.7,
+  ripResetThreshold = 1.15,
+  tearSensitivity = 2,
+  leftTearXAngle = -0.01,
+  leftTearYAngle = -0.1,
+  leftTearZAngle = 0.05,
+  leftShadeAmount = 0.15,
+  rightTearXAngle = 0.2,
+  rightTearYAngle = 0.1,
+  rightTearZAngle = -0.1,
+  rightShadeAmount = 0.35,
+  fov = 30,
+  cameraZ = 6,
+  cameraZMobile = 10,
+  mobileBreakpoint = 800,
+  showHint = true,
+  hintText = "Drag down to tear",
+  hintDelayMs = 4000,
+  defaultColorTop = [10, 10, 10],
+  defaultColorBottom = [24, 24, 24],
+  onPhotoRipped = null,
+  className = "",
 }) {
+  const containerRef = useRef(null);
   const canvasRef = useRef(null);
-  const hintRef   = useRef(null);
+  const hintRef = useRef(null);
 
   useEffect(() => {
+    const container = containerRef.current;
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!container || !canvas) return undefined;
 
-    // -------------------------------------------------------------------------
-    // Scene / Renderer / Camera
-    // -------------------------------------------------------------------------
-    const scene    = new THREE.Scene();
+    const sizes = { width: container.clientWidth, height: container.clientHeight };
+
+    const scene = new THREE.Scene();
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    const sizes = { width: window.innerWidth, height: window.innerHeight };
-    renderer.setSize(sizes.width, sizes.height);
+    renderer.setSize(sizes.width, sizes.height, false);
 
     const camera = new THREE.PerspectiveCamera(fov, sizes.width / sizes.height, 0.1, 100);
     camera.position.z = sizes.width < mobileBreakpoint ? cameraZMobile : cameraZ;
     scene.add(camera);
 
-    // -------------------------------------------------------------------------
-    // Background gradient
-    // -------------------------------------------------------------------------
-    const bgMesh = new THREE.Mesh(
-      new THREE.PlaneGeometry(2, 2),
-      new THREE.ShaderMaterial({
-        uniforms: {
-          uColorA: { value: new THREE.Color(...defaultColorBottom.map(v => v / 255)) },
-          uColorB: { value: new THREE.Color(...defaultColorTop.map(v => v / 255)) },
-        },
-        vertexShader:   bgVertexShader,
-        fragmentShader: bgFragmentShader,
-        depthWrite: false,
-      })
-    );
+    const bgMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        uColorA: { value: new THREE.Color(...defaultColorBottom.map((v) => v / 255)) },
+        uColorB: { value: new THREE.Color(...defaultColorTop.map((v) => v / 255)) },
+      },
+      vertexShader: bgVertexShader,
+      fragmentShader: bgFragmentShader,
+      depthWrite: false,
+    });
+    const bgGeometry = new THREE.PlaneGeometry(2, 2);
+    const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
     bgMesh.renderOrder = -99999;
+    bgMesh.frustumCulled = false;
     scene.add(bgMesh);
 
-    // Lights
     scene.add(new THREE.AmbientLight(0xffffff, 5));
-    const pLight = new THREE.PointLight(0xffffff, 15);
-    pLight.position.z = -1;
-    scene.add(pLight);
+    const pointLight = new THREE.PointLight(0xffffff, 15);
+    pointLight.position.z = -1;
+    scene.add(pointLight);
 
-    // -------------------------------------------------------------------------
-    // Textures
-    // -------------------------------------------------------------------------
     const textureLoader = new THREE.TextureLoader();
-    const texRip        = textureLoader.load(ripTextureUrl);
-
+    const ripTexture = ripTextureUrl ? textureLoader.load(ripTextureUrl) : createRipTexture();
     const loadedImages = images.map((img) => ({
       ...img,
       texture: textureLoader.load(img.url),
     }));
 
-    // -------------------------------------------------------------------------
-    // Photo state
-    // -------------------------------------------------------------------------
-    const photoMeshes = [];
-    let currentIndex  = -1;
-    let mouseDown     = false;
-    let interacted    = false;
-    const mouseStart  = new THREE.Vector2();
+    const photos = [];
+    let currentIndex = -1;
+    let mouseDown = false;
+    let interacted = false;
+    const mouseStart = new THREE.Vector2();
 
     const sheetPlane = new THREE.PlaneGeometry(
       photoWidth / 2 + tearWidth / 2,
       photoHeight,
       widthSegments,
-      heightSegments
+      heightSegments,
     );
 
-    const makeSideCfgs = () => ({
+    const makeSideConfigs = () => ({
       left: {
-        uvOffset:    0,
-        ripSide:     0,
-        tearXAngle:  leftTearXAngle,
-        tearYAngle:  leftTearYAngle,
-        tearZAngle:  leftTearZAngle,
+        uvOffset: 0,
+        ripSide: 0,
+        tearXAngle: leftTearXAngle,
+        tearYAngle: leftTearYAngle,
+        tearZAngle: leftTearZAngle,
         tearXOffset: 0,
-        direction:   -1,
-        shadeColor:  new THREE.Color(0.9, 0.9, 0.9),
+        direction: -1,
+        shadeColor: new THREE.Color(0.9, 0.9, 0.9),
         shadeAmount: leftShadeAmount,
       },
       right: {
-        uvOffset:    ((photoWidth - tearWidth) / photoWidth) * 0.5,
-        ripSide:     1,
-        tearXAngle:  rightTearXAngle,
-        tearYAngle:  rightTearYAngle,
-        tearZAngle:  rightTearZAngle,
+        uvOffset: ((photoWidth - tearWidth) / photoWidth) * 0.5,
+        ripSide: 1,
+        tearXAngle: rightTearXAngle,
+        tearYAngle: rightTearYAngle,
+        tearZAngle: rightTearZAngle,
         tearXOffset: 0,
-        direction:   1,
-        shadeColor:  new THREE.Color(0.05, 0.05, 0.05),
+        direction: 1,
+        shadeColor: new THREE.Color(0.05, 0.05, 0.05),
         shadeAmount: rightShadeAmount,
       },
     });
 
-    function makeMaterial(cfg, photoTex, tearOffset) {
-      return new THREE.ShaderMaterial({
+    const makeMaterial = (cfg, photoTexture, tearOffset) =>
+      new THREE.ShaderMaterial({
         defines: {
-          HEIGHT:          photoHeight,
-          WIDTH:           photoWidth / 2,
-          FULL_WIDTH:      photoWidth,
+          HEIGHT: photoHeight,
+          WIDTH: photoWidth / 2,
+          FULL_WIDTH: photoWidth,
           HEIGHT_SEGMENTS: heightSegments,
-          WIDTH_SEGMENTS:  widthSegments,
+          WIDTH_SEGMENTS: widthSegments,
         },
         uniforms: {
-          uMap:            { value: photoTex },
-          uRip:            { value: texRip },
-          uRipSide:        { value: cfg.ripSide },
-          uTearWidth:      { value: tearWidth },
+          uMap: { value: photoTexture },
+          uRip: { value: ripTexture },
+          uRipSide: { value: cfg.ripSide },
+          uTearWidth: { value: tearWidth },
           uWhiteThreshold: { value: ripWhiteThreshold },
-          uTearAmount:     { value: 0 },
-          uTearOffset:     { value: tearOffset },
-          uUvOffset:       { value: cfg.uvOffset },
-          uTearXAngle:     { value: cfg.tearXAngle },
-          uTearYAngle:     { value: cfg.tearYAngle },
-          uTearZAngle:     { value: cfg.tearZAngle },
-          uTearXOffset:    { value: cfg.tearXOffset },
-          uXDirection:     { value: cfg.direction },
-          uShadeColor:     { value: cfg.shadeColor },
-          uShadeAmount:    { value: cfg.shadeAmount },
+          uTearAmount: { value: 0 },
+          uTearOffset: { value: tearOffset },
+          uUvOffset: { value: cfg.uvOffset },
+          uTearXAngle: { value: cfg.tearXAngle },
+          uTearYAngle: { value: cfg.tearYAngle },
+          uTearZAngle: { value: cfg.tearZAngle },
+          uTearXOffset: { value: cfg.tearXOffset },
+          uXDirection: { value: cfg.direction },
+          uShadeColor: { value: cfg.shadeColor },
+          uShadeAmount: { value: cfg.shadeAmount },
         },
-        transparent:    true,
-        vertexShader:   ripVertexShader,
+        transparent: true,
+        vertexShader: ripVertexShader,
         fragmentShader: ripFragmentShader,
       });
-    }
 
-    function addPhoto() {
+    const addPhoto = () => {
       currentIndex = (currentIndex + 1) % loadedImages.length;
-      const imgData    = loadedImages[currentIndex];
+      const imgData = loadedImages[currentIndex];
       const tearOffset = Math.random();
-      const settings   = { tearAmount: 0, tearOffset };
-      const cfgs       = makeSideCfgs();
-      let   interactive = false;
+      const settings = { tearAmount: 0, tearOffset };
+      const configs = makeSideConfigs();
+      let interactive = false;
 
       const group = new THREE.Group();
       group.rotation.z = (Math.random() * 2 - 1) * Math.PI;
       group.position.y = 10;
       scene.add(group);
 
-      const meshes = ['left', 'right'].map((side) => {
-        const mat  = makeMaterial(cfgs[side], imgData.texture, tearOffset);
-        const mesh = new THREE.Mesh(sheetPlane, mat);
-        if (cfgs[side].tearXAngle > 0) mesh.position.z += 0.0001;
+      const meshes = ["left", "right"].map((side) => {
+        const material = makeMaterial(configs[side], imgData.texture, tearOffset);
+        const mesh = new THREE.Mesh(sheetPlane, material);
+        if (configs[side].tearXAngle > 0) mesh.position.z += 0.0001;
         group.add(mesh);
-        return { side, mesh, mat, cfg: cfgs[side] };
+        return { mesh, material, cfg: configs[side] };
       });
 
-      // Intro
-      const introTl = gsap.timeline({
-        delay: 0.2,
-        defaults: { duration: 0.7, ease: 'power3.out' },
-        onComplete: () => { interactive = true; },
-      });
-      introTl.to(group.rotation, { z: 0 }, 0);
-      introTl.to(group.position, { y: 0 }, 0);
+      gsap
+        .timeline({
+          delay: 0.2,
+          defaults: { duration: 0.7, ease: "power3.out" },
+          onComplete: () => {
+            interactive = true;
+          },
+        })
+        .to(group.rotation, { z: 0 }, 0)
+        .to(group.position, { y: 0 }, 0);
 
-      // Background transition
-      gsap.to(bgMesh.material.uniforms.uColorB.value, {
+      gsap.to(bgMaterial.uniforms.uColorB.value, {
         r: imgData.colorTop[0] / 255,
         g: imgData.colorTop[1] / 255,
         b: imgData.colorTop[2] / 255,
-        ease: 'power4.inOut', duration: 1.2,
+        ease: "power4.inOut",
+        duration: 1.2,
       });
-      gsap.to(bgMesh.material.uniforms.uColorA.value, {
+      gsap.to(bgMaterial.uniforms.uColorA.value, {
         r: imgData.colorBottom[0] / 255,
         g: imgData.colorBottom[1] / 255,
         b: imgData.colorBottom[2] / 255,
-        ease: 'power4.inOut', duration: 1.2,
+        ease: "power4.inOut",
+        duration: 1.2,
       });
 
-      function updateUniforms(amount) {
+      const updateUniforms = (amount) => {
         settings.tearAmount = amount;
-        meshes.forEach(({ mat, cfg }) => {
-          const u = mat.uniforms;
-          u.uTearAmount.value  = amount;
-          u.uTearOffset.value  = settings.tearOffset;
-          u.uTearXAngle.value  = cfg.tearXAngle;
-          u.uTearYAngle.value  = cfg.tearYAngle;
-          u.uTearZAngle.value  = cfg.tearZAngle;
-          u.uShadeColor.value  = cfg.shadeColor;
-          u.uShadeAmount.value = cfg.shadeAmount;
+        meshes.forEach(({ material }) => {
+          material.uniforms.uTearAmount.value = amount;
         });
-      }
+      };
 
-      function removePhoto() {
-        interactive = false;
-        onPhotoRipped?.(currentIndex);
-        addPhoto();
-
-        const removeTl = gsap.timeline({
-          defaults: { duration: 1, ease: 'power2.in' },
-          onComplete: () => {
-            meshes.forEach(({ mat }) => mat.dispose());
-            scene.remove(group);
-          },
-        });
-        removeTl.to(settings, {
-          tearAmount: 1.5 + Math.random() * 1.5,
-          ease: 'power2.out',
-          onUpdate: () => updateUniforms(settings.tearAmount),
-        });
-        removeTl.to(group.position, { z: 1 }, 0);
-        meshes.forEach(({ mesh, cfg }) => {
-          const dir = cfg.ripSide - 0.5;
-          removeTl.to(mesh.position, { y: -3 + Math.random() * -3, x: (2 + Math.random() * 3) * dir }, 0);
-          removeTl.to(mesh.rotation, { z: (-2 + Math.random() * -3) * dir }, 0);
-        });
-      }
-
-      photoMeshes.unshift({
-        group, settings,
+      const entry = {
+        settings,
         interactive: () => interactive,
         updateUniforms,
-        removePhoto,
-      });
-    }
+        removePhoto: () => {
+          interactive = false;
+          onPhotoRipped?.(currentIndex);
+          addPhoto();
+
+          const removeTl = gsap.timeline({
+            defaults: { duration: 1, ease: "power2.in" },
+            onComplete: () => {
+              meshes.forEach(({ material }) => material.dispose());
+              scene.remove(group);
+              const at = photos.indexOf(entry);
+              if (at >= 0) photos.splice(at, 1);
+            },
+          });
+          removeTl.to(settings, {
+            tearAmount: 1.5 + Math.random() * 1.5,
+            ease: "power2.out",
+            onUpdate: () => updateUniforms(settings.tearAmount),
+          });
+          removeTl.to(group.position, { z: 1 }, 0);
+          meshes.forEach(({ mesh, cfg }) => {
+            const dir = cfg.ripSide - 0.5;
+            removeTl.to(
+              mesh.position,
+              { y: -3 + Math.random() * -3, x: (2 + Math.random() * 3) * dir },
+              0,
+            );
+            removeTl.to(mesh.rotation, { z: (-2 + Math.random() * -3) * dir }, 0);
+          });
+        },
+      };
+
+      photos.unshift(entry);
+    };
 
     addPhoto();
 
-    // -------------------------------------------------------------------------
-    // Input — mouseup/touchend on WINDOW so drag leaving canvas still completes
-    // -------------------------------------------------------------------------
-    const getPos = (x, y) => ({
-      x:  (x / sizes.width)  *  2 - 1,
-      y: -(y / sizes.height) *  2 + 1,
-    });
+    const getPos = (x, y) => {
+      const rect = container.getBoundingClientRect();
+      return {
+        x: ((x - rect.left) / rect.width) * 2 - 1,
+        y: -((y - rect.top) / rect.height) * 2 + 1,
+      };
+    };
 
-    const onDown = (x, y) => {
-      const top = photoMeshes[0];
+    let hintTimeline;
+    const hint = hintRef.current;
+
+    const hideHint = () => {
+      if (!hint) return;
+      gsap.to(hint, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => hintTimeline?.kill(),
+      });
+    };
+
+    const showHintAnimation = () => {
+      if (interacted || !hint) return;
+      hintTimeline = gsap.timeline({
+        repeat: -1,
+        defaults: { duration: 1.8, ease: "power4.inOut" },
+      });
+      hintTimeline.fromTo(hint, { y: "-80%", opacity: 0 }, { y: "10%", opacity: 1 });
+      hintTimeline.to(hint, { y: "80%", opacity: 0, duration: 1 });
+    };
+
+    const onPointerDown = (e) => {
+      const top = photos[0];
       if (!top?.interactive()) return;
       interacted = true;
       hideHint();
-      const pos = getPos(x, y);
+      const pos = getPos(e.clientX, e.clientY);
       mouseStart.set(pos.x, pos.y);
       mouseDown = true;
     };
 
-    const onMove = (x, y) => {
-      const top = photoMeshes[0];
+    const onPointerMove = (e) => {
+      const top = photos[0];
       if (!mouseDown || !top?.interactive()) return;
-      const pos  = getPos(x, y);
-      const dist = mouseStart.y - pos.y;
-      const amt  = Math.max(tearSensitivity * dist, 0);
-      top.settings.tearAmount = amt;
-      top.updateUniforms(amt);
+      const pos = getPos(e.clientX, e.clientY);
+      const amount = Math.max(tearSensitivity * (mouseStart.y - pos.y), 0);
+      top.updateUniforms(amount);
     };
 
-    // ← KEY FIX: mouseup/touchend on window, not canvas
-    const onUp = () => {
-      const top = photoMeshes[0];
+    const onPointerUp = () => {
+      const top = photos[0];
       if (!mouseDown) return;
       mouseDown = false;
       if (!top?.interactive()) return;
-      const amt = top.settings.tearAmount;
-      if (amt >= ripResetThreshold) {
+      if (top.settings.tearAmount >= ripResetThreshold) {
         top.removePhoto();
       } else {
         gsap.to(top.settings, {
           tearAmount: 0,
           duration: 0.5,
-          ease: 'power2.out',
+          ease: "power2.out",
           onUpdate: () => top.updateUniforms(top.settings.tearAmount),
         });
       }
     };
 
-    const onMouseDown  = (e) => onDown(e.clientX, e.clientY);
-    const onTouchStart = (e) => onDown(e.touches[0].clientX, e.touches[0].clientY);
-    const onMouseMove  = (e) => onMove(e.clientX, e.clientY);
-    const onTouchMove  = (e) => onMove(e.touches[0].clientX, e.touches[0].clientY);
+    canvas.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+    window.addEventListener("pointercancel", onPointerUp);
 
-    // Down on canvas, move + up on window
-    canvas.addEventListener('mousedown',  onMouseDown);
-    canvas.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('mousemove',  onMouseMove);
-    window.addEventListener('touchmove',  onTouchMove,  { passive: true });
-    window.addEventListener('mouseup',    onUp);
-    window.addEventListener('touchend',   onUp);
+    const hintTimer = showHint ? setTimeout(showHintAnimation, hintDelayMs) : null;
 
-    // -------------------------------------------------------------------------
-    // Hint
-    // -------------------------------------------------------------------------
-    let hintTl;
-    const hint = hintRef.current;
-
-    function showHintAnim() {
-      if (interacted || !hint) return;
-      hintTl = gsap.timeline({ repeat: -1, defaults: { duration: 1.8, ease: 'power4.inOut' } });
-      hintTl.fromTo(hint, { y: '-80%', opacity: 0 }, { y: '10%', opacity: 1 });
-      hintTl.to(hint, { y: '80%', opacity: 0, duration: 1 });
-    }
-
-    function hideHint() {
-      if (!hint) return;
-      gsap.to(hint, { opacity: 0, duration: 0.3, onComplete: () => hintTl?.kill() });
-    }
-
-    const hintTimer = showHint ? setTimeout(showHintAnim, hintDelayMs) : null;
-
-    // -------------------------------------------------------------------------
-    // Resize
-    // -------------------------------------------------------------------------
     const onResize = () => {
-      sizes.width  = window.innerWidth;
-      sizes.height = window.innerHeight;
+      sizes.width = container.clientWidth;
+      sizes.height = container.clientHeight;
+      if (!sizes.width || !sizes.height) return;
       camera.position.z = sizes.width < mobileBreakpoint ? cameraZMobile : cameraZ;
-      camera.aspect     = sizes.width / sizes.height;
+      camera.aspect = sizes.width / sizes.height;
       camera.updateProjectionMatrix();
-      renderer.setSize(sizes.width, sizes.height);
+      renderer.setSize(sizes.width, sizes.height, false);
     };
-    window.addEventListener('resize', onResize);
+    const observer = new ResizeObserver(onResize);
+    observer.observe(container);
 
-    // -------------------------------------------------------------------------
-    // Render loop
-    // -------------------------------------------------------------------------
-    let animId;
+    let frameId = 0;
     const tick = () => {
-      animId = requestAnimationFrame(tick);
+      frameId = requestAnimationFrame(tick);
       renderer.render(scene, camera);
     };
     tick();
 
-    // -------------------------------------------------------------------------
-    // Cleanup
-    // -------------------------------------------------------------------------
     return () => {
-      cancelAnimationFrame(animId);
-      if (hintTimer) clearTimeout(hintTimer);
-      hintTl?.kill();
-      gsap.killTweensOf('*');
-      canvas.removeEventListener('mousedown',  onMouseDown);
-      canvas.removeEventListener('touchstart', onTouchStart);
-      window.removeEventListener('mousemove',  onMouseMove);
-      window.removeEventListener('touchmove',  onTouchMove);
-      window.removeEventListener('mouseup',    onUp);
-      window.removeEventListener('touchend',   onUp);
-      window.removeEventListener('resize',     onResize);
+      cancelAnimationFrame(frameId);
+      clearTimeout(hintTimer);
+      hintTimeline?.kill();
+      observer.disconnect();
+      canvas.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("pointercancel", onPointerUp);
+      gsap.killTweensOf([
+        bgMaterial.uniforms.uColorA.value,
+        bgMaterial.uniforms.uColorB.value,
+        hint,
+      ]);
+      photos.forEach(({ settings }) => gsap.killTweensOf(settings));
       sheetPlane.dispose();
+      bgGeometry.dispose();
+      bgMaterial.dispose();
+      ripTexture.dispose();
+      loadedImages.forEach(({ texture }) => texture.dispose());
       renderer.dispose();
     };
   }, [
-    images, ripTextureUrl,
-    photoWidth, photoHeight, widthSegments, heightSegments, tearWidth,
-    ripWhiteThreshold, ripCompleteThreshold, ripResetThreshold, tearSensitivity,
-    leftTearXAngle, leftTearYAngle, leftTearZAngle, leftShadeAmount,
-    rightTearXAngle, rightTearYAngle, rightTearZAngle, rightShadeAmount,
-    fov, cameraZ, cameraZMobile, mobileBreakpoint,
-    showHint, hintDelayMs,
+    images,
+    ripTextureUrl,
+    photoWidth,
+    photoHeight,
+    widthSegments,
+    heightSegments,
+    tearWidth,
+    ripWhiteThreshold,
+    ripResetThreshold,
+    tearSensitivity,
+    leftTearXAngle,
+    leftTearYAngle,
+    leftTearZAngle,
+    leftShadeAmount,
+    rightTearXAngle,
+    rightTearYAngle,
+    rightTearZAngle,
+    rightShadeAmount,
+    fov,
+    cameraZ,
+    cameraZMobile,
+    mobileBreakpoint,
+    showHint,
+    hintDelayMs,
   ]);
 
   return (
-    <div className={`relative w-full h-full overflow-hidden ${className}`}>
-
-      {/* WebGL canvas */}
+    <div
+      ref={containerRef}
+      className={`relative h-screen w-full overflow-hidden bg-black ${className}`}
+    >
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ cursor: 'grab' }}
+        className="absolute inset-0 h-full w-full cursor-grab touch-none active:cursor-grabbing"
       />
 
-      {/* Vignette — adds depth and focus to center */}
-      <div
-        className="absolute inset-0 pointer-events-none z-10"
-        style={{
-          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.65) 100%)',
-        }}
-      />
+      <div className="pointer-events-none absolute inset-0 z-10 [background:radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.65)_100%)]" />
 
-      {/* Minimal drag hint — arrow down */}
-      {showHint && (
-        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+      {showHint ? (
+        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
           <div
             ref={hintRef}
-            className="flex flex-col items-center gap-1 opacity-0"
+            className="flex flex-col items-center gap-1 text-white/50 opacity-0"
           >
-            <span
-              style={{
-                fontSize: 'clamp(10px, 1.2vw, 14px)',
-                color: 'rgba(255,255,255,0.5)',
-                letterSpacing: '0.2em',
-                fontFamily: 'system-ui, sans-serif',
-                fontWeight: 300,
-                textTransform: 'uppercase',
-              }}
-            >
-              drag down to tear
+            <span className="text-[clamp(10px,1.2vw,14px)] font-light uppercase tracking-[0.2em]">
+              {hintText}
             </span>
             <svg
-              width="20" height="28" viewBox="0 0 20 28"
-              fill="none" xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="28"
+              viewBox="0 0 20 28"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              aria-hidden="true"
             >
-              <line x1="10" y1="0" x2="10" y2="20" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5"/>
-              <polyline points="4,14 10,22 16,14" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5"/>
+              <line x1="10" y1="0" x2="10" y2="20" />
+              <polyline points="4,14 10,22 16,14" />
             </svg>
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

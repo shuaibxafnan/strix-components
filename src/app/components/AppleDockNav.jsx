@@ -2,80 +2,59 @@
 
 import { useId, useState } from "react";
 
-// ─── AppleDockNav ────────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bgColor            string   #d4d4d4    Page background
-// textColor          string   #131313    Base text color (credits link color)
-// tooltipBgColor     string   #f5f5f5    Tooltip background
-// tooltipTextColor   string   #131313    Tooltip text color
-// items              array    [see below]   Dock items — each { icon, label, href }
-// baseSize           string   5em        Resting width/height of each dock item
-// hoverSize          string   8em        Width/height of the item directly under the cursor
-// siblingCloseSize   string   7em        Width/height of the immediate neighbor (±1) of the hovered item
-// siblingFarSize     string   6em        Width/height of the second-ring neighbor (±2) of the hovered item
-// transitionDuration string   500ms      Speed of the width/height "magnify" transition
-// transitionEase     string   cubic-bezier(0.16,1,0.3,1)   Easing curve for the magnify transition
-// gapFromBottom      string   10vh       Distance from the bottom of the viewport to the dock
-// fontScale          string   1.4vw      Base font-size driving the em-sized dock (icon/tooltip scale together)
-// tooltipOffset      string   -140%      Y-translate applied to the tooltip when visible (how far above the icon it floats)
-// showCredits        boolean  true       Toggles the bottom "Resource by Osmo" credit bar
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_ITEMS = [
   {
-    icon: "https://cdn.prod.website-files.com/6728a3e6f4f4161c235bc519/6728a6be92ee5ddf0080fb90_notion.png",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg",
     label: "Notion",
     href: "#",
   },
   {
-    icon: "https://cdn.prod.website-files.com/6728a3e6f4f4161c235bc519/6728a6bef9d004f8a9cf3b29_asana.png",
-    label: "Asana",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    label: "GitHub",
     href: "#",
   },
   {
-    icon: "https://cdn.prod.website-files.com/6728a3e6f4f4161c235bc519/6728a6be8c099d4e1ed55770_slack.png",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg",
     label: "Slack",
     href: "#",
   },
   {
-    icon: "https://cdn.prod.website-files.com/6728a3e6f4f4161c235bc519/6728a6be5b31ba243e4da377_loom.png",
-    label: "Loom",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+    label: "VS Code",
     href: "#",
   },
   {
-    icon: "https://cdn.prod.website-files.com/6728a3e6f4f4161c235bc519/6728a6bea97e140677496dae_spotify.png",
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/spotify.svg",
     label: "Spotify",
     href: "#",
   },
   {
-    icon: "https://cdn.prod.website-files.com/6728a3e6f4f4161c235bc519/6728a6bea73fcc6ee568f6f0_webflow.png",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webflow/webflow-original.svg",
     label: "Webflow",
     href: "#",
   },
   {
-    icon: "https://cdn.prod.website-files.com/6728a3e6f4f4161c235bc519/6728b10be6bc07649a51369e_Osmo.png",
-    label: "Osmo",
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg",
+    label: "Discord",
     href: "#",
   },
   {
-    icon: "https://cdn.prod.website-files.com/6728a3e6f4f4161c235bc519/6728a6bdf9d004f8a9cf3b09_adobe-illustrator.png",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg",
     label: "Adobe Illustrator",
     href: "#",
   },
   {
-    icon: "https://cdn.prod.website-files.com/6728a3e6f4f4161c235bc519/6728a6be1de916069b5e1aaa_figma.png",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
     label: "Figma",
     href: "#",
   },
   {
-    icon: "https://cdn.prod.website-files.com/6728a3e6f4f4161c235bc519/6728a6be1de916069b5e1a86_adobe-photoshop.png",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg",
     label: "Photoshop",
     href: "#",
   },
   {
-    icon: "https://cdn.prod.website-files.com/6728a3e6f4f4161c235bc519/6728a6be051d32942a7aa31e_adobe-premierepro.png",
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/adobepremierepro.svg",
     label: "Premiere Pro",
     href: "#",
   },

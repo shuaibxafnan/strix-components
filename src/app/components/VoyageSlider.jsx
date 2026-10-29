@@ -2,40 +2,33 @@
 
 import { useEffect, useState, useRef } from "react";
 
-// ─── VoyageSlider Component ──────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// slidesData        array    Collection containing images, locations, and copy text
-// slideWidth        string   Arbitrary CSS sizing window defining width dimensions
-// slideAspect       string   Shorthand geometry configuring frame height scaling
-// transitionDuration string   Timing value mapping global matrix updates
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_SLIDES = [
   {
     id: "scotland",
     image:
-      "https://devloop01.github.io/voyage-slider/images/scotland-mountains.jpg",
+      "https://images.unsplash.com/photo-1781513747645-757fb2619e57?auto=format&fit=crop&w=1600&q=80",
     title: "Highlands",
     subtitle: "Scotland",
     description: "The mountains are calling",
   },
   {
     id: "peru",
-    image: "https://devloop01.github.io/voyage-slider/images/machu-pichu.jpg",
+    image:
+      "https://images.unsplash.com/photo-1780163930838-1502715c3bc1?auto=format&fit=crop&w=1600&q=80",
     title: "Machu Picchu",
     subtitle: "Peru",
     description: "Adventure is never far away",
   },
   {
     id: "france",
-    image: "https://devloop01.github.io/voyage-slider/images/chamonix.jpg",
+    image:
+      "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=1600&q=80",
     title: "Chamonix",
     subtitle: "France",
     description: "Let your dreams come true",
   },
 ];
+
 
 export default function VoyageSlider({
   slidesData = DEFAULT_SLIDES,
@@ -346,9 +339,8 @@ export default function VoyageSlider({
                   >
                     <div className="w-full h-full relative shadow-2xl [transform:translateZ(0px)] [mask-image:linear-gradient(white,white)]">
                       <img
-                        className={`w-full h-full object-cover absolute top-50 left-50 [transform:translate(-50%,-50%)_scale(1.15)_translate3d(var(--bgPosX,0%),var(--bgPosY,0%),0px)] [backface-visibility:hidden] transition-all duration-300 ${
-                          isCurrent ? "brightness-[0.85]" : "brightness-[0.45]"
-                        }`}
+                        className={`w-full h-full object-cover absolute top-50 left-50 [transform:translate(-50%,-50%)_scale(1.15)_translate3d(var(--bgPosX,0%),var(--bgPosY,0%),0px)] [backface-visibility:hidden] transition-all duration-300 ${isCurrent ? "brightness-[0.85]" : "brightness-[0.45]"
+                          }`}
                         src={slide.image}
                         alt={slide.title}
                         loading="eager"
@@ -377,11 +369,10 @@ export default function VoyageSlider({
                     <div className="absolute left-[-5%] bottom-[12%] h-fit text-white pointer-events-none [transform:translateZ(60px)] z-50">
                       <div className="overflow-hidden font-bold uppercase tracking-wider text-[calc(1.4rem+1cqw)] leading-none drop-shadow-md">
                         <span
-                          className={`block transition-all duration-[var(--slide-transition-duration)] var(--slide-transition-easing) delay-100 ${
-                            isCurrent
+                          className={`block transition-all duration-[var(--slide-transition-duration)] var(--slide-transition-easing) delay-100 ${isCurrent
                               ? "opacity-100 translate-y-0"
                               : "opacity-0 translate-y-full"
-                          }`}
+                            }`}
                         >
                           {slide.title}
                         </span>
@@ -389,11 +380,10 @@ export default function VoyageSlider({
 
                       <div className="overflow-hidden font-semibold text-neutral-200 uppercase tracking-wide text-[calc(0.9rem+0.5cqw)] mt-1.5 ml-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
                         <span
-                          className={`block transition-all duration-[var(--slide-transition-duration)] var(--slide-transition-easing) delay-150 ${
-                            isCurrent
+                          className={`block transition-all duration-[var(--slide-transition-duration)] var(--slide-transition-easing) delay-150 ${isCurrent
                               ? "opacity-100 translate-y-0"
                               : "opacity-0 translate-y-full"
-                          }`}
+                            }`}
                         >
                           {slide.subtitle}
                         </span>
@@ -401,11 +391,10 @@ export default function VoyageSlider({
 
                       <div className="overflow-hidden font-light text-neutral-300 text-xs tracking-normal mt-2 ml-1.5 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
                         <span
-                          className={`block transition-all duration-[var(--slide-transition-duration)] var(--slide-transition-easing) delay-200 ${
-                            isCurrent
+                          className={`block transition-all duration-[var(--slide-transition-duration)] var(--slide-transition-easing) delay-200 ${isCurrent
                               ? "opacity-100 translate-y-0"
                               : "opacity-0 translate-y-full"
-                          }`}
+                            }`}
                         >
                           {slide.description}
                         </span>
@@ -436,9 +425,8 @@ export default function VoyageSlider({
 
       {/* Preloading Screen Loader */}
       <div
-        className={`fixed inset-0 bg-neutral-950 grid place-items-center transition-opacity duration-500 z-[9999] pointer-events-none ${
-          isLoaded ? "opacity-0" : "opacity-100"
-        }`}
+        className={`fixed inset-0 bg-neutral-950 grid place-items-center transition-opacity duration-500 z-[9999] pointer-events-none ${isLoaded ? "opacity-0" : "opacity-100"
+          }`}
       >
         <div className="text-center space-y-2">
           <span className="block font-black tracking-widest text-white text-4xl md:text-6xl uppercase select-none">

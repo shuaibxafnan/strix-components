@@ -2,49 +2,37 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── WebGLEffectList ─────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// items                array    [...]       Text layout items matching corresponding image endpoints
-// mainHeading          string   "..."       Focal background tracking string applied behind layouts
-// smoothTime           number   1.2         Damping delay values applied across container smooth passes
-// deformationStrength  number   0.00005     Vertex displacement scale based on active container momentum
-// rgbShiftStrength     number   0.00003     Color splits displacement scale tracking container velocity
-// lerpSpeed            number   0.075       Eased linear step tracking values behind rendering math ticks
-// meshSkewAngle        number   -5          Rotational transformation angle applied across Three planes
-// ──────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_ITEMS = [
   {
     subtitle: "001 / CORE",
     title: "Street Vignettes",
-    img: "https://assets.codepen.io/204808/night-in-korea-1.jpg",
+    img: "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=1600&q=80",
   },
   {
     subtitle: "002 / PATH",
     title: "Neon Highways",
-    img: "https://assets.codepen.io/204808/night-in-korea-2.jpg",
+    img: "https://images.unsplash.com/photo-1781513747645-757fb2619e57?auto=format&fit=crop&w=1600&q=80",
   },
   {
     subtitle: "003 / FORM",
     title: "Asymmetric Space",
-    img: "https://assets.codepen.io/204808/night-in-korea-3.jpg",
+    img: "https://images.unsplash.com/photo-1780163930838-1502715c3bc1?auto=format&fit=crop&w=1600&q=80",
   },
   {
     subtitle: "004 / LIFE",
     title: "Midnight Kitchen",
-    img: "https://assets.codepen.io/204808/night-in-korea-4.jpg",
+    img: "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=1600&q=80",
   },
   {
     subtitle: "005 / ARCH",
     title: "Dynasty Walls",
-    img: "https://assets.codepen.io/204808/night-in-korea-5.jpg",
+    img: "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=1600&q=80",
   },
   {
     subtitle: "006 / VIEW",
     title: "Obsidian Skyline",
-    img: "https://assets.codepen.io/204808/night-in-korea-6.jpg",
+    img: "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=1600&q=80",
   },
 ];
 

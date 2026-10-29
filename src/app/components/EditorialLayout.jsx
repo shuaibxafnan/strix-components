@@ -2,33 +2,6 @@
 
 import React from "react";
 
-/**
- * EditorialLayout Props
- * ──────────────────────────────────────────────────────────────────────────
- * title           string   "The Quarterly" (Masthead logo text)
- * issueText       string   "Issue 04 — Winter 2026" (Masthead metadata issue flag)
- * headline        string   Main headline string. Supports <br> for break control.
- * summaryText     string   Descriptive sub-headline text paragraph block.
- * author          string   "Eleanor Chen" (Byline credits text)
- * photographer    string   "Marcus Webb" (Visual credits text)
- * featuredImage   string   Unsplash source URL for primary widescreen hero asset.
- * featuredCaption string   Metadata label text accompanying featured image asset.
- * bodyParagraphs  string[] Core textual composition broken into separate paragraphs.
- * sidebarTitle    string   "Key Concepts" (Label for structural text list callout block)
- * sidebarItems    string[] Array of bullet lines loaded contextually into sidebar aside.
- * blockquoteText  string   High-impact display quote string inserted midpoint.
- * blockquoteAttr  string   Attribution sign-off linked directly to display quote block.
- * columnTextLeft  string   Secondary section text injected cleanly into left-side column block.
- * columnTextRight string   Secondary section text injected cleanly into right-side column block.
- * gridImages      string[] Exact array of three image resource URLs for lower mosaic deck.
- * footerLeft      string   "Continue reading in Issue 05" (Bottom left pagination hint)
- * footerRight     string   "thequarterly.com" (Bottom right navigation web string)
- * themeColor      string   "#1a1a1a" (Hex primary dark text color anchor boundary)
- * accentMuted     string   "#a3a3a3" (Hex color utilized for subtle layout rules & design markers)
- * grayBg          string   "#f5f5f5" (Hex block filler background tone for structural sidebars)
- * ──────────────────────────────────────────────────────────────────────────
- */
-
 export default function EditorialLayout({
   title = "The Quarterly",
   issueText = "Issue 04 — Winter 2026",
@@ -36,7 +9,7 @@ export default function EditorialLayout({
   summaryText = "How negative space shapes modern design philosophy and influences contemporary creative practice",
   author = "Eleanor Chen",
   photographer = "Marcus Webb",
-  featuredImage = "https://assets.codepen.io/406785/c-cai-kqgbwrLr4sE-unsplash.jpg",
+  featuredImage = "https://images.unsplash.com/photo-1781513747645-757fb2619e57?auto=format&fit=crop&w=1440&q=80",
   featuredCaption = "Figure 01 — Spatial composition study, 2025",
   bodyParagraphs = [
     "In the pursuit of visual clarity, what we choose to omit becomes as crucial as what we include. This fundamental principle guides contemporary design thinking.",
@@ -55,9 +28,9 @@ export default function EditorialLayout({
   columnTextLeft = "Implementing these principles requires discipline and confidence. The designer must resist the urge to fill every available space, trusting that emptiness serves a purpose beyond mere aesthetics. Consider the page spread: generous margins frame the content, line spacing allows text to breathe, paragraph breaks create natural pauses.",
   columnTextRight = "Digital interfaces present unique challenges. Screen real estate feels precious, stakeholders request more features, analytics drive density. Yet the most successful platforms maintain spatial generosity. The lesson remains consistent across media: clarity emerges from selective focus, enhanced by the strategic use of nothing at all.",
   gridImages = [
-    "https://assets.codepen.io/406785/augustine-wong-oebTM5wHTfw-unsplash.jpg",
-    "https://assets.codepen.io/406785/h-co-3oOR7B2inwc-unsplash.jpg",
-    "https://assets.codepen.io/406785/bharath-kumar-rqIyJozwdTc-unsplash.jpg",
+    "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=720&q=80",
+    "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=720&q=80",
+    "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=720&q=80",
   ],
   footerLeft = "Continue reading in Issue 05",
   footerRight = "thequarterly.com",

@@ -8,54 +8,65 @@ import { useEffect, useRef } from "react";
 const DEFAULT_ITEMS = [
   {
     title: "Angus Young",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-angus.png",
+    image:
+      "https://images.unsplash.com/photo-1749330513873-09ffa91b0aae?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Aurora",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-aurora.png",
+    image:
+      "https://images.unsplash.com/photo-1627896157734-4d7d4388f28b?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Bride of Frankenstein",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-bride.png",
+    image:
+      "https://images.unsplash.com/photo-1778789172736-e8ba37c71124?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Dracula",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-d.png",
+    image:
+      "https://images.unsplash.com/photo-1778961938903-96617183f739?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Salvador Dalí",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-dali.png",
+    image:
+      "https://images.unsplash.com/photo-1678112553355-a9dab855ebf3?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Ilhuicatl Xoxouhqui",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-huitzi.png",
+    image:
+      "https://images.unsplash.com/photo-1743309411498-a0f4f4b96b65?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "L'Homme qui rit",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-man.png",
+    image:
+      "https://images.unsplash.com/photo-1490682143684-14369e18dce8?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Visualization",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-v.png",
+    image:
+      "https://images.unsplash.com/photo-1634325232058-e7b8f80cc20b?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Visualization II",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-v2.png",
+    image:
+      "https://images.unsplash.com/photo-1759458856846-097935f54111?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Visualization III",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-v3.png",
+    image:
+      "https://images.unsplash.com/photo-1533387520709-752d83de3630?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Zombie",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-worms.png",
+    image:
+      "https://images.unsplash.com/photo-1752150127767-77bccbed07e2?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "X-Rays",
-    image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-xrays.png",
+    image:
+      "https://images.unsplash.com/photo-1781935307999-e8bb5e62ebb1?auto=format&fit=crop&w=1200&q=80",
   },
 ];
-
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------

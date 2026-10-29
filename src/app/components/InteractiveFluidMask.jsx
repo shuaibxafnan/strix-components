@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function InteractiveFluidMask({
-  bgImageUrl = "https://robindelaporte.fr/codepen/bg3.jpg",
+  bgImageUrl = "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1080&q=80",
   maskColor = "#ffffff",
   dissipation = 0.92,
   falloff = 0.3,

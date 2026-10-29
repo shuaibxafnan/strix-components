@@ -2,30 +2,22 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── InfiniteSlider ──────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// slidesData      array    List of slides with image URLs and caption text
-// speed           number   Speed coefficient for the loop animation
-// buttonTransition string  Tailwind transition speed/easing for buttons
-// ──────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_SLIDES = [
   {
-    img: "https://cdn.prod.website-files.com/674d847bf8e817966d307714/674d90f74ff2fe8b0b912b97_slide-1.avif",
+    img: "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1600&q=80",
     caption: "Layout nº001",
   },
   {
-    img: "https://cdn.prod.website-files.com/674d847bf8e817966d307714/674d90f7cf52dd961b48a1e2_slide-2.avif",
+    img: "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=1600&q=80",
     caption: "Layout nº002",
   },
   {
-    img: "https://cdn.prod.website-files.com/674d847bf8e817966d307714/674d90f7f7cce73267703347_slide-3.avif",
+    img: "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=1600&q=80",
     caption: "Layout nº003",
   },
   {
-    img: "https://cdn.prod.website-files.com/674d847bf8e817966d307714/674d90f7ccfd203c82a46798_slide-4.avif",
+    img: "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1600&q=80",
     caption: "Layout nº004",
   },
 ];
@@ -70,7 +62,7 @@ export default function InfiniteSlider({
       .then(() => {
         return loadScript(
           "https://assets.codepen.io/16327/InertiaPlugin.min.js",
-        ).catch(() => {});
+        ).catch(() => { });
       })
       .then(() => {
         const { gsap, Draggable, InertiaPlugin } = window;
@@ -160,7 +152,7 @@ export default function InfiniteSlider({
                 startX +
                 spaceBefore[0] +
                 items[length - 1].offsetWidth *
-                  gsap.getProperty(items[length - 1], "scaleX") +
+                gsap.getProperty(items[length - 1], "scaleX") +
                 (parseFloat(config.paddingRight) || 0),
               populateWidths = () => {
                 let b1 = container.getBoundingClientRect(),
@@ -169,8 +161,8 @@ export default function InfiniteSlider({
                   widths[i] = parseFloat(gsap.getProperty(el, "width", "px"));
                   xPercents[i] = snap(
                     (parseFloat(gsap.getProperty(el, "x", "px")) / widths[i]) *
-                      100 +
-                      gsap.getProperty(el, "xPercent"),
+                    100 +
+                    gsap.getProperty(el, "xPercent"),
                   );
                   b2 = el.getBoundingClientRect();
                   spaceBefore[i] = b2.left - (i ? b1.right : b1.left);
@@ -188,8 +180,8 @@ export default function InfiniteSlider({
                   times.forEach((t, i) => {
                     times[i] = timeWrap(
                       tl.labels["label" + i] +
-                        (tl.duration() * widths[i]) / 2 / totalWidth -
-                        timeOffset,
+                      (tl.duration() * widths[i]) / 2 / totalWidth -
+                      timeOffset,
                     );
                   });
               },
@@ -234,7 +226,7 @@ export default function InfiniteSlider({
                       {
                         xPercent: snap(
                           ((curX - distanceToLoop + totalWidth) / widths[i]) *
-                            100,
+                          100,
                         ),
                       },
                       {
@@ -427,13 +419,13 @@ export default function InfiniteSlider({
     >
       {/* Dynamic font asset declarations imported explicitly via Next.js Head style */}
       <style jsx global>{`
-        @font-face {
-          font-family: "PP Neue Corp";
-          src: url("https://cdn.prod.website-files.com/6717aac16c9ea22eeef1e79e/6717de2d56e40b921572d2d9_PPNeueCorp-TightUltrabold.woff2")
-            format("woff2");
+       @font-face {
+          font-family: "Archivo Black";
           font-weight: 700;
           font-style: normal;
           font-display: swap;
+          src: url("https://fonts.gstatic.com/s/archivoblack/v22/HTxqL2I-JCGChYJ8VI-L6OO_au7B43r3.ttf")
+            format("truetype");
         }
         .button-overlay {
           transition: transform 0.475s cubic-bezier(0.25, 1, 0.5, 1);

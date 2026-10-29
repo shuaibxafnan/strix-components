@@ -2,19 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── SpotlightCursor ────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// imageUrl       string    Required background image URL
-// cursorSize     number    500 (px) Diameter of the spotlight circle
-// cursorBlur     number    70  (%)  Blur radius percentage
-// mixBlendMode   string    "exclusion"  CSS blend mode for the spotlight
-// bgColor        string    "#000"       Page background color
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function SpotlightCursor({
-  imageUrl = "https://github.com/fxi/geotickgen/assets/1196833/fa0cc168-f910-4840-ac2e-3ab70c2859a7",
+  imageUrl = "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=1600&q=80",
   cursorSize = 500,
   cursorBlur = 70,
   mixBlendMode = "exclusion",

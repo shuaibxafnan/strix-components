@@ -2,33 +2,21 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── FlipGridSizeSwitch ──────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// initialLayout   string    "large"            Starting grid layout state ("small" | "large")
-// duration        number    0.8                Animation transition runtime in seconds
-// ease            string    "power2.inOut"     GSAP structural positioning easing profile
-// images          array     [14 items]         Target array list containing image URL sources
-// activeBtnClass  string    [Tailwind Classes] Applied styles for clickable control elements
-// disabledBtnClass string   [Tailwind Classes] Applied styles for disabled state indicators
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_IMAGES = [
-  "https://assets.codepen.io/16327/portrait-image-1.jpg",
-  "https://assets.codepen.io/16327/portrait-image-2.jpg",
-  "https://assets.codepen.io/16327/portrait-image-3.jpg",
-  "https://assets.codepen.io/16327/portrait-image-4.jpg",
-  "https://assets.codepen.io/16327/portrait-image-5.jpg",
-  "https://assets.codepen.io/16327/portrait-image-6.jpg",
-  "https://assets.codepen.io/16327/portrait-image-7.jpg",
-  "https://assets.codepen.io/16327/portrait-image-8.jpg",
-  "https://assets.codepen.io/16327/portrait-image-9.jpg",
-  "https://assets.codepen.io/16327/portrait-image-10.jpg",
-  "https://assets.codepen.io/16327/portrait-image-11.jpg",
-  "https://assets.codepen.io/16327/portrait-image-12.jpg",
-  "https://assets.codepen.io/16327/portrait-image-13.jpg",
-  "https://assets.codepen.io/16327/portrait-image-14.jpg",
+  "https://images.unsplash.com/photo-1781935307999-e8bb5e62ebb1?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1779877716206-f441d5d384d4?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1781513747645-757fb2619e57?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1780163930838-1502715c3bc1?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=720&q=80",
 ];
 
 export default function FlipGridSizeSwitch({
@@ -126,18 +114,16 @@ export default function FlipGridSizeSwitch({
           <button
             onClick={() => handleLayoutChange("small")}
             disabled={layout === "small"}
-            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border ${
-              layout === "small" ? disabledBtnClass : activeBtnClass
-            }`}
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border ${layout === "small" ? disabledBtnClass : activeBtnClass
+              }`}
           >
             Small View
           </button>
           <button
             onClick={() => handleLayoutChange("large")}
             disabled={layout === "large"}
-            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border ${
-              layout === "large" ? disabledBtnClass : activeBtnClass
-            }`}
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border ${layout === "large" ? disabledBtnClass : activeBtnClass
+              }`}
           >
             Large View
           </button>
@@ -153,11 +139,10 @@ export default function FlipGridSizeSwitch({
           {images.map((url, idx) => (
             <div
               key={idx}
-              className={`gallery-item px-3 h-[300px] md:h-[400px] transition-[flex-basis] duration-0 ${
-                layout === "small"
+              className={`gallery-item px-3 h-[300px] md:h-[400px] transition-[flex-basis] duration-0 ${layout === "small"
                   ? "flex-none basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-[16.66667%]"
                   : "flex-none basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-              }`}
+                }`}
             >
               {/* Card Container Framework */}
               <div className="w-full h-[90%] group relative overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800 shadow-md transition-all duration-300 hover:border-neutral-700 hover:shadow-xl">

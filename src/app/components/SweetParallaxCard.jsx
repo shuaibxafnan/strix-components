@@ -1,210 +1,165 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { Bebas_Neue, Rubik } from "next/font/google";
 
-// ─── SweetParallaxCard ────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bodyBgGradient    string    from-[#e68d9f] to-[#ffffff]  Main page backdrop spectrum
-// cardWidth         string    600px                        Horizontal base sizing
-// cardAspectRatio   string    aspect-[2/1.1]               Strict layout aspect locking ratio
-// cardRadius        string    rounded-[4em]                Structural corner curvature styling
-// mainTitle         string    CUPCAKES                     Primary bold background banner text
-// locationTitle     string    Sweet Dreams Bakery          Primary destination line text
-// regionSubTitle    string    Los Angeles, CA              Secondary regional text string
-// bgImage           string    ...                          Remote cloud texture background path
-// heroImage         string    ...                          Isolated primary floating subject path
-// heroWidth         string    200px                        Strict width boundary for hero graphic
-// heroHeight        string    250px                        Strict height boundary for hero graphic
-// mouseIntensityX   number    30                           Parallax horizontal response weight
-// mouseIntensityY   number    20                           Parallax vertical response weight
-// ──────────────────────────────────────────────────────────────────────────
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-bebas",
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-rubik",
+});
+
+const REPO =
+  "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main";
+
+const BLUR_LAYERS = [
+  "backdrop-blur-[1.54px] [mask-image:radial-gradient(180%_160%_at_45%_90%,#fff_10%,transparent_17.72%)] [-webkit-mask-image:radial-gradient(180%_160%_at_45%_90%,#fff_10%,transparent_17.72%)]",
+  "backdrop-blur-[2.93px] [mask-image:radial-gradient(180%_160%_at_45%_90%,#fff_10%,transparent_24.69%)] [-webkit-mask-image:radial-gradient(180%_160%_at_45%_90%,#fff_10%,transparent_24.69%)]",
+  "backdrop-blur-[4px] [mask-image:radial-gradient(180%_160%_at_45%_90%,#fff_10%,transparent_30.22%)] [-webkit-mask-image:radial-gradient(180%_160%_at_45%_90%,#fff_10%,transparent_30.22%)]",
+  "backdrop-blur-[4px] [mask-image:radial-gradient(180%_160%_at_45%_90%,#fff_10%,transparent_33.77%)] [-webkit-mask-image:radial-gradient(180%_160%_at_45%_90%,#fff_10%,transparent_33.77%)]",
+  "backdrop-blur-[4px] [mask-image:radial-gradient(180%_160%_at_45%_90%,#fff_10%,transparent_35%)] [-webkit-mask-image:radial-gradient(180%_160%_at_45%_90%,#fff_10%,transparent_35%)]",
+];
+
+const EASE = "ease-[cubic-bezier(0.25,1,0.5,1)]";
 
 export default function SweetParallaxCard({
-  bodyBgGradient = "from-[#e68d9f] to-[#ffffff]",
+  bodyBgGradient = "from-black to-white",
   cardWidth = "600px",
   cardAspectRatio = "aspect-[2/1.1]",
   cardRadius = "rounded-[4em]",
-  mainTitle = "CUPCAKES",
-  locationTitle = "Sweet Dreams Bakery",
-  regionSubTitle = "Los Angeles, CA",
-  bgImage = "http://mattcannon.games/codepen/sweet-treats/bg.webp",
-  heroImage = "http://mattcannon.games/codepen/sweet-treats/cup-cake.png",
-  heroWidth = "200px",
-  heroHeight = "250px",
+  mainTitle = "Ceramics",
+  locationTitle = "Kiln Studio",
+  regionSubTitle = "Handmade in small batches",
+  bgImage = "https://images.unsplash.com/photo-1769203905448-0ba060069e6f?auto=format&fit=crop&w=1400&q=80",
+  bgAlt = "Earthenware jug on draped fabric",
+  heroImage = `${REPO}/duo-brown.png`,
+  heroAlt = "Two tone brown vase",
+  heroWidth = "60%",
+  heroHeight = "100%",
   mouseIntensityX = 30,
   mouseIntensityY = 20,
+  className = "",
 }) {
-  const [mounted, setMounted] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
-    setMounted(true);
+    const container = containerRef.current;
+    if (!container) return undefined;
 
-    // Inject fonts directly to prevent layout shifts and guarantee the exact original appearance
-    if (!document.getElementById("parallax-fonts")) {
-      const link = document.createElement("link");
-      link.id = "parallax-fonts";
-      link.rel = "stylesheet";
-      link.href =
-        "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:ital,wght@0,400;0,500;1,400&display=swap";
-      document.head.appendChild(link);
-    }
-
-    // Direct DOM manipulation bypasses React render loops to completely eliminate jerky transitions
-    const handleMouseMove = (e) => {
-      if (!containerRef.current) return;
-      const xNorm = (e.clientX / window.innerWidth - 0.5) * 2;
-      const yNorm = (e.clientY / window.innerHeight - 0.5) * 2;
-
-      containerRef.current.style.setProperty("--x", xNorm);
-      containerRef.current.style.setProperty("--y", yNorm);
+    const setPointer = (x, y) => {
+      container.style.setProperty("--x", x);
+      container.style.setProperty("--y", y);
     };
 
-    const handleOrientation = (e) => {
-      if (!containerRef.current) return;
-      const isLandscape = window.matchMedia("(orientation: landscape)").matches;
+    const onMouseMove = (e) =>
+      setPointer(
+        (e.clientX / window.innerWidth - 0.5) * 2,
+        (e.clientY / window.innerHeight - 0.5) * 2,
+      );
+
+    const onOrientation = (e) => {
+      const landscape = window.matchMedia("(orientation: landscape)").matches;
       const beta = e.beta || 0;
       const gamma = e.gamma || 0;
-
-      const xVal = Math.max(
-        -1,
-        Math.min(1, isLandscape ? beta / 45 : gamma / 45),
+      const clamp = (v) => Math.max(-1, Math.min(1, v));
+      setPointer(
+        clamp(landscape ? beta / 45 : gamma / 45),
+        clamp(landscape ? Math.abs(gamma) / 45 : beta / 45),
       );
-      const yVal = Math.max(
-        -1,
-        Math.min(1, isLandscape ? Math.abs(gamma) / 45 : beta / 45),
-      );
-
-      containerRef.current.style.setProperty("--x", xVal);
-      containerRef.current.style.setProperty("--y", yVal);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-
-    const initOrientation = () => {
+    const enableOrientation = () => {
       if (
         typeof DeviceOrientationEvent !== "undefined" &&
         DeviceOrientationEvent.requestPermission
       ) {
         DeviceOrientationEvent.requestPermission()
           .then((result) => {
-            if (result === "granted") {
-              window.addEventListener("deviceorientation", handleOrientation);
-            }
+            if (result === "granted")
+              window.addEventListener("deviceorientation", onOrientation);
           })
-          .catch((err) => console.error("Orientation permission denied:", err));
+          .catch(() => { });
       } else {
-        window.addEventListener("deviceorientation", handleOrientation);
+        window.addEventListener("deviceorientation", onOrientation);
       }
     };
 
-    document.body.addEventListener("click", initOrientation, { once: true });
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("click", enableOrientation, { once: true });
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("deviceorientation", handleOrientation);
-      document.body.removeEventListener("click", initOrientation);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("click", enableOrientation);
+      window.removeEventListener("deviceorientation", onOrientation);
     };
   }, []);
-
-  if (!mounted) {
-    return (
-      <div className="w-screen h-screen flex items-center justify-center bg-neutral-900">
-        <div
-          style={{ maxWidth: cardWidth }}
-          className="w-full aspect-[2/1.1] rounded-2xl bg-neutral-800 animate-pulse"
-        />
-      </div>
-    );
-  }
-
-  const blurLayers = [
-    { index: 1, blur: "1.54px", stop: "7.72%" },
-    { index: 2, blur: "2.93px", stop: "14.69%" },
-    { index: 3, blur: "4.04px", stop: "20.22%" },
-    { index: 4, blur: "4.75px", stop: "23.77%" },
-    { index: 5, blur: "5.00px", stop: "25.00%" },
-  ];
 
   return (
     <div
       ref={containerRef}
-      style={{ "--x": 0, "--y": 0 }}
-      className={`w-full min-h-screen flex items-center justify-center p-2 touch-none select-none bg-gradient-to-b ${bodyBgGradient} bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')] bg-blend-overlay font-['Rubik',sans-serif]`}
+      style={{
+        "--x": 0,
+        "--y": 0,
+        "--ix": `${mouseIntensityX}px`,
+        "--iy": `${mouseIntensityY}px`,
+      }}
+      className={`${bebas.variable} ${rubik.variable} flex min-h-screen w-full touch-none select-none items-center justify-center bg-gradient-to-b p-2 [font-family:var(--font-rubik)] ${bodyBgGradient} ${className}`}
     >
       <article
-        style={{ maxWidth: `calc(100% - 2rem)`, width: cardWidth }}
-        className={`w-full ${cardAspectRatio} portrait:min-h-[330px] max-h-[calc(100vh-2rem)] relative overflow-hidden ${cardRadius} shadow-[0_10px_20px_rgba(0,0,0,0.1)]`}
+        style={{ width: cardWidth }}
+        className={`relative max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] overflow-hidden shadow-[0_10px_20px_rgba(0,0,0,0.1)] [container-type:inline-size] portrait:min-h-[330px] ${cardAspectRatio} ${cardRadius}`}
       >
-        {/* ─── VISUAL ASSETS CONTAINER LAYER ─── */}
-        <div className={`absolute inset-0 ${cardRadius} overflow-hidden z-0`}>
-          {/* Background Clouds Graphic */}
-          <div
-            style={{
-              objectPosition: `calc(50% + (var(--x) * ${mouseIntensityX}px)) calc(50% + (var(--y) * ${-mouseIntensityY}px))`,
-            }}
-            className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-[660px] max-w-none saturate-[1.5] brightness-[0.9] transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
-          >
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute left-1/2 top-0 h-full w-[660px] max-w-none -translate-x-1/2 brightness-90 saturate-150">
             <img
               src={bgImage}
-              alt="Background clouds"
-              className="w-full h-full object-cover object-center pointer-events-none select-none"
+              alt={bgAlt}
+              className={`pointer-events-none h-full w-full select-none object-cover transition-[object-position] duration-300 [object-position:calc(50%_+_var(--x)_*_var(--ix))_calc(50%_-_var(--y)_*_var(--iy))] ${EASE}`}
             />
           </div>
 
-          {/* Whimsical Hero Text Block */}
           <h3
-            style={{
-              transform: `translate(calc(-50% + (var(--x) * ${-mouseIntensityX}px)), calc(var(--y) * ${-mouseIntensityY}px))`,
-            }}
-            className="absolute left-1/2 top-[8%] m-0 text-[8rem] uppercase text-white font-['Bebas_Neue',sans-serif] z-[4] transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] leading-none select-none pointer-events-none"
+            className={`pointer-events-none absolute left-1/2 top-[8%] z-[4] m-0 select-none text-[21cqi] uppercase leading-none text-white transition-transform duration-300 [font-family:var(--font-bebas)] [transform:translate(calc(-50%_-_var(--x)_*_var(--ix)),calc(var(--y)_*_var(--iy)_*_-1))] ${EASE}`}
           >
             {mainTitle}
           </h3>
-
-          {/* Floating Cupcake Graphic */}
-          <div
-            style={{
-              width: heroWidth,
-              height: heroHeight,
-              transform: `translate(calc(-50% + (var(--x) * ${mouseIntensityX * 1.33}px)), calc(var(--y) * ${mouseIntensityY * 0.5}px))`,
-            }}
-            className="absolute top-0 left-1/2 h-full z-[99] transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] pointer-events-none select-none"
-          >
-            <img
-              src={heroImage}
-              alt="Hero Subject"
-              className="w-full h-full object-contain"
-            />
-          </div>
         </div>
 
-        {/* ─── DYNAMIC RADIAL BLUR MATRIX LAYERS ─── */}
-        <div className="absolute inset-0 z-[1] pointer-events-none">
-          {blurLayers.map((layer) => (
+        <div className="pointer-events-none absolute inset-0 z-[1]">
+          {BLUR_LAYERS.map((layer) => (
             <div
-              key={layer.index}
-              style={{
-                backdropFilter: `blur(min(${layer.blur}, 4px))`,
-                maskImage: `radial-gradient(180% 160% at 45% 90%, #fff 10%, rgba(0,0,0,0) calc((10 + ${parseFloat(layer.stop)}) * 1%))`,
-                WebkitMaskImage: `radial-gradient(180% 160% at 45% 90%, #fff 10%, rgba(0,0,0,0) calc((10 + ${parseFloat(layer.stop)}) * 1%))`,
-              }}
-              className="absolute inset-0 bg-white/[0.015] z-[2]"
+              key={layer}
+              className={`absolute inset-0 z-[2] bg-white/[0.015] ${layer}`}
             />
           ))}
         </div>
 
-        {/* ─── CARD METADATA CONTENT ONDOCK LAYER ─── */}
-        <div className="min-h-[32%] absolute bottom-0 w-full text-white grid gap-1 place-items-center align-content-center pb-4 z-[3] font-['Rubik',sans-serif]">
-          <p className="m-0 flex items-center gap-2 text-[1.2rem] text-white font-normal relative after:content-[''] after:absolute after:bottom-[calc(100%+1rem)] after:left-1/2 after:-translate-x-1/2 after:w-[20ch] after:bg-white after:h-[1px]">
-            {/* Fine-lined Vector Marker Pin */}
+        <div
+          style={{ width: heroWidth, height: heroHeight }}
+          className={`pointer-events-none absolute left-1/2 top-0 z-[4] select-none transition-transform duration-300 [transform:translate(calc(-50%_+_var(--x)_*_var(--ix)_*_1.33),calc(var(--y)_*_var(--iy)_*_0.5))] ${EASE}`}
+        >
+          <img
+            src={heroImage}
+            alt={heroAlt}
+            className="h-full w-full object-contain drop-shadow-xl"
+          />
+        </div>
+
+        <div className="absolute bottom-0 z-[3] grid min-h-[32%] w-full place-items-center gap-1 pb-4 text-white">
+          <p className="relative m-0 flex items-center gap-2 text-[clamp(0.9rem,3cqi,1.2rem)] font-normal text-white after:absolute after:bottom-[calc(100%+1rem)] after:left-1/2 after:h-px after:w-[20ch] after:-translate-x-1/2 after:bg-white after:content-['']">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-[20px] h-[20px] text-white inline-block"
+              className="inline-block h-5 w-5"
+              aria-hidden="true"
             >
               <path
                 fillRule="evenodd"
@@ -214,7 +169,7 @@ export default function SweetParallaxCard({
             </svg>
             {locationTitle}
           </p>
-          <p className="m-0 text-[0.8rem] text-white/80 tracking-wide italic font-light">
+          <p className="m-0 text-[clamp(0.7rem,2.2cqi,0.8rem)] font-light italic tracking-wide text-white/80">
             {regionSubTitle}
           </p>
         </div>

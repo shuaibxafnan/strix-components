@@ -2,24 +2,11 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── LightingCard ─────────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────────
-// theme            string   "dark"            "light" | "dark" | "system"
-// borderWidth      number   2                 Card border thickness (px)
-// cardWidth        number   220               Card width (px)
-// gridSize         number   45                Background grid cell size (px)
-// lights           array    see DEFAULT_LIGHTS Array of light config objects:
-//   { label, img, color, constant, exponent, surface, z, initX, initY }
-//   initX/initY: pixel offset from viewport center (same as original CSS translate)
-// ──────────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_LIGHTS = [
   {
     label: "spotify",
-    img: "https://assets.codepen.io/605876/spotify.png",
-    color: "hsl(142,77%,48%)",
+    img: "https://cdn.simpleicons.org/spotify/1DB954",
+    color: "hsl(145, 100%, 65%)",
     constant: 10,
     exponent: 150,
     surface: 1,
@@ -29,8 +16,8 @@ const DEFAULT_LIGHTS = [
   },
   {
     label: "raycast",
-    img: "https://assets.codepen.io/605876/raycast.png",
-    color: "hsl(0,100%,69%)",
+    img: "https://cdn.simpleicons.org/figma/F24E1E",
+    color: "hsl(35, 100%, 65%)",
     constant: 2,
     exponent: 300,
     surface: 1,
@@ -40,8 +27,8 @@ const DEFAULT_LIGHTS = [
   },
   {
     label: "discord",
-    img: "https://assets.codepen.io/605876/discord.png",
-    color: "hsl(235,86%,73%)",
+    img: "https://cdn.simpleicons.org/discord/5865F2",
+    color: "hsl(195, 100%, 65%)",
     constant: 12,
     exponent: 110,
     surface: 1,
@@ -50,9 +37,9 @@ const DEFAULT_LIGHTS = [
     initY: -40,
   },
   {
-    label: "screen studio",
-    img: "https://assets.codepen.io/605876/screenstudio.png",
-    color: "hsl(267,61%,48%)",
+    label: "youtube",
+    img: "https://cdn.simpleicons.org/youtube/FF0000",
+    color: "hsl(330, 100%, 70%)",
     constant: 20,
     exponent: 120,
     surface: 1,

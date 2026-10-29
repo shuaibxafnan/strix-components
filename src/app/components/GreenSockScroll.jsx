@@ -2,40 +2,26 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── AnimatedSections ────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// slides          array    [...]     Array containing text configurations & image sources
-// headerTitle     string   "..."     Branding text positioned inside the sticky header
-// headerLinkText  string   "..."     Right-hand navigation string asset representation
-// headerLinkUrl   string   "..."     Hyperlink assignment tied to header interaction
-// animDuration    number   1.25      Global slide transit interpolation step duration
-// animEase        string   "..."     Primary easing style applied to physical layers
-// textAnimEase    string   "..."     Target tracking motion style for letter staggers
-// bgGradient      string   "..."     CSS gradient styling providing visual text safety
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_SLIDES = [
   {
     text: "Scroll down",
-    img: "https://assets.codepen.io/16327/site-landscape-1.jpg",
+    img: "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1600&q=80",
   },
   {
     text: "Animated with GSAP",
-    img: "https://assets.codepen.io/16327/site-landscape-2.jpg",
+    img: "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=1600&q=80",
   },
   {
     text: "GreenSock",
-    img: "https://assets.codepen.io/16327/site-landscape-3.jpg",
+    img: "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=1600&q=80",
   },
   {
     text: "Animation platform",
-    img: "https://assets.codepen.io/16327/site-landscape-4.jpg",
+    img: "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1600&q=80",
   },
   {
     text: "Keep scrolling",
-    img: "https://assets.codepen.io/16327/site-landscape-5.jpg",
+    img: "https://images.unsplash.com/photo-1779877716206-f441d5d384d4?auto=format&fit=crop&w=1600&q=80",
   },
 ];
 

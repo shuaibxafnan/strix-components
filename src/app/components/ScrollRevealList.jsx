@@ -2,17 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── ScrollRevealList ────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// items            array    [...]     Array of curated portfolio pieces with content blocks & image specs
-// heroTitle        string   "..."     High-end focal title displayed inside the initial landing frame
-// heroSubtitle     string   "..."     Sub-navigation string directing user scroll behavior
-// animDuration     number   1.25      Entrance animation speed coefficient
-// animEase         string   "..."     Deceleration matrix name controlling smooth text and card arrivals
-// offsetDistance   number   60        Pixel distance modifier tracking element translate offsets
-// ──────────────────────────────────────────────────────────────────────────
 
 const CURATED_ITEMS = [
   {
@@ -20,7 +9,7 @@ const CURATED_ITEMS = [
     title: "Highway Vinyl Nights",
     description:
       "The headlights hum along the painted lines.\nWe twist the dial till static turns to choir.\nYour hand keeps time on the wheel and the night leans in.\nEvery mile is a chorus we have not written yet.",
-    img: "https://assets.codepen.io/16327/portrait-image-14.jpg",
+    img: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=80",
     direction: "left",
   },
   {
@@ -28,7 +17,7 @@ const CURATED_ITEMS = [
     title: "Last Diner on Route 9",
     description:
       "The coffee tastes like rainwater and luck.\nNeon flickers slow while the jukebox spins a waltz.\nWe carve our names in steam on the window glass.\nStay till sunrise and the road will wait its turn.",
-    img: "https://assets.codepen.io/16327/portrait-image-4.jpg",
+    img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
     direction: "right",
   },
   {
@@ -36,7 +25,7 @@ const CURATED_ITEMS = [
     title: "Stardust Ballroom",
     description:
       "Mirror tiles catch every hopeful face.\nRecords spin thin silver threads through the dark.\nWe move like planets pulled by quiet drums.\nHold the beat and the night will never close.",
-    img: "https://assets.codepen.io/16327/portrait-image-3.jpg",
+    img: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=80",
     direction: "left",
   },
   {
@@ -44,10 +33,11 @@ const CURATED_ITEMS = [
     title: "Sky Without Borders",
     description:
       "Lay your worries down beneath the porchlight glow.\nThe crickets stitch soft rhythm in the grass.\nWe trade small dreams and make them loud together.\nA sky without borders is waiting past the trees.",
-    img: "https://assets.codepen.io/16327/portrait-image-1.jpg",
+    img: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=80",
     direction: "right",
   },
 ];
+
 
 export default function ScrollRevealList({
   items = CURATED_ITEMS,
@@ -214,16 +204,14 @@ export default function ScrollRevealList({
           return (
             <div
               key={idx}
-              className={`flex flex-col md:flex-row ${
-                isLeft ? "md:flex-row" : "md:flex-row-reverse"
-              } items-center justify-between gap-12 md:gap-16 lg:gap-24`}
+              className={`flex flex-col md:flex-row ${isLeft ? "md:flex-row" : "md:flex-row-reverse"
+                } items-center justify-between gap-12 md:gap-16 lg:gap-24`}
             >
               {/* Image Container with Custom Slide Tagging */}
               <div className="w-full md:w-[45%] lg:w-[40%] flex justify-center">
                 <div
-                  className={`js-reveal-img ${
-                    isLeft ? "js-slide-left" : "js-slide-right"
-                  } w-full max-w-md aspect-[3/4] overflow-hidden bg-neutral-900 group relative opacity-0 invisible will-change-[transform,opacity]`}
+                  className={`js-reveal-img ${isLeft ? "js-slide-left" : "js-slide-right"
+                    } w-full max-w-md aspect-[3/4] overflow-hidden bg-neutral-900 group relative opacity-0 invisible will-change-[transform,opacity]`}
                 >
                   <div className="absolute inset-0 bg-black/10 z-10 transition-colors duration-500 group-hover:bg-transparent" />
                   <img
@@ -262,11 +250,6 @@ export default function ScrollRevealList({
           );
         })}
       </div>
-
-      {/* Classy Layout Footer */}
-      <footer className="w-full py-16 px-6 md:px-12 lg:px-24 border-t border-neutral-900 text-center text-neutral-600 text-xs font-mono tracking-widest">
-        © 2026 CURATED SHOWCASE. ALL RIGHTS RESERVED.
-      </footer>
     </div>
   );
 }

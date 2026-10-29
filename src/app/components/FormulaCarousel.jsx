@@ -2,21 +2,6 @@
 
 import { useEffect, useState, useRef } from "react";
 
-// ─── FormulaCarousel ───────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// accentColor        string   "#c20000"           F1 theme brand color identity
-// loopIntervalMs     number   5000                Tick cycle timeline step conversion
-// mixBlendBg         string   "rgba(7,5,5,0.45)"   Active image darkening scrim mask
-// animationDuration  string   "duration-700"      Main slide positional slide speed
-// timingFunction     string   "ease-[cubic-bezier(0.25,1,0.5,1)]" Smooth transition curve
-// textAlignment      string   "items-start text-left" Content structural layout justification
-// glassOpacity       string   "bg-zinc-900/80"    Active navigation tab glass panel background
-// scaleIntensity     string   "scale-105"         Image frame scale magnification index
-// carouselData       array    [MOCK_DATA]         Main slide array data payload feed
-// ──────────────────────────────────────────────────────────────────────────
-
 const FORMULA_DEFAULT_DATA = [
   {
     id: "post-1",
@@ -24,7 +9,7 @@ const FORMULA_DEFAULT_DATA = [
     published: "16 August 2019",
     title:
       "New McLaren wind tunnel 'critical' to future performance, says Tech Director Key",
-    img: "https://www.formula1.com/content/dam/fom-website/manual/Misc/2019-Races/Monaco2019/McLarenMonaco19.jpg.transform/9col/image.jpg",
+    img: "https://images.unsplash.com/photo-1742744652734-d5ec6598b5da?q=80&w=1440&auto=format&fit=crop",
     type: "link",
     linkText: "find out more",
   },
@@ -33,7 +18,7 @@ const FORMULA_DEFAULT_DATA = [
     tag: "Video",
     published: "12 August 2019",
     title: "What To Watch For in the 2019 Hungarian Grand Prix",
-    img: "https://www.formula1.com/content/dam/fom-website/sutton/2019/Hungary/Saturday/1017645792-LAT-20190803-_2ST5188.jpg.transform/9col-retina/image.jpg",
+    img: "https://images.unsplash.com/photo-1699138346782-8a8b211c3da2?q=80&w=1440&auto=format&fit=crop",
     type: "video",
     linkText: "play video",
   },
@@ -43,7 +28,7 @@ const FORMULA_DEFAULT_DATA = [
     published: "08 August 2019",
     title:
       "Hamilton wants harder championship fight from Leclerc and Verstappen",
-    img: "https://www.formula1.com/content/dam/fom-website/manual/Misc/2019-Races/Austria-2019/Top3Austria2019.jpg.transform/9col-retina/image.jpg",
+    img: "https://images.unsplash.com/photo-1774487671647-613e738aa000?q=80&w=1440&auto=format&fit=crop",
     type: "link",
     linkText: "find out more",
   },

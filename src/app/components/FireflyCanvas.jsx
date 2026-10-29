@@ -2,24 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── FireflyCanvas ───────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// maxFireflies    number    100        Total concurrent firefly instances
-// spawnRate       number    5          Amount of new fireflies added per pass
-// fireflyColor    string    #fddba3    Hex/RGB color code of particles
-// blurAmount      string    blur-[1px] Custom Tailwind blur modifier for canvas
-// bgImage         string    url(...)   Background cover graphic URL
-// trailLength     number    6          Number of trail segments per firefly
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function FireflyCanvas({
   maxFireflies = 100,
   spawnRate = 5,
   fireflyColor = "#fddba3",
   blurAmount = "blur-[1px]",
-  bgImage = "https://external-preview.redd.it/Tf2MC-orVRAI8OL5tjyF4k4H2Q6QLHTWllekGfqdt3c.png?width=960&crop=smart&auto=webp&s=be4ab9a2fa3ca2f7011799377f118a8dbc64aacb",
+  bgImage = "https://images.unsplash.com/photo-1589848315097-ba7b903cc1cc?q=80&w=1920&auto=format&fit=crop",
   trailLength = 6,
 }) {
   const canvasRef = useRef(null);

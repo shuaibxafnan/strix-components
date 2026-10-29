@@ -2,320 +2,299 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── NextGenPerspectiveScroll ───────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// images              array    [...]     List of images with layer data
-// titleText           string   "..."     Central flying text heading
-// revealText          string   "..."     Text highlighted character by character
-// scrubSpeed          number   1         GSAP ScrollTrigger scrub lag value
-// zoomDuration        string   "+=150%"  How long the zoom pinned interaction stays
-// textRevealDuration  number   1500      Scroll distance in px for text reveal
-// ──────────────────────────────────────────────────────────────────────────
+const GSAP_URL = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
+const SCROLL_TRIGGER_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js";
+
+const unsplash = (id) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=600&q=80`;
 
 const DEFAULT_IMAGES = [
+  { id: "photo-1533387520709-752d83de3630", alt: "Nebula glowing in deep space", layer: 2 },
+  { id: "photo-1752150127767-77bccbed07e2", alt: "Orion nebula in pink and purple", layer: 2 },
+  { id: "photo-1781935307999-e8bb5e62ebb1", alt: "Blue galaxy against a black sky", layer: 1 },
+  { id: "photo-1595598034023-ca08624ce05d", alt: "Horsehead Nebula among stars", layer: 2 },
+  { id: "photo-1781798715946-2e198afc29a7", alt: "Dense star cluster", layer: 3 },
+  { id: "photo-1725161834547-ba8a90bf5a15", alt: "Starfield at night", layer: 1 },
+  { id: "photo-1782806007529-90a2ab4b98d9", alt: "Bright star in the night sky", layer: 3 },
+  { id: "photo-1779877716206-f441d5d384d4", alt: "Purple and blue spiral galaxy", layer: 3 },
+  { id: "photo-1779862946918-a129ac57c60e", alt: "Nebula clouds in space", layer: 1 },
+  { id: "photo-1780269579991-79bc18ee6f56", alt: "Milky Way over the night sky", layer: 3 },
+  { id: "photo-1611419010196-a360856fc42f", alt: "Starry night with dark clouds", layer: 2 },
+  { id: "photo-1777902609361-a8b8b7a697fb", alt: "Large star in the sky", layer: 1 },
+].map(({ id, alt, layer }) => ({ src: unsplash(id), alt, layer }));
+
+const DEFAULT_CHAPTERS = [
   {
-    src: "https://assets.codepen.io/204808/eugene-chystiakov-W6FESrD-M50-unsplash.jpg",
-    layer: 2,
+    tag: "01 Origin",
+    title: "Born in Dust",
+    desc: "Every star begins inside a cold cloud of gas and dust that slowly collapses under its own weight.",
   },
   {
-    src: "https://assets.codepen.io/204808/hendo-wang-DsGeUBaJPwc-unsplash.jpg",
-    layer: 2,
+    tag: "02 Light",
+    title: "Old Messengers",
+    desc: "The light reaching your eyes tonight left its source long before anyone could name the sky above.",
   },
   {
-    src: "https://assets.codepen.io/204808/taylor-sondgeroth-ltsKOg_q_Gc-unsplash.jpg",
-    layer: 1,
-  },
-  {
-    src: "https://assets.codepen.io/204808/shayna-douglas-w2tG22s8hEc-unsplash.jpg",
-    layer: 2,
-  },
-  {
-    src: "https://assets.codepen.io/204808/samantha-fortney-o8CA1Kj8TJU-unsplash.jpg",
-    layer: 3,
-  },
-  {
-    src: "https://assets.codepen.io/204808/jakub-dziubak-wvXG_7ebZ18-unsplash.jpg",
-    layer: 1,
-  },
-  { src: "https://assets.codepen.io/204808/golden-retriever-3.png", layer: 3 },
-  { src: "https://assets.codepen.io/204808/golden-retriever-2.png", layer: 3 },
-  { src: "https://assets.codepen.io/204808/golden-retriever-1.png", layer: 1 },
-  {
-    src: "https://assets.codepen.io/204808/richard-brutyo-Sg3XwuEpybU.jpg",
-    layer: 3,
-  },
-  {
-    src: "https://assets.codepen.io/204808/berkay-gumustekin-ngqyo2AYYnE.jpg",
-    layer: 2,
-  },
-  {
-    src: "https://assets.codepen.io/204808/zach-shup-R6SdnJnLJEg.jpg",
-    layer: 1,
+    tag: "03 Scale",
+    title: "Room to Wander",
+    desc: "A single galaxy holds hundreds of billions of suns, and the universe holds countless galaxies.",
   },
 ];
 
+const DEFAULT_MARQUEE = ["Deep Space", "Quiet Light", "Deep Space", "Quiet Light"];
+
+const POSITIONS = [
+  "left-[15vw] top-[21%] w-[11.5vw]",
+  "left-[29%] top-[15%] w-[9.2vw]",
+  "left-[36%] top-[3%] w-[11.5vw]",
+  "right-[30%] top-[11%] w-[7.6vw]",
+  "right-[7%] top-[28%] w-[13.2vw]",
+  "bottom-[32%] right-[3.5%] w-[4.7vw]",
+  "bottom-[13.5%] left-[16%] w-[10.5vw]",
+  "bottom-[24%] left-[29%] w-[5.9vw]",
+  "bottom-[46%] left-[7.5%] w-[5.2vw]",
+  "bottom-[5.5%] right-[15%] w-[15vw]",
+  "bottom-[10.5%] right-[38%] w-[8.3vw]",
+  "right-[4%] top-[5%] w-[6.1vw]",
+];
+
+const LAYER_CLASSES = {
+  1: "opacity-20 z-[1]",
+  2: "opacity-40 z-[2]",
+  3: "opacity-60 z-[3]",
+};
+
+const loadScript = (src) =>
+  new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[src="${src}"]`);
+    if (existing) {
+      if (existing.dataset.loaded === "true") {
+        resolve();
+        return;
+      }
+      existing.addEventListener("load", resolve);
+      existing.addEventListener("error", reject);
+      return;
+    }
+    const el = document.createElement("script");
+    el.src = src;
+    el.addEventListener("load", () => {
+      el.dataset.loaded = "true";
+      resolve();
+    });
+    el.addEventListener("error", () => reject(new Error(`Failed: ${src}`)));
+    document.head.appendChild(el);
+  });
+
 export default function PerspectiveZoomEffect({
   images = DEFAULT_IMAGES,
-  titleText = (
-    <>
-      Perspective Zoom Effect
-      <br />
-      on Scroll
-    </>
-  ),
-  revealText = "If you’re lucky, a Golden Retriever will come into your life, steal your heart, and change everything.",
+  titleText = "Universe",
+  revealText = "Look up long enough and the night sky stops feeling distant and starts feeling like home.",
+  marqueeItems = DEFAULT_MARQUEE,
+  chaptersLabel = "Chapters",
+  chaptersTitle = "Three Ways to Look Up",
+  chaptersIntro = "A short tour of where stars come from, how their light travels, and how much room there is out there.",
+  chapters = DEFAULT_CHAPTERS,
   scrubSpeed = 1,
   zoomDuration = "+=150%",
   textRevealDuration = 1500,
+  backgroundColor = "bg-black",
+  textColor = "text-white",
+  mutedColor = "text-white/60",
+  borderColor = "border-white/10",
+  marqueeColor = "text-white/15",
 }) {
-  const containerRef = useRef(null);
+  const rootRef = useRef(null);
 
   useEffect(() => {
-    const loadScript = (src) =>
-      new Promise((resolve, reject) => {
-        if (document.querySelector(`script[data-id="${src}"]`)) {
-          resolve();
-          return;
-        }
-        const el = document.createElement("script");
-        el.src = src;
-        el.setAttribute("data-id", src);
-        el.onload = resolve;
-        el.onerror = () => reject(new Error(`Failed to load script: ${src}`));
-        document.head.appendChild(el);
-      });
+    let cancelled = false;
+    let ctx;
 
-    Promise.all([
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
-      ),
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js",
-      ),
-    ])
-      .then(() => {
-        const { gsap, ScrollTrigger } = window;
-        if (!gsap || !ScrollTrigger) return;
+    const run = async () => {
+      await loadScript(GSAP_URL);
+      await loadScript(SCROLL_TRIGGER_URL);
+      const { gsap, ScrollTrigger } = window;
+      if (cancelled || !gsap || !ScrollTrigger || !rootRef.current) return;
 
-        gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger);
 
-        // 1. Perspective Grid Zoom Timeline
-        const zoomTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".zoom-container-el",
-            start: "top top",
-            end: zoomDuration,
-            pin: true,
-            scrub: scrubSpeed,
-          },
-        });
-
-        zoomTl
-          .to(".zoom-layer-3", { opacity: 1, z: 800, ease: "power1.inOut" }, 0)
-          .to(".zoom-layer-2", { opacity: 1, z: 600, ease: "power1.inOut" }, 0)
-          .to(".zoom-layer-1", { opacity: 1, z: 400, ease: "power1.inOut" }, 0)
-          .to(
-            ".zoom-heading-el",
+      ctx = gsap.context(() => {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: "[data-zoom]",
+              start: "top top",
+              end: zoomDuration,
+              pin: true,
+              scrub: scrubSpeed,
+            },
+          })
+          .to("[data-layer='3']", { opacity: 1, z: 800, ease: "power1.inOut" }, 0)
+          .to("[data-layer='2']", { opacity: 1, z: 600, ease: "power1.inOut" }, 0)
+          .to("[data-layer='1']", { opacity: 1, z: 400, ease: "power1.inOut" }, 0)
+          .fromTo(
+            "[data-heading]",
+            { opacity: 0.1, z: -2000 },
             { opacity: 1, z: 50, ease: "power1.inOut" },
             0,
           );
 
-        // 2. Character-by-Character Opacity Text Reveal
-        const textContainer = document.querySelector(".opacity-reveal-el");
-        if (textContainer) {
-          const words = textContainer.innerText.split(" ");
-          textContainer.innerHTML = "";
-          words.forEach((word) => {
-            const wordSpan = document.createElement("span");
-            wordSpan.className = "inline-block mr-[0.25em] whitespace-nowrap";
-
-            word.split("").forEach((char) => {
-              const charSpan = document.createElement("span");
-              charSpan.textContent = char;
-              charSpan.className =
-                "reveal-char opacity-20 transition-all duration-150";
-              wordSpan.appendChild(charSpan);
-            });
-            textContainer.appendChild(wordSpan);
+        const chars = gsap.utils.toArray("[data-char]");
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: "[data-reveal]",
+              pin: true,
+              start: "center center",
+              end: `+=${textRevealDuration}`,
+              scrub: scrubSpeed,
+            },
+          })
+          .to(chars, { opacity: 1, stagger: 1, ease: "none" })
+          .to({}, { duration: chars.length * 0.1 })
+          .to("[data-reveal-text]", {
+            opacity: 0,
+            scale: 1.15,
+            duration: chars.length * 0.5,
           });
 
-          const chars = textContainer.querySelectorAll(".reveal-char");
-
-          gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: ".section-stick-el",
-                pin: true,
-                start: "center center",
-                end: `+=${textRevealDuration}`,
-                scrub: scrubSpeed,
-              },
-            })
-            .to(chars, {
-              opacity: 1,
-              color: "#fff",
-              stagger: 1,
-              ease: "none",
-            })
-            .to({}, { duration: 10 })
-            .to(textContainer, {
-              opacity: 0,
-              scale: 1.15,
-              duration: 50,
-            });
-        }
-
-        // 3. Functional Feature: Infinite Marquee Tracker Speed Boost
-        gsap.to(".marquee-inner", {
+        gsap.to("[data-marquee-track]", {
           xPercent: -50,
           ease: "none",
-          duration: 22,
-          repeat: -1,
           scrollTrigger: {
-            trigger: ".marquee-section",
+            trigger: "[data-marquee]",
             start: "top bottom",
             end: "bottom top",
             scrub: 0.5,
           },
         });
 
-        // 4. Functional Feature: Interactive Reveal Matrix Cards
-        gsap.from(".matrix-card", {
+        gsap.from("[data-card]", {
           opacity: 0,
           y: 60,
           stagger: 0.2,
           duration: 1,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: ".matrix-section",
+            trigger: "[data-chapters]",
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
         });
-      })
-      .catch((err) => console.error("[NextGenScroll] Load error:", err));
+      }, rootRef.current);
+    };
+
+    run().catch(() => { });
 
     return () => {
-      if (typeof window !== "undefined" && window.gsap) {
-        const triggers = window.ScrollTrigger?.getAll();
-        triggers?.forEach((trigger) => trigger.kill());
-      }
+      cancelled = true;
+      ctx?.revert();
     };
   }, [zoomDuration, scrubSpeed, textRevealDuration]);
 
   return (
     <main
-      ref={containerRef}
-      className="m-0 bg-[#0c0c0e] text-white font-sans antialiased selection:bg-neutral-700 selection:text-white overflow-x-hidden"
+      ref={rootRef}
+      className={`m-0 overflow-x-clip font-sans antialiased ${backgroundColor} ${textColor}`}
     >
-      {/* ─── Hero Section (Exact Positions Preserved) ─── */}
-      <div className="zoom-container-el h-screen w-screen overflow-hidden relative [perspective:100svh]">
-        <h1 className="zoom-heading-el opacity-[0.1] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -translate-z-[2000px] whitespace-nowrap text-center text-[clamp(3.125rem,3.464vw+2.229rem,5rem)] leading-[clamp(4.688rem,3.349vw+3.821rem,6.5rem)] m-0 tracking-tight font-extrabold uppercase">
-          {titleText}
-        </h1>
+      <div
+        data-zoom
+        className="relative h-screen w-full overflow-hidden [perspective:100svh]"
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1
+            data-heading
+            className="m-0 whitespace-pre-line text-center text-[clamp(3.125rem,3.464vw+2.229rem,5rem)] font-extrabold uppercase leading-[clamp(4.688rem,3.349vw+3.821rem,6.5rem)] tracking-tight"
+          >
+            {titleText}
+          </h1>
+        </div>
 
-        {images.map((img, idx) => {
-          let layerClass = "zoom-layer-1 opacity-20 z-[1]";
-          if (img.layer === 2) layerClass = "zoom-layer-2 opacity-40 z-[2]";
-          if (img.layer === 3) layerClass = "zoom-layer-3 opacity-60 z-[3]";
-
-          const positionStyles = [
-            "left-[15vw] top-[21%] w-[11.5vw]",
-            "left-[29%] top-[15%] w-[9.2vw]",
-            "left-[36%] top-[3%] w-[11.5vw]",
-            "right-[30%] top-[11%] w-[7.6vw]",
-            "bottom-auto right-[7%] top-[28%] w-[13.2vw]",
-            "bottom-[32%] right-[3.5%] w-[4.7vw]",
-            "bottom-[13.5%] left-[16%] w-[10.5vw]",
-            "bottom-[24%] left-[29%] w-[5.9vw]",
-            "bottom-[46%] left-[7.5%] top-auto w-[5.2vw]",
-            "bottom-[5.5%] right-[15%] w-[15vw]",
-            "bottom-[10.5%] left-auto right-[38%] w-[8.3vw]",
-            "right-[4%] top-[5%] w-[6.1vw]",
-          ];
-
-          return (
-            <div
-              key={idx}
-              className={`absolute origin-center max-w-[300px] max-h-[300px] ${layerClass} ${positionStyles[idx % positionStyles.length]}`}
-            >
-              <img
-                src={img.src}
-                alt={img.alt || "Layer Matrix Asset"}
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          );
-        })}
+        {images.map((img, idx) => (
+          <div
+            key={idx}
+            data-layer={img.layer}
+            className={`absolute max-h-[300px] max-w-[300px] origin-center ${LAYER_CLASSES[img.layer] ?? LAYER_CLASSES[1]} ${POSITIONS[idx % POSITIONS.length]}`}
+          >
+            <img
+              src={img.src}
+              alt={img.alt ?? ""}
+              className="h-auto w-full object-cover"
+            />
+          </div>
+        ))}
       </div>
 
-      {/* ─── Pinned Text Section ─── */}
-      <section className="section-stick-el min-h-screen bg-black flex justify-center items-center text-white px-6">
-        <p className="opacity-reveal-el text-4xl md:text-[5rem] text-center w-full md:w-4/5 font-bold tracking-tight leading-[1.1] text-balance">
-          {revealText}
+      <section
+        data-reveal
+        className={`flex min-h-screen items-center justify-center px-6 ${backgroundColor}`}
+      >
+        <p
+          data-reveal-text
+          className="w-full text-balance text-center text-4xl font-bold leading-[1.1] tracking-tight md:w-4/5 md:text-[5rem]"
+        >
+          {revealText.split(" ").map((word, w) => (
+            <span key={w} className="mr-[0.25em] inline-block whitespace-nowrap">
+              {[...word].map((char, c) => (
+                <span key={c} data-char className="opacity-20">
+                  {char}
+                </span>
+              ))}
+            </span>
+          ))}
         </p>
       </section>
 
-      {/* ─── NEW Next-Gen Section: Kinetic Marquee ─── */}
-      <section className="marquee-section py-20 bg-neutral-950 border-y border-white/5 overflow-hidden whitespace-nowrap select-none">
-        <div className="marquee-inner inline-flex text-[clamp(4rem,10vw,12rem)] font-black uppercase tracking-tighter leading-none text-neutral-800">
-          <span className="mr-20">Golden Companion //</span>
-          <span className="mr-20">Unconditional Loyalty //</span>
-          <span className="mr-20">Golden Companion //</span>
-          <span className="mr-20">Unconditional Loyalty //</span>
+      <section
+        data-marquee
+        className={`select-none overflow-hidden whitespace-nowrap border-y py-10 ${borderColor}`}
+      >
+        <div
+          data-marquee-track
+          className={`inline-flex items-center text-[clamp(4rem,10vw,12rem)] font-black uppercase leading-none tracking-tighter ${marqueeColor}`}
+        >
+          {[...marqueeItems, ...marqueeItems].map((item, i) => (
+            <span key={i} className="inline-flex items-center">
+              {item}
+              <span className="mx-12 inline-block size-5 rounded-full bg-current" />
+            </span>
+          ))}
         </div>
       </section>
 
-      {/* ─── NEW Next-Gen Section: Interactive Grid Matrix ─── */}
-      <section className="matrix-section min-h-screen bg-[#0c0c0e] py-32 px-6 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-20">
+      <section data-chapters className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row">
           <div>
-            <span className="text-xs font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-3">
-              // ARCHIVE CHAPTERS
+            <span
+              className={`mb-3 block text-xs font-medium uppercase tracking-[0.3em] ${mutedColor}`}
+            >
+              {chaptersLabel}
             </span>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-              THE THREE TRUTHS
+            <h2 className="text-4xl font-bold uppercase tracking-tight md:text-6xl">
+              {chaptersTitle}
             </h2>
           </div>
-          <p className="text-neutral-400 max-w-md text-base leading-relaxed pt-2">
-            Exploring the lasting behavioral traits, environmental histories,
-            and unparalleled emotional connections shared with man’s truest
-            companion.
+          <p className={`max-w-md pt-2 text-base leading-relaxed ${mutedColor}`}>
+            {chaptersIntro}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              tag: "01 / ORIGIN",
-              title: "Gundog Heritage",
-              desc: "Bred primarily in Scotland during the 19th century to recover water game from rugged hunting terrains.",
-            },
-            {
-              tag: "02 / NATURE",
-              title: "Empathic Intelligence",
-              desc: "Consistently ranked among the top smartest breeds, capable of reading emotional shifts instantly.",
-            },
-            {
-              tag: "03 / SPIRIT",
-              title: "Lifelong Radiance",
-              desc: "Maintains a playful, joyful puppy-like demeanor well into maturity, bringing warmth to any household.",
-            },
-          ].map((item, idx) => (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {chapters.map((item, idx) => (
             <div
               key={idx}
-              className="matrix-card group p-10 bg-gradient-to-br from-neutral-900 to-black border border-white/5 rounded-lg hover:border-white/20 transition-all duration-500 cursor-pointer flex flex-col justify-between aspect-[4/3]"
+              data-card
+              className={`group flex min-h-55 flex-col justify-between rounded-lg border bg-white/5 p-8 transition-colors duration-500 hover:border-white/30 ${borderColor}`}
             >
-              <span className="text-xs font-mono text-neutral-500 block">
+              <span className={`block text-xs uppercase tracking-widest ${mutedColor}`}>
                 {item.tag}
               </span>
               <div className="space-y-3">
-                <h3 className="text-2xl font-semibold tracking-tight group-hover:text-neutral-200 transition-colors">
+                <h3 className="text-2xl font-semibold tracking-tight">
                   {item.title}
                 </h3>
-                <p className="text-sm text-neutral-400 leading-relaxed">
+                <p className={`text-sm leading-relaxed ${mutedColor}`}>
                   {item.desc}
                 </p>
               </div>
@@ -323,16 +302,6 @@ export default function PerspectiveZoomEffect({
           ))}
         </div>
       </section>
-
-      {/* ─── Next-Gen Footer HUD ─── */}
-      <footer className="border-t border-white/5 bg-black py-12 px-6 text-xs text-neutral-600 font-mono flex flex-col md:flex-row justify-between items-center gap-4">
-        <div>© 2026 GOLDEN CHRONICLES. ALL RIGHTS RESERVED.</div>
-        <div className="flex gap-8">
-          <a href="#" className="hover:text-white transition-colors">
-            BACK TO TOP ↑
-          </a>
-        </div>
-      </footer>
     </main>
   );
 }

@@ -1,49 +1,59 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-// ─── ModernVideoShowcase ─────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// videos            array    List of video objects with sources & metadata
-// cursorBgColor     string   Background color for the custom circle cursor
-// activeBorderColor string   Tailwind color class for the active playing card
-// ──────────────────────────────────────────────────────────────────────────
+const CLIP =
+  "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
 
 const DEFAULT_VIDEOS = [
   {
     id: 1,
-    src: "https://assets.codepen.io/605876/tunnel-26475.mp4",
-    title: "The Hyperloop Tunnel",
-    category: "Motion Graphic",
+    src: CLIP,
+    title: "Slow Bloom",
+    category: "Macro Study",
   },
   {
     id: 2,
-    src: "https://assets.codepen.io/605876/seoul-21116.mp4",
-    title: "Seoul Cyberpunk Nights",
-    category: "Cinematic Timelapse",
+    src: CLIP,
+    title: "Petal Study",
+    category: "Nature",
   },
 ];
 
-export default function ModernVideoShowcase({
+const PlayIcon = () => (
+  <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M8 5v14l11-7z" />
+  </svg>
+);
+
+const PauseIcon = () => (
+  <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+  </svg>
+);
+
+export default function CustomVideoGrid({
   videos = DEFAULT_VIDEOS,
+  playHint = "Click to play",
+  pauseHint = "Click to pause",
+  playLabel = "Play",
+  pauseLabel = "Pause",
   cursorBgColor = "bg-emerald-400",
   activeBorderColor = "border-emerald-500/50",
 }) {
-  const [mounted, setMounted] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredPlayerId, setHoveredPlayerId] = useState(null);
   const [playbackStates, setPlaybackStates] = useState({});
   const [focusedPlayerId, setFocusedPlayerId] = useState(null);
 
   const videoRefs = useRef({});
+  const progressRefs = useRef({});
+  const cursorRef = useRef(null);
 
   useEffect(() => {
-    setMounted(true);
-
     const handlePointerMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
+      }
     };
 
     window.addEventListener("pointermove", handlePointerMove);
@@ -57,7 +67,6 @@ export default function ModernVideoShowcase({
     if (!video) return;
 
     if (video.paused) {
-      // Pause other videos if you want a solo theater experience
       Object.keys(videoRefs.current).forEach((key) => {
         if (key !== id.toString() && videoRefs.current[key]) {
           videoRefs.current[key].pause();
@@ -65,7 +74,7 @@ export default function ModernVideoShowcase({
         }
       });
 
-      video.play();
+      video.play().catch(() => { });
       setPlaybackStates((prev) => ({ ...prev, [id]: true }));
     } else {
       video.pause();
@@ -73,41 +82,42 @@ export default function ModernVideoShowcase({
     }
   };
 
-  if (!mounted) {
-    return <div className="min-h-screen bg-neutral-950" />;
-  }
+  const updateProgress = (id) => {
+    const video = videoRefs.current[id];
+    const bar = progressRefs.current[id];
+    if (!video || !bar || !video.duration) return;
+    bar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+  };
 
   const isAnyHovered = hoveredPlayerId !== null;
-  const activeVideoPlaying = hoveredPlayerId
+  const activeVideoPlaying = isAnyHovered
     ? playbackStates[hoveredPlayerId]
     : false;
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col items-center justify-center p-8 md:p-16 select-none relative overflow-hidden">
-      {/* Ambient background glow mesh */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+    <div className="relative flex min-h-screen select-none flex-col items-center justify-center overflow-hidden bg-neutral-950 p-8 text-neutral-100 md:p-16">
+      <div className="pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-emerald-500/10 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-blue-500/10 blur-[120px]" />
 
-      {/* Grid Container */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl z-10">
+      <div className="z-10 grid w-full max-w-6xl grid-cols-1 gap-8 lg:grid-cols-2">
         {videos.map((item) => {
           const isPlaying = playbackStates[item.id] || false;
-          const isCurrentHovered = hoveredPlayerId === item.id;
           const isFocused = focusedPlayerId === item.id;
 
           return (
             <div
               key={item.id}
-              className={`
-                video-player relative rounded-2xl overflow-hidden group border transition-all duration-500 ease-out bg-neutral-900/40 backdrop-blur-md
-                ${isPlaying ? `${activeBorderColor} shadow-[0_20px_50px_rgba(16,185,129,0.15)]` : "border-neutral-800 hover:border-neutral-700 shadow-xl"}
-                ${isFocused ? "ring-2 ring-emerald-400 ring-offset-4 ring-offset-neutral-950" : ""}
-              `}
+              className={`group relative overflow-hidden rounded-2xl border bg-neutral-900 transition-all duration-500 ease-out ${isPlaying
+                  ? `${activeBorderColor} shadow-[0_20px_50px_rgba(16,185,129,0.15)]`
+                  : "border-neutral-800 shadow-xl hover:border-neutral-700"
+                } ${isFocused
+                  ? "ring-2 ring-emerald-400 ring-offset-4 ring-offset-neutral-950"
+                  : ""
+                }`}
               onMouseEnter={() => setHoveredPlayerId(item.id)}
               onMouseLeave={() => setHoveredPlayerId(null)}
             >
-              {/* Video Wrapper with scaling mask */}
-              <div className="w-full aspect-video overflow-hidden relative">
+              <div className="relative aspect-video w-full overflow-hidden">
                 <video
                   ref={(el) => {
                     if (el) videoRefs.current[item.id] = el;
@@ -116,90 +126,84 @@ export default function ModernVideoShowcase({
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover pointer-events-none cursor-none transition-transform duration-700 ease-out group-hover:scale-105"
+                  onTimeUpdate={() => updateProgress(item.id)}
+                  className="pointer-events-none h-full w-full cursor-none object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
 
-                {/* Dark Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none" />
-              </div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-30" />
 
-              {/* Meta Info Header Overlay */}
-              <div className="absolute top-4 left-4 right-4 flex justify-between items-start pointer-events-none z-20">
-                <span className="text-xs font-mono uppercase tracking-widest bg-neutral-950/60 backdrop-blur-md text-neutral-400 px-2.5 py-1 rounded-md border border-neutral-800">
-                  {item.category}
-                </span>
+                <span
+                  ref={(el) => {
+                    if (el) progressRefs.current[item.id] = el;
+                  }}
+                  className={`pointer-events-none absolute bottom-0 left-0 z-10 h-[2px] w-0 ${cursorBgColor}`}
+                />
 
-                {/* Soft Live Pulsing Badge */}
-                {isPlaying && (
-                  <span className="flex h-2 w-2 relative mt-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                <div className="pointer-events-none absolute left-4 right-4 top-4 z-20 flex items-start justify-between">
+                  <span className="rounded-md border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 font-mono text-xs uppercase tracking-widest text-neutral-400 backdrop-blur-md">
+                    {item.category}
                   </span>
-                )}
+
+                  {isPlaying && (
+                    <span className="relative mt-2 flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                    </span>
+                  )}
+                </div>
               </div>
 
-              {/* Floating Glass UI Control Pill Footer */}
-              <div
-                className={`absolute bottom-4 left-4 right-4 bg-neutral-900/70 backdrop-blur-lg border border-neutral-800/60 p-4 rounded-xl flex items-center justify-between transition-all duration-300 pointer-events-none z-20
-                  ${isCurrentHovered ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}
-                `}
-              >
-                <div className="flex flex-col truncate pr-4">
-                  <h3 className="text-sm font-semibold tracking-wide text-white truncate">
+              <div className="pointer-events-none flex items-center justify-between gap-4 border-t border-neutral-800 px-5 py-4">
+                <div className="min-w-0">
+                  <h3 className="truncate text-base font-medium text-white">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-neutral-400 mt-0.5">
-                    Click anywhere to {isPlaying ? "pause" : "view"}
+                  <p className="mt-1 text-sm text-neutral-500">
+                    {isPlaying ? pauseHint : playHint}
                   </p>
                 </div>
 
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-neutral-800/80 text-white border border-neutral-700/50">
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    {!isPlaying ? (
-                      <path d="M8 5v14l11-7z" />
-                    ) : (
-                      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                    )}
-                  </svg>
-                </div>
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-neutral-700 text-white transition-colors duration-300 group-hover:border-white group-hover:bg-white group-hover:text-neutral-950">
+                  {isPlaying ? <PauseIcon /> : <PlayIcon />}
+                </span>
               </div>
 
-              {/* Accessible Interactive Trigger Area */}
               <button
+                type="button"
                 onClick={() => togglePlayback(item.id)}
                 onFocus={() => setFocusedPlayerId(item.id)}
                 onBlur={() => setFocusedPlayerId(null)}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-none z-30 outline-none"
-                aria-label={
-                  isPlaying ? `Pause ${item.title}` : `Play ${item.title}`
-                }
+                className="absolute inset-0 z-30 h-full w-full cursor-none opacity-0 outline-none"
+                aria-label={`${isPlaying ? pauseLabel : playLabel} ${item.title}`}
               >
-                <span className="sr-only">{isPlaying ? "Pause" : "Play"}</span>
+                <span className="sr-only">
+                  {isPlaying ? pauseLabel : playLabel}
+                </span>
               </button>
             </div>
           );
         })}
       </div>
 
-      {/* Global Fluid Follower Cursor */}
       <div
-        className={`pointer-events-none fixed top-0 left-0 rounded-full grid place-items-center transition-transform duration-300 ease-out z-50 origin-center text-neutral-950 mix-blend-screen shadow-2xl backdrop-blur-sm
-          ${cursorBgColor} w-16 h-16
-        `}
-        style={{
-          transform: `translate(calc(${mousePos.x}px - 50%), calc(${mousePos.y}px - 50%)) scale(${isAnyHovered ? 1 : 0})`,
-        }}
+        ref={cursorRef}
+        className="pointer-events-none fixed left-0 top-0 z-50 transition-transform duration-300 ease-out"
       >
-        <div className="bg-white/20 w-full h-full rounded-full flex items-center justify-center p-4">
-          {!activeVideoPlaying ? (
-            <svg className="w-full h-full fill-current" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          ) : (
-            <svg className="w-full h-full fill-current" viewBox="0 0 24 24">
-              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-            </svg>
-          )}
+        <div
+          className={`grid h-16 w-16 place-items-center rounded-full text-neutral-950 shadow-2xl transition-transform duration-300 ease-out ${cursorBgColor} ${isAnyHovered ? "scale-100" : "scale-0"
+            }`}
+        >
+          <div className="grid h-full w-full place-items-center rounded-full bg-white/20 p-4">
+            {activeVideoPlaying ? (
+              <svg className="h-full w-full fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+              </svg>
+            ) : (
+              <svg className="h-full w-full fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            )}
+          </div>
         </div>
       </div>
     </div>

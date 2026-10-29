@@ -2,42 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── DinosaurPark ─────────────────────────────────────────────────────────────
-//
-// Full-page scroll-snapped park landing page. Four sections snap into view;
-// each section animates its content in when it crosses the intersection
-// threshold. Modernised with oversized typography, colour-blocked sections,
-// and a physical slide-in entrance per section.
-//
-// Props
-// ─────────────────────────────────────────────────────────────────────────────
-// heroImgSrc          string   CDN url          Hero background image
-// heroTitle           string   "Dinosaur\nPark"  Hero title (\n = line break)
-// heroSubtitle        string   "Get ready..."   Hero tagline
-// heroFootprintSrc    string   CDN url          Footprint SVG watermark
-// heroAccentColor     string   "#ffa700"        Accent used on hero text/cta
-//
-// navItems            array    [{label,href}]   Left-side nav links
-// ctaLabel            string   "Book now"       CTA button label
-// ctaHref             string   "/"              CTA button href
-//
-// sections            array    See SECTION SHAPE below
-// intersectionThreshold number 0.6             Fraction visible before animating
-//
-// SECTION SHAPE
-// ─────────────────────────────────────────────────────────────────────────────
-// eyebrow       string    Small uppercase zone label
-// count         string    Zone creature count — shown as oversized bg texture
-// title         string    Large display title (\n = line break)
-// intro         string    Body paragraph
-// linkLabel     string    CTA link text
-// linkHref      string    CTA link href
-// imgSrc        string    Dinosaur illustration URL
-// imgAlt        string    Alt text
-// imgSide       "left"|"right"  Which side the dino appears on
-// bgColor       string    CSS color (section background)
-// accentColor   string    CSS color (used for eyebrow, link, glow)
-// ─────────────────────────────────────────────────────────────────────────────
+const ENTER =
+  "opacity-0 [transition:opacity_650ms_ease_var(--delay,0ms),transform_650ms_cubic-bezier(0.16,1,0.3,1)_var(--delay,0ms)] group-[.dp-visible]/sec:translate-x-0 group-[.dp-visible]/sec:opacity-100";
+const ENTER_LEFT = `${ENTER} -translate-x-[50px]`;
+const ENTER_RIGHT = `${ENTER} translate-x-[50px]`;
 
 const DEFAULT_SECTIONS = [
   {
@@ -45,11 +13,11 @@ const DEFAULT_SECTIONS = [
     count: "47",
     title: "Gentle\nGiants",
     intro:
-      "Go on safari and come face to face with the largest animals to have ever walked the earth — towering herbivores whose footsteps shake the ground beneath you.",
+      "Go on safari and come face to face with the largest animals to have ever walked the earth, towering herbivores whose footsteps shake the ground beneath you.",
     linkLabel: "Explore the zone",
     linkHref: "/",
     imgSrc:
-      "https://s3-us-west-2.amazonaws.com/s.cdpn.io/85648/parasaurolophus.svg",
+      "https://images.phylopic.org/images/ef954cac-604a-4e1f-9b8d-bd92bf3cc3f6/vector.svg",
     imgAlt: "Parasaurolophus",
     imgSide: "right",
     bgColor: "#0d2b27",
@@ -60,10 +28,11 @@ const DEFAULT_SECTIONS = [
     count: "12",
     title: "Carnivore\nKingdom",
     intro:
-      "Step inside the most dangerous square mile on the planet. Fiercest predators in history — separated from you by nothing but reinforced glass and a prayer.",
+      "Step inside the most dangerous square mile on the planet. The fiercest predators in history, separated from you by nothing but reinforced glass and a prayer.",
     linkLabel: "Enter if you dare",
     linkHref: "/",
-    imgSrc: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/85648/trex.svg",
+    imgSrc:
+      "https://images.phylopic.org/images/6a38b924-85c4-46b6-a04a-0e53f2f4d77f/vector.svg",
     imgAlt: "T-Rex",
     imgSide: "left",
     bgColor: "#1e0a04",
@@ -74,11 +43,11 @@ const DEFAULT_SECTIONS = [
     count: "28",
     title: "Aerial\nAdventure",
     intro:
-      "Look up. Magnificent winged predators circle the skies of our open-air aviary — the largest in the world. A spectacle not for the faint-hearted.",
+      "Look up. Magnificent winged predators circle the skies of our open-air aviary, the largest in the world. A spectacle not for the faint-hearted.",
     linkLabel: "Take flight",
     linkHref: "/",
     imgSrc:
-      "https://s3-us-west-2.amazonaws.com/s.cdpn.io/85648/pterodactyl.svg",
+      "https://images.phylopic.org/images/0b4b95c2-615a-45df-adaa-a63fbd039eb2/vector.svg",
     imgAlt: "Pterodactyl",
     imgSide: "right",
     bgColor: "#110920",
@@ -87,19 +56,16 @@ const DEFAULT_SECTIONS = [
 ];
 
 export default function DinosaurPark({
-  heroImgSrc = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/85648/hero_1200.jpg",
-  heroTitle = "Dinosaur\nPark",
-  heroSubtitle = "Get ready for the ultimate adventure",
-  heroFootprintSrc = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/85648/footprint_01a.svg",
-  heroAccentColor = "#ffa700",
-
   navItems = [
     { label: "Our mission", href: "/" },
     { label: "Get in touch", href: "/" },
   ],
   ctaLabel = "Book now",
   ctaHref = "/",
-
+  ctaColor = "#ffa700",
+  displayFont = "Anton",
+  bodyFont = "DM Sans",
+  monoFont = "Overpass Mono",
   sections = DEFAULT_SECTIONS,
   intersectionThreshold = 0.6,
 }) {
@@ -108,7 +74,6 @@ export default function DinosaurPark({
   useEffect(() => {
     const sectionEls = mainRef.current?.querySelectorAll("section") ?? [];
 
-    // Stagger each direct child of [data-content] via CSS custom property
     sectionEls.forEach((sec) => {
       const contentEl = sec.querySelector("[data-content]");
       if (!contentEl) return;
@@ -135,181 +100,33 @@ export default function DinosaurPark({
   }, [intersectionThreshold]);
 
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&family=Overpass+Mono:wght@600&display=swap');
+    <div
+      style={{
+        "--display": `"${displayFont}", sans-serif`,
+        "--body": `"${bodyFont}", sans-serif`,
+        "--mono": `"${monoFont}", monospace`,
+      }}
+    >
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Overpass+Mono:wght@600&display=swap"
+      />
 
-        /* ── Scroll snap container ─────────────────────────────── */
-        .dp-main {
-          scroll-snap-type: y mandatory;
-          height: 100vh;
-          overflow-y: scroll;
-          scrollbar-width: none;
-        }
-        .dp-main::-webkit-scrollbar { display: none; }
-
-        /* ── Section snap ──────────────────────────────────────── */
-        .dp-section { scroll-snap-align: center; }
-
-        /* ── Typography ────────────────────────────────────────── */
-        .dp-anton {
-          font-family: 'Anton', sans-serif;
-          font-weight: 400;
-          text-transform: uppercase;
-          line-height: 0.9;
-          letter-spacing: -0.01em;
-        }
-        .dp-sans { font-family: 'DM Sans', sans-serif; }
-
-        /* ── Entrance animations ───────────────────────────────── */
-        .dp-from-left {
-          opacity: 0;
-          transform: translateX(-50px);
-          transition:
-            opacity 650ms ease var(--delay, 0ms),
-            transform 650ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms);
-        }
-        .dp-from-right {
-          opacity: 0;
-          transform: translateX(50px);
-          transition:
-            opacity 650ms ease var(--delay, 0ms),
-            transform 650ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms);
-        }
-        .dp-from-bottom {
-          opacity: 0;
-          transform: translateY(40px);
-          transition:
-            opacity 650ms ease var(--delay, 0ms),
-            transform 650ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms);
-        }
-
-        /* ── Resolve all entrance animations when section is live ── */
-        .dp-visible .dp-from-left,
-        .dp-visible .dp-from-right,
-        .dp-visible .dp-from-bottom {
-          opacity: 1 !important;
-          transform: translate(0, 0) !important;
-        }
-
-        /* ── Hero background darkening transition ──────────────── */
-        .dp-hero-overlay {
-          transition: opacity 3.5s ease;
-          opacity: 1;
-        }
-        .dp-section.dp-visible .dp-hero-overlay { opacity: 0.6; }
-
-        /* ── Ghost background number ───────────────────────────── */
-        .dp-ghost {
-          font-family: 'Anton', sans-serif;
-          font-weight: 400;
-          position: absolute;
-          line-height: 1;
-          font-size: clamp(180px, 32vw, 400px);
-          opacity: 0;
-          transform: translateY(24px);
-          transition: opacity 1.1s ease 0.08s, transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
-          user-select: none;
-          pointer-events: none;
-          color: white;
-        }
-        .dp-visible .dp-ghost {
-          opacity: 0.04;
-          transform: translateY(0);
-        }
-
-        /* ── CTA border button ─────────────────────────────────── */
-        .dp-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 500;
-          font-size: 0.8rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          text-decoration: none;
-          padding: 14px 30px;
-          border: 1px solid currentColor;
-          transition: background 0.25s, color 0.25s;
-        }
-        .dp-btn:hover { filter: brightness(1.2); }
-
-        /* ── Nav CTA — original amber pill ─────────────────────── */
-        .dp-nav-cta {
-          font-family: 'Anton', sans-serif;
-          font-weight: 400;
-          text-transform: uppercase;
-          text-decoration: none;
-          display: block;
-          padding: 12px 20px;
-          font-size: 1.25rem;
-          line-height: 1;
-          border-radius: 6px;
-          min-width: 180px;
-          text-align: center;
-          color: #000;
-          transition: filter 0.2s;
-        }
-        .dp-nav-cta:hover,
-        .dp-nav-cta:focus { filter: brightness(0.85); text-decoration: none; }
-
-        /* ── Nav text links — original white ───────────────────── */
-        .dp-nav-link {
-          font-family: 'Overpass Mono', monospace;
-          color: white;
-          text-decoration: none;
-          display: block;
-          padding: 12px 20px;
-        }
-        .dp-nav-link:hover,
-        .dp-nav-link:focus { text-decoration: underline; }
-
-        /* ── Section content two-column grid ───────────────────── */
-        .dp-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          width: 100%;
-          height: 100%;
-          position: relative;
-          z-index: 2;
-        }
-        @media (min-width: 860px) {
-          .dp-grid { grid-template-columns: 1fr 1fr; }
-        }
-
-        /* ── Scroll progress dots ──────────────────────────────── */
-        .dp-dots {
-          position: fixed;
-          right: 24px;
-          top: 50%;
-          transform: translateY(-50%);
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          z-index: 30;
-        }
-        .dp-dot {
-          width: 5px;
-          height: 5px;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.25);
-          transition: background 0.3s, transform 0.3s;
-          cursor: pointer;
-        }
-        .dp-dot.dp-dot-active {
-          background: rgba(255,255,255,0.85);
-          transform: scale(1.6);
-        }
-      `}</style>
-
-      {/* ── Fixed navigation — original style ───────────────────────────── */}
-      <header className="fixed top-0 left-0 w-full z-20">
+      <header className="fixed left-0 top-0 z-20 w-full">
         <nav>
-          <ul className="flex h-20 items-center justify-end px-5 gap-0 m-0 p-0 list-none">
+          <ul className="m-0 flex h-20 list-none items-center justify-end gap-0 p-0 px-5">
             {navItems.map(({ label, href }) => (
               <li key={label}>
-                <a href={href} className="dp-nav-link">
+                <a
+                  href={href}
+                  className="block px-5 py-3 font-[family-name:var(--mono)] text-white no-underline hover:underline focus:underline"
+                >
                   {label}
                 </a>
               </li>
@@ -317,8 +134,8 @@ export default function DinosaurPark({
             <li className="ml-5">
               <a
                 href={ctaHref}
-                className="dp-nav-cta"
-                style={{ backgroundColor: heroAccentColor }}
+                className="block min-w-[180px] rounded-md px-5 py-3 text-center font-[family-name:var(--display)] text-[1.25rem] font-normal uppercase leading-none text-black no-underline transition-[filter] duration-200 hover:brightness-[0.85] focus:brightness-[0.85]"
+                style={{ backgroundColor: ctaColor }}
               >
                 {ctaLabel}
               </a>
@@ -327,120 +144,47 @@ export default function DinosaurPark({
         </nav>
       </header>
 
-      {/* ── Section indicator dots ───────────────────────────────────────── */}
-      <DotsIndicator count={sections.length + 1} mainRef={mainRef} />
+      <DotsIndicator count={sections.length} mainRef={mainRef} />
 
-      {/* ── Scroll container ─────────────────────────────────────────────── */}
-      <main ref={mainRef} className="dp-main">
-        {/* ══ HERO — original centered style ═══════════════════════════════ */}
-        <section
-          className="dp-section relative flex flex-col text-white overflow-hidden"
-          style={{
-            height: "100vh",
-            backgroundColor: "#364b3b",
-            maxHeight: "800px",
-          }}
-        >
-          {/* Fixed parallax bg */}
-          <div className="fixed inset-0 z-0">
-            <img
-              src={heroImgSrc}
-              alt="Rainforest view with sunset"
-              className="w-full h-full object-cover block"
-            />
-            <div
-              className="dp-hero-overlay absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(rgba(0,0,0,0.6) 70%, rgba(0,0,0,1))",
-              }}
-            />
-          </div>
-
-          {/* Centered hero text */}
-          <div
-            className="relative z-10 flex-grow flex items-center justify-center p-5"
-            data-content
-          >
-            <div
-              className="relative text-center flex flex-wrap justify-center items-center"
-              style={{ textShadow: "0 0.1em 0.94rem rgba(0,0,0,0.25)" }}
-            >
-              {/* Footprint watermark behind text */}
-              <img
-                src={heroFootprintSrc}
-                alt=""
-                aria-hidden="true"
-                className="absolute pointer-events-none select-none"
-                style={{
-                  width: "150%",
-                  height: "150%",
-                  objectFit: "contain",
-                  opacity: 0.7,
-                }}
-              />
-              <h1
-                className="dp-anton dp-from-bottom text-white w-full z-10 m-0"
-                style={{ fontSize: "clamp(3rem, 10vw, 6.875rem)" }}
-              >
-                {heroTitle.split("\n").map((line, i) => (
-                  <span key={i} className="block">
-                    {line}
-                  </span>
-                ))}
-              </h1>
-              <p
-                className="dp-from-bottom dp-sans text-white w-full z-10 mt-3 m-0"
-                style={{ fontSize: "clamp(1rem, 2vw, 1.375rem)" }}
-              >
-                {heroSubtitle}
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ══ CONTENT SECTIONS ══════════════════════════════════════════════ */}
+      <main
+        ref={mainRef}
+        className="h-screen snap-y snap-mandatory overflow-y-scroll [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
         {sections.map((sec, idx) => {
           const imgLeft = sec.imgSide === "left";
+          const textEnter = imgLeft ? ENTER_RIGHT : ENTER_LEFT;
+          const dinoEnter = imgLeft ? ENTER_LEFT : ENTER_RIGHT;
 
           return (
             <section
               key={idx}
-              className="dp-section relative flex flex-col overflow-hidden text-white"
-              style={{ height: "100vh", backgroundColor: sec.bgColor }}
+              className="group/sec relative flex h-screen snap-center flex-col overflow-hidden text-white"
+              style={{ backgroundColor: sec.bgColor }}
             >
-              {/* Ghost number — visual texture only */}
               <span
-                className="dp-ghost"
-                style={{
-                  bottom: "-0.08em",
-                  [imgLeft ? "right" : "left"]: "-0.04em",
-                }}
+                className={`pointer-events-none absolute -bottom-[0.08em] ${imgLeft ? "-right-[0.04em]" : "-left-[0.04em]"
+                  } translate-y-6 select-none font-[family-name:var(--display)] text-[clamp(180px,32vw,400px)] font-normal leading-none text-white opacity-0 [transition:opacity_1.1s_ease_0.08s,transform_1.1s_cubic-bezier(0.16,1,0.3,1)_0.08s] group-[.dp-visible]/sec:translate-y-0 group-[.dp-visible]/sec:opacity-[0.04]`}
               >
                 {sec.count}
               </span>
 
-              {/* Two-column layout */}
-              <div className="dp-grid flex-grow" data-content>
-                {/* ── Text panel ────────────────────────────────── */}
+              <div
+                data-content
+                className="relative z-[2] grid h-full w-full flex-grow grid-cols-1 min-[860px]:grid-cols-2"
+              >
                 <div
-                  className={[
-                    "flex flex-col justify-center gap-7 px-8 md:px-16 py-20",
-                    imgLeft ? "order-2" : "order-1",
-                  ].join(" ")}
+                  className={`flex flex-col justify-center gap-7 px-8 py-20 md:px-16 ${imgLeft ? "order-2" : "order-1"
+                    }`}
                 >
-                  {/* Zone label */}
                   <div
-                    className={`dp-sans dp-from-${imgLeft ? "right" : "left"} text-[11px] tracking-[0.28em] uppercase font-medium`}
+                    className={`font-[family-name:var(--body)] text-[11px] font-medium uppercase tracking-[0.28em] ${textEnter}`}
                     style={{ color: sec.accentColor }}
                   >
                     {sec.eyebrow}
                   </div>
 
-                  {/* Title */}
                   <h2
-                    className={`dp-anton dp-from-${imgLeft ? "right" : "left"} text-white m-0`}
-                    style={{ fontSize: "clamp(3rem, 7.5vw, 7.5rem)" }}
+                    className={`m-0 font-[family-name:var(--display)] text-[clamp(3rem,7.5vw,7.5rem)] font-normal uppercase leading-[0.9] tracking-[-0.01em] text-white ${textEnter}`}
                   >
                     {sec.title.split("\n").map((line, i) => (
                       <span key={i} className="block">
@@ -449,39 +193,43 @@ export default function DinosaurPark({
                     ))}
                   </h2>
 
-                  {/* Body text */}
                   <p
-                    className={`dp-sans dp-from-${imgLeft ? "right" : "left"} text-white/50 font-light leading-loose m-0 max-w-[34ch]`}
-                    style={{ fontSize: "0.975rem" }}
+                    className={`m-0 max-w-[34ch] font-[family-name:var(--body)] text-[0.975rem] font-light leading-loose text-white/50 ${textEnter}`}
                   >
                     {sec.intro}
                   </p>
 
-                  {/* CTA */}
                   <a
                     href={sec.linkHref}
-                    className={`dp-btn dp-from-${imgLeft ? "right" : "left"} self-start`}
+                    className={`inline-flex items-center gap-[10px] self-start border border-current px-[30px] py-[14px] font-[family-name:var(--body)] text-[0.8rem] font-medium uppercase tracking-[0.12em] no-underline hover:brightness-[1.2] ${textEnter}`}
                     style={{
                       color: sec.accentColor,
                       borderColor: sec.accentColor,
                     }}
                   >
-                    {sec.linkLabel}{" "}
-                    <span style={{ fontSize: "1.1rem" }}>→</span>
+                    {sec.linkLabel}
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
                   </a>
                 </div>
 
-                {/* ── Dino panel ────────────────────────────────── */}
                 <div
-                  className={[
-                    "relative flex items-end justify-center overflow-hidden",
-                    imgLeft ? "order-1" : "order-2",
-                  ].join(" ")}
-                  style={{ minHeight: "38vh" }}
+                  className={`relative flex min-h-[38vh] items-end justify-center overflow-hidden ${imgLeft ? "order-1" : "order-2"
+                    }`}
                 >
-                  {/* Accent radial wash behind illustration */}
                   <div
-                    className="absolute inset-0 pointer-events-none"
+                    className="pointer-events-none absolute inset-0"
                     style={{
                       background: `radial-gradient(ellipse at 50% 80%, ${sec.accentColor}1a 0%, transparent 68%)`,
                     }}
@@ -489,20 +237,15 @@ export default function DinosaurPark({
                   <img
                     src={sec.imgSrc}
                     alt={sec.imgAlt}
-                    className={`dp-from-${imgLeft ? "left" : "right"} relative z-10 select-none`}
+                    className={`relative z-10 h-auto w-[90%] max-w-[500px] select-none object-contain ${dinoEnter}`}
                     style={{
-                      width: "90%",
-                      maxWidth: "500px",
-                      height: "auto",
-                      objectFit: "contain",
-                      filter: `drop-shadow(0 0 80px ${sec.accentColor}55)`,
+                      filter: `invert(1) drop-shadow(0 0 80px ${sec.accentColor}55)`,
                     }}
                   />
                 </div>
               </div>
 
-              {/* Section counter */}
-              <div className="dp-sans absolute bottom-7 right-8 text-white/20 text-[10px] tracking-[0.3em] uppercase z-10">
+              <div className="absolute bottom-7 right-8 z-10 font-[family-name:var(--body)] text-[10px] uppercase tracking-[0.3em] text-white/20">
                 {String(idx + 1).padStart(2, "0")} /{" "}
                 {String(sections.length).padStart(2, "0")}
               </div>
@@ -510,12 +253,10 @@ export default function DinosaurPark({
           );
         })}
       </main>
-    </>
+    </div>
   );
 }
 
-// ── DotsIndicator ──────────────────────────────────────────────────────────
-// Fixed right-side position dots, one per section, active on intersection.
 function DotsIndicator({ count, mainRef }) {
   const dotsRef = useRef(null);
 
@@ -523,7 +264,7 @@ function DotsIndicator({ count, mainRef }) {
     const container = mainRef.current;
     if (!container || !dotsRef.current) return;
 
-    const dots = [...dotsRef.current.querySelectorAll(".dp-dot")];
+    const dots = [...dotsRef.current.children];
     const sections = [...container.querySelectorAll("section")];
 
     const observer = new IntersectionObserver(
@@ -542,12 +283,19 @@ function DotsIndicator({ count, mainRef }) {
 
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, [count]);
+  }, [count, mainRef]);
 
   return (
-    <div ref={dotsRef} className="dp-dots" aria-hidden="true">
+    <div
+      ref={dotsRef}
+      className="fixed right-6 top-1/2 z-30 flex -translate-y-1/2 flex-col gap-[10px]"
+      aria-hidden="true"
+    >
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="dp-dot" />
+        <div
+          key={i}
+          className="h-[5px] w-[5px] cursor-pointer rounded-full bg-white/25 transition duration-300 [&.dp-dot-active]:scale-[1.6] [&.dp-dot-active]:bg-white/85"
+        />
       ))}
     </div>
   );

@@ -1,137 +1,159 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-// ─── NitroSlider ─────────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// brandName     string   "NITRO"         Large brand label top of left panel
-// transitionMs  number   500             Slide transition duration (ms)
-// sceneColors   array    [...]           One accent hex per scene
-// scenes        array    DEFAULT_SCENES  Array of scene objects:
-//   {
-//     name        string  Board name displayed large
-//     boardImg    string  PNG url (transparent bg board image)
-//     specs       array   [{ label, value }] — spec table rows
-//     topPhoto    string  Photo url — smaller top frame (right panel)
-//     bottomPhoto string  Photo url — larger bottom frame (right panel)
-//     riderName   string  Rider name
-//     riderTag    string  e.g. "Riding The Cannon"
-//   }
-// ──────────────────────────────────────────────────────────────────────────
+const unsplash = (id) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1000&q=80`;
+
+const DEFAULT_COLORS = ["#000000", "#262626", "#404040"];
 
 const DEFAULT_SCENES = [
   {
-    name: "THE CANNON",
-    boardImg: "http://pngimg.com/uploads/snowboard/snowboard_PNG8008.png",
+    name: "The Clay",
+    vaseImg:
+      "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/clay.png",
     specs: [
-      { label: "Size", value: "153cm" },
-      { label: "Shape", value: "Tapered Swallowtail" },
-      { label: "Camber", value: "True Camber" },
-      { label: "Width", value: "Mid-Wide" },
-      { label: "Flex", value: "All Terrain" },
-      { label: "Sidecut", value: "Progressive" },
+      { label: "Height", value: "32cm" },
+      { label: "Shape", value: "Amphora" },
+      { label: "Material", value: "Stoneware" },
+      { label: "Finish", value: "Matte Slip" },
+      { label: "Handles", value: "Two" },
+      { label: "Capacity", value: "3.5L" },
     ],
-    topPhoto:
-      "https://images.unsplash.com/photo-1495468286609-71018e87abc5?auto=format&fit=crop&w=670&q=80",
-    bottomPhoto:
-      "https://images.unsplash.com/photo-1486335223442-a034129506f6?auto=format&fit=crop&w=1350&q=80",
-    riderName: "Brion Fox",
-    riderTag: "Riding The Cannon",
+    topPhoto: unsplash("photo-1753164725848-471a8abbb6f5"),
+    topPhotoAlt: "A potter shaping a clay vase on a spinning wheel",
+    bottomPhoto: unsplash("photo-1757083821615-62de7719c864"),
+    bottomPhotoAlt: "Clay jug with a flower design on a wooden stand",
+    makerName: "Maya Ortiz",
+    makerTag: "Maker of The Clay",
   },
   {
-    name: "THE POW",
-    boardImg: "http://pngimg.com/uploads/snowboard/snowboard_PNG8006.png",
+    name: "The Indigo",
+    vaseImg:
+      "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/solid-dblue.png",
     specs: [
-      { label: "Size", value: "148cm" },
-      { label: "Shape", value: "Twin Tip" },
-      { label: "Camber", value: "Flat" },
-      { label: "Width", value: "Wide" },
-      { label: "Flex", value: "All Terrain" },
-      { label: "Sidecut", value: "Progressive" },
+      { label: "Height", value: "28cm" },
+      { label: "Shape", value: "Bottle Neck" },
+      { label: "Material", value: "Porcelain" },
+      { label: "Finish", value: "Gloss Glaze" },
+      { label: "Opening", value: "Narrow" },
+      { label: "Capacity", value: "2.2L" },
     ],
-    topPhoto:
-      "https://images.unsplash.com/photo-1536099876051-79f4cbffeed1?auto=format&fit=crop&w=1350&q=80",
-    bottomPhoto:
-      "https://images.unsplash.com/photo-1522056615691-da7b8106c665?auto=format&fit=crop&w=1352&q=80",
-    riderName: "Austin Smith",
-    riderTag: "Riding The Pow",
+    topPhoto: unsplash("photo-1656088239658-ca839d7e8841"),
+    topPhotoAlt: "Close-up of a ceramic vase",
+    bottomPhoto: unsplash("photo-1738858363202-dd019dadce76"),
+    bottomPhotoAlt: "A large gray vase on a tile floor",
+    makerName: "Elias Brandt",
+    makerTag: "Maker of The Indigo",
   },
   {
-    name: "THE SPLASH",
-    boardImg: "http://pngimg.com/uploads/snowboard/snowboard_PNG7998.png",
+    name: "The Umber",
+    vaseImg:
+      "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/duo-brown.png",
     specs: [
-      { label: "Size", value: "156cm" },
-      { label: "Shape", value: "Reverse Camber" },
-      { label: "Camber", value: "True Rocker" },
-      { label: "Width", value: "Mid-Wide" },
-      { label: "Flex", value: "All Terrain" },
-      { label: "Sidecut", value: "Progressive" },
+      { label: "Height", value: "36cm" },
+      { label: "Shape", value: "Tall Oval" },
+      { label: "Material", value: "Terracotta" },
+      { label: "Finish", value: "Two Tone Glaze" },
+      { label: "Opening", value: "Wide" },
+      { label: "Capacity", value: "4.8L" },
     ],
-    topPhoto:
-      "https://images.unsplash.com/photo-1512821062947-6eda5253c3e2?auto=format&fit=crop&w=1351&q=80",
-    bottomPhoto:
-      "https://images.unsplash.com/photo-1478700485868-972b69dc3fc4?auto=format&fit=crop&w=1350&q=80",
-    riderName: "Sally Blue",
-    riderTag: "Riding The Splash",
+    topPhoto: unsplash("photo-1769203905448-0ba060069e6f"),
+    topPhotoAlt: "Earthenware jug with a handle on draped fabric",
+    bottomPhoto: unsplash("photo-1771627278991-8922851b9435"),
+    bottomPhotoAlt: "Several clay jugs and bottles on a stone surface",
+    makerName: "Noor Haddad",
+    makerTag: "Maker of The Umber",
   },
 ];
 
-const DEFAULT_COLORS = ["#E41936", "#E7E31D", "#3BB7CE"];
+const EASE = "ease-[cubic-bezier(0.55,0,0.1,1)]";
+const WIPE_EASING = "cubic-bezier(0.55, 0, 0.1, 1)";
 
-// ── Scoped keyframe — cover wipe animation for photo frames.
-// ── Plain string concat, no backticks (avoids SSR chunk syntax errors).
-const SCOPED_CSS =
-  "@keyframes ns-wipe {" +
-  "  0%   { transform: translateX(-100%); }" +
-  "  50%  { transform: translateX(0%); }" +
-  "  100% { transform: translateX(100%); }" +
-  "}" +
-  ".ns-wipe-run { animation: ns-wipe 0.5s cubic-bezier(.55,0,.1,1) both; }";
+const motion = (state, transitionClass, ms) => ({
+  className: state === "wait" ? "transition-none" : `${transitionClass} ${EASE}`,
+  style: {
+    transitionDuration: `${ms}ms`,
+    transitionDelay: `${state === "enter" ? ms / 2 : 0}ms`,
+  },
+});
 
-// ── Build transition shorthand with delay baked in — avoids React's
-// ── warning about mixing `transition` shorthand and `transitionDelay` longhand.
-// ── CSS 4-value shorthand: property duration timing-function delay
-function tr(prop, ms, delay) {
-  var d = delay || 0;
-  return prop + " " + ms + "ms cubic-bezier(.55,0,.1,1) " + d + "ms";
-}
+const slideClass = (state, fade = true) => {
+  const x =
+    state === "enter"
+      ? "translate-x-0 z-[2]"
+      : state === "exit"
+        ? "-translate-x-full z-[2]"
+        : "translate-x-full z-[1]";
+  if (!fade) return x;
+  return `${x} ${state === "enter" ? "opacity-100" : "opacity-0"}`;
+};
+
+const ArrowIcon = ({ direction }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="h-4 w-4"
+    aria-hidden="true"
+  >
+    <path
+      d={
+        direction === "left"
+          ? "M19 12H5M12 19l-7-7 7-7"
+          : "M5 12h14M12 5l7 7-7 7"
+      }
+    />
+  </svg>
+);
 
 export default function NitroShowcase({
-  brandName = "NITRO",
+  brandName = "Kiln",
   transitionMs = 500,
   sceneColors = DEFAULT_COLORS,
   scenes = DEFAULT_SCENES,
+  prevLabel = "Prev",
+  nextLabel = "Next",
+  prevAriaLabel = "Previous vase",
+  nextAriaLabel = "Next vase",
+  headingFont = "Barlow Condensed",
+  bodyFont = "Space Grotesk",
+  backgroundColor = "bg-white",
+  textColor = "text-black",
+  className = "",
 }) {
   const [current, setCurrent] = useState(0);
   const [prev, setPrev] = useState(null);
-  const [wiping, setWiping] = useState(false);
   const lockedRef = useRef(false);
+  const timerRef = useRef(null);
+  const coverRefs = useRef([]);
 
-  // ── Font injection — Barlow Condensed (display) + Space Grotesk (body/specs)
-  useEffect(function () {
-    const id = "ns-fonts";
-    if (document.getElementById(id)) return;
-    const link = document.createElement("link");
-    link.id = id;
-    link.rel = "stylesheet";
-    link.href =
-      "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800&family=Space+Grotesk:wght@300;400;500&display=swap";
-    document.head.appendChild(link);
-  }, []);
+  useEffect(() => () => clearTimeout(timerRef.current), []);
 
   const navigate = useCallback(
-    function (step) {
+    (step) => {
       if (lockedRef.current) return;
       lockedRef.current = true;
-      const n = scenes.length;
-      const next = (((current + step) % n) + n) % n;
+      const total = scenes.length;
+      const next = (((current + step) % total) + total) % total;
       setPrev(current);
       setCurrent(next);
-      setWiping(true);
-      setTimeout(function () {
-        setWiping(false);
+
+      coverRefs.current.forEach((el) =>
+        el?.animate(
+          [
+            { transform: "translateX(-100%)", easing: WIPE_EASING },
+            { transform: "translateX(0%)", offset: 0.5, easing: WIPE_EASING },
+            { transform: "translateX(100%)" },
+          ],
+          { duration: transitionMs },
+        ),
+      );
+
+      timerRef.current = setTimeout(() => {
         setPrev(null);
         lockedRef.current = false;
       }, transitionMs);
@@ -139,450 +161,225 @@ export default function NitroShowcase({
     [current, scenes.length, transitionMs],
   );
 
-  // ── Keyboard support
-  useEffect(
-    function () {
-      const fn = function (e) {
-        if (e.key === "ArrowRight") navigate(1);
-        if (e.key === "ArrowLeft") navigate(-1);
-      };
-      window.addEventListener("keydown", fn);
-      return function () {
-        window.removeEventListener("keydown", fn);
-      };
-    },
-    [navigate],
-  );
-
-  // ── State for each scene index
-  function layerState(i) {
-    if (i === current) return "enter";
-    if (i === prev) return "exit";
-    return "wait";
-  }
-
-  // ── Left panel slide: enter from right, exit to left
-  // ── "wait" gets transition:none — when prev clears to null the layer snaps
-  // ── instantly from translateX(-100%) back to translateX(100%) with no
-  // ── visible animation (the ghost second-transition bug).
-  function leftStyle(state) {
-    var delay = state === "enter" ? transitionMs / 2 : 0;
-    var t =
-      state === "wait"
-        ? "none"
-        : tr("transform", transitionMs, delay) +
-          ", " +
-          tr("opacity", transitionMs, delay);
-    return {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      transition: t,
-      transform:
-        state === "enter"
-          ? "translateX(0)"
-          : state === "exit"
-            ? "translateX(-100%)"
-            : "translateX(100%)",
-      opacity: state === "enter" ? 1 : 0,
-      zIndex: state === "wait" ? 1 : 2,
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "ArrowRight") navigate(1);
+      if (e.key === "ArrowLeft") navigate(-1);
     };
-  }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [navigate]);
 
-  // ── Right panel color bg: enter from right, exit freezes (no transition)
-  function rightBgStyle(i, state) {
-    var color = sceneColors[i % sceneColors.length];
-    if (state === "enter")
-      return {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundColor: color,
-        zIndex: 2,
-        transition: tr("transform", transitionMs, transitionMs / 2),
-        transform: "translateX(0)",
-      };
-    if (state === "exit")
-      return {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundColor: color,
-        zIndex: 1,
-        transition: "none",
-        transform: "translateX(0)",
-      };
-    return {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      backgroundColor: color,
-      zIndex: 1,
-      transition: tr("transform", transitionMs, transitionMs / 2),
-      transform: "translateX(100%)",
-    };
-  }
-
-  // ── Photo frame image: crossfade opacity
-  // ── "wait" gets transition:none — instant reset after prev clears,
-  // ── no ghost fade when opacity snaps back from exit→wait position.
-  function photoStyle(state, imgUrl) {
-    var delay = state === "enter" ? transitionMs / 2 : 0;
-    var t = state === "wait" ? "none" : tr("opacity", transitionMs, delay);
-    return {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      backgroundImage: "url(" + imgUrl + ")",
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      opacity: state === "enter" ? 1 : 0,
-      transition: t,
-    };
-  }
-
-  // ── Rider name slide: enter from right, exit to left
-  // ── "wait" gets transition:none — snaps instantly when prev clears,
-  // ── no ghost slide from translateX(-100%) → translateX(100%).
-  function nameStyle(state) {
-    var delay = state === "enter" ? transitionMs / 2 : 0;
-    var t = state === "wait" ? "none" : tr("transform", transitionMs, delay);
-    return {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      transition: t,
-      transform:
-        state === "enter"
-          ? "translateX(0)"
-          : state === "exit"
-            ? "translateX(-100%)"
-            : "translateX(100%)",
-      zIndex: state === "wait" ? 1 : 2,
-    };
-  }
-
-  var accentColor = sceneColors[current % sceneColors.length];
+  const layerState = (i) => (i === current ? "enter" : i === prev ? "exit" : "wait");
+  const headingStack = `'${headingFont}', ui-sans-serif, sans-serif`;
+  const bodyStack = `'${bodyFont}', ui-sans-serif, system-ui, sans-serif`;
+  const pad = (n) => String(n).padStart(2, "0");
 
   return (
-    <div
-      className="w-full h-screen overflow-hidden flex"
-      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-    >
-      <style dangerouslySetInnerHTML={{ __html: SCOPED_CSS }} />
+    <>
+      <link
+        rel="stylesheet"
+        href={`https://fonts.googleapis.com/css2?family=${headingFont.replace(/ /g, "+")}:wght@400;700;800&family=${bodyFont.replace(/ /g, "+")}:wght@300;400;500&display=swap`}
+        precedence="default"
+      />
 
-      {/* ══════════════════════════════════════════════════════════════════
-          LEFT PANEL
-          Layout (top→bottom): brand label · board name · board image · specs · nav
-      ══════════════════════════════════════════════════════════════════ */}
       <div
-        className="relative flex flex-col bg-white"
-        style={{ flex: "1 0 0", minWidth: 0 }}
+        className={`flex h-[100dvh] w-full flex-col overflow-hidden md:flex-row ${className}`}
+        style={{ fontFamily: bodyStack }}
       >
-        {/* ── Layer stack — fills left panel, slides transition inside here ── */}
-        <div className="relative flex-1 overflow-hidden">
-          {scenes.map(function (s, i) {
-            var state = layerState(i);
-            var color = sceneColors[i % sceneColors.length];
-            return (
-              <div
-                key={i}
-                style={leftStyle(state)}
-                className="bg-white flex flex-col"
-              >
-                {/* ── Brand + board name header ──────────────────────── */}
-                <div className="flex items-baseline justify-between px-5 pt-5 pb-2 shrink-0">
-                  {/* Brand — small, tracking-widest, anchors top-left */}
-                  <span
-                    className="uppercase tracking-[0.3em] text-black/30 select-none"
-                    style={{
-                      fontFamily: "'Barlow Condensed', sans-serif",
-                      fontWeight: 700,
-                      fontSize: "clamp(0.6rem, 0.9vw, 0.85rem)",
-                    }}
-                  >
-                    {brandName}
-                  </span>
-                  {/* Scene index — top-right corner */}
-                  <span
-                    className="text-black/20 select-none"
-                    style={{
-                      fontFamily: "'Space Grotesk', sans-serif",
-                      fontWeight: 300,
-                      fontSize: "clamp(0.6rem, 0.8vw, 0.75rem)",
-                    }}
-                  >
-                    {String(i + 1).padStart(2, "0")} /{" "}
-                    {String(scenes.length).padStart(2, "0")}
-                  </span>
-                </div>
-
-                {/* ── Board name — the hero of the left panel ─────────── */}
-                <div className="px-5 shrink-0">
-                  <h2
-                    className="uppercase leading-none"
-                    style={{
-                      fontFamily: "'Barlow Condensed', sans-serif",
-                      fontWeight: 800,
-                      fontSize: "clamp(2.2rem, 5.5vw, 5rem)",
-                      color: color,
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    {s.name}
-                  </h2>
-                </div>
-
-                {/* ── Board image — takes remaining vertical space ─────── */}
-                <div
-                  className="flex-1 min-h-0 mx-4"
-                  style={{
-                    backgroundImage: "url(" + s.boardImg + ")",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "contain",
-                    backgroundPosition: "center center",
-                  }}
-                />
-
-                {/* ── Spec table ──────────────────────────────────────── */}
-                <div
-                  className="shrink-0 px-5 py-4"
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1.5fr",
-                    columnGap: "0.75rem",
-                  }}
-                >
-                  {/* Labels col */}
-                  <div className="flex flex-col gap-[5px] items-end">
-                    {s.specs.map(function (sp) {
-                      return (
-                        <span
-                          key={sp.label}
-                          className="uppercase tracking-wider text-right"
-                          style={{
-                            fontFamily: "'Space Grotesk', sans-serif",
-                            fontSize: "clamp(0.58rem, 0.75vw, 0.72rem)",
-                            fontWeight: 400,
-                            color: "#aaa",
-                          }}
-                        >
-                          {sp.label}
-                        </span>
-                      );
-                    })}
-                  </div>
-                  {/* Values col */}
-                  <div className="flex flex-col gap-[5px]">
-                    {s.specs.map(function (sp) {
-                      return (
-                        <span
-                          key={sp.label}
-                          className="uppercase"
-                          style={{
-                            fontFamily: "'Barlow Condensed', sans-serif",
-                            fontSize: "clamp(0.65rem, 0.85vw, 0.82rem)",
-                            fontWeight: 700,
-                            color: "#111",
-                            letterSpacing: "0.05em",
-                          }}
-                        >
-                          {sp.value}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* ── Nav — full-width bottom bar, sits outside the layer stack ─── */}
         <div
-          className="shrink-0 flex items-stretch border-t border-black/10"
-          style={{ height: "52px" }}
+          className={`relative order-2 flex min-h-0 flex-1 flex-col md:order-1 md:w-1/3 md:flex-none ${backgroundColor} ${textColor}`}
         >
-          <button
-            onClick={function () {
-              navigate(-1);
-            }}
-            aria-label="Previous board"
-            className="flex-1 flex items-center justify-center cursor-pointer active:scale-95 transition-transform border-r border-black/10 bg-white hover:bg-black/5"
-            style={{
-              border: "none",
-              borderRight: "1px solid rgba(0,0,0,0.08)",
-            }}
-          >
-            <span
-              className="uppercase tracking-[0.2em]"
-              style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 700,
-                fontSize: "clamp(0.65rem, 1vw, 0.9rem)",
-                color: "#111",
-              }}
-            >
-              ← PREV
-            </span>
-          </button>
-          <button
-            onClick={function () {
-              navigate(1);
-            }}
-            aria-label="Next board"
-            className="flex-1 flex items-center justify-center cursor-pointer active:scale-95 transition-transform bg-white hover:bg-black/5"
-            style={{ border: "none" }}
-          >
-            <span
-              className="uppercase tracking-[0.2em]"
-              style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 700,
-                fontSize: "clamp(0.65rem, 1vw, 0.9rem)",
-                color: "#111",
-              }}
-            >
-              NEXT →
-            </span>
-          </button>
-        </div>
-      </div>
-
-      {/* ══════════════════════════════════════════════════════════════════
-          RIGHT PANEL — accent color flash + two photo frames + rider info
-      ══════════════════════════════════════════════════════════════════ */}
-      <div
-        className="relative overflow-hidden"
-        style={{ flex: "2 0 0", minWidth: 0 }}
-      >
-        {/* ── Full-bleed accent color layers ──────────────────────────── */}
-        {scenes.map(function (s, i) {
-          return <div key={i} style={rightBgStyle(i, layerState(i))} />;
-        })}
-
-        {/* ── Top photo frame — smaller, upper-left quadrant ────────── */}
-        <div
-          className="absolute overflow-hidden"
-          style={{
-            top: "10%",
-            left: "10%",
-            width: "40%",
-            height: "40%",
-            zIndex: 3,
-          }}
-        >
-          {scenes.map(function (s, i) {
-            return (
-              <div key={i} style={photoStyle(layerState(i), s.topPhoto)} />
-            );
-          })}
-          {/* Cover wipe — keyframe-driven only; transition:none prevents React
-               style-diff from animating the park-position reset when wiping→false */}
-          <div
-            className={wiping ? "ns-wipe-run" : ""}
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundColor: "#111",
-              zIndex: 10,
-              transition: "none",
-              transform: wiping ? undefined : "translateX(-100%)",
-            }}
-          />
-        </div>
-
-        {/* ── Bottom photo frame — larger, lower-right quadrant ────────── */}
-        <div
-          className="absolute overflow-hidden"
-          style={{
-            top: "40%",
-            left: "20%",
-            width: "65%",
-            height: "50%",
-            zIndex: 2,
-          }}
-        >
-          {scenes.map(function (s, i) {
-            return (
-              <div key={i} style={photoStyle(layerState(i), s.bottomPhoto)} />
-            );
-          })}
-          {/* Cover wipe — white curtain; transition:none for same reason */}
-          <div
-            className={wiping ? "ns-wipe-run" : ""}
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundColor: "#fff",
-              zIndex: 10,
-              transition: "none",
-              transform: wiping ? undefined : "translateX(-100%)",
-            }}
-          />
-        </div>
-
-        {/* ── Rider info — bottom-left of right panel, always legible ─── */}
-        <div
-          className="absolute overflow-hidden"
-          style={{ bottom: "5%", left: "10%", width: "45%", zIndex: 5 }}
-        >
-          <div className="relative" style={{ minHeight: "4rem" }}>
-            {scenes.map(function (s, i) {
+          <div className="relative min-h-0 flex-1 overflow-hidden">
+            {scenes.map((scene, i) => {
+              const state = layerState(i);
+              const m = motion(state, "transition-[transform,opacity]", transitionMs);
               return (
-                <div key={i} style={nameStyle(layerState(i))}>
-                  {/* Rider name — large, punchy */}
-                  <span
-                    className="block uppercase"
-                    style={{
-                      fontFamily: "'Barlow Condensed', sans-serif",
-                      fontWeight: 800,
-                      fontSize: "clamp(1.1rem, 2.2vw, 1.9rem)",
-                      letterSpacing: "0.04em",
-                      color: "#fff",
-                    }}
-                  >
-                    {s.riderName}
-                  </span>
-                  {/* Board tag — light, below */}
-                  <span
-                    className="block"
-                    style={{
-                      fontFamily: "'Space Grotesk', sans-serif",
-                      fontWeight: 300,
-                      fontSize: "clamp(0.65rem, 1vw, 0.85rem)",
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      color: "rgba(255,255,255,0.6)",
-                      marginTop: "2px",
-                    }}
-                  >
-                    {s.riderTag}
-                  </span>
+                <div
+                  key={i}
+                  aria-hidden={state !== "enter"}
+                  className={`absolute inset-0 flex flex-col ${backgroundColor} ${slideClass(state)} ${m.className}`}
+                  style={m.style}
+                >
+                  <div className="flex shrink-0 items-baseline justify-between px-5 pb-2 pt-5">
+                    <span
+                      className="select-none text-[clamp(0.65rem,0.9vw,0.85rem)] font-bold uppercase tracking-[0.3em] opacity-30"
+                      style={{ fontFamily: headingStack }}
+                    >
+                      {brandName}
+                    </span>
+                    <span className="select-none text-[clamp(0.65rem,0.8vw,0.75rem)] font-light opacity-30">
+                      {pad(i + 1)} / {pad(scenes.length)}
+                    </span>
+                  </div>
+
+                  <div className="shrink-0 px-5">
+                    <h2
+                      className="m-0 text-[clamp(2rem,5.5vw,5rem)] font-extrabold uppercase leading-none tracking-[-0.01em]"
+                      style={{
+                        fontFamily: headingStack,
+                        color: sceneColors[i % sceneColors.length],
+                      }}
+                    >
+                      {scene.name}
+                    </h2>
+                  </div>
+
+                  <div className="relative min-h-0 flex-1">
+                    <img
+                      src={scene.vaseImg}
+                      alt={scene.name}
+                      className="absolute inset-0 m-auto h-[70%] w-[70%] object-contain"
+                    />
+                  </div>
+
+                  <div className="grid shrink-0 grid-cols-2 gap-x-4 gap-y-2 px-5 py-4 md:grid-cols-1 md:gap-y-[5px]">
+                    {scene.specs.map((spec) => (
+                      <div
+                        key={spec.label}
+                        className="grid md:grid-cols-[1fr_1.5fr] md:gap-x-3"
+                      >
+                        <span className="text-[clamp(0.65rem,0.75vw,0.72rem)] uppercase tracking-wider opacity-50 md:text-right">
+                          {spec.label}
+                        </span>
+                        <span
+                          className="text-[clamp(0.7rem,0.85vw,0.82rem)] font-bold uppercase tracking-[0.05em]"
+                          style={{ fontFamily: headingStack }}
+                        >
+                          {spec.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               );
             })}
           </div>
+
+          <div className="flex h-[52px] shrink-0 items-stretch border-t border-neutral-500/20">
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              aria-label={prevAriaLabel}
+              className="flex flex-1 cursor-pointer items-center justify-center gap-2 border-r border-neutral-500/20 transition active:scale-95 hover:bg-neutral-500/10"
+            >
+              <ArrowIcon direction="left" />
+              <span
+                className="text-[clamp(0.7rem,1vw,0.9rem)] font-bold uppercase tracking-[0.2em]"
+                style={{ fontFamily: headingStack }}
+              >
+                {prevLabel}
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate(1)}
+              aria-label={nextAriaLabel}
+              className="flex flex-1 cursor-pointer items-center justify-center gap-2 transition active:scale-95 hover:bg-neutral-500/10"
+            >
+              <span
+                className="text-[clamp(0.7rem,1vw,0.9rem)] font-bold uppercase tracking-[0.2em]"
+                style={{ fontFamily: headingStack }}
+              >
+                {nextLabel}
+              </span>
+              <ArrowIcon direction="right" />
+            </button>
+          </div>
+        </div>
+
+        <div className="relative order-1 h-[45%] shrink-0 overflow-hidden md:order-2 md:h-auto md:w-2/3 md:flex-none">
+          {scenes.map((_, i) => {
+            const state = layerState(i);
+            const m = motion(state, "transition-transform", transitionMs);
+            const position =
+              state === "enter"
+                ? "translate-x-0 z-[2]"
+                : state === "exit"
+                  ? "translate-x-0 z-[1] transition-none"
+                  : "translate-x-full z-[1]";
+            return (
+              <div
+                key={i}
+                className={`absolute inset-0 ${position} ${state === "exit" ? "" : m.className}`}
+                style={{
+                  ...m.style,
+                  backgroundColor: sceneColors[i % sceneColors.length],
+                }}
+              />
+            );
+          })}
+
+          <div className="absolute left-[6%] top-[8%] z-[3] h-[40%] w-[44%] overflow-hidden md:left-[10%] md:top-[10%] md:w-[40%]">
+            {scenes.map((scene, i) => {
+              const state = layerState(i);
+              const m = motion(state, "transition-opacity", transitionMs);
+              return (
+                <img
+                  key={i}
+                  src={scene.topPhoto}
+                  alt={state === "enter" ? scene.topPhotoAlt : ""}
+                  className={`absolute inset-0 h-full w-full object-cover ${state === "enter" ? "opacity-100" : "opacity-0"
+                    } ${m.className}`}
+                  style={m.style}
+                />
+              );
+            })}
+            <div
+              ref={(el) => (coverRefs.current[0] = el)}
+              className="absolute inset-0 z-10 -translate-x-full bg-black"
+            />
+          </div>
+
+          <div className="absolute left-[22%] top-[34%] z-[2] h-[40%] w-[68%] overflow-hidden md:left-[20%] md:top-[40%] md:h-[50%] md:w-[65%]">
+            {scenes.map((scene, i) => {
+              const state = layerState(i);
+              const m = motion(state, "transition-opacity", transitionMs);
+              return (
+                <img
+                  key={i}
+                  src={scene.bottomPhoto}
+                  alt={state === "enter" ? scene.bottomPhotoAlt : ""}
+                  className={`absolute inset-0 h-full w-full object-cover ${state === "enter" ? "opacity-100" : "opacity-0"
+                    } ${m.className}`}
+                  style={m.style}
+                />
+              );
+            })}
+            <div
+              ref={(el) => (coverRefs.current[1] = el)}
+              className="absolute inset-0 z-10 -translate-x-full bg-white"
+            />
+          </div>
+
+          <div className="absolute bottom-[4%] left-[6%] z-[5] w-[80%] overflow-hidden md:bottom-[5%] md:left-[10%] md:w-[45%]">
+            <div className="relative min-h-16">
+              {scenes.map((scene, i) => {
+                const state = layerState(i);
+                const m = motion(state, "transition-transform", transitionMs);
+                return (
+                  <div
+                    key={i}
+                    aria-hidden={state !== "enter"}
+                    className={`absolute left-0 top-0 w-full ${slideClass(state, false)} ${m.className}`}
+                    style={m.style}
+                  >
+                    <span
+                      className="block text-[clamp(1.1rem,2.2vw,1.9rem)] font-extrabold uppercase tracking-[0.04em] text-white"
+                      style={{ fontFamily: headingStack }}
+                    >
+                      {scene.makerName}
+                    </span>
+                    <span className="mt-0.5 block text-[clamp(0.65rem,1vw,0.85rem)] font-light uppercase tracking-[0.08em] text-white/60">
+                      {scene.makerTag}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

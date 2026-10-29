@@ -3,43 +3,19 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import Script from "next/script";
 
-// ─── RecipeSwipeCards ──────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// recipe              object    DEFAULT_RECIPE    Full recipe data object
-//   .title            string                      Recipe title
-//   .coverImage       string                      Cover image URL
-//   .coverImageAlt    string                      Cover image alt text
-//   .servings         number    4                 Number of servings
-//   .cookTime         string    "25 min"          Cook time label
-//   .about            object                      { intro, image, imageAlt, outro }
-//   .ingredients      string[]                    Ingredient strings
-//   .variation        string                      Tip / variation note
-//   .process          { text }[]                  Step objects
-//   .pesto            { text }[]                  Pesto info panel steps
-//
-// bgColor             string    "#0c0b0a"         Page background
-// accentColor         string    "#f0e6d0"         Primary text/icon color
-// highlightColor      string    "#c8975a"         Warm amber accent
-// swipeThreshold      number    72                px drag before card flies off
-// velocityThreshold   number    0.45              velocity before card flies off
-// idlePromptDelay     number    10000             ms before swipe hint appears
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_RECIPE = {
   title: "Pasta with Pesto & Tomatoes",
   coverImage:
-    "https://assets.codepen.io/652/shania-pinnata-7E-vKgzahd8-unsplash.jpg",
-  coverImageAlt: "Spaghetti with pesto sauce and cherry tomatoes",
+    "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=1200&q=80",
+  coverImageAlt: "Pasta with fresh pesto and herbs",
   servings: 4,
   cookTime: "25 min",
   about: {
     intro:
       "A summer pasta that comes together in under 30 minutes — fresh basil, blistered tomatoes, and good olive oil doing all the heavy lifting.",
     image:
-      "https://assets.codepen.io/652/tamanna-rumee-nswz6tIpgZk-unsplash.jpg",
-    imageAlt: "Tomato halves surrounded by basil leaves and peppercorns",
+      "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Fresh tomatoes prepared with herbs",
     outro:
       "No garden? No problem. A good jar of pesto works beautifully here — the blistered tomatoes bring freshness either way.",
   },
@@ -54,8 +30,6 @@ const DEFAULT_RECIPE = {
     "1 pint cherry tomatoes",
     "1 tsp olive oil, for tomatoes",
   ],
-  variation:
-    "Shortcut: swap homemade pesto for a 6 oz jar of prepared — still exceptional.",
   process: [
     {
       text: "Bring 4 quarts of heavily salted water to a rolling boil. Add pasta and cook until al dente.",
@@ -329,21 +303,6 @@ function IngredientsCard({ recipe, accent, highlight }) {
           </li>
         ))}
       </ul>
-
-      {recipe.variation && (
-        <div
-          className="mx-6 mb-5 mt-3 px-4 py-3 rounded-lg text-[11px] leading-relaxed"
-          style={{
-            color: accent,
-            opacity: 0.5,
-            background: `${accent}06`,
-            borderLeft: `2px solid ${highlight}`,
-            fontStyle: "italic",
-          }}
-        >
-          {recipe.variation}
-        </div>
-      )}
     </div>
   );
 }

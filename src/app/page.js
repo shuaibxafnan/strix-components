@@ -1,11 +1,9 @@
-import InfiniteMenuOverlay from "./components/InfiniteMenuOverlay";
-import LettersMenuHover from "./components/LettersMenuHover";
-
+import GlassMorphicShowcase from "./components/GlassMorphicShowcase";
 
 export default function Home() {
   return (
     <div className="w-full h-full">
-      <InfiniteMenuOverlay />
+      <GlassMorphicShowcase />
     </div>
   );
 }

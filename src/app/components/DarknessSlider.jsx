@@ -2,36 +2,45 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── InfiniteCreatureCarousel ────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// scrollSpeed      number   0.5        Pixels to move per animation frame
-// showCursorLight  boolean  true       Enables the reactive mouse flashlight overlay
-// cursorLightSize  number   300        Diameter of the cursor flashlight circle (px)
-// initialCreatures array               Base dataset of image items to loop over
-// ──────────────────────────────────────────────────────────────────────────
+const photo = (id) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=560&h=800&q=80`;
 
 const DEFAULT_CREATURES = [
   {
-    color: "#00e1ff",
-    image: "https://i.ibb.co/67Mk7FFb/1-Large.jpg",
-    name: "Creature 1",
+    image: photo("1749330513873-09ffa91b0aae"),
+    tag: "Night",
+    title: "After hours",
+    caption: "Streets that only belong to you.",
   },
   {
-    color: "#00e1ff",
-    image: "https://i.ibb.co/Q3JV70L7/2-Large.jpg",
-    name: "Creature 2",
+    image: photo("1627896157734-4d7d4388f28b"),
+    tag: "Shadow",
+    title: "Long exposure",
+    caption: "Light that never quite arrives.",
   },
   {
-    color: "#00e1ff",
-    image: "https://i.ibb.co/PZrgfcVB/3-Large.jpg",
-    name: "Creature 3",
+    image: photo("1778789172736-e8ba37c71124"),
+    tag: "Quiet",
+    title: "Still room",
+    caption: "Nothing moves except the dust.",
   },
   {
-    color: "#00e1ff",
-    image: "https://i.ibb.co/9kzcxtJL/4-Large.jpg",
-    name: "Creature 4",
+    image: photo("1778961938903-96617183f739"),
+    tag: "Dusk",
+    title: "Last light",
+    caption: "Whatever remains of the day.",
+  },
+  {
+    image: photo("1678112553355-a9dab855ebf3"),
+    tag: "Fog",
+    title: "Low cloud",
+    caption: "The edges soften first.",
+  },
+  {
+    image: photo("1743309411498-a0f4f4b96b65"),
+    tag: "Ember",
+    title: "Slow burn",
+    caption: "Warm things in cold places.",
   },
 ];
 
@@ -39,45 +48,34 @@ export default function DarknessSlider({
   scrollSpeed = 0.5,
   showCursorLight = true,
   cursorLightSize = 300,
+  maxGlowing = 3,
+  glowInterval = 2000,
+  imageBrightness = 0.55,
+  imageSaturation = 0,
+  glowColor = "rgba(255, 255, 255, 0.35)",
+  fontFamily = "Hanken Grotesk",
   initialCreatures = DEFAULT_CREATURES,
 }) {
-  const containerRef = useRef(null);
   const cardsContainerRef = useRef(null);
   const cursorLightRef = useRef(null);
 
-  const [mounted, setMounted] = useState(false);
   const [cards, setCards] = useState([]);
 
-  // Safely sync client rendering and bypass SSR mismatch states
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Structural generation of repeating layout structures with individualized dynamic timings
-  useEffect(() => {
-    if (!mounted) return;
-
     const tripleSet = [];
-    // Render 3 exact duplicates of the data nodes array back-to-back to generate the seamless loop bounds
     for (let loop = 0; loop < 3; loop++) {
       initialCreatures.forEach((creature, idx) => {
-        const glowDuration = 3 + Math.random() * 4; // Randomized pulse rates (3s - 7s)
-        const glowDelay = Math.random() * -5; // Randomized timeline stagger values
-
         tripleSet.push({
           ...creature,
           id: `${loop}-${idx}-${creature.image}`,
-          glowDuration: `${glowDuration}s`,
-          glowDelay: `${glowDelay}s`,
         });
       });
     }
     setCards(tripleSet);
-  }, [mounted, initialCreatures]);
+  }, [initialCreatures]);
 
-  // Handle custom interactive flashlight track vectors
   useEffect(() => {
-    if (!mounted || !showCursorLight || !cursorLightRef.current) return;
+    if (!showCursorLight || !cursorLightRef.current) return;
 
     const cursorElement = cursorLightRef.current;
 
@@ -87,18 +85,16 @@ export default function DarknessSlider({
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mounted, showCursorLight]);
+  }, [showCursorLight]);
 
-  // Premium high-performance hardware-accelerated ticking animation loop engine
   useEffect(() => {
-    if (!mounted || cards.length === 0 || !cardsContainerRef.current) return;
+    if (cards.length === 0 || !cardsContainerRef.current) return;
 
     let scrollPosition = 0;
     let animationFrameId = null;
     const cardsContainer = cardsContainerRef.current;
 
     const computeLoopBoundaries = () => {
-      // Dynamic reading of responsive sizing configurations from modern Tailwind container instances
       const firstCard = cardsContainer.firstElementChild;
       if (!firstCard) return 0;
 
@@ -106,7 +102,6 @@ export default function DarknessSlider({
       const gap = parseInt(style.gap || "40px", 10);
       const cardWidth = firstCard.offsetWidth;
 
-      // True architectural length of exactly 1 baseline matching collection unit package
       return initialCreatures.length * (cardWidth + gap);
     };
 
@@ -126,88 +121,105 @@ export default function DarknessSlider({
     return () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
-  }, [mounted, cards, scrollSpeed, initialCreatures.length]);
+  }, [cards, scrollSpeed, initialCreatures.length]);
 
-  if (!mounted) return null;
+  useEffect(() => {
+    if (cards.length === 0 || !cardsContainerRef.current) return;
+
+    const container = cardsContainerRef.current;
+
+    const pickLit = () => {
+      const all = Array.from(container.children);
+      const vw = window.innerWidth;
+      const onScreen = all.filter((el) => {
+        const r = el.getBoundingClientRect();
+        return r.right > 0 && r.left < vw;
+      });
+      const fully = onScreen.filter((el) => {
+        const r = el.getBoundingClientRect();
+        return r.left >= 0 && r.right <= vw;
+      });
+      const pool = fully.length ? fully : onScreen;
+
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+
+      const next = new Set(pool.slice(0, maxGlowing));
+      all.forEach((el) => el.classList.toggle("lit", next.has(el)));
+    };
+
+    pickLit();
+    const timer = setInterval(pickLit, glowInterval);
+    return () => clearInterval(timer);
+  }, [cards, maxGlowing, glowInterval]);
 
   return (
     <div
-      className="relative w-screen h-screen bg-[#000510] flex items-center justify-center overflow-hidden cursor-none select-none text-rendering-precision"
-      ref={containerRef}
+      className="relative flex h-screen w-screen cursor-none select-none items-center justify-center overflow-hidden bg-[#050505] font-[family-name:var(--font)] [text-rendering:geometricPrecision]"
+      style={{
+        "--font": `"${fontFamily}", sans-serif`,
+        "--light": `${cursorLightSize}px`,
+        "--dim": imageBrightness,
+        "--sat": imageSaturation,
+        "--glow-color": glowColor,
+      }}
     >
-      {/* Global CSS Injectors for unique keyframe configurations and performance rules */}
-      <style jsx global>{`
-        .text-rendering-precision {
-          text-rendering: geometricPrecision;
-        }
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(10px);
-          }
-        }
-        @keyframes autonomous-glow {
-          0%,
-          100% {
-            box-shadow: 0 0 25px rgba(0, 225, 255, 0);
-            filter: brightness(0.1);
-            opacity: 0.1;
-          }
-          50% {
-            box-shadow: 0 0 25px var(--glow-color);
-            filter: brightness(1.3);
-            opacity: 1;
-          }
-        }
-        .animate-card-cycle {
-          animation:
-            float 3s ease-in-out infinite,
-            autonomous-glow var(--glow-duration, 4s) ease-in-out infinite
-              var(--glow-delay, 0s);
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&display=swap"
+      />
+      <style>{`
+        @keyframes dsFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(10px); }
         }
       `}</style>
 
-      {/* ─── DYNAMIC FLASHLIGHT LAYER ─────────────────────────────────────── */}
       {showCursorLight && (
         <div
           ref={cursorLightRef}
-          className="fixed top-0 left-0 rounded-full pointer-events-none z-10 mix-blend-screen will-change-transform bg-[radial-gradient(circle,rgba(255,255,255,0.1)_0%,transparent_70%)]"
-          style={{
-            width: `${cursorLightSize}px`,
-            height: `${cursorLightSize}px`,
-            transform: "translate3d(-100%, -100%, 0)",
-          }}
+          className="pointer-events-none fixed left-0 top-0 z-10 h-[var(--light)] w-[var(--light)] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.1)_0%,transparent_70%)] mix-blend-screen will-change-transform [transform:translate3d(-100%,-100%,0)]"
         />
       )}
 
-      {/* ─── CAROUSEL CONTAINER SLIDER TRACK ───────────────────────────────── */}
       <div
         ref={cardsContainerRef}
-        className="relative flex gap-10 md:gap-5 p-[50px] md:p-5 will-change-transform [transform-style:preserve-3d]"
+        className="relative flex gap-10 p-[50px] will-change-transform [transform-style:preserve-3d] md:gap-5 md:p-5"
       >
         {cards.map((card) => (
           <div
             key={card.id}
-            className="animate-card-cycle relative w-[280px] h-[400px] md:w-[220px] md:h-[320px] bg-[#00050f]/80 rounded-[15px] overflow-hidden transition-transform duration-300 ease-out will-change-transform hover:scale-105 group"
-            style={{
-              "--glow-color": card.color,
-              "--glow-duration": card.glowDuration,
-              "--glow-delay": card.glowDelay,
-            }}
+            className="group relative h-[400px] w-[280px] shrink-0 animate-[dsFloat_3s_ease-in-out_infinite] overflow-hidden rounded-[15px] bg-neutral-950 opacity-[0.1] shadow-[0_0_25px_rgba(255,255,255,0)] will-change-transform [filter:brightness(0.1)] [transition:opacity_1.4s_ease,filter_1.4s_ease,box-shadow_1.4s_ease] hover:scale-105 md:h-[320px] md:w-[220px] [&.lit]:opacity-100 [&.lit]:shadow-[0_0_25px_var(--glow-color)] [&.lit]:[filter:brightness(1.3)]"
           >
-            {/* Overlay specularity layer item */}
-            <div className="absolute inset-0 rounded-[15px] bg-gradient-to-br from-transparent via-white/[0.05] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-20 pointer-events-none" />
-
-            {/* Asset Graphics Layer */}
             <img
               src={card.image}
-              alt={card.name}
-              className="w-full h-full object-cover transition-transform duration-300 ease-out will-change-transform group-hover:scale-110"
+              alt={card.title}
               loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-300 ease-out will-change-transform [filter:brightness(var(--dim))_contrast(1.1)_saturate(var(--sat))] group-hover:scale-110"
             />
+
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.88),rgba(0,0,0,0.15)_55%,rgba(0,0,0,0.3))]" />
+
+            <span className="absolute left-4 top-4 z-20 rounded-full border border-white/15 bg-black/60 px-3 py-1 text-xs text-white/80">
+              {card.tag}
+            </span>
+
+            <div className="absolute inset-x-4 bottom-4 z-20">
+              <h3 className="text-lg font-medium leading-tight text-white">
+                {card.title}
+              </h3>
+              <p className="mt-1 text-[0.8rem] leading-snug text-white/60">
+                {card.caption}
+              </p>
+            </div>
           </div>
         ))}
       </div>

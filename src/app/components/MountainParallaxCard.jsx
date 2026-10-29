@@ -2,29 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── MountainParallaxCard ────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bodyBgGradient    string    from-[#0f172a] to-[#1e293b]  Main container viewport backdrop
-// cardWidth         string    380px                        Horizontal base boundary size
-// cardAspectRatio   string    aspect-[9/15.5]              Original card presentation geometry
-// bgImage           string    ...                          Card background photo path
-// borderGlowColor   string    rgba(255,214,102,0.4)        Outer frame border rim color
-// elevationText     string    4,478 m                      Text displayed inside the altitude badge
-// locationName      string    Matterhorn                   Primary card title text
-// destinationText   string    Zermatt, Switzerland         Subtext details string
-// btnText           string    Take the tour                Interactive action button string
-// maxTilt           number    10                           Maximum tilt rotation degrees
-// tiltSpeed         number    500                          Speed of the entering/exiting transitions (ms)
-// perspective       number    1800                         3D depth parallax intensity setting
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function MountainParallaxCard({
   bodyBgGradient = "from-[#0f172a] to-[#1e293b]",
   cardWidth = "350px",
   cardAspectRatio = "aspect-[9/12]",
-  bgImage = "https://static.wixstatic.com/media/3d9313_45b151504946477791c3add537ac398a~mv2.png",
+  bgImage = "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1080&q=80",
   borderGlowColor = "rgba(255,214,102,0.4)",
   elevationText = "4,478 m",
   locationName = "Matterhorn",

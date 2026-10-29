@@ -1,61 +1,19 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
-
-// ─── MirrorSlideshow ─────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// slides            array    DEFAULT_SLIDES  Slide data: image, title, color, visibleArea
-// layout            string   horizontal      Mirror split axis: horizontal | vertical
-// bgColor           string   #111111         Stage background
-// mirrorWidth       string   60vw            Width of the mirror block
-// mirrorMaxWidth    string   1100px          Upper clamp on mirror width
-// mirrorOpacity     number   1               Opacity of the mirrored image pair
-// mirrorBlendMode   string   normal          CSS mix-blend-mode applied to each slide
-// imgMaxHeight      string   none            Cap on image height (e.g. 65vh)
-// showDuration      number   1.5             Image reveal duration (s)
-// hideDuration      number   1               Image conceal duration (s)
-// showEase          string   expo.out        Easing for the reveal
-// hideEase          string   quint.out       Easing for the conceal
-// titleShowDuration number   1.5             Title reveal duration (s)
-// titleHideDuration number   0.5             Title conceal duration (s)
-// titleShowDelay    number   0.25            Delay before the title reveals (s)
-// titleHideDelay    number   0               Delay before the title conceals (s)
-// titleAnimation    string   vertical        Title slide axis: vertical | horizontal
-// titleOffset       number   50              Title travel distance (px)
-// titleSize         string   6vw             Title font size
-// titleFont         string   Georgia, serif  Title font stack
-// bodyFont          string   system stack    Font stack for heading + nav
-// enableTilt        bool     false           Mouse-driven parallax on the mirror halves
-// tiltFactor        number   0.6             Lower value = wider reveal swing on tilt
-// tiltRotation      number   10              Max z-axis rotation on tilt (deg)
-// heading           string   Maitri Animal…  Small uppercase heading above the slide
-// headingColor      string   #ffffff         Heading color
-// showHeading       bool     true            Render the heading
-// navPosition       string   bottom-right    Nav placement: bottom-right | bottom-left | top
-// navColor          string   #909090         Inactive nav button color
-// navActiveColor    string   inherit         Active nav color ("inherit" uses the slide color)
-// showNav           bool     true            Render the nav buttons
-// enableKeyboard    bool     true            Arrow keys move between slides
-// autoplay          bool     false           Advance automatically
-// autoplayDelay     number   5000            Autoplay interval (ms)
-// className         string   ""              Extra classes on the outer stage
-// onChange          func     null            Called with the new slide index
-// ──────────────────────────────────────────────────────────────────────────
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const IMAGES = [
-  "https://raw.githubusercontent.com/codrops/MirrorEffect/refs/heads/master/img/1.jpg",
-  "https://raw.githubusercontent.com/codrops/MirrorEffect/refs/heads/master/img/2.jpg",
-  "https://raw.githubusercontent.com/codrops/MirrorEffect/refs/heads/master/img/3.jpg",
-  "https://raw.githubusercontent.com/codrops/MirrorEffect/refs/heads/master/img/4.jpg",
+  "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/cat.png",
+  "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/finch.png",
+  "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/dog.png",
+  "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/owl.png",
 ];
 
 const DEFAULT_SLIDES = [
-  { image: IMAGES[0], title: "Simba", color: "#facb7a", visibleArea: 0.85 },
-  { image: IMAGES[1], title: "Anette", color: "#d06690", visibleArea: 0.8 },
-  { image: IMAGES[2], title: "Matuba", color: "#9ccc65", visibleArea: 0.75 },
-  { image: IMAGES[3], title: "Boris", color: "#90a4ae", visibleArea: 0.8 },
+  { image: IMAGES[0], alt: "Simba", title: "Simba", color: "#facb7a", visibleArea: 0.85 },
+  { image: IMAGES[1], alt: "Anette", title: "Anette", color: "#d06690", visibleArea: 0.8 },
+  { image: IMAGES[2], alt: "Matuba", title: "Matuba", color: "#9ccc65", visibleArea: 0.75 },
+  { image: IMAGES[3], alt: "Boris", title: "Boris", color: "#90a4ae", visibleArea: 0.8 },
 ];
 
 const lineEq = (y2, y1, x2, x1, v) => {
@@ -72,6 +30,7 @@ export default function MirrorSlideshow({
   mirrorOpacity = 1,
   mirrorBlendMode = "normal",
   imgMaxHeight = "none",
+  sideRotation = -15,
   showDuration = 1.5,
   hideDuration = 1,
   showEase = "expo.out",
@@ -83,8 +42,7 @@ export default function MirrorSlideshow({
   titleAnimation = "vertical",
   titleOffset = 50,
   titleSize = "6vw",
-  titleFont = "Georgia, 'Times New Roman', serif",
-  bodyFont = '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif',
+  titleFont = "ui-serif, serif",
   enableTilt = false,
   tiltFactor = 0.6,
   tiltRotation = 10,
@@ -101,8 +59,6 @@ export default function MirrorSlideshow({
   className = "",
   onChange = null,
 }) {
-  const uid = `mrs-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
-  const rootRef = useRef(null);
   const slideRefs = useRef([]);
   const gsapRef = useRef(null);
   const currentRef = useRef(0);
@@ -110,20 +66,19 @@ export default function MirrorSlideshow({
   const tiltRef = useRef(null);
   const [current, setCurrent] = useState(0);
   const [ready, setReady] = useState(false);
+  const [armed, setArmed] = useState(false);
 
-  const axis = layout === "vertical" ? "yPercent" : "xPercent";
+  const vertical = layout === "vertical";
+  const axis = vertical ? "yPercent" : "xPercent";
 
-  const getParts = useCallback(
-    (index) => {
-      const slide = slideRefs.current[index];
-      if (!slide) return null;
-      return {
-        imgs: Array.from(slide.querySelectorAll(`.${uid}-img`)),
-        title: slide.querySelector(`.${uid}-title`),
-      };
-    },
-    [uid],
-  );
+  const getParts = useCallback((index) => {
+    const slide = slideRefs.current[index];
+    if (!slide) return null;
+    return {
+      imgs: Array.from(slide.querySelectorAll("img")),
+      title: slide.querySelector("h2"),
+    };
+  }, []);
 
   const removeTilt = useCallback(() => {
     if (tiltRef.current) {
@@ -146,8 +101,8 @@ export default function MirrorSlideshow({
         frame = window.requestAnimationFrame(() => {
           const w = window.innerWidth;
           const h = window.innerHeight;
-          const d = layout === "horizontal" ? w : h;
-          const m = layout === "horizontal" ? e.clientX : e.clientY;
+          const d = vertical ? h : w;
+          const m = vertical ? e.clientY : e.clientX;
           const tVal =
             m < d / 2
               ? lineEq(visibleArea, visibleArea * tiltFactor, d / 2, 0, m)
@@ -158,7 +113,7 @@ export default function MirrorSlideshow({
             ease: "power1.out",
             overwrite: "auto",
             [axis]: (1 - tVal) * 100,
-            rotate: (tiltRotation / h) * e.clientY,
+            rotate: sideRotation + (tiltRotation / h) * e.clientY,
           });
         });
       };
@@ -166,7 +121,7 @@ export default function MirrorSlideshow({
       tiltRef.current = onMove;
       window.addEventListener("mousemove", onMove);
     },
-    [axis, enableTilt, getParts, layout, slides, tiltFactor, tiltRotation],
+    [axis, enableTilt, getParts, sideRotation, slides, tiltFactor, tiltRotation, vertical],
   );
 
   const animateImages = useCallback(
@@ -185,11 +140,11 @@ export default function MirrorSlideshow({
         if (action === "show") {
           gsap.fromTo(
             parts.imgs,
-            { [axis]: 100, opacity: 0, rotate: 0 },
+            { [axis]: 100, opacity: 0, rotate: sideRotation },
             {
               [axis]: target,
               opacity: 1,
-              rotate: 0,
+              rotate: sideRotation,
               duration: showDuration,
               ease: showEase,
               onComplete: resolve,
@@ -198,7 +153,7 @@ export default function MirrorSlideshow({
         } else {
           gsap.to(parts.imgs, {
             [axis]: 100,
-            rotate: 0,
+            rotate: sideRotation,
             duration: hideDuration,
             ease: hideEase,
             onComplete: resolve,
@@ -210,7 +165,7 @@ export default function MirrorSlideshow({
           });
         }
       }),
-    [axis, getParts, hideDuration, hideEase, showDuration, showEase, slides],
+    [axis, getParts, hideDuration, hideEase, showDuration, showEase, sideRotation, slides],
   );
 
   const animateTitle = useCallback(
@@ -257,49 +212,35 @@ export default function MirrorSlideshow({
 
   const navigate = useCallback(
     (pos) => {
-      if (
-        animatingRef.current ||
-        pos === currentRef.current ||
-        !gsapRef.current
-      )
-        return;
+      if (animatingRef.current || pos === currentRef.current || !gsapRef.current) return;
       const from = currentRef.current;
       animatingRef.current = true;
       removeTilt();
       animateTitle(from, "hide");
 
       animateImages(from, "hide").then(() => {
-        const fromSlide = slideRefs.current[from];
-        const toSlide = slideRefs.current[pos];
-        if (fromSlide) fromSlide.classList.remove(`${uid}-cur`);
-        if (toSlide) toSlide.classList.add(`${uid}-cur`);
-
         currentRef.current = pos;
         setCurrent(pos);
-
         animateImages(pos, "show").then(() => initTilt(pos));
         animateTitle(pos, "show");
         animatingRef.current = false;
         if (typeof onChange === "function") onChange(pos);
       });
     },
-    [animateImages, animateTitle, initTilt, onChange, removeTilt, uid],
+    [animateImages, animateTitle, initTilt, onChange, removeTilt],
   );
 
   useEffect(() => {
-    if (rootRef.current) rootRef.current.classList.add(`${uid}-armed`);
-  }, [uid]);
+    setArmed(true);
 
-  useEffect(() => {
     const loadScript = (src) =>
       new Promise((resolve, reject) => {
-        if (document.querySelector(`script[data-id="${src}"]`)) {
+        if (window.gsap) {
           resolve();
           return;
         }
         const el = document.createElement("script");
         el.src = src;
-        el.setAttribute("data-id", src);
         el.onload = resolve;
         el.onerror = () => reject(new Error(`Failed: ${src}`));
         document.head.appendChild(el);
@@ -307,22 +248,13 @@ export default function MirrorSlideshow({
 
     loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
       .then(() => {
-        const { gsap } = window;
-        if (!gsap || !rootRef.current) return;
-        gsap.config({ trialWarn: false });
-        gsapRef.current = gsap;
+        gsapRef.current = window.gsap;
         setReady(true);
-
         const index = currentRef.current;
-        const slide = slideRefs.current[index];
-        if (slide) slide.classList.add(`${uid}-cur`);
         animateImages(index, "show").then(() => initTilt(index));
         animateTitle(index, "show");
       })
-      .catch((e) => {
-        if (rootRef.current) rootRef.current.classList.remove(`${uid}-armed`);
-        console.error("[MirrorSlideshow] GSAP load failed:", e.message);
-      });
+      .catch(() => setArmed(false));
 
     return () => removeTilt();
   }, []);
@@ -332,8 +264,7 @@ export default function MirrorSlideshow({
     const onKey = (e) => {
       const total = slides.length;
       if (e.key === "ArrowRight") navigate((currentRef.current + 1) % total);
-      if (e.key === "ArrowLeft")
-        navigate((currentRef.current - 1 + total) % total);
+      if (e.key === "ArrowLeft") navigate((currentRef.current - 1 + total) % total);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -355,103 +286,15 @@ export default function MirrorSlideshow({
         ? "bottom-0 left-0 flex-col items-start px-8 pb-4"
         : "bottom-0 right-0 flex-col items-end px-8 pb-4";
 
-  const css = `
-.${uid}-stage { font-family: ${bodyFont}; }
-.${uid}-slide {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  mix-blend-mode: ${mirrorBlendMode};
-}
-.${uid}-slide.${uid}-cur { opacity: 1; pointer-events: auto; }
-.${uid}-mirror {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  width: ${mirrorWidth};
-  max-width: ${mirrorMaxWidth};
-  opacity: ${mirrorOpacity};
-  display: flex;
-  align-items: center;
-  ${layout === "vertical" ? "flex-direction: row; flex-wrap: wrap;" : ""}
-}
-.${uid}-side {
-  flex: none;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  ${layout === "vertical" ? "width: 100%; height: 50%;" : "width: 50%;"}
-}
-.${uid}-side-two {
-  transform: ${layout === "vertical" ? "scale3d(1,-1,1)" : "scale3d(-1,1,1)"};
-}
-.${uid}-img {
-  display: block;
-  width: 100%;
-  max-height: ${imgMaxHeight};
-}
-.${uid}-title {
-  position: relative;
-  z-index: 10;
-  margin: 0;
-  line-height: 0.8;
-  font-weight: normal;
-  font-family: ${titleFont};
-  font-size: ${titleSize};
-  pointer-events: none;
-  text-align: center;
-}
-.${uid}-armed .${uid}-img { opacity: 0; }
-.${uid}-armed .${uid}-title { opacity: 0; }
-.${uid}-btn {
-  border: 0;
-  background: 0;
-  padding: 0.25em 0;
-  margin: 0.5em 1em 0.5em 0;
-  color: ${navColor};
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.3s, color 0.3s;
-  cursor: pointer;
-}
-.${uid}-btn:focus { outline: none; }
-@media screen and (max-width: 50em) {
-  .${uid}-mirror { width: 90vw; }
-  .${uid}-title { font-size: 2em; }
-  .${uid}-nav {
-    top: 0;
-    bottom: auto;
-    left: 0;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0.5em;
-  }
-  .${uid}-btn { margin: 0.15em 0.5em; }
-}
-`;
-
   return (
     <div
-      ref={rootRef}
-      className={`${uid}-stage relative w-full h-screen overflow-hidden ${className}`}
+      className={`relative w-full h-screen overflow-hidden font-sans ${className}`}
       style={{ backgroundColor: bgColor }}
     >
-      <style dangerouslySetInnerHTML={{ __html: css }} />
-
       {showHeading ? (
         <h2
-          className="absolute top-[38vh] left-0 z-10 w-full m-0 px-4 text-center text-sm uppercase pointer-events-none"
-          style={{
-            color: headingColor,
-            letterSpacing: "0.5em",
-            textIndent: "0.5em",
-          }}
+          className="absolute top-[38vh] left-0 z-10 w-full m-0 px-4 text-center text-sm uppercase tracking-[0.5em] indent-[0.5em] pointer-events-none"
+          style={{ color: headingColor }}
         >
           {heading}
         </h2>
@@ -461,19 +304,50 @@ export default function MirrorSlideshow({
         <div
           key={i}
           ref={(el) => (slideRefs.current[i] = el)}
-          className={`${uid}-slide${i === 0 ? ` ${uid}-cur` : ""}`}
+          className={`absolute inset-0 flex flex-col justify-center ${i === current ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
+          style={{ mixBlendMode: mirrorBlendMode }}
         >
-          <div className={`${uid}-mirror`}>
-            <div className={`${uid}-side`}>
-              <img className={`${uid}-img`} src={slide.image} alt="" />
+          <div
+            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center w-[var(--mw)] max-[50em]:w-[90vw] ${vertical ? "flex-wrap" : ""
+              }`}
+            style={{
+              "--mw": mirrorWidth,
+              maxWidth: mirrorMaxWidth,
+              opacity: mirrorOpacity,
+            }}
+          >
+            <div
+              className={`flex-none overflow-hidden flex items-end ${vertical ? "w-full h-1/2" : "w-1/2"
+                }`}
+            >
+              <img
+                className={`block w-full ${armed ? "opacity-0" : ""}`}
+                style={{ maxHeight: imgMaxHeight }}
+                src={slide.image}
+                alt={slide.alt ?? ""}
+              />
             </div>
-            <div className={`${uid}-side ${uid}-side-two`}>
-              <img className={`${uid}-img`} src={slide.image} alt="" />
+            <div
+              className={`flex-none overflow-hidden flex items-end ${vertical ? "w-full h-1/2 -scale-y-100" : "w-1/2 -scale-x-100"
+                }`}
+            >
+              <img
+                className={`block w-full ${armed ? "opacity-0" : ""}`}
+                style={{ maxHeight: imgMaxHeight }}
+                src={slide.image}
+                alt=""
+              />
             </div>
           </div>
           <h2
-            className={`${uid}-title`}
-            style={{ color: slide.color || "#ffffff" }}
+            className={`relative z-10 m-0 text-center font-normal leading-[0.8] pointer-events-none text-[length:var(--ts)] max-[50em]:text-[2em] ${armed ? "opacity-0" : ""
+              }`}
+            style={{
+              "--ts": titleSize,
+              fontFamily: titleFont,
+              color: slide.color || "#ffffff",
+            }}
           >
             {slide.title}
           </h2>
@@ -482,24 +356,22 @@ export default function MirrorSlideshow({
 
       {showNav ? (
         <nav
-          className={`${uid}-nav absolute z-20 flex overflow-hidden ${navPos}`}
+          className={`absolute z-20 flex overflow-hidden ${navPos} max-[50em]:top-0 max-[50em]:bottom-auto max-[50em]:left-0 max-[50em]:w-full max-[50em]:flex-row max-[50em]:flex-wrap max-[50em]:justify-center max-[50em]:items-center max-[50em]:p-2`}
         >
           {slides.map((slide, i) => (
             <button
               key={i}
               type="button"
-              className={`${uid}-btn`}
-              style={
-                i === current
-                  ? {
-                      color:
-                        navActiveColor === "inherit"
-                          ? slide.color || "#ffffff"
-                          : navActiveColor,
-                      borderBottomColor: "currentColor",
-                    }
-                  : undefined
-              }
+              className="py-1 my-2 mr-4 border-b-2 border-transparent cursor-pointer transition-colors duration-300 focus:outline-none max-[50em]:mx-2 max-[50em]:my-0.5"
+              style={{
+                color:
+                  i === current
+                    ? navActiveColor === "inherit"
+                      ? slide.color || "#ffffff"
+                      : navActiveColor
+                    : navColor,
+                borderBottomColor: i === current ? "currentColor" : undefined,
+              }}
               onClick={() => navigate(i)}
             >
               {slide.title}

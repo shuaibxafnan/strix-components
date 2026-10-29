@@ -2,40 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── GlassCrack ──────────────────────────────────────────────────────────────
-//
-// A full-bleed WebGL image that shatters like glass around the pointer on click,
-// with film-grain-ish radial cracks driven entirely by a fragment shader. Click
-// to break at a new spot; press Space to toggle the displacement effect. Ported
-// from a raw WebGL CodePen (no three.js) — the GL pipeline is hand-rolled.
-//
-// All GL work runs inside useEffect against a ref'd <canvas>, sized to the
-// component's container (not window), so there's no SSR/hydration issue. The
-// optional lil-gui control panel is ESM-only, so it's loaded via an injected
-// <script type="module"> and only when `showControls` is on.
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// imageSrc             string   (demo)    Image to shatter (needs CORS for upload-free remotes).
-// bgColor              string   #000000   Canvas/page backdrop behind transparent edges.
-// distance             number   0.015     u_effect — displacement strength of the break.
-// edgeThickness        number   0.006     u_edge_thickness — crack line thickness.
-// clickRandomizer      number   0.332     u_click_randomizer — seed for the crack pattern.
-// effectOn             boolean  true       Whether the displacement effect is active.
-// pointerStartX        number   0.55      Initial pointer X as a fraction of width.
-// pointerStartY        number   0.5       Initial pointer Y as a fraction of height.
-// maxDevicePixelRatio  number   2         Caps DPR for performance on retina screens.
-// allowImageUpload     boolean  true       Adds a hidden file input + GUI "load image".
-// showControls         boolean  true       Show the lil-gui tweak panel.
-// showTip              boolean  true       Show the hint caption.
-// tipText              string   click to break, space to toggle
-// tipBg                string   cornsilk  Tip background color.
-// tipColor             string   red       Tip text color.
-// autoPreview          boolean  false     Auto-nudge the pointer twice on mount (CodePen preview).
-// className            string   ""        Extra classes on the root element.
-// ──────────────────────────────────────────────────────────────────────────
-
-// Vertex shader — full-screen triangle strip, passes UVs through.
 const VERT_SHADER = `
 precision mediump float;
 varying vec2 vUv;
@@ -46,7 +12,6 @@ void main() {
 }
 `;
 
-// Fragment shader — radial sector cracks + grid cracks + UV displacement.
 const FRAG_SHADER = `
 precision highp float;
 precision highp sampler2D;
@@ -201,41 +166,21 @@ void main() {
 }
 `;
 
-// Loads lil-gui (ESM-only) once across instances.
-const loadGui = () => {
-  if (window.__lilGUI) return Promise.resolve(window.__lilGUI);
-  if (window.__lilGuiPromise) return window.__lilGuiPromise;
-  window.__lilGuiPromise = new Promise((resolve, reject) => {
-    const timeout = setTimeout(
-      () => reject(new Error("lil-gui timed out")),
-      15000,
-    );
-    window.addEventListener(
-      "lilgui-ready",
-      () => {
-        clearTimeout(timeout);
-        resolve(window.__lilGUI);
-      },
-      { once: true },
-    );
-    const s = document.createElement("script");
-    s.type = "module";
-    s.textContent =
-      'import GUI from "https://cdn.jsdelivr.net/npm/lil-gui@0.18.2/+esm";' +
-      "window.__lilGUI = GUI;" +
-      'window.dispatchEvent(new Event("lilgui-ready"));';
-    s.onerror = () => {
-      clearTimeout(timeout);
-      reject(new Error("lil-gui failed to load"));
-    };
-    document.head.appendChild(s);
-  });
-  return window.__lilGuiPromise;
+const compile = (gl, source, type) => {
+  const shader = gl.createShader(type);
+  if (!shader) return null;
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    gl.deleteShader(shader);
+    return null;
+  }
+  return shader;
 };
 
 export default function GlassShatter({
-  imageSrc = "https://ksenia-k.com/img/codepen/for-glass-crack-demo-1.jpg",
-  bgColor = "#000000",
+  imageSrc = "https://images.unsplash.com/photo-1738858363202-dd019dadce76?auto=format&fit=crop&w=1080&q=80",
+  backgroundColor = "bg-black",
   distance = 0.015,
   edgeThickness = 0.006,
   clickRandomizer = 0.332,
@@ -243,113 +188,75 @@ export default function GlassShatter({
   pointerStartX = 0.55,
   pointerStartY = 0.5,
   maxDevicePixelRatio = 2,
-  allowImageUpload = true,
-  showControls = true,
   showTip = true,
-  tipText = "click to break, space to toggle",
-  tipBg = "cornsilk",
-  tipColor = "red",
-  autoPreview = false,
+  tipText = "Click to break, space to toggle",
+  tipClassName = "bg-white text-black",
   className = "",
 }) {
   const rootRef = useRef(null);
   const canvasRef = useRef(null);
-  const inputRef = useRef(null);
+  const engineRef = useRef(null);
 
-  // Mutable engine handles shared between the init effect and the sync effect.
-  const glRef = useRef(null);
-  const uniformsRef = useRef(null);
-  const imageRef = useRef(null);
-  const paramsRef = useRef(null);
-  const pointerRef = useRef(null);
-  const updateUniformsRef = useRef(null);
-
-  // ── Init: build the GL pipeline, load the image, wire events ──
   useEffect(() => {
     const canvas = canvasRef.current;
     const root = rootRef.current;
-    if (!canvas || !root) return;
-
-    const dpr = Math.min(window.devicePixelRatio || 1, maxDevicePixelRatio);
-
-    const params = {
-      clickRandomizer,
-      distance,
-      effectOn,
-      edgeThickness,
-    };
-    paramsRef.current = params;
-
-    const pointer = {
-      x: pointerStartX * root.clientWidth,
-      y: pointerStartY * root.clientHeight,
-    };
-    pointerRef.current = pointer;
+    if (!canvas || !root) return undefined;
 
     const gl = canvas.getContext("webgl");
-    if (!gl) {
-      console.error("[GlassCrack] WebGL not supported");
-      return;
-    }
-    glRef.current = gl;
+    if (!gl) return undefined;
 
-    // ── Compile + link ──
-    const createShader = (src, type) => {
-      const shader = gl.createShader(type);
-      gl.shaderSource(shader, src);
-      gl.compileShader(shader);
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        console.error(
-          "[GlassCrack] shader compile error:",
-          gl.getShaderInfoLog(shader),
-        );
-        gl.deleteShader(shader);
-        return null;
-      }
-      return shader;
-    };
-
-    const vertexShader = createShader(VERT_SHADER, gl.VERTEX_SHADER);
-    const fragmentShader = createShader(FRAG_SHADER, gl.FRAGMENT_SHADER);
+    const vertexShader = compile(gl, VERT_SHADER, gl.VERTEX_SHADER);
+    const fragmentShader = compile(gl, FRAG_SHADER, gl.FRAGMENT_SHADER);
+    if (!vertexShader || !fragmentShader) return undefined;
 
     const program = gl.createProgram();
     gl.attachShader(program, vertexShader);
     gl.attachShader(program, fragmentShader);
     gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      console.error(
-        "[GlassCrack] program link error:",
-        gl.getProgramInfoLog(program),
-      );
-      return;
-    }
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return undefined;
 
-    // Collect uniform locations by name.
+    gl.useProgram(program);
+
     const uniforms = {};
     const uniformCount = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
     for (let i = 0; i < uniformCount; i++) {
-      const name = gl.getActiveUniform(program, i).name;
+      const { name } = gl.getActiveUniform(program, i);
       uniforms[name] = gl.getUniformLocation(program, name);
     }
-    uniformsRef.current = uniforms;
 
-    // Full-screen quad.
-    const vertices = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]);
-    const vertexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
-    gl.useProgram(program);
-
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
+      gl.STATIC_DRAW,
+    );
     const positionLocation = gl.getAttribLocation(program, "a_position");
     gl.enableVertexAttribArray(positionLocation);
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
     gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
 
-    // Transparent edges blend over the backdrop.
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-    const updateUniforms = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, maxDevicePixelRatio);
+    const params = { clickRandomizer, distance, effectOn, edgeThickness };
+    const pointer = {
+      x: pointerStartX * root.clientWidth,
+      y: pointerStartY * root.clientHeight,
+    };
+
+    let image = null;
+    let texture = null;
+    let disposed = false;
+
+    const draw = () => {
+      if (!image) return;
+      gl.clearColor(0, 0, 0, 0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    };
+
+    const update = () => {
       gl.uniform1f(uniforms.u_click_randomizer, params.clickRandomizer);
       gl.uniform1f(uniforms.u_effect, params.distance);
       gl.uniform1f(uniforms.u_effect_active, params.effectOn ? 1 : 0);
@@ -359,186 +266,98 @@ export default function GlassShatter({
         pointer.x / root.clientWidth,
         pointer.y / root.clientHeight,
       );
+      draw();
     };
-    updateUniformsRef.current = updateUniforms;
-    updateUniforms();
 
-    const resizeCanvas = () => {
-      const img = imageRef.current;
-      if (!img) return;
-      const imgRatio = img.naturalWidth / img.naturalHeight;
+    const resize = () => {
+      if (!image) return;
       canvas.width = root.clientWidth * dpr;
       canvas.height = root.clientHeight * dpr;
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform1f(uniforms.u_ratio, canvas.width / canvas.height);
-      gl.uniform1f(uniforms.u_img_ratio, imgRatio);
+      gl.uniform1f(uniforms.u_img_ratio, image.naturalWidth / image.naturalHeight);
+      update();
     };
 
-    const loadImage = (src) => {
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.src = src;
-      img.onload = () => {
-        imageRef.current = img;
-        const tex = gl.createTexture();
-        gl.bindTexture(gl.TEXTURE_2D, tex);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-        gl.texImage2D(
-          gl.TEXTURE_2D,
-          0,
-          gl.RGBA,
-          gl.RGBA,
-          gl.UNSIGNED_BYTE,
-          img,
-        );
-        gl.uniform1i(uniforms.u_image_texture, 0);
-        resizeCanvas();
-      };
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      if (disposed) return;
+      image = img;
+      texture = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+      gl.uniform1i(uniforms.u_image_texture, 0);
+      resize();
     };
+    img.src = imageSrc;
 
-    let rafId = null;
-    const render = () => {
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      rafId = requestAnimationFrame(render);
-    };
-
-    // ── Events ──
-    const handleClick = (e) => {
+    const onClick = (e) => {
       const rect = canvas.getBoundingClientRect();
       pointer.x = e.clientX - rect.left;
       pointer.y = e.clientY - rect.top;
       params.clickRandomizer = Math.random();
-      updateUniforms();
+      update();
     };
 
-    const handleKeydown = (e) => {
-      if (e.code === "Space") {
-        params.effectOn = !params.effectOn;
-        if (guiState.effectControl)
-          guiState.effectControl.setValue(params.effectOn);
-        updateUniforms();
-      }
+    const onKeyDown = (e) => {
+      if (e.code !== "Space") return;
+      e.preventDefault();
+      params.effectOn = !params.effectOn;
+      update();
     };
 
-    canvas.addEventListener("click", handleClick);
-    document.addEventListener("keydown", handleKeydown);
-    window.addEventListener("resize", resizeCanvas);
+    const observer = new ResizeObserver(resize);
+    observer.observe(root);
+    canvas.addEventListener("click", onClick);
+    document.addEventListener("keydown", onKeyDown);
 
-    // Optional file upload.
-    const input = inputRef.current;
-    const handleInputChange = () => {
-      const [file] = input.files;
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (ev) => loadImage(ev.target.result);
-      reader.readAsDataURL(file);
-    };
-    if (input) input.onchange = handleInputChange;
+    engineRef.current = { params, update };
 
-    // ── Optional lil-gui panel ──
-    const guiState = { gui: null, effectControl: null };
-    if (showControls) {
-      loadGui()
-        .then((GUI) => {
-          const gui = new GUI();
-          guiState.gui = gui;
-          gui.close();
-          if (allowImageUpload && input) {
-            gui
-              .add({ loadMyImage: () => input.click() }, "loadMyImage")
-              .name("load image");
-          }
-          const folder = gui.addFolder("shader params");
-          guiState.effectControl = folder
-            .add(params, "effectOn")
-            .onChange(updateUniforms);
-          folder.add(params, "distance", 0, 0.2).onChange(updateUniforms);
-          folder.add(params, "clickRandomizer", 0, 1).onChange(updateUniforms);
-          folder.add(params, "edgeThickness", 0, 0.02).onChange(updateUniforms);
-        })
-        .catch((err) =>
-          console.error("[GlassCrack] GUI load failed:", err.message),
-        );
-    }
-
-    // CodePen-style preview nudge.
-    let autoFlag = true;
-    const autoRun = () => {
-      params.clickRandomizer -= 0.03;
-      pointer.x += 70 * (autoFlag ? 1 : -1);
-      pointer.y += 40;
-      updateUniforms();
-      autoFlag = !autoFlag;
-    };
-    let t1, t2;
-    if (autoPreview) {
-      t1 = setTimeout(autoRun, 500);
-      t2 = setTimeout(autoRun, 1000);
-    }
-
-    loadImage(imageSrc);
-    render();
-
-    // ── Cleanup ──
     return () => {
-      if (rafId) cancelAnimationFrame(rafId);
-      canvas.removeEventListener("click", handleClick);
-      document.removeEventListener("keydown", handleKeydown);
-      window.removeEventListener("resize", resizeCanvas);
-      if (input) input.onchange = null;
-      if (guiState.gui) guiState.gui.destroy();
-      if (t1) clearTimeout(t1);
-      if (t2) clearTimeout(t2);
-      const ext = gl.getExtension("WEBGL_lose_context");
-      if (ext) ext.loseContext();
+      disposed = true;
+      engineRef.current = null;
+      observer.disconnect();
+      canvas.removeEventListener("click", onClick);
+      document.removeEventListener("keydown", onKeyDown);
+      if (texture) gl.deleteTexture(texture);
+      gl.deleteBuffer(buffer);
+      gl.deleteProgram(program);
+      gl.deleteShader(vertexShader);
+      gl.deleteShader(fragmentShader);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    imageSrc,
-    maxDevicePixelRatio,
-    showControls,
-    allowImageUpload,
-    autoPreview,
-  ]);
+  }, [imageSrc, maxDevicePixelRatio]);
 
-  // ── Sync the live, tweakable props into the running scene ──
   useEffect(() => {
-    const params = paramsRef.current;
-    const update = updateUniformsRef.current;
-    if (!params || !update) return;
-    params.distance = distance;
-    params.edgeThickness = edgeThickness;
-    params.clickRandomizer = clickRandomizer;
-    params.effectOn = effectOn;
-    update();
+    const engine = engineRef.current;
+    if (!engine) return;
+    Object.assign(engine.params, {
+      distance,
+      edgeThickness,
+      clickRandomizer,
+      effectOn,
+    });
+    engine.update();
   }, [distance, edgeThickness, clickRandomizer, effectOn]);
 
   return (
     <div
       ref={rootRef}
-      className={"relative w-full h-screen overflow-hidden " + className}
-      style={{ background: bgColor }}
+      className={`relative h-screen w-full overflow-hidden ${backgroundColor} ${className}`}
     >
-      {allowImageUpload && (
-        <input ref={inputRef} type="file" className="hidden" accept="image/*" />
-      )}
+      <canvas ref={canvasRef} className="absolute left-0 top-0 block h-full w-full" />
 
-      <canvas
-        ref={canvasRef}
-        className="absolute top-0 left-0 block w-full h-full"
-      />
-
-      {showTip && (
+      {showTip ? (
         <div
-          className="absolute top-[90%] left-1/2 -translate-x-1/2 -translate-y-1/2 font-mono select-none pointer-events-none px-1"
-          style={{ backgroundColor: tipBg, color: tipColor }}
+          className={`pointer-events-none absolute left-1/2 top-[90%] -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap px-2 py-1 font-mono text-sm ${tipClassName}`}
         >
           {tipText}
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

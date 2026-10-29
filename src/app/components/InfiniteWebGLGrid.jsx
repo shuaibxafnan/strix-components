@@ -2,36 +2,22 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── InfiniteWebGLGrid ───────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// images              array    [...]     Array of image URLs to load into WebGL textures
-// columns             number   5         Number of grid columns configured in CSS
-// gridWidth           string   w-[150%]  Tailwind dynamic wrapper width dimension
-// gridHeight          string   h-[150%]  Tailwind dynamic wrapper height dimension
-// lerpFactor          number   0.085     Smooth dampening asset easing momentum variable
-// distortionStrength  number   0.0001    Intensity of shader vertex bending during tracking
-// mouseDragMultiplier number   2.5       Sensitivity scaling for drag interactions
-// wheelMultiplier     number   0.6       Sensitivity scaling for trackpad/mouse scroll
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_LAMA_IMAGES = [
-  "https://assets.codepen.io/58281/lama-3.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-2.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-1.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-3.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-2.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-1.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-3.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-2.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-1.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-3.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-2.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-1.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-1.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-3.jpg?width=1100&format=auto",
-  "https://assets.codepen.io/58281/lama-2.jpg?width=1100&format=auto",
+  "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1779877716206-f441d5d384d4?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1781513747645-757fb2619e57?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1780163930838-1502715c3bc1?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1749330513873-09ffa91b0aae?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1627896157734-4d7d4388f28b?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1778789172736-e8ba37c71124?auto=format&fit=crop&w=720&q=80",
 ];
 
 export default function InfiniteWebGLGrid({

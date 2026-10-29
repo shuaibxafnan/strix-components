@@ -1,68 +1,45 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
-// ─── GridSlider ───────────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────────
-// slides               array    see SLIDE_DEFAULTS  Array of slide objects
-//   .image             string   url                 Full image URL
-//   .title             string   "MONOCHROME SERIES" Slide title (uppercase)
-//   .paragraph         string   "..."               Slide body text
-//
-// bgColor              string   "#111"              Page background color
-// textColor            string   "#f0f0f0"           Primary text color
-// accentColor          string   "#f0f0f0"           Thumbnail active border color
-// fontDisplay          string   see below           CSS font-family for titles
-// fontMono             string   see below           CSS font-family for body/UI
-// preloaderDuration    number   2048                Preloader count duration (ms)
-// defaultActiveIndex   number   4                   Which grid item opens slider
-// thumbnailWidth       string   "60px"              Thumbnail width
-// thumbnailHeight      string   "40px"              Thumbnail height
-// gridCols             number   3                   Grid columns
-// gridRows             number   2                   Grid rows
-// ──────────────────────────────────────────────────────────────────────────────
-
 const SLIDE_DEFAULTS = [
   {
     image:
-      "https://cdn.cosmos.so/dfff1381-f09c-454b-b98d-8a79161c3d25?format=jpeg",
+      "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=1600&q=80",
     title: "URBAN GEOMETRY",
     paragraph:
       "The city speaks in angles and lines. What appears chaotic is actually ordered. When we slow down enough to truly see, patterns emerge from noise. Photography is meditation—a practice of presence that reveals the hidden structure beneath the surface of our daily experience.",
   },
   {
     image:
-      "https://cdn.cosmos.so/c7af8b26-313a-40e4-9081-85f7fde00c22?format=jpeg",
+      "https://images.unsplash.com/photo-1781513747645-757fb2619e57?auto=format&fit=crop&w=1600&q=80",
     title: "NATURAL ABSTRACTIONS",
     paragraph:
       "Nature doesn't try to be beautiful. It simply is. These patterns exist whether we observe them or not. The creative act is not about making something new, but about seeing what's already there. True art emerges when we remove ourselves from the equation.",
   },
   {
     image:
-      "https://cdn.cosmos.so/03a36d87-af8c-4cfe-bfed-7a3dd502404b.?format=jpeg",
+      "https://images.unsplash.com/photo-1780163930838-1502715c3bc1?auto=format&fit=crop&w=1600&q=80",
     title: "SHADOW PLAY",
     paragraph:
       "Light creates shadow. Shadow defines light. Neither exists without the other. This duality mirrors our own inner landscape. The photograph captures not just the external world, but the photographer's state of mind. What we choose to frame reveals what we value.",
   },
   {
     image:
-      "https://cdn.cosmos.so/bdb2a659-2838-4055-a82e-f145c3fd4467?format=jpeg",
+      "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=1600&q=80",
     title: "MINIMALIST FORMS",
     paragraph:
       "When we strip away the unnecessary, what remains? The essence. The truth. These images aren't about what's there, but what isn't. Silence between notes creates the music. The space between thoughts is where creativity lives. Simplicity is the ultimate sophistication.",
   },
   {
     image:
-      "https://cdn.cosmos.so/fddfc757-d9c3-44f1-af6e-a607c3746738?format=jpeg",
+      "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=1600&q=80",
     title: "MONOCHROME SERIES",
     paragraph:
       "Without color, we see differently. Form and texture speak louder. The world simplified to light and dark reveals truths that color often conceals. In this space between extremes, we find clarity. The photograph becomes a mirror reflecting not just what we see, but how we see.",
   },
   {
     image:
-      "https://cdn.cosmos.so/51a307de-a9ba-4c9e-ad24-beff1ce023d0?format=jpeg",
+      "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=1600&q=80",
     title: "TEXTURAL STUDIES",
     paragraph:
       "Touch with your eyes. Feel the rough and smooth. These surfaces tell stories of time and transformation. Our minds crave texture—it grounds us in the physical world. In an increasingly digital existence, these tactile reminders connect us to our primal nature and the healing power of sensory experience.",
@@ -639,9 +616,8 @@ export default function SeamlessGrid({
     >
       {/* ── Preloader ────────────────────────────────────────────────────────── */}
       <div
-        className={`fixed inset-0 flex items-center justify-center z-[9999] transition-[opacity,visibility] duration-500 ease-in-out ${
-          preloaderHidden ? "opacity-0 invisible" : "opacity-100 visible"
-        }`}
+        className={`fixed inset-0 flex items-center justify-center z-[9999] transition-[opacity,visibility] duration-500 ease-in-out ${preloaderHidden ? "opacity-0 invisible" : "opacity-100 visible"
+          }`}
         style={{ backgroundColor: bgColor }}
       >
         <span

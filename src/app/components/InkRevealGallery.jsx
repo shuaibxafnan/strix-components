@@ -2,36 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── InkRevealGallery ────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// logoText             string   "Sonic Meditation"        Header logo text
-// items                array    [see default below]       Gallery entries: each
-//                                                          { image, date, title, subtitle,
-//                                                            colStart, colSpan, rowStart, rowSpan,
-//                                                            height, extraSpacing }
-// bgColor              string   "#0a0a0a"                  Page background color
-// textColor            string   "#e0e0e0"                  Base text color
-// gridColor            string   "rgba(255,255,255,0.15)"   Grid overlay column line color
-// columns              number   12                         Number of grid columns
-// gutter               string   "0.75rem"                  Grid column gap
-// rowSpacing           string   "4rem"                     Extra top margin for staggered items
-// padding              string   "2rem"                     Outer page padding
-// maskRadius           number   0.35                       Ink-reveal circle radius (0–0.5)
-// maskSpeed            number   0.75                        Marbling flow speed
-// animationSpeed       number   1                          Global shader time speed multiplier
-// appearDuration       number   0.4                        Radius grow tween duration (s)
-// disappearDuration    number   0.3                        Radius shrink tween duration (s)
-// turbulenceIntensity  number   0.225                       Ink marbling turbulence strength
-// effectType           number   0                          0 Invert · 1 B&W · 2 Sepia · 3 Duotone · 4 Pixelate · 5 Blur
-// effectIntensity      number   0.5                        Strength for Pixelate/Blur effects
-// invertMask           bool     false                      Swap which side of the mask reveals
-// effectColor1         string   "#3366cc"                  Duotone shadow color
-// effectColor2         string   "#e63333"                  Duotone highlight color
-// frameSkip            number   0                          Skip N frames per render (perf)
-// ──────────────────────────────────────────────────────────────────────────
-
 const VERTEX_SHADER = `
   varying vec2 v_uv;
   void main() {
@@ -195,7 +165,7 @@ const FRAGMENT_SHADER = `
 const DEFAULT_ITEMS = [
   {
     image:
-      "https://cdn.cosmos.so/b1f1a774-ffad-48f8-8cf2-1c6ac0c75dd1?format=jpeg",
+      "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1200&q=80",
     date: "VOLUME I",
     title: "THE BLUE SILENCE",
     subtitle: "Exploring the depths of consciousness",
@@ -208,7 +178,7 @@ const DEFAULT_ITEMS = [
   },
   {
     image:
-      "https://cdn.cosmos.so/9ed5e53a-bc97-4f58-bbde-3c4590687eb7?format=jpeg",
+      "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=1200&q=80",
     date: "SESSION 02",
     title: "ETHEREAL LANDSCAPES",
     subtitle: "Between dreams and reality",
@@ -221,7 +191,7 @@ const DEFAULT_ITEMS = [
   },
   {
     image:
-      "https://cdn.cosmos.so/17b5c6b8-91c7-420b-8b98-29ec22b1afbb?format=jpeg",
+      "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=1200&q=80",
     date: "PASSAGE III",
     title: "RESONANT FREQUENCIES",
     subtitle: "The harmony of dissonance",
@@ -234,7 +204,7 @@ const DEFAULT_ITEMS = [
   },
   {
     image:
-      "https://cdn.cosmos.so/84950878-95e5-4db6-8904-3340c303cf29?format=jpeg",
+      "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1200&q=80",
     date: "CHAPTER IV",
     title: "TEMPORAL DISTORTION",
     subtitle: "Moments stretched into infinity",
@@ -247,8 +217,6 @@ const DEFAULT_ITEMS = [
   },
 ];
 
-const DEFAULT_NAV = ["Works", "Philosophy", "Process"];
-
 function hexToVec3(hex) {
   const clean = hex.replace("#", "");
   const r = parseInt(clean.substring(0, 2), 16) / 255;
@@ -258,8 +226,6 @@ function hexToVec3(hex) {
 }
 
 export default function InkRevealGallery({
-  logoText = "Sonic Meditation",
-  navItems = DEFAULT_NAV,
   items = DEFAULT_ITEMS,
   bgColor = "#0a0a0a",
   textColor = "#e0e0e0",
@@ -287,19 +253,23 @@ export default function InkRevealGallery({
   const rafRef = useRef(null);
 
   useEffect(() => {
-    const loadScript = (src) =>
-      new Promise((resolve, reject) => {
-        if (document.querySelector(`script[data-id="${src}"]`)) {
-          resolve();
-          return;
-        }
+    const scriptCache = new Map();
+
+    const loadScript = (src) => {
+      if (scriptCache.has(src)) return scriptCache.get(src);
+      const promise = new Promise((resolve, reject) => {
         const el = document.createElement("script");
         el.src = src;
-        el.setAttribute("data-id", src);
         el.onload = resolve;
-        el.onerror = () => reject(new Error(`Failed: ${src}`));
+        el.onerror = () => {
+          scriptCache.delete(src);
+          reject(new Error(`Failed: ${src}`));
+        };
         document.head.appendChild(el);
       });
+      scriptCache.set(src, promise);
+      return promise;
+    };
 
     let cancelled = false;
     const cleanupFns = [];

@@ -1,142 +1,129 @@
 "use client";
 
 import { useState } from "react";
+import { Cormorant_Garamond, Josefin_Sans } from "next/font/google";
 
-const DEFAULT_THUMBNAILS = [
-  { src: "https://i.imgur.com/fr0t90i.png", alt: "Viola" },
-  { src: "https://i.imgur.com/xreMn5b.png", alt: "Mathia" },
-  { src: "https://i.imgur.com/cQvn0un.png", alt: "Arctica" },
-  { src: "https://i.imgur.com/HnhJytt.png", alt: "Taria" },
+const labelFont = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  style: ["italic"],
+});
+
+const bodyFont = Josefin_Sans({
+  subsets: ["latin"],
+  weight: ["200", "300"],
+});
+
+const DEFAULT_IMAGES = [
+  {
+    src: "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=900&q=80",
+    alt: "Viola",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1779877716206-f441d5d384d4?auto=format&fit=crop&w=900&q=80",
+    alt: "Mathia",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=900&q=80",
+    alt: "Arctica",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=900&q=80",
+    alt: "Taria",
+  },
 ];
 
+const NOISE_URL = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E")`;
+
 export default function ImageGalleryTransition({
-  mainImage: initialMain = "https://i.imgur.com/40tbu6l.png",
-  thumbnails = DEFAULT_THUMBNAILS,
+  images = DEFAULT_IMAGES,
   heading = "Fluffy Philharmonic",
   description = "Select a performer",
+  bgColor = "#000000",
+  textColor = "#ffffff",
+  accentColor = "#ffffff",
+  showNoise = true,
 }) {
-  const [currentSrc, setCurrentSrc] = useState(thumbnails[0].src);
-  const [activeName, setActiveName] = useState(thumbnails[0].alt);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleThumbnailClick = (e, src, alt, index) => {
-    e.preventDefault();
-    const update = () => {
-      setCurrentSrc(src);
-      setActiveName(alt);
-      setActiveIndex(index);
-    };
-    if (!document.startViewTransition) {
-      update();
-      return;
-    }
-    document.startViewTransition(() => update());
-  };
+  const items = images.slice(0, 4);
+  const [active, setActive] = useState(0);
 
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Josefin+Sans:wght@200;300&display=swap');
+    <div
+      className={`${bodyFont.className} relative flex min-h-[100svh] w-screen items-center justify-center overflow-hidden`}
+      style={{
+        backgroundColor: bgColor,
+        color: textColor,
+        "--accent": accentColor,
+      }}
+    >
+      {showNoise && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-[100] opacity-60 mix-blend-overlay"
+          style={{ backgroundImage: NOISE_URL }}
+        />
+      )}
 
-        .vt-gallery-root { font-family: 'Josefin Sans', sans-serif; }
-        .vt-label { font-family: 'Cormorant Garamond', serif; font-style: italic; letter-spacing: 0.04em; }
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,color-mix(in_srgb,var(--accent)_8%,transparent)_0%,transparent_70%)]" />
 
-        .vt-gallery-root::before {
-          content: '';
-          position: fixed;
-          inset: 0;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-          pointer-events: none;
-          z-index: 100;
-          opacity: 0.6;
-          mix-blend-mode: overlay;
-        }
+      <div className="relative flex w-full max-w-[520px] flex-col items-center gap-6 px-5 py-8 sm:gap-8 sm:px-8">
+        <div className="flex w-full flex-col items-center gap-1">
+          <p className="text-[10px] uppercase tracking-[0.3em] opacity-40">
+            {description}
+          </p>
+          <h1
+            className={`${labelFont.className} text-center text-[1.75rem] font-light tracking-[0.04em] sm:text-[2rem]`}
+          >
+            {heading}
+          </h1>
+        </div>
 
-        .vt-main-img {
-          view-transition-name: hero-image;
-          display: block;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
+        <div className="flex w-full gap-2 sm:gap-3">
+          <div className="relative aspect-square flex-1 overflow-hidden rounded-[3px] bg-white/5 shadow-[0_24px_80px_rgba(0,0,0,0.7),inset_0_0_0_1px_rgba(255,255,255,0.08)]">
+            {items.map((item, i) => (
+              <img
+                key={i}
+                src={item.src}
+                alt={item.alt}
+                className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${active === i ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"
+                  }`}
+              />
+            ))}
 
-        ::view-transition-old(hero-image) { animation: vt-out 0.5s cubic-bezier(0.4,0,0.2,1) forwards; }
-        ::view-transition-new(hero-image) { animation: vt-in  0.5s cubic-bezier(0.4,0,0.2,1) forwards; }
-        @keyframes vt-in  { from { opacity:0; transform:scale(1.04); } to { opacity:1; transform:scale(1); } }
-        @keyframes vt-out { from { opacity:1; transform:scale(1);    } to { opacity:0; transform:scale(0.97); } }
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 to-transparent" />
 
-        .vt-thumb {
-          transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, box-shadow 0.3s ease;
-        }
-        .vt-thumb:hover         { transform:scale(1.06); opacity:1 !important; box-shadow:0 0 0 1px #c9a96e; }
-        .vt-thumb.active        { box-shadow:0 0 0 1.5px #c9a96e; opacity:1 !important; }
-
-        @supports not (view-transition-name: hero-image) {
-          .vt-unsupported::after {
-            content: "View Transitions not supported in this browser.";
-            position: fixed; top:0; left:0; right:0;
-            text-align:center; padding:0.5em;
-            background:#c9a96e; color:#000; font-size:12px; z-index:999;
-          }
-        }
-      `}</style>
-
-      <div className="vt-gallery-root vt-unsupported w-screen h-screen flex items-center justify-center bg-[#0a0a0a] text-[#e8e0d5] overflow-hidden">
-        {/* radial glow */}
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(201,169,110,0.05)_0%,transparent_70%)]" />
-
-        <div className="relative flex flex-col items-center gap-8 px-8 w-full max-w-[520px]">
-          {/* heading */}
-          <div className="flex flex-col items-center gap-1 w-full">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-[rgba(232,224,213,0.35)]">
-              {description}
-            </p>
-            <h1 className="vt-label text-[2rem] font-light text-[#e8e0d5]">
-              {heading}
-            </h1>
+            <div className="absolute bottom-3 left-3 right-3 flex w-fit items-center gap-4 rounded-[4px] border border-white/10 bg-white/10 px-3 py-2 shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-md">
+              <span
+                className={`${labelFont.className} text-[1.1rem] font-light leading-none tracking-[0.04em] text-white`}
+              >
+                {items[active].alt}
+              </span>
+              <span className="ml-auto h-1 w-1 rounded-full bg-[color:var(--accent)]" />
+            </div>
           </div>
 
-          {/* gallery row */}
-          <div className="flex gap-3 w-full">
-            {/* main image */}
-            <div className="relative overflow-hidden rounded-[3px] flex-1 aspect-square bg-[#111] shadow-[0_24px_80px_rgba(0,0,0,0.7),inset_0_0_0_1px_rgba(255,255,255,0.06)]">
-              <img src={currentSrc} alt="Main" className="vt-main-img" />
-
-              {/* bottom scrim */}
-              <div className="absolute bottom-0 inset-x-0 h-2/5 pointer-events-none bg-gradient-to-t from-black/70 to-transparent" />
-
-              {/* glassmorphism name badge */}
-              <div className="absolute w-fit bottom-3 left-3 right-3 flex items-center gap-4 px-3 py-2 rounded-[4px] backdrop-blur-md bg-white/10 border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
-                <span className="vt-label text-[1.1rem] font-light text-[#e8e0d5] leading-none">
-                  {activeName}
-                </span>
-                <span className="ml-auto w-1 h-1 rounded-full bg-[#c9a96e]" />
-              </div>
-            </div>
-
-            {/* thumbnails */}
-            <div className="flex flex-col justify-between gap-2">
-              {thumbnails.map((thumb, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  onClick={(e) =>
-                    handleThumbnailClick(e, thumb.src, thumb.alt, i)
-                  }
-                  className="block overflow-hidden rounded-[3px] aspect-square bg-[#111] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]"
-                  style={{ width: "calc((330px - 1.5em) / 4)" }}
-                >
-                  <img
-                    src={thumb.src}
-                    alt={thumb.alt}
-                    className={`vt-thumb w-full h-full object-cover ${activeIndex === i ? "active" : "opacity-40"}`}
-                  />
-                </a>
-              ))}
-            </div>
+          <div className="flex flex-col justify-between gap-2">
+            {items.map((item, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={item.alt}
+                onClick={() => setActive(i)}
+                className="block aspect-square w-14 overflow-hidden rounded-[3px] bg-white/5 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] sm:w-[4.75rem]"
+              >
+                <img
+                  src={item.src}
+                  alt=""
+                  className={`h-full w-full object-cover transition-[transform,opacity,box-shadow] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-[1.06] hover:opacity-100 hover:shadow-[0_0_0_1px_var(--accent)] ${active === i
+                    ? "opacity-100 shadow-[0_0_0_1.5px_var(--accent)]"
+                    : "opacity-40"
+                    }`}
+                />
+              </button>
+            ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,161 +1,116 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
-// ─── AnimatedSlider ────────────────────────────────────────────────────────
-//
-// A full-viewport hero carousel with a floating thumbnail strip, animated
-// content entrance, arrow controls, and a top-edge progress bar.
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// slides              array    required   Array of slide objects (see shape below)
-//
-// Slide shape:
-//   { image: string, title: string, name: string, description: string }
-//     image       — URL for the background image
-//     title       — Small eyebrow label (e.g. "SLIDER")
-//     name        — Large headline (e.g. "EAGLE")
-//     description — Body copy shown beneath the headline
-//
-// accentColor         string   "#14FF72CB"  Accent used on eyebrow, buttons, progress bar, arrows
-// contentLeft         string   "100px"      Left offset of the slide content text block
-// contentWidth        string   "400px"      Max-width of the slide content text block
-// timeRunning         number   3000         Transition animation duration in ms
-// timeAutoNext        number   7000         Auto-advance interval in ms
-// thumbWidth          string   "180px"      Width of each thumbnail card in the strip
-// thumbHeight         string   "250px"      Height of each thumbnail card in the strip
-// thumbTop            string   "80%"        Vertical centre of the thumbnail strip
-// thumbStartLeft      string   "67%"        Left edge where the thumbnail strip begins
-// thumbGap            number   200          Pixel gap between consecutive thumbnails
-// titleFontSize       string   "100px"      Font size for the eyebrow title
-// nameFontSize        string   "100px"      Font size for the slide name headline
-// desFontSize         string   "18px"       Font size for the description text
-// progressHeight      string   "4px"        Height of the top progress bar
-// ──────────────────────────────────────────────────────────────────────────
+const photo = (id) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1920&h=1080&q=80`;
 
 const DEFAULT_SLIDES = [
   {
-    image: "https://u.cubeupload.com/Leo21/eagel1.jpg",
-    title: "SLIDER",
-    name: "EAGLE",
-    description:
-      "Eagles are majestic birds of prey known for their incredible strength, sharp vision, and powerful talons",
+    image: photo("1749330513873-09ffa91b0aae"),
+    name: "Morning",
+    description: "The first hour, before the street has an opinion.",
   },
   {
-    image: "https://u.cubeupload.com/Leo21/owl1.jpg",
-    title: "SLIDER",
-    name: "OWL",
-    description:
-      "Owls are nocturnal birds of prey, shrouded in an aura of mystery and wisdom",
+    image: photo("1778789172736-e8ba37c71124"),
+    name: "Concrete",
+    description: "Hard edges and the long afternoon that falls across them.",
   },
   {
-    image: "https://u.cubeupload.com/Leo21/crow.jpg",
-    title: "SLIDER",
-    name: "CROW",
-    description:
-      "Crows are highly intelligent and adaptable birds known for their glossy black plumage and distinctive calls.",
+    image: photo("1634325232058-e7b8f80cc20b"),
+    name: "Frame",
+    description: "What holds a picture up when everything else is taken away.",
   },
   {
-    image: "https://u.cubeupload.com/Leo21/butterfly1.jpeg",
-    title: "SLIDER",
-    name: "BUTTERFLY",
-    description:
-      "Butterflies, with their vibrant wings and graceful flight, are a symbol of transformation and beauty in the natural world",
+    image: photo("1759458856846-097935f54111"),
+    name: "Grain",
+    description: "Close enough to feel the surface without touching it.",
   },
   {
-    image: "https://u.cubeupload.com/Leo21/owl2.jpg",
-    title: "SLIDER",
-    name: "OWL",
-    description:
-      "Owls have long been associated with mystery, wisdom, and the supernatural in various cultures",
+    image: photo("1752150127767-77bccbed07e2"),
+    name: "Horizon",
+    description: "A single line doing most of the work.",
   },
   {
-    image: "https://u.cubeupload.com/Leo21/eagel3.jpg",
-    title: "SLIDER",
-    name: "EAGLE",
-    description:
-      "Eagles represent freedom, power, and nobility in many cultures",
+    image: photo("1781935307999-e8bb5e62ebb1"),
+    name: "Quiet",
+    description: "Nothing moves, and that is the whole subject.",
   },
   {
-    image: "https://u.cubeupload.com/Leo21/kingfirser2.jpeg",
-    title: "SLIDER",
-    name: "KINGFISHER",
-    description:
-      "Kingfishers, with their dazzling plumage, are vibrant jewels of the aquatic world",
+    image: photo("1777947085284-d454d1aa2f40"),
+    name: "Passage",
+    description: "A moment caught on its way somewhere else.",
   },
   {
-    image: "https://u.cubeupload.com/Leo21/parrot2.jpg",
-    title: "SLIDER",
-    name: "PARROT",
-    description:
-      "Parrots are social creatures, often living in flocks and exhibiting complex communication patterns",
-  },
-  {
-    image: "https://u.cubeupload.com/Leo21/heron.jpeg",
-    title: "SLIDER",
-    name: "HERON",
-    description:
-      "Herons are known for their striking appearance, often characterized by graceful necks and stilt-like legs",
-  },
-  {
-    image: "https://u.cubeupload.com/Leo21/butterfly2.jpg",
-    title: "SLIDER",
-    name: "BUTTERFLY",
-    description:
-      "Butterflies, with their delicate wings and vibrant colors, are among the most enchanting creatures in the natural world",
-  },
-  {
-    image: "https://u.cubeupload.com/Leo21/parrot1.jpg",
-    title: "SLIDER",
-    name: "PARROT",
-    description:
-      "Parrots are known for their long lifespans, with some species living for several decades",
+    image: photo("1595598034023-ca08624ce05d"),
+    name: "Dusk",
+    description: "The hour when black and white stop arguing.",
   },
 ];
 
+const Chevron = ({ dir }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="h-5 w-5"
+    aria-hidden="true"
+  >
+    <path d={dir === "right" ? "m9 18 6-6-6-6" : "m15 18-6-6 6-6"} />
+  </svg>
+);
+
+const arrowBtn =
+  "grid h-12 w-12 place-items-center rounded-full border border-white/30 bg-white/5 text-white backdrop-blur-sm transition duration-300 hover:border-white hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+
 export default function BirdSlideshow({
   slides = DEFAULT_SLIDES,
-  // ── visual tokens ──────────────────────────────────────────────────────
-  accentColor = "#14FF72CB",
-  // ── content block ──────────────────────────────────────────────────────
+  accentColor = "#ffffff",
+  onAccentColor = "#0a0a0a",
+  fontFamily = "Archivo",
+  grayscale = true,
   contentLeft = "100px",
-  contentWidth = "400px",
-  titleFontSize = "100px",
-  nameFontSize = "100px",
-  desFontSize = "18px",
-  // ── thumbnail strip ────────────────────────────────────────────────────
+  contentWidth = "460px",
+  nameFontSize = "clamp(3.5rem, 10vw, 8.5rem)",
+  desFontSize = "1.125rem",
+  primaryLabel = "See more",
+  primaryHref = "#",
+  secondaryLabel = "Subscribe",
+  secondaryHref = "#",
+  counterOf = "of",
+  prevLabel = "Previous slide",
+  nextLabel = "Next slide",
   thumbWidth = "180px",
   thumbHeight = "250px",
   thumbTop = "80%",
   thumbStartLeft = "67%",
   thumbGap = 200,
-  // ── timing ─────────────────────────────────────────────────────────────
   timeRunning = 3000,
   timeAutoNext = 7000,
-  // ── progress bar ───────────────────────────────────────────────────────
-  progressHeight = "4px",
+  progressHeight = "3px",
 }) {
-  // ── refs ────────────────────────────────────────────────────────────────
   const carouselRef = useRef(null);
   const listRef = useRef(null);
   const progressRef = useRef(null);
+  const counterRef = useRef(null);
   const runTimeOutRef = useRef(null);
   const runNextAutoRef = useRef(null);
 
-  // ── helpers ─────────────────────────────────────────────────────────────
+  const total = slides.length;
+  const pad = (n) => String(n).padStart(2, "0");
+  const ordered = [slides[total - 1], ...slides.slice(0, total - 1)];
 
-  // Restarts the CSS progress-bar animation by forcing a reflow
   const resetTimeAnimation = useCallback(() => {
     const el = progressRef.current;
     if (!el) return;
     el.style.animation = "none";
-    // eslint-disable-next-line no-unused-expressions
-    el.offsetHeight; // trigger reflow
+    void el.offsetHeight;
     el.style.animation = `sliderProgress ${timeAutoNext}ms linear 1 forwards`;
   }, [timeAutoNext]);
 
-  // Moves items in the DOM and toggles transition classes
   const showSlider = useCallback(
     (type) => {
       const listEl = listRef.current;
@@ -172,14 +127,17 @@ export default function BirdSlideshow({
         carouselEl.classList.add("slider-prev");
       }
 
-      // Remove transition class after animation completes
+      const hero = listEl.children[1];
+      if (hero && counterRef.current) {
+        counterRef.current.textContent = pad(Number(hero.dataset.index) + 1);
+      }
+
       clearTimeout(runTimeOutRef.current);
       runTimeOutRef.current = setTimeout(() => {
         carouselEl.classList.remove("slider-next");
         carouselEl.classList.remove("slider-prev");
       }, timeRunning);
 
-      // Schedule next auto-advance
       clearTimeout(runNextAutoRef.current);
       runNextAutoRef.current = setTimeout(() => {
         showSlider("next");
@@ -190,10 +148,7 @@ export default function BirdSlideshow({
     [timeRunning, timeAutoNext, resetTimeAnimation],
   );
 
-  // ── lifecycle ────────────────────────────────────────────────────────────
-
   useEffect(() => {
-    // Kick off the first auto-advance and progress animation
     resetTimeAnimation();
     runNextAutoRef.current = setTimeout(() => {
       showSlider("next");
@@ -205,257 +160,127 @@ export default function BirdSlideshow({
     };
   }, [showSlider, resetTimeAnimation, timeAutoNext]);
 
-  // ── render ───────────────────────────────────────────────────────────────
-
   return (
     <>
-      {/* ── Scoped styles ──────────────────────────────────────────────────
-          Only used for:
-          1. CSS @keyframes (cannot live in Tailwind)
-          2. nth-child positioning rules (dynamic, index-dependent)
-          3. Transition classes (.slider-next / .slider-prev) applied via JS
-          4. Content entrance animation on :nth-child(2)
-          Everything else is Tailwind.
-      ──────────────────────────────────────────────────────────────────── */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap"
+      />
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&family=Turret+Road:wght@400;700;800&display=swap');
-
-        /* ── Progress bar keyframe ── */
-        @keyframes sliderProgress {
-          from { width: 0%; }
-          to   { width: 100%; }
-        }
-
-        /* ── Content entrance keyframe ── */
+        @keyframes sliderProgress { from { width: 0%; } to { width: 100%; } }
         @keyframes sliderContentIn {
-          from { opacity: 0; transform: translateY(100px); filter: blur(33px); }
-          to   { opacity: 1; transform: translateY(0);     filter: blur(0); }
-        }
-
-        /* ── Thumbnail item positioning ── */
-        .slider-item {
-          width: ${thumbWidth};
-          height: ${thumbHeight};
-          position: absolute;
-          top: ${thumbTop};
-          transform: translateY(-70%);
-          left: ${thumbStartLeft};
-          border-radius: 20px;
-          box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-          background-position: center;
-          background-size: cover;
-          z-index: 100;
-          transition: left 1s, top 1s, transform 1s, width 1s, height 1s, border-radius 1s;
-        }
-
-        /* Items 1 & 2 become the full-screen hero */
-        .slider-item:nth-child(1),
-        .slider-item:nth-child(2) {
-          top: 0; left: 0;
-          transform: translate(0, 0);
-          border-radius: 0;
-          width: 100%; height: 100%;
-        }
-
-        /* Thumbnail strip positions */
-        .slider-item:nth-child(3) { left: ${thumbStartLeft}; }
-        .slider-item:nth-child(4) { left: calc(${thumbStartLeft} + ${thumbGap}px); }
-        .slider-item:nth-child(5) { left: calc(${thumbStartLeft} + ${thumbGap * 2}px); }
-        .slider-item:nth-child(6) { left: calc(${thumbStartLeft} + ${thumbGap * 3}px); }
-        .slider-item:nth-child(n+7) { left: calc(${thumbStartLeft} + ${thumbGap * 4}px); opacity: 0; }
-
-        /* ── Slide content — only visible on item 2 ── */
-        .slider-content { display: none; }
-        .slider-item:nth-child(2) .slider-content { display: block; }
-
-        /* Content entrance animations (staggered) */
-        .slider-content .slide-title {
-          opacity: 0;
-          animation: sliderContentIn 1s ease-in-out 0.3s 1 forwards;
-        }
-        .slider-content .slide-name {
-          opacity: 0;
-          animation: sliderContentIn 1s ease-in-out 0.6s 1 forwards;
-        }
-        .slider-content .slide-des {
-          opacity: 0;
-          animation: sliderContentIn 1s ease-in-out 0.9s 1 forwards;
-        }
-        .slider-content .slide-btn {
-          opacity: 0;
-          animation: sliderContentIn 1s ease-in-out 1.2s 1 forwards;
-        }
-
-        /* ── Next/Prev transition overrides ── */
-        .slider-next .slider-item:nth-child(1) { left: -100%; }
-        .slider-prev .slider-item:nth-child(2) { left: -100%; }
-
-        .slider-next .slider-item:nth-child(2) {
-          left: 0; top: 0; transform: translate(0); width: 100%; height: 100%; border-radius: 0;
-        }
-        .slider-prev .slider-item:nth-child(3) {
-          left: 0; top: 0; transform: translate(0); width: 100%; height: 100%; border-radius: 0;
-        }
-
-        .slider-next .slider-item:nth-child(3) { left: ${thumbStartLeft}; }
-        .slider-next .slider-item:nth-child(4) { left: calc(${thumbStartLeft} + ${thumbGap}px); }
-        .slider-next .slider-item:nth-child(5) { left: calc(${thumbStartLeft} + ${thumbGap * 2}px); }
-        .slider-next .slider-item:nth-child(6) { left: calc(${thumbStartLeft} + ${thumbGap * 3}px); }
-
-        .slider-prev .slider-item:nth-child(4) { left: calc(${thumbStartLeft} + ${thumbGap}px); }
-        .slider-prev .slider-item:nth-child(5) { left: calc(${thumbStartLeft} + ${thumbGap * 2}px); }
-
-        @media (max-width: 999px) {
-          .slider-content { left: 50px !important; }
-          .slide-title, .slide-name { font-size: 70px !important; }
-          .slide-des { font-size: 16px !important; }
-        }
-        @media (max-width: 690px) {
-          .slider-content { top: 40% !important; }
-          .slide-title, .slide-name { font-size: 45px !important; }
-          .slide-btn button { padding: 10px 15px !important; font-size: 14px !important; }
-        }
-        @media (max-width: 450px) {
-          .slider-content { width: 300px !important; left: 20px !important; }
+          from { opacity: 0; transform: translateY(60px); filter: blur(24px); }
+          to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
       `}</style>
 
-      {/* ── Carousel wrapper ───────────────────────────────────────────────── */}
       <div
         ref={carouselRef}
-        className="relative w-screen h-screen overflow-hidden"
-        style={{ fontFamily: "'Poppins', sans-serif" }}
+        className="group/c relative h-[100dvh] w-full overflow-hidden bg-black font-[family-name:var(--font)] text-white [--cl:var(--d-cl)] [--th:var(--d-th)] [--tg:calc(var(--d-gap)*1px)] [--tl:var(--d-tl)] [--top:var(--d-top)] [--tw:var(--d-tw)] max-[999px]:[--cl:50px] max-[690px]:[--cl:20px] max-[690px]:[--tg:78px] max-[690px]:[--th:104px] max-[690px]:[--tl:5%] max-[690px]:[--top:88%] max-[690px]:[--tw:72px]"
+        style={{
+          "--font": `"${fontFamily}", sans-serif`,
+          "--accent": accentColor,
+          "--on-accent": onAccentColor,
+          "--d-cl": contentLeft,
+          "--d-cw": contentWidth,
+          "--nfs": nameFontSize,
+          "--dfs": desFontSize,
+          "--d-tw": thumbWidth,
+          "--d-th": thumbHeight,
+          "--d-top": thumbTop,
+          "--d-tl": thumbStartLeft,
+          "--d-gap": thumbGap,
+          "--ph": progressHeight,
+        }}
       >
-        {/* ── Slide list ───────────────────────────────────────────────────── */}
-        <div ref={listRef} className="w-full h-full">
-          {slides.map((slide, i) => (
-            <div
-              key={i}
-              className="slider-item"
-              style={{ backgroundImage: `url('${slide.image}')` }}
-            >
-              {/* Content — CSS hides this on all items except :nth-child(2) */}
+        <div ref={listRef} className="h-full w-full">
+          {ordered.map((slide, i) => {
+            const index = (i - 1 + total) % total;
+            return (
               <div
-                className="slider-content absolute text-white text-left"
-                style={{
-                  top: "50%",
-                  left: contentLeft,
-                  transform: "translateY(-50%)",
-                  width: contentWidth,
-                }}
+                key={index}
+                data-index={index}
+                className="slider-item group/item absolute left-[var(--tl)] top-[var(--top)] z-[100] h-[var(--th)] w-[var(--tw)] overflow-hidden rounded-[20px] shadow-[0_25px_50px_rgba(0,0,0,0.25)] [transform:translateY(-70%)] [transition:left_1s,top_1s,transform_1s,width_1s,height_1s,border-radius_1s] [&:nth-child(-n+2)]:left-0 [&:nth-child(-n+2)]:top-0 [&:nth-child(-n+2)]:h-full [&:nth-child(-n+2)]:w-full [&:nth-child(-n+2)]:rounded-none [&:nth-child(-n+2)]:[transform:translate(0,0)] [&:nth-child(4)]:[left:calc(var(--tl)_+_var(--tg))] [&:nth-child(5)]:[left:calc(var(--tl)_+_var(--tg)_*_2)] [&:nth-child(6)]:[left:calc(var(--tl)_+_var(--tg)_*_3)] [&:nth-child(n+7)]:opacity-0 [&:nth-child(n+7)]:[left:calc(var(--tl)_+_var(--tg)_*_4)] group-[.slider-next]/c:[&:nth-child(1)]:-left-full group-[.slider-prev]/c:[&:nth-child(2)]:-left-full group-[.slider-prev]/c:[&:nth-child(3)]:left-0 group-[.slider-prev]/c:[&:nth-child(3)]:top-0 group-[.slider-prev]/c:[&:nth-child(3)]:h-full group-[.slider-prev]/c:[&:nth-child(3)]:w-full group-[.slider-prev]/c:[&:nth-child(3)]:rounded-none group-[.slider-prev]/c:[&:nth-child(3)]:[transform:translate(0,0)]"
               >
-                {/* Eyebrow title */}
-                <div
-                  className="slide-title font-bold uppercase leading-none"
-                  style={{ fontSize: titleFontSize, color: accentColor }}
-                >
-                  {slide.title}
-                </div>
+                <img
+                  src={slide.image}
+                  alt=""
+                  className={`absolute inset-0 h-full w-full object-cover ${grayscale ? "grayscale" : ""
+                    }`}
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.72),rgba(0,0,0,0.2)_55%,rgba(0,0,0,0.05)),linear-gradient(to_top,rgba(0,0,0,0.55),transparent_40%)]"
+                />
 
-                {/* Hero name */}
-                <div
-                  className="slide-name font-bold uppercase leading-none"
-                  style={{
-                    fontSize: nameFontSize,
-                    textShadow: "3px 4px 4px rgba(255,255,255,0.8)",
-                  }}
-                >
+                <span className="absolute inset-x-0 bottom-0 p-4 text-sm font-medium group-[:nth-child(-n+2)]/item:hidden max-[690px]:hidden">
                   {slide.name}
-                </div>
+                </span>
 
-                {/* Description */}
-                <div
-                  className="slide-des mt-2.5 mb-5 ml-1"
-                  style={{ fontSize: desFontSize }}
-                >
-                  {slide.description}
-                </div>
+                <div className="hidden w-[var(--d-cw)] max-w-[calc(100vw-var(--cl)-1.25rem)] [transform:translateY(-50%)] group-[:nth-child(2)]/item:block absolute left-[var(--cl)] top-1/2 max-[690px]:top-[40%]">
 
-                {/* CTA buttons */}
-                <div className="slide-btn ml-1 flex gap-3">
-                  <button
-                    className="px-5 py-2.5 text-base font-medium text-white cursor-pointer transition-colors duration-300"
-                    style={{ border: `2px solid #FFFFFF` }}
-                  >
-                    See More
-                  </button>
-                  <button
-                    className="px-5 py-2.5 text-base font-medium cursor-pointer transition-colors duration-300"
-                    style={{
-                      backgroundColor: "transparent",
-                      color: accentColor,
-                      border: "2px solid #FFFFFF",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = accentColor;
-                      e.currentTarget.style.color = "#FFFFFF";
-                      e.currentTarget.style.borderColor = accentColor;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = "transparent";
-                      e.currentTarget.style.color = accentColor;
-                      e.currentTarget.style.borderColor = "#FFFFFF";
-                    }}
-                  >
-                    Subscribe
-                  </button>
+                  <div className="mt-3 animate-[sliderContentIn_1s_ease-in-out_0.6s_1_forwards] text-[length:var(--nfs)] font-extrabold uppercase leading-[0.85] tracking-[-0.02em] opacity-0 [font-stretch:75%]">
+                    {slide.name}
+                  </div>
+
+                  <div className="mt-6 max-w-[34ch] animate-[sliderContentIn_1s_ease-in-out_0.9s_1_forwards] text-[length:var(--dfs)] font-light leading-relaxed text-white/75 opacity-0">
+                    {slide.description}
+                  </div>
+
+                  <div className="mt-8 flex animate-[sliderContentIn_1s_ease-in-out_1.2s_1_forwards] gap-3 opacity-0">
+                    <a
+                      href={primaryHref}
+                      className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-[var(--on-accent)] transition duration-300 hover:bg-white/80 max-[690px]:px-4 max-[690px]:py-2.5"
+                    >
+                      {primaryLabel}
+                    </a>
+                    <a
+                      href={secondaryHref}
+                      className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:border-white hover:bg-white hover:text-black max-[690px]:px-4 max-[690px]:py-2.5"
+                    >
+                      {secondaryLabel}
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* ── Arrow controls ───────────────────────────────────────────────── */}
-        <div
-          className="absolute z-[100] flex gap-2.5 items-center"
-          style={{ top: "80%", right: "52%", width: "300px", maxWidth: "30%" }}
-        >
+        <div className="absolute bottom-[10%] left-[var(--cl)] z-[100] flex items-center gap-4 max-[690px]:bottom-[24%]">
           <button
-            className="w-[50px] h-[50px] rounded-full font-mono font-bold text-base text-white border-none outline-none cursor-pointer transition-colors duration-500"
-            style={{ backgroundColor: accentColor }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#FFFFFF";
-              e.currentTarget.style.color = "#000000";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = accentColor;
-              e.currentTarget.style.color = "#FFFFFF";
-            }}
+            type="button"
+            aria-label={prevLabel}
+            className={arrowBtn}
             onClick={() => showSlider("prev")}
           >
-            {"<"}
+            <Chevron dir="left" />
           </button>
           <button
-            className="w-[50px] h-[50px] rounded-full font-mono font-bold text-base text-white border-none outline-none cursor-pointer transition-colors duration-500"
-            style={{ backgroundColor: accentColor }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#FFFFFF";
-              e.currentTarget.style.color = "#000000";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = accentColor;
-              e.currentTarget.style.color = "#FFFFFF";
-            }}
+            type="button"
+            aria-label={nextLabel}
+            className={arrowBtn}
             onClick={() => showSlider("next")}
           >
-            {">"}
+            <Chevron dir="right" />
           </button>
+          <span className="ml-2 text-sm tabular-nums text-white/70">
+            <span ref={counterRef} className="text-white">
+              {pad(1)}
+            </span>{" "}
+            {counterOf} {pad(total)}
+          </span>
         </div>
 
-        {/* ── Progress bar ─────────────────────────────────────────────────── */}
-        {/*
-          width is animated by CSS (@keyframes sliderProgress), so it cannot
-          live in a Tailwind class — it's driven at runtime by resetTimeAnimation().
-          Everything else (height, position, z-index, color) is Tailwind.
-        */}
         <div
           ref={progressRef}
-          className="absolute left-0 top-0 z-[1000]"
-          style={{
-            height: progressHeight,
-            backgroundColor: accentColor,
-            width: "0%", // JS / CSS animation takes over immediately
-          }}
+          className="absolute left-0 top-0 z-[1000] h-[var(--ph)] w-0 bg-[var(--accent)]"
         />
       </div>
     </>

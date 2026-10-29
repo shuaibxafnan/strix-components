@@ -2,67 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── FlowGallery ──────────────────────────────────────────────────────────────
-//
-// An immersive full-viewport gallery experience with:
-//  • Counting preloader (0 → 100)
-//  • 4-column parallax image grid (2 scroll up, 2 scroll down)
-//  • "Enter the Flow" button that triggers a zoom → expand → reveal sequence
-//  • Expanding hero image that grows from the leftmost visible slide
-//  • Per-slide title (char-stagger animated), caption, category, paragraph
-//  • Thumbnail strip for switching slides
-//  • Scroll-driven parallax that shrinks the hero and fades content
-//  • Lenis smooth scroll + GSAP ScrollTrigger
-//  • Animated film-grain noise overlay
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────────
-// — Colours —
-// bgColor          string  "#111111"         Page background
-// textColor        string  "rgba(255,255,255,0.9)"  Primary text
-// titleColor       string  "rgba(255,255,255,0.95)" Hero title
-//
-// — Typography —
-// fontFamily       string  "'TheGoodMonolith', monospace"  All UI text
-// titleSize        string  "clamp(2rem, 13.85vw, 14rem)"   Hero title font-size
-//
-// — Grid —
-// gridItemWidth    string  "50vw"   Width of each column item
-// gridItemHeight   string  "100vh"  Height of each column item
-//
-// — Enter button —
-// enterLabel       string  "ENTER THE FLOW"   Button label text
-// enterBg          string  "rgba(34,34,34,0.8)"  Button container background
-//
-// — Slides (the core data) —
-// slides           array   See DEFAULT_SLIDES below.
-//                          Each entry: { image, title1, title2, caption,
-//                                        category, paragraph }
-//                          title1/title2 are the two words of the big hero title.
-//
-// — Column image layout —
-// columnImages     array   See DEFAULT_COLUMN_IMAGES.
-//                          Flat list of { url, index } defining which images
-//                          appear in each of the 4 columns (5 items each).
-//                          Columns 0 & 2 scroll up; columns 1 & 3 scroll down.
-//
-// — Preloader —
-// preloaderDuration number  2000    Ms for the counter to count 0→100
-//
-// — Footer —
-// footerPrompt     string  "{{ GET IN TOUCH }}"
-// footerEmail      string  "HI@STUDIO.COM"
-// footerEmailHref  string  "mailto:hi@studio.com"
-//
-// — Scroll text —
-// scrollLabel      string  "{{ SCROLL }}"
-// ──────────────────────────────────────────────────────────────────────────────
 
-// ─── Default slide data ───────────────────────────────────────────────────────
 const DEFAULT_SLIDES = [
   {
     image:
-      "https://cdn.cosmos.so/5eee2d2d-3d4d-4ae5-96d4-cdbae70a2387?format=jpeg",
+      "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1600&q=80",
     title1: "Between",
     title2: "Worlds",
     caption: "01 / PERCEPTION",
@@ -72,7 +16,7 @@ const DEFAULT_SLIDES = [
   },
   {
     image:
-      "https://cdn.cosmos.so/def30e8a-34b2-48b1-86e1-07ec5c28f225?format=jpeg",
+      "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=1600&q=80",
     title1: "Eternal",
     title2: "Now",
     caption: "02 / PRESENCE",
@@ -82,7 +26,7 @@ const DEFAULT_SLIDES = [
   },
   {
     image:
-      "https://cdn.cosmos.so/44d7cb23-6759-49e4-9dc1-acf771b3a0d1?format=jpeg",
+      "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=1600&q=80",
     title1: "Shadow",
     title2: "Self",
     caption: "03 / DUALITY",
@@ -92,7 +36,7 @@ const DEFAULT_SLIDES = [
   },
   {
     image:
-      "https://cdn.cosmos.so/7712fe42-42ca-4fc5-9590-c89f2db99978?format=jpeg",
+      "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1600&q=80",
     title1: "Empty",
     title2: "Space",
     caption: "04 / ESSENCE",
@@ -102,7 +46,7 @@ const DEFAULT_SLIDES = [
   },
   {
     image:
-      "https://cdn.cosmos.so/cbee1ec5-01b6-4ffe-9f34-7da7980454cf?format=jpeg",
+      "https://images.unsplash.com/photo-1779877716206-f441d5d384d4?auto=format&fit=crop&w=1600&q=80",
     title1: "Surface",
     title2: "Depth",
     caption: "05 / TEXTURE",
@@ -112,7 +56,7 @@ const DEFAULT_SLIDES = [
   },
   {
     image:
-      "https://cdn.cosmos.so/2e91a9d1-db85-4499-ad37-6222a6fea23b?format=jpeg",
+      "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1600&q=80",
     title1: "Visible",
     title2: "Unseen",
     caption: "06 / PATTERN",
@@ -122,7 +66,7 @@ const DEFAULT_SLIDES = [
   },
   {
     image:
-      "https://cdn.cosmos.so/7d47d4e2-0eff-4e2f-9734-9d24a8ba067e?format=jpeg",
+      "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=1600&q=80",
     title1: "Moment",
     title2: "Echo",
     caption: "07 / AWARENESS",
@@ -144,10 +88,6 @@ const DEFAULT_COLUMN_IMAGES = [
   [0, 1, 2, 3, 4],
 ];
 
-// ─── Lightweight char-split (replaces GSAP SplitText Club plugin) ─────────────
-// Wraps each character in a <span class="fg-char"> inside a
-// <span class="fg-word fg-overflow-hidden"> word container so we can animate
-// yPercent per character with overflow:hidden clipping.
 function splitIntoChars(element) {
   const spans = element.querySelectorAll("span.content-title");
   const allChars = [];
@@ -184,7 +124,7 @@ export default function GridSliderLenis({
   titleColor = "rgba(255,255,255,0.95)",
   // Typography
   fontFamily = "'TheGoodMonolith', monospace",
-  titleSize = "clamp(2rem, 13.85vw, 14rem)",
+  titleSize = "clamp(2rem, 10vw, 10rem)",
   // Grid
   gridItemWidth = "50vw",
   gridItemHeight = "100vh",
@@ -200,14 +140,7 @@ export default function GridSliderLenis({
   footerPrompt = "{{ GET IN TOUCH }}",
   footerEmail = "HI@STUDIO.COM",
   footerEmailHref = "mailto:hi@studio.com",
-  // Scroll hint
-  scrollLabel = "{{ SCROLL }}",
 }) {
-  // ── Phase ──────────────────────────────────────────────────────────────────
-  // "loading"  → preloader visible, main hidden
-  // "idle"     → preloader done, enter button visible
-  // "entering" → animation in progress
-  // "entered"  → full experience active
   const [phase, setPhase] = useState("loading");
   const [counter, setCounter] = useState(0);
 
@@ -252,7 +185,6 @@ export default function GridSliderLenis({
     });
 
   // ── Animate title chars ────────────────────────────────────────────────────
-  // Called after innerHTML is updated. Returns a GSAP timeline.
   const animateTitleChars = (gsap, delay = 0) => {
     const el = titleRef.current;
     if (!el) return gsap.timeline();
@@ -394,11 +326,6 @@ export default function GridSliderLenis({
         s.isAnimating = false;
         s.isEntered = true;
         setPhase("entered");
-
-        // Switch fixed → absolute so the HUD scrolls with the page.
-        // Only the two top-level fixed elements need switching;
-        // caption/category/paragraph/thumbnails/scroll-hint are now
-        // children of contentRef and inherit its position.
         [expImg, contentRef.current].forEach((el) => {
           if (el) el.style.position = "absolute";
         });
@@ -610,16 +537,16 @@ export default function GridSliderLenis({
       {/* ── Scoped styles: noise overlay, grid item sizes, column scroll ── */}
       <style>{`
         @font-face {
-          font-family: "TheGoodMonolith";
-          font-style: normal; font-weight: 500;
-          src: url("https://fonts.cdnfonts.com/s/32398/TheGoodMonolith.woff") format("woff");
+          font-family: "SpaceMono";
+          font-style: normal;
+          font-weight: 400;
+          src: url("https://fonts.gstatic.com/s/spacemono/v15/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff2") format("woff2");
         }
         /* Noise overlay */
         .fg-root::before {
           content: "";
           position: fixed; top: -50%; left: -50%;
           width: 200%; height: 200%;
-          background: transparent url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
           background-size: 300px 300px;
           animation: fg-noise 0.3s steps(5) infinite;
           opacity: 0.9; will-change: transform;
@@ -829,13 +756,6 @@ export default function GridSliderLenis({
                     style={{ fontFamily, color: "#f0f0f0" }}
                   >
                     {slides[0]?.paragraph}
-                  </div>
-                  <div
-                    ref={scrollTextRef}
-                    className="opacity-0 text-[13px] tracking-[1px] transition-opacity duration-500"
-                    style={{ fontFamily, color: textColor }}
-                  >
-                    {scrollLabel}
                   </div>
                 </div>
 

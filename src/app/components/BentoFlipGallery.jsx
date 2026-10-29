@@ -1,59 +1,68 @@
 "use client";
 
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useRef } from "react";
 
-// ─── BentoFlipGallery ────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// images           array    (8 demo urls)   Array of { src, alt } — exactly 8 items map to the fixed bento grid areas
-// inkColor         string   #0b0b0c         Darkroom background behind the gallery and the contact-sheet copy block
-// paperColor       string   #f3efe6         Warm paper/off-white used for headline and body text
-// safelightColor   string   #e8442c         Single accent (rules, eyebrow, frame index) — the "safelight" of the sheet
-// kicker           string   "Contact Sheet" Small mono eyebrow line printed above the headline
-// heading          string   "Eight frames, one roll"   Oversized serif-italic headline
-// leadParagraph    string   (1 lorem para)  First paragraph, set large under the drop cap
-// paragraphs       array    (7 lorem paras) Remaining paragraphs, set in the right-hand column
-// itemGap          number   1               Gap between grid items, in vh, for both the start and final grid states
-// colWidth         number   32.5            Column width in vw for the start ("bento") grid state
-// rowHeight        number   23              Row height in vh for the start ("bento") grid state
-// finalColWidth    number   100             Column width in vw for the final (fullscreen strip) grid state
-// finalRowHeight   number   49.5            Row height in vh for the final (fullscreen strip) grid state
-// scrubStart       string   "center center" ScrollTrigger start position
-// scrubDistance    string   "+=100%"        ScrollTrigger end position, relative to start
-// ease             string   "expoScale(1, 5)" GSAP ease used for the Flip tween
-// pinContainer     boolean  true            Whether ScrollTrigger pins the gallery's parent while scrubbing
-// ──────────────────────────────────────────────────────────────────────────
-
-const DEFAULT_IMAGES = [
-  { src: "https://assets.codepen.io/16327/portrait-pattern-1.jpg", alt: "" },
-  { src: "https://assets.codepen.io/16327/portrait-image-12.jpg", alt: "" },
-  { src: "https://assets.codepen.io/16327/portrait-image-8.jpg", alt: "" },
-  { src: "https://assets.codepen.io/16327/portrait-pattern-2.jpg", alt: "" },
-  { src: "https://assets.codepen.io/16327/portrait-image-4.jpg", alt: "" },
-  { src: "https://assets.codepen.io/16327/portrait-image-3.jpg", alt: "" },
-  { src: "https://assets.codepen.io/16327/portrait-pattern-3.jpg", alt: "" },
-  { src: "https://assets.codepen.io/16327/portrait-image-1.jpg", alt: "" },
+const SCRIPTS = [
+  "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js",
 ];
 
-const DEFAULT_LEAD =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+const FONTS_URL =
+  "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap";
 
-const DEFAULT_PARAGRAPHS = Array.from(
-  { length: 7 },
-  () =>
-    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-);
+const AREAS = [
+  "[grid-area:1/1/3/2]",
+  "[grid-area:1/2/2/3]",
+  "[grid-area:2/2/4/3]",
+  "[grid-area:1/3/3/3]",
+  "[grid-area:3/1/3/2]",
+  "[grid-area:3/3/5/4]",
+  "[grid-area:4/1/5/2]",
+  "[grid-area:4/2/5/3]",
+];
+
+const photo = (id) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&h=1200&q=80`;
+
+const DEFAULT_IMAGES = [
+  "1627896157734-4d7d4388f28b",
+  "1779862946918-a129ac57c60e",
+  "1780580940878-248a6ad4b626",
+  "1781513747645-757fb2619e57",
+  "1780163930838-1502715c3bc1",
+  "1780269579991-79bc18ee6f56",
+  "1611419010196-a360856fc42f",
+  "1777902609361-a8b8b7a697fb",
+].map((id, i) => ({ src: photo(id), alt: `Frame ${i + 1} of the roll` }));
+
+const DEFAULT_PARAGRAPHS = [
+  "The camera was heavier than it needed to be and slower than I was used to, which turned out to be the point. Each frame asked for a decision before the shutter did.",
+  "I developed the film at home the same night, in a bathroom with the door taped shut, and hung the strip over the tub to dry. By morning the negatives had curled like a sleeping animal.",
+  "What follows is the roll in the order it was shot. Nothing was cropped and nothing was rescued. The frames that failed are the ones that showed me where the light actually was.",
+  "Scroll back up and the grid comes apart again, eight small windows onto one very long weekend.",
+];
+
+const DEFAULT_DETAILS = [
+  { label: "Camera", value: "Pentax 67" },
+  { label: "Film", value: "Ilford HP5 Plus, pushed to 1600" },
+  { label: "Developed", value: "At home, stand development" },
+  { label: "Kept", value: "8 of 10 frames" },
+];
 
 export default function BentoFlipGallery({
   images = DEFAULT_IMAGES,
   inkColor = "#0b0b0c",
   paperColor = "#f3efe6",
   safelightColor = "#e8442c",
-  kicker = "Contact Sheet",
-  heading = "Eight frames, one roll",
-  leadParagraph = DEFAULT_LEAD,
+  displayFont = "Bodoni Moda",
+  bodyFont = "Newsreader",
+  heading = "One roll, eight frames",
+  leadParagraph = "I shot this roll over a single weekend in late autumn, mostly at dusk, when the light was too thin for anything but a wide aperture and a steady breath. Ten exposures went in. Eight came out the other side.",
   paragraphs = DEFAULT_PARAGRAPHS,
+  pullQuote = "Most of what I keep is what I almost missed.",
+  pullQuoteCredit = "From the darkroom notebook",
+  details = DEFAULT_DETAILS,
   itemGap = 1,
   colWidth = 32.5,
   rowHeight = 23,
@@ -64,66 +73,57 @@ export default function BentoFlipGallery({
   ease = "expoScale(1, 5)",
   pinContainer = true,
 }) {
-  const reactId = useId();
-  const uid = reactId.replace(/[:]/g, "");
   const galleryRef = useRef(null);
   const flipCtxRef = useRef(null);
 
   useEffect(() => {
+    let cancelled = false;
+    let onResize;
+    let timer;
+
     const loadScript = (src) =>
       new Promise((resolve, reject) => {
-        if (document.querySelector(`script[data-id="${src}"]`)) {
-          resolve();
+        const existing = document.querySelector(`script[data-id="${src}"]`);
+        if (existing) {
+          if (existing.dataset.loaded === "true") resolve();
+          else {
+            existing.addEventListener("load", resolve);
+            existing.addEventListener("error", reject);
+          }
           return;
         }
         const el = document.createElement("script");
         el.src = src;
         el.setAttribute("data-id", src);
-        el.onload = resolve;
+        el.onload = () => {
+          el.dataset.loaded = "true";
+          resolve();
+        };
         el.onerror = () => reject(new Error(`Failed: ${src}`));
         document.head.appendChild(el);
       });
 
-    let cleanupResize;
-
-    Promise.all([
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
-      ),
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js",
-      ),
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js",
-      ),
-    ])
+    Promise.all(SCRIPTS.map(loadScript))
       .then(() => {
-        const { gsap } = window;
-        if (!gsap || !galleryRef.current) return;
+        const { gsap, ScrollTrigger, Flip } = window;
+        const galleryElement = galleryRef.current;
+        if (cancelled || !gsap || !galleryElement) return;
 
         gsap.config({ trialWarn: false });
-        gsap.registerPlugin(window.ScrollTrigger, window.Flip);
-
-        const galleryElement = galleryRef.current;
+        gsap.registerPlugin(ScrollTrigger, Flip);
 
         const createTween = () => {
-          const galleryItems = galleryElement.querySelectorAll(
-            `.gallery-item-${uid}`,
-          );
+          const items = galleryElement.querySelectorAll("[data-flip-item]");
 
           if (flipCtxRef.current) flipCtxRef.current.revert();
-
-          galleryElement.classList.remove(`gallery-final-${uid}`);
+          galleryElement.classList.remove("is-final");
 
           flipCtxRef.current = gsap.context(() => {
-            galleryElement.classList.add(`gallery-final-${uid}`);
-            const flipState = window.Flip.getState(galleryItems);
-            galleryElement.classList.remove(`gallery-final-${uid}`);
+            galleryElement.classList.add("is-final");
+            const flipState = Flip.getState(items);
+            galleryElement.classList.remove("is-final");
 
-            const flip = window.Flip.to(flipState, {
-              simple: true,
-              ease,
-            });
+            const flip = Flip.to(flipState, { simple: true, ease });
 
             const tl = gsap.timeline({
               scrollTrigger: {
@@ -137,152 +137,130 @@ export default function BentoFlipGallery({
 
             tl.add(flip);
 
-            return () => gsap.set(galleryItems, { clearProps: "all" });
+            return () => gsap.set(items, { clearProps: "all" });
           });
         };
 
         createTween();
-        cleanupResize = createTween;
-        window.addEventListener("resize", cleanupResize);
+        onResize = () => {
+          clearTimeout(timer);
+          timer = setTimeout(createTween, 150);
+        };
+        window.addEventListener("resize", onResize);
       })
       .catch((e) =>
         console.error("[BentoFlipGallery] GSAP load failed:", e.message),
       );
 
     return () => {
-      if (cleanupResize) window.removeEventListener("resize", cleanupResize);
+      cancelled = true;
+      clearTimeout(timer);
+      if (onResize) window.removeEventListener("resize", onResize);
       if (flipCtxRef.current) flipCtxRef.current.revert();
     };
-  }, [uid, ease, scrubStart, scrubDistance, pinContainer]);
-
-  const gridCss =
-    ".gallery-" +
-    uid +
-    " { display: grid; gap: " +
-    itemGap +
-    "vh; grid-template-columns: repeat(3, " +
-    colWidth +
-    "vw); grid-template-rows: repeat(4, " +
-    rowHeight +
-    "vh); justify-content: center; align-content: center; }" +
-    ".gallery-final-" +
-    uid +
-    ".gallery-" +
-    uid +
-    " { grid-template-columns: repeat(3, " +
-    finalColWidth +
-    "vw); grid-template-rows: repeat(4, " +
-    finalRowHeight +
-    "vh); gap: " +
-    itemGap +
-    "vh; }" +
-    ".gallery-item-" +
-    uid +
-    ":nth-child(1) { grid-area: 1 / 1 / 3 / 2; }" +
-    ".gallery-item-" +
-    uid +
-    ":nth-child(2) { grid-area: 1 / 2 / 2 / 3; }" +
-    ".gallery-item-" +
-    uid +
-    ":nth-child(3) { grid-area: 2 / 2 / 4 / 3; }" +
-    ".gallery-item-" +
-    uid +
-    ":nth-child(4) { grid-area: 1 / 3 / 3 / 3; }" +
-    ".gallery-item-" +
-    uid +
-    ":nth-child(5) { grid-area: 3 / 1 / 3 / 2; }" +
-    ".gallery-item-" +
-    uid +
-    ":nth-child(6) { grid-area: 3 / 3 / 5 / 4; }" +
-    ".gallery-item-" +
-    uid +
-    ":nth-child(7) { grid-area: 4 / 1 / 5 / 2; }" +
-    ".gallery-item-" +
-    uid +
-    ":nth-child(8) { grid-area: 4 / 2 / 5 / 3; }" +
-    ".sprocket-" +
-    uid +
-    " { background-image: repeating-linear-gradient(to bottom, " +
-    safelightColor +
-    " 0px, " +
-    safelightColor +
-    " 6px, transparent 6px, transparent 22px); }";
-
-  const frameCount = String(images.length).padStart(2, "0");
+  }, [
+    ease,
+    scrubStart,
+    scrubDistance,
+    pinContainer,
+    itemGap,
+    colWidth,
+    rowHeight,
+    finalColWidth,
+    finalRowHeight,
+    images.length,
+  ]);
 
   return (
-    <div style={{ backgroundColor: inkColor }}>
-      <style dangerouslySetInnerHTML={{ __html: gridCss }} />
+    <div
+      className="bg-[var(--ink)] font-[family-name:var(--body)] text-[var(--paper)]"
+      style={{
+        "--ink": inkColor,
+        "--paper": paperColor,
+        "--safe": safelightColor,
+        "--display": `"${displayFont}", serif`,
+        "--body": `"${bodyFont}", serif`,
+        "--gap": `${itemGap}vh`,
+        "--col": `${colWidth}vw`,
+        "--row": `${rowHeight}vh`,
+        "--fcol": `${finalColWidth}vw`,
+        "--frow": `${finalRowHeight}vh`,
+      }}
+    >
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link rel="stylesheet" href={FONTS_URL} />
 
-      <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+      <div className="relative flex h-screen w-full items-center justify-center overflow-hidden">
         <div
           ref={galleryRef}
-          className={`gallery-${uid} relative w-full h-full flex-none`}
+          className="relative grid h-full w-full flex-none content-center justify-center gap-[var(--gap)] [grid-template-columns:repeat(3,var(--col))] [grid-template-rows:repeat(4,var(--row))] [&.is-final]:[grid-template-columns:repeat(3,var(--fcol))] [&.is-final]:[grid-template-rows:repeat(4,var(--frow))]"
         >
           {images.map((img, i) => (
             <div
               key={i}
-              className={`gallery-item-${uid} relative flex-none bg-cover bg-center`}
+              data-flip-item
+              className={`relative flex-none overflow-hidden ${AREAS[i] ?? ""}`}
             >
               <img
                 src={img.src}
                 alt={img.alt || ""}
-                className="w-full h-full object-cover"
+                className="h-full w-full object-cover"
               />
             </div>
           ))}
         </div>
       </div>
 
-      <div
-        className="px-6 py-24 md:px-16 lg:px-24"
-        style={{ color: paperColor }}
-      >
-        <div className="max-w-6xl mx-auto">
-          {/* eyebrow + frame index */}
-          <div className="flex items-baseline justify-between border-b border-white/15 pb-4 mb-10">
-            <span
-              className="font-mono text-xs uppercase tracking-[0.3em]"
-              style={{ color: safelightColor }}
-            >
-              {kicker}
-            </span>
-            <span className="font-mono text-xs uppercase tracking-[0.3em] opacity-50">
-              No. {frameCount} / {frameCount}
-            </span>
-          </div>
-
-          {/* headline */}
-          <h2 className="font-serif italic tracking-tight text-[13vw] leading-[0.92] md:text-[7vw] mb-14">
+      <section className="mx-auto grid max-w-7xl gap-x-16 gap-y-20 px-6 py-24 md:grid-cols-12 md:px-12 md:py-40">
+        <header className="md:sticky md:top-20 md:col-span-5 md:self-start">
+          <h2 className="font-[family-name:var(--display)] text-[clamp(3rem,8.5vw,7rem)] font-medium italic leading-[0.92] tracking-[-0.02em] text-balance">
             {heading}
           </h2>
 
-          {/* sprocket rule + two-column copy */}
-          <div className="grid grid-cols-1 md:grid-cols-[24px_1fr_1fr] gap-x-10 gap-y-8">
-            <div
-              className={`sprocket-${uid} hidden md:block w-[3px] rounded-full`}
-            />
-
-            <p className="text-2xl md:text-[1.7rem] leading-snug font-light">
-              <span
-                className="float-left font-serif italic text-6xl md:text-7xl leading-[0.8] pr-3 pt-1"
-                style={{ color: safelightColor }}
-              >
-                {leadParagraph.charAt(0)}
-              </span>
-              {leadParagraph.slice(1)}
-            </p>
-
-            <div className="space-y-6">
-              {paragraphs.map((p, i) => (
-                <p key={i} className="text-base leading-relaxed opacity-80">
-                  {p}
-                </p>
+          {details.length > 0 && (
+            <dl className="mt-14 grid max-w-sm grid-cols-[auto_1fr] gap-x-8 gap-y-3 border-t border-[var(--paper)]/20 pt-6 text-[0.95rem] leading-snug">
+              {details.map((d) => (
+                <div key={d.label} className="contents">
+                  <dt className="text-[var(--paper)]/50">{d.label}</dt>
+                  <dd>{d.value}</dd>
+                </div>
               ))}
-            </div>
+            </dl>
+          )}
+        </header>
+
+        <div className="md:col-span-7">
+          <p className="text-[clamp(1.5rem,2.5vw,2.15rem)] font-light leading-[1.28] first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:font-[family-name:var(--display)] first-letter:text-[4.4em] first-letter:font-medium first-letter:italic first-letter:leading-[0.78] first-letter:text-[var(--safe)]">
+            {leadParagraph}
+          </p>
+
+          {pullQuote && (
+            <figure className="my-16 border-l-2 border-[var(--safe)] pl-6 md:pl-8">
+              <blockquote className="font-[family-name:var(--display)] text-[clamp(1.75rem,3.2vw,2.75rem)] italic leading-[1.1]">
+                {pullQuote}
+              </blockquote>
+              {pullQuoteCredit && (
+                <figcaption className="mt-4 text-sm text-[var(--paper)]/50">
+                  {pullQuoteCredit}
+                </figcaption>
+              )}
+            </figure>
+          )}
+
+          <div className="columns-1 gap-12 text-[1.075rem] leading-[1.7] text-[var(--paper)]/80 md:columns-2">
+            {paragraphs.map((p, i) => (
+              <p key={i} className="mb-6 break-inside-avoid-column hyphens-auto">
+                {p}
+              </p>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

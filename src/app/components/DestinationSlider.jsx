@@ -2,52 +2,38 @@
 
 import { useEffect, useState, useCallback } from "react";
 
-// ─── JapanSlider ───────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// slides            array    (see defaultSlides)   Array of slide objects
-//   - id            string   required              Unique key
-//   - city          string   required              City display name
-//   - description   string   required              Short description
-//   - imageUrl      string   required              Image source URL
-// accentColor       string   "#e83f43"             Highlight / accent color
-// logoText          string   "Japan"               Brand logo text
-// navLinks          array    (see defaultNavLinks) Array of { label, href }
-// autoPlay          boolean  false                 Auto-advance slides
-// autoPlayInterval  number   4000                  ms between auto-advances
-// showDots          boolean  true                  Show slide indicator dots
-// showCounter       boolean  true                  Show "01 / 04" counter
-// ──────────────────────────────────────────────────────────────────────────
-
 const defaultSlides = [
   {
     id: "tokyo",
     city: "Explore Tokyo",
     description:
       "Tokyo, Japan's busy capital, mixes the ultramodern and the traditional, from neon-lit skyscrapers to historic temples.",
-    imageUrl: "https://assets.codepen.io/1159990/tokyo.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1759458856846-097935f54111?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: "kyoto",
     city: "Explore Kyoto",
     description:
       "Kyoto is famous for its numerous classical Buddhist temples, gardens, imperial palaces, Shinto shrines and traditional wooden houses.",
-    imageUrl: "https://assets.codepen.io/1159990/kyoto.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1533387520709-752d83de3630?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: "osaka",
     city: "Explore Osaka",
     description:
       "Osaka is a large port city and commercial center known for its modern architecture, nightlife and hearty street food.",
-    imageUrl: "https://assets.codepen.io/1159990/osaka.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1752150127767-77bccbed07e2?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: "hokkaido",
     city: "Explore Hokkaido",
     description:
       "Hokkaido, the northernmost of Japan's main islands, is known for its volcanoes, natural hot springs and ski areas.",
-    imageUrl: "https://assets.codepen.io/1159990/hokkaido.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1781935307999-e8bb5e62ebb1?auto=format&fit=crop&w=1600&q=80",
   },
 ];
 

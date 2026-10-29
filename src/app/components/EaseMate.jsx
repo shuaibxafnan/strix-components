@@ -1,417 +1,208 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
+import { Instrument_Sans } from "next/font/google";
 
-// ─── EaseMate ─────────────────────────────────────────────────────────────────
-//
-// A hero section with a moon/sun toggle that triggers a radial View Transition
-// ripple from the toggle's position. Faithfully ported from the jh3yy CodePen.
-//
-// ─── Props ────────────────────────────────────────────────────────────────────
-//
-// headline         string   "easemate."
-//                  The top-left plain text portion of the h1 (gradient fill).
-//
-// headlineSub      string   "every"
-//                  Continues on the same line as headline (gradient fill).
-//
-// headlineAccent   string   "transition"
-//                  The bold center word rendered with the circle-texture overlay.
-//                  This is the typographic hero of the layout.
-//
-// headlineTail     string   "count."
-//                  Trailing word on the second line (gradient fill).
-//
-// circleImageUrl   string   (codepen asset)
-//                  URL for the SVG texture overlaid on headlineAccent via
-//                  background-blend-mode: overlay. Swap for your own asset.
-//
-// fontFamily       string   "'Instrument Sans', sans-serif"
-//                  Font family for the whole component. Must be loaded in your
-//                  layout (e.g. Google Fonts link).
-//
-// transitionDuration  number   500
-//                  Duration in ms for the View Transition ripple animation.
-//                  If View Transitions aren't supported the theme still changes
-//                  instantly.
-//
-// defaultDark      bool     false
-//                  Force the component to start in dark mode, regardless of the
-//                  OS preference. When false (default) the OS prefers-color-scheme
-//                  is read on mount.
-//
-// respectSystemPref  bool   true
-//                  When true, reads window.matchMedia on mount and sets the
-//                  initial theme from the OS. Set false if you want to fully
-//                  control starting state via defaultDark.
-//
-// ── Light theme tokens ────────────────────────────────────────────────────────
-// bgLight          string   "hsla(230,80%,98%,1)"     Page background
-// toggleLight      string   "hsla(230,25%,10%,1)"     Moon/crescent color
-// lineLight        string   "hsla(230,35%,92.5%,1)"   HR + vertical rule color
-// dotLight         string   "hsla(230,25%,75%,1)"     Corner dot color
-// textTopLight     string   "hsla(240,25%,10%,1)"     Gradient top stop
-// textBottomLight  string   "hsla(240,25%,25%,1)"     Gradient bottom stop
-// textCircleLight  string   "hsla(240,25%,25%,1)"     Accent word fill
-//
-// ── Dark theme tokens ─────────────────────────────────────────────────────────
-// bgDark           string   "hsla(230,55%,4%,1)"      Page background
-// toggleDark       string   "hsla(230,25%,75%,1)"     Sun ray color
-// lineDark         string   "hsla(230,25%,15%,0.75)"  HR + vertical rule color
-// dotDark          string   "hsla(230,25%,90%,1)"     Corner dot color
-// textTopDark      string   "hsla(240,60%,90%,1)"     Gradient top stop
-// textBottomDark   string   "hsla(240,60%,95%,1)"     Gradient bottom stop
-// textCircleDark   string   "hsla(240,60%,95%,0.15)"  Accent word fill
-//
-// ─────────────────────────────────────────────────────────────────────────────
+const instrument = Instrument_Sans({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  variable: "--font-instrument",
+});
+
+const VIEW_TRANSITION_CSS = `
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-image-pair(root) {
+  isolation: isolate;
+}
+::view-transition-old(root) {
+  z-index: 0;
+}
+::view-transition-new(root) {
+  z-index: 1;
+}
+`;
+
+const GRADIENT_TEXT =
+  "bg-clip-text text-transparent [background-image:linear-gradient(180deg,var(--text-top),var(--text-bottom))]";
+
+const DOT_POSITIONS = [
+  "-left-[2px] -top-[2px]",
+  "-right-[2px] -top-[2px]",
+  "-bottom-[2px] -right-[2px]",
+  "-bottom-[2px] -left-[2px]",
+];
 
 export default function EaseMate({
   headline = "easemate.",
   headlineSub = "every",
   headlineAccent = "transition",
   headlineTail = "count.",
-  circleImageUrl = "https://assets.codepen.io/165585/circle-bg_1.svg",
-  fontFamily = "'Instrument Sans', sans-serif",
+  accentTexture = "repeating-conic-gradient(from var(--texture-angle) at 50% 80%, #ffffff 0 6deg, transparent 6deg 18deg), repeating-radial-gradient(circle at 50% 80%, #ffffff 0 2px, transparent 2px 14px)",
+  textureSpinDuration = 12000,
+  toggleToLightLabel = "Switch to light mode",
+  toggleToDarkLabel = "Switch to dark mode",
   transitionDuration = 500,
   defaultDark = false,
   respectSystemPref = true,
+  className = "",
 
-  // ── Light tokens ────────────────────────────────────────────────────────
-  bgLight = "hsla(230,80%,98%,1)",
-  toggleLight = "hsla(230,25%,10%,1)",
-  lineLight = "hsla(230,35%,92.5%,1)",
-  dotLight = "hsla(230,25%,75%,1)",
-  textTopLight = "hsla(240,25%,10%,1)",
-  textBottomLight = "hsla(240,25%,25%,1)",
-  textCircleLight = "hsla(240,25%,25%,1)",
+  bgLight = "#ffffff",
+  toggleLight = "#000000",
+  lineLight = "rgba(0,0,0,0.1)",
+  dotLight = "rgba(0,0,0,0.35)",
+  textTopLight = "#000000",
+  textBottomLight = "#404040",
+  textCircleLight = "#404040",
 
-  // ── Dark tokens ─────────────────────────────────────────────────────────
-  bgDark = "hsla(230,55%,4%,1)",
-  toggleDark = "hsla(230,25%,75%,1)",
-  lineDark = "hsla(230,25%,15%,0.75)",
-  dotDark = "hsla(230,25%,90%,1)",
-  textTopDark = "hsla(240,60%,90%,1)",
-  textBottomDark = "hsla(240,60%,95%,1)",
-  textCircleDark = "hsla(240,60%,95%,0.15)",
+  bgDark = "#000000",
+  toggleDark = "#d4d4d4",
+  lineDark = "rgba(255,255,255,0.15)",
+  dotDark = "rgba(255,255,255,0.9)",
+  textTopDark = "#ffffff",
+  textBottomDark = "#e5e5e5",
+  textCircleDark = "rgba(255,255,255,0.15)",
 }) {
-  // ── isDark drives every visual token in the component ───────────────────
-  // Initialised to false; actual OS pref is applied in useEffect to avoid
-  // SSR/hydration mismatch (window is not available during SSR).
   const [isDark, setIsDark] = useState(defaultDark);
-
-  // Ripple origin — updated on each toggle click to the toggle's centre
-  const rippleRef = useRef({ x: "50%", y: "50%" });
   const toggleRef = useRef(null);
-  const wrapperRef = useRef(null);
+  const accentRef = useRef(null);
 
-  // ── On mount: read OS preference ────────────────────────────────────────
   useEffect(() => {
     if (!respectSystemPref) return;
-    const prefersDark =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setIsDark(prefersDark);
+    setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
   }, [respectSystemPref]);
 
-  // ── Derive all runtime tokens from isDark ───────────────────────────────
-  // These change at runtime (theme switch) so they must be inline styles /
-  // CSS custom properties — Tailwind classes can't react to JS state.
+  useEffect(() => {
+    const el = accentRef.current;
+    if (!el || !textureSpinDuration || typeof CSS === "undefined") return undefined;
+    try {
+      CSS.registerProperty({
+        name: "--texture-angle",
+        syntax: "<angle>",
+        inherits: false,
+        initialValue: "0deg",
+      });
+    } catch { }
+    const spin = el.animate(
+      { "--texture-angle": ["0deg", "360deg"] },
+      { duration: textureSpinDuration, iterations: Infinity, easing: "linear" },
+    );
+    return () => spin.cancel();
+  }, [textureSpinDuration]);
+
   const tokens = isDark
     ? {
-        bg: bgDark,
-        toggle: toggleDark,
-        line: lineDark,
-        dot: dotDark,
-        textTop: textTopDark,
-        textBottom: textBottomDark,
-        textCircle: textCircleDark,
-      }
-    : {
-        bg: bgLight,
-        toggle: toggleLight,
-        line: lineLight,
-        dot: dotLight,
-        textTop: textTopLight,
-        textBottom: textBottomLight,
-        textCircle: textCircleLight,
-      };
-
-  // ── Handle toggle click with View Transition ripple ─────────────────────
-  const handleToggle = () => {
-    // Compute ripple origin from toggle element's bounding rect
-    if (toggleRef.current) {
-      const rect = toggleRef.current.getBoundingClientRect();
-      rippleRef.current = {
-        x: `${rect.left + rect.width / 2}px`,
-        y: `${rect.top + rect.height / 2}px`,
-      };
+      bg: bgDark,
+      toggle: toggleDark,
+      line: lineDark,
+      dot: dotDark,
+      textTop: textTopDark,
+      textBottom: textBottomDark,
+      textCircle: textCircleDark,
     }
+    : {
+      bg: bgLight,
+      toggle: toggleLight,
+      line: lineLight,
+      dot: dotLight,
+      textTop: textTopLight,
+      textBottom: textBottomLight,
+      textCircle: textCircleLight,
+    };
 
-    const applyTheme = () => setIsDark((prev) => !prev);
+  const handleToggle = () => {
+    const flip = () => flushSync(() => setIsDark((prev) => !prev));
 
-    // View Transition API — progressively enhanced
-    if (!document.startViewTransition) {
-      applyTheme();
+    if (!document.startViewTransition || !toggleRef.current) {
+      flip();
       return;
     }
 
-    const transition = document.startViewTransition(applyTheme);
+    const rect = toggleRef.current.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
 
-    // Inject ripple origin as CSS vars so the ::view-transition keyframes
-    // can use them (must happen after transition.ready resolves)
-    transition.ready.then(() => {
-      document.documentElement.style.setProperty("--vt-x", rippleRef.current.x);
-      document.documentElement.style.setProperty("--vt-y", rippleRef.current.y);
+    document.startViewTransition(flip).ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0% at ${x}px ${y}px)`,
+            `circle(150% at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: transitionDuration,
+          easing: "ease-in-out",
+          fill: "forwards",
+          pseudoElement: "::view-transition-new(root)",
+        },
+      );
     });
-  };
-
-  // ── CSS variables injected on the root wrapper ───────────────────────────
-  // Only runtime-dynamic values live here; layout/spacing stays in Tailwind.
-  const cssVars = {
-    "--bg": tokens.bg,
-    "--toggle-color": tokens.toggle,
-    "--line-color": tokens.line,
-    "--dot-color": tokens.dot,
-    "--text-top": tokens.textTop,
-    "--text-bottom": tokens.textBottom,
-    "--text-circle": tokens.textCircle,
-    "--transition-duration": `${transitionDuration}ms`,
-    fontFamily,
   };
 
   return (
     <div
-      ref={wrapperRef}
-      className="min-h-dvh flex flex-col justify-center items-center w-full transition-colors duration-300"
-      style={{ backgroundColor: tokens.bg, ...cssVars }}
+      className={`${instrument.variable} relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-hidden bg-[var(--bg)] [font-family:var(--font-instrument)] ${className}`}
+      style={{
+        "--bg": tokens.bg,
+        "--toggle-color": tokens.toggle,
+        "--line-color": tokens.line,
+        "--dot-color": tokens.dot,
+        "--text-top": tokens.textTop,
+        "--text-bottom": tokens.textBottom,
+        "--text-circle": tokens.textCircle,
+      }}
     >
-      {/* ── Injected styles ─────────────────────────────────────────────────
-          These cannot be expressed in Tailwind because they:
-          1. Use ::view-transition-* pseudo-elements (browser-level, not scoped)
-          2. Reference CSS custom properties inside clip-path calc()
-          3. Are animation keyframes for the ripple
-          4. Contain complex multi-shadow box-shadow for the toggle rays
-      ─────────────────────────────────────────────────────────────────────── */}
-      <style>{`
-        /* ── View Transition ripple keyframes ── */
-        @keyframes em-reveal-in {
-          from { clip-path: circle(0% at var(--vt-x, 50%) var(--vt-y, 50%)); }
-          to   { clip-path: circle(150% at var(--vt-x, 50%) var(--vt-y, 50%)); }
-        }
-        @keyframes em-reveal-out {
-          from { clip-path: circle(150% at var(--vt-x, 50%) var(--vt-y, 50%)); }
-          to   { clip-path: circle(0% at var(--vt-x, 50%) var(--vt-y, 50%)); }
-        }
+      <style>{VIEW_TRANSITION_CSS}</style>
 
-        ::view-transition-new(root) {
-          animation: em-reveal-in var(--transition-duration, 500ms) ease-in-out forwards;
-          z-index: 1;
-          mix-blend-mode: normal;
-        }
-        ::view-transition-old(root) {
-          animation: em-reveal-out var(--transition-duration, 500ms) ease-in-out forwards;
-          animation-delay: var(--transition-duration, 500ms);
-          z-index: 0;
-          mix-blend-mode: normal;
-        }
-        ::view-transition-image-pair(root) {
-          isolation: isolate;
-        }
-
-        /* ── Toggle: moon crescent ── */
-        .em-toggle-knob {
-          border-radius: 50%;
-          width: 36px;
-          height: 36px;
-          position: relative;
-          /* inset box-shadow creates the crescent cutout */
-          box-shadow: inset 16px -16px 0 0 var(--toggle-color);
-          transform: scale(1) rotate(-2deg);
-          transition: box-shadow 0.5s ease 0s, transform 0.4s ease 0.1s;
-        }
-
-        /* ── Toggle: dark overlay that fills the circle in dark mode ── */
-        .em-toggle-knob::before {
-          content: '';
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          position: absolute;
-          left: 0;
-          top: 0;
-          /* transparent in light → shows crescent; filled in dark → hides it */
-          background: transparent;
-          transition: background 0.3s ease;
-        }
-
-        /* ── Toggle: sun rays (8 box-shadow dots) ── */
-        .em-toggle-knob::after {
-          content: '';
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          margin: -4px 0 0 -4px;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          box-shadow:
-            0 -23px 0 var(--toggle-color),
-            0  23px 0 var(--toggle-color),
-            23px 0 0 var(--toggle-color),
-           -23px 0 0 var(--toggle-color),
-            15px  15px 0 var(--toggle-color),
-           -15px  15px 0 var(--toggle-color),
-            15px -15px 0 var(--toggle-color),
-           -15px -15px 0 var(--toggle-color);
-          transform: scale(0);
-          transition: all 0.3s ease;
-        }
-
-        /* ── Toggle checked (dark mode = sun) ── */
-        .em-toggle-input:checked + .em-toggle-knob {
-          /* push crescent off-screen by making inset huge */
-          box-shadow: inset 32px -32px 0 0 var(--bg);
-          transform: scale(0.5) rotate(0deg);
-          transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s;
-        }
-
-        .em-toggle-input:checked + .em-toggle-knob::before {
-          background: var(--toggle-color);
-          transition: background 0.3s ease 0.1s;
-        }
-
-        .em-toggle-input:checked + .em-toggle-knob::after {
-          transform: scale(1.5);
-          transition: transform 0.5s ease 0.15s;
-        }
-      `}</style>
-
-      {/* ── Toggle button ─────────────────────────────────────────────────── */}
-      {/* Fixed at top-centre; scale(0.5) in CSS origin keeps it compact      */}
       <label
         ref={toggleRef}
-        className="fixed top-3 left-1/2 -translate-x-1/2 cursor-pointer z-10"
-        style={{ transform: "translateX(-50%) scale(0.5)" }}
-        aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+        className="fixed left-1/2 top-3 z-10 -translate-x-1/2 scale-50 cursor-pointer"
       >
         <input
           type="checkbox"
           checked={isDark}
           onChange={handleToggle}
-          className="em-toggle-input hidden"
+          aria-label={isDark ? toggleToLightLabel : toggleToDarkLabel}
+          className="peer sr-only"
         />
-        <div className="em-toggle-knob" />
+        <div className="relative h-9 w-9 rounded-full [box-shadow:inset_16px_-16px_0_0_var(--toggle-color)] [transform:scale(1)_rotate(-2deg)] [transition:box-shadow_0.5s_ease_0s,transform_0.4s_ease_0.1s] peer-checked:[box-shadow:inset_32px_-32px_0_0_var(--bg)] peer-checked:[transform:scale(0.5)_rotate(0deg)] peer-checked:[transition:transform_0.3s_ease_0.1s,box-shadow_0.2s_ease_0s] before:absolute before:inset-0 before:rounded-full before:bg-transparent before:transition-colors before:duration-300 before:content-[''] peer-checked:before:bg-[var(--toggle-color)] peer-checked:before:delay-100 after:absolute after:left-1/2 after:top-1/2 after:-ml-1 after:-mt-1 after:h-2 after:w-2 after:scale-0 after:rounded-full after:transition-all after:duration-300 after:content-[''] after:[box-shadow:0_-23px_0_var(--toggle-color),0_23px_0_var(--toggle-color),23px_0_0_var(--toggle-color),-23px_0_0_var(--toggle-color),15px_15px_0_var(--toggle-color),-15px_15px_0_var(--toggle-color),15px_-15px_0_var(--toggle-color),-15px_-15px_0_var(--toggle-color)] peer-checked:after:scale-150 peer-checked:after:[transition:transform_0.5s_ease_0.15s]" />
       </label>
 
-      {/* ── Main content ──────────────────────────────────────────────────── */}
       <main className="w-full">
-        {/* Top HR — full viewport width, 1px, themed */}
-        <hr
-          className="border-none h-px w-full m-0"
-          style={{ backgroundColor: tokens.line }}
-        />
+        <hr className="m-0 h-px w-full border-none bg-[var(--line-color)]" />
 
-        {/* ── Section: corner dots + vertical rules + h1 ────────────────── */}
-        <section
-          className="mx-auto text-center grid place-items-center relative"
-          style={{
-            // clamp matches the original: 360px → 780px over 60vw
-            width: "clamp(360px, 60vw, 780px)",
-            aspectRatio: "1.55 / 0.5",
-            minHeight: "200px",
-          }}
-        >
-          {/* Vertical rules — pseudo-elements aren't available in Tailwind  */}
-          {/* so we render two absolutely-positioned divs instead            */}
-          <div
-            className="absolute left-0 top-0 w-px pointer-events-none"
-            style={{ height: "100dvh", backgroundColor: tokens.line }}
-          />
-          <div
-            className="absolute right-0 top-0 w-px pointer-events-none"
-            style={{ height: "100dvh", backgroundColor: tokens.line }}
-          />
+        <section className="relative mx-auto grid aspect-[1.55/0.5] min-h-[200px] w-[clamp(360px,60vw,780px)] place-items-center text-center">
+          <div className="pointer-events-none absolute -top-[100dvh] -bottom-[100dvh] left-0 w-px bg-[var(--line-color)]" />
+          <div className="pointer-events-none absolute -top-[100dvh] -bottom-[100dvh] right-0 w-px bg-[var(--line-color)]" />
 
-          {/* ── Corner dots (4) ─────────────────────────────────────────── */}
-          {/* Each is 5×5px, outlined with the bg color for a "floating" look */}
-          {[
-            "top-[-2px] left-[-2px]",
-            "top-[-2px] right-[-2px]",
-            "bottom-[-2px] right-[-2px]",
-            "bottom-[-2px] left-[-2px]",
-          ].map((pos, i) => (
+          {DOT_POSITIONS.map((position) => (
             <div
-              key={i}
-              className={`absolute ${pos} w-[5px] h-[5px] rounded-full z-10`}
-              style={{
-                backgroundColor: tokens.dot,
-                // ring uses bg color so dot appears to float above the rule lines
-                boxShadow: `0 0 0 3px ${tokens.bg}`,
-              }}
+              key={position}
+              className={`absolute z-10 h-[5px] w-[5px] rounded-full bg-[var(--dot-color)] [box-shadow:0_0_0_3px_var(--bg)] ${position}`}
             />
           ))}
 
-          {/* ── Headline ────────────────────────────────────────────────── */}
-          {/* text-left so the multi-line typographic hierarchy reads correctly */}
-          <h1
-            className="font-bold m-0 text-left leading-[1.05]"
-            style={{
-              // clamp font size: 32px → 68px over viewport width
-              fontSize: "clamp(32px, 6vw, 68px)",
-              fontOpticalSizing: "auto",
-              fontVariationSettings: '"wdth" 95',
-            }}
-          >
-            {/* Line 1: plain text + sub — both get the vertical gradient fill */}
-            <span
-              style={{
-                backgroundImage: `linear-gradient(180deg, ${tokens.textTop} 0%, ${tokens.textBottom} 100%)`,
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
+          <h1 className="m-0 text-left text-[clamp(32px,6vw,68px)] font-bold leading-[1.05] [font-optical-sizing:auto] [font-variation-settings:'wdth'_95]">
+            <span className={GRADIENT_TEXT}>
               {headline} {headlineSub}
             </span>
             <br />
-            {/* Line 2: accent word — texture image blended over a flat color fill */}
             <strong
-              className="inline-block tracking-[0.015em]"
-              style={{
-                color: "transparent",
-                // The SVG texture is overlaid on a flat color via background-blend-mode
-                // so the word reads as a richly-textured fill, not just flat paint
-                backgroundImage: `url('${circleImageUrl}')`,
-                backgroundColor: tokens.textCircle,
-                backgroundSize: "400px",
-                backgroundPosition: "50% 80%",
-                backgroundBlendMode: "overlay",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
+              ref={accentRef}
+              style={{ "--texture": accentTexture }}
+              className="inline-block bg-clip-text tracking-[0.015em] text-transparent [background-blend-mode:overlay] [background-color:var(--text-circle)] [background-image:var(--texture)] [background-position:50%_80%] [background-size:100%_100%]">
               {headlineAccent}
             </strong>{" "}
-            {/* Trailing word — same gradient as line 1 */}
-            <span
-              style={{
-                backgroundImage: `linear-gradient(180deg, ${tokens.textTop} 0%, ${tokens.textBottom} 100%)`,
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              {headlineTail}
-            </span>
+            <span className={GRADIENT_TEXT}>{headlineTail}</span>
           </h1>
         </section>
 
-        {/* Bottom HR */}
-        <hr
-          className="border-none h-px w-full m-0"
-          style={{ backgroundColor: tokens.line }}
-        />
+        <hr className="m-0 h-px w-full border-none bg-[var(--line-color)]" />
       </main>
     </div>
   );

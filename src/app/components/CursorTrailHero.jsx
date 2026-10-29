@@ -1,41 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 
-// ─── CursorTrailHero ─────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// navItems           array    [6 default effects]     Nav links, each: { label, effect, active }
-// logoColor          string   #ffffff                  Logo circle fill color
-// bgGradient         string   linear-gradient(135deg,  Hero section background gradient
-//                             #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)
-// letterColor        string   #ffffff                   Fill color of the "FLAME" letter SVGs
-// touchInstructionText string "Swipe your finger to see the magic unfold"  Mobile-only instruction text
-// images             array    [14 default image URLs]  Pool of images used for the trail effect
-// imageLifespan      number   600                       How long (ms) each trail image stays before removal
-// removalDelay       number   16                        Min ms between trail-image cleanup passes
-// mouseThresholdDesktop number 40                        Min mouse movement (px) to trigger a new image (desktop)
-// mouseThresholdMobile  number 20                        Min movement (px) to trigger a new image (mobile)
-// scrollThreshold    number   50                        Min ms between scroll-triggered images
-// inDuration         number   600                       Reveal animation duration (ms)
-// outDuration        number   800                       Collapse animation duration (ms)
-// touchImageInterval number   40                        Min ms between images while touch-dragging
-// minMovementForImage number  5                         Min movement (px, desktop) needed to spawn an image at all
-// minImageSizeDesktop number  160                       Smallest trail image size (px, desktop)
-// maxImageSizeDesktop number  340                       Largest trail image size (px, desktop)
-// minImageSizeMobile  number  120                       Smallest trail image size (px, mobile)
-// maxImageSizeMobile  number  260                       Largest trail image size (px, mobile)
-// baseRotation       number   30                        Base random rotation range (deg) for flame effect
-// maxRotationFactor  number   3                         Rotation multiplier scaling with cursor speed
-// speedSmoothingFactor number 0.25                      Smoothing factor (0-1) applied to speed calculation
-// showSpeedIndicator bool     true                      Show the "<Effect> Intensity: N%" label while moving
-// staggerRange       number   50                        Max stagger delay (ms) spread across fragment reveals
-// fontSansUrl        string   GT Standard woff2 URL      @font-face src for the heading/body font
-// fontMonoUrl        string   PPSupplyMono ttf URL        @font-face src for the nav/mono font
-// noiseOverlayUrl    string   noise-002.png URL           Full-screen noise texture overlay image
-// noiseOpacity       number   0.05                        Opacity of the noise overlay
-// ──────────────────────────────────────────────────────────────────────────
+const photo = (id) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=480&h=480&q=80`;
 
 const DEFAULT_NAV_ITEMS = [
   { label: "Flame", effect: "flame", active: true },
@@ -47,21 +15,30 @@ const DEFAULT_NAV_ITEMS = [
 ];
 
 const DEFAULT_IMAGES = [
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-001.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-002.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-003.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-004.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-005.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-006.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-007.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-008.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-009.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-010.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-011.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-012.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-013.jpg",
-  "https://assets.codepen.io/7558/cr-blurry-orange-small-014.jpg",
-];
+  "1749330513873-09ffa91b0aae",
+  "1627896157734-4d7d4388f28b",
+  "1778789172736-e8ba37c71124",
+  "1778961938903-96617183f739",
+  "1678112553355-a9dab855ebf3",
+  "1743309411498-a0f4f4b96b65",
+  "1490682143684-14369e18dce8",
+  "1634325232058-e7b8f80cc20b",
+  "1759458856846-097935f54111",
+  "1533387520709-752d83de3630",
+  "1752150127767-77bccbed07e2",
+  "1781935307999-e8bb5e62ebb1",
+  "1595598034023-ca08624ce05d",
+  "1781798715946-2e198afc29a7",
+].map(photo);
+
+const TRAIL_IMG =
+  "pointer-events-none absolute z-[12] origin-center object-cover will-change-transform";
+const TRAIL_IMAGE =
+  "absolute z-[12] origin-center overflow-hidden will-change-transform [backface-visibility:hidden] [transform:translate3d(0,0,0)]";
+const FRAGMENT =
+  "absolute overflow-hidden will-change-[transform,clip-path] [backface-visibility:hidden] [transform:translate3d(0,0,0)]";
+const FRAGMENT_BG =
+  "absolute inset-0 bg-cover bg-center bg-no-repeat [transform:translate3d(0,0,0)]";
 
 export default function CursorTrailHero({
   navItems = DEFAULT_NAV_ITEMS,
@@ -69,6 +46,7 @@ export default function CursorTrailHero({
   bgGradient = "linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)",
   letterColor = "#ffffff",
   touchInstructionText = "Swipe your finger to see the magic unfold",
+  fontMono = "JetBrains Mono",
   images = DEFAULT_IMAGES,
   imageLifespan = 600,
   removalDelay = 16,
@@ -86,15 +64,11 @@ export default function CursorTrailHero({
   baseRotation = 30,
   maxRotationFactor = 3,
   speedSmoothingFactor = 0.25,
-  showSpeedIndicator = true,
   staggerRange = 50,
-  fontSansUrl = "https://assets.codepen.io/7558/GT-Standard-VF-Trial.woff2",
-  fontMonoUrl = "https://assets.codepen.io/7558/PPSupplyMono-Regular.ttf",
-  noiseOverlayUrl = "https://assets.codepen.io/7558/noise-002.png",
   noiseOpacity = 0.05,
 }) {
+  const noiseId = `noise${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
   const containerRef = useRef(null);
-  const speedIndicatorRef = useRef(null);
   const navRefs = useRef([]);
   const activeEffectRef = useRef(
     navItems.find((n) => n.active)?.effect || navItems[0]?.effect || "flame",
@@ -102,7 +76,6 @@ export default function CursorTrailHero({
 
   useEffect(() => {
     const container = containerRef.current;
-    const speedIndicator = speedIndicatorRef.current;
     if (!container) return;
 
     const isMobile =
@@ -125,7 +98,6 @@ export default function CursorTrailHero({
       baseRotation,
       maxRotationFactor,
       speedSmoothingFactor,
-      showSpeedIndicator,
       staggerRange,
       easing: {
         scale: "cubic-bezier(0.34, 1.56, 0.64, 1)",
@@ -135,30 +107,28 @@ export default function CursorTrailHero({
 
     const PATTERNS = {
       flame: {
-        name: "Flame Trail",
         create: (c, imageSrc, size) => {
           const img = document.createElement("img");
-          img.className = "trail-img";
+          img.className = TRAIL_IMG;
           img.src = imageSrc;
           img.width = img.height = size;
           return [
-            { element: img, index: 0, reveal: () => {}, collapse: () => {} },
+            { element: img, index: 0, reveal: () => { }, collapse: () => { } },
           ];
         },
         revealTiming: () => 0,
         collapseTiming: () => 0,
       },
       venetian: {
-        name: "Venetian Blinds",
         create: (c, imageSrc) => {
           const fragments = [];
           const stripCount = 12;
           const stripHeight = 100 / stripCount;
           for (let i = 0; i < stripCount; i++) {
             const fragment = document.createElement("div");
-            fragment.className = "image-fragment";
+            fragment.className = FRAGMENT;
             const bg = document.createElement("div");
-            bg.className = "fragment-bg";
+            bg.className = FRAGMENT_BG;
             bg.style.backgroundImage = `url(${imageSrc})`;
             const y = i * stripHeight;
             fragment.style.cssText = `
@@ -186,7 +156,6 @@ export default function CursorTrailHero({
         collapseTiming: (i) => i * 0.04,
       },
       liquid: {
-        name: "Liquid Drops",
         create: (c, imageSrc) => {
           const fragments = [];
           const positions = [
@@ -201,9 +170,9 @@ export default function CursorTrailHero({
           ];
           positions.forEach((pos, i) => {
             const fragment = document.createElement("div");
-            fragment.className = "image-fragment";
+            fragment.className = FRAGMENT;
             const bg = document.createElement("div");
-            bg.className = "fragment-bg";
+            bg.className = FRAGMENT_BG;
             bg.style.backgroundImage = `url(${imageSrc})`;
             fragment.style.cssText = `
               top: 0; left: 0; width: 100%; height: 100%;
@@ -228,15 +197,14 @@ export default function CursorTrailHero({
         collapseTiming: (i, total) => ((total - 1 - i) / total) * 0.25,
       },
       curtain: {
-        name: "Curtain Sweep",
         create: (c, imageSrc) => {
           const fragments = [];
           const stripCount = 10;
           for (let i = 0; i < stripCount; i++) {
             const fragment = document.createElement("div");
-            fragment.className = "image-fragment";
+            fragment.className = FRAGMENT;
             const bg = document.createElement("div");
-            bg.className = "fragment-bg";
+            bg.className = FRAGMENT_BG;
             bg.style.backgroundImage = `url(${imageSrc})`;
             const x = (i / stripCount) * 100;
             const w = 100 / stripCount;
@@ -263,7 +231,6 @@ export default function CursorTrailHero({
         collapseTiming: (i, total) => ((total - 1 - i) / total) * 0.3,
       },
       hexagon: {
-        name: "Hexagon Bloom",
         create: (c, imageSrc) => {
           const fragments = [];
           const hexagons = [
@@ -277,9 +244,9 @@ export default function CursorTrailHero({
           ];
           hexagons.forEach((hex, i) => {
             const fragment = document.createElement("div");
-            fragment.className = "image-fragment";
+            fragment.className = FRAGMENT;
             const bg = document.createElement("div");
-            bg.className = "fragment-bg";
+            bg.className = FRAGMENT_BG;
             bg.style.backgroundImage = `url(${imageSrc})`;
             const s = hex.size;
             const x = hex.x;
@@ -308,16 +275,15 @@ export default function CursorTrailHero({
         collapseTiming: (i) => (i === 0 ? 0.3 : (i - 1) * 0.04),
       },
       zoomsplit: {
-        name: "Zoom Split",
         create: (c, imageSrc) => {
           const fragments = [];
           const gridSize = 3;
           for (let row = 0; row < gridSize; row++) {
             for (let col = 0; col < gridSize; col++) {
               const fragment = document.createElement("div");
-              fragment.className = "image-fragment";
+              fragment.className = FRAGMENT;
               const bg = document.createElement("div");
-              bg.className = "fragment-bg";
+              bg.className = FRAGMENT_BG;
               bg.style.backgroundImage = `url(${imageSrc})`;
               const x = (col / gridSize) * 100;
               const y = (row / gridSize) * 100;
@@ -382,7 +348,7 @@ export default function CursorTrailHero({
       maxSpeed = 0;
     let imageIndex = 0;
     const imagePool = [];
-    let moveTimeout, scrollTimeout, speedTimeout;
+    let moveTimeout, scrollTimeout;
 
     const isInContainer = (x, y) => {
       const rect = container.getBoundingClientRect();
@@ -420,22 +386,13 @@ export default function CursorTrailHero({
         norm * config.speedSmoothingFactor;
       lastMoveTime = now;
 
-      if (config.showSpeedIndicator && speedIndicator) {
-        const effectName = PATTERNS[activeEffectRef.current].name;
-        speedIndicator.textContent = `${effectName} Intensity: ${(smoothedSpeed * 100).toFixed(0)}%`;
-        speedIndicator.style.opacity = "1";
-        clearTimeout(speedTimeout);
-        speedTimeout = setTimeout(() => {
-          speedIndicator.style.opacity = "0";
-        }, 1500);
-      }
       return smoothedSpeed;
     };
 
     const createImageElement = () => {
       if (imagePool.length > 0) return imagePool.pop();
       const element = document.createElement("div");
-      element.className = "trail-image";
+      element.className = TRAIL_IMAGE;
       return element;
     };
 
@@ -443,7 +400,7 @@ export default function CursorTrailHero({
       if (element.parentNode) element.parentNode.removeChild(element);
       element.innerHTML = "";
       element.style.cssText = "";
-      element.className = "trail-image";
+      element.className = TRAIL_IMAGE;
       if (imagePool.length < 20) imagePool.push(element);
     };
 
@@ -458,7 +415,7 @@ export default function CursorTrailHero({
 
       if (currentEffect === "flame") {
         const img = document.createElement("img");
-        img.className = "trail-img";
+        img.className = TRAIL_IMG;
         const rotFactor = 1 + speed * (config.maxRotationFactor - 1);
         const rot = (Math.random() - 0.5) * config.baseRotation * rotFactor;
         img.src = imageSrc;
@@ -688,7 +645,6 @@ export default function CursorTrailHero({
       cancelAnimationFrame(rafId);
       clearTimeout(moveTimeout);
       clearTimeout(scrollTimeout);
-      clearTimeout(speedTimeout);
       document.removeEventListener("mouseover", setInitialMousePos);
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("touchstart", onDocTouchStart);
@@ -716,14 +672,46 @@ export default function CursorTrailHero({
     baseRotation,
     maxRotationFactor,
     speedSmoothingFactor,
-    showSpeedIndicator,
     staggerRange,
     navItems,
   ]);
 
+  const monoVars = { "--mono": `"${fontMono}", monospace` };
+
   return (
     <>
-      <header className="fixed left-0 top-0 z-[100] w-full bg-transparent p-8 max-[768px]:p-4">
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap"
+      />
+
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-[9999] h-full w-full mix-blend-screen"
+        style={{ opacity: noiseOpacity }}
+      >
+        <filter id={noiseId}>
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.8"
+            numOctaves="2"
+            stitchTiles="stitch"
+          />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter={`url(#${noiseId})`} />
+      </svg>
+
+      <header
+        className="fixed left-0 top-0 z-[100] w-full bg-transparent p-8 max-[768px]:p-4"
+        style={monoVars}
+      >
         <div className="flex w-full items-start justify-between max-[768px]:flex-col max-[768px]:items-start max-[768px]:gap-5">
           <div className="group relative block h-6 w-12">
             <div className="relative h-full w-full">
@@ -746,7 +734,8 @@ export default function CursorTrailHero({
                     ref={(el) => (navRefs.current[i] = el)}
                     href="#"
                     data-effect={item.effect}
-                    className={`nav-link relative z-[1] inline-block cursor-pointer font-[var(--trail-font-mono)] text-[10px] uppercase tracking-normal text-white no-underline opacity-70 transition-colors duration-300 hover:opacity-100 ${item.active ? "active opacity-100" : ""}`}
+                    className={`relative z-[1] inline-block cursor-pointer font-[family-name:var(--mono)] text-[10px] uppercase tracking-normal text-white no-underline opacity-70 transition-colors duration-300 after:absolute after:left-0 after:top-0 after:-z-[1] after:h-full after:w-0 after:bg-white after:content-[''] after:[transition:width_0.3s_cubic-bezier(0.34,1.56,0.64,1)] hover:text-[#222220] hover:opacity-100 hover:mix-blend-difference hover:after:w-full [&.active]:text-[#222220] [&.active]:opacity-100 [&.active]:mix-blend-difference [&.active]:after:w-full${item.active ? " active" : ""
+                      }`}
                   >
                     {item.label}
                   </a>
@@ -760,7 +749,7 @@ export default function CursorTrailHero({
       <section
         ref={containerRef}
         className="relative m-0 flex h-screen w-screen items-center justify-center overflow-hidden p-0"
-        style={{ background: bgGradient }}
+        style={{ background: bgGradient, ...monoVars }}
       >
         <svg
           fill="none"
@@ -827,113 +816,10 @@ export default function CursorTrailHero({
           </g>
         </svg>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[30px] z-[20] hidden text-center font-[var(--trail-font-mono)] text-[10px] uppercase text-white opacity-70 max-[768px]:block">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[30px] z-[20] hidden text-center font-[family-name:var(--mono)] text-[10px] uppercase text-white opacity-70 max-[768px]:block">
           {touchInstructionText}
         </div>
-
-        <div
-          ref={speedIndicatorRef}
-          className="pointer-events-none absolute bottom-5 left-1/2 z-[20] -translate-x-1/2 font-[var(--trail-font-mono)] text-[10px] uppercase text-white opacity-0 transition-opacity duration-300"
-        />
       </section>
-
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            @font-face {
-              font-family: "TrailFontMono";
-              src: url("${fontMonoUrl}") format("truetype");
-              font-weight: normal;
-              font-style: normal;
-            }
-            @font-face {
-              font-family: "TrailFontSans";
-              src: url("${fontSansUrl}") format("woff2-variations");
-              font-weight: 300 900;
-              font-stretch: 0% 150%;
-              font-style: normal;
-            }
-            :root {
-              --trail-font-sans: "TrailFontSans", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-              --trail-font-mono: "TrailFontMono", "Courier New", monospace;
-            }
-            body::after {
-              content: "";
-              position: fixed;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background-image: url("${noiseOverlayUrl}");
-              background-repeat: repeat;
-              background-size: 200px 200px;
-              opacity: ${noiseOpacity};
-              pointer-events: none;
-              z-index: 9999;
-              mix-blend-mode: screen;
-            }
-            .nav-link {
-              font-family: var(--trail-font-mono);
-            }
-            .nav-link::after {
-              content: "";
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 0;
-              height: 100%;
-              background-color: #fff;
-              z-index: -1;
-              transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            }
-            .nav-link:hover::after,
-            .nav-link.active::after {
-              width: 100%;
-            }
-            .nav-link:hover,
-            .nav-link.active {
-              color: #222220;
-              mix-blend-mode: difference;
-              opacity: 1;
-            }
-            .trail-img {
-              position: absolute;
-              object-fit: cover;
-              transform-origin: center;
-              pointer-events: none;
-              will-change: transform;
-              z-index: 12;
-            }
-            .trail-image {
-              position: absolute;
-              overflow: hidden;
-              will-change: transform;
-              transform-origin: center;
-              backface-visibility: hidden;
-              transform: translate3d(0, 0, 0);
-              z-index: 12;
-            }
-            .image-fragment {
-              position: absolute;
-              overflow: hidden;
-              will-change: transform, clip-path;
-              backface-visibility: hidden;
-              transform: translate3d(0, 0, 0);
-            }
-            .fragment-bg {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background-size: cover;
-              background-position: center;
-              background-repeat: no-repeat;
-              transform: translate3d(0, 0, 0);
-            }
-          `,
-        }}
-      />
     </>
   );
 }

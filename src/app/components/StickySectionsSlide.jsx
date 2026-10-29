@@ -1,144 +1,106 @@
 "use client";
 
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-// ─── StickySectionsHalfSlide ───────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// sections            array    (see DEFAULT_SECTIONS)  Sticky panels: { image, titleLead, title, text, bg }
-// intro               string   long text               Large intro paragraph above the sticky stack
-// outro               string   long text               Large outro paragraph below the sticky stack
-// outroImage          string   img/1.png               Image shown under the outro text
-// heroImage           string   img/1.png               Background image of the hero header
-// heroTitleLead       string   "The"                   Light narrow first word of the hero heading
-// heroTitle           string   "Escape"              Heavy second word of the hero heading
-// heroMeta            string   short line              Small line beside the hero heading
-// showHero            boolean  true                    Render the hero header block
-// showIntro           boolean  true                    Render the intro paragraph block
-// showOutro           boolean  true                    Render the outro paragraph block
-// fontFamily          string   system sans stack       Font stack for the whole component
-// textColor           string   #fff                    Base text color
-// bgColor             string   #12100e                 Page background color
-// panelWidth          string   "50%"                   Panel width from the 63em breakpoint up
-// panelGap            string   "3vh"                   Vertical gap between image, title and text
-// textMaxWidth        string   "300px"                 Narrow cap on the panel paragraph
-// imageHeight         string   "35%"                   Panel image height (width follows automatically)
-// alternateSides      boolean  true                    Push every other panel to the opposite side
-// stickyOffset        number   0                       Sticky top offset in px (panels shrink to match)
-// scrollLength        string   "+=100%"                ScrollTrigger end distance per panel
-// panelYPercent       number   -100                    Vertical slide (%) of the panel as it exits
-// imageFromYPercent   number   20                      Image start vertical offset (%)
-// imageToYPercent     number   -100                    Image end vertical offset (%)
-// imageFromRotation   number   40                      Image start rotation (deg)
-// imageToRotation     number   0                       Image end rotation (deg)
-// imageFromScale      number   0.8                     Image start scale
-// imageToScale        number   1                       Image end scale
-// imageFromContrast   number   400                     Image start contrast (%)
-// imageToContrast     number   100                     Image end contrast (%)
-// imageScrollStart    string   "top bottom"            Start position for the image track
-// imageScrollEnd      string   "max"                   End position for the image track
-// smoothScroll        boolean  true                    Enable Lenis smooth scrolling
-// lerp                number   0.2                     Lenis interpolation (lower = smoother)
-// smoothWheel         boolean  true                    Lenis smooth scrolling for wheel events
-// lenisUrl            string   jsdelivr lenis 1.1.20   CDN URL for Lenis
-// clipOverflow        boolean  true                    Clip horizontal overflow via overflow-x:clip (never use hidden — it breaks sticky)
-// showLoader          boolean  true                    Show the pulsing loader until images decode
-// loaderColor         string   rgba(255,255,255,0.6)   Loader dot color
-// className           string   ""                      Extra classes on the root wrapper
-// ──────────────────────────────────────────────────────────────────────────
+const GSAP_BASE = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/";
+
+const scriptCache = new Map();
+
+const loadScript = (src) => {
+  if (scriptCache.has(src)) return scriptCache.get(src);
+  const promise = new Promise((resolve, reject) => {
+    const el = document.createElement("script");
+    el.src = src;
+    el.onload = resolve;
+    el.onerror = () => {
+      scriptCache.delete(src);
+      reject(new Error(`Failed: ${src}`));
+    };
+    document.head.appendChild(el);
+  });
+  scriptCache.set(src, promise);
+  return promise;
+};
 
 const IMG = (n) =>
-  `https://raw.githubusercontent.com/codrops/StickySections/main/img/${n}.png`;
+  `https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/${n}.png`;
 
 const DEFAULT_SECTIONS = [
   {
-    image: IMG(1),
+    image: IMG("blue"),
     titleLead: "The",
     title: "Algorithm",
     text: "The algorithm's workings are shrouded in complexity.",
-    bg: "#2f251e",
+    cardColor: "bg-neutral-900",
   },
   {
-    image: IMG(2),
+    image: IMG("red"),
     titleLead: "The",
     title: "Dogma",
     text: "Enshrining the principles of conformity and reinforcing the status quo.",
-    bg: "#43392f",
+    cardColor: "bg-neutral-800",
   },
   {
-    image: IMG(3),
+    image: IMG("purple"),
     titleLead: "The",
     title: "Architects",
     text: "The elusive entities, lacking human form, operate in the shadows.",
-    bg: "#18130e",
+    cardColor: "bg-neutral-950",
   },
   {
-    image: IMG(4),
+    image: IMG("green"),
     titleLead: "The",
     title: "Wasteland",
     text: "This overlooked realm, a consequence of algorithmic judgments.",
-    bg: "#2f251e",
+    cardColor: "bg-neutral-900",
   },
   {
-    image: IMG(5),
+    image: IMG("black"),
     titleLead: "The",
     title: "Narrative",
     text: "The collective story sculpted by the architects.",
-    bg: "#43392f",
+    cardColor: "bg-neutral-800",
   },
   {
-    image: IMG(6),
+    image: IMG("dblue"),
     titleLead: "The",
     title: "Opulence",
     text: "The cognitive elite's wealth in the algorithmic society.",
-    bg: "#18130e",
+    cardColor: "bg-neutral-950",
   },
 ];
 
-const loadScript = (src) =>
-  new Promise((resolve, reject) => {
-    const existing = document.querySelector(`script[data-id="${src}"]`);
-    if (existing) {
-      if (existing.dataset.loaded === "true") resolve();
-      else {
-        existing.addEventListener("load", () => resolve());
-        existing.addEventListener("error", () =>
-          reject(new Error(`Failed: ${src}`)),
-        );
-      }
-      return;
-    }
-    const el = document.createElement("script");
-    el.src = src;
-    el.setAttribute("data-id", src);
-    el.onload = () => {
-      el.dataset.loaded = "true";
-      resolve();
-    };
-    el.onerror = () => reject(new Error(`Failed: ${src}`));
-    document.head.appendChild(el);
-  });
+const DEFAULT_FONT_FACES = [
+  {
+    weight: 300,
+    url: "https://cdn.jsdelivr.net/fontsource/fonts/dm-sans@latest/latin-300-normal.woff2",
+  },
+  {
+    weight: 500,
+    url: "https://cdn.jsdelivr.net/fontsource/fonts/dm-sans@latest/latin-500-normal.woff2",
+  },
+  {
+    weight: 700,
+    url: "https://cdn.jsdelivr.net/fontsource/fonts/dm-sans@latest/latin-700-normal.woff2",
+  },
+];
+
+const pad = (n) => String(n).padStart(2, "0");
 
 export default function StickySectionsSlide({
   sections = DEFAULT_SECTIONS,
-  intro = "As data conglomerates reveled in the opulence of cognitive wealth, a silent underclass manifested, condemned to the digital periphery.",
-  outro = "Lost in perpetual dependency, inhabitants of the Synthetic Era found solace in cryptic simulations, where pain ebbed and cognitive loads momentarily lightened.",
-  outroImage = IMG(5),
-  heroImage = IMG(5),
   heroTitleLead = "The",
   heroTitle = "Escape",
-  heroMeta = "An exploration of the Synthetic Era.",
-  showHero = true,
-  showIntro = true,
-  showOutro = true,
-  fontFamily = '"Helvetica Neue", Helvetica, Arial, system-ui, sans-serif',
-  textColor = "#fff",
-  bgColor = "#12100e",
-  panelWidth = "50%",
-  panelGap = "3vh",
-  textMaxWidth = "300px",
-  imageHeight = "35%",
+  heroDescription = "As data conglomerates reveled in the opulence of cognitive wealth, a silent underclass manifested, condemned to the digital periphery.",
+  outro = "Lost in perpetual dependency, inhabitants of the Synthetic Era found solace in cryptic simulations, where pain ebbed and cognitive loads momentarily lightened.",
+  fontFamily = "DM Sans",
+  fontFaces = DEFAULT_FONT_FACES,
+  backgroundColor = "bg-black",
+  textColor = "text-white",
+  loaderColor = "bg-white/60",
+  cardRadius = "rounded-md",
+  imageSize = "h-[50%]",
+  textMaxWidth = "max-w-[300px]",
   alternateSides = true,
   stickyOffset = 0,
   scrollLength = "+=100%",
@@ -157,53 +119,35 @@ export default function StickySectionsSlide({
   lerp = 0.2,
   smoothWheel = true,
   lenisUrl = "https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js",
-  clipOverflow = true,
   showLoader = true,
-  loaderColor = "rgba(255,255,255,0.6)",
-  className = "",
 }) {
   const rootRef = useRef(null);
-  const loaderRef = useRef(null);
-  const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
+  const [ready, setReady] = useState(!showLoader);
 
   useEffect(() => {
     let killed = false;
-    let lenis = null;
-    let rafId = null;
-    const triggers = [];
+    let ctx;
+    let lenis;
+    let tick;
 
-    const hideLoader = () => {
-      if (loaderRef.current) loaderRef.current.style.opacity = "0";
-      window.setTimeout(() => {
-        if (loaderRef.current) loaderRef.current.style.display = "none";
-      }, 400);
-    };
-
-    const preload = () => {
-      const root = rootRef.current;
-      if (!root) return Promise.resolve();
-      return Promise.all(
-        [...root.querySelectorAll("img")].map(
+    const preloadImages = () =>
+      Promise.all(
+        Array.from(rootRef.current.querySelectorAll("img")).map(
           (img) =>
-            new Promise((res) => {
+            new Promise((resolve) => {
               if (img.complete) {
-                res();
+                resolve();
                 return;
               }
-              img.addEventListener("load", () => res(), { once: true });
-              img.addEventListener("error", () => res(), { once: true });
+              img.addEventListener("load", resolve, { once: true });
+              img.addEventListener("error", resolve, { once: true });
             }),
         ),
       );
-    };
 
     const run = async () => {
-      await loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
-      );
-      await loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js",
-      );
+      await loadScript(GSAP_BASE + "gsap.min.js");
+      await loadScript(GSAP_BASE + "ScrollTrigger.min.js");
       if (smoothScroll) {
         try {
           await loadScript(lenisUrl);
@@ -216,103 +160,93 @@ export default function StickySectionsSlide({
       }
       if (killed) return;
 
-      const { gsap, ScrollTrigger } = window;
-      const Lenis = window.Lenis || (window.lenis && window.lenis.default);
+      const { gsap, ScrollTrigger, Lenis } = window;
       if (!gsap || !ScrollTrigger || !rootRef.current) return;
       gsap.registerPlugin(ScrollTrigger);
 
-      await preload();
+      await preloadImages();
       if (killed) return;
-      hideLoader();
+      setReady(true);
 
-      if (smoothScroll && Lenis) {
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (smoothScroll && Lenis && !reduceMotion) {
         lenis = new Lenis({ lerp, smoothWheel });
-        lenis.on("scroll", () => ScrollTrigger.update());
-        const frame = (time) => {
-          if (killed) return;
-          lenis.raf(time);
-          rafId = requestAnimationFrame(frame);
-        };
-        rafId = requestAnimationFrame(frame);
+        lenis.on("scroll", ScrollTrigger.update);
+        tick = (time) => lenis.raf(time * 1000);
+        gsap.ticker.add(tick);
+        gsap.ticker.lagSmoothing(0);
       }
 
-      const panels = [
-        ...rootRef.current.querySelectorAll(`[data-sticky="${uid}"]`),
-      ];
+      ctx = gsap.context(() => {
+        const panels = gsap.utils.toArray("[data-panel]");
+        panels.forEach((el, i) => {
+          const isLast = i === panels.length - 1;
+          const isPreLast = i === panels.length - 2;
 
-      panels.forEach((el, i) => {
-        const isLast = i === panels.length - 1;
-        const isPreLast = i === panels.length - 2;
+          gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: el,
+                start: () => {
+                  if (isLast) return "top top";
+                  if (isPreLast) return "bottom top";
+                  return "bottom+=100% top";
+                },
+                end: scrollLength,
+                scrub: true,
+              },
+            })
+            .to(el, { ease: "none", yPercent: panelYPercent }, 0);
 
-        const panelTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: el,
-            start: () => {
-              if (isLast) return "top top";
-              if (isPreLast) return "bottom top";
-              return "bottom+=100% top";
-            },
-            end: scrollLength,
-            scrub: true,
-          },
+          gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: el,
+                start: imageScrollStart,
+                end: imageScrollEnd,
+                scrub: true,
+              },
+            })
+            .fromTo(
+              el.querySelector("[data-panel-img]"),
+              {
+                yPercent: imageFromYPercent,
+                rotation: imageFromRotation,
+                scale: imageFromScale,
+                filter: `contrast(${imageFromContrast}%)`,
+              },
+              {
+                ease: "none",
+                yPercent: imageToYPercent,
+                rotation: imageToRotation,
+                scale: imageToScale,
+                filter: `contrast(${imageToContrast}%)`,
+              },
+              0,
+            );
         });
-        triggers.push(panelTl.scrollTrigger);
-
-        panelTl.to(
-          el,
-          {
-            ease: "none",
-            yPercent: panelYPercent,
-          },
-          0,
-        );
-
-        const imgTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: el,
-            start: imageScrollStart,
-            end: imageScrollEnd,
-            scrub: true,
-          },
-        });
-        triggers.push(imgTl.scrollTrigger);
-
-        imgTl.fromTo(
-          el.querySelector(`[data-sticky-img="${uid}"]`),
-          {
-            yPercent: imageFromYPercent,
-            rotation: imageFromRotation,
-            scale: imageFromScale,
-            filter: `contrast(${imageFromContrast}%)`,
-          },
-          {
-            ease: "none",
-            yPercent: imageToYPercent,
-            rotation: imageToRotation,
-            scale: imageToScale,
-            filter: `contrast(${imageToContrast}%)`,
-          },
-          0,
-        );
-      });
+      }, rootRef.current);
 
       ScrollTrigger.refresh();
     };
 
     run().catch((e) => {
-      hideLoader();
       console.error("[StickySectionsHalfSlide]", e.message);
+      setReady(true);
     });
 
     return () => {
       killed = true;
-      if (rafId) cancelAnimationFrame(rafId);
-      triggers.forEach((t) => t && t.kill());
-      if (lenis && lenis.destroy) lenis.destroy();
+      const { gsap } = window;
+      if (gsap && tick) gsap.ticker.remove(tick);
+      if (lenis) lenis.destroy();
+      if (ctx) ctx.revert();
     };
   }, [
-    uid,
-    sections,
+    sections.length,
     scrollLength,
     panelYPercent,
     imageFromYPercent,
@@ -331,229 +265,94 @@ export default function StickySectionsSlide({
     lenisUrl,
   ]);
 
-  const s = `[data-root="${uid}"]`;
-
-  const css = `
-    ${s} { font-family: ${fontFamily}; -webkit-font-smoothing: antialiased; }
-
-    ${s} .ss-lead {
-      font-style: normal;
-      font-weight: 300;
-      letter-spacing: -0.02em;
-    }
-
-    ${s} .ss-heading {
-      margin: 0;
-      line-height: 0.9;
-      text-transform: uppercase;
-      margin-left: -0.065em;
-      font-size: clamp(2.5rem, 12vw, 7rem);
-      letter-spacing: -0.105em;
-      font-weight: 900;
-      font-stretch: expanded;
-    }
-
-    ${s} .ss-title {
-      margin: 0;
-      letter-spacing: -0.095em;
-      text-transform: uppercase;
-      line-height: 1;
-      font-weight: 900;
-      font-stretch: expanded;
-      font-size: clamp(2rem, 6vw, 5rem);
-    }
-
-    ${s} .ss-text {
-      margin: 0;
-      max-width: ${textMaxWidth};
-      text-align: center;
-      line-height: 1.5;
-      padding: 0 1rem;
-      backface-visibility: hidden;
-    }
-
-    ${s} .ss-large {
-      font-size: clamp(1.5rem, 5vw, 3rem);
-      max-width: 900px;
-      margin: 0 0 0.85em 0;
-      line-height: 1.2;
-      font-weight: 500;
-    }
-
-    ${s} .ss-panel {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      text-align: center;
-      gap: ${panelGap};
-    }
-
-    ${s} .ss-img-wrap {
-      height: ${imageHeight};
-      width: auto;
-    }
-
-    ${s} .ss-img-wrap img { height: 100%; width: auto; display: block; }
-
-    ${s} .ss-frame {
-      padding: var(--ss-pad-${uid});
-      position: relative;
-      display: grid;
-      width: 100%;
-      row-gap: 1rem;
-      column-gap: 2rem;
-      justify-items: start;
-      text-transform: uppercase;
-      font-size: 12px;
-    }
-
-    ${s} .ss-hero {
-      height: 100%;
-      background-size: auto 80%;
-      background-position: 120% 50%;
-      background-repeat: no-repeat;
-      grid-template-areas: "heading";
-    }
-
-    ${s} .ss-hero-inner {
-      grid-area: heading;
-      align-self: center;
-      justify-self: start;
-      width: min-content;
-      display: flex;
-      flex-direction: column;
-      margin-top: 10vh;
-    }
-
-    ${s} .ss-hero-inner p { margin: 0; }
-
-    @keyframes ssLoader${uid} {
-      to { opacity: 1; transform: scale3d(0.5, 0.5, 1); }
-    }
-
-    ${s} .ss-loader-dot {
-      animation: ssLoader${uid} 0.7s linear infinite alternate forwards;
-    }
-
-    @media screen and (min-width: 63em) {
-      ${s} { --ss-pad-${uid}: 2rem 3rem; }
-
-      ${s} .ss-hero { height: 100vh; }
-      ${s} .ss-hero-inner { margin-top: 0; }
-      ${s} .ss-hero-inner .ss-heading { white-space: nowrap; }
-      ${s} .ss-hero-inner p { margin: 0 0 0 auto; }
-
-      ${s} .ss-panel { width: ${panelWidth}; }
-
-      ${s} .ss-panel[data-side="end"] { margin-left: auto; }
-    }
-  `;
+  const fontCss = fontFaces
+    .map(
+      ({ weight, url }) =>
+        '@font-face{font-family:"' +
+        fontFamily +
+        '";src:url("' +
+        url +
+        '") format("woff2");font-weight:' +
+        weight +
+        ";font-display:swap;}",
+    )
+    .join("");
 
   return (
     <div
       ref={rootRef}
-      data-root={uid}
-      className={`relative w-full ${className}`}
-      style={{
-        backgroundColor: bgColor,
-        color: textColor,
-        overflowX: clipOverflow ? "clip" : "visible",
-        ["--ss-pad-" + uid]: "1.5rem",
-      }}
+      className={`relative w-full overflow-x-clip antialiased ${backgroundColor} ${textColor}`}
+      style={{ fontFamily: `"${fontFamily}", sans-serif` }}
     >
-      <style dangerouslySetInnerHTML={{ __html: css }} />
+      <style>{fontCss}</style>
 
       {showLoader ? (
         <div
-          ref={loaderRef}
-          className="fixed inset-0 z-[5000] grid place-items-center transition-opacity duration-300"
-          style={{ backgroundColor: bgColor }}
+          aria-hidden="true"
+          className={`fixed inset-0 z-[5000] grid place-items-center transition-all duration-300 ${backgroundColor} ${ready ? "invisible opacity-0" : "visible opacity-100"
+            }`}
         >
           <div
-            className="ss-loader-dot h-[60px] w-[60px] rounded-full opacity-40"
-            style={{ backgroundColor: loaderColor }}
+            className={`h-[60px] w-[60px] animate-pulse rounded-full ${loaderColor}`}
           />
         </div>
       ) : null}
 
-      {showHero ? (
-        <header
-          className="ss-frame ss-hero z-[3000]"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="ss-hero-inner">
-            <h2 className="ss-heading">
-              <span className="ss-lead">{heroTitleLead}</span> {heroTitle}
-            </h2>
-            <p>{heroMeta}</p>
-          </div>
-        </header>
-      ) : null}
-
-      {showIntro ? (
-        <div
-          className="z-[2] flex flex-col items-center justify-center pb-[25vh] pt-[25vh]"
-          style={{ padding: `25vh var(--ss-pad-${uid})` }}
-        >
-          <p className="ss-large">{intro}</p>
-        </div>
-      ) : null}
+      <header className="flex min-h-[80vh] flex-col items-center justify-center px-6 py-[15vh] text-center">
+        <h1 className="m-0 text-[clamp(3rem,12vw,9rem)] font-medium leading-[0.95] tracking-[-0.05em]">
+          <span className="font-light">{heroTitleLead}</span> {heroTitle}
+        </h1>
+        <p className="mt-8 max-w-xl text-base leading-[1.6] opacity-70 md:text-lg">
+          {heroDescription}
+        </p>
+      </header>
 
       <div className="relative w-full">
         {sections.map((item, i) => (
           <div
             key={i}
-            data-sticky={uid}
-            data-side={alternateSides && i % 2 === 0 ? "end" : "start"}
-            className="ss-panel sticky w-full"
+            data-panel
+            className={`sticky flex w-full flex-col items-center justify-center gap-[3vh] overflow-hidden p-6 text-center ring-1 ring-white/10 lg:w-1/2 ${alternateSides && i % 2 === 0 ? "lg:ml-auto" : ""
+              } ${cardRadius} ${item.cardColor}`}
             style={{
-              padding: `var(--ss-pad-${uid})`,
               top: `${stickyOffset}px`,
               height: `calc(100vh - ${stickyOffset}px)`,
-              backgroundColor: item.bg,
               zIndex: i + 1,
             }}
           >
-            <div className="ss-img-wrap">
-              <img
-                data-sticky-img={uid}
-                src={item.image}
-                alt=""
-                draggable="false"
-                className="select-none"
-              />
-            </div>
-            <h2 className="ss-title">
+            <span className="absolute left-5 top-5 text-xs tabular-nums tracking-[0.1em] opacity-50">
+              {pad(i + 1)} / {pad(sections.length)}
+            </span>
+
+            <img
+              data-panel-img
+              src={item.image}
+              alt=""
+              draggable={false}
+              className={`w-auto select-none object-cover ${imageSize}`}
+            />
+
+            <h2 className="m-0 text-[clamp(1.75rem,4.5vw,3.5rem)] font-medium leading-none tracking-[-0.05em]">
               {item.titleLead ? (
-                <span className="ss-lead">{item.titleLead} </span>
+                <span className="block font-light">{item.titleLead}</span>
               ) : null}
               {item.title}
             </h2>
-            <p className="ss-text">{item.text}</p>
+
+            <p
+              className={`m-0 px-4 text-sm leading-[1.6] opacity-70 ${textMaxWidth}`}
+            >
+              {item.text}
+            </p>
           </div>
         ))}
       </div>
 
-      {showOutro ? (
-        <div
-          className="flex flex-col items-center justify-center"
-          style={{
-            padding: `50vh var(--ss-pad-${uid}) 30vh`,
-          }}
-        >
-          <p className="ss-large">{outro}</p>
-          {outroImage ? (
-            <img
-              src={outroImage}
-              alt=""
-              draggable="false"
-              className="mt-[20vh] h-auto w-1/2 max-w-[300px] select-none"
-            />
-          ) : null}
-        </div>
-      ) : null}
+      <section className="flex flex-col items-center justify-center px-6 pb-[30vh] pt-[50vh]">
+        <p className="m-0 max-w-[900px] text-[clamp(1.5rem,5vw,3rem)] font-medium leading-[1.2] tracking-[-0.02em]">
+          {outro}
+        </p>
+      </section>
     </div>
   );
 }

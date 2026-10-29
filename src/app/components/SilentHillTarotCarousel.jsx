@@ -2,15 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-// ─── SilentHillTarotCarousel ─────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// radius             number   420                3D depth space calculation index
-// title              string   "The Door Awaiting" Custom header typography layout line
-// glowColor          string   "rgba(185,28,28,0.15)" Ambient backing radial aura channel
-// ──────────────────────────────────────────────────────────────────────────
-
 const MODERN_TAROT_CARDS = [
   {
     id: "card-0",
@@ -20,7 +11,7 @@ const MODERN_TAROT_CARDS = [
     content: "Found this in the chapel. Is this a real tarot card, though?",
     backText:
       "A mysterious card found in the chapel. Its design suggests an ancient origin lost to time.",
-    img: "https://assets.codepen.io/13223981/eyeofthenight.png",
+    img: "https://images.unsplash.com/photo-1781935307999-e8bb5e62ebb1?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: "card-1",
@@ -30,7 +21,7 @@ const MODERN_TAROT_CARDS = [
     content: "Didn't this card mean something like 'Genuine Belief'?",
     backText:
       "Symbol of spiritual insight. Heather believed this card represented genuine belief in the unknown.",
-    img: "https://assets.codepen.io/13223981/highpriestess+1.png",
+    img: "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: "card-2",
@@ -40,7 +31,7 @@ const MODERN_TAROT_CARDS = [
     content: "Found in the Aglaophotis book in Alessa's room",
     backText:
       "An odd card found in Alessa’s room. Connected to innocence and the start of a journey, perhaps hers.",
-    img: "https://assets.codepen.io/13223981/fool.png",
+    img: "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: "card-3",
@@ -50,7 +41,7 @@ const MODERN_TAROT_CARDS = [
     content: "Found on a gurney in the Morgue",
     backText:
       "Found in the morgue. Some say it represents sacrifice or surrender—fitting for Silent Hill’s twisted lore.",
-    img: "https://assets.codepen.io/13223981/hangedman.png",
+    img: "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: "card-4",
@@ -60,7 +51,7 @@ const MODERN_TAROT_CARDS = [
     content: "Found in the library of the Order's chapel",
     backText:
       "Pulled from the Order’s library. This card hints at illusion, fear, and secrets hiding in the shadows.",
-    img: "https://assets.codepen.io/13223981/moon.png",
+    img: "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1600&q=80",
   },
 ];
 
@@ -121,7 +112,6 @@ export default function SilentHillTarotCarousel({
         <h1 className="text-xl md:text-2xl font-light tracking-[0.25em] text-zinc-100 max-w-2xl uppercase leading-relaxed font-sans">
           {title}
         </h1>
-        <div className="w-12 h-[1px] bg-zinc-800 mt-6" />
       </header>
 
       {/* Main 3D Container Node Field Viewport — Explicitly centered layout base */}
@@ -159,11 +149,10 @@ export default function SilentHillTarotCarousel({
                 >
                   {/* Card Front View Plate */}
                   <div
-                    className={`absolute inset-0 [backface-visibility:hidden] flex flex-col justify-between p-4 bg-[#0d0908] border border-zinc-800/80 rounded-sm transition-all duration-500 ease-out shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] ${
-                      isActive
+                    className={`absolute inset-0 [backface-visibility:hidden] flex flex-col justify-between p-4 bg-[#0d0908] border border-zinc-800/80 rounded-sm transition-all duration-500 ease-out shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] ${isActive
                         ? "border-red-950/60 ring-1 ring-red-900/10"
                         : "opacity-40 grayscale-[40%] scale-[0.96]"
-                    }`}
+                      }`}
                     style={{ transform: "rotateY(0deg)" }} // Explicitly anchors front side
                   >
                     {/* Index identity tracker layout row */}
@@ -229,11 +218,10 @@ export default function SilentHillTarotCarousel({
             <button
               key={i}
               onClick={() => setCurrentIndex(i)}
-              className={`h-[3px] rounded-full transition-all duration-500 ${
-                currentIndex === i
+              className={`h-[3px] rounded-full transition-all duration-500 ${currentIndex === i
                   ? "w-6 bg-red-500/70"
                   : "w-1.5 bg-zinc-800 hover:bg-zinc-700"
-              }`}
+                }`}
             />
           ))}
         </div>

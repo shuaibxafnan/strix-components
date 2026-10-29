@@ -1,335 +1,337 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { Lexend } from "next/font/google";
 
-// ─── FruitySlider ─────────────────────────────────────────────────────────────
-//
-// Props
-// ─────────────────────────────────────────────────────────────────────────────
-// slides               Slide[]    See DEFAULT_SLIDES — array of slide data
-// caneSvgUrl           string     Cane SVG url (used ONLY as CSS mask shape)
-// brandName            string     "Fruity"         Header brand text
-// transitionDuration   number     500              Slide transition ms (runtime)
-// waveDuration         string     "4s"             Button wave animation duration (runtime)
-// buttonSize           string     "80px"           Nav button size (runtime)
-// buttonFontSize       string     "40px"           Nav button icon size (runtime)
-// ─────────────────────────────────────────────────────────────────────────────
-//
-// Slide shape:
-// {
-//   name:       string   — big h1 text
-//   logoColor:  string   — brand + button color
-//   bgColor:    string   — section background
-//   waveBg:     string   — wave ring color (matches bgColor)
-//   canColor:   string   — solid fill color shown inside the can mask
-//   images:     string[] — [bottomLeft, topLeft, topRight, bottomRight]
-// }
-// ─────────────────────────────────────────────────────────────────────────────
-
-const BASE = "https://www.yudiz.com/codepen/fruity";
+const lexend = Lexend({
+  subsets: ["latin"],
+  variable: "--font-lexend",
+});
 
 const DEFAULT_SLIDES = [
   {
-    name: "Pear",
-    logoColor: "#03403f",
-    bgColor: "#c9e78a",
-    waveBg: "#c9e78a",
-    canColor: "#e6ffde",
-    images: [
-      `${BASE}/pear-one.png`,
-      `${BASE}/pear-two.png`,
-      `${BASE}/pear-three.png`,
-      `${BASE}/pear-four.png`,
-    ],
-  },
-  {
-    name: "Apple",
+    name: "Watermelon",
     logoColor: "#ec4458",
     bgColor: "#ffb2b2",
-    waveBg: "#ffb2b2",
-    canColor: "#f2675a",
-    images: [
-      `${BASE}/apple-one.png`,
-      `${BASE}/apple-two.png`,
-      `${BASE}/apple-three.png`,
-      `${BASE}/apple-four.png`,
-    ],
+    canImage:
+      "https://ik.imagekit.io/akiAfnan/Asher/watermelon-drink.png?updatedAt=1774696994099",
+    canAlt: "Watermelon drink can",
+    fruitImage:
+      "https://ik.imagekit.io/akiAfnan/Asher/watermelon.png?updatedAt=1774711186645",
+    fruitAlt: "Watermelon slice",
   },
   {
-    name: "Exotic",
-    logoColor: "#6464ff",
-    bgColor: "#c1bff2",
-    waveBg: "#c1bff2",
-    canColor: "#9590f1",
-    images: [
-      `${BASE}/exotic-one.png`,
-      `${BASE}/exotic-two.png`,
-      `${BASE}/exotic-three.png`,
-      `${BASE}/exotic-four.png`,
-    ],
+    name: "Orange",
+    logoColor: "#e8590c",
+    bgColor: "#ffcf9e",
+    canImage:
+      "https://ik.imagekit.io/akiAfnan/Asher/orange-drink.png?updatedAt=1774696994259",
+    canAlt: "Orange drink can",
+    fruitImage:
+      "https://ik.imagekit.io/akiAfnan/Asher/loader.png?updatedAt=1760863286005",
+    fruitAlt: "Orange",
+  },
+  {
+    name: "Pineapple",
+    logoColor: "#8a6d00",
+    bgColor: "#f4ee9e",
+    canImage:
+      "https://ik.imagekit.io/akiAfnan/Asher/pineapple-drink.png?updatedAt=1774696994169",
+    canAlt: "Pineapple drink can",
+    fruitImage:
+      "https://ik.imagekit.io/akiAfnan/Asher/pine-apple.png?updatedAt=1760888158614",
+    fruitAlt: "Pineapple",
   },
 ];
 
+const DEFAULT_FRUIT_SPOTS = [
+  { className: "bottom-[4%] left-[1%] w-[17vmin]", rotate: -25, scale: 1.1 },
+  { className: "left-[3%] top-[10%] w-[15vmin]", rotate: 18, scale: 0.9 },
+  { className: "right-[24%] top-[3%] w-[10vmin]", rotate: -12, scale: 0.85 },
+  { className: "right-[3%] top-[12%] w-[15vmin]", rotate: 28, scale: 1 },
+  { className: "bottom-[6%] right-[20%] w-[20vmin]", rotate: -35, scale: 1.2 },
+  { className: "bottom-[3%] left-[27%] w-[10vmin]", rotate: 40, scale: 0.8 },
+];
+
+const Chevron = ({ direction }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="3"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="h-[40%] w-[40%]"
+    aria-hidden="true"
+  >
+    <path d={direction === "left" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"} />
+  </svg>
+);
+
 export default function FruitySlider({
   slides = DEFAULT_SLIDES,
-  caneSvgUrl = `${BASE}/cane.svg`,
-  brandName = "Fruity",
-  transitionDuration = 500,
-  waveDuration = "4s",
+  fruitSpots = DEFAULT_FRUIT_SPOTS,
+  brandName = "Asher",
+  prevLabel = "Previous flavor",
+  nextLabel = "Next flavor",
+  transitionDuration = 900,
+  waveDuration = "3s",
   buttonSize = "80px",
-  buttonFontSize = "40px",
+  className = "",
 }) {
   const [index, setIndex] = useState(0);
-  const [logoColor, setLogoColor] = useState(slides[0].logoColor);
-  const [h1Text, setH1Text] = useState(slides[0].name);
-
-  const containerRef = useRef(null);
-  const gsapRef = useRef(null);
-  const gsapReadyRef = useRef(false);
+  const indexRef = useRef(0);
+  const rootRef = useRef(null);
+  const stripRef = useRef(null);
+  const ctxRef = useRef(null);
+  const slideRefs = useRef([]);
+  const nameRefs = useRef([]);
 
   const last = slides.length - 1;
+  const seconds = transitionDuration / 1000;
 
-  useEffect(() => {
-    if (!document.querySelector("script[data-gsap-fruity]")) {
-      const el = document.createElement("script");
-      el.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
-      el.setAttribute("data-gsap-fruity", "1");
-      document.head.appendChild(el);
-    }
-    let attempts = 0;
-    const poll = setInterval(() => {
-      attempts++;
-      if (window.gsap) {
-        clearInterval(poll);
-        gsapRef.current = window.gsap;
-        gsapRef.current.config({ trialWarn: false });
-        gsapReadyRef.current = true;
-        gsapRef.current.from(".fruit-image", {
-          y: "-100vh",
-          delay: 0.5,
-          duration: 0.6,
-        });
-        gsapRef.current.to(".fruit-image img", {
-          x: "random(-20, 20)",
-          y: "random(-20, 20)",
-          duration: 2,
-          ease: "none",
-          yoyo: true,
-          repeat: -1,
-        });
-      }
-      if (attempts > 50) clearInterval(poll);
-    }, 100);
-    return () => clearInterval(poll);
-  }, []);
+  const enterSlide = (i, dir) => {
+    const slide = slideRefs.current[i];
+    if (!slide) return;
+    const q = gsap.utils.selector(slide);
 
-  const navigate = (dir) => {
-    const next = index + dir;
-    if (next < 0 || next > last) return;
-
-    if (containerRef.current)
-      containerRef.current.style.left = `${next * -100}%`;
-
-    if (gsapReadyRef.current && gsapRef.current) {
-      const gsap = gsapRef.current;
-      gsap.to(".logo-text", { color: slides[next].logoColor, duration: 1 });
-      gsap.from(".h1-text", { y: "20%", opacity: 0, duration: 0.5 });
-      gsap.from(".fruit-image", {
-        y: dir > 0 ? "-100vh" : "100vh",
-        delay: dir > 0 ? 0.4 : 0.5,
-        duration: 0.4,
-      });
-    }
-
-    setLogoColor(slides[next].logoColor);
-    setH1Text(slides[next].name);
-    setIndex(next);
+    gsap.fromTo(
+      q("[data-name]"),
+      { xPercent: dir * 18, yPercent: dir === 0 ? 15 : 0, opacity: 0 },
+      {
+        xPercent: 0,
+        yPercent: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: "power3.out",
+        delay: dir === 0 ? 0.2 : seconds * 0.25,
+        overwrite: "auto",
+      },
+    );
+    gsap.fromTo(
+      q("[data-can]"),
+      { yPercent: 55, scale: 0.7, rotation: dir * -10, opacity: 0 },
+      {
+        yPercent: 0,
+        scale: 1,
+        rotation: 0,
+        opacity: 1,
+        duration: 1.1,
+        ease: "power4.out",
+        delay: dir === 0 ? 0.3 : seconds * 0.35,
+        overwrite: "auto",
+      },
+    );
+    gsap.fromTo(
+      q("[data-fruit]"),
+      { y: "-110vh", rotation: -40, opacity: 0 },
+      {
+        y: 0,
+        rotation: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "back.out(1.3)",
+        stagger: 0.09,
+        delay: dir === 0 ? 0.45 : seconds * 0.45,
+        overwrite: "auto",
+      },
+    );
   };
 
-  const prevColor = index > 0 ? slides[index - 1].logoColor : "transparent";
-  const nextColor = index < last ? slides[index + 1].logoColor : "transparent";
-  const prevWave = index > 0 ? slides[index - 1].waveBg : "transparent";
-  const nextWave = index < last ? slides[index + 1].waveBg : "transparent";
+  const go = (dir) => {
+    const next = Math.min(last, Math.max(0, indexRef.current + dir));
+    if (next === indexRef.current) return;
+    const direction = next > indexRef.current ? 1 : -1;
+    indexRef.current = next;
+    setIndex(next);
+
+    ctxRef.current?.add(() => {
+      gsap.to(stripRef.current, {
+        xPercent: -next * (100 / slides.length),
+        duration: seconds,
+        ease: "power3.inOut",
+        overwrite: "auto",
+      });
+      enterSlide(next, direction);
+    });
+  };
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return undefined;
+
+    ctxRef.current = gsap.context(() => {
+      gsap.set("[data-fruit-img]", {
+        rotation: (_, el) => parseFloat(el.dataset.rot),
+        scale: (_, el) => parseFloat(el.dataset.scale),
+      });
+      gsap.to("[data-fruit-img]", {
+        x: () => gsap.utils.random(-16, 16),
+        y: () => gsap.utils.random(-16, 16),
+        duration: () => gsap.utils.random(2, 3.6),
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+      gsap.to("[data-can-img]", {
+        y: -10,
+        duration: 2.6,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+      enterSlide(0, 0);
+    }, root);
+
+    return () => ctxRef.current?.revert();
+  }, []);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return undefined;
+
+    const fit = () => {
+      const width = root.clientWidth;
+      const height = root.clientHeight;
+      nameRefs.current.forEach((el) => {
+        if (!el) return;
+        el.style.fontSize = "100px";
+        const size = Math.min(
+          (100 * width * 0.9) / el.scrollWidth,
+          height * 0.5,
+        );
+        el.style.fontSize = `${size}px`;
+      });
+    };
+
+    fit();
+    document.fonts?.ready.then(fit);
+    const observer = new ResizeObserver(fit);
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, [slides]);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "ArrowRight") go(1);
+      if (e.key === "ArrowLeft") go(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [slides]);
+
+  const prev = slides[index - 1];
+  const next = slides[index + 1];
 
   return (
-    <>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
-      />
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      />
-
-      <style>{`
-        @keyframes wave-btn {
-          0%   { box-shadow: 0 0 0 0px var(--wbg), 0 0 0 0px var(--wbg); }
-          40%  { box-shadow: 0 0 0 50px rgba(60,41,188,0), 0 0 0 0px var(--wbg); }
-          80%  { box-shadow: 0 0 0 50px rgba(60,41,188,0), 0 0 0 30px rgba(0,0,0,0); }
-          100% { box-shadow: 0 0 0 0px rgba(60,41,188,0), 0 0 0 30px rgba(0,230,118,0); }
-        }
-        .fruity-btn {
-          animation: wave-btn ${waveDuration} linear infinite;
-          width: ${buttonSize};
-          height: ${buttonSize};
-          font-size: ${buttonFontSize};
-          transition: all 0.3s ease-in-out;
-        }
-        .fruity-btn-prev { --wbg: ${prevWave}; color: ${prevColor}; }
-        .fruity-btn-next { --wbg: ${nextWave}; color: ${nextColor}; }
-        .cane-mask {
-          mask-image: url(${caneSvgUrl});
-          -webkit-mask-image: url(${caneSvgUrl});
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-          -webkit-mask-position: center center;
-          mask-position: center center;
-          -webkit-mask-size: 100% auto;
-          mask-size: 100% auto;
-          aspect-ratio: 265 / 490;
-        }
-        .slide-strip {
-          width: ${slides.length * 100}vw;
-          transition: left ${transitionDuration}ms ease-in-out;
-        }
-        .fruit-shadow::after {
-          content: "";
-          position: absolute;
-          background: linear-gradient(90deg, #000 3.66%, rgba(0,0,0,0) 92.35%);
-          opacity: 0.43;
-          filter: blur(7.5px);
-          transform: rotate(-6.941deg);
-          right: 0;
-          width: 173px;
-          height: 30px;
-          bottom: -50px;
-        }
-        .fruit-shadow-sm::after { height: 22px; bottom: -200px; }
-        .fruit-shadow-xs::after { width: 103px; bottom: -280px; }
-      `}</style>
+    <div
+      ref={rootRef}
+      className={`${lexend.variable} relative h-screen w-screen select-none overflow-hidden [font-family:var(--font-lexend)] ${className}`}
+      style={{
+        "--n": slides.length,
+        "--wave": waveDuration,
+        "--btn": buttonSize,
+      }}
+    >
+      <header className="fixed left-0 top-0 z-50 w-full px-7 pt-[22px] text-center">
+        <h2
+          className="m-0 text-[30px] font-black leading-normal transition-colors duration-1000 md:text-[40px]"
+          style={{ color: slides[index].logoColor }}
+        >
+          {brandName}
+        </h2>
+      </header>
 
       <div
-        className="overflow-hidden w-screen h-screen"
-        style={{ fontFamily: "'Lexend', sans-serif" }}
+        ref={stripRef}
+        className="flex h-full w-[calc(var(--n)*100%)] will-change-transform"
       >
-        {/* Header */}
-        <header className="fixed top-0 left-0 w-screen z-[99] px-7 pt-[22px] text-center">
-          <h2
-            className="logo-text text-[30px] md:text-[40px] font-black leading-normal m-0 transition-colors duration-1000"
-            style={{ color: logoColor }}
+        {slides.map((slide, i) => (
+          <section
+            key={slide.name}
+            ref={(el) => (slideRefs.current[i] = el)}
+            aria-hidden={i !== index}
+            className="pointer-events-none relative h-full flex-1 overflow-hidden"
+            style={{ backgroundColor: slide.bgColor }}
           >
-            {brandName}
-          </h2>
-        </header>
-
-        {/* Big H1 */}
-        <h1
-          className="h1-text fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 m-0 text-white leading-none select-none pointer-events-none
-            text-[100px] sm:text-[180px] md:text-[240px] lg:text-[300px] xl:text-[350px] 2xl:text-[449px]"
-          style={{ fontFamily: "'Lexend', sans-serif" }}
-        >
-          {h1Text}
-        </h1>
-
-        {/* Cane — solid color fill, no labels */}
-        <div
-          className="cane-mask fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20
-            w-[180px] sm:w-[200px] md:w-[230px] lg:w-[250px] xl:w-[265px]"
-          style={{
-            backgroundColor: slides[index].canColor,
-            transition: `background-color ${transitionDuration}ms ease-in-out`,
-          }}
-        />
-
-        {/* Prev button */}
-        {index > 0 && (
-          <button
-            onClick={() => navigate(-1)}
-            className="fruity-btn fruity-btn-prev fixed left-[30px] top-1/2 -translate-y-1/2 z-[99]
-              rounded-full bg-white border-none cursor-pointer
-              max-sm:top-[90%] max-sm:!w-[60px] max-sm:!h-[60px] max-sm:!text-xl"
-            aria-label="Previous"
-          >
-            <i className="fa-solid fa-chevron-left" />
-          </button>
-        )}
-
-        {/* Next button */}
-        {index < last && (
-          <button
-            onClick={() => navigate(1)}
-            className="fruity-btn fruity-btn-next fixed right-[30px] top-1/2 -translate-y-1/2 z-[99]
-              rounded-full bg-white border-none cursor-pointer
-              max-sm:top-[90%] max-sm:!w-[60px] max-sm:!h-[60px] max-sm:!text-xl"
-            aria-label="Next"
-          >
-            <i className="fa-solid fa-chevron-right" />
-          </button>
-        )}
-
-        {/* Scrolling slide strip */}
-        <div className="w-screen h-screen overflow-hidden relative -z-[1]">
-          <div
-            ref={containerRef}
-            className="slide-strip relative flex items-center h-full"
-            style={{ left: "0%" }}
-          >
-            {slides.map((slide) => (
-              <section
-                key={slide.name}
-                className="min-w-[100vw] h-screen relative overflow-hidden -z-[1]"
-                style={{ backgroundColor: slide.bgColor }}
+            {fruitSpots.map((spot, fi) => (
+              <div
+                key={fi}
+                data-fruit
+                className={`absolute z-0 opacity-0 ${spot.className}`}
               >
-                <div
-                  className="fruit-image fruit-shadow absolute bottom-[100px] left-0
-                  max-w-[150px] sm:max-w-[180px] md:max-w-[180px] lg:max-w-[220px] xl:max-w-[250px] 2xl:max-w-[282px]"
-                >
-                  <img
-                    src={slide.images[0]}
-                    alt={`${slide.name} 1`}
-                    className="w-full h-auto"
-                  />
-                </div>
-                <div
-                  className="fruit-image fruit-shadow-sm absolute
-                  top-[18%] left-[4%] sm:top-[15%] sm:left-[12%] md:top-[12%] md:left-[12%]
-                  lg:top-[10%] lg:left-[18%] xl:top-[10%] xl:left-[22%] 2xl:top-[23%] 2xl:left-[25%]
-                  max-w-[115px] sm:max-w-[145px] md:max-w-[165px] lg:max-w-[185px] xl:max-w-[215px] 2xl:max-w-[247px]"
-                >
-                  <img
-                    src={slide.images[1]}
-                    alt={`${slide.name} 2`}
-                    className="w-full h-auto"
-                  />
-                </div>
-                <div
-                  className="fruit-image fruit-shadow-xs absolute
-                  top-[18%] right-[4%] sm:top-[15%] sm:right-[10%] md:top-[12%] md:right-[12%]
-                  lg:top-[10%] lg:right-[18%] xl:top-[10%] xl:right-[25%] 2xl:top-[23%] 2xl:right-[25%]
-                  max-w-[100px] sm:max-w-[130px] md:max-w-[150px] lg:max-w-[180px] xl:max-w-[180px] 2xl:max-w-[211px]"
-                >
-                  <img
-                    src={slide.images[2]}
-                    alt={`${slide.name} 3`}
-                    className="w-full h-auto"
-                  />
-                </div>
-                <div
-                  className="fruit-image fruit-shadow absolute bottom-[100px] right-0 sm:bottom-[150px]
-                  max-w-[150px] sm:max-w-[180px] md:max-w-[200px] lg:max-w-[230px] xl:max-w-[260px] 2xl:max-w-[294px]"
-                >
-                  <img
-                    src={slide.images[3]}
-                    alt={`${slide.name} 4`}
-                    className="w-full h-auto"
-                  />
-                </div>
-              </section>
+                <img
+                  data-fruit-img
+                  data-rot={spot.rotate}
+                  data-scale={spot.scale}
+                  src={slide.fruitImage}
+                  alt={fi === 0 ? slide.fruitAlt : ""}
+                  className="block h-auto w-full drop-shadow-xl"
+                />
+              </div>
             ))}
-          </div>
-        </div>
+
+            <div className="absolute inset-0 z-10 flex items-center justify-center">
+              <h1
+                ref={(el) => (nameRefs.current[i] = el)}
+                data-name
+                className="m-0 whitespace-nowrap font-normal leading-none text-white opacity-0"
+              >
+                {slide.name}
+              </h1>
+            </div>
+
+            <div
+              data-can
+              className="absolute inset-0 z-20 flex items-center justify-center opacity-0"
+            >
+              <img
+                data-can-img
+                src={slide.canImage}
+                alt={slide.canAlt}
+                className="h-[58vh] w-auto max-w-[70vw] object-contain drop-shadow-2xl md:h-[68vh]"
+              />
+            </div>
+          </section>
+        ))}
       </div>
-    </>
+
+      {prev ? (
+        <div className="fixed left-[30px] top-1/2 z-50 -translate-y-1/2 max-sm:left-5 max-sm:top-[90%]">
+          <span
+            className="absolute inset-0 animate-ping rounded-full opacity-50 [animation-duration:var(--wave)]"
+            style={{ backgroundColor: prev.bgColor }}
+          />
+          <button
+            type="button"
+            onClick={() => go(-1)}
+            aria-label={prevLabel}
+            className="relative flex h-[var(--btn)] w-[var(--btn)] cursor-pointer items-center justify-center rounded-full bg-white transition-colors duration-500 max-sm:h-[60px] max-sm:w-[60px]"
+            style={{ color: prev.logoColor }}
+          >
+            <Chevron direction="left" />
+          </button>
+        </div>
+      ) : null}
+
+      {next ? (
+        <div className="fixed right-[30px] top-1/2 z-50 -translate-y-1/2 max-sm:right-5 max-sm:top-[90%]">
+          <span
+            className="absolute inset-0 animate-ping rounded-full opacity-50 [animation-duration:var(--wave)]"
+            style={{ backgroundColor: next.bgColor }}
+          />
+          <button
+            type="button"
+            onClick={() => go(1)}
+            aria-label={nextLabel}
+            className="relative flex h-[var(--btn)] w-[var(--btn)] cursor-pointer items-center justify-center rounded-full bg-white transition-colors duration-500 max-sm:h-[60px] max-sm:w-[60px]"
+            style={{ color: next.logoColor }}
+          >
+            <Chevron direction="right" />
+          </button>
+        </div>
+      ) : null}
+    </div>
   );
 }

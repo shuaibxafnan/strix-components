@@ -1,100 +1,39 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useId } from "react";
-
-// ─── CubicGallery ────────────────────────────────────────────────────────────
-//
-// A draggable 3D sphere of images with inertia + a FLIP-style lightbox.
-// Ported from a vanilla JS / Hammer.js / SCSS CodePen into a single, self
-// contained client component. The sphere geometry is pure CSS 3D transforms;
-// the only JS is gesture handling (Hammer), inertia, and the enlarge/collapse
-// FLIP animation.
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// images            string[] (sample)  Image URLs. The pool is tiled across the
-//                                       grid, so fewer images than cells is fine.
-// columns           number   37         Number of vertical columns of tiles.
-// rows              number   5          Tiles per column (staggered each column).
-// radius            string   max(1300px,100vw)  Sphere radius (drives curvature).
-// segmentsX         number   37         Horizontal segments → degrees per column.
-// segmentsY         number   37         Vertical segments → degrees per row.
-// bgColor           string   rgb(235,235,235)   Page / stage background.
-// itemBg            string   rgb(225,225,225)   Tile placeholder background.
-// gradientCenter    string   rgba(235,235,235,0)   Vignette inner color (clear).
-// gradientEdge      string   rgba(235,235,235,.5)  Vignette outer color (fades).
-// scrimColor        string   rgba(0,0,0,.4)     Lightbox backdrop color.
-// maxPolarRotDeg    number   3          Max up/down tilt (clamps rotateX).
-// panSensitivity    number   18         Higher = slower drag response.
-// transitionMs      number   300        Tile + enlarge transition duration (ms).
-// enableInertia     boolean  true       Fling-to-spin after a drag.
-// friction          number   0.92       Inertia decay per frame (0–1).
-// itemGap           number   10         Inset (px) of the image inside its tile.
-// itemRadius        number   12         Tile corner radius (px).
-// frameRadius       number   32         Lightbox frame corner radius (px).
-// viewerPadding     number   100        Padding (px) around the enlarged image.
-// blurAmount        number   3          Vignette + scrim blur strength (px).
-// grayscale         boolean  false      Desaturate every tile image.
-// enableHighRes     boolean  true       Swap to a larger source once enlarged.
-// getHighResSrc     fn       (default)  (src) => high-res URL used when enlarging.
-// className         string   ""         Extra classes on the root element.
-// style             object   {}         Extra inline styles on the root element.
-// ──────────────────────────────────────────────────────────────────────────
+import { useEffect, useMemo, useRef } from "react";
 
 const DEFAULT_IMAGES = [
-  "https://assets.codepen.io/215059/photo-1594149221886-eb520f85ad25.jpg",
-  "https://assets.codepen.io/215059/photo-1589156191108-c762ff4b96ab.jpg",
-  "https://assets.codepen.io/215059/photo-1488197047962-b48492212cda.jpg",
-  "https://assets.codepen.io/215059/photo-1469565686301-a0cf06bacf92.jpg",
-  "https://assets.codepen.io/215059/photo-1559827291-72ee739d0d9a.jpg",
-  "https://assets.codepen.io/215059/photo-1459213599465-03ab6a4d5931.jpg",
-  "https://assets.codepen.io/215059/photo-1679540375857-dd5a85bfd3d6.jpg",
-  "https://assets.codepen.io/215059/photo-1444044205806-38f3ed106c10.jpg",
-  "https://assets.codepen.io/215059/photo-1580996554587-5d5cfc78b004.jpg",
-  "https://assets.codepen.io/215059/photo-1488161628813-04466f872be2.jpg",
-  "https://assets.codepen.io/215059/photo-1548783307-f63adc3f200b.jpg",
-  "https://assets.codepen.io/215059/photo-1587653263995-422546a7a569.jpg",
-  "https://assets.codepen.io/215059/photo-1447871622716-5dc761437456.jpg",
-  "https://assets.codepen.io/215059/photo-1693043906043-fc76548579af.jpg",
-  "https://assets.codepen.io/215059/photo-1559827260-dc66d52bef19.jpg",
-  "https://assets.codepen.io/215059/photo-1539125530496-3ca408f9c2d9.jpg",
-  "https://assets.codepen.io/215059/photo-1600679620924-47bf7fcbd629.jpg",
-  "https://assets.codepen.io/215059/photo-1640008404828-3d3cc5a11fd4.jpg",
-  "https://assets.codepen.io/215059/photo-1608965112849-6eb5e5d106b0.jpg",
-  "https://assets.codepen.io/215059/photo-1751460374271-377219ff8336.jpg",
-  "https://assets.codepen.io/215059/photo-1749460396807-b065b6694f02.jpg",
-  "https://assets.codepen.io/215059/photo-1750008172607-d6408ebfc9b5.jpg",
-  "https://assets.codepen.io/215059/photo-1663747638247-f2317493492c.jpg",
-  "https://assets.codepen.io/215059/photo-1523547743064-d0936dbb6ed3.jpg",
-  "https://assets.codepen.io/215059/photo-1660749120048-589827cd6181.jpg",
-  "https://assets.codepen.io/215059/photo-1707161692345-8e4684a77d8c.jpg",
-  "https://assets.codepen.io/215059/photo-1752481444912-6a4c322de10b.jpg",
+  "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1779877716206-f441d5d384d4?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1781513747645-757fb2619e57?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1780163930838-1502715c3bc1?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=600&q=80",
 ];
 
-// Default high-res resolver — mirrors the original Unsplash swap. It only fires
-// for the bundled CodePen assets; any other URL is returned unchanged so custom
-// galleries don't get a broken src.
 const defaultGetHighResSrc = (src) => {
-  if (!src.includes("assets.codepen.io/215059")) return src;
-  const slug = src
-    .replace(".jpg", "")
-    .replace("https://assets.codepen.io/215059", "");
-  return "https://images.unsplash.com" + slug + "?w=1200&h=1200&fit=crop";
+  if (!src.includes("images.unsplash.com")) return src;
+  try {
+    const url = new URL(src);
+    url.searchParams.set("w", "1600");
+    return url.toString();
+  } catch (e) {
+    return src;
+  }
 };
 
-// Build the staggered grid of tiles. Each column steps the horizontal segment
-// (data-item x) by 2; alternate columns shift their vertical segments by 1 so
-// neighbouring tiles interlock like bricks — exactly the pattern the original
-// hand-authored markup encoded.
 const buildTiles = (columns, rows, images) => {
   const tiles = [];
-  const startX = -(columns - 1); // center the band around 0
-  const yStart = -(rows - 1); // center the rows around ~0
+  const startX = -(columns - 1);
+  const yStart = -(rows - 1);
   let i = 0;
 
   for (let col = 0; col < columns; col++) {
     const x = startX + col * 2;
-    const stagger = col % 2; // 0 or 1 — interlocks alternate columns
+    const stagger = col % 2;
     for (let r = 0; r < rows; r++) {
       const y = yStart + r * 2 + stagger;
       tiles.push({ key: x + "_" + y, x, y, src: images[i % images.length] });
@@ -104,78 +43,23 @@ const buildTiles = (columns, rows, images) => {
   return tiles;
 };
 
-// Scoped stylesheet. Built with string concatenation (NOT a template literal)
-// so it streams cleanly through SSR without chunk syntax errors. Every selector
-// is namespaced under `.${rid}` so multiple galleries can share a page without
-// their `.item` / `.overlay` / `.viewer` rules colliding.
-const buildCss = (rid) => {
-  const r = "." + rid;
-  return [
-    // The sphere itself — JS overwrites this transform every frame, but we seed
-    // it here so the very first paint is already curved.
-    r + " .sphere{",
-    "  transform-style:preserve-3d;",
-    "  transform:translateZ(calc(var(--radius) * -1)) rotateX(var(--sphere-rotation-x)) rotateY(var(--sphere-rotation-y));",
-    "}",
+const ITEM_IMAGE_CLASS =
+  "absolute inset-[var(--item-gap)] block cursor-pointer overflow-hidden rounded-[var(--item-radius)] bg-[color:var(--item-bg)] [backface-visibility:hidden] [transition:transform_var(--transition)]";
 
-    // Each tile is positioned on the sphere by converting its grid offset into a
-    // rotateY/rotateX pair, then pushed out by the radius. --rot-*-delta lets the
-    // FLIP code peel a single tile flat toward the camera.
-    r + " .item{",
-    "  position:absolute;top:-999px;bottom:-999px;left:-999px;right:-999px;margin:auto;",
-    "  width:calc(var(--item-width) * var(--item-size-x));",
-    "  height:calc(var(--item-height) * var(--item-size-y));",
-    "  transform-origin:50% 50%;backface-visibility:hidden;color:transparent;",
-    "  transform-style:preserve-3d;transition:transform " +
-      "var(--transition)" +
-      ";",
-    "  transform:rotateY(calc(var(--rot-y) * (var(--offset-x) + ((var(--item-size-x) - 1) / 2)) + var(--rot-y-delta,0deg)))",
-    "    rotateX(calc(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2))) + var(--rot-x-delta,0deg)))",
-    "    translateZ(var(--radius));",
-    "}",
+const ENLARGE_CLASS =
+  "absolute z-[1] overflow-hidden rounded-[var(--frame-radius)] [transition:opacity_var(--transition)] [&_img]:h-full [&_img]:w-full [&_img]:object-cover";
 
-    // The framed image inside each tile.
-    r + " .item__image{",
-    "  position:absolute;display:block;inset:var(--item-gap);overflow:hidden;",
-    "  border-radius:var(--item-radius);background-color:var(--item-bg);",
-    "  backface-visibility:hidden;transition:transform " +
-      "var(--transition)" +
-      ";cursor:pointer;",
-    "}",
-    r + " .item__image img{",
-    "  width:100%;height:100%;object-fit:cover;pointer-events:none;backface-visibility:hidden;",
-    "  filter:var(--img-filter);",
-    "}",
+const SPHERE_CLASS =
+  "[transform-style:preserve-3d] [transform:translateZ(calc(var(--radius)_*_-1))_rotateX(var(--sphere-rotation-x))_rotateY(var(--sphere-rotation-y))]";
 
-    // Radial vignette + an optional blurred copy of it, both fixed over the stage.
-    r +
-      " .overlay{position:absolute;inset:0;margin:auto;z-index:3;pointer-events:none;opacity:1;background-image:var(--gradient);}",
-    r +
-      " .overlay--blur{position:absolute;inset:0;margin:auto;z-index:3;pointer-events:none;opacity:1;mask-image:var(--gradient-blur);-webkit-mask-image:var(--gradient-blur);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));}",
+const ITEM_CLASS =
+  "absolute -inset-[999px] m-auto h-[calc(var(--item-height)_*_var(--item-size-y))] w-[calc(var(--item-width)_*_var(--item-size-x))] origin-center text-transparent [backface-visibility:hidden] [transform-style:preserve-3d] [transition:transform_var(--transition)] [transform:rotateY(calc(var(--rot-y)_*_(var(--offset-x)_+_((var(--item-size-x)_-_1)_/_2))_+_var(--rot-y-delta,0deg)))_rotateX(calc(calc(var(--rot-x)_*_(var(--offset-y)_-_((var(--item-size-y)_-_1)_/_2)))_+_var(--rot-x-delta,0deg)))_translateZ(var(--radius))]";
 
-    // Lightbox layer. The frame is a square (or full-width on portrait screens)
-    // target that a tapped tile scales up into.
-    r +
-      " .viewer{position:absolute;inset:0;z-index:9;pointer-events:none;display:flex;align-items:center;justify-content:center;padding:var(--viewer-padding);}",
-    r +
-      " .viewer .frame{height:100%;aspect-ratio:1;border-radius:var(--frame-radius);display:flex;}",
-    r +
-      " .viewer .enlarge{position:absolute;z-index:1;border-radius:var(--frame-radius);overflow:hidden;transition:opacity " +
-      "var(--transition)" +
-      ";}",
-    r + " .viewer .enlarge img{width:100%;height:100%;object-fit:cover;}",
-    r +
-      " .viewer .scrim{position:absolute;inset:0;background-color:var(--bg-scrim);pointer-events:none;opacity:0;transition:opacity " +
-      "var(--transition)" +
-      ";backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));}",
-    r + '[data-enlarging="true"] .scrim{opacity:1;pointer-events:all;}',
+const OVERLAY_CLASS =
+  "pointer-events-none absolute inset-0 z-[3] m-auto opacity-100 [background-image:var(--gradient)]";
 
-    // On portrait viewports the frame fills width instead of height.
-    "@media (max-aspect-ratio:1/1){" +
-      r +
-      " .viewer .frame{height:auto;width:100%;}}",
-  ].join("\n");
-};
+const OVERLAY_BLUR_CLASS =
+  "[-webkit-backdrop-filter:blur(var(--blur))] [-webkit-mask-image:var(--gradient-blur)] [backdrop-filter:blur(var(--blur))] [mask-image:var(--gradient-blur)]";
 
 export default function SphereGallery({
   images = DEFAULT_IMAGES,
@@ -208,22 +92,11 @@ export default function SphereGallery({
   const rootRef = useRef(null);
   const sphereRef = useRef(null);
 
-  // useId is SSR-safe and stable across hydration; sanitize the colons so it is
-  // a valid CSS class / selector token.
-  const rawId = useId();
-  const rid = "cg-" + rawId.replace(/:/g, "");
-
-  // Deterministic on server and client → no hydration mismatch.
   const tiles = useMemo(
     () => buildTiles(columns, rows, images),
     [columns, rows, images],
   );
 
-  const css = useMemo(() => buildCss(rid), [rid]);
-
-  // Runtime/prop-driven CSS variables live inline on the root. Keeping them here
-  // (rather than in the scoped stylesheet) means the static <style> never needs
-  // to interpolate prop values.
   const rootVars = {
     "--radius": radius,
     "--circ": "calc(" + radius + " * 3.14)",
@@ -241,7 +114,7 @@ export default function SphereGallery({
     "--item-gap": itemGap + "px",
     "--item-radius": itemRadius + "px",
     "--frame-radius": frameRadius + "px",
-    "--viewer-padding": viewerPadding + "px",
+    "--viewer-padding": "min(" + viewerPadding + "px, 8vw)",
     "--blur": blurAmount + "px",
     "--bg-scrim": scrimColor,
     "--item-bg": itemBg,
@@ -261,20 +134,18 @@ export default function SphereGallery({
 
     const TRANSITION_DUR_MS = transitionMs;
 
-    // ── Loader for the Hammer UMD global (CDN can't be resolved via dynamic
-    //    import under Turbopack, so inject a <script> tag with dedupe). ──
     const loadScript = (src) =>
       new Promise((resolve, reject) => {
         if (window.Hammer) {
           resolve();
           return;
         }
-        if (document.querySelector('script[data-id="' + src + '"]')) {
-          const existing = document.querySelector(
-            'script[data-id="' + src + '"]',
-          );
-          existing.addEventListener("load", resolve);
-          existing.addEventListener("error", reject);
+        const existing = document.querySelector(
+          'script[data-id="' + src + '"]',
+        );
+        if (existing) {
+          existing.addEventListener("load", resolve, { once: true });
+          existing.addEventListener("error", reject, { once: true });
           return;
         }
         const el = document.createElement("script");
@@ -346,7 +217,6 @@ export default function SphereGallery({
       state.inertiaFrame = requestAnimationFrame(step);
     };
 
-    // ── Gestures (Hammer pan → sphere rotation + fling) ──
     let hammer = null;
     const setupGestures = () => {
       hammer = new window.Hammer(root);
@@ -372,13 +242,11 @@ export default function SphereGallery({
       });
     };
 
-    // ── Taps → FLIP enlarge / collapse ──
-    const frame = root.querySelector(".frame");
-    const viewer = root.querySelector(".viewer");
-    const scrim = root.querySelector(".scrim");
-    const itemImages = root.querySelectorAll(".item__image");
+    const frame = root.querySelector("[data-frame]");
+    const viewer = root.querySelector("[data-viewer]");
+    const scrim = root.querySelector("[data-scrim]");
+    const itemImages = root.querySelectorAll("[data-item-image]");
 
-    // Reads the literal rotateX/rotateY from an inline transform string.
     const getTransformRotation = (el) => {
       const str = el.style.transform;
       const matchX = str.match(/rotateX\((-?\d+(\.\d+)?)deg\)/);
@@ -389,7 +257,6 @@ export default function SphereGallery({
       };
     };
 
-    // Decomposes a tile's computed matrix3d back into rotateX/rotateY.
     const getRotationXY = (el) => {
       const transform = window.getComputedStyle(el).transform;
       if (!transform || transform === "none") return { rotateX: 0, rotateY: 0 };
@@ -409,10 +276,10 @@ export default function SphereGallery({
       if (!el) return;
       const parentEl = el.parentNode;
 
-      const referenceDiv = root.querySelector(".item__image--reference");
+      const referenceDiv = root.querySelector("[data-reference]");
       if (referenceDiv) referenceDiv.remove();
 
-      const enlargedImg = root.querySelector(".enlarge");
+      const enlargedImg = root.querySelector("[data-enlarge]");
       if (enlargedImg) enlargedImg.remove();
 
       parentEl.style.setProperty("--rot-y-delta", "0deg");
@@ -429,14 +296,13 @@ export default function SphereGallery({
     const handleClick = (e) => {
       if (state.cancelTap) return;
 
-      const el = e.currentTarget; // the .item__image
-      const parentEl = el.parentNode; // the .item
+      const el = e.currentTarget;
+      const parentEl = el.parentNode;
       el.setAttribute("data-focused", "true");
 
       const parentRotation = getRotationXY(parentEl);
       const globalRotation = getTransformRotation(sphere);
 
-      // Counter-rotate the tile so it faces the camera dead-on.
       const normalizeDegrees = (deg) => ((deg % 360) + 360) % 360;
       const parentY = normalizeDegrees(parentRotation.rotateY);
       const globalY = normalizeDegrees(globalRotation.rotateY);
@@ -448,11 +314,11 @@ export default function SphereGallery({
       const rotX = -parentRotation.rotateX - globalRotation.rotateX;
       parentEl.style.setProperty("--rot-x-delta", rotX + "deg");
 
-      // Invisible reference clone used purely to measure the flattened size.
       const referenceDiv = document.createElement("div");
       parentEl.appendChild(referenceDiv);
       referenceDiv.style.opacity = 0;
-      referenceDiv.classList.add("item__image", "item__image--reference");
+      referenceDiv.className = ITEM_IMAGE_CLASS;
+      referenceDiv.setAttribute("data-reference", "");
       referenceDiv.style.transform =
         "rotateX(" +
         -parentRotation.rotateX +
@@ -470,7 +336,6 @@ export default function SphereGallery({
       el.style.transform = "scale(" + deltaScale + ") translateZ(30px)";
       el.style.zIndex = 3;
 
-      // Load the tile src first, then optionally swap to a high-res source.
       const img = document.createElement("img");
       const baseSrc = parentEl.getAttribute("data-src");
       img.src = baseSrc;
@@ -484,8 +349,6 @@ export default function SphereGallery({
 
       scrim.addEventListener("click", handleClickScrim, { once: true });
 
-      // After the tile has flattened, lift a free-floating clone into the viewer
-      // and fade it in — the classic FLIP hand-off.
       setTimeout(() => {
         const renderedRect = el.getBoundingClientRect();
         const enlargementEl = document.createElement("div");
@@ -503,7 +366,8 @@ export default function SphereGallery({
           root.setAttribute("data-enlarging", "true");
         }, TRANSITION_DUR_MS);
 
-        enlargementEl.classList.add("enlarge");
+        enlargementEl.className = ENLARGE_CLASS;
+        enlargementEl.setAttribute("data-enlarge", "");
         enlargementEl.appendChild(img);
         viewer.appendChild(enlargementEl);
       }, TRANSITION_DUR_MS);
@@ -521,14 +385,14 @@ export default function SphereGallery({
         applyTransform();
       })
       .catch((err) =>
-        console.error("[CubicGallery] Hammer load failed:", err.message),
+        console.error("[SphereGallery] Hammer load failed:", err.message),
       );
 
-    // ── Cleanup ──
     return () => {
       cancelled = true;
       stopInertia();
       if (hammer) hammer.destroy();
+      scrim.removeEventListener("click", handleClickScrim);
       itemImages.forEach((el) => el.removeEventListener("click", handleClick));
     };
   }, [
@@ -545,42 +409,45 @@ export default function SphereGallery({
     <main
       ref={rootRef}
       style={rootVars}
-      className={
-        rid +
-        " relative flex w-full h-screen items-center justify-center overflow-hidden touch-none " +
-        className
-      }
+      className={`group relative flex h-[100svh] w-full touch-none items-center justify-center overflow-hidden ${className}`}
     >
-      {/* Scoped, prop-free stylesheet — string-concatenated for safe SSR. */}
-      <style dangerouslySetInnerHTML={{ __html: css }} />
-
       <div className="[perspective:calc(var(--radius)*2)]">
-        <div ref={sphereRef} className="sphere">
+        <div ref={sphereRef} className={SPHERE_CLASS}>
           {tiles.map((tile) => (
             <div
               key={tile.key}
-              className="item"
               data-src={tile.src}
+              className={ITEM_CLASS}
               style={{ "--offset-x": tile.x, "--offset-y": tile.y }}
             >
-              <div className="item__image">
-                <img src={tile.src} draggable="false" alt="" />
+              <div data-item-image className={ITEM_IMAGE_CLASS}>
+                <img
+                  src={tile.src}
+                  draggable="false"
+                  alt=""
+                  className="pointer-events-none h-full w-full object-cover [backface-visibility:hidden] [filter:var(--img-filter)]"
+                />
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Vignette + blurred vignette */}
-      <div className="overlay" />
-      <div className="overlay overlay--blur" />
+      <div className={OVERLAY_CLASS} />
+      <div className={`${OVERLAY_CLASS} ${OVERLAY_BLUR_CLASS}`} />
 
-      {/* Lightbox */}
-      <div className="viewer">
-        <div className="scrim" />
-        <div className="frame">
-          <div className="enlarged" />
-        </div>
+      <div
+        data-viewer
+        className="pointer-events-none absolute inset-0 z-[9] flex items-center justify-center p-[var(--viewer-padding)]"
+      >
+        <div
+          data-scrim
+          className="pointer-events-none absolute inset-0 bg-[color:var(--bg-scrim)] opacity-0 [-webkit-backdrop-filter:blur(var(--blur))] [backdrop-filter:blur(var(--blur))] [transition:opacity_var(--transition)] group-data-[enlarging=true]:pointer-events-auto group-data-[enlarging=true]:opacity-100"
+        />
+        <div
+          data-frame
+          className="flex aspect-square h-full rounded-[var(--frame-radius)] [@media(max-aspect-ratio:1/1)]:h-auto [@media(max-aspect-ratio:1/1)]:w-full"
+        />
       </div>
     </main>
   );

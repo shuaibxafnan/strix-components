@@ -2,38 +2,25 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── ContemplativeWarpSlideshowN2 ──────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// slidesData       array    List of slides containing text arrays and background images
-// slideDuration    number   Duration of the central image warp/slide layout translation (seconds)
-// cursorActiveTime number   Time before custom cursor fades out on idle (ms)
-// fontClass        string   Tailwind font class configuration or custom font override
-// textTracking     string   Tailwind custom letter-spacing layout
-// seriesTitle      string   Categorical context title tracking across metadata viewports
-// seriesDesc       string   Descriptive narrative copy string mounted below title regions
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_SLIDES = [
   {
-    img: "https://cdn.cosmos.so/8b0252bd-cb64-45f4-aef8-672c7f628f76?format=jpeg",
+    img: "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1600&q=80",
     lines: ["BETWEEN SHADOW", "AND LIGHT"],
   },
   {
-    img: "https://cdn.cosmos.so/7b3f4c48-ec63-4bac-b472-910c037a0eb4?format=jpeg",
+    img: "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=1600&q=80",
     lines: ["SILENCE SPEAKS", "THROUGH FORM"],
   },
   {
-    img: "https://cdn.cosmos.so/444502b9-4cb9-4f14-a068-f0213df08729?format=jpeg",
+    img: "https://images.unsplash.com/photo-1743309411498-a0f4f4b96b65?auto=format&fit=crop&w=1600&q=80",
     lines: ["ESSENCE BEYOND", "PERCEPTION"],
   },
   {
-    img: "https://cdn.cosmos.so/ef511e17-a35b-42e6-9122-2754bbd2ad7e?format=jpeg",
+    img: "https://images.unsplash.com/photo-1781513747645-757fb2619e57?auto=format&fit=crop&w=1600&q=80",
     lines: ["TRUTH IN", "EMPTINESS"],
   },
   {
-    img: "https://cdn.cosmos.so/cf68a397-080a-437a-994e-69dedd9e6e06?format=jpeg",
+    img: "https://images.unsplash.com/photo-1490682143684-14369e18dce8?auto=format&fit=crop&w=1600&q=80",
     lines: ["SURRENDER TO", "THE VOID"],
   },
 ];
@@ -418,9 +405,8 @@ export default function ContemplativeWarpSlideshowN2({
         {slidesData.map((slide, sIdx) => (
           <div
             key={sIdx}
-            className={`js-slide absolute top-0 left-0 w-full h-full overflow-hidden transform-gpu origin-center ${
-              sIdx === 0 ? "visible active" : "invisible"
-            }`}
+            className={`js-slide absolute top-0 left-0 w-full h-full overflow-hidden transform-gpu origin-center ${sIdx === 0 ? "visible active" : "invisible"
+              }`}
           >
             <div
               className="js-slide-img absolute top-[-10%] left-[-10%] w-[120%] h-[120%] bg-cover bg-center will-change-transform origin-center after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-b after:from-[rgba(0,0,0,0.2)] after:to-[rgba(0,0,0,0)] after:to-[40%]"

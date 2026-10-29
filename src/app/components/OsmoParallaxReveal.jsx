@@ -2,31 +2,6 @@
 
 import { useEffect, useId, useRef } from "react";
 
-// ─── OsmoParallaxReveal ─────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bgColor          string   #121212    Page background (source used undefined var(--color-neutral-900))
-// textColor        string   #EFEEEC    Title color (source inherited undefined var(--color-light))
-// lineColor        string   #000000    Black divider line under the visuals (source: var(--color-black))
-// fadeColorRgb     string   "0,0,0"    RGB triplet used to build the bottom fade gradient
-// title            string   "Parallax" Heading text rendered in layer 3
-// titleFontSize    string   11vw       Title font-size
-// sectionPadding   string   2rem       Padding applied to header + content sections (source: var(--section-padding) var(--container-padding))
-// layer1Image      string   osmo layer-3.webp   Back-most image layer
-// layer2Image      string   osmo layer-2.webp   Second image layer
-// layer4Image      string   osmo layer-1.webp   Front-most image layer (rendered above the title)
-// layer1YPercent   number   70         How far layer 1 travels (yPercent) over the scroll range
-// layer2YPercent   number   55         How far layer 2 travels
-// layer3YPercent   number   40         How far the title layer travels
-// layer4YPercent   number   10         How far layer 4 travels (smallest = feels closest to camera)
-// scrub            number   0          ScrollTrigger scrub value (0 = tied 1:1 to scroll, true = smoothed)
-// triggerStart     string   "0% 0%"    ScrollTrigger start position
-// triggerEnd       string   "100% 0%"  ScrollTrigger end position
-// enableLenis      boolean  true       Toggles Lenis smooth-scroll (synced with ScrollTrigger)
-// showIcon         boolean  true       Toggles the decorative SVG icon in the content section
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function OsmoParallaxReveal({
   bgColor = "#121212",
   textColor = "#EFEEEC",
@@ -35,9 +10,9 @@ export default function OsmoParallaxReveal({
   title = "Parallax",
   titleFontSize = "11vw",
   sectionPadding = "2rem",
-  layer1Image = "https://cdn.prod.website-files.com/671752cd4027f01b1b8f1c7f/6717795be09b462b2e8ebf71_osmo-parallax-layer-3.webp",
-  layer2Image = "https://cdn.prod.website-files.com/671752cd4027f01b1b8f1c7f/6717795b4d5ac529e7d3a562_osmo-parallax-layer-2.webp",
-  layer4Image = "https://cdn.prod.website-files.com/671752cd4027f01b1b8f1c7f/6717795bb5aceca85011ad83_osmo-parallax-layer-1.webp",
+  layer1Image = "https://images.unsplash.com/photo-1590372648787-fa5a935c2c40?q=80&w=1920&auto=format&fit=crop",
+  layer2Image = "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/mountain.png",
+  layer4Image = "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/person.png",
   layer1YPercent = 70,
   layer2YPercent = 55,
   layer3YPercent = 40,

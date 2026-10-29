@@ -2,52 +2,6 @@
 
 import { useEffect, useId, useRef } from "react";
 
-// ─── GalleryOverlay ──────────────────────────────────────────────────────────
-//
-// A "field index" of remote stays: a vertical catalog that Flips a chosen
-// entry's title + photo into a full dossier overlay. Cold ink, one warm
-// lamp-amber accent, grotesk titles against mono field data.
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// items             array    (5 demo lodges)  One entry per row. Each item:
-//                                              { title, thumbnail, leftImage,
-//                                                rightImage, description,
-//                                                region, coords, elevation,
-//                                                tag, code? }. title + thumbnail
-//                                              are the elements that Flip into
-//                                              the overlay; code is auto-numbered
-//                                              (N°01…) if omitted.
-// bgColor           string   #0B0E14          Page background (cold blue-black)
-// panelColor        string   #0F141C          Photo-frame backing
-// textColor         string   #AEB6C2          Body / inherited text (mist)
-// brightColor       string   #F2F5F8          Titles + key values (chalk)
-// accentColor       string   #E9B872          Lamp-amber accent + ticks + focus
-// mutedColor        string   #565F6E          Mono labels / dimmed data
-// borderColor       string   rgba(...0.10)    Hairline frame borders
-// displayFont       string   Bricolage stack  Title + body face
-// monoFont          string   JetBrains stack  Data / label face
-// baseFontSize      string   1vw              Root size; layout scales in em
-// containerPadding  string   2em              Padding on the outer frame
-// gap               string   2em              Inset of the page; overlay pad gap*3
-// listTitleSize     string   4.25em           Title size in the resting index
-// overlayTitleSize  string   9em              Title size once Flipped into dossier
-// thumbWidth        string   15em             Resting photo-frame width
-// thumbHeight       string   21em             Resting photo-frame height
-// heroWidth         string   42em             Flipped hero image width
-// heroHeight        string   60em             Flipped hero image height
-// ease              string   0.62, 0.05, 0, 1 CustomEase points (also CSS bezier)
-// duration          number   0.725            Base tween / Flip duration (s)
-// eyebrow           string   Field Index      Top-left mono label
-// topRight          string   Remote Stays — 2026  Top-right mono label
-// intro             string   (tagline)        Standfirst under the eyebrow
-// previewLabel      string   Now previewing   Caption above the live readout
-// fieldNoteLabel    string   Field note       Kicker above the dossier paragraph
-// footerHint        string   (hint)           Bottom-left mono hint (fades on open)
-// backText          string   Back to index    Close-button label
-// scrollText        string   Scroll to explore  Right-side dossier nav label
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_ITEMS = [
   {
     title: "Eclipse Lodge",
@@ -56,11 +10,11 @@ const DEFAULT_ITEMS = [
     elevation: "210 m",
     tag: "Sunset / Glass",
     thumbnail:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/676882d4c39ce9e70bcb9745_tobias-reich-AwqQch2wAmM-unsplash.avif",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85",
     leftImage:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/676882d42e09d4366787f302_tobias-reich-VltYe88rkt8-unsplash.avif",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85",
     rightImage:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/676882d41f2900efdbe4c20d_tobias-reich-wr6m4OOZZtw-unsplash.avif",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85",
     description:
       "A sophisticated getaway with modern architecture and unforgettable sunsets, where every moment feels timeless.",
   },
@@ -71,11 +25,11 @@ const DEFAULT_ITEMS = [
     elevation: "1,940 m",
     tag: "Valley / Quiet",
     thumbnail:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/676882d4fad20ba1fac1a107_massimiliano-morosinotto-oJmVzkVStoo-unsplash.avif",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85",
     leftImage:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/6768a24ba580bdb31f092521_eberhard-grossgasteiger-UclnVUmf5aQ-unsplash.jpg",
+      "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=85",
     rightImage:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/6768a2c0717640eb150afb88_filippo-fFh53mf_6iE-unsplash.jpg",
+      "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1600&q=85",
     description:
       "Tucked among towering peaks and serene valleys, this haven offers a peaceful escape from the noise of the world.",
   },
@@ -86,11 +40,11 @@ const DEFAULT_ITEMS = [
     elevation: "2,360 m",
     tag: "Starfield / Above cloud",
     thumbnail:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/676882d4244a70cbb10a6403_karsten-winegeart-9CTqIV6kPQ0-unsplash.avif",
+      "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1200&q=85",
     leftImage:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/6768b1abc8db3718aca6b42a_karsten-winegeart-VTzcKDm7Sug-unsplash.jpg",
+      "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=1600&q=85",
     rightImage:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/6768b1fbdc6bc1ff5504e024_karsten-winegeart-EqMRa0cgEiI-unsplash.jpg",
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85",
     description:
       "A sanctuary above the clouds, offering celestial views and unmatched tranquility for dreamers and stargazers alike.",
   },
@@ -101,11 +55,11 @@ const DEFAULT_ITEMS = [
     elevation: "320 m",
     tag: "Aurora / Night",
     thumbnail:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/676882d4be32396ee62f4946_lucas-marcomini-cVBz9q1T_9M-unsplash.avif",
+      "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1200&q=85",
     leftImage:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/6768b1aba580bdb31f116524_lisha-riabinina-08P8Hzja_Yk-unsplash.jpg",
+      "https://images.unsplash.com/photo-1483347756197-71ef80e95f73?auto=format&fit=crop&w=1600&q=85",
     rightImage:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/6768b1abc8db3718aca6b405_laszlo-bajnoczi-tThY14QmOYE-unsplash.jpg",
+      "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1600&q=85",
     description:
       "Nestled in the heart of nature, this retreat is the perfect place to watch the northern lights dance across the sky.",
   },
@@ -116,11 +70,11 @@ const DEFAULT_ITEMS = [
     elevation: "5 m",
     tag: "Shore / Warm",
     thumbnail:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/676882d42880b4fc111df2bc_sergey-pesterev-i-P1lmY_e1w-unsplash.avif",
+      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=85",
     leftImage:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/6768b1ab95b4aee14bc0aadf_toa-heftiba-hi0Fml1Xj_E-unsplash.jpg",
+      "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1600&q=85",
     rightImage:
-      "https://cdn.prod.website-files.com/67684bfc3496e563bea11dc0/6768b1ab27d120c7e32f8578_maria-orlova-b37mDyPzdJM-unsplash.jpg",
+      "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1600&q=85",
     description:
       "Feel the warmth of the sun and the embrace of golden shores, where luxury meets the serenity of the sea.",
   },

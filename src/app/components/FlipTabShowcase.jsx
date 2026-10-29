@@ -1,357 +1,219 @@
 "use client";
 
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { CustomEase } from "gsap/CustomEase";
 
-// ─── FlipTabShowcase ─────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// tabs             array    (3 demo tabs)   Array of { label, heading, description, image, alt } — one per tab
-// heading          string   "Explore the Layers of Abstract Design and Depth"   Big H1 above the tab nav
-// ctaLabel         string   "Become a member"   Text on the bottom pill link
-// ctaHref          string   "#"             Href for the bottom pill link
-// bgColor          string   #000            Page background
-// textColor        string   #efeeec         Default text color
-// surfaceColor     string   #efeeec         Base color the pill / borders / cta-bg tint themselves from
-// ctaTextColor     string   #131313         Text color on the "Become a member" pill
-// rootFontSizeVw   number   1               Base fluid font-size (vw) that every "em" value below cascades from
-// easeParams       string   "0.625, 0.05, 0, 1"   CustomEase control points, registered as "osmo-ease"
-// flipDuration     number   0.4             Duration (s) of the highlight-pill Flip animation
-// contentEase      string   "power3.inOut" Ease for the outgoing/incoming content + visual crossfade
-// contentStagger   number   0.075           Stagger (s) between incoming heading/paragraph lines
-// visualHeightEm   number   42              Visual panel height in em
-// visualMaxHeightVh number  80              Visual panel max-height in vh
-// cursorDefaultUrl string   (Osmo default cursor svg)   Custom cursor image for the page
-// cursorPointerUrl string   (Osmo pointer cursor svg)   Custom cursor image for buttons/links
-// fontUrl          string   (Osmo PP Neue Montreal woff2)   @font-face source used for credits text
-// showCredits      boolean  true            Whether to render the fixed "Resource by Osmo" footer credit
-// ──────────────────────────────────────────────────────────────────────────
+const unsplash = (id) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=80`;
 
 const DEFAULT_TABS = [
   {
     label: "Shapes",
-    heading: "Shifting Perspectives",
+    heading: "Shifting Silhouettes",
     description:
-      "A dynamic exploration of structure, balance, and creative symmetry.",
-    image:
-      "https://cdn.prod.website-files.com/67726722d415dc401ae23cf6/677289e14dd4dbca1d8e5930_philip-oroni-IANBrm46bF0-unsplash%20(2).avif",
-    alt: "",
+      "From tall amphoras to low bowls, every outline starts as a decision on the wheel.",
+    image: unsplash("photo-1656088239658-ca839d7e8841"),
+    alt: "Close-up of a ceramic vase",
   },
   {
-    label: "Depth",
-    heading: "Fragments of Motion",
+    label: "Glazes",
+    heading: "Fragments of Color",
     description:
-      "Where design meets depth—an abstract dance of light and form.",
-    image:
-      "https://cdn.prod.website-files.com/67726722d415dc401ae23cf6/677289e19e4d013c6a4c5a1b_philip-oroni-Zx_G3LpNnV4-unsplash%20(1).avif",
-    alt: "",
+      "Where fire meets glaze, color settles into depths no brush could paint.",
+    image: unsplash("photo-1738858363202-dd019dadce76"),
+    alt: "A large gray vase on a tile floor",
   },
   {
-    label: "Layers",
-    heading: "Echoes in Orange",
+    label: "Studio",
+    heading: "Echoes in Clay",
     description:
-      "A journey through layered geometry and endless possibilities.",
-    image:
-      "https://cdn.prod.website-files.com/67726722d415dc401ae23cf6/677289e1c88b5b4c14d1e6fd_philip-oroni-h9N7bm-HRCo-unsplash.avif",
-    alt: "",
+      "A journey through slow days, wet hands, and pieces made one at a time.",
+    image: unsplash("photo-1753164725848-471a8abbb6f5"),
+    alt: "A potter shaping a vase on a wheel",
   },
 ];
 
 export default function FlipTabShowcase({
   tabs = DEFAULT_TABS,
-  heading = "Explore the Layers of Abstract Design and Depth",
-  ctaLabel = "Become a member",
+  heading = "Explore the Layers of Handmade Ceramics",
+  ctaLabel = "Visit the studio",
   ctaHref = "#",
-  bgColor = "#000",
-  textColor = "#efeeec",
-  surfaceColor = "#efeeec",
-  ctaTextColor = "#131313",
-  rootFontSizeVw = 1,
+  backgroundColor = "bg-black",
+  textColor = "text-white",
+  ctaClassName = "bg-white text-black",
+  fontSize = "clamp(13px, 1.1vw, 24px)",
   easeParams = "0.625, 0.05, 0, 1",
   flipDuration = 0.4,
   contentEase = "power3.inOut",
   contentStagger = 0.075,
   visualHeightEm = 42,
   visualMaxHeightVh = 80,
-  cursorDefaultUrl = "https://cdn.prod.website-files.com/6708f85ff3d3cba6aff436fb/671251b239d7aeb290a31ac5_cursor-default%402x.svg",
-  cursorPointerUrl = "https://cdn.prod.website-files.com/6708f85ff3d3cba6aff436fb/671251b212e6b71494aa67ff_cursor-pointer%402x.svg",
-  fontUrl = "https://cdn.prod.website-files.com/6819ed8312518f61b84824df/6819ed8312518f61b84825ba_PPNeueMontreal-Medium.woff2",
-  showCredits = true,
+  className = "",
 }) {
-  const reactId = useId();
-  const uid = reactId.replace(/[:]/g, "");
-  const wrapperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeRef = useRef(0);
+  const timelineRef = useRef(null);
+  const navRef = useRef(null);
+  const pillRef = useRef(null);
+  const buttonRefs = useRef([]);
+  const contentRefs = useRef([]);
+  const visualRefs = useRef([]);
+
+  const movePill = (index, animate = true) => {
+    const pill = pillRef.current;
+    const button = buttonRefs.current[index];
+    if (!pill || !button) return;
+    const target = {
+      x: button.offsetLeft,
+      y: button.offsetTop,
+      width: button.offsetWidth,
+      height: button.offsetHeight,
+    };
+    if (animate) {
+      gsap.to(pill, {
+        ...target,
+        duration: flipDuration,
+        ease: "tab-ease",
+        overwrite: "auto",
+      });
+    } else {
+      gsap.set(pill, { ...target, opacity: 1 });
+    }
+  };
 
   useEffect(() => {
-    const loadScript = (src) =>
-      new Promise((resolve, reject) => {
-        if (document.querySelector(`script[data-id="${src}"]`)) {
-          resolve();
-          return;
-        }
-        const el = document.createElement("script");
-        el.src = src;
-        el.setAttribute("data-id", src);
-        el.onload = resolve;
-        el.onerror = () => reject(new Error(`Failed: ${src}`));
-        document.head.appendChild(el);
+    gsap.registerPlugin(CustomEase);
+    CustomEase.create("tab-ease", easeParams);
+
+    movePill(activeRef.current, false);
+
+    const nav = navRef.current;
+    const observer = new ResizeObserver(() =>
+      movePill(activeRef.current, false),
+    );
+    if (nav) observer.observe(nav);
+
+    return () => {
+      observer.disconnect();
+      timelineRef.current?.kill();
+      gsap.killTweensOf(pillRef.current);
+      contentRefs.current.forEach((el) => {
+        if (el) gsap.killTweensOf([el, ...el.querySelectorAll("[data-fade]")]);
       });
+      visualRefs.current.forEach((el) => el && gsap.killTweensOf(el));
+    };
+  }, [easeParams]);
 
-    Promise.all([
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
-      ),
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CustomEase.min.js",
-      ),
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js",
-      ),
-    ])
-      .then(() => {
-        const { gsap, CustomEase, Flip } = window;
-        const wrapper = wrapperRef.current;
-        if (!gsap || !CustomEase || !Flip || !wrapper) return;
+  const switchTab = (index) => {
+    if (index === activeRef.current) return;
+    timelineRef.current?.kill();
 
-        gsap.config({ trialWarn: false });
-        gsap.registerPlugin(CustomEase, Flip);
-        CustomEase.create("osmo-ease", easeParams);
-        gsap.defaults({ ease: "osmo-ease", duration: 0.8 });
+    const inContent = contentRefs.current[index];
+    const inVisual = visualRefs.current[index];
+    const others = tabs.map((_, i) => i).filter((i) => i !== index);
+    const outContents = others.map((i) => contentRefs.current[i]);
+    const outVisuals = others.map((i) => visualRefs.current[i]);
+    const outLines = outContents.flatMap((el) => [
+      ...el.querySelectorAll("[data-fade]"),
+    ]);
+    const inLines = inContent.querySelectorAll("[data-fade]");
 
-        // ── highlight-pill Flip behavior ──
-        const navEl = wrapper.querySelector(`[data-flip-button-${uid}="wrap"]`);
-        const flipButtons = navEl.querySelectorAll(
-          `[data-flip-button-${uid}="button"]`,
-        );
-        const bg = navEl.querySelector(`[data-flip-button-${uid}="bg"]`);
+    gsap.set([inContent, inVisual], { visibility: "visible" });
 
-        const moveBgTo = (el) => {
-          const state = Flip.getState(bg);
-          el.appendChild(bg);
-          Flip.from(state, { duration: flipDuration });
-        };
-
-        const flipHandlers = [];
-        flipButtons.forEach((button) => {
-          const onEnter = () => moveBgTo(button);
-          const onLeave = () => {
-            const activeLink = navEl.querySelector(".active");
-            if (activeLink) moveBgTo(activeLink);
-          };
-          button.addEventListener("mouseenter", onEnter);
-          button.addEventListener("focus", onEnter);
-          button.addEventListener("mouseleave", onLeave);
-          button.addEventListener("blur", onLeave);
-          flipHandlers.push({ button, onEnter, onLeave });
-        });
-
-        // ── tab-switching behavior ──
-        const buttons = wrapper.querySelectorAll(`[data-tabs-${uid}="button"]`);
-        const contentItems = wrapper.querySelectorAll(
-          `[data-tabs-${uid}="content-item"]`,
-        );
-        const visualItems = wrapper.querySelectorAll(
-          `[data-tabs-${uid}="visual-item"]`,
-        );
-
-        let activeButton = buttons[0];
-        let activeContent = contentItems[0];
-        let activeVisual = visualItems[0];
-        let isAnimating = false;
-
-        const switchTab = (index) => {
-          if (isAnimating || buttons[index] === activeButton) return;
-          isAnimating = true;
-
-          const outgoingContent = activeContent;
-          const incomingContent = contentItems[index];
-          const outgoingVisual = activeVisual;
-          const incomingVisual = visualItems[index];
-
-          const outgoingLines = outgoingContent.querySelectorAll(
-            `[data-tabs-fade-${uid}]`,
-          );
-          const incomingLines = incomingContent.querySelectorAll(
-            `[data-tabs-fade-${uid}]`,
-          );
-
-          const timeline = gsap.timeline({
-            defaults: { ease: contentEase },
-            onComplete: () => {
-              outgoingContent.classList.remove("active");
-              outgoingVisual.classList.remove("active");
-              activeContent = incomingContent;
-              activeVisual = incomingVisual;
-              isAnimating = false;
-            },
-          });
-
-          incomingContent.classList.add("active");
-          incomingVisual.classList.add("active");
-
-          timeline
-            .to(outgoingLines, { y: "-2em", autoAlpha: 0 }, 0)
-            .to(outgoingVisual, { autoAlpha: 0, xPercent: 3 }, 0)
-            .fromTo(
-              incomingLines,
-              { y: "2em", autoAlpha: 0 },
-              { y: "0em", autoAlpha: 1, stagger: contentStagger },
-              0.4,
-            )
-            .fromTo(
-              incomingVisual,
-              { autoAlpha: 0, xPercent: 3 },
-              { autoAlpha: 1, xPercent: 0 },
-              "<",
-            );
-
-          activeButton.classList.remove("active");
-          buttons[index].classList.add("active");
-          activeButton = buttons[index];
-        };
-
-        const tabClickHandlers = [];
-        buttons.forEach((button, i) => {
-          const onClick = () => switchTab(i);
-          button.addEventListener("click", onClick);
-          tabClickHandlers.push({ button, onClick });
-        });
-
-        return () => {
-          flipHandlers.forEach(({ button, onEnter, onLeave }) => {
-            button.removeEventListener("mouseenter", onEnter);
-            button.removeEventListener("focus", onEnter);
-            button.removeEventListener("mouseleave", onLeave);
-            button.removeEventListener("blur", onLeave);
-          });
-          tabClickHandlers.forEach(({ button, onClick }) => {
-            button.removeEventListener("click", onClick);
-          });
-        };
+    timelineRef.current = gsap
+      .timeline({
+        defaults: { ease: contentEase, duration: 0.8 },
+        onComplete: () => gsap.set(outContents, { visibility: "hidden" }),
       })
-      .catch((e) =>
-        console.error("[FlipTabShowcase] GSAP load failed:", e.message),
+      .to(outLines, { y: "-2em", autoAlpha: 0 }, 0)
+      .to(outVisuals, { autoAlpha: 0, xPercent: 3 }, 0)
+      .fromTo(
+        inLines,
+        { y: "2em", autoAlpha: 0 },
+        { y: "0em", autoAlpha: 1, stagger: contentStagger },
+        0.4,
+      )
+      .fromTo(
+        inVisual,
+        { autoAlpha: 0, xPercent: 3 },
+        { autoAlpha: 1, xPercent: 0 },
+        "<",
       );
-  }, [uid, easeParams, flipDuration, contentEase, contentStagger]);
 
-  const cursorCss =
-    `.cursor-root-${uid} { cursor: url("${cursorDefaultUrl}") 2 0, auto; }` +
-    `.cursor-pointer-${uid} { cursor: url("${cursorPointerUrl}") 12 0, pointer; }` +
-    `@font-face { font-family: "PP Neue Montreal Osmo ${uid}"; src: url("${fontUrl}") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }` +
-    `.tab-content-item-${uid} { visibility: hidden; }` +
-    `.tab-content-item-${uid}.active { visibility: visible; }` +
-    `.tab-visual-item-${uid} { visibility: hidden; }` +
-    `.tab-visual-item-${uid}.active { visibility: visible; }` +
-    `.filter-button-${uid}.active { border-color: ${surfaceColor}4d; border-radius: 0.25em; }` +
-    `.credits-font-${uid} { font-family: "PP Neue Montreal Osmo ${uid}", Arial, sans-serif; }`;
+    activeRef.current = index;
+    setActiveIndex(index);
+    movePill(index);
+  };
 
   return (
     <div
-      ref={wrapperRef}
-      className={`cursor-root-${uid} relative min-h-screen w-full`}
+      className={`relative min-h-screen w-full ${backgroundColor} ${textColor} ${className}`}
       style={{
-        backgroundColor: bgColor,
-        color: textColor,
-        fontSize: `${rootFontSizeVw}vw`,
+        "--fs": fontSize,
+        "--visual-h": visualHeightEm,
+        "--visual-max": `${visualMaxHeightVh}vh`,
       }}
     >
-      <style dangerouslySetInnerHTML={{ __html: cursorCss }} />
-
-      <section className="relative flex min-h-screen items-center justify-center p-[2em] text-[1.1vw]">
-        <div className="relative flex w-full min-h-[37em] flex-wrap gap-y-[3em]">
-          {/* ── left column: heading, tab nav, active tab copy, cta ── */}
-          <div className="w-1/2">
-            <div className="ml-auto mr-0 h-full w-full max-w-[36em] px-0 py-[1em] pb-[2em]">
-              <div className="flex h-full min-h-full flex-col items-start justify-between gap-[3em] pr-[2.5em]">
+      <section className="relative flex min-h-screen items-center justify-center p-[2em] text-[length:var(--fs)]">
+        <div className="relative flex min-h-[37em] w-full flex-col gap-y-[3em] md:flex-row md:flex-wrap">
+          <div className="w-full md:w-1/2">
+            <div className="ml-auto mr-0 h-full w-full max-w-[36em] pb-[2em] pt-[1em]">
+              <div className="flex h-full min-h-full flex-col items-start justify-between gap-[3em] md:pr-[2.5em]">
                 <div className="flex flex-col items-start gap-[2em]">
-                  <h1 className="m-0 text-[4em] font-medium leading-none tracking-tight">
+                  <h1 className="m-0 text-[2.6em] font-medium leading-none tracking-tight md:text-[4em]">
                     {heading}
                   </h1>
 
                   <div
-                    className="flex rounded-[.5em] border p-[.5em]"
-                    style={{
-                      backgroundColor: `${surfaceColor}0f`,
-                      borderColor: `${surfaceColor}14`,
-                    }}
-                    ref={(el) => {
-                      if (el)
-                        el.setAttribute(`data-flip-button-${uid}`, "wrap");
-                    }}
+                    ref={navRef}
+                    className="relative flex rounded-[.5em] border border-white/[0.08] bg-white/[0.06] p-[.5em]"
                   >
+                    <div
+                      ref={pillRef}
+                      className="pointer-events-none absolute left-0 top-0 z-0 rounded-[.25em] border border-white/[0.08] bg-white/[0.06] opacity-0"
+                    />
                     {tabs.map((tab, i) => (
                       <button
                         key={i}
+                        ref={(el) => (buttonRefs.current[i] = el)}
                         type="button"
-                        className={`filter-button-${uid} cursor-pointer-${uid} relative border border-transparent px-[1.5em] py-[1.125em] text-[1em] transition-[border-color] duration-200 ${
-                          i === 0 ? "active" : ""
-                        }`}
-                        ref={(el) => {
-                          if (el) {
-                            el.setAttribute(`data-tabs-${uid}`, "button");
-                            el.setAttribute(
-                              `data-flip-button-${uid}`,
-                              "button",
-                            );
-                          }
-                        }}
+                        onClick={() => switchTab(i)}
+                        onMouseEnter={() => movePill(i)}
+                        onFocus={() => movePill(i)}
+                        onMouseLeave={() => movePill(activeRef.current)}
+                        onBlur={() => movePill(activeRef.current)}
+                        className={`relative z-[1] cursor-pointer border px-[1.5em] py-[1.125em] text-[1em] transition-[border-color] duration-200 ${i === activeIndex
+                            ? "rounded-[.25em] border-white/30"
+                            : "border-transparent"
+                          }`}
                       >
-                        <div
-                          className="relative z-[1] text-[1.125em]"
-                          style={{ color: textColor }}
-                        >
+                        <span className="relative z-[1] block text-[1.125em]">
                           {tab.label}
-                        </div>
-
-                        {i === 0 && (
-                          <div
-                            className="absolute inset-0 z-0 h-full w-full rounded-[.25em] border"
-                            style={{
-                              backgroundColor: `${surfaceColor}0f`,
-                              borderColor: `${surfaceColor}14`,
-                            }}
-                            ref={(el) => {
-                              if (el)
-                                el.setAttribute(
-                                  `data-flip-button-${uid}`,
-                                  "bg",
-                                );
-                            }}
-                          />
-                        )}
+                        </span>
                       </button>
                     ))}
                   </div>
                 </div>
 
-                <div className="flex flex-col items-start gap-[2em]">
-                  <div className="relative w-full min-w-[24em]">
+                <div className="flex w-full flex-col items-start gap-[2em]">
+                  <div className="relative min-h-[10em] w-full md:min-h-0 md:min-w-[24em]">
                     {tabs.map((tab, i) => (
                       <div
                         key={i}
-                        className={`tab-content-item-${uid} absolute inset-x-0 bottom-0 top-auto z-[1] flex flex-col gap-[1.25em] ${
-                          i === 0 ? "active" : ""
-                        }`}
-                        ref={(el) => {
-                          if (el)
-                            el.setAttribute(`data-tabs-${uid}`, "content-item");
-                        }}
+                        ref={(el) => (contentRefs.current[i] = el)}
+                        className={`absolute inset-x-0 bottom-0 top-auto z-[1] flex flex-col gap-[1.25em] ${i === 0 ? "visible" : "invisible"
+                          }`}
                       >
                         <h2
+                          data-fade
                           className="m-0 text-[1.75em] font-medium leading-none tracking-tight"
-                          ref={(el) => {
-                            if (el)
-                              el.setAttribute(`data-tabs-fade-${uid}`, "");
-                          }}
                         >
                           {tab.heading}
                         </h2>
                         <p
+                          data-fade
                           className="m-0 text-[1.25em] leading-snug opacity-80"
-                          ref={(el) => {
-                            if (el)
-                              el.setAttribute(`data-tabs-fade-${uid}`, "");
-                          }}
                         >
                           {tab.description}
                         </p>
@@ -361,45 +223,30 @@ export default function FlipTabShowcase({
 
                   <a
                     href={ctaHref}
-                    className={`cursor-pointer-${uid} relative flex h-[4em] items-center justify-center px-[1.5em] no-underline`}
-                    style={{ color: ctaTextColor }}
+                    className={`relative flex h-[4em] items-center justify-center rounded-[.25em] px-[1.5em] no-underline ${ctaClassName}`}
                   >
-                    <p className="relative z-[1] m-0 text-[1.25em] leading-snug">
+                    <span className="m-0 text-[1.25em] leading-snug">
                       {ctaLabel}
-                    </p>
-                    <div
-                      className="absolute inset-0 rounded-[.25em]"
-                      style={{ backgroundColor: surfaceColor }}
-                    />
+                    </span>
                   </a>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* ── right column: crossfading visual panel ── */}
-          <div className="w-1/2">
-            <div
-              className="relative w-full overflow-hidden rounded-[.5em]"
-              style={{
-                height: `${visualHeightEm}em`,
-                maxHeight: `${visualMaxHeightVh}vh`,
-              }}
-            >
+          <div className="w-full md:w-1/2">
+            <div className="relative h-[min(calc(var(--visual-h)_*_1em),var(--visual-max))] w-full overflow-hidden rounded-[.5em]">
               {tabs.map((tab, i) => (
                 <div
                   key={i}
-                  className={`tab-visual-item-${uid} absolute flex h-full w-full items-center justify-start ${
-                    i === 0 ? "active" : ""
-                  }`}
-                  ref={(el) => {
-                    if (el) el.setAttribute(`data-tabs-${uid}`, "visual-item");
-                  }}
+                  ref={(el) => (visualRefs.current[i] = el)}
+                  className={`absolute flex h-full w-full items-center justify-start ${i === 0 ? "visible" : "invisible"
+                    }`}
                 >
                   <img
                     src={tab.image}
-                    alt={tab.alt || ""}
-                    loading="lazy"
+                    alt={tab.alt}
+                    loading={i === 0 ? "eager" : "lazy"}
                     className="h-full w-full max-w-none rounded-[.5em] object-cover"
                   />
                 </div>

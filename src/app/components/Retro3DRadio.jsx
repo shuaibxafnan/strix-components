@@ -2,45 +2,6 @@
 
 import { useId, useMemo, useRef, useState } from "react";
 
-// ─── AsiaticRadio ─────────────────────────────────────────────────────────────
-//
-// A 3D CSS cassette-radio. Click the orange (CTA) button or the speaker icon to
-// play / pause the track; the device wiggles, the cover lifts and the shadow
-// breathes while it plays.
-//
-// Original concept by liukui (https://dribbble.com/shots/3029443-Radio-Gif),
-// CodePen by Ricardo Oliva Alonso. Ported apple-to-apple.
-//
-// Geometry note
-// ──────────────────────────────────────────────────────────────────────────
-// Every solid is built from six absolutely-positioned `.face` elements. The SCSS
-// `@mixin cube` is reproduced as six generic `.f-*` rules driven by three CSS
-// custom properties on each cube container: --w (width), --h (height/length),
-// --d (depth). Because CSS variables inherit, a nested cube (the volume knob, the
-// cassette, the lid) simply re-declares its own --w/--h/--d and its faces pick
-// them up — no per-cube transform math repeated.
-//
-// SCSS `darken()` is reproduced with `color-mix(in srgb, <var>, black <pct>%)`,
-// so the whole palette stays prop-driven from a handful of base colors.
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// audioSrc        string   <github mp3>  Track to play
-// loop            boolean  true          Loop the track while playing
-// bgColor         string   #FCCD64       Page / stage background (yellow-2)
-// shadowColor     string   #D1A551       Floor shadow color (yellow-3)
-// accentColor     string   #FFA460       CTA button + cassette tint base (yellow-1)
-// darkColor       string   #383832       Speaker grille / cassette / knob (black-1)
-// casePrimary     string   #E9EBDB       Main case highlight tone (white-1)
-// caseShade2      string   #DEE0D3       Secondary case tone (white-2)
-// caseShade3      string   #AAAAAA       Case shadow tone (white-3)
-// caseShade4      string   #666666       Deep recess tone (white-4)
-// iconColor       string   #FFFFFF       Speaker on/off SVG fill
-// scale           number   1             Uniform size multiplier for the device
-// swingDuration   number   0.6           Swing / shadow animation duration (s)
-// showSoundToggle boolean  true          Render the speaker on/off icon
-// className       string   ""            Extra classes for the outer wrapper
-// ──────────────────────────────────────────────────────────────────────────
 
 // Sound-on (speaker with waves) icon path
 const ICON_ON =
@@ -50,10 +11,6 @@ const ICON_ON =
 const ICON_OFF =
   "M18.084,11.639c0.168,0.169,0.168,0.442,0,0.611c-0.084,0.084-0.195,0.127-0.306,0.127c-0.111,0-0.221-0.043-0.306-0.127l-1.639-1.639l-1.639,1.639c-0.084,0.084-0.195,0.127-0.306,0.127c-0.111,0-0.222-0.043-0.307-0.127c-0.168-0.169-0.168-0.442,0-0.611L15.223,10l-1.64-1.639c-0.168-0.168-0.168-0.442,0-0.61c0.17-0.169,0.442-0.169,0.612,0l1.639,1.639l1.639-1.639c0.169-0.169,0.442-0.169,0.611,0c0.168,0.168,0.168,0.442,0,0.61L16.445,10L18.084,11.639z M12.161,2.654v14.691c0,0.175-0.105,0.333-0.267,0.4c-0.054,0.021-0.109,0.032-0.166,0.032c-0.111,0-0.223-0.043-0.305-0.127l-3.979-3.979H2.222c-0.237,0-0.432-0.194-0.432-0.432V6.759c0-0.237,0.195-0.432,0.432-0.432h5.222l3.979-3.978c0.123-0.125,0.309-0.163,0.471-0.095C12.056,2.322,12.161,2.479,12.161,2.654 M7.192,7.192H2.654v5.617h4.538V7.192z M11.296,3.698l-3.24,3.241v6.123l3.24,3.24V3.698z";
 
-// Faces of a cube. `front` injects children into the front face (the cassette
-// uses it for its tape line). `back` is omitted on cubes whose back face was
-// commented out in the source — notably the lid (cover-b), so the cassette
-// stays visible through the transparent front instead of being occluded.
 function CubeFaces({ front = null, back = true }) {
   return (
     <>
@@ -68,7 +25,7 @@ function CubeFaces({ front = null, back = true }) {
 }
 
 export default function Retro3DRadio({
-  audioSrc = "https://raw.githubusercontent.com/ricardoolivaalonso/recursos/master/asiatic-a/song.mp3",
+  audioSrc = "https://upload.wikimedia.org/wikipedia/commons/6/61/Happy_Happy_HardPopCoreTastic.ogg",
   loop = true,
   bgColor = "#FCCD64",
   shadowColor = "#D1A551",

@@ -2,134 +2,88 @@
 
 import { useEffect, useState } from "react";
 
-// ─── BentoGrid ──────────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// sectionTitle         string      "Latest Stories"     Main section layout header
-// cardsData            array       [...]               Data array containing objects for items
-// gridColumnsMobile    string      "grid-cols-1"        Explicit column layout track for mobile
-// gridColumnsTablet    string      "md:grid-cols-2"     Explicit column layout track for tablets
-// gridColumnsDesktop   string      "lg:grid-cols-12"    Explicit column track for main viewports
-// gapSpacing           string      "gap-8"              Gutter spacing separating bento grids
-// cardMinBlockSize     string      "min-h-[360px]"      Minimum height matching structure cards
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_CARDS = [
   {
     id: 1,
     isHero: true,
-    tag: "FEATURED STORY",
-    title: "Embark on Roaring Adventures with A Tiger's Tale",
+    tag: "FEATURED COLLECTION",
+    title: "Shaped by Hand: The Story of the Clay Vase",
     date: "January 8, 2024",
     imgSrc:
-      "https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/bento-grid/images/tiger.webp",
-    imgAlt: "Cute cartoon tiger illustration",
+      "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/clay.png",
+    imgAlt: "Handmade clay vase",
   },
   {
     id: 2,
     isHero: false,
-    tag: "FEATURED STORY",
-    title: "Chomping Chronicles: The Crocodile's Adventure",
+    tag: "FEATURED COLLECTION",
+    title: "Two Tones of Earth: The Brown Duo Vase",
     date: "January 12, 2024",
     imgSrc:
-      "https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/bento-grid/images/crocodile.webp",
-    imgAlt: "Cartoon crocodile illustration",
+      "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/duo-brown.png",
+    imgAlt: "Two tone brown vase",
   },
   {
     id: 3,
     isHero: false,
-    tag: "FEATURED STORY",
-    title: "Vibrant Wings: Journey of the Macaw",
+    tag: "FEATURED COLLECTION",
+    title: "Deep Blue Calm: The Solid Navy Vase",
     date: "January 16, 2024",
     imgSrc:
-      "https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/bento-grid/images/macaw.webp",
-    imgAlt: "Cartoon macaw illustration",
+      "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/solid-dblue.png",
+    imgAlt: "Solid dark blue vase",
   },
   {
     id: 4,
     isHero: false,
-    tag: "FEATURED STORY",
-    title: "Moo-rific Tales: The Brave Cow's Journey",
+    tag: "FEATURED COLLECTION",
+    title: "Warm and Whole: The Solid Brown Vase",
     date: "January 18, 2024",
     imgSrc:
-      "https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/bento-grid/images/cow.webp",
-    imgAlt: "Cartoon cow illustration",
+      "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/brown-solid.png",
+    imgAlt: "Solid brown vase",
   },
   {
     id: 5,
     isHero: false,
-    tag: "FEATURED STORY",
-    title: "Pawsome Quest: A Dog's Adventure",
+    tag: "FEATURED COLLECTION",
+    title: "Blue on Blue: The Two Tone Vase",
     date: "January 20, 2024",
     imgSrc:
-      "https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/bento-grid/images/dog.webp",
-    imgAlt: "Cartoon dog illustration",
+      "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/duo-blue.png",
+    imgAlt: "Two tone blue vase",
   },
   {
     id: 6,
     isHero: false,
-    tag: "FEATURED STORY",
-    title: "Giant Hearts: An Elephant's Odyssey",
+    tag: "FEATURED COLLECTION",
+    title: "Bent Out of Shape: The Two Tone Deformed Vase",
     date: "January 24, 2024",
     imgSrc:
-      "https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/bento-grid/images/elephant.webp",
-    imgAlt: "Cartoon elephant illustration",
+      "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/duo-deform.png",
+    imgAlt: "Two tone vase with a deformed silhouette",
     isHeadingH4: true,
   },
   {
     id: 7,
     isHero: false,
-    tag: "FEATURED STORY",
-    title: "Explore Undersea Wonders with Starfish's Cosmic Journey",
+    tag: "FEATURED COLLECTION",
+    title: "Ocean Curves: The Deformed Blue Vase",
     date: "January 11, 2024",
     imgSrc:
-      "https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/bento-grid/images/starfish.webp",
-    imgAlt: "Cartoon starfish illustration",
+      "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/deform-blue.png",
+    imgAlt: "Blue vase with a deformed silhouette",
     isHeadingH4: true,
   },
   {
     id: 8,
     isHero: false,
-    tag: "FEATURED STORY",
-    title: "Gallop and Giggles: The Whimsical Horse Chronicles",
+    tag: "FEATURED COLLECTION",
+    title: "Pattern and Poise: The Brown Patterned Vase",
     date: "February 12, 2024",
     imgSrc:
-      "https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/bento-grid/images/horse.webp",
-    imgAlt: "Cartoon horse illustration",
-    isHeadingH4: true,
-  },
-  {
-    id: 9,
-    isHero: false,
-    tag: "FEATURED STORY",
-    title: "Furry Fantasia: Fox's Enchanted Tale",
-    date: "February 16, 2024",
-    imgSrc:
-      "https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/bento-grid/images/fox.webp",
-    imgAlt: "Cartoon fox illustration",
-    isHeadingH4: true,
-  },
-  {
-    id: 10,
-    isHero: false,
-    tag: "FEATURED STORY",
-    title: "Slinky Serpent: A Snake's Mysterious Quest",
-    date: "February 20, 2024",
-    imgSrc:
-      "https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/bento-grid/images/snake.webp",
-    imgAlt: "Cartoon snake illustration",
-    isHeadingH4: true,
-  },
-  {
-    id: 11,
-    isHero: false,
-    tag: "FEATURED STORY",
-    title: "Feathered Friends: The Cockatoo's Symphony",
-    date: "February 24, 2024",
-    imgSrc:
-      "https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/bento-grid/images/cockatoo.webp",
-    imgAlt: "Cartoon cockatoo illustration",
+      "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/pattern-brown.png",
+    imgAlt: "Brown vase with a patterned surface",
     isHeadingH4: true,
   },
 ];

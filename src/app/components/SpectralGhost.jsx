@@ -1,73 +1,5 @@
 "use client";
 
-// ─── SpectralGhost ────────────────────────────────────────────────────────────
-//
-// Apple-to-apple Next.js conversion of the Codepen Spectral Ghost.
-// All Three.js values, geometry, shader code, animation math, and timing
-// are identical to the original. Tweakpane GUI removed — use props instead.
-//
-// Props
-// ─────────────────────────────────────────────────────────────────────────────
-// Ghost appearance
-//   bodyColor                  number   0x0f2027   Ghost mesh base color
-//   glowColor                  string   "orange"   Emissive glow (fluorescent palette key)
-//   eyeGlowColor               string   "green"    Eye emissive color (fluorescent palette key)
-//   ghostOpacity               number   0.88       Ghost mesh opacity
-//
-// Glow effects
-//   emissiveIntensity           number   5.8        Base emissive intensity
-//   pulseSpeed                  number   1.6        Pulse animation speed multiplier
-//   pulseIntensity              number   0.6        Pulse amplitude
-//
-// Eyes
-//   eyeGlowDecay                number   0.95       Eye glow exponential decay per frame
-//   eyeGlowResponse             number   0.31       Eye glow ramp-up speed
-//   movementThreshold           number   0.07       Minimum movement delta to light eyes
-//
-// Lighting
-//   rimLightIntensity           number   1.8        Rim DirectionalLight strength
-//
-// Behavior
-//   followSpeed                 number   0.075      Mouse follow lerp factor
-//   wobbleAmount                number   0.35       Body tilt/wobble multiplier
-//   floatSpeed                  number   1.6        Floating bob frequency multiplier
-//
-// Particles
-//   particleCount               number   250        Max simultaneous particles
-//   particleDecayRate           number   0.005      Base particle fade speed
-//   particleColor               string   "orange"   Particle color (fluorescent palette key)
-//   createParticlesOnlyWhenMoving  boolean  true    Only emit during mouse movement
-//   particleCreationRate        number   5          Max particles spawned per burst
-//
-// Background reveal
-//   revealRadius                number   43         Radius of the background reveal circle
-//   fadeStrength                number   2.2        Edge falloff power
-//   baseOpacity                 number   0.35       Background overlay opacity (away from ghost)
-//   revealOpacity               number   0.0        Background opacity directly under ghost
-//
-// Fireflies
-//   fireflyGlowIntensity        number   2.6        Firefly brightness multiplier
-//   fireflySpeed                number   0.04       Firefly movement speed
-//
-// Analog decay (post-processing shader)
-//   analogIntensity             number   0.6        Overall analog effect multiplier
-//   analogGrain                 number   0.4        Film grain amount
-//   analogBleeding              number   1.0        RGB channel bleeding amount
-//   analogVSync                 number   1.0        VHS vertical sync roll
-//   analogScanlines             number   1.0        Scanline overlay strength
-//   analogVignette              number   1.0        Vignette amount
-//   analogJitter                number   0.4        Temporal jitter amount
-//   limboMode                   boolean  false      Black & white mode
-//
-// Content
-//   quote                       string   (see below)  Headline — use \n for line breaks
-//   author                      string   "Whispers through memory"
-//   loadingText                 string   "Summoning spirits"
-//
-// Misc
-//   className                   string   ""         Extra class on the root wrapper
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { useEffect, useRef } from "react";
 
 const FLUORESCENT = {
@@ -911,13 +843,13 @@ export default function SpectralGhost({
     <>
       {/* ── Font imports ── */}
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
-        @font-face {
-          font-family: "PPSupplyMono";
-          src: url("https://assets.codepen.io/7558/PPSupplyMono-Variable.woff2") format("woff2");
-          font-weight: 100 900;
-          font-style: normal;
+        @import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+        :root {
+          --font-display: 'Cinzel Decorative', serif;
+          --font-mono: 'JetBrains Mono', monospace;
         }
+
         @keyframes ghostFloat {
           0%, 100% { transform: translateY(0px); }
           50%       { transform: translateY(-8px); }
@@ -995,7 +927,7 @@ export default function SpectralGhost({
             <p
               className="text-[12px] uppercase mb-3"
               style={{
-                fontFamily: '"PPSupplyMono", monospace',
+                fontFamily: '"JetBrains Mono", monospace',
                 animation: "textPulse 2s ease-in-out infinite",
               }}
             >
@@ -1027,7 +959,7 @@ export default function SpectralGhost({
             <h1
               className="font-normal uppercase mb-[5vh]"
               style={{
-                fontFamily: '"Boldonse", system-ui',
+                fontFamily: '"Cinzel Decorative", system-ui',
                 fontSize: "6vw",
                 lineHeight: 1.3,
                 letterSpacing: "-0.02em",
@@ -1043,7 +975,7 @@ export default function SpectralGhost({
             <span
               className="block text-[12px] uppercase mt-[2vh]"
               style={{
-                fontFamily: '"PPSupplyMono", monospace',
+                fontFamily: '"JetBrains Mono", monospace',
                 opacity: 0.7,
               }}
             >

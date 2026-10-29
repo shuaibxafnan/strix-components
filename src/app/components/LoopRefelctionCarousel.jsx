@@ -2,22 +2,6 @@
 
 import { useEffect, useMemo, useRef } from "react";
 
-// ─── GalleryCarousel ─────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────────
-// pics            string[]   PICS             Array of image URLs for cards
-// titles          string[]   TITLES           Array of card title strings
-// types           string[]   TYPES            Array of card type/label strings
-// cardCount       number     10               Total number of cards to render
-// spacing         number     0.2              GSAP stagger spacing between cards
-// scrollLength    number     3000             ScrollTrigger scroll distance (px)
-// bgColor         string     hsl(220,34%,5%)  Page background color
-// reflectionBlur  number     5                CSS blur on reflection (px)
-// whooshVolume    number     0.5              Volume of whoosh SFX (0–1)
-// whooshSrc       string     WHOOSH_URL       URL for whoosh audio file
-// ──────────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_PICS = [
   "https://images.unsplash.com/photo-1542662565-7e4b66bae529?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=282&q=80",
   "https://images.unsplash.com/photo-1525153537143-f88592837fb1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=332&q=80",
@@ -29,11 +13,7 @@ const DEFAULT_PICS = [
 
 const DEFAULT_TITLES = ["Mountain", "Stars", "Skies", "Water", "Trips"];
 const DEFAULT_TYPES = ["Guide", "Planner", "Discuss"];
-const DEFAULT_WHOOSH = "https://assets.codepen.io/605876/whoosh-two.mp3";
 
-// ─── Sub-components ──────────────────────────────────────────────────────────
-
-// CardContent — shared between the real card face and its reflection
 function CardContent({ pic, title, type, isReflection, bgCssVar }) {
   return (
     <>
@@ -123,21 +103,11 @@ export default function LoopReflectionCarousel({
   scrollLength = 3000,
   bgColor = "hsl(220, 34%, 5%)",
   reflectionBlur = 5,
-  whooshVolume = 0.5,
-  whooshSrc = DEFAULT_WHOOSH,
 }) {
   const galleryRef = useRef(null);
   const nextBtnRef = useRef(null);
   const prevBtnRef = useRef(null);
 
-  // ── Stable type assignments ───────────────────────────────────────────────
-  //
-  // Math.random() during render causes an SSR/client mismatch because the
-  // server and client produce different random values. We pre-compute a fixed
-  // array once via useMemo so both passes always render identical markup.
-  // The deterministic formula (i * 3 + 1) distributes types evenly without
-  // randomness — visually varied, hydration-safe.
-  //
   const cardTypes = useMemo(
     () =>
       Array.from(
@@ -183,22 +153,6 @@ export default function LoopReflectionCarousel({
           utils: { snap, toArray },
         } = gsap;
 
-        // ── Audio ────────────────────────────────────────────────────────────
-        const whoosh = new Audio(whooshSrc);
-        whoosh.volume = whooshVolume;
-        const playWhoosh = () => {
-          whoosh.currentTime = 0;
-          whoosh.play().catch(() => {
-            // Autoplay may be blocked by the browser; fail silently
-          });
-        };
-
-        // ── BUILD_LOOP ───────────────────────────────────────────────────────
-        //
-        // Builds a seamlessly-looping GSAP timeline that scrubs across all cards.
-        // OVERLAP cards are rendered on either side of the real sequence so that
-        // the loop boundary is never visible.
-        //
         const buildLoop = (cards, cardSpacing) => {
           const OVERLAP = Math.ceil(1 / cardSpacing);
           const START = cards.length * cardSpacing + 0.5;
@@ -239,7 +193,6 @@ export default function LoopReflectionCarousel({
               },
               time,
             )
-              // Scale in/out + whoosh SFX
               .fromTo(
                 item,
                 { scale: 0 },
@@ -251,7 +204,6 @@ export default function LoopReflectionCarousel({
                   repeat: 1,
                   ease: "none",
                   immediateRender: false,
-                  onStart: playWhoosh,
                 },
                 time,
               )
@@ -396,7 +348,7 @@ export default function LoopReflectionCarousel({
       if (cleanupFn) cleanupFn();
     };
     // Re-run if tuneable props change
-  }, [spacing, scrollLength, whooshVolume, whooshSrc]);
+  }, [spacing, scrollLength]);
 
   // ── Render ─────────────────────────────────────────────────────────────────
   return (

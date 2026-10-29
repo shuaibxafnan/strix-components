@@ -2,15 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── StackedCarousel Component ─────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// initialCards      array     Dynamic dataset schema for movie metadata
-// bodyBgColor       string    #0a0a0c    Deep cinematic primary canvas backdrop tone
-// cardWidth         string    315px      Sleek structural viewport bound tracking
-// cardHeight        string    560px      Optimized target aspect ratio vertical canvas frame
-// ──────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_MOVIES = [
   {
@@ -19,7 +10,7 @@ const DEFAULT_MOVIES = [
     year: "2010",
     genres: ["Animation", "Family", "Sci-Fi"],
     image:
-      "https://www.themoviedb.org/t/p/w1280/hbhFnRzzg6ZDmm8YAmxBnQpQIPh.jpg",
+      "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1280&q=80",
   },
   {
     id: "dunkirk",
@@ -27,7 +18,7 @@ const DEFAULT_MOVIES = [
     year: "2017",
     genres: ["Action", "Drama", "History"],
     image:
-      "https://www.themoviedb.org/t/p/w1280/b4Oe15CGLL61Ped0RAS9JpqdmCt.jpg",
+      "https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&w=1280&q=80",
   },
   {
     id: "coraline",
@@ -35,7 +26,7 @@ const DEFAULT_MOVIES = [
     year: "2010",
     genres: ["Animation", "Family", "Fantasy"],
     image:
-      "https://www.themoviedb.org/t/p/w1280/4jeFXQYytChdZYE9JYO7Un87IlW.jpg",
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1280&q=80",
   },
   {
     id: "deadpool",
@@ -43,7 +34,7 @@ const DEFAULT_MOVIES = [
     year: "2016",
     genres: ["Action", "Adventure", "Comedy"],
     image:
-      "https://www.themoviedb.org/t/p/w1280/fSRb7vyIP8rQpL0I47P3qUsEKX3.jpg",
+      "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1280&q=80",
   },
   {
     id: "pans-labyrinth",
@@ -51,9 +42,10 @@ const DEFAULT_MOVIES = [
     year: "2006",
     genres: ["Fantasy", "Drama", "War"],
     image:
-      "https://www.themoviedb.org/t/p/w1280/7PurMm0gUOJZ8Uk0oyuZlt1CKfJ.jpg",
+      "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1280&q=80",
   },
 ];
+
 
 export default function StackedCarousel({
   initialCards = DEFAULT_MOVIES,

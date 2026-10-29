@@ -2,125 +2,24 @@
 
 import { useEffect, useRef, useId, useState } from "react";
 
-// ─── ProximityScaleGrid ──────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bgColor          string   #0e100f    Page background
-// textColor        string   #fffce1    Card title text color
-// accentColor      string   #0ae448    Accent color used for controls (thumb/value text)
-// cards            array    (see below) List of { icon, title, x, y, r } items to render
-// radius           number   200        Proximity radius in px — distance at which scale reaches 1
-// maxScale         number   2.5        Max scale applied to a card directly under the cursor
-// duration         number   0.35       gsap.to duration (s) for the hover-in scale tween
-// leaveDuration    number   0.7        gsap.to duration (s) for the reset tween on mouse leave
-// ease             string   power2.out Ease used for both hover and leave tweens
-// gridHeight       number   620        Height of the scatter grid stage (px)
-// showControls     bool     true       Render the Radius / Max Scale / Duration range sliders
-// showLabel        bool     true       Render the "move cursor over grid" corner label
-// ──────────────────────────────────────────────────────────────────────────
-//
-// `cards` item shape: { icon: string (image url), title: string, x: string ("5%"), y: string ("8%"), r: string ("-3deg") }
+const icon = (folder, file) =>
+  `https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/${encodeURIComponent(folder)}/3D/${file}_3d.png`;
 
 const DEFAULT_CARDS = [
-  {
-    icon: "https://assets.codepen.io/16327/2D-keyframe.png",
-    title: "gsap.to()",
-    x: "5%",
-    y: "8%",
-    r: "-3deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/2D-flower.png",
-    title: "gsap.from()",
-    x: "28%",
-    y: "2%",
-    r: "2deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/2D-diamond.png",
-    title: "gsap.fromTo()",
-    x: "55%",
-    y: "5%",
-    r: "-1deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/2D-circle.png",
-    title: "gsap.set()",
-    x: "80%",
-    y: "3%",
-    r: "4deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/2D-star.png",
-    title: "timeline()",
-    x: "12%",
-    y: "32%",
-    r: "2deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/2D-circles.png",
-    title: "stagger",
-    x: "40%",
-    y: "28%",
-    r: "-4deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/2D-sparkle.png",
-    title: "ScrollTrigger",
-    x: "68%",
-    y: "30%",
-    r: "1deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/2D-wobble.png",
-    title: "ease",
-    x: "3%",
-    y: "58%",
-    r: "-2deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/3D-hoop.png",
-    title: "Flip",
-    x: "30%",
-    y: "55%",
-    r: "3deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/2D-morph.png",
-    title: "MotionPath",
-    x: "58%",
-    y: "60%",
-    r: "-3deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/2D-label.png",
-    title: "SplitText",
-    x: "82%",
-    y: "55%",
-    r: "2deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/2D-lock.png",
-    title: "overwrite",
-    x: "18%",
-    y: "82%",
-    r: "-1deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/3D-cone.png",
-    title: "defaults()",
-    x: "48%",
-    y: "85%",
-    r: "3deg",
-  },
-  {
-    icon: "https://assets.codepen.io/16327/2D-windmill.png",
-    title: "killTweensOf()",
-    x: "75%",
-    y: "80%",
-    r: "-2deg",
-  },
+  { icon: icon("Right arrow", "right_arrow"), title: "gsap.to()", x: "5%", y: "8%", r: "-3deg" },
+  { icon: icon("Left arrow", "left_arrow"), title: "gsap.from()", x: "28%", y: "2%", r: "2deg" },
+  { icon: icon("Left-right arrow", "left-right_arrow"), title: "gsap.fromTo()", x: "55%", y: "5%", r: "-1deg" },
+  { icon: icon("Pushpin", "pushpin"), title: "gsap.set()", x: "80%", y: "3%", r: "4deg" },
+  { icon: icon("Stopwatch", "stopwatch"), title: "timeline()", x: "12%", y: "32%", r: "2deg" },
+  { icon: icon("Bar chart", "bar_chart"), title: "stagger", x: "40%", y: "28%", r: "-4deg" },
+  { icon: icon("Computer mouse", "computer_mouse"), title: "ScrollTrigger", x: "68%", y: "30%", r: "1deg" },
+  { icon: icon("Water wave", "water_wave"), title: "ease", x: "3%", y: "58%", r: "-2deg" },
+  { icon: icon("Counterclockwise arrows button", "counterclockwise_arrows_button"), title: "Flip", x: "30%", y: "55%", r: "3deg" },
+  { icon: icon("World map", "world_map"), title: "MotionPath", x: "58%", y: "60%", r: "-3deg" },
+  { icon: icon("Scissors", "scissors"), title: "SplitText", x: "82%", y: "55%", r: "2deg" },
+  { icon: icon("Pencil", "pencil"), title: "overwrite", x: "18%", y: "82%", r: "-1deg" },
+  { icon: icon("Gear", "gear"), title: "defaults()", x: "48%", y: "85%", r: "3deg" },
+  { icon: icon("Cross mark", "cross_mark"), title: "killTweensOf()", x: "75%", y: "80%", r: "-2deg" },
 ];
 
 export default function ProximityScaleGrid({
@@ -161,20 +60,24 @@ export default function ProximityScaleGrid({
   }, [liveDuration]);
 
   useEffect(() => {
-    const loadScript = (src) =>
-      new Promise((resolve, reject) => {
-        if (document.querySelector(`script[data-id="${src}"]`)) {
-          resolve();
-          return;
-        }
+    const scriptCache = new Map();
+
+    const loadScript = (src) => {
+      if (scriptCache.has(src)) return scriptCache.get(src);
+      const promise = new Promise((resolve, reject) => {
         const el = document.createElement("script");
         el.src = src;
-        el.setAttribute("data-id", src);
         el.onload = resolve;
-        el.onerror = () => reject(new Error(`Failed: ${src}`));
+        el.onerror = () => {
+          scriptCache.delete(src);
+          reject(new Error(`Failed: ${src}`));
+        };
         document.head.appendChild(el);
       });
-
+      scriptCache.set(src, promise);
+      return promise;
+    };
+    
     let cleanupFns = [];
     let cancelled = false;
 

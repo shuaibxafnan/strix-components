@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 const VERTEX_SHADER = `
   attribute vec3 position;
@@ -47,26 +47,21 @@ const FRAGMENT_SHADER = `
     vec4 texImage = texture2D(textureImage, dispDepth + dispWaves + dispMouse);
     vec4 texNormal = texture2D(textureNormal, dispDepth + dispWaves + dispMouse);
 
-    // PARTICLES
     vec4 particles = texture2D(textureNoise, dispWaves + vec2(vUv.x - sin(time * .5), vUv.y - sin(time)));
     float thr1 = .05 + sin(time * 4.0) * .05;
     texImage.rgb *= smoothstep(thr1, thr1 + .03, particles.r);
 
-    // FOG RED
     vec4 displacedDepth = texture2D(textureDepth, dispDepth + dispWaves + dispMouse);
     vec4 smokeNoise1 = texture2D(textureNoise, dispDepth - vec2(time * .3));
     texImage.r *= 1. + (displacedDepth.b * (40.0 + smokeNoise1.r) * pow(1.0 - vUv.y, 6.0) * (1.0 + sin(time * 1.0)) * .1);
 
-    // FOG BLUE
     vec4 smokeNoise2 = texture2D(textureNoise, dispDepth - vec2(time * .1, time * .5));
     texImage.b *= 1. + (displacedDepth.g * (6.0 + sin(time * 5.0)) * (.5 + smokeNoise2.r * (1.0 + sin(time) * .5)) * vUv.y);
 
-    // LIGHTENING
     float lighteningValue = texture2D(textureNoise, vec2(time * .1)).r;
     lighteningValue = 1. - smoothstep(.6, .65, lighteningValue) * .3;
     texImage.rg *= lighteningValue;
 
-    // MOUSE LIGHT
     vec3 lightDirection = normalize(vec3(mousePosition.x, mousePosition.y, .3));
     vec3 pixDirection = normalize(vec3(texNormal.r * 2.0 - 1.0, texNormal.b * 2.0 - 1.0, -texNormal.g * 2.0 + 1.0));
     float lightVal = dot(pixDirection, lightDirection);
@@ -76,211 +71,296 @@ const FRAGMENT_SHADER = `
   }
 `;
 
-export default function HalloweenParallax({
-  // Textures
-  imageUrl = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/264161/halloween.jpg',
-  depthUrl = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/264161/halloween-depth.jpg',
-  normalUrl = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/264161/halloween-normal.jpg',
-  noiseUrl = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/264161/noiseTexture.jpg',
+const MAP_WIDTH = 256;
 
-  // Scene
-  backgroundColor = '#000000',
+const loadImage = (url) =>
+  new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error(`Failed to load ${url}`));
+    img.src = url;
+  });
+
+const buildDepthAndNormal = (img) => {
+  const width = MAP_WIDTH;
+  const height = Math.max(1, Math.round((width * img.naturalHeight) / img.naturalWidth));
+
+  const small = document.createElement("canvas");
+  small.width = 64;
+  small.height = Math.max(1, Math.round((64 * img.naturalHeight) / img.naturalWidth));
+  small.getContext("2d").drawImage(img, 0, 0, small.width, small.height);
+
+  const blurred = document.createElement("canvas");
+  blurred.width = width;
+  blurred.height = height;
+  const bctx = blurred.getContext("2d");
+  bctx.imageSmoothingEnabled = true;
+  bctx.imageSmoothingQuality = "high";
+  bctx.drawImage(small, 0, 0, width, height);
+
+  const { data } = bctx.getImageData(0, 0, width, height);
+  const lum = new Float32Array(width * height);
+  let min = 1;
+  let max = 0;
+  for (let i = 0; i < lum.length; i++) {
+    const v =
+      (0.2126 * data[i * 4] + 0.7152 * data[i * 4 + 1] + 0.0722 * data[i * 4 + 2]) / 255;
+    lum[i] = v;
+    if (v < min) min = v;
+    if (v > max) max = v;
+  }
+  const range = Math.max(max - min, 0.001);
+  for (let i = 0; i < lum.length; i++) lum[i] = (lum[i] - min) / range;
+
+  const depthCanvas = document.createElement("canvas");
+  depthCanvas.width = width;
+  depthCanvas.height = height;
+  const dctx = depthCanvas.getContext("2d");
+  const depthData = dctx.createImageData(width, height);
+
+  const normalCanvas = document.createElement("canvas");
+  normalCanvas.width = width;
+  normalCanvas.height = height;
+  const nctx = normalCanvas.getContext("2d");
+  const normalData = nctx.createImageData(width, height);
+
+  const at = (x, y) =>
+    lum[Math.min(height - 1, Math.max(0, y)) * width + Math.min(width - 1, Math.max(0, x))];
+  const strength = 3;
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const i = (y * width + x) * 4;
+      const d = lum[y * width + x] * 255;
+      depthData.data[i] = d;
+      depthData.data[i + 1] = d;
+      depthData.data[i + 2] = d;
+      depthData.data[i + 3] = 255;
+
+      const dx = (at(x + 1, y) - at(x - 1, y)) * strength;
+      const dy = (at(x, y + 1) - at(x, y - 1)) * strength;
+      const nx = -dx;
+      const ny = dy;
+      const length = Math.hypot(nx, ny, 1);
+      normalData.data[i] = (nx / length) * 127.5 + 127.5;
+      normalData.data[i + 1] = 127.5 - (1 / length) * 127.5;
+      normalData.data[i + 2] = (ny / length) * 127.5 + 127.5;
+      normalData.data[i + 3] = 255;
+    }
+  }
+
+  dctx.putImageData(depthData, 0, 0);
+  nctx.putImageData(normalData, 0, 0);
+  return { depthCanvas, normalCanvas };
+};
+
+const buildNoise = () => {
+  const size = 256;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+  const imageData = ctx.createImageData(size, size);
+
+  const octaves = [
+    { cells: 8, weight: 0.6 },
+    { cells: 16, weight: 0.3 },
+    { cells: 32, weight: 0.1 },
+  ].map(({ cells, weight }) => ({
+    cells,
+    weight,
+    grid: Float32Array.from({ length: cells * cells }, () => Math.random()),
+  }));
+
+  const smooth = (t) => t * t * (3 - 2 * t);
+
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      let value = 0;
+      octaves.forEach(({ cells, weight, grid }) => {
+        const gx = (x / size) * cells;
+        const gy = (y / size) * cells;
+        const x0 = Math.floor(gx) % cells;
+        const y0 = Math.floor(gy) % cells;
+        const x1 = (x0 + 1) % cells;
+        const y1 = (y0 + 1) % cells;
+        const tx = smooth(gx - Math.floor(gx));
+        const ty = smooth(gy - Math.floor(gy));
+        const top = grid[y0 * cells + x0] * (1 - tx) + grid[y0 * cells + x1] * tx;
+        const bottom = grid[y1 * cells + x0] * (1 - tx) + grid[y1 * cells + x1] * tx;
+        value += (top * (1 - ty) + bottom * ty) * weight;
+      });
+      const i = (y * size + x) * 4;
+      const v = Math.min(255, Math.max(0, value * 255));
+      imageData.data[i] = v;
+      imageData.data[i + 1] = v;
+      imageData.data[i + 2] = v;
+      imageData.data[i + 3] = 255;
+    }
+  }
+
+  ctx.putImageData(imageData, 0, 0);
+  return canvas;
+};
+
+export default function HalloweenParallax({
+  imageUrl = "https://images.unsplash.com/photo-1573306533578-12e23afbf2c6?q=80&w=1080&auto=format&fit=crop",
+  depthUrl = null,
+  normalUrl = null,
+  noiseUrl = null,
+  backgroundColor = "bg-black",
   cameraZ = 260,
   fieldOfView = 50,
   planeSize = 200,
   planeSegments = 256,
-
-  // Mouse tracking
   mouseLerp = 0.07,
   touchMultiplier = 1.5,
-
-  // Animation
   timeStep = 0.01,
-
-  // Overlay UI
-  showOverlay = true,
-  overlayLinks = [
-    { label: 'My other codepens', href: 'https://codepen.io/Yakudoo/', target: '_blank' },
-    { label: 'epic.net', href: 'https://www.epic.net', target: '_blank' },
-  ],
-  overlayFont = "'Voltaire', sans-serif",
-  overlayColor = '#d45e59',
-  overlayLinkColor = '#b92721',
-  overlayFontSize = '1.0em',
-
-  // Layout
-  width = '100%',
-  height = '100%',
-
-  className = '',
+  className = "",
 }) {
-  const canvasRef = useRef(null);
   const containerRef = useRef(null);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
-    let THREE;
-    let renderer, scene, camera, material, shape;
-    let timer = 0;
-    let rafId;
-    let targetX = 0;
-    let targetY = 0;
-    let mousePos = { x: 0, y: 0, px: 0, py: 0 };
-    let mounted = true;
-
     const container = containerRef.current;
     const canvas = canvasRef.current;
-    if (!container || !canvas) return;
+    if (!container || !canvas) return undefined;
 
-    const getSize = () => ({
-      w: container.clientWidth,
-      h: container.clientHeight,
-    });
+    let disposed = false;
+    let cleanup = () => { };
 
-    async function init() {
-      THREE = (await import('three')).default ?? (await import('three'));
+    const start = async () => {
+      const THREE = await import("three");
+      if (disposed) return;
 
+      const loader = new THREE.TextureLoader();
+      loader.crossOrigin = "anonymous";
+      const loadTexture = (url) => loader.loadAsync(url);
+
+      const image = await loadImage(imageUrl);
+      if (disposed) return;
+      const generated = buildDepthAndNormal(image);
+
+      const [imageTexture, depthTexture, normalTexture, noiseTexture] =
+        await Promise.all([
+          Promise.resolve(new THREE.Texture(image)),
+          depthUrl
+            ? loadTexture(depthUrl)
+            : Promise.resolve(new THREE.CanvasTexture(generated.depthCanvas)),
+          normalUrl
+            ? loadTexture(normalUrl)
+            : Promise.resolve(new THREE.CanvasTexture(generated.normalCanvas)),
+          noiseUrl
+            ? loadTexture(noiseUrl)
+            : Promise.resolve(new THREE.CanvasTexture(buildNoise())),
+        ]);
+      if (disposed) return;
+
+      imageTexture.needsUpdate = true;
+      [imageTexture, depthTexture, normalTexture, noiseTexture].forEach((t) => {
+        t.minFilter = THREE.LinearFilter;
+        t.magFilter = THREE.LinearFilter;
+      });
+      noiseTexture.wrapS = THREE.RepeatWrapping;
+      noiseTexture.wrapT = THREE.RepeatWrapping;
+
+      const getSize = () => ({ w: container.clientWidth, h: container.clientHeight });
       const { w, h } = getSize();
 
-      renderer = new THREE.WebGLRenderer({
-        canvas,
-        alpha: true,
-        antialias: true,
-      });
-      renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(w, h);
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(w, h, false);
 
-      scene = new THREE.Scene();
-
-      camera = new THREE.PerspectiveCamera(fieldOfView, w / h, 0.1, 20000);
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(fieldOfView, w / h, 0.1, 20000);
       camera.position.z = cameraZ;
 
-      loadTextures(THREE, w, h);
-    }
-
-    function loadTextures(THREE, w, h) {
-      const loader = new THREE.TextureLoader();
-      loader.crossOrigin = '';
-      let nLoaded = 0;
-
-      const onLoad = () => {
-        nLoaded++;
-        if (nLoaded >= 4 && mounted) {
-          createPlane(THREE);
-          loop();
-        }
-      };
-
-      const texImage = loader.load(imageUrl, onLoad);
-      texImage.minFilter = THREE.LinearFilter;
-
-      const texDepth = loader.load(depthUrl, onLoad);
-      texDepth.magFilter = texDepth.minFilter = THREE.LinearFilter;
-
-      const texNormal = loader.load(normalUrl, onLoad);
-      texNormal.magFilter = texNormal.minFilter = THREE.LinearFilter;
-
-      const texNoise = loader.load(noiseUrl, onLoad);
-      texNoise.magFilter = texNoise.minFilter = THREE.LinearFilter;
-      texNoise.wrapT = texNoise.wrapS = THREE.RepeatWrapping;
-
-      // store for cleanup
-      material && (material._textures = [texImage, texDepth, texNormal, texNoise]);
-      // temporarily hold refs
-      window.__hlw_tex = { texImage, texDepth, texNormal, texNoise };
-    }
-
-    function createPlane(THREE) {
-      const { texImage, texDepth, texNormal, texNoise } = window.__hlw_tex ?? {};
-      delete window.__hlw_tex;
-
-      material = new THREE.RawShaderMaterial({
+      const aspect = image.naturalWidth / image.naturalHeight;
+      const material = new THREE.RawShaderMaterial({
         vertexShader: VERTEX_SHADER,
         fragmentShader: FRAGMENT_SHADER,
         uniforms: {
-          time: { type: 'f', value: 5 },
-          textureImage: { type: 't', value: texImage },
-          textureDepth: { type: 't', value: texDepth },
-          textureNormal: { type: 't', value: texNormal },
-          textureNoise: { type: 't', value: texNoise },
-          mousePosition: { type: 'v2', value: new THREE.Vector2(0.5, 0.5) },
+          time: { value: 5 },
+          textureImage: { value: imageTexture },
+          textureDepth: { value: depthTexture },
+          textureNormal: { value: normalTexture },
+          textureNoise: { value: noiseTexture },
+          mousePosition: { value: new THREE.Vector2(0.5, 0.5) },
         },
       });
+      const geometry = new THREE.PlaneGeometry(
+        planeSize * aspect,
+        planeSize,
+        planeSegments,
+        planeSegments,
+      );
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
 
-      const geometry = new THREE.PlaneGeometry(planeSize, planeSize, planeSegments, planeSegments);
-      shape = new THREE.Mesh(geometry, material);
-      scene.add(shape);
-    }
+      const fit = () => {
+        const size = getSize();
+        const visibleH = 2 * cameraZ * Math.tan(THREE.MathUtils.degToRad(fieldOfView / 2));
+        const visibleW = visibleH * (size.w / size.h);
+        const scale = Math.min(1, (visibleW * 0.95) / (planeSize * aspect));
+        mesh.scale.set(scale, scale, 1);
+      };
+      fit();
 
-    function render() {
-      if (!material || !shape) return;
-      timer += timeStep;
-      shape.material.uniforms.time.value = timer;
+      const pointer = { x: 0, y: 0 };
+      const target = { x: 0, y: 0 };
+      let time = 0;
+      let rafId = 0;
 
-      targetX += (mousePos.px - targetX) * mouseLerp;
-      targetY += (mousePos.py - targetY) * mouseLerp;
-      shape.material.uniforms.mousePosition.value.set(targetX, -targetY);
+      const onPointerMove = (e) => {
+        const rect = container.getBoundingClientRect();
+        const factor = e.pointerType === "touch" ? touchMultiplier : 1;
+        pointer.x = (((e.clientX - rect.left) / rect.width) * 2 - 1) * factor;
+        pointer.y = (((e.clientY - rect.top) / rect.height) * 2 - 1) * factor;
+      };
 
-      renderer.render(scene, camera);
-    }
+      const onResize = () => {
+        const size = getSize();
+        renderer.setSize(size.w, size.h, false);
+        camera.aspect = size.w / size.h;
+        camera.updateProjectionMatrix();
+        fit();
+      };
 
-    function loop() {
-      if (!mounted) return;
-      render();
-      rafId = requestAnimationFrame(loop);
-    }
+      const loop = () => {
+        rafId = requestAnimationFrame(loop);
+        time += timeStep;
+        material.uniforms.time.value = time;
+        target.x += (pointer.x - target.x) * mouseLerp;
+        target.y += (pointer.y - target.y) * mouseLerp;
+        material.uniforms.mousePosition.value.set(target.x, -target.y);
+        renderer.render(scene, camera);
+      };
 
-    function handleResize() {
-      if (!renderer || !camera) return;
-      const { w, h } = getSize();
-      renderer.setSize(w, h);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-    }
+      const observer = new ResizeObserver(onResize);
+      observer.observe(container);
+      window.addEventListener("pointermove", onPointerMove);
+      loop();
 
-    function handleMouseMove(e) {
-      const w = container.clientWidth;
-      const h = container.clientHeight;
+      cleanup = () => {
+        cancelAnimationFrame(rafId);
+        observer.disconnect();
+        window.removeEventListener("pointermove", onPointerMove);
+        scene.remove(mesh);
+        geometry.dispose();
+        [imageTexture, depthTexture, normalTexture, noiseTexture].forEach((t) =>
+          t.dispose(),
+        );
+        material.dispose();
+        renderer.dispose();
+      };
+    };
 
-      if (e.clientX && e.clientY) {
-        mousePos.x = e.clientX;
-        mousePos.y = e.clientY;
-        mousePos.px = (mousePos.x / w) * 2 - 1;
-        mousePos.py = (mousePos.y / h) * 2 - 1;
-      } else if (e.targetTouches) {
-        mousePos.x = e.targetTouches[0].clientX;
-        mousePos.y = e.targetTouches[0].clientY;
-        mousePos.px = ((mousePos.x / w) * 2 - 1) * touchMultiplier;
-        mousePos.py = ((mousePos.y / h) * 2 - 1) * touchMultiplier;
-        e.preventDefault();
-      }
-    }
-
-    init().then(() => {
-      window.addEventListener('resize', handleResize, false);
-      window.addEventListener('mousemove', handleMouseMove, false);
-      window.addEventListener('touchmove', handleMouseMove, { passive: false });
-    });
+    start().catch(() => { });
 
     return () => {
-      mounted = false;
-      cancelAnimationFrame(rafId);
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('touchmove', handleMouseMove);
-
-      if (shape) {
-        shape.geometry.dispose();
-        scene.remove(shape);
-      }
-      if (material) {
-        Object.values(material.uniforms).forEach((u) => {
-          if (u.value && u.value.dispose) u.value.dispose();
-        });
-        material.dispose();
-      }
-      if (renderer) {
-        renderer.dispose();
-      }
+      disposed = true;
+      cleanup();
     };
   }, [
     imageUrl,
@@ -299,43 +379,9 @@ export default function HalloweenParallax({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden select-none cursor-default ${className}`}
-      style={{ width, height, background: backgroundColor }}
+      className={`relative h-screen w-full touch-none select-none overflow-hidden ${backgroundColor} ${className}`}
     >
-      {/* Three.js canvas — passed by ref, never appended via DOM */}
-      <canvas
-        ref={canvasRef}
-        className="block w-full h-full"
-      />
-
-      {/* Overlay credits */}
-      {showOverlay && overlayLinks?.length > 0 && (
-        <div
-          className="absolute bottom-0 left-0 w-full text-center uppercase tracking-widest pb-5 pointer-events-none"
-          style={{
-            fontFamily: overlayFont,
-            color: overlayColor,
-            fontSize: overlayFontSize,
-          }}
-        >
-          <p className="pointer-events-auto">
-            {overlayLinks.map((link, i) => (
-              <span key={link.label}>
-                {i > 0 && <span className="mx-2 opacity-50">|</span>}
-                <a
-                  href={link.href}
-                  target={link.target ?? '_blank'}
-                  rel="noopener noreferrer"
-                  className="no-underline hover:opacity-80 transition-opacity duration-200"
-                  style={{ color: overlayLinkColor }}
-                >
-                  {link.label}
-                </a>
-              </span>
-            ))}
-          </p>
-        </div>
-      )}
+      <canvas ref={canvasRef} className="block h-full w-full" />
     </div>
   );
 }

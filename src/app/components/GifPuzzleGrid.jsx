@@ -2,37 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── GifPuzzleGrid ────────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bgColor          string   #000         Page + grid background color
-// bgHoverColor     string   #111         Grid background on hover
-// accentColor      string   #fff         Accent color used for dots, borders, highlights
-// columnWidth      number   100          Width of each grid column (px, runtime CSS var)
-// cellHeight       number   75           Height of each grid cell  (px, runtime CSS var)
-// columns          number   8            Total GridStack columns
-// maxGridWidth     number   800          Max-width of the grid container (px, inline only)
-// gifOptions       string[] […]          Pool of GIF URLs — one is picked at random
-// gifWidth         number   400          Width of the source GIF used for bg-size  (px)
-// gifHeight        number   300          Height of the source GIF used for bg-size (px)
-// puzzleRows       number   4            Rows in the image slice grid
-// puzzleCols       number   4            Cols in the image slice grid
-// tiles            object[] […]          Array of { x, y, w?, h? } GridStack positions
-// eyebrow          string   "Interactive" Small label above the heading
-// headingLight     string   "Drag the"   Light-weight part of the split headline
-// headingBold      string   "tiles."     Bold part of the split headline
-// subheading       string   …            Sentence below the headline
-// hintLabel        string   "Use a 4×4 grid" Instruction shown below the puzzle
-// statLabel1       string   "4×4"        First stat value
-// statSub1         string   "Grid"       First stat label
-// statLabel2       string   "16"         Second stat value
-// statSub2         string   "Tiles"      Second stat label
-// statLabel3       string   "∞"          Third stat value
-// statSub3         string   "Layouts"    Third stat label
-// credits          object[] […]          Array of { label, author, href }
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_TILES = [
   { x: 2, y: 0 }, { x: 3, y: 0 }, { x: 4, y: 0 }, { x: 5, y: 0 },
   { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 4, y: 1 },
@@ -41,9 +10,9 @@ const DEFAULT_TILES = [
 ];
 
 const DEFAULT_GIFS = [
-  "https://imgeasy.com/share/sY189QE7SAfKZ1R8BJQC.gif",
-  "https://imgeasy.com/share/J12WHOFDW8Ksnkzk1NCB.gif",
-  "https://imgeasy.com/share/0MndNWXp0h3nO1Qzty9W.gif",
+  "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=1080&q=80",
+  "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=1080&q=80",
+  "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=1080&q=80",
 ];
 
 export default function GifPuzzleGrid({
@@ -112,10 +81,10 @@ export default function GifPuzzleGrid({
         // Runtime prop values — cannot be expressed as Tailwind classes
         const root = document.documentElement;
         root.style.setProperty("--gs-column-width", `${columnWidth}px`);
-        root.style.setProperty("--gs-cell-height",  `${cellHeight}px`);
-        root.style.setProperty("--gs-item-margin-left",   "0px");
-        root.style.setProperty("--gs-item-margin-right",  "0px");
-        root.style.setProperty("--gs-item-margin-top",    "0px");
+        root.style.setProperty("--gs-cell-height", `${cellHeight}px`);
+        root.style.setProperty("--gs-item-margin-left", "0px");
+        root.style.setProperty("--gs-item-margin-right", "0px");
+        root.style.setProperty("--gs-item-margin-top", "0px");
         root.style.setProperty("--gs-item-margin-bottom", "0px");
 
         // ── Destroy stale instance before re-init (HMR safety) ───────────────
@@ -158,8 +127,8 @@ export default function GifPuzzleGrid({
         const tileEls = gridRef.current.querySelectorAll(".gs-tile");
         tileEls.forEach((el, i) => {
           const pos = positions[i] ?? { x: 0, y: 0 };
-          el.style.backgroundImage    = `url('${selectedGif}')`;
-          el.style.backgroundSize     = `${gifWidth}px ${gifHeight}px`;
+          el.style.backgroundImage = `url('${selectedGif}')`;
+          el.style.backgroundSize = `${gifWidth}px ${gifHeight}px`;
           el.style.backgroundPosition = `${pos.x}px ${pos.y}px`;
         });
       })

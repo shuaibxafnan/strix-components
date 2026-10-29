@@ -2,43 +2,23 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── CarouselPatterns ─────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────────
-// images              array    see IMAGE_DEFAULTS  Array of image URLs (12 items)
-// bgColor             string   "#111111"           Page background color
-// cardWidth           number   430                 Card width in px
-// cardHeight          number   610                 Card height in px
-// cardRadius          number   6                   Card border radius in px
-// wheelRadius         number   35                  Circle radius as % of viewport
-// totalCards          number   12                  Number of cards to render
-// showCardNumbers     boolean  true                Show 001/002/... label on cards
-// transitionDuration  number   1.2                 Pattern transition duration (s)
-// fontFamily          string   see below           CSS font-family for all text
-// ──────────────────────────────────────────────────────────────────────────────
-
 const IMAGE_DEFAULTS = [
-  "https://assets.codepen.io/7558/bw-portrait-001.jpg",
-  "https://assets.codepen.io/7558/bw-portrait-002.jpg",
-  "https://assets.codepen.io/7558/bw-portrait-003.jpg",
-  "https://assets.codepen.io/7558/bw-portrait-004.jpg",
-  "https://assets.codepen.io/7558/bw-portrait-005.jpg",
-  "https://assets.codepen.io/7558/bw-portrait-006.jpg",
-  "https://assets.codepen.io/7558/bw-portrait-007.jpg",
-  "https://assets.codepen.io/7558/bw-portrait-008.jpg",
-  "https://assets.codepen.io/7558/bw-portrait-009.jpg",
-  "https://assets.codepen.io/7558/bw-portrait-010.jpg",
-  "https://assets.codepen.io/7558/bw-portrait-011.jpg",
-  "https://assets.codepen.io/7558/bw-portrait-012.jpg",
+  "https://images.unsplash.com/photo-1749330513873-09ffa91b0aae?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
+  "https://images.unsplash.com/photo-1627896157734-4d7d4388f28b?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
+  "https://images.unsplash.com/photo-1778789172736-e8ba37c71124?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
+  "https://images.unsplash.com/photo-1778961938903-96617183f739?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
+  "https://images.unsplash.com/photo-1678112553355-a9dab855ebf3?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
+  "https://images.unsplash.com/photo-1743309411498-a0f4f4b96b65?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
+  "https://images.unsplash.com/photo-1490682143684-14369e18dce8?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
+  "https://images.unsplash.com/photo-1634325232058-e7b8f80cc20b?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
+  "https://images.unsplash.com/photo-1759458856846-097935f54111?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
+  "https://images.unsplash.com/photo-1533387520709-752d83de3630?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
+  "https://images.unsplash.com/photo-1752150127767-77bccbed07e2?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
+  "https://images.unsplash.com/photo-1781935307999-e8bb5e62ebb1?auto=format&fit=crop&w=800&h=1000&q=80&sat=-100",
 ];
 
 // ── Patterns shown in the switch bar (order is preserved) ────────────────────
 const PATTERNS = ["circle", "wave", "stagger", "grid", "fan", "depth"];
-
-// ─── loadScript ───────────────────────────────────────────────────────────────
-// Injects a <script> tag once; resolves when loaded. Never uses import() so
-// Turbopack never tries to bundle external CDN URLs at build time.
 const loadScript = (src) =>
   new Promise((resolve, reject) => {
     const existing = document.querySelector(`script[data-cdn="${src}"]`);

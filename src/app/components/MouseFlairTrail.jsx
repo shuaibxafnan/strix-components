@@ -2,34 +2,16 @@
 
 import { useEffect, useId, useRef } from "react";
 
-// ─── MouseImageTrail ─────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// images           array    (9 demo flairs) Array of image src strings, cycled in order as the trail spawns
-// prompt           string   "wiggle your mouse around."   Caption rendered above the trail
-// bgColor          string   #fff            Page background
-// textColor        string   #111            Caption text color
-// flairWidth       number   50               Rendered width (px) of each trail image
-// gap              number   100              Min mouse travel distance (px) before spawning the next image
-// followLerp       number   0.1              Interpolation factor (0–1) used to ease the cached mouse position
-// popDuration       number  1                Duration (s) of the pop-in / rotate / fall timeline
-// popEase          string   "elastic.out(1,0.3)"  Ease for the scale/opacity pop-in
-// fallEase         string   "back.in(.4)"    Ease for the falling-down exit
-// fallDistance     string   "120vh"          Vertical distance (any CSS length) each image falls before disappearing
-// rotationRange     array   [-360, 360]      [min, max] degrees gsap picks a random rotation from on spawn
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_IMAGES = [
-  "https://assets.codepen.io/16327/Revised+Flair.png",
-  "https://assets.codepen.io/16327/Revised+Flair-1.png",
-  "https://assets.codepen.io/16327/Revised+Flair-2.png",
-  "https://assets.codepen.io/16327/Revised+Flair-3.png",
-  "https://assets.codepen.io/16327/Revised+Flair-4.png",
-  "https://assets.codepen.io/16327/Revised+Flair-5.png",
-  "https://assets.codepen.io/16327/Revised+Flair-6.png",
-  "https://assets.codepen.io/16327/Revised+Flair-7.png",
-  "https://assets.codepen.io/16327/Revised+Flair-8.png",
+  "https://cdn.jsdelivr.net/npm/heroicons@2.2.0/24/solid/sparkles.svg",
+  "https://cdn.jsdelivr.net/npm/heroicons@2.2.0/24/solid/star.svg",
+  "https://cdn.jsdelivr.net/npm/heroicons@2.2.0/24/solid/heart.svg",
+  "https://cdn.jsdelivr.net/npm/heroicons@2.2.0/24/solid/bolt.svg",
+  "https://cdn.jsdelivr.net/npm/heroicons@2.2.0/24/solid/sun.svg",
+  "https://cdn.jsdelivr.net/npm/heroicons@2.2.0/24/solid/moon.svg",
+  "https://cdn.jsdelivr.net/npm/heroicons@2.2.0/24/solid/cube.svg",
+  "https://cdn.jsdelivr.net/npm/heroicons@2.2.0/24/solid/rocket-launch.svg",
+  "https://cdn.jsdelivr.net/npm/heroicons@2.2.0/24/solid/flower.svg",
 ];
 
 export default function MouseFlairTrail({

@@ -2,31 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── SneakerReveal ───────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// logoSrc      string   cloudinary URL    Brand logo image src
-// logoHref     string   thecleanindustry  Logo link href
-// logoAlt      string   The Clean Industry
-// cleanSrc     string   cloudinary URL    Clean sneaker image
-// dirtySrc     string   cloudinary URL    Dirty sneaker image
-// friction     number   0.15              Lerp speed on pointer enter
-// frictionOut  number   0.075             Lerp speed on pointer leave
-// accentColor  string   #EA0000           Divider + accent color
-// brand        string   The Clean Industry®
-// tagline      string   Authentic Sneaker Care
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function SneakerReveal({
-  logoSrc = "https://res.cloudinary.com/losrodriguez/image/upload/v1659457503/cleanIndustry_logo_tfhwml.png",
-  logoHref = "http://thecleanindustry.com/",
-  logoAlt = "The Clean Industry",
-  cleanSrc = "https://res.cloudinary.com/losrodriguez/image/upload/v1659457324/tci-sneaker-clean_xmvucf.png",
-  dirtySrc = "https://res.cloudinary.com/losrodriguez/image/upload/v1659457324/tci-sneaker-dirty_lwxyzt.png",
+  cleanSrc = "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/clean.png",
+  dirtySrc = "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/dirty.png",
   friction = 0.15,
   frictionOut = 0.075,
-  accentColor = "#EA0000",
+  accentColor = "#1E3A8A",
   brand = "The Clean Industry®",
   tagline = "Authentic Sneaker Care",
 }) {
@@ -106,17 +87,7 @@ export default function SneakerReveal({
 
       {/* page */}
       <main className="font-dmsans absolute inset-0 flex flex-col items-center justify-center bg-white overflow-hidden">
-        {/* logo */}
-        <a
-          href={logoHref}
-          title={logoAlt}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute left-[18px] top-[18px] z-30 transition-all duration-[250ms] ease-out hover:scale-105 hover:opacity-70 hover:duration-[150ms] hover:ease-in"
-        >
-          <img src={logoSrc} alt={logoAlt} className="w-[72px]" />
-        </a>
-
+      
         {/* top rule */}
         <div
           className="absolute top-0 inset-x-0 h-[3px] z-30"

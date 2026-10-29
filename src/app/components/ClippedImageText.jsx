@@ -2,23 +2,9 @@
 
 import { useEffect, useState, useRef } from "react";
 
-// ─── ImageSpotlightText ──────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// text                 string   "Tokyo Tower"                 Display text content
-// imageSrc             string   "https://assets..."           Spotlight window image
-// circleRadius         number   75                            Spotlight mask circle radius (px)
-// textColor            string   "#808080"                     Unhovered default text color
-// textHoverColor       string   "#333333"                     Hovered base layer text color
-// litTextColor         string   "#ffffff"                     Color of text under spotlight window
-// bgColor              string   "#f2f0ed"                     Component backdrop layer color
-// transitionDuration   string   "250ms"                       Fade/Opacity transition speed
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function ClippedImageText({
   text = "Tokyo Tower",
-  imageSrc = "https://assets.codepen.io/1159990/tokyo-tower.jpg",
+  imageSrc = "https://images.unsplash.com/photo-1743309411498-a0f4f4b96b65?auto=format&fit=crop&w=1600&q=80",
   circleRadius = 75,
   textColor = "#808080",
   textHoverColor = "#333333",

@@ -2,25 +2,6 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 
-// ─── JigsawPuzzle ──────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// imageUrl        string   default puzzle image    Source image URL
-// size            string   "50vmin"                SVG size (CSS value)
-// rows            number   4                       Number of puzzle rows
-// columns         number   4                       Number of puzzle columns
-// strokeWidth     string   "0.5vmin"               Piece border width
-// bgColor         string   "#f3f0ed"               Light mode background
-// bgColorDark     string   "#242733"               Dark mode background
-// labelText       string   "Drop an image…"        Upload mask label
-// labelFontSize   string   "32px"                  Upload mask font size
-// borderRadius    string   "0.5em"                 Upload mask border radius
-// pageHeight      string   "200vh"                 Total scroll height
-// onImageChange   fn       —                       Called with new image data URL
-// ──────────────────────────────────────────────────────────────────────────
-
-// SVG paths exported from https://github.com/pouretrebelle/jigsaws
 const PIECE_PATHS = [
   "M0 0h255.2c-62.1 167.8 46.4 45.1 28.7 120.7s-60.4-82.5-79.3 95.4c-160 49.8-39.9-45.6-111.5-32.8s74.2 60.6-93.1 69.5V0z",
   "M0 252.7c167.3-8.9 21.5-56.7 93.1-69.5S44.6 265.9 204.6 216c-12.7 208.1 67 34.6 72.7 125s-95.3-71.7-56.4 133.2c-181.1 12.3-22.4 61.7-99.7 76.7C43.9 566 172.5 460.7 0 517.2V252.7z",
@@ -47,7 +28,7 @@ const START_ROTATIONS = [
 ];
 
 export default function JigsawPuzzle({
-  imageUrl = "https://assets.codepen.io/2361/puzzle-sample-3.png?width=1500&height=1500&format=auto",
+  imageUrl = "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1080&q=80",
   size = "50vmin",
   rows = 4,
   columns = 4,

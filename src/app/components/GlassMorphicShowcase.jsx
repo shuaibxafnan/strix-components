@@ -2,27 +2,13 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-// ─── UltraPremiumAccordionSlider ──────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// activeIndex       number   null       Pre-opened accordion index (0-4) or null
-// animationSpeed    number   0.65       Main transition durations (seconds)
-// width             string   360px      Width of active accordion elements
-// initialSizing     string   68px       Height / diameter of closed states
-// accentColor       string   #f43f5e    Highlight color for active states
-// showTweakpane     boolean  false      Whether to display debug/theme controls
-// showFollowBear     boolean  true       Show the branding creator follow button
-// images            array    [...]      Custom array of 6 image URLs for layout
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_IMAGES = [
-  "https://assets.codepen.io/605876/the-faux-phone.png?format=auto",
-  "https://assets.codepen.io/605876/the-faux-phone-closeup.png?format=auto",
-  "https://assets.codepen.io/605876/the-faux-phone-breakdown.png?format=auto",
-  "https://assets.codepen.io/605876/the-faux-phone-parallax.png?format=auto",
-  "https://assets.codepen.io/605876/the-faux-phone-lion-king.png?format=auto",
-  "https://assets.codepen.io/605876/the-faux-phone-camera-shot.png?format=auto",
+  "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/iphone-side.png",
+  "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/iphone-screen.png",
+  "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/iphone.png",
+  "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/iphone-teardown.png",
+  "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/iphone-portrait.png",
+  "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/iphone-landscape.png",
 ];
 
 export default function GlassMorphicShowcase({
@@ -323,10 +309,10 @@ export default function GlassMorphicShowcase({
         </div>
 
         {/* Right-Side Infinite Spatial Display Wall */}
-        <div className="absolute right-0 top-0 w-[53%] h-full pointer-events-none z-0 overflow-hidden">
+        <div className="absolute right-0 top-0 w-[50%] h-full pointer-events-none z-0 overflow-hidden">
           {/* Asymmetric Radial Depth Masking Layer */}
           <div
-            className="absolute inset-y-0 left-0 w-32 z-20 pointer-events-none"
+            className="absolute inset-y-0 left-0 w-35 z-20 pointer-events-none"
             style={{
               backgroundImage:
                 theme === "dark"
@@ -358,7 +344,7 @@ export default function GlassMorphicShowcase({
                     alt={`Premium Viewport Render ${imgIdx}`}
                     className="w-full h-full object-cover transition-transform duration-[1.4s] ease-[var(--ease-premium)]"
                     style={{
-                      transform: isCurrentTarget ? "scale(1)" : "scale(1.1)",
+                      transform: "scale(1)",
                       objectPosition: "center",
                     }}
                   />

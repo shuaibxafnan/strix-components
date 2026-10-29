@@ -1,640 +1,540 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Lora, Playfair_Display } from "next/font/google";
 
-// ─── ScrollBook ───────────────────────────────────────────────────────────────
-//
-// Props
-// ─────────────────────────────────────────────────────────────────────────────
-// bgColor          string   "hsl(0,0%,30%)"        Page background color
-// spineColor       string   "hsl(0,0%,0%)"         Book spine color
-// coverColor       string   "hsl(0,0%,10%)"        Book cover color
-// insertColor      string   "hsl(0,0%,85%)"        Book insert/back page color
-// pageColor        string   "hsl(0,0%,90%)"        Inner page base color
-// underlineColor   string   "hsla(0,0%,25%,0.4)"   Ruled line color on pages
-// pageCount        number   10                     Number of inner page spreads
-// pageScroll       number   25                     vh units of scroll per page turn
-// bookWidthVmin    number   30                     Book width in vmin units
-// bookHeightVmin   number   40                     Book height in vmin units
-// minBookWidth     number   150                    Minimum book width in px
-// minBookHeight    number   200                    Minimum book height in px
-// showTitle        boolean  true                   Show the "Scroll" h1 label
-// ─────────────────────────────────────────────────────────────────────────────
+const display = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["600"],
+  variable: "--font-display",
+});
 
-const DEMOS = [
-  { name: "Kitkat", id: "LYpNyvm" },
-  { name: "Newton", id: "abzeaWJ" },
-  { name: "Launch", id: "rNOqzbN" },
-  { name: "Birthday", id: "BaobKOJ" },
-  { name: "Impossible", id: "ZjLKGY" },
-  { name: "Care", id: "RwPrOoz" },
-  { name: "Cubes", id: "QWbRxXb" },
-  { name: "Elon", id: "RwWMwvY" },
-  { name: "Gun", id: "GRoKOyg" },
-  { name: "Moon", id: "NWqemYK" },
-  { name: "Pokedex", id: "eYpGQxr" },
-  { name: "Record", id: "RwraKYZ" },
-  { name: "Tcannon", id: "eYpmBxQ" },
-  { name: "Cloud", id: "MWwRKvd" },
-  { name: "Fireflies", id: "zYGQYWJ" },
-  { name: "Train", id: "eYpdPWa" },
-  { name: "Pancake", id: "jJVpWZ" },
-  { name: "Earth", id: "aPzVme" },
-  { name: "Matryoshka", id: "jOOYMLm" },
-  { name: "Truck", id: "MWWowEb" },
+const body = Lora({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-body",
+});
+
+const img = (id) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=700&h=700&q=80`;
+
+const IMAGES = [
+  "photo-1749330513873-09ffa91b0aae",
+  "photo-1627896157734-4d7d4388f28b",
+  "photo-1778789172736-e8ba37c71124",
+  "photo-1778961938903-96617183f739",
+  "photo-1678112553355-a9dab855ebf3",
+  "photo-1743309411498-a0f4f4b96b65",
+  "photo-1490682143684-14369e18dce8",
+  "photo-1634325232058-e7b8f80cc20b",
+  "photo-1759458856846-097935f54111",
+  "photo-1533387520709-752d83de3630",
+].map(img);
+
+const DEFAULT_PAGES = [
+  {
+    type: "chapter",
+    number: "01",
+    title: "First Light",
+    text: "Notes on the quiet hour before the day begins.",
+  },
+  {
+    type: "figure",
+    image: IMAGES[0],
+    alt: "Early morning scene",
+    caption: "Plate 1. Early morning, uncut.",
+    text: "The first frame of the day is rarely planned. It arrives while the kettle is still warming.",
+  },
+  {
+    type: "text",
+    heading: "Morning",
+    paragraphs: [
+      "Most of what follows began as small observations, written down quickly and sorted later. Some stayed short. Others grew into pages.",
+      "The aim was never to explain everything, only to notice it carefully and leave a record for anyone who wants to look again.",
+    ],
+  },
+  {
+    type: "quote",
+    text: "Look long enough and the ordinary starts to speak.",
+    attribution: "From the notebook",
+  },
+  {
+    type: "split",
+    image: IMAGES[1],
+    alt: "Close detail",
+    heading: "A small detail",
+    text: "Look closely at edges, where one thing meets another. That is usually where the interesting part begins.",
+  },
+  {
+    type: "chapter",
+    number: "02",
+    title: "Quiet Textures",
+    text: "Surfaces, grain, and the feel of things.",
+  },
+  {
+    type: "gallery",
+    images: [
+      { image: IMAGES[2], alt: "Study one", caption: "Fig. 1" },
+      { image: IMAGES[3], alt: "Study two", caption: "Fig. 2" },
+    ],
+    text: "Two studies of the same idea, taken an hour apart.",
+  },
+  {
+    type: "text",
+    heading: "Grain",
+    paragraphs: [
+      "Texture is the memory of how something was made. A rough edge records the hand, a smooth one records patience.",
+      "Run a finger across the page of a good book and you will feel the same thing: someone cared about the surface.",
+    ],
+  },
+  {
+    type: "figure",
+    image: IMAGES[4],
+    alt: "Afternoon scene",
+    caption: "Plate 2. Slow afternoon.",
+    text: "Nothing happens in this picture, which is exactly why it was worth keeping.",
+  },
+  {
+    type: "ornament",
+    text: "Pause here.",
+  },
+  {
+    type: "chapter",
+    number: "03",
+    title: "Color Study",
+    text: "How a single tone changes everything around it.",
+  },
+  {
+    type: "split",
+    image: IMAGES[5],
+    alt: "Color sample",
+    heading: "One tone",
+    text: "Pick one color and let it lead. The rest of the page only has to agree with it.",
+  },
+  {
+    type: "text",
+    heading: "Palette",
+    paragraphs: [
+      "A palette is a set of promises. Keep to a few and every new shade feels earned rather than added.",
+      "Contrast is useful, but quiet harmony lasts longer. Most readers will not name it, yet they will remember the mood.",
+    ],
+  },
+  {
+    type: "quote",
+    text: "A good page leaves room to breathe.",
+    attribution: "Margin note",
+  },
+  {
+    type: "figure",
+    image: IMAGES[6],
+    alt: "Dusk scene",
+    caption: "Plate 3. Dusk, reversed.",
+    text: "Turned upside down, the same scene reads as an entirely different place.",
+  },
+  {
+    type: "gallery",
+    images: [
+      { image: IMAGES[7], alt: "Study three", caption: "Fig. 3" },
+      { image: IMAGES[8], alt: "Study four", caption: "Fig. 4" },
+    ],
+    text: "Small frames, kept side by side so they can argue politely.",
+  },
+  {
+    type: "chapter",
+    number: "04",
+    title: "Open Roads",
+    text: "Leaving the plan behind.",
+  },
+  {
+    type: "text",
+    heading: "Route",
+    paragraphs: [
+      "The best detours were never on the map. They started with a turn taken for no reason and a willingness to be late.",
+      "Keep a pencil close. The notes you write on the move tend to be the ones you read twice.",
+    ],
+  },
+  {
+    type: "figure",
+    image: IMAGES[9],
+    alt: "Last stop",
+    caption: "Plate 4. The last stop.",
+    text: "Every journey ends somewhere ordinary. That is where the story gets told.",
+  },
+  {
+    type: "ornament",
+    text: "Thank you for reading.",
+    small: "Printed on screen, one scroll at a time.",
+  },
 ];
 
-const CODE_SNIPPET = `set(FOLD,{transformOrigin:"50% 100%",scaleY:0}),set(CLIPS,{transformOrigin:"50% 0"}),set(".cannon__shirt",{opacity:0}),set(".cannon",{y:28}),set(".text--ordered .char",{y:"100%"});const SPEED=.15,FOLD_TL=()=>new timeline().to(LEFT_ARM,{duration:SPEED,rotateY:-180,transformOrigin:${"${100*(22/65.3)}% 50%"},0).to(RIGHT_ARM,{duration:SPEED,rotateY:-180,transformOrigin:${"{100*((65.3-22)/65.3)}% 50%"},SPEED).to(FOLD,{duration:SPEED/4,scaleY:1},2*SPEED).to(FOLD,{duration:SPEED,y:-47},2*SPEED+.01).to(CLIPS,{duration:SPEED,scaleY:.2},2*SPEED).to(".cannon",{duration:SPEED,y:0},2*SPEED),LOAD_TL=()=>new timeline().to(".button__shirt",{transformOrigin:"50% 13%",rotate:90,duration:.15}).to(".button__shirt",{duration:.15,y:60}).to(".t-shirt__cannon",{y:5,repeat:1,yoyo:!0,duration:.1}).to(".t-shirt__cannon",{y:50,duration:.5,delay:.1}),FIRE_TL=()=>new timeline().set(".t-shirt__cannon",{rotate:48,x:-85,scale:2.5}).set(".cannon__shirt",{opacity:1}).to(".t-shirt__cannon-content",{duration:1,y:-35}).to(".t-shirt__cannon-content",{duration:.25,y:-37.5}).to(".t-shirt__cannon-content",{duration:.015,y:-30.5}).to(".cannon__shirt",{onStart:()=>CLIP.play(),duration:.5,y:"-25vmax"},"<").to(".text--ordered .char",{duration:.15,stagger:.1,y:"0%"}).to("button",{duration:.15*7,"--hue":116,"--lightness":55},"<"),ORDER_TL=new timeline({paused:!0});`;
+const HALF =
+  "absolute left-0 top-0 h-full w-full overflow-hidden bg-[var(--page)] [backface-visibility:hidden] [clip-path:inset(0_0.5%_0_0.5%)]";
+const HALF_FRONT = `${HALF} rounded-r-[5%] [box-shadow:inset_1.4vmin_0_1.4vmin_-1.2vmin_rgba(0,0,0,0.25)]`;
+const HALF_BACK = `${HALF} rounded-l-[5%] [transform:rotateY(180deg)_translate3d(0,0,1px)] [box-shadow:inset_-1.4vmin_0_1.4vmin_-1.2vmin_rgba(0,0,0,0.25)]`;
+const PAGE = "absolute origin-[0_50%] [transform-style:preserve-3d] [z-index:var(--z)]";
 
-// Bear sticker SVG — lives on the front cover's front half
-function BearSticker() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 316 306"
-      style={{
-        height: "15%",
-        position: "absolute",
-        bottom: "5%",
-        right: "5%",
-        transform: "rotate(-25deg)",
-      }}
-    >
-      <path
-        d="M155 0c-37 0-63 8-85 30-6-6-21-7-29-7C22 23 6 38 6 56c1 24 9 34 24 40l-9 2-21 4 3 22c3 0 8 1 9 4 6 7 2 14 3 26 2 21 7 33 14 40 14 67 62 112 127 112 70 0 118-45 132-112 6-7 11-20 13-40 1-12-3-19 3-26 2-3 6-4 9-4l3-22-21-4-10-2c17-7 24-26 24-40 0-18-15-33-34-33-9 0-23 1-30 7-23-22-51-30-90-30z"
-        fill="hsl(0,0%,96%)"
-      />
-      <g transform="matrix(1.34105 0 0 1.34105 -43 -1047)">
-        <path
-          d="M243 894c0 61-36 106-94 106-55 0-92-45-92-106s38-86 91-86 95 25 95 86z"
-          fill="#803300"
-        />
-        <path
-          d="M212 958c0 20-29 39-63 39-35 0-61-19-61-39s26-33 61-33 63 13 63 33z"
-          fill="#e9c6af"
-        />
-        <path d="M181 932c0 7-19 24-30 24s-32-17-32-24c0-8 20-13 31-13 12 0 31 5 31 13z" />
-        <ellipse cx="68.3" cy="827.7" rx="23.8" ry="23.1" fill="#803300" />
-        <path
-          d="M85 826a17 16 0 00-17-14 17 16 0 00-16 16 17 16 0 0016 16 17 16 0 001 0l3-4a66 66 0 0111-12l2-2z"
-          fill="#e9c6af"
-        />
-        <ellipse
-          ry="23.1"
-          rx="23.8"
-          cy="827.7"
-          cx="-231.2"
-          transform="scale(-1 1)"
-          fill="#803300"
-        />
-        <path
-          d="M215 826a17 16 0 0116-14 17 16 0 0117 16 17 16 0 01-17 16 17 16 0 01-1 0l-2-4a66 66 0 00-11-12l-2-2z"
-          fill="#e9c6af"
-        />
-        <path
-          d="M148 815c-14 0-26 1-38 4v11a199 199 0 0180 1v-11c-13-3-27-5-42-5z"
-          fill="red"
-        />
-        <path
-          d="M165 816a16 8 0 015 5 16 8 0 01-6 6l26 4v-11l-25-4z"
-          fill="#e50000"
-        />
-        <path
-          d="M148 789c-43 0-76 20-83 64 12-11 28-19 45-23 0 0-2-12 10-16 15-4 19-4 28-4 10 0 15 0 30 4s12 17 12 17c18 5 32 11 45 22-8-46-43-64-87-64z"
-          fill="#1a1a1a"
-        />
-        <circle cx="97.2" cy="894.1" r="11.2" fill="#faa" fillOpacity=".6" />
-        <circle cy="894.1" cx="201.9" r="11.2" fill="#faa" fillOpacity=".6" />
-        <path
-          d="M97 864a21 21 0 01-7 16 21 21 0 01-16 5M204 864a21 21 0 006 16 21 21 0 0016 5"
-          fill="none"
-          stroke="#e9afaf"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <g>
-          <path d="M77 855c-6 0-13 0-23 2l-14 3 2 15 7 2c3 5 1 10 2 18 3 28 12 34 26 35 8 1 23 3 33-1s19-10 25-18c6-9 6-18 10-26 3-5 8-4 10 0 3 8 4 17 10 26 6 8 15 14 24 18 11 4 26 2 34 1 14-1 23-7 26-35 1-8-2-13 2-18l7-2 2-15-15-3c-15-3-23-2-34-2h-13l-25 4c-8 2-15 7-23 6-8 0-15-5-23-6l-25-4H77z" />
-          <path
-            d="M85 860c-10 1-25 1-28 13-3 15-3 32 6 45 7 11 23 9 35 9 19-1 35-16 40-34 2-8 4-14 1-19-6-10-20-12-31-13l-23-1z"
-            fill="#333"
-          />
-          <path
-            d="M56 864a4 2 0 01-4 2 4 2 0 01-4-2 4 2 0 014-1 4 2 0 014 1"
-            fill="#b3b3b3"
-          />
-          <path
-            d="M215 860c10 1 24 1 28 13 3 15 3 32-6 45-7 11-23 9-35 9-19-1-35-16-40-34-2-8-4-14-1-19 6-10 20-12 31-13l23-1z"
-            fill="#333"
-          />
-          <path
-            d="M244 864a4 2 0 004 2 4 2 0 004-2 4 2 0 00-4-1 4 2 0 00-4 1"
-            fill="#b3b3b3"
-          />
-          <path
-            d="M101 861l-19 66h17l18-65-16-1zM89 860h-4l-3 1-18 59 6 5z"
-            fill="#fff"
-          />
-        </g>
-      </g>
-    </svg>
-  );
-}
+const Emblem = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" strokeWidth="1" />
+    <path d="M12 4l2.2 5.2 5.6.5-4.3 3.7 1.3 5.5L12 15.9 7.2 18.9l1.3-5.5L4.2 9.7l5.6-.5L12 4z" />
+  </svg>
+);
 
-// Reusable code block shown on front cover front-half and back cover back-half
-function CodeBlock() {
-  return (
+const Divider = () => (
+  <svg viewBox="0 0 120 12" className="h-[1.2vmin] w-[10vmin] text-neutral-500" aria-hidden="true">
+    <path d="M0 6h50M70 6h50" stroke="currentColor" strokeWidth="1" />
+    <path d="M60 0l6 6-6 6-6-6z" fill="currentColor" />
+  </svg>
+);
+
+const QuoteMark = () => (
+  <svg viewBox="0 0 48 36" className="h-[4vmin] w-[5vmin] text-neutral-400" fill="currentColor" aria-hidden="true">
+    <path d="M0 36V20C0 8 6 1 18 0v6c-6 1-9 5-9 10h9v20H0zm26 0V20c0-12 6-19 18-20v6c-6 1-9 5-9 10h9v20H26z" />
+  </svg>
+);
+
+const Rings = () => (
+  <svg viewBox="0 0 100 100" className="h-[16vmin] w-[16vmin] text-neutral-400" fill="none" stroke="currentColor" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" strokeWidth="0.8" />
+    <circle cx="50" cy="50" r="34" strokeWidth="0.8" />
+    <circle cx="50" cy="50" r="22" strokeWidth="0.8" />
+    <path d="M50 4v92M4 50h92" strokeWidth="0.5" />
+    <circle cx="50" cy="50" r="4" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+const PageBody = ({ page, chapterLabel }) => {
+  switch (page.type) {
+    case "chapter":
+      return (
+        <div className="flex h-full flex-col items-center justify-center gap-[2.2vmin] text-center">
+          <span className="text-[1vmin] uppercase tracking-[0.35em] text-neutral-500">
+            {chapterLabel}
+          </span>
+          <span className="text-[9vmin] leading-none [font-family:var(--font-display)]">
+            {page.number}
+          </span>
+          <Divider />
+          <h3 className="m-0 text-[2.6vmin] leading-tight [font-family:var(--font-display)]">
+            {page.title}
+          </h3>
+          <p className="m-0 max-w-[85%] text-[1.05vmin] italic leading-[1.5] text-neutral-600">
+            {page.text}
+          </p>
+        </div>
+      );
+    case "text":
+      return (
+        <div className="flex h-full flex-col gap-[1.6vmin]">
+          <h3 className="m-0 border-b border-neutral-300 pb-[1vmin] text-[1.4vmin] uppercase tracking-[0.25em] [font-family:var(--font-display)]">
+            {page.heading}
+          </h3>
+          {page.paragraphs.map((paragraph, i) => (
+            <p
+              key={i}
+              className={`m-0 text-justify text-[1.15vmin] leading-[1.6] ${i === 0
+                  ? "first-letter:float-left first-letter:mr-[0.7vmin] first-letter:text-[4.6vmin] first-letter:leading-[0.85] first-letter:[font-family:var(--font-display)]"
+                  : "indent-[2vmin]"
+                }`}
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      );
+    case "figure":
+      return (
+        <div className="flex h-full flex-col gap-[1.4vmin]">
+          <div className="border border-neutral-300 bg-white p-[1.2vmin] shadow-sm">
+            <img
+              src={page.image}
+              alt={page.alt}
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </div>
+          <p className="m-0 text-center text-[1vmin] italic text-neutral-500">
+            {page.caption}
+          </p>
+          <p className="m-0 text-justify text-[1.15vmin] leading-[1.6]">{page.text}</p>
+        </div>
+      );
+    case "quote":
+      return (
+        <div className="flex h-full flex-col items-center justify-center gap-[2vmin] text-center">
+          <QuoteMark />
+          <p className="m-0 text-[2vmin] italic leading-[1.4] [font-family:var(--font-display)]">
+            {page.text}
+          </p>
+          <Divider />
+          <span className="text-[1vmin] uppercase tracking-[0.3em] text-neutral-500">
+            {page.attribution}
+          </span>
+        </div>
+      );
+    case "split":
+      return (
+        <div className="flex h-full flex-col items-center gap-[1.8vmin] text-center">
+          <img
+            src={page.image}
+            alt={page.alt}
+            className="h-[12vmin] w-[12vmin] rounded-full border-[0.5vmin] border-white object-cover shadow-md"
+          />
+          <h3 className="m-0 text-[1.8vmin] [font-family:var(--font-display)]">
+            {page.heading}
+          </h3>
+          <Divider />
+          <p className="m-0 text-[1.15vmin] leading-[1.6]">{page.text}</p>
+        </div>
+      );
+    case "gallery":
+      return (
+        <div className="flex h-full flex-col justify-center gap-[2vmin]">
+          <div className="grid grid-cols-2 gap-[1.4vmin]">
+            {page.images.map((item, i) => (
+              <figure key={i} className="m-0 flex flex-col gap-[0.8vmin]">
+                <div className="border border-neutral-300 bg-white p-[0.8vmin] shadow-sm">
+                  <img
+                    src={item.image}
+                    alt={item.alt}
+                    className="aspect-square w-full object-cover"
+                  />
+                </div>
+                <figcaption className="text-center text-[0.9vmin] italic text-neutral-500">
+                  {item.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <p className="m-0 text-center text-[1.15vmin] italic leading-[1.6]">
+            {page.text}
+          </p>
+        </div>
+      );
+    case "ornament":
+      return (
+        <div className="flex h-full flex-col items-center justify-center gap-[2vmin] text-center">
+          <Rings />
+          <p className="m-0 text-[1.8vmin] italic [font-family:var(--font-display)]">
+            {page.text}
+          </p>
+          {page.small ? (
+            <p className="m-0 text-[0.95vmin] uppercase tracking-[0.25em] text-neutral-500">
+              {page.small}
+            </p>
+          ) : null}
+        </div>
+      );
+    default:
+      return null;
+  }
+};
+
+const BookPage = ({ page, number, side, runningTitle, chapterLabel }) => (
+  <div className="absolute inset-0 flex flex-col px-[9%] pb-[9%] pt-[8%] text-neutral-800 [font-family:var(--font-body)]">
     <span
-      style={{
-        lineHeight: 1.2,
-        fontFamily: "monospace",
-        whiteSpace: "pre-line",
-        maxWidth: "100%",
-        maxHeight: "100%",
-        fontWeight: "bold",
-        color: "hsl(0, 0%, 6%)",
-        textShadow: "2px 2px 0 hsl(0, 0%, 11%)",
-        borderRadius: "5%",
-        display: "block",
-        overflow: "hidden",
-        fontSize: "0.6vmin",
-        padding: "6%",
-      }}
+      className={`mb-[2vmin] block text-[0.9vmin] uppercase tracking-[0.3em] text-neutral-400 ${side === "front" ? "text-right" : "text-left"
+        } ${page.type === "chapter" || page.type === "ornament" ? "invisible" : ""}`}
     >
-      {CODE_SNIPPET}
+      {runningTitle}
     </span>
-  );
-}
+    <div className="min-h-0 flex-1">
+      <PageBody page={page} chapterLabel={chapterLabel} />
+    </div>
+    <span
+      className={`mt-[1.6vmin] block text-[1vmin] text-neutral-500 ${side === "front" ? "text-right" : "text-left"
+        }`}
+    >
+      {number}
+    </span>
+  </div>
+);
 
 export default function ScrollBook({
-  bgColor = "hsl(0, 0%, 30%)",
-  spineColor = "hsl(0, 0%, 0%)",
-  coverColor = "hsl(0, 0%, 10%)",
-  insertColor = "hsl(0, 0%, 85%)",
-  pageColor = "hsl(0, 0%, 90%)",
-  underlineColor = "hsla(0, 0%, 25%, 0.4)",
+  pages = DEFAULT_PAGES,
   pageCount = 10,
   pageScroll = 25,
+  runningTitle = "Field Notes",
+  chapterLabel = "Chapter",
+  coverTitle = "Field Notes",
+  coverSubtitle = "Scroll to open",
+  backCoverText = "The End",
+  scrollHint = "Scroll",
+  showHint = true,
+  backgroundColor = "hsl(0, 0%, 8%)",
+  spineColor = "hsl(0, 0%, 0%)",
+  coverColor = "hsl(0, 0%, 14%)",
+  insertColor = "hsl(0, 0%, 85%)",
+  pageColor = "hsl(0, 0%, 96%)",
+  coverTextColor = "hsl(0, 0%, 92%)",
   bookWidthVmin = 30,
   bookHeightVmin = 40,
   minBookWidth = 150,
   minBookHeight = 200,
-  showTitle = true,
+  className = "",
 }) {
+  const rootRef = useRef(null);
   const bookRef = useRef(null);
-  const pagesRef = useRef([]);
-
-  // null on server and during first client render (hydration).
-  // Set to the shuffled array in useEffect — which only runs on the client, after
-  // hydration is complete — so server HTML and initial client HTML always match.
-  const [shuffledDemos, setShuffledDemos] = useState(null);
-
-  // ruled lines bg — runtime color values, cannot use Tailwind
-  const ruledBg = `repeating-linear-gradient(0deg, transparent 0 1rem, ${underlineColor} 1rem calc(1rem + 1px), transparent calc(1rem + 1px)) 0 1rem / 100% 100% no-repeat, ${pageColor}`;
-
-  // Half styles — matches original .page__half transform formula exactly:
-  //   rotateY(calc(var(--rotation) * 1deg)) translate3d(0, 0, calc((0.5 * var(--coefficient)) * 1px))
-  // Front: rotation=0, coefficient=0  → rotateY(0deg) translate3d(0,0,0px)
-  // Back:  rotation=180, coefficient=2 → rotateY(180deg) translate3d(0,0,1px)
-  const halfBase = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100%",
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    clipPath: "inset(0 0.5% 0 0.5%)",
-    WebkitClipPath: "inset(0 0.5% 0 0.5%)",
-  };
-  const halfFront = {
-    ...halfBase,
-    transform: "rotateY(0deg) translate3d(0, 0, 0px)",
-    backfaceVisibility: "hidden",
-    WebkitBackfaceVisibility: "hidden",
-    borderRadius: "0 5% 5% 0",
-  };
-  const halfBack = {
-    ...halfBase,
-    transform: "rotateY(180deg) translate3d(0, 0, 1px)",
-    borderRadius: "5% 0 0 5%",
-  };
-
-  // .book__insert — original: position absolute, 94%x94%, background insert,
-  //   top 50%, right -1rem, transform translate(0,-50%), border-radius 5% 0 0 5%
-  // For back cover insert: left 0, border-radius 0 5% 5% 0
-  const insertBase = {
-    content: "''",
-    position: "absolute",
-    height: "94%",
-    width: "94%",
-    background: insertColor,
-    top: "50%",
-    transform: "translate(0, -50%)",
-  };
+  const emblemRef = useRef(null);
+  const pageRefs = useRef([]);
 
   useEffect(() => {
-    setShuffledDemos([...DEMOS].sort(() => 0.5 - Math.random()));
+    gsap.registerPlugin(ScrollTrigger);
+    const unit = () => (window.innerHeight * pageScroll) / 100;
 
-    const loadScript = (src) =>
-      new Promise((resolve, reject) => {
-        if (document.querySelector(`script[data-gsap-src="${src}"]`)) {
-          resolve();
-          return;
-        }
-        const el = document.createElement("script");
-        el.src = src;
-        el.setAttribute("data-gsap-src", src);
-        el.onload = resolve;
-        el.onerror = () => reject(new Error(`Failed: ${src}`));
-        document.head.appendChild(el);
-      });
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        bookRef.current,
+        { scale: 0.5 },
+        { scale: 1, scrollTrigger: { scrub: 1, start: 0, end: () => unit() } },
+      );
 
-    Promise.all([
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
-      ),
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js",
-      ),
-    ]).then(() => {
-      const { gsap, ScrollTrigger } = window;
-      if (!gsap || !ScrollTrigger || !bookRef.current) return;
-
-      gsap.registerPlugin(ScrollTrigger);
-      const { to, set } = gsap;
-
-      // Original uses window scroll (no scroller option) — book is fixed on the page.
-      // start/end use window.innerHeight * 0.25 (= pageScroll vh).
-      const vh025 = window.innerHeight * 0.25;
-
-      // Scale book in on first scroll unit (0 → 25vh)
-      to(bookRef.current, {
-        scrollTrigger: {
-          scrub: 1,
-          start: 0,
-          end: vh025,
-        },
-        scale: 1,
-      });
-
-      // Fade in logo near last pages (13.5 → 14 scroll units)
-      const logoEl = bookRef.current.querySelector(".book__logo");
-      if (logoEl) {
-        to(logoEl, {
+      gsap.fromTo(
+        emblemRef.current,
+        { opacity: 0 },
+        {
+          opacity: 1,
           scrollTrigger: {
             scrub: true,
-            start: 13.5 * vh025,
-            end: 14 * vh025,
+            start: () => (pageCount + 3.5) * unit(),
+            end: () => (pageCount + 4) * unit(),
           },
-          opacity: 1,
-        });
-      }
+        },
+      );
 
-      // pagesRef holds: [frontCover, ...innerPages, backCover]
-      // matches original querySelectorAll('.book__page') order
-      const pages = pagesRef.current.filter(Boolean);
-      pages.forEach((page, index) => {
-        // original: set z before any scroll
-        set(page, { z: index === 0 ? 13 : -index });
+      const elements = pageRefs.current.filter(Boolean);
+      elements.forEach((page, index) => {
+        gsap.set(page, { z: index === 0 ? 13 : -index });
+        if (index === elements.length - 1) return;
 
-        // original skips index 11 for rotation (guard against undefined page)
-        if (index === 11) return;
-
-        to(page, {
+        gsap.to(page, {
           rotateY: `-=${180 - index / 2}`,
           scrollTrigger: {
             scrub: 1,
-            start: (index + 1) * vh025,
-            end: (index + 2) * vh025,
+            start: () => (index + 1) * unit(),
+            end: () => (index + 2) * unit(),
           },
         });
 
-        to(page, {
+        gsap.to(page, {
           z: index === 0 ? -13 : index,
           scrollTrigger: {
             scrub: 1,
-            start: (index + 1) * vh025,
-            end: (index + 1.5) * vh025,
+            start: () => (index + 1) * unit(),
+            end: () => (index + 1.5) * unit(),
           },
         });
       });
-    });
+    }, rootRef);
 
-    // Set body height for scroll — original: body height = (pageCount+2)*pageScroll*1vh
-    const originalBodyHeight = document.body.style.height;
-    const originalOverflowX = document.body.style.overflowX;
-    document.body.style.height = `${(pageCount + 2) * pageScroll}vh`;
-    document.body.style.overflowX = "hidden";
-
-    return () => {
-      document.body.style.height = originalBodyHeight;
-      document.body.style.overflowX = originalOverflowX;
-    };
+    return () => ctx.revert();
   }, [pageCount, pageScroll]);
 
-  // All pages array: [frontCover(0), inner0..inner(n-1), backCover(n+1)]
-  // zIndex from original: calc(((var(--page-count) + 2) - var(--page-index)) * 2)
-  // page-index is 1-based: front cover = 1, inner pages = 2..(pageCount+1), back cover = pageCount+2
+  const pageAt = (index) => pages[index % pages.length];
 
   return (
-    <>
-      {/* Background — original: body { background: var(--bg) } */}
-      <div className="fixed inset-0 -z-10" style={{ background: bgColor }} />
+    <div
+      ref={rootRef}
+      className={`${display.variable} ${body.variable} relative w-full ${className}`}
+      style={{
+        "--bg": backgroundColor,
+        "--spine": spineColor,
+        "--cover": coverColor,
+        "--insert": insertColor,
+        "--page": pageColor,
+        "--cover-text": coverTextColor,
+        "--book-w": `${bookWidthVmin}vmin`,
+        "--book-h": `${bookHeightVmin}vmin`,
+        "--min-w": `${minBookWidth}px`,
+        "--min-h": `${minBookHeight}px`,
+        "--scroll-h": `calc(${(pageCount + 4) * pageScroll}vh + 100vh)`,
+      }}
+    >
+      <div className="fixed inset-0 -z-10 bg-[var(--bg)]" />
 
-      {/* Title — original: h1 { position: fixed; bottom: 1rem; right: 1rem } */}
-      {showTitle && (
-        <h1
-          className="fixed bottom-4 right-4 m-0 text-[2rem]"
-          style={{ color: "hsl(0, 0%, 50%)" }}
-        >
-          Scroll
-        </h1>
-      )}
+      <div className="h-[var(--scroll-h)]" aria-hidden="true" />
 
-      {/* Book — original .book:
-            height: 40vmin, width: 30vmin, min-width: 150px, min-height: 200px
-            position: fixed, top: 50%, left: 50%
-            transform: translate(-50%, -50%) scale(0.5)   ← GSAP animates scale to 1
-            transform-style: preserve-3d
-            perspective: 1200px
-      */}
-      <div
-        ref={bookRef}
-        style={{
-          height: `${bookHeightVmin}vmin`,
-          width: `${bookWidthVmin}vmin`,
-          minWidth: `${minBookWidth}px`,
-          minHeight: `${minBookHeight}px`,
-          position: "fixed",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%) scale(0.5)",
-          transformStyle: "preserve-3d",
-          perspective: "1200px",
-        }}
-      >
-        {/* ── Spine — original .book__spine:
-              height: 100%, left: 0, top: 0, position: absolute
-              background: var(--spine), width: 12px
-              transform-origin: 0 50%
-              transform: translate3d(0, 0, -13px) scaleX(1) rotateY(0deg)
-        */}
+      {showHint ? (
+        <p className="fixed bottom-4 right-4 m-0 text-[2rem] text-neutral-500 [font-family:var(--font-body)]">
+          {scrollHint}
+        </p>
+      ) : null}
+
+      <div className="pointer-events-none fixed inset-0 flex items-center justify-center">
         <div
-          style={{
-            height: "100%",
-            left: 0,
-            top: 0,
-            position: "absolute",
-            background: spineColor,
-            transformOrigin: "0 50%",
-            width: "12px",
-            transform: "translate3d(0, 0, -13px) scaleX(1) rotateY(0deg)",
-          }}
-        />
-
-        {/* ── Front Cover — original .book__cover--front:
-              position: absolute, top: 50%, left: 0
-              height: 100%, width: 100%
-              border-radius: 0 5% 5% 0
-              transform-origin: 0 50%
-              page-index: 1 → zIndex = ((pageCount+2) - 1) * 2 = (pageCount+1)*2
-              Front half has: border-right: 1rem solid var(--spine)
-              Back half contains: .book__insert
-        */}
-        <div
-          ref={(el) => {
-            pagesRef.current[0] = el;
-          }}
-          style={{
-            height: "100%",
-            width: "100%",
-            position: "absolute",
-            top: "50%",
-            left: 0,
-            borderRadius: "0 5% 5% 0",
-            background: coverColor,
-            transformStyle: "preserve-3d",
-            transform: "translate(0, -50%)",
-            transformOrigin: "0 50%",
-            zIndex: (pageCount + 1) * 2,
-          }}
+          ref={bookRef}
+          className="pointer-events-auto relative h-[var(--book-h)] min-h-[var(--min-h)] w-[var(--book-w)] min-w-[var(--min-w)] [perspective:1200px] [transform-style:preserve-3d]"
         >
-          {/* Front half of front cover */}
+          <div className="absolute left-0 top-0 h-full w-[12px] origin-[0_50%] bg-[var(--spine)] [transform:translate3d(0,0,-13px)]" />
+
           <div
-            style={{
-              ...halfFront,
-              background: coverColor,
-              borderRight: `1rem solid ${spineColor}`,
-            }}
+            ref={(el) => (pageRefs.current[0] = el)}
+            style={{ "--z": (pageCount + 1) * 2 }}
+            className={`${PAGE} left-0 top-0 h-full w-full rounded-r-[5%] bg-[var(--cover)]`}
           >
-            <CodeBlock />
-            <BearSticker />
+            <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-3 rounded-r-[5%] border-r-[1rem] border-[var(--spine)] bg-[var(--cover)] text-[var(--cover-text)] [backface-visibility:hidden] [clip-path:inset(0_0.5%_0_0.5%)]">
+              <h2 className="m-0 px-[8%] text-center text-[3.2vmin] font-semibold leading-tight [font-family:var(--font-display)]">
+                {coverTitle}
+              </h2>
+              <span className="h-px w-[30%] bg-current opacity-40" />
+              <p className="m-0 text-[1.2vmin] uppercase tracking-[0.3em] opacity-60 [font-family:var(--font-body)]">
+                {coverSubtitle}
+              </p>
+              <Emblem className="absolute bottom-[5%] right-[5%] h-[15%] -rotate-[25deg] opacity-70" />
+            </div>
+            <div className="absolute left-0 top-0 h-full w-full rounded-l-[5%] bg-[var(--cover)] [backface-visibility:hidden] [clip-path:inset(0_0.5%_0_0.5%)] [transform:rotateY(180deg)_translate3d(0,0,1px)]">
+              <div className="absolute right-[-1rem] top-1/2 h-[94%] w-[94%] -translate-y-1/2 rounded-l-[5%] bg-[var(--insert)]" />
+            </div>
           </div>
-          {/* Back half of front cover — holds insert */}
-          <div style={{ ...halfBack, background: coverColor }}>
-            {/* .book__insert — right: -1rem, border-radius: 5% 0 0 5% */}
-            <div
-              style={{
-                ...insertBase,
-                right: "-1rem",
-                borderRadius: "5% 0 0 5%",
-              }}
-            />
-          </div>
-        </div>
 
-        {/* ── Inner Pages ── */}
-        {Array.from({ length: pageCount }).map((_, p) => {
-          const pageIndex1 = p + 2; // 1-based page index (front cover = 1)
-          const zIndex = (pageCount + 2 - pageIndex1) * 2;
-          const leftSketch = shuffledDemos ? shuffledDemos[p * 2] : null;
-          const rightSketch = shuffledDemos ? shuffledDemos[p * 2 + 1] : null;
-
-          return (
+          {Array.from({ length: pageCount }, (_, p) => (
             <div
               key={p}
-              ref={(el) => {
-                pagesRef.current[p + 1] = el;
-              }}
-              style={{
-                position: "absolute",
-                left: "2%",
-                top: "50%",
-                height: "94%",
-                width: "94%",
-                borderRadius: "0 5% 5% 0",
-                transformStyle: "preserve-3d",
-                transform: "translate(0, -50%)",
-                transformOrigin: "0% 50%",
-                zIndex,
-              }}
+              ref={(el) => (pageRefs.current[p + 1] = el)}
+              style={{ "--z": (pageCount - p) * 2 }}
+              className={`${PAGE} left-[2%] top-[3%] h-[94%] w-[94%] rounded-r-[5%]`}
             >
-              {/* Front half — recto (right-hand page when open) */}
-              <div style={{ ...halfFront, background: ruledBg }}>
-                {leftSketch && (
-                  <a
-                    href={`https://codepen.io/jh3y/full/${leftSketch.id}`}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    style={{
-                      height: "100%",
-                      width: "100%",
-                      position: "relative",
-                      display: "block",
-                    }}
-                  >
-                    <img
-                      src={`https://s3-us-west-2.amazonaws.com/s.cdpn.io/605876/${leftSketch.name}-sketch.svg`}
-                      alt={leftSketch.name}
-                      style={{
-                        width: "90%",
-                        height: "90%",
-                        objectFit: "contain",
-                        zIndex: 2,
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    />
-                  </a>
-                )}
-                <span
-                  style={{
-                    position: "absolute",
-                    bottom: "1rem",
-                    right: "1rem",
-                    color: "hsl(0, 0%, 50%)",
-                    fontSize: "1vmin",
-                  }}
-                >
-                  {p * 2 + 1}
-                </span>
+              <div className={HALF_FRONT}>
+                <BookPage
+                  page={pageAt(p * 2)}
+                  number={p * 2 + 1}
+                  side="front"
+                  runningTitle={runningTitle}
+                  chapterLabel={chapterLabel}
+                />
               </div>
-              {/* Back half — verso (left-hand page when open) */}
-              <div style={{ ...halfBack, background: ruledBg }}>
-                {rightSketch && (
-                  <a
-                    href={`https://codepen.io/jh3y/full/${rightSketch.id}`}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    style={{
-                      height: "100%",
-                      width: "100%",
-                      position: "relative",
-                      display: "block",
-                    }}
-                  >
-                    <img
-                      src={`https://s3-us-west-2.amazonaws.com/s.cdpn.io/605876/${rightSketch.name}-sketch.svg`}
-                      alt={rightSketch.name}
-                      style={{
-                        width: "90%",
-                        height: "90%",
-                        objectFit: "contain",
-                        zIndex: 2,
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    />
-                  </a>
-                )}
-                <span
-                  style={{
-                    position: "absolute",
-                    bottom: "1rem",
-                    left: "1rem",
-                    color: "hsl(0, 0%, 50%)",
-                    fontSize: "1vmin",
-                  }}
-                >
-                  {p * 2 + 2}
-                </span>
+              <div className={HALF_BACK}>
+                <BookPage
+                  page={pageAt(p * 2 + 1)}
+                  number={p * 2 + 2}
+                  side="back"
+                  runningTitle={runningTitle}
+                  chapterLabel={chapterLabel}
+                />
               </div>
             </div>
-          );
-        })}
+          ))}
 
-        {/* ── Back Cover — original .book__cover--back:
-              position: absolute, top: 50%, left: 0
-              height: 100%, width: 100%
-              border-radius: 0 5% 5% 0
-              transform-origin: 0% 50%
-              page-index: pageCount+2 → zIndex = 0
-              Front half has: border-left: 1rem solid var(--spine)
-              Back half has: .book__insert (left: 0, border-radius: 0 5% 5% 0)
-                             .book__insert contains: a > img.logo
-        */}
-        <div
-          ref={(el) => {
-            pagesRef.current[pageCount + 1] = el;
-          }}
-          style={{
-            height: "100%",
-            width: "100%",
-            position: "absolute",
-            top: "50%",
-            left: 0,
-            borderRadius: "0 5% 5% 0",
-            background: coverColor,
-            transformStyle: "preserve-3d",
-            transform: "translate(0, -50%)",
-            transformOrigin: "0% 50%",
-            zIndex: 0,
-          }}
-        >
-          {/* Front half of back cover */}
           <div
-            style={{
-              ...halfFront,
-              background: coverColor,
-              borderLeft: `1rem solid ${spineColor}`,
-            }}
-          />
-
-          {/* Back half of back cover */}
-          <div style={{ ...halfBack, background: coverColor }}>
-            {/* .book__insert for back cover: left: 0, border-radius: 0 5% 5% 0 */}
-            <div
-              style={{
-                ...insertBase,
-                left: 0,
-                borderRadius: "0 5% 5% 0",
-              }}
-            >
-              <a
-                href="https://jhey.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  position: "relative",
-                  display: "block",
-                }}
-              >
-                <img
-                  src="https://assets.codepen.io/605876/bear-with-cap.svg"
-                  alt="jhey.dev logo"
-                  className="book__logo"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    opacity: 0,
-                    height: "25%",
-                  }}
-                />
-              </a>
+            ref={(el) => (pageRefs.current[pageCount + 1] = el)}
+            style={{ "--z": 0 }}
+            className={`${PAGE} left-0 top-0 h-full w-full rounded-r-[5%] bg-[var(--cover)]`}
+          >
+            <div className="absolute left-0 top-0 h-full w-full rounded-r-[5%] border-l-[1rem] border-[var(--spine)] bg-[var(--cover)] [backface-visibility:hidden] [clip-path:inset(0_0.5%_0_0.5%)]" />
+            <div className="absolute left-0 top-0 h-full w-full rounded-l-[5%] bg-[var(--cover)] [backface-visibility:hidden] [clip-path:inset(0_0.5%_0_0.5%)] [transform:rotateY(180deg)_translate3d(0,0,1px)]">
+              <div className="absolute left-0 top-1/2 flex h-[94%] w-[94%] -translate-y-1/2 items-center justify-center rounded-r-[5%] bg-[var(--insert)] text-neutral-800">
+                <div ref={emblemRef} className="flex flex-col items-center gap-3 opacity-0">
+                  <Emblem className="h-[6vmin] w-[6vmin]" />
+                  <p className="m-0 text-[1.4vmin] uppercase tracking-[0.3em] [font-family:var(--font-body)]">
+                    {backCoverText}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

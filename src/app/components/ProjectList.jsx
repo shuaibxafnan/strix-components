@@ -2,29 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ---------------------------------------------------------------------------
-// Default data
-// ---------------------------------------------------------------------------
+const photo = (id) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&q=70`;
+
 const DEFAULT_PROJECTS = [
   {
     id: "essential-light",
     title: "ESSENTIAL LIGHT",
     year: "/2024",
-    image:
-      "https://cdn.cosmos.so/9c3dd7e8-3d75-4862-9902-dc0cc3289903?format=jpeg",
-    tagsLeft: [
-      "REDUCTION TO ESSENCE",
-      "NATURAL ILLUMINATION",
-      "AUTHENTIC MOMENT",
-    ],
+    image: photo("1595598034023-ca08624ce05d"),
+    tagsLeft: ["REDUCTION TO ESSENCE", "NATURAL ILLUMINATION", "AUTHENTIC MOMENT"],
     tagsRight: ["VISUAL SILENCE", "TRUTH IN SHADOW", "UNFILTERED VISION"],
   },
   {
     id: "negative-space",
     title: "NEGATIVE SPACE",
     year: "/2024",
-    image:
-      "https://cdn.cosmos.so/37539d4b-7af1-4824-9133-3ed9bfdd6d90?format=jpeg",
+    image: photo("1781798715946-2e198afc29a7"),
     tagsLeft: ["BREATHING ROOM", "COMPOSITIONAL PAUSE", "MEANINGFUL ABSENCE"],
     tagsRight: ["MINIMALIST FRAME", "POWER OF EMPTINESS", "VISUAL MEDITATION"],
   },
@@ -32,21 +26,15 @@ const DEFAULT_PROJECTS = [
     id: "decisive-moment",
     title: "DECISIVE MOMENT",
     year: "/2024",
-    image:
-      "https://cdn.cosmos.so/4309fe48-5418-4427-9ece-99af711be069?format=jpeg",
+    image: photo("1725161834547-ba8a90bf5a15"),
     tagsLeft: ["INTUITIVE TIMING", "PRESENT AWARENESS", "AUTHENTIC CAPTURE"],
-    tagsRight: [
-      "UNREPEATABLE TRUTH",
-      "EMOTIONAL RESONANCE",
-      "PERFECT ALIGNMENT",
-    ],
+    tagsRight: ["UNREPEATABLE TRUTH", "EMOTIONAL RESONANCE", "PERFECT ALIGNMENT"],
   },
   {
     id: "honest-texture",
     title: "HONEST TEXTURE",
     year: "/2024",
-    image:
-      "https://cdn.cosmos.so/851adfe2-fd40-4a4e-859d-9351ae7ed6eb?format=jpeg",
+    image: photo("1782806007529-90a2ab4b98d9"),
     tagsLeft: ["TACTILE REALITY", "MATERIAL TRUTH", "SURFACE STORIES"],
     tagsRight: ["IMPERFECT BEAUTY", "AUTHENTIC DETAIL", "VISUAL TOUCH"],
   },
@@ -54,8 +42,7 @@ const DEFAULT_PROJECTS = [
     id: "pure-composition",
     title: "PURE COMPOSITION",
     year: "/2024",
-    image:
-      "https://cdn.cosmos.so/bb05c4c2-9909-49f1-a4c0-02ba6d782847?format=jpeg",
+    image: photo("1779877716206-f441d5d384d4"),
     tagsLeft: ["VISUAL HARMONY", "ELEMENTAL BALANCE", "INTENTIONAL FRAMING"],
     tagsRight: ["ESSENTIAL GEOMETRY", "NATURAL RHYTHM", "DISTILLED FORM"],
   },
@@ -63,21 +50,15 @@ const DEFAULT_PROJECTS = [
     id: "natural-process",
     title: "NATURAL PROCESS",
     year: "/2024",
-    image:
-      "https://cdn.cosmos.so/70484e82-14f5-464a-8cb6-0c4f93c1e405?format=jpeg",
+    image: photo("1779862946918-a129ac57c60e"),
     tagsLeft: ["ORGANIC FLOW", "INTUITIVE CREATION", "UNFORCED VISION"],
-    tagsRight: [
-      "AUTHENTIC APPROACH",
-      "CREATIVE SURRENDER",
-      "HONEST EXPRESSION",
-    ],
+    tagsRight: ["AUTHENTIC APPROACH", "CREATIVE SURRENDER", "HONEST EXPRESSION"],
   },
   {
     id: "silent-observer",
     title: "SILENT OBSERVER",
     year: "/2024",
-    image:
-      "https://cdn.cosmos.so/96613340-be0a-422f-ae0d-732238cd202c?format=jpeg",
+    image: photo("1780580940878-248a6ad4b626"),
     tagsLeft: ["WITNESSING PRESENCE", "UNOBTRUSIVE LENS", "PATIENT WAITING"],
     tagsRight: ["AUTHENTIC CAPTURE", "RESPECTFUL DISTANCE", "TRUTHFUL MOMENT"],
   },
@@ -85,490 +66,405 @@ const DEFAULT_PROJECTS = [
     id: "visual-resonance",
     title: "VISUAL RESONANCE",
     year: "/2024",
-    image:
-      "https://cdn.cosmos.so/9c3dd7e8-3d75-4862-9902-dc0cc3289903?format=jpeg",
+    image: photo("1781513747645-757fb2619e57"),
     tagsLeft: ["EMOTIONAL TRUTH", "INNER CONNECTION", "AUTHENTIC FEELING"],
     tagsRight: ["BEYOND TECHNIQUE", "SOUL EXPRESSION", "TIMELESS IMPACT"],
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
+const TILT = [
+  { rotateX: 12, z: -80, y: 15 },
+  { rotateX: 20, z: -160, y: 30 },
+  { rotateX: 30, z: -240, y: 45 },
+];
+
+const find = (item, selector) => item.querySelector(selector);
+
 export default function ProjectList({
   projects = DEFAULT_PROJECTS,
-
-  // Colors
-  backgroundColor = "#f5f3ee",
-  textColor = "#000000",
-  indicatorColor = "#000000",
-  tagColor = "#555555",
-
-  // Typography
-  titleFont = "'PP Neue Montreal', system-ui, sans-serif",
-  tagFont = "'PP Neue Montreal', system-ui, sans-serif",
-  titleSize = "clamp(1.8rem, 4vw, 3rem)",
-
-  // Animation timing
+  backgroundColor = "bg-white",
+  textColor = "text-black",
+  indicatorColor = "bg-black",
+  tagColor = "text-black/60",
+  placeholderColor = "bg-black/5",
+  fontFamily = "Inter Tight",
+  fontUrlMedium = "https://cdn.jsdelivr.net/fontsource/fonts/inter-tight@latest/latin-500-normal.woff2",
+  fontUrlBlack = "https://cdn.jsdelivr.net/fontsource/fonts/inter-tight@latest/latin-900-normal.woff2",
+  titleSize = "text-[clamp(1.8rem,4vw,3rem)]",
+  imageAspect = "aspect-[4/3]",
   expandDuration = 0.4,
   collapseDuration = 0.3,
   textStagger = 0.05,
-
-  // Image aspect ratio
-  imageAspect = "4/3",
-
   onProjectOpen = null,
   onProjectClose = null,
-
-  className = "",
 }) {
-  const listRef = useRef(null);
+  const [ready, setReady] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  const gsapRef = useRef(null);
+  const scrollRef = useRef(null);
   const itemRefs = useRef([]);
-  const activeRef = useRef(null);
-  const allowClick = useRef(true);
+  const activeRef = useRef(-1);
+  const busyRef = useRef(false);
+  const timersRef = useRef([]);
+
+  const later = (fn, ms) => {
+    timersRef.current.push(setTimeout(fn, ms));
+  };
 
   useEffect(() => {
-    let gsap, CustomEase;
+    projects.forEach(({ image }) => {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = image;
+    });
+  }, [projects]);
 
-    const init = async () => {
-      const g = await import("gsap");
-      const ce = await import("gsap/CustomEase");
-      gsap = g.gsap;
-      CustomEase = ce.CustomEase;
+  useEffect(() => {
+    let cancelled = false;
+
+    const start = async () => {
+      const [{ gsap }, { CustomEase }] = await Promise.all([
+        import("gsap"),
+        import("gsap/CustomEase"),
+      ]);
+      if (cancelled) return;
+
       gsap.registerPlugin(CustomEase);
-
       CustomEase.create("projectExpand", "0.25, 0.1, 0.25, 1.05");
       CustomEase.create("projectCollapse", "0.36, 0.07, 0.19, 0.97");
       CustomEase.create("textReveal", "0.25, 1, 0.5, 1");
+      gsapRef.current = gsap;
 
-      const items = itemRefs.current;
-
-      // -----------------------------------------------------------------------
-      // Stagger-in on mount
-      // -----------------------------------------------------------------------
-      gsap.set(items, { opacity: 0, y: 15 });
-      gsap.to(items, {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-        stagger: 0.06,
-        ease: "none",
-        onComplete: () => gsap.set(items, { clearProps: "opacity,y" }),
-      });
-
-      // Set initial image clip
-      items.forEach((item) => {
-        const img = item.querySelector(".proj-img");
-        if (img) gsap.set(img, { clipPath: "inset(100% 0 0 0)" });
-
-        // Set line elements hidden
-        item.querySelectorAll(".proj-line").forEach((el) => {
-          gsap.set(el, { y: "100%", opacity: 0 });
-        });
-      });
-
-      // -----------------------------------------------------------------------
-      // Hover indicators
-      // -----------------------------------------------------------------------
-      items.forEach((item) => {
-        const titleContainer = item.querySelector(".proj-title-wrap");
-        const leftInd = item.querySelector(".proj-ind-left");
-        const rightInd = item.querySelector(".proj-ind-right");
-
-        gsap.set([leftInd, rightInd], { width: 0, height: 8, opacity: 1 });
-
-        const onEnter = () => {
-          if (activeRef.current) return;
-          gsap.killTweensOf([leftInd, rightInd]);
-          gsap
-            .timeline()
-            .set(leftInd, { x: -20, width: 0 })
-            .to(leftInd, {
-              x: -10,
-              width: 12,
-              duration: 0.15,
-              ease: "power2.in",
-            })
-            .to(leftInd, { x: 0, width: 8, duration: 0.15, ease: "none" });
-          gsap
-            .timeline({ delay: 0.05 })
-            .set(rightInd, { x: 20, width: 0 })
-            .to(rightInd, {
-              x: 10,
-              width: 12,
-              duration: 0.15,
-              ease: "power2.in",
-            })
-            .to(rightInd, { x: 0, width: 8, duration: 0.15, ease: "none" });
-        };
-
-        const onLeave = () => {
-          if (activeRef.current) return;
-          gsap.killTweensOf([leftInd, rightInd]);
-          gsap
-            .timeline()
-            .to(leftInd, { x: -10, width: 12, duration: 0.15, ease: "none" })
-            .to(leftInd, {
-              x: -20,
-              width: 0,
-              duration: 0.15,
-              ease: "power2.out",
-            });
-          gsap
-            .timeline()
-            .to(rightInd, { x: 10, width: 12, duration: 0.15, ease: "none" })
-            .to(rightInd, {
-              x: 20,
-              width: 0,
-              duration: 0.15,
-              ease: "power2.out",
-            });
-        };
-
-        titleContainer.addEventListener("mouseenter", onEnter);
-        titleContainer.addEventListener("mouseleave", onLeave);
-      });
-
-      // -----------------------------------------------------------------------
-      // Star Wars 3D effect
-      // -----------------------------------------------------------------------
-      const applyStarWars = (activeIndex) => {
-        items.forEach((item, i) => {
-          const tc = item.querySelector(".proj-title-wrap");
-          if (i === activeIndex) {
-            gsap.to(tc, {
-              rotateX: 0,
-              rotateY: 0,
-              translateZ: 0,
-              translateY: 0,
-              scale: 1,
-              duration: 0.6,
-              ease: "power2.out",
-            });
-            return;
-          }
-          const dist = Math.abs(i - activeIndex);
-          const isAbove = i < activeIndex;
-          const rotX =
-            dist === 1
-              ? isAbove
-                ? 12
-                : -12
-              : dist === 2
-                ? isAbove
-                  ? 20
-                  : -20
-                : isAbove
-                  ? 30
-                  : -30;
-          const transZ = dist === 1 ? -80 : dist === 2 ? -160 : -240;
-          const transY =
-            dist === 1
-              ? isAbove
-                ? -15
-                : 15
-              : dist === 2
-                ? isAbove
-                  ? -30
-                  : 30
-                : isAbove
-                  ? -45
-                  : 45;
-          gsap.to(tc, {
-            rotateX: rotX,
-            translateZ: transZ,
-            translateY: transY,
-            scale: 1 - dist * 0.05,
-            duration: 0.6,
-            ease: "power2.out",
-          });
-        });
-      };
-
-      const resetTransforms = () => {
-        items.forEach((item) => {
-          const tc = item.querySelector(".proj-title-wrap");
-          gsap.to(tc, {
-            rotateX: 0,
-            rotateY: 0,
-            translateZ: 0,
-            translateY: 0,
-            scale: 1,
-            duration: 0.6,
-            ease: "power2.out",
-          });
-          const l = item.querySelector(".proj-ind-left");
-          const r = item.querySelector(".proj-ind-right");
-          gsap.set(l, { width: 0, x: -20 });
-          gsap.set(r, { width: 0, x: 20 });
-        });
-      };
-
-      // -----------------------------------------------------------------------
-      // Close a project
-      // -----------------------------------------------------------------------
-      const closeProject = (item, fast = false) => {
-        const dur = fast ? collapseDuration * 0.8 : collapseDuration;
-        const img = item.querySelector(".proj-img");
-        const lines = item.querySelectorAll(".proj-line");
-        const title = item.querySelector(".proj-title");
-        const content = item.querySelector(".proj-content");
-
-        gsap.to(title, {
-          letterSpacing: "-0.02em",
-          duration: dur,
-          ease: "projectCollapse",
-        });
-        gsap.to(img, {
-          clipPath: "inset(100% 0 0 0)",
-          duration: dur,
+      gsap.fromTo(
+        itemRefs.current,
+        { opacity: 0, y: 15 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          stagger: 0.06,
           ease: "none",
-        });
-        gsap.to(lines, {
-          y: "100%",
-          opacity: 0,
-          duration: dur,
-          stagger: 0.03,
-          ease: "projectCollapse",
-        });
-        gsap.to(content, {
-          maxHeight: 0,
-          opacity: 0,
-          margin: 0,
-          duration: dur,
-          ease: "projectCollapse",
-        });
-
-        return dur;
-      };
-
-      // -----------------------------------------------------------------------
-      // Open a project
-      // -----------------------------------------------------------------------
-      const openProject = (item) => {
-        const idx = items.indexOf(item);
-        const img = item.querySelector(".proj-img");
-        const leftLines = item.querySelectorAll(".proj-lines-left .proj-line");
-        const rightLines = item.querySelectorAll(
-          ".proj-lines-right .proj-line",
-        );
-        const title = item.querySelector(".proj-title");
-        const content = item.querySelector(".proj-content");
-
-        // Reset
-        gsap.set(img, { clipPath: "inset(100% 0 0 0)" });
-        gsap.set([...leftLines, ...rightLines], { y: "100%", opacity: 0 });
-        gsap.set(content, {
-          display: "flex",
-          maxHeight: 0,
-          opacity: 0,
-          margin: 0,
-        });
-
-        applyStarWars(idx);
-        onProjectOpen?.(item, idx);
-
-        const tl = gsap.timeline({ defaults: { ease: "textReveal" } });
-        tl.to(
-          title,
-          {
-            letterSpacing: "0.01em",
-            duration: expandDuration,
-            ease: "projectExpand",
-          },
-          0,
-        );
-        tl.to(
-          content,
-          {
-            maxHeight: 500,
-            opacity: 1,
-            margin: "2rem 0",
-            duration: expandDuration,
-            ease: "projectExpand",
-          },
-          0,
-        );
-        tl.to(
-          img,
-          {
-            clipPath: "inset(0% 0 0 0)",
-            duration: expandDuration * 0.8,
-            ease: "none",
-          },
-          0,
-        );
-        tl.to(
-          leftLines,
-          { y: "0%", opacity: 1, duration: 0.45, stagger: textStagger },
-          `-=${expandDuration * 0.4}`,
-        );
-        tl.to(
-          rightLines,
-          { y: "0%", opacity: 1, duration: 0.45, stagger: textStagger },
-          `-=${expandDuration * 0.8}`,
-        );
-
-        // Compress siblings
-        if (idx > 0)
-          gsap.to(items.slice(0, idx), {
-            marginBottom: "0.5rem",
-            duration: expandDuration,
-            ease: "projectCollapse",
-            stagger: 0.02,
-          });
-        if (idx < items.length - 1)
-          gsap.to(items.slice(idx + 1), {
-            marginBottom: "0.5rem",
-            duration: expandDuration,
-            ease: "projectCollapse",
-            stagger: 0.02,
-          });
-
-        // Scroll into view
-        setTimeout(() => {
-          const listEl = listRef.current;
-          const rect = item.getBoundingClientRect();
-          const cRect = listEl.getBoundingClientRect();
-          if (rect.top < cRect.top || rect.bottom > cRect.bottom) {
-            listEl.scrollBy({
-              top: rect.top - cRect.top - cRect.height / 2 + rect.height / 2,
-              behavior: "smooth",
-            });
-          }
-        }, 100);
-      };
-
-      // -----------------------------------------------------------------------
-      // Click handler
-      // -----------------------------------------------------------------------
-      items.forEach((item) => {
-        item.addEventListener("click", () => {
-          if (!allowClick.current) return;
-          allowClick.current = false;
-          setTimeout(() => {
-            allowClick.current = true;
-          }, 500);
-
-          if (activeRef.current === item) {
-            // Close self
-            const dur = closeProject(item) * 1000;
-            setTimeout(() => {
-              activeRef.current = null;
-              resetTransforms();
-              gsap.to(items, {
-                marginBottom: "1.5rem",
-                duration: expandDuration,
-                ease: "projectExpand",
-                stagger: 0.02,
-              });
-              onProjectClose?.();
-            }, dur);
-          } else if (activeRef.current) {
-            // Close current, open new
-            const prev = activeRef.current;
-            const dur = closeProject(prev, true) * 1000;
-            setTimeout(() => {
-              prev.classList.remove("proj-active");
-              activeRef.current = null;
-              resetTransforms();
-              item.classList.add("proj-active");
-              activeRef.current = item;
-              openProject(item);
-            }, dur);
-          } else {
-            item.classList.add("proj-active");
-            activeRef.current = item;
-            openProject(item);
-          }
-        });
-      });
+          clearProps: "opacity,y",
+        },
+      );
+      setReady(true);
     };
 
-    init();
+    start().catch((e) => {
+      console.error("[ProjectList] GSAP load failed:", e.message);
+      setReady(true);
+    });
 
     return () => {
-      import("gsap").then(({ gsap }) => gsap.killTweensOf("*"));
+      cancelled = true;
+      timersRef.current.forEach(clearTimeout);
+      timersRef.current = [];
+      const gsap = gsapRef.current;
+      if (gsap) {
+        gsap.killTweensOf(
+          itemRefs.current.flatMap((item) =>
+            item ? [item, ...item.querySelectorAll("*")] : [],
+          ),
+        );
+      }
     };
-  }, [projects]);
+  }, []);
+
+  const showIndicator = (g, el, dir, delay = 0) =>
+    g
+      .timeline({ delay })
+      .set(el, { x: dir * 20, width: 0 })
+      .to(el, { x: dir * 10, width: 12, duration: 0.15, ease: "power2.in" })
+      .to(el, { x: 0, width: 8, duration: 0.15, ease: "none" });
+
+  const hideIndicator = (g, el, dir) =>
+    g
+      .timeline()
+      .to(el, { x: dir * 10, width: 12, duration: 0.15, ease: "none" })
+      .to(el, { x: dir * 20, width: 0, duration: 0.15, ease: "power2.out" });
+
+  const hoverIn = (index) => {
+    const g = gsapRef.current;
+    if (!g || activeRef.current !== -1) return;
+    const item = itemRefs.current[index];
+    const left = find(item, "[data-ind-l]");
+    const right = find(item, "[data-ind-r]");
+    g.killTweensOf([left, right]);
+    showIndicator(g, left, -1);
+    showIndicator(g, right, 1, 0.05);
+  };
+
+  const hoverOut = (index) => {
+    const g = gsapRef.current;
+    if (!g || activeRef.current !== -1) return;
+    const item = itemRefs.current[index];
+    const left = find(item, "[data-ind-l]");
+    const right = find(item, "[data-ind-r]");
+    g.killTweensOf([left, right]);
+    hideIndicator(g, left, -1);
+    hideIndicator(g, right, 1);
+  };
+
+  const tilt = (g, active) => {
+    itemRefs.current.forEach((item, i) => {
+      const wrap = find(item, "[data-title-wrap]");
+      if (i === active) {
+        g.to(wrap, {
+          rotateX: 0,
+          z: 0,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+        return;
+      }
+      const dist = Math.abs(i - active);
+      const sign = i < active ? 1 : -1;
+      const step = TILT[Math.min(dist, 3) - 1];
+      g.to(wrap, {
+        rotateX: sign * step.rotateX,
+        z: step.z,
+        y: -sign * step.y,
+        scale: 1 - dist * 0.05,
+        duration: 0.6,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    });
+  };
+
+  const resetTilt = (g) => {
+    itemRefs.current.forEach((item) => {
+      g.to(find(item, "[data-title-wrap]"), {
+        rotateX: 0,
+        z: 0,
+        y: 0,
+        scale: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+      g.set(find(item, "[data-ind-l]"), { width: 0, x: -20 });
+      g.set(find(item, "[data-ind-r]"), { width: 0, x: 20 });
+    });
+  };
+
+  const closeItem = (g, item, fast) => {
+    const dur = fast ? collapseDuration * 0.8 : collapseDuration;
+    g.to(find(item, "[data-title]"), {
+      letterSpacing: "-0.02em",
+      duration: dur,
+      ease: "projectCollapse",
+    });
+    g.to(find(item, "[data-img]"), {
+      clipPath: "inset(100% 0 0 0)",
+      duration: dur,
+      ease: "none",
+    });
+    g.to(item.querySelectorAll("[data-line]"), {
+      y: "100%",
+      opacity: 0,
+      duration: dur,
+      stagger: 0.03,
+      ease: "projectCollapse",
+    });
+    g.to(find(item, "[data-content]"), {
+      maxHeight: 0,
+      opacity: 0,
+      margin: 0,
+      duration: dur,
+      ease: "projectCollapse",
+    });
+    return dur * 1000;
+  };
+
+  const openItem = (g, index) => {
+    const items = itemRefs.current;
+    const item = items[index];
+    const img = find(item, "[data-img]");
+    const content = find(item, "[data-content]");
+    const left = item.querySelectorAll("[data-left] [data-line]");
+    const right = item.querySelectorAll("[data-right] [data-line]");
+
+    g.set(img, { clipPath: "inset(100% 0 0 0)" });
+    g.set([...left, ...right], { y: "100%", opacity: 0 });
+    g.set(content, { maxHeight: 0, opacity: 0, margin: 0 });
+
+    tilt(g, index);
+    onProjectOpen?.(item, index);
+
+    g.timeline({ defaults: { ease: "textReveal" } })
+      .to(
+        find(item, "[data-title]"),
+        { letterSpacing: "0.01em", duration: expandDuration, ease: "projectExpand" },
+        0,
+      )
+      .to(
+        content,
+        {
+          maxHeight: 500,
+          opacity: 1,
+          margin: "2rem 0",
+          duration: expandDuration,
+          ease: "projectExpand",
+        },
+        0,
+      )
+      .to(
+        img,
+        { clipPath: "inset(0% 0 0 0)", duration: expandDuration * 0.8, ease: "none" },
+        0,
+      )
+      .to(
+        left,
+        { y: "0%", opacity: 1, duration: 0.45, stagger: textStagger },
+        `-=${expandDuration * 0.4}`,
+      )
+      .to(
+        right,
+        { y: "0%", opacity: 1, duration: 0.45, stagger: textStagger },
+        `-=${expandDuration * 0.8}`,
+      );
+
+    g.to(
+      items.filter((_, i) => i !== index),
+      {
+        marginBottom: "0.5rem",
+        duration: expandDuration,
+        ease: "projectCollapse",
+        stagger: 0.02,
+      },
+    );
+
+    later(() => {
+      const list = scrollRef.current;
+      if (!list) return;
+      const rect = item.getBoundingClientRect();
+      const box = list.getBoundingClientRect();
+      if (rect.top < box.top || rect.bottom > box.bottom) {
+        list.scrollBy({
+          top: rect.top - box.top - box.height / 2 + rect.height / 2,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  };
+
+  const handleClick = (index) => {
+    const g = gsapRef.current;
+    if (!g || busyRef.current) return;
+
+    busyRef.current = true;
+    later(() => {
+      busyRef.current = false;
+    }, 500);
+
+    const items = itemRefs.current;
+    const current = activeRef.current;
+
+    if (current === index) {
+      const wait = closeItem(g, items[index], false);
+      later(() => {
+        activeRef.current = -1;
+        setActiveIndex(-1);
+        resetTilt(g);
+        g.to(items, {
+          marginBottom: "1.5rem",
+          duration: expandDuration,
+          ease: "projectExpand",
+          stagger: 0.02,
+        });
+        onProjectClose?.();
+      }, wait);
+    } else if (current !== -1) {
+      const wait = closeItem(g, items[current], true);
+      later(() => {
+        resetTilt(g);
+        activeRef.current = index;
+        setActiveIndex(index);
+        openItem(g, index);
+      }, wait);
+    } else {
+      activeRef.current = index;
+      setActiveIndex(index);
+      openItem(g, index);
+    }
+  };
+
+  const fontCss =
+    '@font-face{font-family:"' +
+    fontFamily +
+    '";src:url("' +
+    fontUrlMedium +
+    '") format("woff2");font-weight:500;font-display:swap;}' +
+    '@font-face{font-family:"' +
+    fontFamily +
+    '";src:url("' +
+    fontUrlBlack +
+    '") format("woff2");font-weight:900;font-display:swap;}';
 
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-        .proj-title-wrap { transform-style: preserve-3d; }
-        .proj-ind-left, .proj-ind-right { pointer-events: none; z-index: 200; }
-        .proj-content { pointer-events: none; }
-        .proj-active .proj-content { pointer-events: auto; }
-        .proj-line-wrap { overflow: hidden; margin-bottom: 0.25rem; }
-      `}</style>
+    <div
+      className={`flex h-full w-full flex-col items-center justify-center ${backgroundColor} ${textColor}`}
+      style={{ fontFamily: `"${fontFamily}", sans-serif` }}
+    >
+      <style>{fontCss}</style>
 
       <div
-        className={`w-full h-full flex flex-col items-center justify-center ${className}`}
-        style={{ backgroundColor, color: textColor, perspective: "1000px" }}
+        ref={scrollRef}
+        className={`flex w-full min-h-screen flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${backgroundColor}`}
       >
-        {/* List */}
-        <div
-          ref={listRef}
-          className="flex flex-col items-center w-full max-w-5xl flex-1 justify-center overflow-y-auto"
-          style={{ scrollbarWidth: "none", transformStyle: "preserve-3d" }}
-        >
+        <div className="m-auto flex w-full max-w-5xl flex-col items-center">
           {projects.map((project, i) => (
             <div
               key={project.id}
               ref={(el) => (itemRefs.current[i] = el)}
-              className="w-full text-center cursor-pointer mb-6 relative"
-              style={{ transformStyle: "preserve-3d" }}
+              data-active={activeIndex === i}
+              onClick={() => handleClick(i)}
+              className={`group/item relative mb-6 w-full cursor-pointer text-center [perspective:1000px] ${backgroundColor} ${ready ? "" : "opacity-0"
+                }`}
             >
-              {/* Title row */}
-              <div className="proj-title-wrap relative inline-block">
-                {/* Left indicator */}
-                <div
-                  className="proj-ind-left absolute top-1/2 -translate-y-1/2"
-                  style={{
-                    left: -20,
-                    backgroundColor: indicatorColor,
-                    width: 0,
-                    height: 8,
-                  }}
-                />
+              <div
+                data-title-wrap
+                onMouseEnter={() => hoverIn(i)}
+                onMouseLeave={() => hoverOut(i)}
+                className="relative inline-block will-change-transform [backface-visibility:hidden]"
+              >
+                <span className="pointer-events-none absolute inset-y-0 -left-5 z-[200] flex items-center">
+                  <span
+                    data-ind-l
+                    className={`block h-2 w-0 ${indicatorColor}`}
+                  />
+                </span>
 
                 <h2
-                  className="proj-title font-black tracking-tight my-2 select-none"
-                  style={{
-                    fontFamily: titleFont,
-                    fontSize: titleSize,
-                    letterSpacing: "-0.02em",
-                    color: textColor,
-                  }}
+                  data-title
+                  className={`my-2 select-none font-black tracking-[-0.02em] ${titleSize}`}
                 >
                   {project.title}
                 </h2>
 
-                {/* Right indicator */}
-                <div
-                  className="proj-ind-right absolute top-1/2 -translate-y-1/2"
-                  style={{
-                    right: -20,
-                    backgroundColor: indicatorColor,
-                    width: 0,
-                    height: 8,
-                  }}
-                />
+                <span className="pointer-events-none absolute inset-y-0 -right-5 z-[200] flex items-center">
+                  <span
+                    data-ind-r
+                    className={`block h-2 w-0 ${indicatorColor}`}
+                  />
+                </span>
               </div>
 
-              {/* Expandable content */}
               <div
-                className="proj-content flex justify-between items-center overflow-hidden px-4"
-                style={{ maxHeight: 0, opacity: 0, margin: 0 }}
+                data-content
+                className="pointer-events-none m-0 flex max-h-0 items-center justify-between overflow-hidden px-4 opacity-0 group-data-[active=true]/item:pointer-events-auto"
               >
-                {/* Left tags */}
-                <div className="proj-lines-left w-1/4 text-left">
-                  {project.tagsLeft.map((tag, ti) => (
-                    <div key={ti} className="proj-line-wrap">
+                <div data-left className="w-1/4 text-left">
+                  {project.tagsLeft.map((tag) => (
+                    <div key={tag} className="mb-1 overflow-hidden">
                       <p
-                        className="proj-line text-xs font-medium tracking-wide mb-1"
-                        style={{ fontFamily: tagFont, color: tagColor }}
+                        data-line
+                        className={`m-0 text-xs font-medium tracking-wide ${tagColor}`}
                       >
                         {tag}
                       </p>
@@ -576,40 +472,32 @@ export default function ProjectList({
                   ))}
                 </div>
 
-                {/* Image */}
                 <div
-                  className="w-2/5 max-w-sm overflow-hidden relative"
-                  style={{ aspectRatio: imageAspect }}
+                  className={`relative w-2/5 max-w-sm overflow-hidden ${imageAspect} ${placeholderColor}`}
                 >
-                  <div className="w-full h-full overflow-hidden">
-                    <img
-                      className="proj-img w-full h-full object-cover block"
-                      src={project.image}
-                      alt={project.title}
-                      draggable={false}
-                    />
-                  </div>
+                  <img
+                    data-img
+                    src={project.image}
+                    alt={project.title}
+                    decoding="async"
+                    draggable={false}
+                    className="block h-full w-full object-cover [clip-path:inset(100%_0_0_0)]"
+                  />
                 </div>
 
-                {/* Right tags */}
-                <div className="proj-lines-right w-1/4 text-right">
-                  {project.tagsRight.map((tag, ti) => (
-                    <div key={ti} className="proj-line-wrap">
+                <div data-right className="w-1/4 text-right">
+                  {project.tagsRight.map((tag) => (
+                    <div key={tag} className="mb-1 overflow-hidden">
                       <p
-                        className="proj-line text-xs font-medium tracking-wide mb-1"
-                        style={{ fontFamily: tagFont, color: tagColor }}
+                        data-line
+                        className={`m-0 text-xs font-medium tracking-wide ${tagColor}`}
                       >
                         {tag}
                       </p>
                     </div>
                   ))}
                   <p
-                    className="text-xs tracking-wide mt-2"
-                    style={{
-                      fontFamily: tagFont,
-                      color: tagColor,
-                      opacity: 0.5,
-                    }}
+                    className={`m-0 mt-2 text-xs tracking-wide opacity-50 ${tagColor}`}
                   >
                     {project.year}
                   </p>
@@ -619,6 +507,6 @@ export default function ProjectList({
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

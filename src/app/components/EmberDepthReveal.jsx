@@ -26,36 +26,6 @@ import * as THREE from "three/webgpu";
 
 extend(THREE);
 
-// ─── DepthScanReveal ─────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// textureSrc        string   ""          Color/raw image URL rendered on the plane. Leave
-//                                         empty and it falls back to a transparent 1x1 pixel
-//                                         so the scene never crashes before you wire up assets.
-// depthSrc          string   ""          Grayscale depth-map URL that drives the ripple offset
-//                                         and the scanning-line mask. Same empty-string fallback.
-// planeWidth        number   1600        Native pixel width of the source image (sets plane aspect).
-// planeHeight       number   900         Native pixel height of the source image (sets plane aspect).
-// distortionStrength number  0.01        How far the depth map pushes UVs toward the pointer.
-// tiling            number   120         Density of the cell-noise dot grid used for the scan mask.
-// scanDuration      number   3           Seconds for one full sweep of the depth-scan line (looping).
-// maskColor         array    [10,0,0]    RGB multiplier tinting the revealed scan-line dots.
-// bloomStrength     number   1           Bloom post-processing intensity.
-// bloomRadius       number   0.5         Bloom blur radius.
-// bloomThreshold    number   1           Luminance threshold before bloom kicks in.
-// bgColor           string   "#000"      Page background shown behind/while the canvas loads.
-// loaderBgColor     string   "#78350f"   Full-screen loader background color.
-// loaderDotColor    string   "#fff"      Color of the pulsing loader dot.
-// title             string   "Crown of Fire"   Headline text, split and animated word by word.
-// subtitle          string   "The Majesty and Glory of the Young King"   Sub-headline text.
-// titleTextColor    string   "#fff"      Headline text color.
-// descTextColor     string   "#fff"      Sub-headline text color.
-// (Tomorrow display font is loaded at module scope with weight "600" —
-//  next/font requires this call to be static, so weight isn't prop-driven.
-//  Edit the `Tomorrow({...})` call directly if you need a different weight.)
-// ──────────────────────────────────────────────────────────────────────────
-
 const tomorrow = Tomorrow({ weight: "600", subsets: ["latin"] });
 
 const FALLBACK_IMAGE =
@@ -183,8 +153,8 @@ function WebGPUCanvas({ children }) {
 }
 
 export default function EmberDepthReveal({
-  textureSrc = "https://raw.githubusercontent.com/d3adrabbit/ScanningEffectWithDepthMap/refs/heads/main/assets/raw-1.png",
-  depthSrc = "https://raw.githubusercontent.com/d3adrabbit/ScanningEffectWithDepthMap/refs/heads/main/assets/depth-1.png",
+  textureSrc = "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/dungeon.png",
+  depthSrc = "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/dungeon-depth.png",
   planeWidth = 1600,
   planeHeight = 900,
   distortionStrength = 0.01,

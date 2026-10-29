@@ -1,33 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useId } from "react";
+import { useEffect, useId, useRef } from "react";
 
-// ─── DraggableProductGrid ────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// products          array    []        Array of { id, image, title, price, description }.
-//                                       `id` must be unique per product (used to link grid
-//                                       tiles to their details panel content).
-// columns           number   10        Number of columns rendered in the draggable grid.
-// itemsPerColumn    number   5         Number of product tiles stacked in each column.
-// tileSize          string   "18.5vw"  Width/height (aspect-ratio 1/1) of each grid tile.
-// gridGap           string   "5vw"     Gap between tiles/columns in the grid.
-// bgColor           string   "#fff"    Page background color.
-// panelBgColor      string   "#f1f1f1" Background color of the sliding details panel.
-// panelWidth        string   "50vw"    Width of the details panel (desktop).
-// crossColor        string   "#313131" Stroke color of the cursor-following close cross.
-// introDuration     number   0.6       Duration (s) of each tile's intro fade/scale-in.
-// introStagger      number   1.2       Total stagger spread (s) across all tiles on intro.
-// dragInertia       bool     true      Whether releasing a drag continues with momentum.
-// gsapVersion       string   "3.12.5"  GSAP version loaded from the cdnjs CDN.
-// ──────────────────────────────────────────────────────────────────────────
+const IMG = (n) =>
+  `https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/${n}.png`;
 
 const DEFAULT_PRODUCTS = [
   {
     id: "1",
-    image:
-      "https://raw.githubusercontent.com/joffreysp/draggable-grid/refs/heads/main/public/img-1.png",
+    image: IMG('pattern-brown'),
     title: "Crimson Amphora",
     price: "$300,00",
     description:
@@ -35,8 +16,7 @@ const DEFAULT_PRODUCTS = [
   },
   {
     id: "2",
-    image:
-      "https://raw.githubusercontent.com/joffreysp/draggable-grid/refs/heads/main/public/img-2.png",
+    image: IMG('duo-brown'),
     title: "Rustic Urn",
     price: "$220,00",
     description:
@@ -44,8 +24,7 @@ const DEFAULT_PRODUCTS = [
   },
   {
     id: "3",
-    image:
-      "https://raw.githubusercontent.com/joffreysp/draggable-grid/refs/heads/main/public/img-3.png",
+    image: IMG('deform-blue'),
     title: "Golden Vessel",
     price: "$240,00",
     description:
@@ -53,8 +32,7 @@ const DEFAULT_PRODUCTS = [
   },
   {
     id: "4",
-    image:
-      "https://raw.githubusercontent.com/joffreysp/draggable-grid/refs/heads/main/public/img-4.png",
+    image: IMG('clay'),
     title: "Sunlit Amphora",
     price: "$300,00",
     description:
@@ -62,8 +40,7 @@ const DEFAULT_PRODUCTS = [
   },
   {
     id: "5",
-    image:
-      "https://raw.githubusercontent.com/joffreysp/draggable-grid/refs/heads/main/public/img-5.png",
+    image: IMG('solid-dblue'),
     title: "Midnight Reliquary",
     price: "$390,00",
     description:
@@ -71,8 +48,7 @@ const DEFAULT_PRODUCTS = [
   },
   {
     id: "6",
-    image:
-      "https://raw.githubusercontent.com/joffreysp/draggable-grid/refs/heads/main/public/img-6.png",
+    image: IMG('brown-solid'),
     title: "Amber Ewer",
     price: "$340,00",
     description:
@@ -80,8 +56,7 @@ const DEFAULT_PRODUCTS = [
   },
   {
     id: "7",
-    image:
-      "https://raw.githubusercontent.com/joffreysp/draggable-grid/refs/heads/main/public/img-7.png",
+    image: IMG('duo-blue'),
     title: "Sylvan Chalice",
     price: "$240,00",
     description:
@@ -91,23 +66,75 @@ const DEFAULT_PRODUCTS = [
 
 const loadScript = (src) =>
   new Promise((resolve, reject) => {
-    if (document.querySelector(`script[data-id="${src}"]`)) {
-      resolve();
+    const existing = document.querySelector(`script[data-id="${src}"]`);
+    if (existing) {
+      if (existing.dataset.loaded === "true") resolve();
+      else {
+        existing.addEventListener("load", resolve);
+        existing.addEventListener("error", reject);
+      }
       return;
     }
     const el = document.createElement("script");
     el.src = src;
     el.setAttribute("data-id", src);
-    el.onload = resolve;
+    el.onload = () => {
+      el.dataset.loaded = "true";
+      resolve();
+    };
     el.onerror = () => reject(new Error(`Failed to load: ${src}`));
     document.head.appendChild(el);
   });
+
+const CHAR_MASK = "inline-block overflow-hidden align-top";
+const CHAR = "char inline-block";
+const WORD = "inline-block whitespace-nowrap";
+const LINE_MASK = "block overflow-hidden";
+const LINE = "line block";
+
+function splitFallback(els, kind) {
+  const saved = [];
+  els.forEach((el) => {
+    const text = el.textContent;
+    saved.push({ el, text });
+    el.textContent = "";
+    if (kind === "chars") {
+      const words = text.split(" ");
+      words.forEach((w, wi) => {
+        const wordEl = document.createElement("span");
+        wordEl.className = WORD;
+        [...w].forEach((ch) => {
+          const mask = document.createElement("span");
+          mask.className = CHAR_MASK;
+          const c = document.createElement("span");
+          c.className = CHAR;
+          c.textContent = ch;
+          mask.appendChild(c);
+          wordEl.appendChild(mask);
+        });
+        el.appendChild(wordEl);
+        if (wi < words.length - 1) el.appendChild(document.createTextNode(" "));
+      });
+    } else {
+      const mask = document.createElement("span");
+      mask.className = LINE_MASK;
+      const line = document.createElement("span");
+      line.className = LINE;
+      line.textContent = text;
+      mask.appendChild(line);
+      el.appendChild(mask);
+    }
+  });
+  return {
+    revert: () => saved.forEach(({ el, text }) => (el.textContent = text)),
+  };
+}
 
 export default function DraggableVaseGrid({
   products = DEFAULT_PRODUCTS,
   columns = 10,
   itemsPerColumn = 5,
-  tileSize = "18.5vw",
+  tileSize = "15vw",
   gridGap = "5vw",
   bgColor = "#fff",
   panelBgColor = "#f1f1f1",
@@ -139,18 +166,26 @@ export default function DraggableVaseGrid({
     let cancelled = false;
     const base = `https://cdnjs.cloudflare.com/ajax/libs/gsap/${gsapVersion}`;
 
+    const optional = (src) => loadScript(src).catch(() => null);
+
     Promise.all([
       loadScript(`${base}/gsap.min.js`),
       loadScript(`${base}/Draggable.min.js`),
-      loadScript(`${base}/Flip.min.js`),
-      loadScript(`${base}/SplitText.min.js`),
+      optional(`${base}/Flip.min.js`),
+      optional(`${base}/SplitText.min.js`),
+      optional(`${base}/InertiaPlugin.min.js`),
     ])
       .then(() => {
         if (cancelled) return;
-        const { gsap, Draggable, Flip, SplitText } = window;
-        if (!gsap || !Draggable || !Flip || !SplitText) return;
+        const { gsap, Draggable, Flip, SplitText, InertiaPlugin } = window;
+        if (!gsap || !Draggable) {
+          console.error("[DraggableVaseGrid] gsap or Draggable is missing");
+          return;
+        }
 
-        gsap.registerPlugin(Draggable, Flip, SplitText);
+        gsap.registerPlugin(
+          ...[Draggable, Flip, SplitText, InertiaPlugin].filter(Boolean),
+        );
 
         const root = rootRef.current;
         const container = containerRef.current;
@@ -165,6 +200,8 @@ export default function DraggableVaseGrid({
         state.showDetails = false;
         state.currentProduct = null;
         state.originalParent = null;
+        state.dragged = false;
+        state.introDone = false;
 
         const centerGrid = () => {
           const gridWidth = grid.offsetWidth;
@@ -181,18 +218,24 @@ export default function DraggableVaseGrid({
           maxY: 100,
         });
 
-        const setupDraggable = () => {
-          container.classList.add("is-loaded");
-          state.draggable = Draggable.create(grid, {
-            type: "x,y",
-            bounds: getBounds(),
-            inertia: dragInertia,
-            allowEventDefault: true,
-            edgeResistance: 0.9,
-            onDragStart: () => container.classList.add("is-dragging"),
-            onDragEnd: () => container.classList.remove("is-dragging"),
-          })[0];
-        };
+        centerGrid();
+
+        state.draggable = Draggable.create(grid, {
+          type: "x,y",
+          bounds: getBounds(),
+          inertia: dragInertia && !!InertiaPlugin,
+          edgeResistance: 0.9,
+          onDragStart: () => {
+            state.dragged = true;
+            container.classList.add("is-dragging");
+          },
+          onDragEnd: () => {
+            container.classList.remove("is-dragging");
+            setTimeout(() => {
+              state.dragged = false;
+            }, 50);
+          },
+        })[0];
 
         const onWheel = (e) => {
           e.preventDefault();
@@ -200,18 +243,10 @@ export default function DraggableVaseGrid({
           const deltaY = -e.deltaY * 7;
           const currentX = gsap.getProperty(grid, "x");
           const currentY = gsap.getProperty(grid, "y");
-          const bounds = state.draggable.vars.bounds;
-          const clampedX = Math.max(
-            bounds.minX,
-            Math.min(bounds.maxX, currentX + deltaX),
-          );
-          const clampedY = Math.max(
-            bounds.minY,
-            Math.min(bounds.maxY, currentY + deltaY),
-          );
+          const bounds = getBounds();
           gsap.to(grid, {
-            x: clampedX,
-            y: clampedY,
+            x: Math.max(bounds.minX, Math.min(bounds.maxX, currentX + deltaX)),
+            y: Math.max(bounds.minY, Math.min(bounds.maxY, currentY + deltaY)),
             duration: 0.3,
             ease: "power3.out",
           });
@@ -259,21 +294,33 @@ export default function DraggableVaseGrid({
         const prices = details.querySelectorAll("[data-price]");
         const texts = details.querySelectorAll("[data-desc]");
 
-        const splitTitles = new SplitText(titles, {
-          type: "lines, chars",
-          mask: "lines",
-          charsClass: "char",
-        });
-        const splitPrices = new SplitText(prices, {
-          type: "lines",
-          mask: "lines",
-          linesClass: "line",
-        });
-        const splitTexts = new SplitText(texts, {
-          type: "lines",
-          mask: "lines",
-          linesClass: "line",
-        });
+        let reverters = [];
+        try {
+          if (!SplitText) throw new Error("SplitText unavailable");
+          const splitTitles = new SplitText(titles, {
+            type: "lines, chars",
+            mask: "lines",
+            charsClass: "char",
+          });
+          const splitPrices = new SplitText(prices, {
+            type: "lines",
+            mask: "lines",
+            linesClass: "line",
+          });
+          const splitTexts = new SplitText(texts, {
+            type: "lines",
+            mask: "lines",
+            linesClass: "line",
+          });
+          reverters = [splitTitles, splitPrices, splitTexts];
+        } catch (err) {
+          reverters.forEach((r) => r.revert());
+          reverters = [
+            splitFallback([...titles], "chars"),
+            splitFallback([...prices], "lines"),
+            splitFallback([...texts], "lines"),
+          ];
+        }
 
         gsap.set(
           [...titles].flatMap((t) => [...t.querySelectorAll(".char")]),
@@ -388,7 +435,7 @@ export default function DraggableVaseGrid({
           }
         };
 
-        const hideContent = (id, onComplete) => {
+        const hideContent = (id) => {
           const title = details.querySelector(`[data-title="${id}"]`);
           const price = details.querySelector(`[data-price="${id}"]`);
           const text = details.querySelector(`[data-desc="${id}"]`);
@@ -413,10 +460,7 @@ export default function DraggableVaseGrid({
               duration: 0.5,
               ease: "power3.inOut",
               stagger: 0.04,
-              onComplete,
             });
-          } else if (onComplete) {
-            onComplete();
           }
         };
 
@@ -476,6 +520,8 @@ export default function DraggableVaseGrid({
           state.showDetails = false;
           container.classList.remove("is-details-showing");
 
+          const id = state.currentProduct?.dataset.productId;
+
           gsap.to(container, {
             x: 0,
             duration: 1.2,
@@ -491,13 +537,12 @@ export default function DraggableVaseGrid({
           });
 
           unFlipProduct();
-
-          const id = state.currentProduct?.dataset.productId;
           if (id) hideContent(id);
         };
 
         const onProductClick = (e) => {
           e.stopPropagation();
+          if (state.dragged || !state.introDone || !Flip) return;
           const product = e.currentTarget;
           if (!state.showDetails) {
             showDetails(product);
@@ -508,6 +553,7 @@ export default function DraggableVaseGrid({
           }
         };
         const onContainerClick = () => {
+          if (state.dragged) return;
           if (state.showDetails) hideDetails();
         };
         const onCrossClick = (e) => {
@@ -515,7 +561,13 @@ export default function DraggableVaseGrid({
           if (state.showDetails) hideDetails();
         };
 
-        centerGrid();
+        productEls.forEach((el) => el.addEventListener("click", onProductClick));
+        container.addEventListener("click", onContainerClick);
+        if (cross) cross.addEventListener("click", onCrossClick);
+        window.addEventListener("wheel", onWheel, { passive: false });
+        window.addEventListener("resize", onResize);
+        window.addEventListener("mousemove", onMouseMove);
+
         const timeline = gsap.timeline();
         timeline.set(container, { scale: 0.5 });
         timeline.set(productEls, { scale: 0.5, opacity: 0 });
@@ -531,19 +583,12 @@ export default function DraggableVaseGrid({
           duration: 1.2,
           ease: "power3.inOut",
           onComplete: () => {
-            setupDraggable();
+            container.classList.add("is-loaded");
+            state.introDone = true;
+            if (state.draggable) state.draggable.vars.bounds = getBounds();
             productEls.forEach((el) => observer.observe(el));
-            productEls.forEach((el) =>
-              el.addEventListener("click", onProductClick),
-            );
-            container.addEventListener("click", onContainerClick);
-            if (cross) cross.addEventListener("click", onCrossClick);
           },
         });
-
-        window.addEventListener("wheel", onWheel, { passive: false });
-        window.addEventListener("resize", onResize);
-        window.addEventListener("mousemove", onMouseMove);
 
         state.cleanup = () => {
           timeline.kill();
@@ -557,35 +602,33 @@ export default function DraggableVaseGrid({
           productEls.forEach((el) =>
             el.removeEventListener("click", onProductClick),
           );
-          splitTitles.revert();
-          splitPrices.revert();
-          splitTexts.revert();
+          reverters.forEach((r) => r.revert());
+          state.cleanup = null;
         };
       })
       .catch((e) =>
-        console.error("[DraggableProductGrid] GSAP load failed:", e.message),
+        console.error("[DraggableVaseGrid] setup failed:", e.message),
       );
 
     return () => {
       cancelled = true;
       if (stateRef.current.cleanup) stateRef.current.cleanup();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div
       ref={rootRef}
-      className="relative w-full h-screen overflow-hidden"
+      className="relative h-screen w-full overflow-hidden"
       style={{ backgroundColor: bgColor }}
     >
       <div
         ref={containerRef}
-        className="fixed top-0 left-0 w-screen h-screen [transform-origin:center_center] [will-change:transform]"
+        className="fixed left-0 top-0 h-screen w-screen [transform-origin:center_center] [will-change:transform]"
       >
         <div
           ref={gridRef}
-          className="absolute w-max h-max flex"
+          className="absolute flex h-max w-max cursor-grab select-none active:cursor-grabbing"
           style={{ gap: gridGap }}
         >
           {columnData.map((column, colIndex) => (
@@ -600,17 +643,17 @@ export default function DraggableVaseGrid({
               {column.map((product) => (
                 <div
                   key={`${uid}-${product._key}`}
-                  className="relative [aspect-ratio:1/1] cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105"
+                  className="relative cursor-pointer transition-transform duration-300 ease-in-out [aspect-ratio:1/1] hover:scale-105"
                   style={{ width: tileSize }}
                 >
                   <div
                     data-product-id={product.id}
-                    className="relative w-full h-full [aspect-ratio:1/1]"
+                    className="relative h-full w-full [aspect-ratio:1/1]"
                   >
                     <img
                       src={product.image}
                       alt={product.title}
-                      className="absolute w-full h-full object-contain [will-change:transform]"
+                      className="absolute h-full w-full select-none object-cover [-webkit-user-drag:none] [will-change:transform]"
                       draggable={false}
                     />
                   </div>
@@ -623,7 +666,7 @@ export default function DraggableVaseGrid({
 
       <div
         ref={detailsRef}
-        className="fixed top-0 right-0 h-screen z-[6] flex flex-col justify-center gap-[3vw] p-[3vw_4vw] max-[600px]:w-[90%] max-[600px]:gap-8 max-[600px]:p-[8vw_7vw]"
+        className="fixed right-0 top-0 z-[6] flex h-screen flex-col justify-center gap-[3vw] p-[3vw_4vw] max-[600px]:w-[90%] max-[600px]:gap-8 max-[600px]:p-[8vw_7vw]"
         style={{
           width: panelWidth,
           backgroundColor: panelBgColor,
@@ -641,7 +684,7 @@ export default function DraggableVaseGrid({
             <p
               key={`title-${product.id}`}
               data-title={product.id}
-              className="[grid-area:1/-1] overflow-hidden font-semibold text-neutral-800 leading-tight text-[2.4vw] max-[600px]:text-2xl"
+              className="overflow-hidden text-[2.4vw] font-semibold leading-tight text-neutral-800 [grid-area:1/-1] max-[600px]:text-2xl"
             >
               {product.title}
             </p>
@@ -653,14 +696,14 @@ export default function DraggableVaseGrid({
             <p
               key={`price-${product.id}`}
               data-price={product.id}
-              className="[grid-area:1/-1] overflow-hidden text-lg tracking-wide text-neutral-500"
+              className="overflow-hidden text-lg tracking-wide text-neutral-500 [grid-area:1/-1]"
             >
               {product.price}
             </p>
           ))}
         </div>
 
-        <div className="relative grid mx-auto max-w-[26rem] text-center text-neutral-400 leading-relaxed">
+        <div className="relative mx-auto grid max-w-[26rem] text-center leading-relaxed text-neutral-400">
           {products.map((product) => (
             <p
               key={`desc-${product.id}`}
@@ -675,7 +718,7 @@ export default function DraggableVaseGrid({
 
       <div
         ref={crossRef}
-        className="fixed w-[3vw] h-[3vw] min-w-[36px] min-h-[36px] -translate-x-1/2 -translate-y-1/2 z-[20] cursor-pointer scale-0 flex items-center justify-center rounded-full hover:bg-black/5"
+        className="fixed left-0 top-0 z-[20] flex h-[3vw] min-h-[36px] w-[3vw] min-w-[36px] cursor-pointer items-center justify-center rounded-full [transform:translate(-50%,-50%)_scale(0)] hover:bg-black/5"
       >
         <svg
           width="60%"

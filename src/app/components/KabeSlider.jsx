@@ -1,34 +1,35 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-
-// ─── KabeSlider ──────────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// siteTitle        string    "KABE"           Main site title string
-// navLinks         array     [...]            Navigation link configurations
-// transitionSpeed  string    "duration-400"   Tailwind duration config class
-// slideInterval    number    2000             Autoplay timing interval (ms)
-// images           array     [...]            Grid item images and captions
-// ──────────────────────────────────────────────────────────────────────────
+import { useEffect, useState } from "react";
 
 const DEFAULT_IMAGES = [
-  { src: "https://i.ibb.co/HfQRNdRC/image10.jpg", label: "Abstract" },
-  { src: "https://i.ibb.co/Q7F31VYw/image2.jpg", label: "Absurd" },
-  { src: "https://i.ibb.co/VWm379JK/image3.jpg", label: "Irusu" },
-  { src: "https://i.ibb.co/xSFdzFCY/image4.png", label: "Tokyo #1" },
-  { src: "https://i.ibb.co/zWJ1Xtnj/three.jpg", label: "Cyberpunk" },
-  { src: "https://i.ibb.co/60Lzfdcv/image7.jpg", label: "Tokyo #2" },
+  {
+    src: "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1200&q=80",
+    label: "Abstract",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=1200&q=80",
+    label: "Absurd",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=1200&q=80",
+    label: "Irusu",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1200&q=80",
+    label: "Tokyo #1",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1779877716206-f441d5d384d4?auto=format&fit=crop&w=1200&q=80",
+    label: "Cyberpunk",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1200&q=80",
+    label: "Tokyo #2",
+  },
 ];
 
-const DEFAULT_NAV = [
-  { label: "Prints", href: "#" },
-  { label: "A-Z", href: "#" },
-  { label: "About", href: "#" },
-];
-
-const PATTERNS = [
+const DEFAULT_PATTERNS = [
   "4fr 4fr 3fr 2fr 0fr 0fr",
   "4fr 5fr 3fr 2fr 0fr 0fr",
   "0fr 3fr 2fr 3fr 0fr 0fr",
@@ -38,92 +39,104 @@ const PATTERNS = [
 ];
 
 export default function KabeSlider({
-  siteTitle = "KABE",
-  navLinks = DEFAULT_NAV,
-  transitionSpeed = "duration-400",
-  slideInterval = 2000,
   images = DEFAULT_IMAGES,
+  patterns = DEFAULT_PATTERNS,
+  ariaLabel = "Next slide",
+  transitionSpeed = "duration-[600ms]",
+  slideInterval = 2000,
+  fontFamily = "M PLUS Rounded 1c",
+  fontUrl = "https://cdn.jsdelivr.net/fontsource/fonts/m-plus-rounded-1c@latest/latin-500-normal.woff2",
+  backgroundColor = "bg-white",
+  textColor = "text-black",
 }) {
   const [index, setIndex] = useState(0);
-  const timeoutRef = useRef(null);
+  const [filled, setFilled] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
 
-  // Parse current layout configuration string cleanly for safety
-  const currentGridPattern = PATTERNS[index];
-  const currentFractions = currentGridPattern.split(" ");
+  const total = patterns.length;
+  const fractions = (patterns[index] || "").split(" ");
 
-  const nextSlide = () => {
-    setIndex((prevIndex) => (prevIndex + 1) % PATTERNS.length);
-  };
-
-  // Safe side effect cycle initialization
   useEffect(() => {
-    timeoutRef.current = setTimeout(nextSlide, slideInterval);
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, [index, slideInterval]);
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduceMotion(query.matches);
+    const onChange = (e) => setReduceMotion(e.matches);
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+  }, []);
 
-  const handleManualClick = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    nextSlide();
+  useEffect(() => {
+    if (reduceMotion || total < 2) return;
+    const id = setTimeout(
+      () => setIndex((prev) => (prev + 1) % total),
+      slideInterval,
+    );
+    return () => clearTimeout(id);
+  }, [index, slideInterval, total, reduceMotion]);
+
+  useEffect(() => {
+    setFilled(false);
+    const id = setTimeout(() => setFilled(true), 50);
+    return () => clearTimeout(id);
+  }, [index]);
+
+  const step = (delta) => setIndex((prev) => (prev + delta + total) % total);
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " " || e.key === "ArrowRight") {
+      e.preventDefault();
+      step(1);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      step(-1);
+    }
   };
+
+  const fontCss =
+    '@font-face{font-family:"' +
+    fontFamily +
+    '";src:url("' +
+    fontUrl +
+    '") format("woff2");font-weight:500;font-display:swap;}';
+
+  const ease = "ease-[cubic-bezier(0.77,0,0.175,1)]";
 
   return (
-    <div className="min-h-screen bg-[#f2e9e1] text-[#191724] p-6 antialiased selection:bg-[#191724]/10">
-      {/* Dynamic Font Embedding to guarantee layout parity without SSR hydration flashes */}
-      <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=M+PLUS+Rounded+1c:wght@600&display=swap");
-        .font-cherry-bomb {
-          font-family: "Cherry Bomb One", serif;
-        }
-        .font-m-plus {
-          font-family: "M PLUS Rounded 1c", serif;
-          font-weight: 600;
-        }
-      `}</style>
+    <div
+      className={`flex min-h-screen flex-col justify-center p-6 antialiased selection:bg-black selection:text-white ${backgroundColor} ${textColor}`}
+    >
+      <style>{fontCss}</style>
 
-      {/* Header element context */}
-      <header className="font-m-plus flex items-center justify-between p-4 pb-0">
-        <h1 className="font-cherry-bomb text-[36px] font-[700] leading-none">
-          {siteTitle}
-        </h1>
-        <nav className="flex gap-4">
-          {navLinks.map((link, idx) => (
-            <a
-              key={idx}
-              href={link.href}
-              className="text-current underline-offset-[2px] hover:opacity-80 transition-opacity"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-      </header>
-
-      {/* Main Dynamic Grid Canvas */}
       <section
-        onClick={handleManualClick}
-        className={`grid gap-0 w-full cursor-e-resize p-4 px-2 transition-[grid-template-columns] ${transitionSpeed}`}
-        style={{ gridTemplateColumns: currentGridPattern }}
+        role="button"
+        tabIndex={0}
+        aria-label={ariaLabel}
+        onClick={() => step(1)}
+        onKeyDown={handleKeyDown}
+        className={`grid w-full cursor-e-resize select-none gap-0 px-2 py-4 outline-none transition-[grid-template-columns] focus-visible:ring-2 focus-visible:ring-current ${transitionSpeed} ${ease}`}
+        style={{ gridTemplateColumns: patterns[index] }}
       >
         {images.map((item, idx) => {
-          // Detect visibility conditions using programmatic fraction boundaries
-          const isHidden = currentFractions[idx] === "0fr";
+          const isHidden = fractions[idx] === "0fr";
 
           return (
             <div
               key={idx}
-              className={`overflow-hidden transition-opacity ${transitionSpeed} ${
-                isHidden ? "opacity-0 pointer-events-none" : "opacity-100"
-              }`}
+              aria-hidden={isHidden}
+              className={`overflow-hidden transition-opacity ${transitionSpeed} ${ease} ${isHidden ? "pointer-events-none opacity-0" : "opacity-100"
+                }`}
             >
               <figure className="w-full px-2">
                 <img
                   src={item.src}
                   alt={item.label}
-                  className="max-w-full aspect-[4/5] object-cover"
+                  draggable={false}
+                  decoding="async"
+                  className="aspect-[4/5] h-auto w-full max-w-full object-cover"
                 />
-                <figcaption className="font-m-plus max-w-[10rem] mt-1 text-[18px] leading-[1.2]">
+                <figcaption
+                  className="mt-2 max-w-[10rem] text-[18px] font-medium leading-[1.2]"
+                  style={{ fontFamily: `"${fontFamily}", sans-serif` }}
+                >
                   {item.label}
                 </figcaption>
               </figure>
@@ -131,6 +144,21 @@ export default function KabeSlider({
           );
         })}
       </section>
+
+      {!reduceMotion && total > 1 ? (
+        <div className="relative mx-2 mt-6 h-px">
+          <div className="absolute inset-0 bg-current opacity-15" />
+          <div
+            className="absolute inset-0 origin-left bg-current"
+            style={{
+              transform: filled ? "scaleX(1)" : "scaleX(0)",
+              transition: filled
+                ? "transform " + slideInterval + "ms linear"
+                : "none",
+            }}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

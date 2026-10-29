@@ -2,42 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── PoemCube ─────────────────────────────────────────────────────────────────
-//
-// A 3D CSS cube that scrolls poem text across its left / back / right faces,
-// with a blurred reflection below, layered over a background + foreground image
-// pair, a slow zoom and a cycling hue-rotate overlay.
-//
-// Props
-// ────────────────────────────────────────────────────────────────────────────
-// backgroundImage  string  (drive url)   URL of the static background image
-// foregroundImage  string  (drive url)   URL of the image layered in front
-//                                        (animates to blur over scrollDuration)
-//
-// poemHtml         string  KIPLING       Inner HTML for the poem. Use <span>
-//                                        tags to colour accent words.
-// accentColor      string  "red"         CSS colour for <span> highlights
-// textColor        string  "#fff"        Base poem text colour
-// fontFamily       string  "Bebas Neue"  Google Font name (CDN-loaded)
-// fontSize         string  "calc(6em + (190px / 10) * 0.7)"  CSS font-size
-//
-// cardWidth        number  1000          Content area width in px
-// cardHeight       number  562           Content area height in px
-// borderRadius     number  40            Content border-radius in px
-//
-// cubeW            number  870           Cube + face width in px
-// cubeH            number  190           Cube + face height in px
-// cubeDepth        number  435           Half-depth = translateZ distance in px
-//
-// hueColor         string  "#1e5799"     Hue overlay base colour
-// hueColor2        string  "#7db9e8"     Hue overlay radial edge colour
-// hueRotateMax     number  100           Max hue-rotate degrees in the cycle
-// hueCycleDuration number  8             Hue cycle duration in seconds
-//
-// scrollDuration   number  200           Seconds for text scroll + all slow anims
-// zoomEnd          number  2.5           Final scale of the slow zoom-in
-// ────────────────────────────────────────────────────────────────────────────
-
 const KIPLING_HTML = `<p>If you can <span>keep</span> your head when all about you    
 Are <span>losing</span> theirs and <span>blaming</span> it on you; 
 If you can <span>trust</span> yourself when all men <span>doubt</span> you,    
@@ -72,8 +36,8 @@ Yours is the <span>Earth</span> and everything that's in it,
 And—which is more—you'll be a <span>Man</span>, my son!     -Rudyard Kipling</p>`;
 
 export default function PoemCube({
-  backgroundImage = "https://drive.google.com/thumbnail?id=1_ZMV_LcmUXLsRokuz6WXGyN9zVCGfAHp&sz=w1920",
-  foregroundImage = "https://drive.google.com/thumbnail?id=1eGqJskQQgBJ67myGekmo4YfIVI3lfDTm&sz=w1920",
+  backgroundImage = "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/room.png",
+  foregroundImage = "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/girl.png",
   poemHtml = KIPLING_HTML,
   accentColor = "red",
   textColor = "#fff",

@@ -2,42 +2,6 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 
-// ─── GridZoom ────────────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// items              array    ITEMS      Grid items { image, number, heading, text, prevImage, nextImage, col, row }
-// fontUrl            string   Fontshare  Stylesheet URL for the display font
-// fontFamily         string   Satoshi..  CSS font-family stack applied to the component
-// headingTracking    string   -0.03em    Letter spacing of the content heading
-// bgColor            string   #f7f5ee    Page background
-// textColor          string   #000       Text / stroke color
-// accentColor        string   #823725    Back arrow hover color
-// rowHeight          string   32vmin     Height of each large grid row
-// gridPadding        string   0.5vw      Gutter between grid cells
-// borderRadius       string   8px        Cell corner radius
-// hoverOuterScale    number   0.95       Outer cell scale on hover
-// hoverInnerScale    number   1.4        Inner image scale on hover
-// hoverDuration      number   2.4        Hover tween duration (s)
-// zoomDuration       number   1.2        Open / zoom tween duration (s)
-// closeDuration      number   1          Close / change tween duration (s)
-// zoomWidthRatio     number   0.54       Zoomed image width as ratio of viewport width
-// zoomCenterX        number   0.65       Zoomed image center X as ratio of viewport width
-// zoomCenterY        number   0.5        Zoomed image center Y as ratio of viewport height
-// othersOpacity      number   0          Opacity of non-active cells when zoomed
-// othersScale        number   0.8        Scale of non-active cells when zoomed
-// staggerAmount      number   0.17       Stagger amount for the cell fade out
-// contentWidth       string   38%        Width of the content panel (md and up)
-// contentPadding     string   15vh 8vw 0 Padding of the content panel
-// headingSize        string   4vw        Font size of the content heading
-// miniGridWidth      string   220px      Mini grid width
-// miniGridHeight     string   190px      Mini grid height
-// showMiniGrid       bool     true       Show the mini grid navigation
-// showSideNav        bool     true       Show the fixed prev / next preview strips
-// linkLabel          string   "View more" Label of the content link
-// className          string   ""         Extra classes for the root element
-// ──────────────────────────────────────────────────────────────────────────
-
 const ITEMS = [
   {
     image:
@@ -173,8 +137,8 @@ const ITEMS = [
 
 export default function GridZoom({
   items = ITEMS,
-  fontUrl = "https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap",
-  fontFamily = "Satoshi, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif",
+  fontUrl = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap",
+  fontFamily = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
   headingTracking = "-0.03em",
   bgColor = "#f7f5ee",
   textColor = "#000",
@@ -195,7 +159,7 @@ export default function GridZoom({
   staggerAmount = 0.17,
   contentWidth = "38%",
   contentPadding = "15vh 8vw 0",
-  headingSize = "4vw",
+  headingSize = "3vw",
   miniGridWidth = "220px",
   miniGridHeight = "190px",
   showMiniGrid = true,
@@ -251,7 +215,7 @@ export default function GridZoom({
         document.head.appendChild(el);
       });
 
-    let cleanup = () => {};
+    let cleanup = () => { };
 
     loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js")
       .then(() => {
@@ -753,7 +717,7 @@ export default function GridZoom({
               "grid " +
               (currentIndex === i
                 ? "relative opacity-100 " +
-                  (isOpen ? "pointer-events-auto" : "pointer-events-none")
+                (isOpen ? "pointer-events-auto" : "pointer-events-none")
                 : "pointer-events-none absolute opacity-0")
             }
           >

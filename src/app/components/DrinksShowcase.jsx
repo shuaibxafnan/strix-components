@@ -1,234 +1,184 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
-// ─── Interactive Flavor Inventory ────────────────────────────────────────────
-const DEFAULT_FLAVORS = [
+const IMG = (n) =>
+  `https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/${n}.png`;
+
+const DEFAULT_ITEMS = [
   {
-    name: ["Chai", "Vanilla"],
-    tagline: "Warm Spices & Creamy Botanicals",
-    color: "#2C5282", // Modern Deep Slate Blue
-    image:
-      "https://raw.githubusercontent.com/nidal1111/storage/master/assets/milkshake_banana.png",
-    nutrition: [
-      { val: "20g", desc: "Plant Protein" },
-      { val: "13g", desc: "Net Fiber" },
-      { val: "15", desc: "Vitamins" },
-      { val: "1.8g", desc: "Omega-3" },
-      { val: "1B", desc: "Probiotics" },
+    name: ["Duo", "Blue"],
+    tagline: "Twin-neck ceramic in deep cobalt",
+    color: "#2C5282",
+    image: IMG("duo-blue"),
+    specs: [
+      { val: "38 cm", desc: "Height" },
+      { val: "Ceramic", desc: "Material" },
+      { val: "Gloss", desc: "Finish" },
+      { val: "2.1 L", desc: "Capacity" },
+      { val: "1.6 kg", desc: "Weight" },
     ],
   },
   {
-    name: ["Maple", "Peanut"],
-    tagline: "Rich Autumn Sweetness & Crunch",
-    color: "#9B2C2C", // Modern Deep Crimson
-    image:
-      "https://raw.githubusercontent.com/nidal1111/storage/master/assets/milkShake_caffe%CC%80.png",
-    nutrition: [
-      { val: "35g", desc: "Plant Protein" },
-      { val: "10g", desc: "Net Fiber" },
-      { val: "10", desc: "Vitamins" },
-      { val: "1.5g", desc: "Omega-3" },
-      { val: "2B", desc: "Probiotics" },
+    name: ["Raw", "Clay"],
+    tagline: "Hand-formed terracotta, left unglazed",
+    color: "#9B2C2C",
+    image: IMG("clay"),
+    specs: [
+      { val: "45 cm", desc: "Height" },
+      { val: "Clay", desc: "Material" },
+      { val: "Raw", desc: "Finish" },
+      { val: "3.0 L", desc: "Capacity" },
+      { val: "2.2 kg", desc: "Weight" },
     ],
   },
   {
-    name: ["Cacao", "Coconut"],
-    tagline: "Pure Velvety Dark Chocolate Blend",
-    color: "#B7791F", // Modern Warm Amber Gold
-    image:
-      "https://raw.githubusercontent.com/nidal1111/storage/master/assets/milkShake_fragole.png",
-    nutrition: [
-      { val: "40g", desc: "Plant Protein" },
-      { val: "25g", desc: "Net Fiber" },
-      { val: "22", desc: "Vitamins" },
-      { val: "2.2g", desc: "Omega-3" },
-      { val: "1B", desc: "Probiotics" },
+    name: ["Duo", "Umber"],
+    tagline: "Paired vessels in warm earth tones",
+    color: "#B7791F",
+    image: IMG("duo-brown"),
+    specs: [
+      { val: "34 cm", desc: "Height" },
+      { val: "Ceramic", desc: "Material" },
+      { val: "Satin", desc: "Finish" },
+      { val: "1.8 L", desc: "Capacity" },
+      { val: "1.4 kg", desc: "Weight" },
     ],
   },
   {
-    name: ["Berry", "Blend"],
-    tagline: "Antioxidant-Rich Wildfield Infusion",
-    color: "#553C9A", // Modern Royal Indigo Purple
-    image:
-      "https://raw.githubusercontent.com/nidal1111/storage/master/assets/milkshake_banana.png",
-    nutrition: [
-      { val: "28g", desc: "Plant Protein" },
-      { val: "18g", desc: "Net Fiber" },
-      { val: "25", desc: "Vitamins" },
-      { val: "2.0g", desc: "Omega-3" },
-      { val: "3B", desc: "Probiotics" },
+    name: ["Solid", "Indigo"],
+    tagline: "A single dense form in midnight glaze",
+    color: "#553C9A",
+    image: IMG("solid-dblue"),
+    specs: [
+      { val: "50 cm", desc: "Height" },
+      { val: "Ceramic", desc: "Material" },
+      { val: "Matte", desc: "Finish" },
+      { val: "3.6 L", desc: "Capacity" },
+      { val: "2.9 kg", desc: "Weight" },
     ],
   },
 ];
 
-export default function DrinksShowcase({
+export default function VaseShowcase({
+  items = DEFAULT_ITEMS,
   autoPlayDuration = 4500,
-  panelBgColor = "bg-white/90",
-  panelTextColor = "text-neutral-900",
-  labelTextColor = "text-neutral-500",
-  customFlavors = DEFAULT_FLAVORS,
+  dotLabel = "Show vase",
+  backgroundColor = "bg-black",
+  textColor = "text-white",
+  panelBgColor = "bg-white",
+  panelTextColor = "text-black",
+  labelTextColor = "text-black/60",
 }) {
-  const [mounted, setMounted] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [overlayColor, setOverlayColor] = useState(customFlavors[0].color);
-  const [slideDownActive, setSlideDownActive] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [next, setNext] = useState(null);
 
-  const autoPlayRef = useRef(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const clearAutoPlay = () => {
-    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-  };
-
-  const initAutoPlay = () => {
-    clearAutoPlay();
-    autoPlayRef.current = setInterval(() => {
-      handleSlideChange((currentIndex + 1) % customFlavors.length);
-    }, autoPlayDuration);
-  };
+  const sliding = next !== null;
+  const current = items[index];
+  const overlayColor = items[next ?? index].color;
 
   useEffect(() => {
-    if (!mounted) return;
-    initAutoPlay();
-    return () => clearAutoPlay();
-  }, [currentIndex, mounted, autoPlayDuration]);
+    if (!sliding) return;
+    const swap = setTimeout(() => setIndex(next), 400);
+    const done = setTimeout(() => setNext(null), 1200);
+    return () => {
+      clearTimeout(swap);
+      clearTimeout(done);
+    };
+  }, [sliding, next]);
 
-  const handleSlideChange = (newIndex) => {
-    if (newIndex === currentIndex || isAnimating) return;
-
-    setIsAnimating(true);
-    const nextFlavor = customFlavors[newIndex];
-
-    setOverlayColor(nextFlavor.color);
-    setSlideDownActive(true);
-
-    setTimeout(() => {
-      setCurrentIndex(newIndex);
-    }, 400);
-
-    setTimeout(() => {
-      setSlideDownActive(false);
-      setIsAnimating(false);
-    }, 1200);
-  };
-
-  if (!mounted) {
-    return (
-      <div className="w-[640px] h-[520px] bg-neutral-950 rounded-[32px] animate-pulse flex items-center justify-center text-neutral-500 font-sans tracking-widest text-xs font-semibold">
-        LOADING SHOWCASE EXPERIENCE...
-      </div>
+  useEffect(() => {
+    if (sliding || items.length < 2) return;
+    const id = setTimeout(
+      () => setNext((index + 1) % items.length),
+      autoPlayDuration,
     );
-  }
+    return () => clearTimeout(id);
+  }, [index, sliding, items.length, autoPlayDuration]);
 
-  const currentFlavor = customFlavors[currentIndex];
+  const go = (i) => {
+    if (!sliding && i !== index) setNext(i);
+  };
+
+  const fade = sliding ? "opacity-0 -translate-y-4" : "opacity-100 translate-y-0";
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center bg-neutral-950 p-6 antialiased font-sans">
-      {/* Container Shell */}
+    <div
+      className={`flex min-h-screen w-full items-center justify-center p-6 antialiased ${backgroundColor} ${textColor}`}
+    >
       <div
-        className="relative w-[640px] h-[520px] rounded-[40px] overflow-hidden shadow-[0_40px_90px_rgba(0,0,0,0.7)] select-none border border-white/10 transition-colors duration-300"
-        style={{ backgroundColor: currentFlavor.color }}
+        className="relative h-[520px] w-full max-w-[640px] select-none overflow-hidden rounded-md transition-colors duration-300"
+        style={{ backgroundColor: current.color }}
       >
-        {/* Dynamic Color Overlay Slide Track */}
         <div
-          className="absolute left-0 w-full h-full pointer-events-none will-change-transform z-10 transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
-          style={{
-            backgroundColor: overlayColor,
-            top: "-100%",
-            transform: slideDownActive ? "translateY(100%)" : "translateY(0%)",
-          }}
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-0 z-10 transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${sliding ? "translate-y-0" : "-translate-y-full"
+            }`}
+          style={{ backgroundColor: overlayColor }}
         />
 
-        {/* Core Canvas Viewport */}
-        <div className="relative w-full h-full flex flex-col justify-between p-10 z-20">
-          {/* Header Typography Elements */}
-          <div className="relative flex flex-col items-center text-center mt-2">
-            <div
-              className={`transition-all ease-[cubic-bezier(0.16,1,0.3,1)] duration-700 ${
-                slideDownActive
-                  ? "opacity-0 -translate-y-4 blur-sm"
-                  : "opacity-100 translate-y-0 blur-0"
-              }`}
-            >
-              <h2 className="text-4xl font-black uppercase tracking-tight text-white drop-shadow-sm">
-                {currentFlavor.name[0]}{" "}
-                <span className="font-light italic text-white/80">
-                  {currentFlavor.name[1]}
-                </span>
-              </h2>
-              <p className="text-xs font-medium tracking-wide text-white/60 uppercase mt-1.5">
-                {currentFlavor.tagline}
-              </p>
-            </div>
-          </div>
-
-          {/* Centered Floating Hero Asset */}
-          <div className="absolute inset-x-0 top-[20%] bottom-[26%] flex items-center justify-center pointer-events-none">
-            <div className="relative w-full h-full flex items-center justify-center">
-              {/* Ground Shadow */}
-              <div className="absolute w-48 h-8 bg-black/30 rounded-full blur-xl bottom-2 scale-x-110" />
-
-              <img
-                className={`w-[290px] h-full object-contain drop-shadow-[0_35px_45px_rgba(0,0,0,0.5)] transition-all ease-[cubic-bezier(0.34,1.56,0.64,1)] duration-700 ${
-                  slideDownActive
-                    ? "opacity-0 scale-75 rotate-3 blur-sm"
-                    : "opacity-100 scale-100 rotate-0 blur-0 pointer-events-auto cursor-grab active:cursor-grabbing hover:scale-105"
-                }`}
-                src={currentFlavor.image}
-                alt={`${currentFlavor.name.join(" ")} Display`}
-              />
-            </div>
-          </div>
-
-          {/* Premium Modular Metric Panel */}
+        <div className="relative z-20 flex h-full flex-col justify-between p-6 sm:p-10">
           <div
-            className={`w-full ${panelBgColor} backdrop-blur-xl rounded-2xl p-5 px-6 flex justify-between items-center gap-2 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border border-white/20 transition-all duration-500 ${
-              slideDownActive
-                ? "opacity-30 translate-y-4 blur-[1px]"
-                : "opacity-100 translate-y-0 blur-0"
-            }`}
+            className={`mt-2 text-center transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${fade}`}
           >
-            {currentFlavor.nutrition.map((item, idx) => (
+            <h2 className="m-0 text-3xl font-black uppercase tracking-tight sm:text-4xl">
+              {current.name[0]}{" "}
+              <span className="font-light italic opacity-80">
+                {current.name[1]}
+              </span>
+            </h2>
+            <p className="mt-1.5 text-xs font-medium uppercase tracking-wide opacity-60">
+              {current.tagline}
+            </p>
+          </div>
+
+          <div className="pointer-events-none absolute inset-x-0 bottom-[25%] mt-4 top-[20%] flex items-center justify-center">
+            <img
+              src={current.image}
+              alt={current.name.join(" ")}
+              draggable={false}
+              className={`h-full w-auto object-contain transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none ${sliding ? "scale-90 opacity-0" : "scale-100 opacity-100"
+                }`}
+            />
+          </div>
+
+          <div
+            className={`flex w-full items-center justify-between rounded-md border border-black/10 px-4 py-4 transition-all duration-500 motion-reduce:transition-none sm:px-6 sm:py-5 ${panelBgColor} ${sliding ? "translate-y-4 opacity-30" : "translate-y-0 opacity-100"
+              }`}
+          >
+            {current.specs.map((spec) => (
               <div
-                key={idx}
-                className="text-center flex-1 border-r last:border-r-0 border-neutral-300/40 last:border-transparent"
+                key={spec.desc}
+                className="flex-1 border-r border-black/10 text-center last:border-r-0"
               >
                 <div
-                  className={`text-xl font-black tracking-tight ${panelTextColor} transition-all duration-300`}
-                  style={{ transitionDelay: `${idx * 25}ms` }}
+                  className={`text-base font-black tracking-tight sm:text-lg ${panelTextColor}`}
                 >
-                  {item.val}
+                  {spec.val}
                 </div>
                 <div
-                  className={`text-[9px] uppercase font-bold tracking-widest mt-1 opacity-70 ${labelTextColor}`}
+                  className={`mt-1 text-[9px] font-bold uppercase tracking-widest ${labelTextColor}`}
                 >
-                  {item.desc}
+                  {spec.desc}
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Premium Ergonomic Navigation Dots */}
-        <div className="absolute top-8 right-8 flex flex-col gap-2 z-30">
-          {customFlavors.map((_, index) => (
+        <div className="absolute right-6 top-6 z-30 flex flex-col gap-1 sm:right-8 sm:top-8">
+          {items.map((item, i) => (
             <button
-              key={index}
-              onClick={() => handleSlideChange(index)}
-              aria-label={`Jump to slide ${index + 1}`}
-              className="group flex items-center justify-center w-5 h-5 rounded-full cursor-pointer transition-transform duration-200 active:scale-90"
+              key={i}
+              type="button"
+              onClick={() => go(i)}
+              aria-label={`${dotLabel} ${i + 1}`}
+              aria-current={i === index}
+              className="flex h-5 w-5 items-center justify-center"
             >
-              <div
-                className={`rounded-full transition-all duration-500 ease-out ${
-                  index === currentIndex
-                    ? "w-5 h-5 bg-white shadow-[0_0_15px_rgba(255,255,255,0.6)]"
-                    : "w-4 h-4 bg-transparent border-2 border-white/40 group-hover:border-white/80 group-hover:scale-110"
-                }`}
+              <span
+                className={`h-3.5 w-3.5 rounded-full border-2 border-white transition-all duration-300 ${i === index ? "bg-white" : "bg-transparent opacity-50 hover:opacity-100"
+                  }`}
               />
             </button>
           ))}

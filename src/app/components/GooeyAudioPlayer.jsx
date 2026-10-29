@@ -2,22 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 
-// ─── GooeyAudioPlayer ────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// audioSrc       string   "..."     Source URL for audio track
-// particleColor  string   "#0037a3" Initial core color of the button & liquid blobs
-// activeColor    string   "#00aaff" Fluid accent color when rotating & shifting values
-// iconColor      string   "#ffffff" Stroke color of the SVG icon paths
-// bgImage        string   "..."     Background image URL for the wrapper container
-// bgOverlay      string   "..."     Tailwind opacity/color overlay class
-// buttonSize     number   50        Width & Height (px) for the central gooey cluster bounding area
-// particleSize   number   20        Diameter (px) of the satellite fluid parts
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function GooeyAudioPlayer({
-  audioSrc = "http://dl2.mp3party.net/online/3644.mp3",
+  audioSrc = "https://upload.wikimedia.org/wikipedia/commons/6/61/Happy_Happy_HardPopCoreTastic.ogg",
   particleColor = "#0037a3",
   activeColor = "#00aaff",
   iconColor = "#ffffff",

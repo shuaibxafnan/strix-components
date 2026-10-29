@@ -2,34 +2,11 @@
 
 import { useEffect, useRef, useId } from "react";
 
-// ─── ImageMouseTrail ─────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// images              string[]  4 imgur URLs (see default)   Pool of image sources, cycled in order as the trail spawns
-// imageWidth          number    200                          Trail image width in px
-// imageHeight         number    300                          Trail image height in px
-// objectFit           string    "cover"                      CSS object-fit for each trail image ("cover" | "contain" | "fill" | "none" | "scale-down")
-// borderRadius        number    3                             Trail image corner radius in px
-// movementThreshold   number    100                          Minimum px the cursor must travel before a new image spawns
-// spawnDelay          number    70                            Minimum ms between spawns, even if the cursor moves fast
-// maxRotation         number    20                            Max random tilt (±deg) applied to each spawned image
-// entranceDuration    number    0.6                           Seconds for the scale-in / fade-in entrance
-// entranceEase        string    "back.out(2)"                 GSAP ease for the entrance
-// exitDelay           number    0.6                           Seconds to hold at full size before the exit animation starts
-// exitDuration        number    0.6                           Seconds for the scale-out / fade-out exit
-// exitEase            string    "power2.in"                   GSAP ease for the exit
-// fadeIn              boolean   false                         If true, images fade in (opacity 0→1) instead of appearing instantly opaque
-// fadeOut             boolean   false                         If true, images fade out (opacity 1→0) instead of staying opaque while they shrink
-// zIndex              number    9999                          Stacking order of the trail container, above normal page content
-// gsapCdnUrl          string    cdnjs GSAP core URL           Overridable CDN URL for GSAP core
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_IMAGES = [
-  "https://i.imgur.com/1QkISzk.png",
-  "https://i.imgur.com/dTDiDHn.jpeg",
-  "https://i.imgur.com/joo4QP1.png",
-  "https://i.imgur.com/82ZHnLf.png",
+  "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1200&q=80",
 ];
 
 export default function ImageMouseTrail({

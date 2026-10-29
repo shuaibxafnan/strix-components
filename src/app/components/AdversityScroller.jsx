@@ -2,35 +2,6 @@
 
 import { useEffect, useId, useMemo, useRef } from "react";
 
-// ─── ScrollTextClipPath ──────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// sections         object[]  (9 defaults)   Per-section config incl. its own timeline
-// images           string[]  (25 defaults)  Image pool, assigned in order across sections
-// texts            object[]  (9 defaults)   Prose blocks between sections: { heading, body }
-// heading          string[]  (3 defaults)   Page title lines, empty array to hide
-// videoSrc         string    null           Optional video for the final section
-// bgColor          string    #0f0e0e        Page background
-// textColor        string    #f3f3f3        Body text color
-// headingGradient  string[]  [#e35384,#e8a53c]  Two-stop gradient on prose headings
-// fonts            string[]  (9 defaults)   Font stack per slot, indexed by fontSlot
-// fontUrl          string    (Google Fonts) Stylesheet injected for the display faces
-// fontFaces        object[]  []             Self-hosted faces: { family, woff2, woff, otf, ttf, weight, style }
-// bodyFont         string    (serif stack)  Font for prose and chrome
-// baseFontSize     string    16px           Root size the rem values scale from
-// sizeScale        number    1              Multiplier on every clip-text font size
-// posterHeight     string    100vh          Height of a full-height poster
-// halfHeight       string    28vw           Height of the paired half posters
-// sectionGap       string    15vh           Vertical margin around each section
-// proseSize        string    clamp(1.5rem,5vw,2.25rem)  Prose paragraph size
-// proseMaxWidth    string    950px          Max width of the prose column
-// smoothScroll     boolean   true           Enable inertial scrolling
-// lerp             number    0.2            Smooth scroll lerp, lower is heavier
-// scrub            boolean   true           Tie animations to scroll position
-// breakpoint       string    53em           Min-width for the wide layout
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_IMAGES = [
   "https://images.unsplash.com/photo-1749330513873-09ffa91b0aae?auto=format&fit=crop&w=1600&q=80",
   "https://images.unsplash.com/photo-1627896157734-4d7d4388f28b?auto=format&fit=crop&w=1600&q=80",
@@ -59,46 +30,29 @@ const DEFAULT_IMAGES = [
   "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=1600&q=80",
 ];
 
-const FONT_BASE =
-  "https://cdn.jsdelivr.net/gh/codrops/TextClipScroll@main/fonts";
-
 const DEFAULT_FONT_FACES = [
   {
-    family: "blackoutregular",
-    woff2: `${FONT_BASE}/blackout-webfont.woff2`,
-    woff: `${FONT_BASE}/blackout-webfont.woff`,
-  },
-  {
-    family: "hacked_crtregular",
-    woff2: `${FONT_BASE}/hacked_crt-webfont.woff2`,
-    woff: `${FONT_BASE}/hacked_crt-webfont.woff`,
-  },
-  {
-    family: "h19a_lunaluna",
-    woff2: `${FONT_BASE}/h19a-luna-webfont.woff2`,
-    woff: `${FONT_BASE}/h19a-luna-webfont.woff`,
-  },
-  {
-    family: "capsule3regular",
-    woff2: `${FONT_BASE}/capsule3-webfont.woff2`,
-    woff: `${FONT_BASE}/capsule3-webfont.woff`,
+    family: "Blackout Midnight",
+    woff2:
+      "https://cdn.jsdelivr.net/fontsource/fonts/blackout-midnight@latest/latin-400-normal.woff2",
   },
 ];
 
 const DEFAULT_FONT_URL =
-  "https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Bungee+Shade&family=Rubik+Mono+One&family=Syne:wght@800&display=swapfamily=Major+Mono+Display&family=Monoton&family=Rubik+Mono+One&family=Syne:wght@700;800&display=swap";
+  "https://fonts.googleapis.com/css2?family=Anton&family=Bungee+Shade&family=Monoton&family=Orbitron:wght@900&family=Pixelify+Sans:wght@700&family=Rubik+Glitch&family=Rubik+Mono+One&display=swap";
 
 const DEFAULT_FONTS = [
-  "blackoutregular",
-  "hacked_crtregular",
+  '"Blackout Midnight", Anton, sans-serif',
+  '"Rubik Glitch", system-ui, sans-serif',
   '"Rubik Mono One", sans-serif',
   '"Bungee Shade", sans-serif',
-  '"Monoton", Cursive',
-  "h19a_lunaluna",
-  "capsule3regular",
-  "h19a_lunaluna",
-  '"Monoton", Cursive',
+  '"Monoton", cursive',
+  '"Orbitron", sans-serif',
+  '"Pixelify Sans", sans-serif',
+  '"Orbitron", sans-serif',
+  '"Monoton", cursive',
 ];
+
 const DEFAULT_TEXTS = [
   {
     heading: "Heart of adversity",
@@ -129,12 +83,8 @@ const DEFAULT_TEXTS = [
     body: "With calm scales, it soared into a digital realm echoing the patient strength found in interconnected communities, a sanctuary far from the clamor of mainstream platforms.",
   },
   {
-    heading: "Ancient willow",
-    body: "Beside the ancient willow, the patient dragon weaves tales of resilience, its wings brushing against the wisps of time. It teaches that, much like the willow bending but never breaking in the wind, the strength to endure lies in the supple flexibility of the spirit, shaped by the patient hands of experience.",
-  },
-  {
     heading: "Silent narrative",
-    body: "In the silent narrative woven by the patient dragon, a reminder emerges\u2014that the hands of experience, marked by the passage of time, sculpt the spirit into a vessel of enduring strength, capable of navigating the ever-shifting currents of the cosmic dance.",
+    body: "In the silent narrative woven by the patient dragon, a reminder emerges, that the hands of experience, marked by the passage of time, sculpt the spirit into a vessel of enduring strength, capable of navigating the ever-shifting currents of the cosmic dance.",
   },
 ];
 
@@ -142,6 +92,7 @@ const SECTIONS = [
   {
     word: "Xogoxy",
     fontSlot: 6,
+    weight: 700,
     size: "30vw",
     layout: "half",
     clips: 2,
@@ -394,6 +345,7 @@ const SECTIONS = [
   {
     word: "kelpforests",
     fontSlot: 5,
+    weight: 900,
     size: "30vw",
     layout: "full",
     clips: 1,
@@ -426,51 +378,6 @@ const SECTIONS = [
           },
           0,
         );
-    },
-  },
-  {
-    words: ["liulong", "gnoluil"],
-    fontSlot: 7,
-    size: "20vh",
-    layout: "column",
-    clips: 2,
-    build: ({ gsap, clips, posters, trigger }) => {
-      clips.forEach((clipEl, pos) => {
-        const texts = clipEl.querySelectorAll("text");
-        gsap
-          .timeline({
-            defaults: { ease: "none" },
-            scrollTrigger: trigger(posters[0]),
-          })
-          .fromTo(
-            clipEl,
-            { yPercent: pos ? 30 : 0 },
-            { ease: "none", yPercent: pos ? -30 : 0 },
-            0,
-          )
-          .fromTo(
-            texts,
-            {
-              transformOrigin: "50% 0%",
-              scale: 2,
-              opacity: 0,
-              x: pos ? 100 : -100,
-              y: () => gsap.utils.random(150, 300),
-              skewX: pos ? 20 : -20,
-            },
-            {
-              duration: 0.4,
-              ease: "power3",
-              stagger: 0.06,
-              scale: 1.3,
-              opacity: 1,
-              x: 0,
-              y: 0,
-              skewX: 0,
-            },
-            0,
-          );
-      });
     },
   },
   {
@@ -526,6 +433,7 @@ export default function AdversityScroller({
   sections = SECTIONS,
   images = DEFAULT_IMAGES,
   texts = DEFAULT_TEXTS,
+  words = null,
   heading = ["On-Scroll", "Text Clip-Path", "Animations"],
   videoSrc = null,
   bgColor = "#0f0e0e",
@@ -545,7 +453,6 @@ export default function AdversityScroller({
   smoothScroll = true,
   lerp = 0.2,
   scrub = true,
-  breakpoint = "53em",
 }) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
   const scope = `stc-${uid}`;
@@ -554,7 +461,12 @@ export default function AdversityScroller({
   const model = useMemo(() => {
     let imgIndex = 0;
     return sections.map((section, i) => {
-      const words = section.words || [section.word];
+      const override = words?.[i];
+      const resolvedWords = Array.isArray(override)
+        ? override
+        : typeof override === "string"
+          ? [override]
+          : section.words || [section.word];
       const clipCount = section.clips || 1;
       const swapCount = section.swapImages || 0;
 
@@ -570,15 +482,16 @@ export default function AdversityScroller({
       return {
         ...section,
         index: i,
-        words,
+        words: resolvedWords,
         clipCount,
         posterImages,
         swapUrls,
         font: fonts[section.fontSlot % fonts.length],
       };
     });
-  }, [sections, images, fonts]);
+  }, [sections, images, fonts, words]);
 
+  /* @font-face cannot be expressed in Tailwind, so this is the one stylesheet left */
   const faceCss = useMemo(
     () =>
       fontFaces
@@ -592,38 +505,13 @@ export default function AdversityScroller({
             .filter(Boolean)
             .join(", ");
           if (!srcs) return "";
-          return `@font-face { font-family: '${f.family}'; src: ${srcs}; font-weight: ${
-            f.weight || "normal"
-          }; font-style: ${f.style || "normal"}; font-display: block; }`;
+          return `@font-face { font-family: '${f.family}'; src: ${srcs}; font-weight: ${f.weight || "normal"
+            }; font-style: ${f.style || "normal"}; font-display: swap; }`;
         })
         .filter(Boolean)
         .join("\n"),
     [fontFaces],
   );
-
-  const css = `
-${faceCss}
-.${scope} { font-size: ${baseFontSize}; color: ${textColor}; background-color: ${bgColor}; font-family: ${bodyFont}; width: 100%; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-.${scope} .stc-head { padding: 2rem 3rem; position: relative; z-index: 1000; }
-.${scope} .stc-head h1 { font-size: clamp(2rem, 10vw, 4rem); font-weight: 100; line-height: 1; margin: 2rem 0 0 0; }
-.${scope} .stc-section { min-height: 60vh; margin: ${sectionGap} auto; display: grid; place-items: center; position: relative; }
-.${scope} .stc-section--flex { display: flex; justify-content: center; }
-.${scope} .stc-prose { min-height: 60vh; margin: 0 0 0 auto; display: grid; place-items: initial; align-content: center; max-width: ${proseMaxWidth}; padding: 0 10vw; }
-.${scope} .stc-prose h4 { background-image: linear-gradient(172deg, ${headingGradient[0]}, ${headingGradient[1]}); background-size: 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-family: system-ui, -apple-system, Segoe UI, Helvetica, sans-serif; margin: 0 0 1rem 0; }
-.${scope} .stc-prose p { font-weight: 300; font-size: ${proseSize}; line-height: 1.25; margin: 0; }
-.${scope} .stc-svg { opacity: 0; position: absolute; pointer-events: none; width: 100%; height: 100vh; overflow: visible; }
-.${scope} .stc-svg text { line-height: 1; }
-.${scope} .stc-svg--column { height: 50vh; width: 50vw; position: relative; }
-.${scope} .stc-poster { width: 100%; height: ${posterHeight}; display: grid; place-items: center; --offset-x: 0%; --offset-y: 0%; }
-.${scope} .stc-poster--half { height: ${halfHeight}; }
-.${scope} .stc-poster--column { height: 200vh; width: 50vw; }
-.${scope} .stc-inner { width: calc(100% + var(--offset-x) * 2); height: calc(100% + var(--offset-y) * 2); background-size: cover; background-position: 50% 50%; }
-.${scope} .stc-inner--fixed { background-attachment: fixed; }
-.${scope} .stc-inner video { width: 100%; height: 100%; object-fit: cover; }
-@media screen and (min-width: ${breakpoint}) {
-  .${scope} .stc-svg--column, .${scope} .stc-poster--column { width: 25vw; }
-}
-`;
 
   useEffect(() => {
     let killed = false;
@@ -664,7 +552,7 @@ ${faceCss}
     const boot = async () => {
       loadStyle(fontUrl);
       for (const src of SCRIPTS) await loadScript(src);
-      if (smoothScroll) await loadScript(LENIS_URL).catch(() => {});
+      if (smoothScroll) await loadScript(LENIS_URL).catch(() => { });
       if (killed || !rootRef.current) return;
 
       const { gsap, ScrollTrigger, imagesLoaded } = window;
@@ -731,7 +619,7 @@ ${faceCss}
       );
     };
 
-    boot().catch(() => {});
+    boot().catch(() => { });
 
     return () => {
       killed = true;
@@ -749,6 +637,7 @@ ${faceCss}
     const id = `${scope}-clip-${section.index}-${clipIndex}`;
     const chars = [...word];
     const isColumn = section.layout === "column";
+    const tracking = section.tracking ?? 1;
 
     const textStyle = {
       fontFamily: section.font,
@@ -774,7 +663,7 @@ ${faceCss}
           ) : (
             <text
               key={`${id}-${i}`}
-              x={`${i}ch`}
+              x={`${i * tracking}ch`}
               y={section.centered ? "50%" : "0.95em"}
               dominantBaseline={section.centered ? "middle" : undefined}
               textAnchor={section.centered ? "middle" : undefined}
@@ -789,12 +678,28 @@ ${faceCss}
   };
 
   return (
-    <div ref={rootRef} className={`${scope} opacity-0`}>
-      <style dangerouslySetInnerHTML={{ __html: css }} />
+    <div
+      ref={rootRef}
+      className={`${scope} w-full overflow-x-hidden bg-[var(--stc-bg)] font-[family-name:var(--stc-body)] text-[length:var(--stc-base)] text-[color:var(--stc-fg)] antialiased opacity-0`}
+      style={{
+        "--stc-bg": bgColor,
+        "--stc-fg": textColor,
+        "--stc-body": bodyFont,
+        "--stc-base": baseFontSize,
+        "--stc-g1": headingGradient[0],
+        "--stc-g2": headingGradient[1],
+        "--stc-poster": posterHeight,
+        "--stc-half": halfHeight,
+        "--stc-gap": sectionGap,
+        "--stc-prose-size": proseSize,
+        "--stc-prose-w": proseMaxWidth,
+      }}
+    >
+      {faceCss ? <style dangerouslySetInnerHTML={{ __html: faceCss }} /> : null}
 
       {heading.length ? (
-        <header className="stc-head">
-          <h1>
+        <header className="relative z-[1000] px-12 py-8">
+          <h1 className="mt-8 text-[clamp(2rem,10vw,4rem)] font-thin leading-none">
             {heading.map((line, i) => (
               <span key={`${uid}-h${i}`}>
                 {line}
@@ -811,24 +716,24 @@ ${faceCss}
             data-stc-section={section.index}
             className={
               section.layout === "column"
-                ? "stc-section stc-section--flex"
-                : "stc-section"
+                ? "relative mx-auto my-[var(--stc-gap)] flex min-h-[60vh] justify-center"
+                : "relative mx-auto my-[var(--stc-gap)] grid min-h-[60vh] place-items-center"
             }
           >
             {section.layout === "column" ? (
               section.words.map((word, c) => (
                 <div key={`${uid}-col${i}-${c}`} className="relative">
-                  <svg className="stc-svg stc-svg--column">
+                  <svg className="pointer-events-none relative h-[50vh] w-[50vw] overflow-visible opacity-0 min-[53em]:w-[25vw]">
                     {renderClip(section, c, word)}
                   </svg>
                   <div
-                    className="stc-poster stc-poster--column"
+                    className="stc-poster grid h-[200vh] w-[50vw] place-items-center min-[53em]:w-[25vw]"
                     style={{
                       clipPath: `url(#${scope}-clip-${section.index}-${c})`,
                     }}
                   >
                     <div
-                      className="stc-inner"
+                      className="stc-inner h-full w-full bg-cover bg-[50%_50%]"
                       style={{
                         backgroundImage: `url(${section.posterImages[c]})`,
                       }}
@@ -838,7 +743,7 @@ ${faceCss}
               ))
             ) : (
               <>
-                <svg className="stc-svg">
+                <svg className="pointer-events-none absolute h-screen w-full overflow-visible opacity-0">
                   {Array.from({ length: section.clipCount }, (_, c) =>
                     renderClip(section, c, section.words[0]),
                   )}
@@ -846,11 +751,10 @@ ${faceCss}
                 {Array.from({ length: section.clipCount }, (_, c) => (
                   <div
                     key={`${uid}-p${i}-${c}`}
-                    className={
-                      section.layout === "half"
-                        ? "stc-poster stc-poster--half"
-                        : "stc-poster"
-                    }
+                    className={`stc-poster grid w-full place-items-center ${section.layout === "half"
+                        ? "h-[var(--stc-half)]"
+                        : "h-[var(--stc-poster)]"
+                      }`}
                     style={{
                       clipPath: `url(#${scope}-clip-${section.index}-${c})`,
                       "--offset-x": section.offsetX || "0%",
@@ -858,18 +762,22 @@ ${faceCss}
                     }}
                   >
                     {section.video && videoSrc ? (
-                      <div className="stc-inner">
-                        <video preload="auto" muted autoPlay loop playsInline>
+                      <div className="stc-inner h-[calc(100%_+_var(--offset-y,0%)_*_2)] w-[calc(100%_+_var(--offset-x,0%)_*_2)]">
+                        <video
+                          className="h-full w-full object-cover"
+                          preload="auto"
+                          muted
+                          autoPlay
+                          loop
+                          playsInline
+                        >
                           <source src={videoSrc} />
                         </video>
                       </div>
                     ) : (
                       <div
-                        className={
-                          section.fixed
-                            ? "stc-inner stc-inner--fixed"
-                            : "stc-inner"
-                        }
+                        className={`stc-inner h-[calc(100%_+_var(--offset-y,0%)_*_2)] w-[calc(100%_+_var(--offset-x,0%)_*_2)] bg-cover bg-[50%_50%] ${section.fixed ? "bg-fixed" : ""
+                          }`}
                         style={{
                           backgroundImage: `url(${section.posterImages[c]})`,
                         }}
@@ -882,9 +790,13 @@ ${faceCss}
           </div>
 
           {texts[i] ? (
-            <div className="stc-prose">
-              <h4>{texts[i].heading}</h4>
-              <p>{texts[i].body}</p>
+            <div className="ml-auto grid min-h-[60vh] max-w-[var(--stc-prose-w)] content-center px-[10vw]">
+              <h4 className="mb-4 bg-[linear-gradient(172deg,var(--stc-g1),var(--stc-g2))] bg-clip-text font-sans text-transparent">
+                {texts[i].heading}
+              </h4>
+              <p className="m-0 text-[length:var(--stc-prose-size)] font-light leading-tight">
+                {texts[i].body}
+              </p>
             </div>
           ) : null}
         </div>

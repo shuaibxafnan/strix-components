@@ -9,9 +9,9 @@ const DEFAULT_CARDS = [
     label: "DESERT",
     imageURL: {
       default:
-        "https://raw.githubusercontent.com/devloop01/canvas-image-interaction/master/src/images/desert-dark.jpg",
+        "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=720&q=80",
       hovered:
-        "https://raw.githubusercontent.com/devloop01/canvas-image-interaction/master/src/images/desert-bright.jpg",
+        "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=720&q=80",
     },
   },
   {
@@ -19,9 +19,9 @@ const DEFAULT_CARDS = [
     label: "FOREST",
     imageURL: {
       default:
-        "https://raw.githubusercontent.com/devloop01/canvas-image-interaction/master/src/images/forest.jpg",
+        "https://images.unsplash.com/photo-1779877716206-f441d5d384d4?auto=format&fit=crop&w=720&q=80",
       hovered:
-        "https://raw.githubusercontent.com/devloop01/canvas-image-interaction/master/src/images/forest-top.jpg",
+        "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=720&q=80",
     },
   },
   {
@@ -29,9 +29,9 @@ const DEFAULT_CARDS = [
     label: "OCEAN",
     imageURL: {
       default:
-        "https://raw.githubusercontent.com/devloop01/canvas-image-interaction/master/src/images/ocean-top.jpg",
+        "https://images.unsplash.com/photo-1780163930838-1502715c3bc1?auto=format&fit=crop&w=720&q=80",
       hovered:
-        "https://raw.githubusercontent.com/devloop01/canvas-image-interaction/master/src/images/ocean.jpg",
+        "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=720&q=80",
     },
   },
 ];

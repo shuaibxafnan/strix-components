@@ -1,58 +1,118 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
-// ─── CardScanner ──────────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// cardCount           number    30         Number of cards in the stream
-// cardWidth           number    400        Width of each card (px)
-// cardHeight          number    250        Height of each card (px)
-// cardGap             number    60         Gap between cards (px)
-// initialVelocity     number    120        Starting scroll speed (px/s)
-// friction            number    0.95       Drag deceleration factor
-// minVelocity         number    30         Minimum scroll speed floor (px/s)
-// scannerWidth        number    8          Width of the scanner beam (px)
-// particleCount       number    400        Three.js background particles
-// scanParticleMax     number    2500       Max particles when scanning active
-// baseParticleMax     number    800        Max particles at idle
-// cardImages          string[]  [...]      Array of card image URLs
-// showControls        boolean   true       Show pause/reset/direction buttons
-// showSpeedIndicator  boolean   true       Show speed readout
-// showCredit          boolean   true       Show inspiration credit
-// ──────────────────────────────────────────────────────────────────────────
+const THREE_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
 
-const DEFAULT_CARD_IMAGES = [
-  "https://cdn.prod.website-files.com/68789c86c8bc802d61932544/689f20b55e654d1341fb06f8_4.1.png",
-  "https://cdn.prod.website-files.com/68789c86c8bc802d61932544/689f20b5a080a31ee7154b19_1.png",
-  "https://cdn.prod.website-files.com/68789c86c8bc802d61932544/689f20b5c1e4919fd69672b8_3.png",
-  "https://cdn.prod.website-files.com/68789c86c8bc802d61932544/689f20b5f6a5e232e7beb4be_2.png",
-  "https://cdn.prod.website-files.com/68789c86c8bc802d61932544/689f20b5bea2f1b07392d936_4.png",
+const MAX_CARDS = 5;
+const REPEATS = 3;
+
+const SCAN_FX_CLASS =
+  "pointer-events-none absolute inset-0 z-[5] animate-[csScanFx_0.6s_ease-out] bg-[linear-gradient(90deg,transparent,rgba(var(--scan-light),0.45),transparent)]";
+
+const DEFAULT_CARDS = [
+  {
+    brand: "Meridian",
+    number: "4821 0000 0000 7316",
+    holder: "A. Rivera",
+    expiry: "09/28",
+    from: "#111827",
+    to: "#374151",
+  },
+  {
+    brand: "Halcyon",
+    number: "5190 0000 0000 2048",
+    holder: "J. Okafor",
+    expiry: "03/27",
+    from: "#18181b",
+    to: "#52525b",
+  },
+  {
+    brand: "Vantage",
+    number: "3714 0000 0000 9935",
+    holder: "M. Lindqvist",
+    expiry: "12/29",
+    from: "#0f172a",
+    to: "#1e3a5f",
+  },
+  {
+    brand: "Orbit",
+    number: "6011 0000 0000 5502",
+    holder: "S. Tanaka",
+    expiry: "06/26",
+    from: "#1c1917",
+    to: "#57534e",
+  },
+  {
+    brand: "Lumen",
+    number: "4539 0000 0000 1187",
+    holder: "R. Haddad",
+    expiry: "01/30",
+    from: "#27235c",
+    to: "#5b3fa8",
+  },
 ];
 
-function generateCode(width, height) {
+const DEFAULT_SNIPPETS = [
+  'const preview = "scanner demo";',
+  "const SCAN_WIDTH = 8;",
+  "const FADE_ZONE = 35;",
+  "const MAX_PARTICLES = 2500;",
+  "function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }",
+  "function lerp(a, b, t) { return a + (b - a) * t; }",
+  "const now = () => performance.now();",
+  "function rng(min, max) { return Math.random() * (max - min) + min; }",
+  "class Particle0 { constructor(x,y,vx,vy,r,a) { this.x=x; this.y=y; this.vx=vx; this.vy=vy; } step(dt) { this.x+=this.vx*dt; } }",
+  "const scanner = { x: Math.floor(window.innerWidth/2), width: SCAN_WIDTH, glow: 3.5, };",
+  "function drawParticle(ctx,p) { ctx.globalAlpha=clamp(p.a,0,1); ctx.drawImage(gradient,p.x-p.r,p.y-p.r,p.r*2,p.r*2); }",
+  "function tick(t) { const dt=0.016; }",
+  "const state = { intensity: 1.2, particles: MAX_PARTICLES };",
+  "const bounds = { w: window.innerWidth, h: 300 };",
+  "ctx.globalCompositeOperation = 'lighter';",
+];
+
+const loadScript = (src) =>
+  new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[data-id="${src}"]`);
+    if (existing) {
+      if (existing.dataset.loaded === "true") resolve();
+      else {
+        existing.addEventListener("load", resolve);
+        existing.addEventListener("error", reject);
+      }
+      return;
+    }
+    const el = document.createElement("script");
+    el.src = src;
+    el.setAttribute("data-id", src);
+    el.onload = () => {
+      el.dataset.loaded = "true";
+      resolve();
+    };
+    el.onerror = () => reject(new Error(`Failed: ${src}`));
+    document.head.appendChild(el);
+  });
+
+const hexToRgb = (hex) => {
+  let h = hex.replace("#", "");
+  if (h.length === 3) h = h.split("").map((c) => c + c).join("");
+  const n = parseInt(h, 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+};
+
+const mixWhite = ([r, g, b], t) => [
+  Math.round(r + (255 - r) * t),
+  Math.round(g + (255 - g) * t),
+  Math.round(b + (255 - b) * t),
+];
+
+function generateCode(width, height, snippets) {
   const randInt = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
   const pick = (arr) => arr[randInt(0, arr.length - 1)];
 
-  const library = [
-    "// compiled preview • scanner demo",
-    "const SCAN_WIDTH = 8;",
-    "const FADE_ZONE = 35;",
-    "const MAX_PARTICLES = 2500;",
-    "function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }",
-    "function lerp(a, b, t) { return a + (b - a) * t; }",
-    "const now = () => performance.now();",
-    "function rng(min, max) { return Math.random() * (max - min) + min; }",
-    "class Particle0 { constructor(x,y,vx,vy,r,a) { this.x=x; this.y=y; this.vx=vx; this.vy=vy; } step(dt) { this.x+=this.vx*dt; } }",
-    "const scanner = { x: Math.floor(window.innerWidth/2), width: SCAN_WIDTH, glow: 3.5, };",
-    "function drawParticle(ctx,p) { ctx.globalAlpha=clamp(p.a,0,1); ctx.drawImage(gradient,p.x-p.r,p.y-p.r,p.r*2,p.r*2); }",
-    "function tick(t) { const dt=0.016; }",
-    "const state = { intensity: 1.2, particles: MAX_PARTICLES };",
-    "const bounds = { w: window.innerWidth, h: 300 };",
-    "ctx.globalCompositeOperation = 'lighter';",
-  ];
+  const library = [...snippets];
 
   for (let i = 0; i < 40; i++) {
     library.push(
@@ -82,8 +142,65 @@ function generateCode(width, height) {
   return out;
 }
 
+function Contactless() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      className="h-7 w-7 text-white/70"
+      aria-hidden="true"
+    >
+      <path d="M8 9.5a4 4 0 0 1 0 5" />
+      <path d="M11.5 7a8 8 0 0 1 0 10" />
+      <path d="M15 4.5a12 12 0 0 1 0 15" />
+    </svg>
+  );
+}
+
+function CardFace({ card, labels }) {
+  return (
+    <div
+      className="relative flex h-full w-full flex-col justify-between overflow-hidden p-6 text-white [background:linear-gradient(135deg,var(--from),var(--to))]"
+      style={{ "--from": card.from, "--to": card.to }}
+    >
+      <span className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-white/10 blur-2xl" />
+      <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_0%_0%,rgba(255,255,255,0.14),transparent_55%)]" />
+
+      <div className="relative flex items-start justify-between">
+        <span className="text-xl font-bold tracking-tight">{card.brand}</span>
+        <Contactless />
+      </div>
+
+      <div className="relative">
+        <div className="mb-5 h-8 w-11 rounded-md bg-gradient-to-br from-white/40 to-white/10 ring-1 ring-white/20" />
+        <div className="font-[family-name:var(--mono)] text-[1.3rem] tracking-[0.12em]">
+          {card.number}
+        </div>
+      </div>
+
+      <div className="relative flex items-end justify-between text-sm font-medium">
+        <div>
+          <span className="block text-xs font-normal text-white/55">
+            {labels.holder}
+          </span>
+          {card.holder}
+        </div>
+        <div className="text-right">
+          <span className="block text-xs font-normal text-white/55">
+            {labels.expires}
+          </span>
+          {card.expiry}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function CardScanner({
-  cardCount = 30,
+  cards = DEFAULT_CARDS,
   cardWidth = 400,
   cardHeight = 250,
   cardGap = 60,
@@ -91,21 +208,29 @@ export default function CardScanner({
   friction = 0.95,
   minVelocity = 30,
   scannerWidth = 8,
+  scannerColor = "#8b5cf6",
   particleCount = 400,
   scanParticleMax = 2500,
   baseParticleMax = 800,
-  cardImages = DEFAULT_CARD_IMAGES,
-  showControls = true,
-  showSpeedIndicator = true,
-  showCredit = true,
+  codeSnippets = DEFAULT_SNIPPETS,
+  swipeLabel = "Swipe",
+  cardLabels = { holder: "Card holder", expires: "Expires" },
+  fontFamily = "Hanken Grotesk",
+  monoFont = "JetBrains Mono",
 }) {
-  const containerRef = useRef(null);
   const cardStreamRef = useRef(null);
   const cardLineRef = useRef(null);
   const particleCanvasRef = useRef(null);
   const scannerCanvasRef = useRef(null);
-  const speedValueRef = useRef(null);
-  const controlBtnRef = useRef(null);
+
+  const items = cards.slice(0, MAX_CARDS);
+  const itemCount = items.length;
+  const loop = Array.from({ length: REPEATS }, (_, r) =>
+    items.map((card, i) => ({ card, key: `${r}-${i}` })),
+  ).flat();
+
+  const [sr, sg, sb] = hexToRgb(scannerColor);
+  const [lr, lg, lb] = mixWhite([sr, sg, sb], 0.55);
 
   const stateRef = useRef({
     position: 0,
@@ -116,45 +241,22 @@ export default function CardScanner({
     lastTime: 0,
     lastMouseX: 0,
     mouseVelocity: 0,
-    containerWidth: 0,
-    cardLineWidth: 0,
+    loopWidth: 0,
     scanningActive: false,
     animFrameId: null,
     particleAnimId: null,
     scannerAnimId: null,
-    threeScene: null,
-    threeCamera: null,
-    threeRenderer: null,
-    threeParticles: null,
-    threeVelocities: null,
-    scannerParticles: [],
-    scannerCount: 0,
-    scannerIntensity: 0.8,
-    scannerMaxParticles: baseParticleMax,
-    scannerFadeZone: 60,
-    scannerCurrentIntensity: 0.8,
-    scannerCurrentMaxParticles: baseParticleMax,
-    scannerCurrentFadeZone: 60,
-    scannerCurrentGlowIntensity: 1,
-    gradientCanvas: null,
   });
 
-  const calculateCodeDimensions = useCallback((cw, ch) => {
-    const fontSize = 11;
-    const lineHeight = 13;
-    const charWidth = 6;
-    return {
-      width: Math.floor(cw / charWidth),
-      height: Math.floor(ch / lineHeight),
-      fontSize,
-      lineHeight,
-    };
+  const codeSize = useCallback((cw, ch) => {
+    return { width: Math.floor(cw / 6), height: Math.floor(ch / 13) };
   }, []);
 
-  const updateSpeedIndicator = useCallback((vel) => {
-    if (speedValueRef.current) {
-      speedValueRef.current.textContent = Math.round(vel);
-    }
+  const wrapPosition = useCallback(() => {
+    const s = stateRef.current;
+    if (s.loopWidth <= 0) return;
+    if (s.position <= -s.loopWidth) s.position += s.loopWidth;
+    else if (s.position > 0) s.position -= s.loopWidth;
   }, []);
 
   const updateCardClipping = useCallback(() => {
@@ -170,8 +272,8 @@ export default function CardScanner({
       const cardL = rect.left;
       const cardR = rect.right;
       const cw = rect.width;
-      const normalCard = wrapper.querySelector(".cs-card-normal");
-      const asciiCard = wrapper.querySelector(".cs-card-ascii");
+      const normalCard = wrapper.querySelector("[data-normal]");
+      const asciiCard = wrapper.querySelector("[data-ascii]");
       if (!normalCard || !asciiCard) return;
 
       if (cardL < sRight && cardR > sLeft) {
@@ -186,7 +288,7 @@ export default function CardScanner({
         if (!wrapper.hasAttribute("data-scanned") && intLeft > 0) {
           wrapper.setAttribute("data-scanned", "true");
           const fx = document.createElement("div");
-          fx.className = "cs-scan-effect";
+          fx.className = SCAN_FX_CLASS;
           wrapper.appendChild(fx);
           setTimeout(() => fx.parentNode && fx.parentNode.removeChild(fx), 600);
         }
@@ -207,13 +309,12 @@ export default function CardScanner({
 
   const updateCardPosition = useCallback(() => {
     const s = stateRef.current;
-    if (s.position < -s.cardLineWidth) s.position = s.containerWidth;
-    else if (s.position > s.containerWidth) s.position = -s.cardLineWidth;
+    wrapPosition();
     if (cardLineRef.current) {
       cardLineRef.current.style.transform = `translateX(${s.position}px)`;
     }
     updateCardClipping();
-  }, [updateCardClipping]);
+  }, [updateCardClipping, wrapPosition]);
 
   const animate = useCallback(() => {
     const s = stateRef.current;
@@ -229,11 +330,10 @@ export default function CardScanner({
       }
       s.position += s.velocity * s.direction * dt;
       updateCardPosition();
-      updateSpeedIndicator(s.velocity);
     }
 
     s.animFrameId = requestAnimationFrame(animate);
-  }, [friction, minVelocity, updateCardPosition, updateSpeedIndicator]);
+  }, [friction, minVelocity, updateCardPosition]);
 
   const startDrag = useCallback((clientX) => {
     const s = stateRef.current;
@@ -262,12 +362,13 @@ export default function CardScanner({
       s.position += delta;
       s.mouseVelocity = delta * 60;
       s.lastMouseX = clientX;
+      wrapPosition();
       if (cardLineRef.current) {
         cardLineRef.current.style.transform = `translateX(${s.position}px)`;
       }
       updateCardClipping();
     },
-    [updateCardClipping],
+    [updateCardClipping, wrapPosition],
   );
 
   const endDrag = useCallback(() => {
@@ -284,37 +385,9 @@ export default function CardScanner({
       s.velocity = initialVelocity;
     }
     s.isAnimating = true;
-    updateSpeedIndicator(s.velocity);
     document.body.style.userSelect = "";
     document.body.style.cursor = "";
-  }, [minVelocity, initialVelocity, updateSpeedIndicator]);
-
-  const toggleAnimation = useCallback(() => {
-    const s = stateRef.current;
-    s.isAnimating = !s.isAnimating;
-    if (controlBtnRef.current) {
-      controlBtnRef.current.textContent = s.isAnimating ? "⏸ Pause" : "▶ Play";
-    }
-  }, []);
-
-  const resetPosition = useCallback(() => {
-    const s = stateRef.current;
-    s.position = s.containerWidth;
-    s.velocity = initialVelocity;
-    s.direction = -1;
-    s.isAnimating = true;
-    s.isDragging = false;
-    if (cardLineRef.current) {
-      cardLineRef.current.style.transform = `translateX(${s.position}px)`;
-      cardLineRef.current.classList.remove("cs-dragging");
-    }
-    updateSpeedIndicator(s.velocity);
-    if (controlBtnRef.current) controlBtnRef.current.textContent = "⏸ Pause";
-  }, [initialVelocity, updateSpeedIndicator]);
-
-  const changeDirection = useCallback(() => {
-    stateRef.current.direction *= -1;
-  }, []);
+  }, [minVelocity, initialVelocity]);
 
   useEffect(() => {
     const s = stateRef.current;
@@ -322,89 +395,24 @@ export default function CardScanner({
     const stream = cardStreamRef.current;
     if (!cardLine || !stream) return;
 
-    cardLine.innerHTML = "";
-    s.containerWidth = stream.offsetWidth;
-    s.cardLineWidth = (cardWidth + cardGap) * cardCount;
-    s.position = s.containerWidth;
+    s.loopWidth = (cardWidth + cardGap) * itemCount;
+    s.position = 0;
+    cardLine.style.transform = "translateX(0px)";
 
-    for (let i = 0; i < cardCount; i++) {
-      const wrapper = document.createElement("div");
-      wrapper.className = "cs-card-wrapper";
-      wrapper.style.cssText = `position:relative;width:${cardWidth}px;height:${cardHeight}px;flex-shrink:0;`;
-
-      const normalCard = document.createElement("div");
-      normalCard.className = "cs-card-normal";
-      normalCard.style.cssText = `
-        position:absolute;top:0;left:0;width:${cardWidth}px;height:${cardHeight}px;
-        border-radius:15px;overflow:hidden;z-index:2;
-        clip-path:inset(0 0 0 var(--cs-clip-right,0%));
-        box-shadow:0 15px 40px rgba(0,0,0,0.4);
-      `;
-
-      const img = document.createElement("img");
-      img.src = cardImages[i % cardImages.length];
-      img.alt = "Card";
-      img.style.cssText = `width:100%;height:100%;object-fit:cover;border-radius:15px;filter:brightness(1.1) contrast(1.1);`;
-      img.onerror = () => {
-        const c = document.createElement("canvas");
-        c.width = cardWidth;
-        c.height = cardHeight;
-        const ctx = c.getContext("2d");
-        const g = ctx.createLinearGradient(0, 0, cardWidth, cardHeight);
-        g.addColorStop(0, "#667eea");
-        g.addColorStop(1, "#764ba2");
-        ctx.fillStyle = g;
-        ctx.fillRect(0, 0, cardWidth, cardHeight);
-        img.src = c.toDataURL();
-      };
-      normalCard.appendChild(img);
-
-      const asciiCard = document.createElement("div");
-      asciiCard.className = "cs-card-ascii";
-      asciiCard.style.cssText = `
-        position:absolute;top:0;left:0;width:${cardWidth}px;height:${cardHeight}px;
-        border-radius:15px;overflow:hidden;z-index:1;
-        clip-path:inset(0 calc(100% - var(--cs-clip-left,0%)) 0 0);
-      `;
-
-      const asciiContent = document.createElement("div");
-      asciiContent.className = "cs-ascii-content";
-      const dims = calculateCodeDimensions(cardWidth, cardHeight);
-      asciiContent.style.cssText = `
-        position:absolute;top:0;left:0;width:100%;height:100%;
-        color:rgba(220,210,255,0.6);
-        font-family:'Courier New',monospace;
-        font-size:${dims.fontSize}px;line-height:${dims.lineHeight}px;
-        overflow:hidden;white-space:pre;margin:0;padding:0;text-align:left;
-        box-sizing:border-box;
-        -webkit-mask-image:linear-gradient(to right,rgba(0,0,0,1) 0%,rgba(0,0,0,0.8) 30%,rgba(0,0,0,0.6) 50%,rgba(0,0,0,0.4) 80%,rgba(0,0,0,0.2) 100%);
-        mask-image:linear-gradient(to right,rgba(0,0,0,1) 0%,rgba(0,0,0,0.8) 30%,rgba(0,0,0,0.6) 50%,rgba(0,0,0,0.4) 80%,rgba(0,0,0,0.2) 100%);
-      `;
-      asciiContent.textContent = generateCode(dims.width, dims.height);
-      asciiCard.appendChild(asciiContent);
-
-      wrapper.appendChild(normalCard);
-      wrapper.appendChild(asciiCard);
-      cardLine.appendChild(wrapper);
-    }
+    const dims = codeSize(cardWidth, cardHeight);
+    const fillAscii = (el) => {
+      el.textContent = generateCode(dims.width, dims.height, codeSnippets);
+    };
+    stream.querySelectorAll("[data-ascii-content]").forEach(fillAscii);
 
     s.lastTime = performance.now();
     s.animFrameId = requestAnimationFrame(animate);
 
     const asciiInterval = setInterval(() => {
-      document.querySelectorAll(".cs-ascii-content").forEach((el) => {
-        if (Math.random() < 0.15) {
-          const dims = calculateCodeDimensions(cardWidth, cardHeight);
-          el.textContent = generateCode(dims.width, dims.height);
-        }
+      stream.querySelectorAll("[data-ascii-content]").forEach((el) => {
+        if (Math.random() < 0.15) fillAscii(el);
       });
     }, 200);
-
-    const clipLoop = () => {
-      updateCardClipping();
-      s.clipLoopId = requestAnimationFrame(clipLoop);
-    };
-    clipLoop();
 
     const onMouseDown = (e) => startDrag(e.clientX);
     const onMouseMove = (e) => onDrag(e.clientX);
@@ -414,6 +422,7 @@ export default function CardScanner({
       startDrag(e.touches[0].clientX);
     };
     const onTouchMove = (e) => {
+      if (!s.isDragging) return;
       e.preventDefault();
       onDrag(e.touches[0].clientX);
     };
@@ -425,9 +434,6 @@ export default function CardScanner({
     };
     const onSelectStart = (e) => e.preventDefault();
     const onDragStart = (e) => e.preventDefault();
-    const onResize = () => {
-      s.containerWidth = stream.offsetWidth;
-    };
 
     cardLine.addEventListener("mousedown", onMouseDown);
     document.addEventListener("mousemove", onMouseMove);
@@ -438,11 +444,9 @@ export default function CardScanner({
     cardLine.addEventListener("wheel", onWheel, { passive: false });
     cardLine.addEventListener("selectstart", onSelectStart);
     cardLine.addEventListener("dragstart", onDragStart);
-    window.addEventListener("resize", onResize);
 
     return () => {
       cancelAnimationFrame(s.animFrameId);
-      cancelAnimationFrame(s.clipLoopId);
       clearInterval(asciiInterval);
       cardLine.removeEventListener("mousedown", onMouseDown);
       document.removeEventListener("mousemove", onMouseMove);
@@ -453,150 +457,161 @@ export default function CardScanner({
       cardLine.removeEventListener("wheel", onWheel);
       cardLine.removeEventListener("selectstart", onSelectStart);
       cardLine.removeEventListener("dragstart", onDragStart);
-      window.removeEventListener("resize", onResize);
     };
   }, [
-    cardCount,
+    itemCount,
     cardWidth,
     cardHeight,
     cardGap,
-    cardImages,
+    codeSnippets,
     animate,
     startDrag,
     onDrag,
     endDrag,
     updateCardPosition,
-    updateCardClipping,
-    calculateCodeDimensions,
+    codeSize,
   ]);
 
   useEffect(() => {
     const canvas = particleCanvasRef.current;
-    if (!canvas || typeof window === "undefined") return;
-    if (!window.THREE) return;
-
-    const THREE = window.THREE;
+    if (!canvas) return;
     const s = stateRef.current;
+    let cancelled = false;
+    let cleanup = () => { };
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(
-      -window.innerWidth / 2,
-      window.innerWidth / 2,
-      125,
-      -125,
-      1,
-      1000,
-    );
-    camera.position.z = 100;
+    loadScript(THREE_URL)
+      .then(() => {
+        const THREE = window.THREE;
+        if (cancelled || !THREE) return;
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas,
-      alpha: true,
-      antialias: true,
-    });
-    renderer.setSize(window.innerWidth, 250);
-    renderer.setClearColor(0x000000, 0);
+        const scene = new THREE.Scene();
+        const camera = new THREE.OrthographicCamera(
+          -window.innerWidth / 2,
+          window.innerWidth / 2,
+          125,
+          -125,
+          1,
+          1000,
+        );
+        camera.position.z = 100;
 
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-    const sizes = new Float32Array(particleCount);
-    const velocities = new Float32Array(particleCount);
-    const alphas = new Float32Array(particleCount);
+        const renderer = new THREE.WebGLRenderer({
+          canvas,
+          alpha: true,
+          antialias: true,
+        });
+        renderer.setSize(window.innerWidth, 250);
+        renderer.setClearColor(0x000000, 0);
 
-    const gc = document.createElement("canvas");
-    gc.width = 100;
-    gc.height = 100;
-    const gctx = gc.getContext("2d");
-    const half = 50;
-    const grad = gctx.createRadialGradient(half, half, 0, half, half, half);
-    grad.addColorStop(0.025, "#fff");
-    grad.addColorStop(0.1, "hsl(217,61%,33%)");
-    grad.addColorStop(0.25, "hsl(217,64%,6%)");
-    grad.addColorStop(1, "transparent");
-    gctx.fillStyle = grad;
-    gctx.beginPath();
-    gctx.arc(half, half, half, 0, Math.PI * 2);
-    gctx.fill();
-    const texture = new THREE.CanvasTexture(gc);
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+        const sizes = new Float32Array(particleCount);
+        const velocities = new Float32Array(particleCount);
+        const alphas = new Float32Array(particleCount);
 
-    for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * window.innerWidth * 2;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 250;
-      positions[i * 3 + 2] = 0;
-      colors[i * 3] = colors[i * 3 + 1] = colors[i * 3 + 2] = 1;
-      const orbitRadius = Math.random() * 200 + 100;
-      sizes[i] = (Math.random() * (orbitRadius - 60) + 60) / 8;
-      velocities[i] = Math.random() * 60 + 30;
-      alphas[i] = (Math.random() * 8 + 2) / 10;
-    }
+        const gc = document.createElement("canvas");
+        gc.width = 100;
+        gc.height = 100;
+        const gctx = gc.getContext("2d");
+        const half = 50;
+        const grad = gctx.createRadialGradient(half, half, 0, half, half, half);
+        grad.addColorStop(0.025, "#fff");
+        grad.addColorStop(0.1, "hsl(217,61%,33%)");
+        grad.addColorStop(0.25, "hsl(217,64%,6%)");
+        grad.addColorStop(1, "transparent");
+        gctx.fillStyle = grad;
+        gctx.beginPath();
+        gctx.arc(half, half, half, 0, Math.PI * 2);
+        gctx.fill();
+        const texture = new THREE.CanvasTexture(gc);
 
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-    geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
-    geometry.setAttribute("alpha", new THREE.BufferAttribute(alphas, 1));
-
-    const material = new THREE.ShaderMaterial({
-      uniforms: { pointTexture: { value: texture }, size: { value: 15.0 } },
-      vertexShader: `
-        attribute float alpha; varying float vAlpha; varying vec3 vColor; uniform float size;
-        void main() { vAlpha=alpha; vColor=color; vec4 mv=modelViewMatrix*vec4(position,1.0); gl_PointSize=size; gl_Position=projectionMatrix*mv; }
-      `,
-      fragmentShader: `
-        uniform sampler2D pointTexture; varying float vAlpha; varying vec3 vColor;
-        void main() { gl_FragColor=vec4(vColor,vAlpha)*texture2D(pointTexture,gl_PointCoord); }
-      `,
-      transparent: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-      vertexColors: true,
-    });
-
-    const particles = new THREE.Points(geometry, material);
-    scene.add(particles);
-    s.threeScene = scene;
-    s.threeCamera = camera;
-    s.threeRenderer = renderer;
-    s.threeParticles = particles;
-    s.threeVelocities = velocities;
-
-    const threeAnimate = () => {
-      s.particleAnimId = requestAnimationFrame(threeAnimate);
-      const pos = particles.geometry.attributes.position.array;
-      const alps = particles.geometry.attributes.alpha.array;
-      const time = Date.now() * 0.001;
-      for (let i = 0; i < particleCount; i++) {
-        pos[i * 3] += velocities[i] * 0.016;
-        if (pos[i * 3] > window.innerWidth / 2 + 100) {
-          pos[i * 3] = -window.innerWidth / 2 - 100;
-          pos[i * 3 + 1] = (Math.random() - 0.5) * 250;
+        for (let i = 0; i < particleCount; i++) {
+          positions[i * 3] = (Math.random() - 0.5) * window.innerWidth * 2;
+          positions[i * 3 + 1] = (Math.random() - 0.5) * 250;
+          positions[i * 3 + 2] = 0;
+          colors[i * 3] = colors[i * 3 + 1] = colors[i * 3 + 2] = 1;
+          const orbitRadius = Math.random() * 200 + 100;
+          sizes[i] = (Math.random() * (orbitRadius - 60) + 60) / 8;
+          velocities[i] = Math.random() * 60 + 30;
+          alphas[i] = (Math.random() * 8 + 2) / 10;
         }
-        pos[i * 3 + 1] += Math.sin(time + i * 0.1) * 0.5;
-        const t = Math.floor(Math.random() * 10);
-        if (t === 1 && alps[i] > 0) alps[i] -= 0.05;
-        else if (t === 2 && alps[i] < 1) alps[i] += 0.05;
-        alps[i] = Math.max(0, Math.min(1, alps[i]));
-      }
-      particles.geometry.attributes.position.needsUpdate = true;
-      particles.geometry.attributes.alpha.needsUpdate = true;
-      renderer.render(scene, camera);
-    };
-    threeAnimate();
 
-    const onResize = () => {
-      camera.left = -window.innerWidth / 2;
-      camera.right = window.innerWidth / 2;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, 250);
-    };
-    window.addEventListener("resize", onResize);
+        geometry.setAttribute(
+          "position",
+          new THREE.BufferAttribute(positions, 3),
+        );
+        geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+        geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
+        geometry.setAttribute("alpha", new THREE.BufferAttribute(alphas, 1));
+
+        const material = new THREE.ShaderMaterial({
+          uniforms: {
+            pointTexture: { value: texture },
+            size: { value: 15.0 },
+          },
+          vertexShader: `
+            attribute float alpha; varying float vAlpha; varying vec3 vColor; uniform float size;
+            void main() { vAlpha=alpha; vColor=color; vec4 mv=modelViewMatrix*vec4(position,1.0); gl_PointSize=size; gl_Position=projectionMatrix*mv; }
+          `,
+          fragmentShader: `
+            uniform sampler2D pointTexture; varying float vAlpha; varying vec3 vColor;
+            void main() { gl_FragColor=vec4(vColor,vAlpha)*texture2D(pointTexture,gl_PointCoord); }
+          `,
+          transparent: true,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false,
+          vertexColors: true,
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        const threeAnimate = () => {
+          s.particleAnimId = requestAnimationFrame(threeAnimate);
+          const pos = particles.geometry.attributes.position.array;
+          const alps = particles.geometry.attributes.alpha.array;
+          const time = Date.now() * 0.001;
+          for (let i = 0; i < particleCount; i++) {
+            pos[i * 3] += velocities[i] * 0.016;
+            if (pos[i * 3] > window.innerWidth / 2 + 100) {
+              pos[i * 3] = -window.innerWidth / 2 - 100;
+              pos[i * 3 + 1] = (Math.random() - 0.5) * 250;
+            }
+            pos[i * 3 + 1] += Math.sin(time + i * 0.1) * 0.5;
+            const t = Math.floor(Math.random() * 10);
+            if (t === 1 && alps[i] > 0) alps[i] -= 0.05;
+            else if (t === 2 && alps[i] < 1) alps[i] += 0.05;
+            alps[i] = Math.max(0, Math.min(1, alps[i]));
+          }
+          particles.geometry.attributes.position.needsUpdate = true;
+          particles.geometry.attributes.alpha.needsUpdate = true;
+          renderer.render(scene, camera);
+        };
+        threeAnimate();
+
+        const onResize = () => {
+          camera.left = -window.innerWidth / 2;
+          camera.right = window.innerWidth / 2;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, 250);
+        };
+        window.addEventListener("resize", onResize);
+
+        cleanup = () => {
+          cancelAnimationFrame(s.particleAnimId);
+          window.removeEventListener("resize", onResize);
+          renderer.dispose();
+          geometry.dispose();
+          material.dispose();
+          texture.dispose();
+        };
+      })
+      .catch((e) => console.error("[CardScanner] Three load failed:", e.message));
 
     return () => {
-      cancelAnimationFrame(s.particleAnimId);
-      window.removeEventListener("resize", onResize);
-      renderer.dispose();
-      geometry.dispose();
-      material.dispose();
+      cancelled = true;
+      cleanup();
     };
   }, [particleCount]);
 
@@ -607,9 +622,12 @@ export default function CardScanner({
     const s = stateRef.current;
 
     let w = window.innerWidth;
-    let h = 300;
+    const h = 300;
     canvas.width = w;
     canvas.height = h;
+
+    const base = `${sr},${sg},${sb}`;
+    const light = `${lr},${lg},${lb}`;
 
     const gcCanvas = document.createElement("canvas");
     gcCanvas.width = 16;
@@ -618,14 +636,13 @@ export default function CardScanner({
     const half = 8;
     const grad = gcCtx.createRadialGradient(half, half, 0, half, half, half);
     grad.addColorStop(0, "rgba(255,255,255,1)");
-    grad.addColorStop(0.3, "rgba(196,181,253,0.8)");
-    grad.addColorStop(0.7, "rgba(139,92,246,0.4)");
+    grad.addColorStop(0.3, `rgba(${light},0.8)`);
+    grad.addColorStop(0.7, `rgba(${base},0.4)`);
     grad.addColorStop(1, "transparent");
     gcCtx.fillStyle = grad;
     gcCtx.beginPath();
     gcCtx.arc(half, half, half, 0, Math.PI * 2);
     gcCtx.fill();
-    s.gradientCanvas = gcCanvas;
 
     const baseIntensity = 0.8;
     const baseFadeZone = 60;
@@ -655,7 +672,7 @@ export default function CardScanner({
       };
     };
 
-    let particles = [];
+    const particles = [];
     let count = 0;
     for (let i = 0; i < baseParticleMax; i++) {
       const p = createParticle(baseIntensity);
@@ -663,8 +680,6 @@ export default function CardScanner({
       count++;
       particles[count] = p;
     }
-    s.scannerParticles = particles;
-    s.scannerCount = count;
 
     let currentIntensity = baseIntensity;
     let currentMaxParticles = baseParticleMax;
@@ -703,9 +718,9 @@ export default function CardScanner({
         lbx + lbWidth * 2,
         0,
       );
-      g1.addColorStop(0, "rgba(139,92,246,0)");
-      g1.addColorStop(0.5, `rgba(196,181,253,${0.8 * glowInt})`);
-      g1.addColorStop(1, "rgba(139,92,246,0)");
+      g1.addColorStop(0, `rgba(${base},0)`);
+      g1.addColorStop(0.5, `rgba(${light},${0.8 * glowInt})`);
+      g1.addColorStop(1, `rgba(${base},0)`);
       ctx.globalAlpha = scanning ? 1.0 : 0.8;
       ctx.fillStyle = g1;
       ctx.beginPath();
@@ -718,9 +733,9 @@ export default function CardScanner({
         lbx + lbWidth * 4,
         0,
       );
-      g2.addColorStop(0, "rgba(139,92,246,0)");
-      g2.addColorStop(0.5, `rgba(139,92,246,${0.4 * glowInt})`);
-      g2.addColorStop(1, "rgba(139,92,246,0)");
+      g2.addColorStop(0, `rgba(${base},0)`);
+      g2.addColorStop(0.5, `rgba(${base},${0.4 * glowInt})`);
+      g2.addColorStop(1, `rgba(${base},0)`);
       ctx.globalAlpha = scanning ? 0.8 : 0.6;
       ctx.fillStyle = g2;
       ctx.beginPath();
@@ -734,9 +749,9 @@ export default function CardScanner({
           lbx + lbWidth * 8,
           0,
         );
-        g3.addColorStop(0, "rgba(139,92,246,0)");
-        g3.addColorStop(0.5, "rgba(139,92,246,0.2)");
-        g3.addColorStop(1, "rgba(139,92,246,0)");
+        g3.addColorStop(0, `rgba(${base},0)`);
+        g3.addColorStop(0.5, `rgba(${base},0.2)`);
+        g3.addColorStop(1, `rgba(${base},0)`);
         ctx.globalAlpha = 0.6;
         ctx.fillStyle = g3;
         ctx.beginPath();
@@ -844,90 +859,98 @@ export default function CardScanner({
       cancelAnimationFrame(s.scannerAnimId);
       window.removeEventListener("resize", onResize);
     };
-  }, [scannerWidth, baseParticleMax, scanParticleMax]);
+  }, [scannerWidth, baseParticleMax, scanParticleMax, sr, sg, sb, lr, lg, lb]);
 
   return (
     <>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400&display=swap"
+      />
       <style>{`
-        .cs-card-line { display:flex;align-items:center;gap:${cardGap}px;white-space:nowrap;cursor:grab;user-select:none;will-change:transform; }
-        .cs-card-line:active,.cs-card-line.cs-dragging { cursor:grabbing; }
-        @keyframes cs-scan-fx { 0%{transform:translateX(-100%);opacity:0} 50%{opacity:1} 100%{transform:translateX(100%);opacity:0} }
-        .cs-scan-effect { position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,255,255,0.4),transparent);animation:cs-scan-fx 0.6s ease-out;pointer-events:none;z-index:5; }
+        @keyframes csScanFx { 0% { transform: translateX(-100%); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateX(100%); opacity: 0; } }
+        @keyframes csNudge { 0%, 100% { transform: translateX(-6px); } 50% { transform: translateX(6px); } }
       `}</style>
 
-      <div className="relative w-screen h-screen overflow-hidden bg-black">
-        {showControls && (
-          <div className="absolute top-5 left-5 flex gap-2.5 z-[100]">
-            <button
-              ref={controlBtnRef}
-              onClick={toggleAnimation}
-              className="px-5 py-2.5 bg-white/20 border-none rounded-full text-white font-bold cursor-pointer backdrop-blur-sm transition-all text-sm hover:bg-white/30 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
-            >
-              ⏸ Pause
-            </button>
-            <button
-              onClick={resetPosition}
-              className="px-5 py-2.5 bg-white/20 border-none rounded-full text-white font-bold cursor-pointer backdrop-blur-sm transition-all text-sm hover:bg-white/30 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
-            >
-              🔄 Reset
-            </button>
-            <button
-              onClick={changeDirection}
-              className="px-5 py-2.5 bg-white/20 border-none rounded-full text-white font-bold cursor-pointer backdrop-blur-sm transition-all text-sm hover:bg-white/30 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
-            >
-              ↔ Direction
-            </button>
-          </div>
-        )}
-
-        {showSpeedIndicator && (
-          <div className="absolute top-5 right-5 text-white text-base bg-black/30 px-4 py-2 rounded-2xl backdrop-blur-sm z-[100]">
-            Speed:{" "}
-            <span ref={speedValueRef} className="font-bold">
-              {initialVelocity}
-            </span>{" "}
-            px/s
-          </div>
-        )}
-
-        <div
-          className="absolute inset-0 flex items-center justify-center"
-          ref={containerRef}
-        >
+      <div
+        className="relative h-[100dvh] w-full overflow-hidden bg-black font-[family-name:var(--font)]"
+        style={{
+          "--font": `"${fontFamily}", sans-serif`,
+          "--mono": `"${monoFont}", monospace`,
+          "--cw": `${cardWidth}px`,
+          "--ch": `${cardHeight}px`,
+          "--gap": `${cardGap}px`,
+          "--scan-light": `${lr},${lg},${lb}`,
+        }}
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
           <canvas
             ref={particleCanvasRef}
-            className="absolute top-1/2 left-0 -translate-y-1/2 w-screen pointer-events-none z-0"
-            style={{ height: "250px" }}
+            className="pointer-events-none absolute left-0 top-1/2 z-0 h-[250px] w-screen -translate-y-1/2"
           />
           <canvas
             ref={scannerCanvasRef}
-            className="absolute top-1/2 left-0 -translate-y-1/2 w-screen pointer-events-none z-[15]"
-            style={{ height: "300px", left: "-3px" }}
+            className="pointer-events-none absolute -left-[3px] top-1/2 z-[15] h-[300px] w-screen -translate-y-1/2"
           />
 
           <div
             ref={cardStreamRef}
-            id="cardStream"
-            className="absolute w-screen flex items-center overflow-visible"
-            style={{ height: `${cardHeight}px` }}
+            className="absolute flex h-[var(--ch)] w-screen items-center overflow-visible"
           >
-            <div ref={cardLineRef} className="cs-card-line" />
+            <div
+              ref={cardLineRef}
+              className="flex cursor-grab select-none items-center gap-[var(--gap)] whitespace-nowrap will-change-transform active:cursor-grabbing [&.cs-dragging]:cursor-grabbing"
+            >
+              {loop.map(({ card, key }) => (
+                <div
+                  key={key}
+                  data-card
+                  className="relative h-[var(--ch)] w-[var(--cw)] shrink-0"
+                >
+                  <div
+                    data-normal
+                    className="absolute left-0 top-0 z-[2] h-full w-full overflow-hidden rounded-[15px] shadow-[0_15px_40px_rgba(0,0,0,0.4)] [clip-path:inset(0_0_0_var(--cs-clip-right,0%))]"
+                  >
+                    <CardFace card={card} labels={cardLabels} />
+                  </div>
+                  <div
+                    data-ascii
+                    className="absolute left-0 top-0 z-[1] h-full w-full overflow-hidden rounded-[15px] [clip-path:inset(0_calc(100%_-_var(--cs-clip-left,0%))_0_0)]"
+                  >
+                    <div
+                      data-ascii-content
+                      className="absolute inset-0 m-0 overflow-hidden whitespace-pre p-0 text-left font-[family-name:var(--mono)] text-[11px] leading-[13px] text-[rgba(220,210,255,0.6)] [mask-image:linear-gradient(to_right,rgba(0,0,0,1)_0%,rgba(0,0,0,0.8)_30%,rgba(0,0,0,0.6)_50%,rgba(0,0,0,0.4)_80%,rgba(0,0,0,0.2)_100%)]"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {showCredit && (
-          <div className="fixed bottom-5 left-1/2 -translate-x-1/2 font-mono text-xs font-black text-[#ff9a9c] z-[1000] text-center">
-            Inspired by{" "}
-            <a
-              href="https://evervault.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#ff9a9c] no-underline hover:text-[#ff7a7c] transition-colors"
-            >
-              @evervault.com
-            </a>
-          </div>
-        )}
+        <div className="pointer-events-none absolute left-1/2 top-[calc(50%_+_var(--ch)_/_2_+_56px)] z-20 flex -translate-x-1/2 items-center gap-3 text-sm font-medium text-white/60">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-5 w-5 animate-[csNudge_1.8s_ease-in-out_infinite] motion-reduce:animate-none"
+            aria-hidden="true"
+          >
+            <path d="M18 8l4 4-4 4" />
+            <path d="M6 8l-4 4 4 4" />
+            <path d="M2 12h20" />
+          </svg>
+          {swipeLabel}
+        </div>
       </div>
     </>
   );

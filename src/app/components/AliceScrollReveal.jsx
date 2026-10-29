@@ -2,56 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── HeroReveal ──────────────────────────────────────────────────────────────
-//
-// A pinned "curtain" reveal: a full-screen word splits along its middle and
-// slides apart as a clip-path opens it, uncovering falling text and parallax
-// objects tumbling through the dark behind it. Built on GSAP ScrollTrigger.
-//
-// Unlike the source CodePen — which let the objects overflow the section and
-// relied on opaque neighbor sections to *mask* the leak — this pins a single
-// viewport-sized, overflow-hidden stage and runs everything on one scrubbed
-// timeline, so nothing can ever spill into adjacent content. The source also
-// loaded ScrollSmoother (whole-page scroll hijack) and SplitText (never used);
-// both are dropped. The curtain, split, parallax and text motion are preserved.
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// headingText        string   RABBIT HOLE     The word that splits + reveals
-// introHeading       string   (Alice title)   Full-screen lead-in title; "\n"
-//                                              becomes a line break. Empty hides it.
-// leadingParagraphs  array    (Chapter 1)     Body paragraphs before the reveal
-// revealParagraphs   array    (the fall)      Text that rises inside the pinned stage
-// trailingParagraphs array    (the hall)      Body paragraphs after the reveal
-// images             array    (5 objects)     Parallax layers, back-to-front. Each:
-//                                              { src, alt, width, top, left, blur,
-//                                                zIndex, speed }. speed is depth —
-//                                              higher = travels faster (further back).
-// ── Colors ──────────────────────────────────────────────────────────────────
-// bgColor            string   #000000         Stage (behind-curtain) background
-// revealBgColor      string   #FFFFFF         The curtain / heading block fill
-// revealTextColor    string   #000000         Heading color on the curtain
-// heroContentColor   string   #FFFFFF         Falling-text color over the dark stage
-// contentBgColor     string   #FFFFFF         Page + article section background
-// contentTextColor   string   #111111         Body + intro text color
-// ── Typography ────────────────────────────────────────────────────────────
-// fontFamily         string   Open Sans stack Page font
-// bodyLineHeight     string   1.75            Body line-height
-// articleMaxWidth    string   31.25rem        Reading measure (body + falling text)
-// introFontSize      string   clamp(...)      Intro title font-size
-// introLineHeight    string   clamp(...)      Intro title line-height
-// headingFontSize    string   clamp(...)      Reveal word font-size
-// headingLineHeight  string   clamp(...)      Reveal word line-height
-// headingTracking    string   -0.01em         Reveal word letter-spacing
-// ── Motion ────────────────────────────────────────────────────────────────
-// clipEase           string   power4.inOut    Ease of the curtain opening
-// splitEase          string   power3.inOut    Ease of the two halves sliding apart
-// splitDistance      number   30              How far each half travels (% of height)
-// curtainPortion     number   0.4             Fraction of the pin spent opening the curtain
-// textStartOffset    number   0.55            Where the fall-text starts (× viewport height)
-// pinExtraScroll     number   0.8             Extra pin length beyond the text (× viewport)
-// ──────────────────────────────────────────────────────────────────────────
-
 const CLIP_CLOSED =
   "polygon(0 0, 100% 0, 100% 50%, 0 50%, 0 50%, 100% 50%, 100% 100%, 0 100%)";
 const CLIP_OPEN =
@@ -59,8 +9,8 @@ const CLIP_OPEN =
 
 const DEFAULT_IMAGES = [
   {
-    src: "https://assets.codepen.io/204808/alice-falling-card.png",
-    alt: "A playing card",
+    src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png",
+    alt: "A Poké Ball item",
     width: 300,
     top: "-8%",
     left: "56%",
@@ -69,8 +19,8 @@ const DEFAULT_IMAGES = [
     speed: 3,
   },
   {
-    src: "https://assets.codepen.io/204808/alice-falling-1.png",
-    alt: "Alice falling",
+    src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    alt: "Pikachu falling",
     width: 300,
     top: "18%",
     left: "calc(50% - 150px)",
@@ -78,24 +28,24 @@ const DEFAULT_IMAGES = [
     speed: 4,
   },
   {
-    src: "https://assets.codepen.io/204808/alice-falling-book.png",
-    alt: "An open book",
+    src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/great-ball.png",
+    alt: "An open item book",
     width: 90,
     top: "6%",
     left: "6%",
     speed: 5,
   },
   {
-    src: "https://assets.codepen.io/204808/alice-falling-clock.png",
-    alt: "A pocket watch",
+    src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ultra-ball.png",
+    alt: "A pocket watch item",
     width: 120,
     top: "-12%",
     left: "14%",
     speed: 6,
   },
   {
-    src: "https://assets.codepen.io/204808/alice-falling-kattle.png",
-    alt: "A kettle",
+    src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png",
+    alt: "A kettle item",
     width: 55,
     top: "-20%",
     left: "80%",
@@ -204,7 +154,7 @@ export default function AliceScrollReveal({
       if (document.fonts && document.fonts.ready) {
         try {
           await document.fonts.ready;
-        } catch (e) {}
+        } catch (e) { }
       }
       if (killed) return;
 

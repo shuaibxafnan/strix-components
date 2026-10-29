@@ -2,26 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── FallingTextGravity ──────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bgColor           string   "#340824"                Page background color
-// textColor         string   "text-[#efeeec]"         Tailwind typography color class
-// minHeight         string   "min-height-[350vh]"     Total scrollable heights container style
-// sectionHeight     string   "min-h-screen"           Height of individual scroll sections
-// maxTextWidth      string   "max-w-[40rem]"          Max width for text content blocks
-// minVelocity       number   500                      GSAP Physics2D random min velocity
-// maxVelocity       number   1000                     GSAP Physics2D random max velocity
-// gravity           number   3000                     GSAP Physics2D downward force value
-// minDuration       number   1.5                      GSAP Physics2D random min animation duration
-// maxDuration       number   3.0                      GSAP Physics2D random max animation duration
-// minRotation       number   -90                      GSAP Physics2D random min angle rotation
-// maxRotation       number   90                       GSAP Physics2D random max angle rotation
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function FallingTextGravity({
-  bgColor = "#340824",
+  bgColor = "#1A1A1A",
   textColor = "text-[#efeeec]",
   minHeight = "350vh",
   sectionHeight = "min-h-screen",
@@ -157,19 +139,19 @@ export default function FallingTextGravity({
             className={`${textColor} ${maxTextWidth} text-center mt-0 mb-0 text-[4rem] font-medium leading-[1]`}
           >
             This is just a
-            <span className="z-[2] w-[1.2em] inline-block relative -rotate-20 translate-x-[0.15em] -translate-y-[0.2em]">
+            <span className="z-[2] w-[1.5em] inline-block relative -rotate-20 translate-x-[0.15em] -translate-y-[0.2em]">
               <img
                 loading="lazy"
-                src="https://cdn.prod.website-files.com/681a615bf5a0f1ba3cb1ca38/681a62d0bb34b74d3514ecab_shape-squigle-1.png"
+                src="https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/duo-brown.png"
                 alt="Squiggle 1"
-                className="w-full max-w-full"
+                className="w-full max-w-full object-cover"
               />
             </span>
             random quote
-            <span className="z-[2] w-[1.2em] inline-block relative translate-x-[-0.1em] translate-y-[0.2em] rotate-10">
+            <span className="z-[2] w-[1.5em] inline-block relative translate-x-[-0.1em] translate-y-[0.2em] rotate-10">
               <img
                 loading="lazy"
-                src="https://cdn.prod.website-files.com/681a615bf5a0f1ba3cb1ca38/681a62d0bb34b74d3514ecad_shape-squigle-2.png"
+                src="https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/solid-dblue.png"
                 alt="Squiggle 2"
                 className="w-full max-w-full"
               />
@@ -187,10 +169,10 @@ export default function FallingTextGravity({
             className={`${textColor} ${maxTextWidth} text-center mt-0 mb-0 text-[4rem] font-medium leading-[1]`}
           >
             See how our window acts like
-            <span className="z-[2] w-[1.2em] inline-block relative -ml-[0.1em] -mr-[0.1em] -mt-[0.2em] translate-x-[-0.05em] translate-y-[0.1em] rotate-50">
+            <span className="z-[2] w-[1.5em] inline-block relative -mt-[0.2em] translate-x-[-0.05em] translate-y-[0.1em] rotate-50">
               <img
                 loading="lazy"
-                src="https://cdn.prod.website-files.com/681a615bf5a0f1ba3cb1ca38/681a62d0bb34b74d3514ecaf_shape-squigle-3.png"
+                src="https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/duo-blue.png"
                 alt="Squiggle 3"
                 className="w-full max-w-full"
               />

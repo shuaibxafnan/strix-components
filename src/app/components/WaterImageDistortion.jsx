@@ -2,21 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── WaterImageDistortion ────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// initialImageSrc      string   ksenia-k.com demo photo (see default)  Image loaded into the shader on mount
-// blueish              number   0.6                                    Tint mix toward cyan/white in the illuminated ripples (0–1)
-// scale                number   7                                      Spatial frequency of the surface ripple noise
-// illumination         number   0.15                                   Strength of the bright "caustic" highlight added by ripples
-// surfaceDistortion    number   0.07                                   How much the fine surface ripple warps the image UVs
-// waterDistortion      number   0.03                                   How much the slower outer wave warps the image UVs
-// devicePixelRatioCap  number   2                                      Max devicePixelRatio used for canvas resolution (perf ceiling)
-// backgroundColor      string   #000000                                Page background behind the canvas (visible briefly before the image loads)
-// vertexShaderSource   string   built-in passthrough vertex shader     Overridable GLSL vertex shader source
-// fragmentShaderSource string   built-in water-distortion fragment shader  Overridable GLSL fragment shader source
-// ──────────────────────────────────────────────────────────────────────────
+
 
 const DEFAULT_VERTEX_SHADER = `
 precision mediump float;
@@ -142,7 +128,7 @@ void main() {
 `;
 
 export default function WaterImageDistortion({
-  initialImageSrc = "https://ksenia-k.com/img/codepen/for-water-distortion-demo-2.jpg",
+  initialImageSrc = "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=1600&q=80",
   blueish = 0.6,
   scale = 7,
   illumination = 0.15,

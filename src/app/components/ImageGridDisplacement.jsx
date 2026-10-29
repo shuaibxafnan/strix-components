@@ -2,24 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── ImageGridDisplacement ───────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// imageUrl       string  "https://..."  Primary interactive image sliced onto grid cells
-// fallbackBgUrl  string  "https://..."  CSS background fallback element behind canvas
-// canvasWidth    number  384            Core width canvas resolution profile in pixels
-// canvasHeight   number  512            Core height canvas resolution profile in pixels
-// columns        number  35             Horizontal slice resolution mapping count
-// rows           number  55             Vertical slice resolution mapping count
-// mouseRadius    number  70             Interaction radius tracking proximity vector boundaries
-// easeFactor     number  12             Damping friction applied during return animation loops
-// borderColor    string  "border-black" Tailwind utility configuration for canvas perimeter borders
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function ImageGridDisplacement({
-  imageUrl = "https://ik.imagekit.io/akiAfnan/dinousar.jpg",
-  fallbackBgUrl = "https://i.ibb.co/DWx6NW3/my-image.jpg",
+  imageUrl = "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1200&q=80",
   canvasWidth = 384,
   canvasHeight = 512,
   columns = 35,
@@ -210,7 +194,6 @@ export default function ImageGridDisplacement({
         style={{
           width: `${canvasWidth}px`,
           height: `${canvasHeight}px`,
-          backgroundImage: `url('${fallbackBgUrl}')`,
         }}
       />
     </div>

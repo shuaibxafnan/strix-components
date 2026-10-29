@@ -2,16 +2,6 @@
 
 import { useState, useEffect } from "react";
 
-// ─── ScrollProgressMagazine ──────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// title            string   "The Polar Bear" Headline title text asset string
-// barHeight        string   "h-1.5"          Height density class for track layout
-// progressColor    string   "bg-gradient-to-r..." Color theme background token
-// maxContentWidth  string   "max-w-2xl"      Text readability layout width scale
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function ScrollProgressMagazine({
   title = "The Polar Bear",
   barHeight = "h-1.5",
@@ -120,7 +110,7 @@ export default function ScrollProgressMagazine({
           <figure className="my-12 group">
             <div className="overflow-hidden rounded-2xl border border-zinc-900 bg-zinc-950 transition-all duration-700 ease-out group-hover:border-zinc-800 shadow-2xl">
               <img
-                src="https://assets.codepen.io/89905/photo-1610570426407-efa770f9d31a.jpeg?width=1635&height=1090&format=auto&quality=60"
+                src="https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=720&q=80"
                 alt="Polar bear traversing snowy fields"
                 className="w-full h-auto object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.01]"
               />
@@ -177,7 +167,7 @@ export default function ScrollProgressMagazine({
           <figure className="my-12 group">
             <div className="overflow-hidden rounded-2xl border border-zinc-900 bg-zinc-950 transition-all duration-700 ease-out group-hover:border-zinc-800 shadow-2xl">
               <img
-                src="https://assets.codepen.io/89905/photo-1610570311113-79ba0e69768d.jpeg?width=1635&height=1090&format=auto&quality=60"
+                src="https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=720&q=80"
                 alt="Polar bear shaking water droplets from its fur coat"
                 className="w-full h-auto object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.01]"
               />

@@ -2,25 +2,10 @@
 
 import { useEffect, useState, useRef } from "react";
 
-// ─── ExplodingPieceCarousel ──────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bgColor            string   "#ffffff"           Page/App container background
-// width              number   400                 Image display area width (px)
-// height             number   400                 Image display area height (px)
-// pieceCount         number   10                  Number of horizontal slice segments
-// xChange            number   1000                Explosion drift target distance X (px)
-// yChange            number   1000                Explosion drift target distance Y (px)
-// rotationAngle      number   25                  Max piece tilt rotation (deg)
-// duration           number   1                   GSAP twin transition segment steps (s)
-// imageOptions       array    [MOCK_DATA]         Image sources asset array matrix
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_IMAGES = [
-  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/394353/supermario.jpg",
-  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/394353/donkeykong.jpg",
-  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/394353/waluigi.jpg",
+  "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=720&q=80",
 ];
 
 export default function ExplodingPieceCarousel({

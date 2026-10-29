@@ -2,36 +2,26 @@
 
 import { useEffect, useState, useRef } from "react";
 
-// ─── ImagePreviewMatrix ───────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// primaryTextColor string   "#0f172a" Main typographical layout color profile
-// highlightColor    string   "#fbbf24" Background accents used during cursor hooks
-// linkTextColor     string   "#4f46e5" Inactive structural baseline link hue
-// lensSize          number   340       Dimension scaling size of cursor frame (px)
-// ──────────────────────────────────────────────────────────────────────────
-
 const SOURCE_DATA = [
   {
     id: "img-1",
     text: "simply random text",
-    src: "https://assets.codepen.io/1462889/sl1.jpg",
+    src: "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "img-2",
     text: "Latin literature",
-    src: "https://assets.codepen.io/1462889/sl2.jpg",
+    src: "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "img-3",
     text: "Virginia",
-    src: "https://assets.codepen.io/1462889/sl3.jpg",
+    src: "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "img-4",
     text: "Latin words",
-    src: "https://assets.codepen.io/1462889/sl4.jpg",
+    src: "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
@@ -110,22 +100,6 @@ export default function ImagePreviewMatrix({
     <div className="w-full min-h-screen flex items-center justify-center p-8 relative bg-[#fbfbfd] overflow-hidden select-none">
       {/* Premium Minimal Grid Overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-70 pointer-events-none" />
-
-      {/* Brand Identity Navigation Keyway */}
-      <a
-        href="https://front.codes/"
-        target="_blank"
-        rel="noopener noreferrer"
-        onMouseEnter={() => setIsLogoActive(true)}
-        onMouseLeave={() => setIsLogoActive(false)}
-        className="fixed top-10 left-10 z-[1000] block transition-transform duration-300 hover:scale-105 active:scale-95"
-      >
-        <img
-          src="https://assets.codepen.io/1462889/fcb.png"
-          alt="Branded Identity Trademark Signet"
-          className="h-5 w-auto block filter invert opacity-80"
-        />
-      </a>
 
       {/* Main Text Content Stage Block */}
       <div className="w-full max-w-[1000px] px-2 py-16 z-10 mx-auto transition-all duration-500">

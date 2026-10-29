@@ -2,25 +2,23 @@
 
 import { useEffect, useId, useRef } from "react";
 
-// ─── HeroClipReveal ──────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bgColor            string   #070707     Page background
-// counterTarget      number   100         Value the corner counter animates up to during the intro
-// slides             array    (3 slides)  Array of { title, caption } — cycled in sync as the arrows are clicked
-// centerVideoSrcs    array    (3 mp4 urls) The three crossfading videos shown in the center "from-video" box
-// centerVideoPoster  string   (poster img) Poster image behind the center box before the intro reveal
-// secondImgSrc       string   (img url)   Image for the second intro box
-// thirdImgSrc        string   (img url)   Image for the third intro box
-// leftColumnSets     array    (4 image trios) Array of { orange, blue, green } — repeated to fill the scrolling left column
-// leftLoopRepeats    number   2           How many times leftColumnSets repeats to build the seamless scroll loop
-// rightImageSet      object   { blue, green, orange }   The three crossfading images in the bottom-right thumbnail
-// arrowImgSrc        string   (arrow img) Icon used for both carousel arrows
-// hopEase            string   "M0,0 C0.3,0 0.1,1 1,1"   CustomEase path registered as "hop", used for nearly every tween
-// introBoxDuration    number  0.5         Duration (s) of each box's clip-path reveal during the intro
-// scrollDuration     number   16          Duration (s) of one full loop of the infinite left-column scroll
-// ──────────────────────────────────────────────────────────────────────────
+const EASE = "ease-[cubic-bezier(.3,0,.1,1)]";
+const TRANS = `transition-all duration-[600ms] ${EASE}`;
+
+const CLIP_FULL = "[clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]";
+const CLIP_BOTTOM = "[clip-path:polygon(0%_100%,100%_100%,100%_100%,0%_100%)]";
+const CLIP_POINT =
+  "[clip-path:polygon(100%_100%,100%_100%,100%_100%,100%_100%)]";
+const CLIP_RIGHT = "[clip-path:polygon(100%_0,100%_0,100%_100%,100%_100%)]";
+const CLIP_LEFT = "[clip-path:polygon(0_0,0%_0,0%_100%,0_100%)]";
+
+const unsplash = (id, w, h) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&h=${h}&q=80`;
+const tile = (id) => unsplash(id, 568, 880);
+const trio = (url) => ({ orange: url, blue: url, green: url });
+
+const FLOWER_VIDEO =
+  "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
 
 const DEFAULT_SLIDES = [
   { title: "Eyewear", caption: "Clean lines built for everyday wear." },
@@ -29,48 +27,58 @@ const DEFAULT_SLIDES = [
 ];
 
 const DEFAULT_LEFT_COLUMN_SETS = [
-  {
-    orange: "https://i.postimg.cc/fLjVwDnP/Orange-1.png",
-    blue: "https://i.postimg.cc/prRn8yJx/Blue-1.png",
-    green: "https://i.postimg.cc/3xd02smy/Green-01.png",
-  },
-  {
-    orange: "https://i.postimg.cc/SRSJR3mx/Orange-2.png",
-    blue: "https://i.postimg.cc/L6418Ys3/Blue-2.png.png",
-    green: "https://i.postimg.cc/2SMbG070/Green-02.png",
-  },
-  {
-    orange: "https://i.postimg.cc/d35Dy60m/Orange-3.png",
-    blue: "https://i.postimg.cc/44QcGbX3/Blue-3.png",
-    green: "https://i.postimg.cc/rp4dP5hM/Green-03.png",
-  },
-  {
-    orange: "https://i.postimg.cc/c1hv2xcg/Orange-4.png",
-    blue: "https://i.postimg.cc/YqXmGrGK/Blue-4.png",
-    green: "https://i.postimg.cc/Y9w4KjVg/Green-04.png",
-  },
+  trio(tile("1778961938903-96617183f739")),
+  trio(tile("1678112553355-a9dab855ebf3")),
+  trio(tile("1743309411498-a0f4f4b96b65")),
+  trio(tile("1490682143684-14369e18dce8")),
 ];
+
+const DEFAULT_TONES = ["", "hue-rotate-[150deg]", "hue-rotate-[250deg]"];
+
+const LINE_CLASSES = [
+  "top-0 h-[93px] w-px origin-bottom after:bottom-0",
+  "right-0 h-px w-[93px] origin-left after:bottom-0",
+  "bottom-0 h-[93px] w-px origin-top after:top-0",
+  "left-0 h-px w-[93px] origin-right after:bottom-0 after:right-0",
+];
+
+const Arrow = ({ dir }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.25"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="h-full w-full"
+    aria-hidden="true"
+  >
+    {dir === "left" ? (
+      <>
+        <path d="M19 12H5" />
+        <path d="m12 19-7-7 7-7" />
+      </>
+    ) : (
+      <>
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </>
+    )}
+  </svg>
+);
 
 export default function AnimationClipReveal({
   bgColor = "#070707",
   counterTarget = 100,
   slides = DEFAULT_SLIDES,
-  centerVideoSrcs = [
-    "https://www.dropbox.com/scl/fi/pgzc27bvjlh4wqs1a0x42/video_1.mp4?rlkey=hdvvg5tsl4kfmbbg4zimy2mgi&st=hn6f5srf&raw=1",
-    "https://www.dropbox.com/scl/fi/40nwbkzo84ngv4azzr18k/video_2.mp4?rlkey=y4qy8jz3rzj657wgwzphg3f91&st=4tnwiipr&raw=1",
-    "https://www.dropbox.com/scl/fi/17vt73otfh85ak3t0bwyc/video_3.mp4?rlkey=b2b4ebwrmup5zdeek8e7wpk7y&st=gsaykje1&raw=1",
-  ],
-  centerVideoPoster = "https://i.postimg.cc/vZR3KthZ/1-167-217.png",
-  secondImgSrc = "https://i.postimg.cc/YSM8r2Jc/3.png",
-  thirdImgSrc = "https://i.postimg.cc/t4h2Gnvt/2-167-293.png",
+  centerVideoSrcs = [FLOWER_VIDEO, FLOWER_VIDEO, FLOWER_VIDEO],
+  centerVideoPoster = unsplash("1749330513873-09ffa91b0aae", 800, 536),
+  secondImgSrc = unsplash("1778789172736-e8ba37c71124", 800, 536),
+  thirdImgSrc = "https://interactive-examples.mdn.mozilla.net/media/cc0-images/painted-hand-298-332.jpg",
   leftColumnSets = DEFAULT_LEFT_COLUMN_SETS,
   leftLoopRepeats = 2,
-  rightImageSet = {
-    blue: "https://i.postimg.cc/TPx9tsNk/2-167-293.png",
-    green: "https://i.postimg.cc/K8kV6CNx/Green-1.png",
-    orange: "https://i.postimg.cc/N0xxSxWQ/1-167-217.png",
-  },
-  arrowImgSrc = "https://i.postimg.cc/VkQmbrXn/arrow.png",
+  rightImageSet = trio(unsplash("1634325232058-e7b8f80cc20b", 356, 482)),
+  tones = DEFAULT_TONES,
   hopEase = "M0,0 C0.3,0 0.1,1 1,1",
   introBoxDuration = 0.5,
   scrollDuration = 16,
@@ -299,8 +307,8 @@ export default function AnimationClipReveal({
 
             const prevImageClass =
               imageSequences[
-                (currentIndex - 1 + imageSequences.length) %
-                  imageSequences.length
+              (currentIndex - 1 + imageSequences.length) %
+              imageSequences.length
               ];
 
             wrapperLeftBox.forEach((b, index) => {
@@ -394,11 +402,10 @@ export default function AnimationClipReveal({
 
             wrapperLeftBox.forEach((b, index) => {
               const prevImg = b.querySelector(
-                `.${
-                  imageSequences[
-                    (currentIndex - 1 + imageSequences.length) %
-                      imageSequences.length
-                  ]
+                `.${imageSequences[
+                (currentIndex - 1 + imageSequences.length) %
+                imageSequences.length
+                ]
                 }-${uid}`,
               );
               const nextImg = b.querySelector(`.${nextImageClass}-${uid}`);
@@ -562,96 +569,77 @@ export default function AnimationClipReveal({
     };
   }, [uid, hopEase, counterTarget, scrollDuration, introBoxDuration]);
 
-  const scopedCss = `
-    .wrapper-${uid} { display:flex; width:400px; height:268px; position:absolute; justify-content:center; align-items:center; }
-    .description-center-${uid} { display:flex; position:absolute; top:-165px; justify-content:space-between; width:100%; align-items:flex-end; }
-
-    .numbers-${uid} { display:flex; height:11px; overflow:hidden; }
-    .numbers-${uid} span, .numbers-${uid} p, .count-text-${uid} { line-height:11px; font-size:12px; display:flex; }
-    .hide-text-${uid} { display:flex; transform:translateY(100%); transition:all .6s cubic-bezier(.3,0,.1,1); }
-    .numbers-${uid} .hide-text-${uid}:nth-of-type(1) { position:absolute; top:0; right:0; transform:translateY(-100%); overflow:hidden; }
-    .numbers-${uid} .hide-text-${uid}:nth-of-type(1) p { transition:all .6s cubic-bezier(.3,0,.1,1); transform:translateY(-100%); }
-    .try-${uid} { display:flex; flex-direction:column; transform:translateY(0); transition:all .6s cubic-bezier(.3,0,.1,1); }
-    .numbers-${uid}.active .hide-text-${uid} { transform:translateY(0); }
-    .numbers-${uid}.active .hide-text-${uid}:nth-of-type(1) p { transform:translateY(0); }
-
-    .description-bottom-${uid} { display:flex; flex-direction:column; gap:10px; position:absolute; bottom:-150px; left:0; width:320px; }
-    .info-col-${uid} { display:flex; flex-direction:column; gap:10px; }
-    .info-col-${uid} .hide-text-${uid} { position:relative; overflow:hidden; }
-    .info-col-${uid} .hide-text-${uid} p { transition:all .6s cubic-bezier(.3,0,.1,1); transform:translateY(-200%); position:absolute; color:#fff; }
-    .info-col-${uid} .hide-text-${uid} p:nth-of-type(2) { transform:translateY(200%); }
-    .info-col-${uid} .hide-text-${uid} p.active { transform:translateY(0); transition-delay:.3s; }
-    .info-col-${uid} .title-line-${uid} { height:30px; }
-    .info-col-${uid} .title-line-${uid} p { font-size:26px; font-weight:800; text-transform:uppercase; letter-spacing:-0.02em; line-height:1; white-space:nowrap; }
-    .info-col-${uid} .caption-line-${uid} { height:34px; }
-    .info-col-${uid} .caption-line-${uid} p { font-size:13px; font-weight:400; line-height:1.4; color:rgba(255,255,255,.6); max-width:300px; white-space:normal; }
-
-    .box-${uid} { display:flex; position:absolute; width:400px; height:268px; overflow:hidden; align-items:center; justify-content:center; z-index:1; clip-path:polygon(0% 100%,100% 100%,100% 100%,0% 100%); }
-    .box-${uid} img { width:400px; position:absolute; transform:scale(1.9); clip-path:polygon(0% 0%,100% 0%,100% 100%,0% 100%); }
-    .video1-${uid} { display:none; width:400px; transform:scale(1) translateY(16px); opacity:0; position:absolute; clip-path:polygon(0% 0%,100% 0%,100% 100%,0% 100%); }
-    .video2-${uid}, .video3-${uid} { display:none; width:400px; clip-path:polygon(100% 100%,100% 100%,100% 100%,100% 100%); position:absolute; }
-    .box-${uid}.active { bottom:unset; transform-origin:center; }
-
-    .counter-${uid} { display:flex; width:238px; height:238px; justify-content:center; align-items:center; position:relative; }
-    .counter-current-${uid} { color:#fff; z-index:0; display:flex; overflow:hidden; }
-    .counter-current-${uid} p { transform:translateY(100%); }
-    .counter-line-${uid} { display:flex; position:absolute; opacity:.4; transition:all .6s cubic-bezier(.3,0,.1,1); }
-    .counter-line-${uid}:nth-of-type(1) { top:0; width:1px; height:93px; transform-origin:bottom center; }
-    .counter-line-${uid}:nth-of-type(2) { right:0; height:1px; width:93px; transform-origin:left center; }
-    .counter-line-${uid}:nth-of-type(3) { bottom:0; width:1px; height:93px; transform-origin:top center; }
-    .counter-line-${uid}:nth-of-type(4) { left:0; height:1px; width:93px; transform-origin:right center; }
-    .counter-line-${uid}::after { content:""; display:flex; width:0%; height:0%; position:absolute; background-color:#d9d9d9; bottom:0; transition:all .6s cubic-bezier(.3,0,.1,1); }
-    .counter-line-${uid}:nth-of-type(3)::after { bottom:unset; top:0; }
-    .counter-line-${uid}:nth-of-type(4)::after { right:0; }
-    .counter-line-${uid}.active::after { width:100%; height:100%; }
-
-    .wrapper-left-${uid} { display:flex; width:284px; position:absolute; top:0; left:0; flex-direction:column; overflow:hidden; }
-    .box-left-${uid} { display:flex; position:relative; height:440px; overflow:hidden; margin-bottom:13px; align-items:center; clip-path:polygon(0 0,0% 0,0% 100%,0 100%); }
-    .box-left-${uid} img { width:284px; position:absolute; transform:scale(2); display:none; }
-    .box-left-${uid} .orange-${uid} { display:flex; z-index:1; }
-    .box-left-${uid} .blue-${uid}, .box-left-${uid} .green-${uid} { z-index:1; clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%); }
-
-    .wrapper-right-${uid} { display:flex; width:178px; position:absolute; right:0; bottom:100px; cursor:pointer; }
-    .box-right-${uid} { display:flex; position:relative; width:178px; height:241px; align-items:center; overflow:hidden; clip-path:polygon(100% 0,100% 0,100% 100%,100% 100%); }
-    .box-right-${uid} img { width:178px; position:absolute; transform:scale(1.5); display:none; }
-    .box-right-${uid} .blue-${uid} { display:flex; }
-    .box-right-${uid} .green-${uid}, .box-right-${uid} .orange-${uid} { clip-path:polygon(100% 100%,100% 100%,100% 100%,100% 100%); }
-
-    .buttons-arrow-${uid} { display:flex; position:absolute; bottom:-60px; left:0; width:178px; gap:8px; overflow:hidden; }
-    .buttons-arrow-${uid} .arrow-left-${uid}, .buttons-arrow-${uid} .arrow-right-${uid} { color:#fff; cursor:pointer; width:34px; height:34px; transition:all .6s cubic-bezier(.3,0,.1,1); transform:translateY(-110%); }
-    .buttons-arrow-${uid} .arrow-left-${uid}:hover, .buttons-arrow-${uid} .arrow-right-${uid}:hover { opacity:.7; }
-    .buttons-arrow-${uid} .arrow-right-${uid} img { transform:rotateY(180deg); }
-    .buttons-arrow-${uid} img { width:34px; height:34px; }
-    .buttons-arrow-${uid}.active .arrow-left-${uid}, .buttons-arrow-${uid}.active .arrow-right-${uid} { transform:translateY(0px); }
-  `;
+  /* Fit the center stage to small and short screens. Side columns appear from lg up. */
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const update = () => {
+      const s = Math.min(1, window.innerWidth / 440, window.innerHeight / 760);
+      el.style.setProperty("--s", s.toFixed(3));
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const leftLoopItems = Array.from(
     { length: leftLoopRepeats },
     () => leftColumnSets,
   ).flat();
 
+  /*
+    Elements that GSAP animates use [transform:...] instead of scale-* or
+    translate-* utilities. Tailwind 4 maps those to separate CSS properties,
+    which would stack on top of GSAP's inline transform.
+  */
+  const leftImg = {
+    orange: `flex z-[1] ${tones[0]}`,
+    blue: `hidden z-[1] ${CLIP_BOTTOM} ${tones[1]}`,
+    green: `hidden z-[1] ${CLIP_BOTTOM} ${tones[2]}`,
+  };
+  const rightImg = {
+    blue: `flex ${tones[1]}`,
+    green: `hidden ${CLIP_POINT} ${tones[2]}`,
+    orange: `hidden ${CLIP_POINT} ${tones[0]}`,
+  };
+  const videoTone = (i) => tones[i] || "";
+
   return (
     <main
-      className={`hero-${uid} relative w-full overflow-hidden`}
-      style={{ backgroundColor: bgColor }}
+      className={`hero-${uid} relative w-full overflow-hidden bg-[var(--hero-bg)] text-white`}
+      style={{ "--hero-bg": bgColor }}
       ref={rootRef}
     >
-      <style dangerouslySetInnerHTML={{ __html: scopedCss }} />
-
       <section className="relative flex h-screen items-center justify-center overflow-hidden">
         <div className="container relative flex h-screen items-center justify-center">
           {/* center hero stage */}
-          <div className={`wrapper-${uid}`}>
-            <div className={`description-center-${uid}`}>
-              <div className={`numbers-${uid}`}>
-                <div className={`hide-text-${uid}`}>
-                  <p>+</p>
+          <div
+            className={`wrapper-${uid} absolute flex h-[268px] w-[400px] items-center justify-center [transform:scale(var(--s,1))]`}
+          >
+            <div
+              className={`description-center-${uid} absolute -top-[165px] flex w-full items-end justify-between`}
+            >
+              <div
+                className={`numbers-${uid} group/num flex h-[11px] overflow-hidden [&_p]:flex [&_p]:text-[12px] [&_p]:leading-[11px] [&_span]:flex [&_span]:text-[12px] [&_span]:leading-[11px]`}
+              >
+                <div
+                  className={`hide-text-${uid} absolute right-0 top-0 flex -translate-y-full overflow-hidden ${TRANS} group-[.active]/num:translate-y-0`}
+                >
+                  <p
+                    className={`-translate-y-full ${TRANS} group-[.active]/num:translate-y-0`}
+                  >
+                    +
+                  </p>
                 </div>
-                <div className={`hide-text-${uid}`}>
-                  <div className={`count-text-${uid}`}>
+                <div
+                  className={`hide-text-${uid} flex translate-y-full ${TRANS} group-[.active]/num:translate-y-0`}
+                >
+                  <div
+                    className={`count-text-${uid} flex text-[12px] leading-[11px]`}
+                  >
                     <span>
                       _0
-                      <div className={`try-${uid}`}>
+                      <div className={`try-${uid} flex flex-col ${TRANS}`}>
                         <span>1</span>
                         <span>2</span>
                         <span>3</span>
@@ -663,88 +651,176 @@ export default function AnimationClipReveal({
               </div>
             </div>
 
-            <div className={`description-bottom-${uid}`}>
-              <div className={`info-col-${uid}`}>
+            <div
+              className={`description-bottom-${uid} absolute -bottom-[150px] left-0 flex w-[320px] flex-col gap-[10px]`}
+            >
+              <div className="flex flex-col gap-[10px]">
                 <div
-                  className={`hide-text-${uid} change-text-${uid} title-line-${uid}`}
+                  className={`hide-text-${uid} change-text-${uid} relative flex h-[30px] translate-y-full overflow-hidden ${TRANS}`}
                 >
                   {slides.map((slide, i) => (
-                    <p key={i}>{slide.title}</p>
+                    <p
+                      key={i}
+                      className={`absolute whitespace-nowrap text-[26px] font-extrabold uppercase leading-none tracking-[-0.02em] text-white ${TRANS} [&.active]:translate-y-0 [&.active]:delay-300 ${i === 1 ? "translate-y-[200%]" : "-translate-y-[200%]"
+                        }`}
+                    >
+                      {slide.title}
+                    </p>
                   ))}
                 </div>
                 <div
-                  className={`hide-text-${uid} change-text-${uid} caption-line-${uid}`}
+                  className={`hide-text-${uid} change-text-${uid} relative flex h-[34px] translate-y-full overflow-hidden ${TRANS}`}
                 >
                   {slides.map((slide, i) => (
-                    <p key={i}>{slide.caption}</p>
+                    <p
+                      key={i}
+                      className={`absolute max-w-[300px] whitespace-normal text-[13px] font-normal leading-[1.4] text-white/60 ${TRANS} [&.active]:translate-y-0 [&.active]:delay-300 ${i === 1 ? "translate-y-[200%]" : "-translate-y-[200%]"
+                        }`}
+                    >
+                      {slide.caption}
+                    </p>
                   ))}
                 </div>
               </div>
             </div>
 
-            <div className={`box-${uid} from-video-${uid}`}>
-              <img src={centerVideoPoster} alt="" />
-              <video className={`video1-${uid}`} muted playsInline loop>
+            <div
+              className={`box-${uid} from-video-${uid} absolute z-[1] flex h-[268px] w-[400px] items-center justify-center overflow-hidden ${CLIP_BOTTOM}`}
+            >
+              <img
+                src={centerVideoPoster}
+                alt=""
+                className={`absolute -top-5 left-0 h-[calc(100%_+_40px)] w-full object-cover [transform:scale(1.9)] ${CLIP_FULL}`}
+              />
+              <video
+                className={`video1-${uid} absolute inset-0 hidden h-full w-full object-cover opacity-0 ${CLIP_FULL} ${videoTone(0)}`}
+                muted
+                playsInline
+                loop
+              >
                 <source src={centerVideoSrcs[0]} type="video/mp4" />
               </video>
-              <video className={`video2-${uid}`} muted playsInline loop>
+              <video
+                className={`video2-${uid} absolute inset-0 hidden h-full w-full object-cover ${CLIP_POINT} ${videoTone(1)}`}
+                muted
+                playsInline
+                loop
+              >
                 <source src={centerVideoSrcs[1]} type="video/mp4" />
               </video>
-              <video className={`video3-${uid}`} muted playsInline loop>
+              <video
+                className={`video3-${uid} absolute inset-0 hidden h-full w-full object-cover ${CLIP_POINT} ${videoTone(2)}`}
+                muted
+                playsInline
+                loop
+              >
                 <source src={centerVideoSrcs[2]} type="video/mp4" />
               </video>
             </div>
-            <div className={`box-${uid}`}>
-              <img src={secondImgSrc} alt="" />
+            <div
+              className={`box-${uid} absolute z-[1] flex h-[268px] w-[400px] items-center justify-center overflow-hidden ${CLIP_BOTTOM}`}
+            >
+              <img
+                src={secondImgSrc}
+                alt=""
+                className={`absolute -top-5 left-0 h-[calc(100%_+_40px)] w-full object-cover [transform:scale(1.9)] ${CLIP_FULL}`}
+              />
             </div>
-            <div className={`box-${uid}`}>
-              <img src={thirdImgSrc} alt="" />
+            <div
+              className={`box-${uid} absolute z-[1] flex h-[268px] w-[400px] items-center justify-center overflow-hidden ${CLIP_BOTTOM}`}
+            >
+              <img
+                src={thirdImgSrc}
+                alt=""
+                className={`absolute -top-5 left-0 h-[calc(100%_+_40px)] w-full object-cover [transform:scale(1.9)] ${CLIP_FULL}`}
+              />
             </div>
 
-            <div className={`counter-${uid}`}>
-              <span className={`counter-current-${uid}`}>
-                <p>01</p>
+            <div
+              className={`counter-${uid} relative flex h-[238px] w-[238px] items-center justify-center`}
+            >
+              <span
+                className={`counter-current-${uid} z-0 flex overflow-hidden text-white`}
+              >
+                <p className="[transform:translateY(100%)]">01</p>
               </span>
-              <div className={`counter-line-${uid}`} />
-              <div className={`counter-line-${uid}`} />
-              <div className={`counter-line-${uid}`} />
-              <div className={`counter-line-${uid}`} />
+              {LINE_CLASSES.map((cls, i) => (
+                <div
+                  key={i}
+                  className={`counter-line-${uid} absolute flex opacity-40 ${TRANS} ${cls} after:absolute after:flex after:h-0 after:w-0 after:bg-[#d9d9d9] after:content-[''] after:transition-all after:duration-[600ms] after:ease-[cubic-bezier(.3,0,.1,1)] [&.active]:after:h-full [&.active]:after:w-full`}
+                />
+              ))}
             </div>
           </div>
 
           {/* left scrolling column */}
-          <div className={`wrapper-left-${uid}`}>
+          <div
+            className={`wrapper-left-${uid} absolute left-0 top-0 hidden w-[284px] flex-col overflow-hidden lg:flex`}
+          >
             {leftLoopItems.map((set, i) => (
-              <div key={i} className={`box-left-${uid}`}>
-                <img className={`orange-${uid}`} src={set.orange} alt="" />
-                <img className={`blue-${uid}`} src={set.blue} alt="" />
-                <img className={`green-${uid}`} src={set.green} alt="" />
+              <div
+                key={i}
+                className={`box-left-${uid} relative mb-[13px] flex h-[440px] items-center overflow-hidden ${CLIP_LEFT}`}
+              >
+                <img
+                  className={`orange-${uid} absolute inset-0 h-full w-full object-cover [transform:scale(2)] ${leftImg.orange}`}
+                  src={set.orange}
+                  alt=""
+                />
+                <img
+                  className={`blue-${uid} absolute inset-0 h-full w-full object-cover [transform:scale(2)] ${leftImg.blue}`}
+                  src={set.blue}
+                  alt=""
+                />
+                <img
+                  className={`green-${uid} absolute inset-0 h-full w-full object-cover [transform:scale(2)] ${leftImg.green}`}
+                  src={set.green}
+                  alt=""
+                />
               </div>
             ))}
           </div>
 
-          {/* right thumbnail + carousel arrows */}
-          <div className={`wrapper-right-${uid}`}>
-            <div className={`box-right-${uid}`}>
-              <img className={`blue-${uid}`} src={rightImageSet.blue} alt="" />
+          {/* right thumbnail and carousel arrows */}
+          <div
+            className={`wrapper-right-${uid} absolute bottom-[100px] right-0 flex w-[178px] cursor-pointer max-lg:left-1/2 max-lg:right-auto max-lg:-translate-x-1/2`}
+          >
+            <div
+              className={`box-right-${uid} relative hidden h-[241px] w-[178px] items-center overflow-hidden lg:flex ${CLIP_RIGHT}`}
+            >
               <img
-                className={`green-${uid}`}
+                className={`blue-${uid} absolute inset-0 h-full w-full object-cover [transform:scale(1.5)] ${rightImg.blue}`}
+                src={rightImageSet.blue}
+                alt=""
+              />
+              <img
+                className={`green-${uid} absolute inset-0 h-full w-full object-cover [transform:scale(1.5)] ${rightImg.green}`}
                 src={rightImageSet.green}
                 alt=""
               />
               <img
-                className={`orange-${uid}`}
+                className={`orange-${uid} absolute inset-0 h-full w-full object-cover [transform:scale(1.5)] ${rightImg.orange}`}
                 src={rightImageSet.orange}
                 alt=""
               />
             </div>
-            <div className={`buttons-arrow-${uid}`}>
-              <div className={`arrow-left-${uid}`}>
-                <img src={arrowImgSrc} alt="" />
-              </div>
-              <div className={`arrow-right-${uid}`}>
-                <img src={arrowImgSrc} alt="" />
-              </div>
+            <div
+              className={`buttons-arrow-${uid} group/arrows absolute -bottom-[60px] left-0 flex w-[178px] gap-2 overflow-hidden max-lg:justify-center`}
+            >
+              <button
+                type="button"
+                aria-label="Previous slide"
+                className={`arrow-left-${uid} h-[34px] w-[34px] -translate-y-[110%] cursor-pointer p-1 text-white ${TRANS} hover:opacity-70 group-[.active]/arrows:translate-y-0`}
+              >
+                <Arrow dir="left" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next slide"
+                className={`arrow-right-${uid} h-[34px] w-[34px] -translate-y-[110%] cursor-pointer p-1 text-white ${TRANS} hover:opacity-70 group-[.active]/arrows:translate-y-0`}
+              >
+                <Arrow dir="right" />
+              </button>
             </div>
           </div>
         </div>

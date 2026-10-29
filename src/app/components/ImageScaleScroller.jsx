@@ -5,41 +5,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 
-// ─── ImageScale ───────────────────────────────────────────────────────────────
-//
-// On load: full-bleed image covers 100% viewport, zero text visible.
-// On scroll: section pins, image slides right revealing text beneath,
-// counter animates 0 → targetNumber, image scales down, boxes trim.
-//
-// Mobile (< mobileBreakpoint px): side-by-side layout is replaced with a
-// stacked layout — text above, image below. Image scales down on scroll
-// and counter still animates, but no horizontal slide (no room).
-//
-// Requires: npm install gsap
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bgColor            string   "#ffffff"                  Page + box fill
-// dividerColor       string   "#ebebeb"                  Center line + box borders
-// topline            string   "Our solutions use"        Label above heading
-// targetNumber       number   97                         Counter end value
-// unit               string   "%"                        Suffix after counter
-// headingLine2       string   "less water"               Second line of h2
-// headingColor       string   "#000000"                  h2 color at start
-// headingColorEnd    string   "#91a052"                  h2 color at end of scroll
-// bodyText           string   "Over 600 gallons…"        Paragraph copy
-// imageSrc           string   "…field.jpeg"              Image URL
-// imageAlt           string   "Scale image"              Image alt text
-// scrollDistance     number   1500                       px pinned while scrolling (desktop)
-// mobileScrollDist   number   800                        px pinned on mobile
-// smoothness         number   2                          ScrollSmoother lag
-// fontFamily         string   "sans-serif"               CSS font-family
-// toplineFontSize    string   "1.5rem"                   Topline font-size
-// headingFontSize    string   "clamp(4rem, 8vw, 12rem)"  h2 font-size
-// bodyColor          string   "#82837f"                  Paragraph color
-// mobileBreakpoint   number   768                        px below which mobile layout fires
-// ──────────────────────────────────────────────────────────────────────────
-
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function ImageScaleScroller({
@@ -52,7 +17,7 @@ export default function ImageScaleScroller({
   headingColor = "#000000",
   headingColorEnd = "#91a052",
   bodyText = "Over 600 gallons of water is wasted every minute by using outdated methods. Our improved technology reduces both water waste and land needed to grow.",
-  imageSrc = "https://assets.codepen.io/2479807/field.jpeg",
+  imageSrc = "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1600&q=80",
   imageAlt = "Scale image",
   scrollDistance = 1500,
   mobileScrollDist = 800,

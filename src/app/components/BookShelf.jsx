@@ -1,29 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useId, useRef, useState } from "react";
 
-// ─── BookShelf ────────────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────────
-// books              array    (see DEFAULT_BOOKS)   Array of book objects
-// defaultOpenIndex   number   2                     Index in books array that opens by default
-// shelfMaxWidth      string   "800px"               Max width of the shelf
-// overlayFontSize    string   "20rem"               Size of the background title overlay text
-// darkMode           bool     false                 Initial dark mode state
-// showThemeToggle    bool     true                  Show theme toggle dot
-// enableDotGrid      bool     true                  Show dot grid background
-// bookHeight         number   220                   Height of book items in px
-// bookWidth          number   160                   Width of book covers in px
-// ──────────────────────────────────────────────────────────────────────────────
+const GSAP_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
+
+const cover = (id) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=480&h=660&q=80`;
 
 const DEFAULT_BOOKS = [
   {
     index: "0",
     title: "The Complete Works",
-    overlayTitle: "The Complete Works",
-    coverSrc:
-      "https://covers.shakespeareandcompany.com/97818386/9781838661533.jpg",
+    coverSrc: cover("1759458856846-097935f54111"),
     coverAlt: "Dieter Rams: The Complete Works",
     descTitle: "Dieter Rams: The Complete Works",
     author: "by Klaus Klemp",
@@ -33,9 +22,7 @@ const DEFAULT_BOOKS = [
   {
     index: "1",
     title: "Simple Living",
-    overlayTitle: "Simple Living",
-    coverSrc:
-      "https://covers.shakespeareandcompany.com/97802413/9780241371831.jpg",
+    coverSrc: cover("1533387520709-752d83de3630"),
     coverAlt: "Zen: The Art of Simple Living",
     descTitle: "Zen: The Art of Simple Living",
     author: "by Shunmyo Masuno",
@@ -45,9 +32,7 @@ const DEFAULT_BOOKS = [
   {
     index: "2",
     title: "Ten Principles for Good Design",
-    overlayTitle: "Ten Principles for Good Design",
-    coverSrc:
-      "https://covers.shakespeareandcompany.com/97837913/9783791387321.jpg",
+    coverSrc: cover("1752150127767-77bccbed07e2"),
     coverAlt: "Dieter Rams: Ten Principles for Good Design",
     descTitle: "Dieter Rams: Ten Principles for Good Design",
     author: "by Dieter Rams",
@@ -59,30 +44,31 @@ const DEFAULT_BOOKS = [
 const SIDE_BOOK = {
   index: "side",
   title: "Design Systems",
-  overlayTitle: "Design Systems",
   descTitle: "Design Systems",
   author: "A Practical Guide",
   description:
     "A comprehensive guide to creating, documenting, and maintaining design systems. This book covers the essential elements of design systems, from typography and color to components and patterns, helping teams build cohesive and scalable product experiences.",
 };
 
+const SHADOW_BLOB =
+  "h-[2px] rounded-full bg-[radial-gradient(ellipse_at_center,var(--book-shadow)_0%,rgba(0,0,0,0)_70%)]";
+
 export default function BookShelf({
   books = DEFAULT_BOOKS,
   sideBook = SIDE_BOOK,
   defaultOpenIndex = 2,
   shelfMaxWidth = "800px",
-  overlayFontSize = "20rem",
+  fontFamily = "Bricolage Grotesque",
   darkMode: initialDarkMode = false,
   showThemeToggle = true,
+  themeToggleLabel = "Toggle theme",
   enableDotGrid = true,
   bookHeight = 220,
   bookWidth = 160,
 }) {
+  const gridId = `dotGrid${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
   const [isDark, setIsDark] = useState(initialDarkMode);
   const [activeIndex, setActiveIndex] = useState(String(defaultOpenIndex));
-  const [overlayTitle, setOverlayTitle] = useState(
-    books[defaultOpenIndex]?.overlayTitle ?? "",
-  );
 
   const gsapRef = useRef(null);
   const bookTimelinesRef = useRef({});
@@ -97,7 +83,6 @@ export default function BookShelf({
   const descLineRefs = useRef({});
   const containerRef = useRef(null);
 
-  // sync dark mode to localStorage on client only
   useEffect(() => {
     const saved = localStorage.getItem("bookshelf-theme");
     if (saved === "dark") setIsDark(true);
@@ -112,113 +97,125 @@ export default function BookShelf({
     });
   };
 
-  // Load GSAP and wire animations
   useEffect(() => {
+    let cancelled = false;
+
     const loadScript = (src) =>
       new Promise((resolve, reject) => {
-        if (document.querySelector(`script[data-gsap-src="${src}"]`)) {
-          resolve();
+        const existing = document.querySelector(
+          `script[data-gsap-src="${src}"]`,
+        );
+        if (existing) {
+          if (existing.dataset.loaded === "true") resolve();
+          else {
+            existing.addEventListener("load", resolve);
+            existing.addEventListener("error", reject);
+          }
           return;
         }
         const el = document.createElement("script");
         el.src = src;
         el.setAttribute("data-gsap-src", src);
-        el.onload = resolve;
+        el.onload = () => {
+          el.dataset.loaded = "true";
+          resolve();
+        };
         el.onerror = () => reject(new Error(`Failed: ${src}`));
         document.head.appendChild(el);
       });
 
-    loadScript(
-      "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
-    ).then(() => {
-      const gsap = window.gsap;
-      if (!gsap) return;
-      gsapRef.current = gsap;
-      gsap.config({ trialWarn: false });
+    loadScript(GSAP_URL)
+      .then(() => {
+        const gsap = window.gsap;
+        if (cancelled || !gsap) return;
+        gsapRef.current = gsap;
+        gsap.config({ trialWarn: false });
 
-      // Build timelines for each book
-      books.forEach((book, idx) => {
-        const key = book.index;
-        const refs = bookRefs.current[key];
-        if (!refs) return;
+        books.forEach((book, idx) => {
+          const key = book.index;
+          const refs = bookRefs.current[key];
+          if (!refs) return;
 
-        const shadowEl =
-          shadowRefs.current[key] ?? shadowRefs.current[`book-${idx}`];
+          const shadowEl =
+            shadowRefs.current[key] ?? shadowRefs.current[`book-${idx}`];
 
-        gsap.set(refs.image, {
-          boxShadow:
-            "rgba(0,0,0,0.15) 10px 5px 20px, rgba(0,0,0,0.15) 20px 0px 30px",
-        });
-        gsap.set(refs.light, { opacity: 0.1 });
-        gsap.set(refs.pages, { x: 0 });
-
-        const tl = gsap.timeline({
-          paused: true,
-          defaults: { duration: 0.7, ease: "power2.out" },
-        });
-
-        tl.to(
-          refs.image,
-          {
-            translateX: -10,
-            scaleX: 0.96,
+          gsap.set(refs.image, {
             boxShadow:
-              "rgba(0,0,0,0.35) 20px 5px 20px, rgba(0,0,0,0.15) 30px 0px 30px",
-          },
-          0,
-        );
+              "rgba(0,0,0,0.15) 10px 5px 20px, rgba(0,0,0,0.15) 20px 0px 30px",
+          });
+          gsap.set(refs.light, { opacity: 0.1 });
+          gsap.set(refs.pages, { x: 0 });
 
-        if (shadowEl) {
-          tl.to(shadowEl, { width: 130, opacity: 0.8 }, 0);
-        }
+          const tl = gsap.timeline({
+            paused: true,
+            defaults: { duration: 0.7, ease: "power2.out" },
+          });
 
-        tl.to(refs.effect, { marginLeft: 10 }, 0);
-        tl.to(refs.light, { opacity: 0.2 }, 0);
+          tl.to(
+            refs.image,
+            {
+              translateX: -10,
+              scaleX: 0.96,
+              boxShadow:
+                "rgba(0,0,0,0.35) 20px 5px 20px, rgba(0,0,0,0.15) 30px 0px 30px",
+            },
+            0,
+          );
 
-        if (refs.pages?.length >= 3) {
-          tl.to(refs.pages[0], { x: "2px", ease: "power1.inOut" }, 0);
-          tl.to(refs.pages[1], { x: "0px", ease: "power1.inOut" }, 0);
-          tl.to(refs.pages[2], { x: "-2px", ease: "power1.inOut" }, 0);
-        }
+          if (shadowEl) {
+            tl.to(shadowEl, { width: 130, opacity: 0.8 }, 0);
+          }
 
-        bookTimelinesRef.current[key] = tl;
-      });
+          tl.to(refs.effect, { marginLeft: 10 }, 0);
+          tl.to(refs.light, { opacity: 0.2 }, 0);
 
-      // Side book timeline
-      if (sideBookRef.current && sideBook) {
-        const sideTl = gsap.timeline({
-          paused: true,
-          defaults: { duration: 0.5, ease: "power2.out" },
+          if (refs.pages?.length >= 3) {
+            tl.to(refs.pages[0], { x: "2px", ease: "power1.inOut" }, 0);
+            tl.to(refs.pages[1], { x: "0px", ease: "power1.inOut" }, 0);
+            tl.to(refs.pages[2], { x: "-2px", ease: "power1.inOut" }, 0);
+          }
+
+          bookTimelinesRef.current[key] = tl;
         });
-        sideTl.to(
-          sideBookRef.current,
-          {
-            y: -5,
-            boxShadow:
-              "rgba(0,0,0,0.15) 8px -5px 15px, rgba(0,0,0,0.15) 15px 0px 20px",
-          },
-          0,
-        );
-        if (sideShadowRef.current) {
-          sideTl.to(sideShadowRef.current, { width: 35, opacity: 0.8 }, 0);
+
+        if (sideBookRef.current && sideBook) {
+          const sideTl = gsap.timeline({
+            paused: true,
+            defaults: { duration: 0.5, ease: "power2.out" },
+          });
+          sideTl.to(
+            sideBookRef.current,
+            {
+              y: -5,
+              boxShadow:
+                "rgba(0,0,0,0.15) 8px -5px 15px, rgba(0,0,0,0.15) 15px 0px 20px",
+            },
+            0,
+          );
+          if (sideShadowRef.current) {
+            sideTl.to(sideShadowRef.current, { width: 35, opacity: 0.8 }, 0);
+          }
+          sideTimelineRef.current = sideTl;
+          bookTimelinesRef.current["side"] = sideTl;
         }
-        sideTimelineRef.current = sideTl;
-        bookTimelinesRef.current["side"] = sideTl;
-      }
 
-      // Play default open book
-      const defaultKey = String(defaultOpenIndex);
-      const defaultTl = bookTimelinesRef.current[defaultKey];
-      if (defaultTl) {
-        defaultTl.play();
-        activeTimelineRef.current = defaultTl;
-        activeKeyRef.current = defaultKey;
-      }
+        const defaultKey = String(defaultOpenIndex);
+        const defaultTl = bookTimelinesRef.current[defaultKey];
+        if (defaultTl) {
+          defaultTl.play();
+          activeTimelineRef.current = defaultTl;
+          activeKeyRef.current = defaultKey;
+        }
 
-      // Animate in default description lines
-      animateDescIn(defaultKey);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        animateDescIn(defaultKey);
+      })
+      .catch((e) => console.error("[BookShelf] GSAP load failed:", e.message));
+
+    return () => {
+      cancelled = true;
+      Object.values(bookTimelinesRef.current).forEach((tl) => tl.kill());
+      bookTimelinesRef.current = {};
+    };
   }, []);
 
   const animateDescIn = (key) => {
@@ -253,7 +250,7 @@ export default function BookShelf({
     });
   };
 
-  const handleBookEnter = (key, title) => {
+  const handleBookEnter = (key) => {
     const gsap = gsapRef.current;
     if (!gsap) return;
 
@@ -272,7 +269,6 @@ export default function BookShelf({
     }
     activeKeyRef.current = key;
     setActiveIndex(key);
-    setOverlayTitle(title);
     animateDescIn(key);
   };
 
@@ -295,23 +291,22 @@ export default function BookShelf({
     }
     activeKeyRef.current = defaultKey;
     setActiveIndex(defaultKey);
-    setOverlayTitle(books[defaultOpenIndex]?.overlayTitle ?? "");
     animateDescIn(defaultKey);
   };
 
-  // CSS variable values driven by isDark
   const cssVars = {
+    "--font": `"${fontFamily}", sans-serif`,
+    "--shelf-w": shelfMaxWidth,
+    "--book-h": `${bookHeight}px`,
+    "--book-w": `${bookWidth}px`,
     "--bg-color": isDark ? "#121212" : "#ffffff",
     "--text-color": isDark ? "#e0e0e0" : "#333333",
     "--title-color": isDark ? "#ffffff" : "#000000",
-    "--overlay-text-color": isDark
-      ? "rgba(255,255,255,0.05)"
-      : "rgba(0,0,0,0.05)",
     "--shelf-bg": isDark
       ? "linear-gradient(to bottom, #2a2a2a, #1a1a1a)"
       : "linear-gradient(to bottom, #f0f0f0, #e0e0e0)",
     "--book-back-cover": isDark ? "#ffffff" : "#111111",
-    "--book-page": isDark ? "#ffffff" : "#ffffff",
+    "--book-page": "#ffffff",
     "--book-shadow": isDark ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.15)",
     "--side-book-bg": isDark
       ? "linear-gradient(to right, #222 0%, #444 50%, #222 100%)"
@@ -320,51 +315,39 @@ export default function BookShelf({
     "--toggle-dot": isDark ? "#ffffff" : "#333333",
   };
 
-  const shelfBottom = 270;
-  const booksWrapperBottom = shelfBottom + 17;
-  const shadowBottom = shelfBottom - 2;
-
   return (
     <div
-      className="relative w-full h-screen flex justify-center items-center overflow-hidden transition-colors duration-500"
-      style={{ backgroundColor: "var(--bg-color)", ...cssVars }}
+      className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-[var(--bg-color)] font-[family-name:var(--font)] tracking-[-0.02em] transition-colors duration-500"
+      style={cssVars}
     >
-      {/* Font faces */}
-      <style>{`
-        @font-face {
-          font-family: 'Cabinet Grotesk';
-          font-style: normal;
-          font-weight: 800;
-          src: url('https://fonts.cdnfonts.com/s/85514/CabinetGrotesk-Extrabold.woff') format('woff');
-        }
-        @font-face {
-          font-family: 'Cabinet Grotesk';
-          font-style: normal;
-          font-weight: 400;
-          src: url('https://fonts.cdnfonts.com/s/85514/CabinetGrotesk-Medium.woff') format('woff');
-        }
-        body { font-family: 'Cabinet Grotesk', sans-serif; letter-spacing: -0.02em; }
-      `}</style>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap"
+      />
 
-      {/* Theme toggle */}
       {showThemeToggle && (
         <button
+          type="button"
           onClick={toggleTheme}
-          className="fixed top-5 right-5 w-2 h-2 rounded-full z-[100] cursor-pointer border-0 p-0 transition-colors duration-300"
-          style={{ backgroundColor: "var(--toggle-dot)" }}
-          aria-label="Toggle theme"
+          className="fixed right-5 top-5 z-[100] h-2 w-2 cursor-pointer rounded-full border-0 bg-[var(--toggle-dot)] p-0 transition-colors duration-300"
+          aria-label={themeToggleLabel}
         />
       )}
 
-      {/* Dot grid */}
       {enableDotGrid && (
         <svg
-          className="absolute w-full h-full z-0 pointer-events-none"
+          className="pointer-events-none absolute z-0 h-full w-full"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
             <pattern
-              id="dotGrid"
+              id={gridId}
               width="30"
               height="30"
               patternUnits="userSpaceOnUse"
@@ -377,128 +360,59 @@ export default function BookShelf({
               />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#dotGrid)" />
+          <rect width="100%" height="100%" fill={`url(#${gridId})`} />
         </svg>
       )}
 
-      {/* Background overlay title */}
-      <div className="fixed inset-0 flex justify-center items-center z-[-1] pointer-events-none">
-        <span
-          className="font-extrabold uppercase text-center leading-none"
-          style={{
-            fontFamily: "'Cabinet Grotesk', sans-serif",
-            fontSize: overlayFontSize,
-            color: "var(--overlay-text-color)",
-            maxWidth: "90vw",
-            transition: "color 0.5s ease",
-          }}
-        >
-          {overlayTitle}
-        </span>
-      </div>
-
-      {/* Shelf container */}
       <div
         ref={containerRef}
-        className="relative w-full z-[1]"
-        style={{ height: 500 }}
+        className="relative z-[1] h-[500px] w-full"
         onMouseLeave={handleShelfLeave}
       >
-        {/* Shadows */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 flex justify-center items-end gap-8 z-[15]"
-          style={{ bottom: shadowBottom }}
-        >
-          {books.map((book, idx) => {
-            const isBeforeSide = sideBook && idx === 1;
-            return (
-              <>
-                {isBeforeSide && (
-                  <div
-                    key="side-shadow"
-                    ref={(el) => (sideShadowRef.current = el)}
-                    className="h-[2px] rounded-full"
-                    style={{
-                      width: 25,
-                      background:
-                        "radial-gradient(ellipse at center, var(--book-shadow) 0%, rgba(0,0,0,0) 70%)",
-                    }}
-                  />
-                )}
+        <div className="absolute bottom-[268px] left-1/2 z-[15] flex -translate-x-1/2 items-end justify-center gap-8">
+          {books.map((book, idx) => (
+            <Fragment key={book.index}>
+              {sideBook && idx === 1 && (
                 <div
-                  key={book.index}
-                  ref={(el) => {
-                    shadowRefs.current[book.index] = el;
-                    shadowRefs.current[`book-${idx}`] = el;
-                  }}
-                  className="h-[2px] rounded-full"
-                  style={{
-                    width: 120,
-                    background:
-                      "radial-gradient(ellipse at center, var(--book-shadow) 0%, rgba(0,0,0,0) 70%)",
-                  }}
+                  ref={(el) => (sideShadowRef.current = el)}
+                  className={`w-[25px] ${SHADOW_BLOB}`}
                 />
-              </>
-            );
-          })}
+              )}
+              <div
+                ref={(el) => {
+                  shadowRefs.current[book.index] = el;
+                  shadowRefs.current[`book-${idx}`] = el;
+                }}
+                className={`w-[120px] ${SHADOW_BLOB}`}
+              />
+            </Fragment>
+          ))}
         </div>
 
-        {/* Shelf board */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 h-[15px] z-20 rounded-[1px]"
-          style={{
-            bottom: shelfBottom,
-            width: "100%",
-            maxWidth: shelfMaxWidth,
-            background: "var(--shelf-bg)",
-            boxShadow:
-              "0px -1px 1px rgba(255,255,255,0.15), 0px 2px 3px rgba(0,0,0,0.12), 0px 5px 10px rgba(0,0,0,0.08), 0px 15px 20px rgba(0,0,0,0.06), 0px 40px 60px rgba(0,0,0,0.2), 0px 60px 80px rgba(0,0,0,0.12)",
-            transition: "background 0.5s ease",
-          }}
-        />
+        <div className="absolute bottom-[270px] left-1/2 z-20 h-[15px] w-full max-w-[var(--shelf-w)] -translate-x-1/2 rounded-[1px] shadow-[0px_-1px_1px_rgba(255,255,255,0.15),0px_2px_3px_rgba(0,0,0,0.12),0px_5px_10px_rgba(0,0,0,0.08),0px_15px_20px_rgba(0,0,0,0.06),0px_40px_60px_rgba(0,0,0,0.2),0px_60px_80px_rgba(0,0,0,0.12)] [background:var(--shelf-bg)] [transition:background_0.5s_ease]" />
 
-        {/* Books wrapper */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 flex justify-center items-end gap-8 z-[10]"
-          style={{ bottom: booksWrapperBottom }}
-        >
-          {books.map((book, idx) => {
-            const showSideBefore = sideBook && idx === 1;
-            return (
-              <>
-                {showSideBefore && (
-                  <SideBookItem
-                    key="side-book"
-                    book={sideBook}
-                    bookHeight={bookHeight}
-                    bookRef={(el) => (sideBookRef.current = el)}
-                    onMouseEnter={() =>
-                      handleBookEnter(sideBook.index, sideBook.overlayTitle)
-                    }
-                  />
-                )}
-                <BookItem
-                  key={book.index}
-                  book={book}
-                  bookHeight={bookHeight}
-                  bookWidth={bookWidth}
-                  refsCallback={(key, refs) => {
-                    bookRefs.current[key] = refs;
-                  }}
-                  onMouseEnter={() =>
-                    handleBookEnter(book.index, book.overlayTitle)
-                  }
+        <div className="absolute bottom-[287px] left-1/2 z-10 flex -translate-x-1/2 items-end justify-center gap-8">
+          {books.map((book, idx) => (
+            <Fragment key={book.index}>
+              {sideBook && idx === 1 && (
+                <SideBookItem
+                  book={sideBook}
+                  bookRef={(el) => (sideBookRef.current = el)}
+                  onMouseEnter={() => handleBookEnter(sideBook.index)}
                 />
-              </>
-            );
-          })}
+              )}
+              <BookItem
+                book={book}
+                refsCallback={(key, refs) => {
+                  bookRefs.current[key] = refs;
+                }}
+                onMouseEnter={() => handleBookEnter(book.index)}
+              />
+            </Fragment>
+          ))}
         </div>
 
-        {/* Descriptions */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 w-full z-[5]"
-          style={{ bottom: 30, maxWidth: 640, height: 200 }}
-        >
+        <div className="absolute bottom-[30px] left-1/2 z-[5] h-[200px] w-full max-w-[640px] -translate-x-1/2">
           {[...(sideBook ? [sideBook] : []), ...books].map((book) => (
             <BookDescription
               key={book.index}
@@ -509,7 +423,6 @@ export default function BookShelf({
                   descLineRefs.current[book.index] = [];
                 if (el) descLineRefs.current[book.index][i] = el;
               }}
-              isDark={isDark}
             />
           ))}
         </div>
@@ -518,8 +431,7 @@ export default function BookShelf({
   );
 }
 
-// ─── BookItem ─────────────────────────────────────────────────────────────────
-function BookItem({ book, bookHeight, bookWidth, refsCallback, onMouseEnter }) {
+function BookItem({ book, refsCallback, onMouseEnter }) {
   const imageRef = useRef(null);
   const effectRef = useRef(null);
   const lightRef = useRef(null);
@@ -532,115 +444,49 @@ function BookItem({ book, bookHeight, bookWidth, refsCallback, onMouseEnter }) {
       light: lightRef.current,
       pages: pageRefs.current,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div
-      className="text-center cursor-default"
-      style={{ height: bookHeight }}
+      className="h-[var(--book-h)] cursor-default text-center"
       onMouseEnter={onMouseEnter}
     >
-      <div
-        className="relative mx-auto"
-        style={{ width: bookWidth, height: "100%" }}
-      >
-        <div className="relative h-full" style={{ willChange: "transform" }}>
-          {/* Back cover */}
-          <div
-            className="absolute rounded-r-[6px]"
-            style={{
-              width: "96%",
-              height: "96%",
-              top: "2%",
-              left: "2%",
-              background: "var(--book-back-cover)",
-              boxShadow: "2px 2px 5px rgba(0,0,0,0.25)",
-              zIndex: -10,
-              transition: "background 0.5s ease",
-            }}
-          />
-          {/* Pages */}
-          <div
-            className="absolute"
-            style={{
-              width: "90%",
-              height: "94%",
-              top: "3%",
-              left: "5%",
-              zIndex: 0,
-            }}
-          >
+      <div className="relative mx-auto h-full w-[var(--book-w)]">
+        <div className="relative h-full will-change-transform">
+          <div className="absolute left-[2%] top-[2%] z-[-10] h-[96%] w-[96%] rounded-r-[6px] bg-[var(--book-back-cover)] shadow-[2px_2px_5px_rgba(0,0,0,0.25)] transition-[background] duration-500" />
+
+          <div className="absolute left-[5%] top-[3%] z-0 h-[94%] w-[90%]">
             {[0, 1, 2].map((i) => (
               <div
                 key={i}
                 ref={(el) => (pageRefs.current[i] = el)}
-                className="absolute top-0 right-0 rounded-r-[6px]"
-                style={{
-                  width: "98%",
-                  height: "100%",
-                  background: "var(--book-page)",
-                  border: "1px solid rgba(0,0,0,0.2)",
-                  boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
-                  transformOrigin: "right center",
-                  zIndex: -5,
-                  transition: "background 0.5s ease",
-                }}
+                className="absolute right-0 top-0 z-[-5] h-full w-[98%] origin-right rounded-r-[6px] border border-black/20 bg-[var(--book-page)] shadow-[0_1px_3px_rgba(0,0,0,0.15)] transition-[background] duration-500"
               />
             ))}
           </div>
-          {/* Front cover */}
+
           <div
             ref={imageRef}
-            className="relative h-full rounded-[2px_6px_6px_2px] cursor-pointer"
-            style={{
-              lineHeight: 0,
-              transformOrigin: "left center",
-              zIndex: 10,
-              willChange: "transform, box-shadow",
-              transition: "box-shadow 0.5s ease",
-            }}
+            className="relative z-10 h-full origin-left cursor-pointer rounded-[2px_6px_6px_2px] leading-[0] will-change-[transform,box-shadow] [transition:box-shadow_0.5s_ease]"
           >
             <img
               src={book.coverSrc}
               alt={book.coverAlt}
-              className="w-full h-full object-cover rounded-[2px_6px_6px_2px]"
+              className="h-full w-full rounded-[2px_6px_6px_2px] object-cover"
             />
             <div
               ref={effectRef}
-              className="absolute top-0 h-full"
-              style={{
-                width: 24,
-                marginLeft: 12,
-                borderLeft: "2px solid rgba(0,0,0,0.08)",
-                backgroundImage:
-                  "linear-gradient(90deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 100%)",
-                transformOrigin: "left center",
-                zIndex: 5,
-                pointerEvents: "none",
-                willChange: "margin-left",
-              }}
+              className="pointer-events-none absolute top-0 z-[5] ml-3 h-full w-6 origin-left border-l-2 border-black/[0.08] bg-[linear-gradient(90deg,rgba(255,255,255,0.25)_0%,rgba(255,255,255,0)_100%)] will-change-[margin-left]"
             />
             <div
               ref={lightRef}
-              className="absolute inset-0 rounded-[2px_6px_6px_2px]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 100%)",
-                opacity: 0.15,
-                transformOrigin: "left center",
-                zIndex: 4,
-                pointerEvents: "none",
-                mixBlendMode: "overlay",
-                willChange: "opacity",
-              }}
+              className="pointer-events-none absolute inset-0 z-[4] origin-left rounded-[2px_6px_6px_2px] bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.5)_100%)] opacity-[0.15] mix-blend-overlay will-change-[opacity]"
             />
           </div>
-          {/* Hitbox */}
+
           <div
             className="absolute inset-0 z-10 cursor-pointer"
             data-book-index={book.index}
-            data-book-title={book.overlayTitle}
           />
         </div>
       </div>
@@ -648,118 +494,46 @@ function BookItem({ book, bookHeight, bookWidth, refsCallback, onMouseEnter }) {
   );
 }
 
-// ─── SideBookItem ─────────────────────────────────────────────────────────────
-function SideBookItem({ book, bookHeight, bookRef, onMouseEnter }) {
+function SideBookItem({ book, bookRef, onMouseEnter }) {
   return (
     <div
       ref={bookRef}
-      className="relative cursor-pointer rounded-[2px]"
-      style={{
-        height: bookHeight,
-        width: 30,
-        background: "var(--side-book-bg)",
-        boxShadow:
-          "var(--book-shadow) 5px -3px 10px, var(--book-shadow) 10px 0px 15px",
-        transformOrigin: "bottom center",
-        willChange: "transform, box-shadow",
-        transition: "background 0.5s ease, box-shadow 0.5s ease",
-      }}
+      className="relative h-[var(--book-h)] w-[30px] origin-bottom cursor-pointer rounded-[2px] will-change-[transform,box-shadow] [background:var(--side-book-bg)] [box-shadow:var(--book-shadow)_5px_-3px_10px,var(--book-shadow)_10px_0px_15px] [transition:background_0.5s_ease,box-shadow_0.5s_ease]"
       onMouseEnter={onMouseEnter}
     >
-      <div
-        className="absolute inset-0 flex justify-center items-center"
-        style={{
-          writingMode: "vertical-rl",
-          textOrientation: "mixed",
-          transform: "rotate(180deg)",
-          color: "var(--side-book-text)",
-          fontSize: 12,
-          padding: "5px 0",
-          textAlign: "center",
-          textTransform: "uppercase",
-          letterSpacing: 1,
-          transition: "color 0.5s ease",
-          fontFamily: "'Cabinet Grotesk', sans-serif",
-        }}
-      >
+      <div className="absolute inset-0 flex rotate-180 items-center justify-center py-[5px] text-center text-xs uppercase tracking-[1px] text-[var(--side-book-text)] transition-colors duration-500 [text-orientation:mixed] [writing-mode:vertical-rl]">
         {book.title}
       </div>
-      <div
-        className="absolute left-1/2 -translate-x-1/2"
-        style={{
-          top: 20,
-          width: "80%",
-          height: 1,
-          backgroundColor: "rgba(255,255,255,0.3)",
-          transition: "background-color 0.5s ease",
-        }}
-      />
-      <div
-        className="absolute left-1/2 -translate-x-1/2"
-        style={{
-          bottom: 20,
-          width: "80%",
-          height: 1,
-          backgroundColor: "rgba(255,255,255,0.3)",
-          transition: "background-color 0.5s ease",
-        }}
-      />
+      <div className="absolute left-1/2 top-5 h-px w-4/5 -translate-x-1/2 bg-white/30 transition-colors duration-500" />
+      <div className="absolute bottom-5 left-1/2 h-px w-4/5 -translate-x-1/2 bg-white/30 transition-colors duration-500" />
     </div>
   );
 }
 
-// ─── BookDescription ──────────────────────────────────────────────────────────
-function BookDescription({ book, isActive, linesRef, isDark }) {
-  // Collect line refs for each text row
-  const rows = [book.descTitle, book.author, book.description];
-
+function BookDescription({ book, isActive, linesRef }) {
   return (
     <div
-      className="absolute top-0 left-0 w-full transition-[opacity,visibility] duration-300"
-      style={{
-        opacity: isActive ? 1 : 0,
-        visibility: isActive ? "visible" : "hidden",
-        fontFamily: "'Cabinet Grotesk', sans-serif",
-        fontWeight: 400,
-        fontSize: "1.1rem",
-        lineHeight: 1.5,
-        color: "var(--text-color)",
-        transition: "opacity 0.3s ease, visibility 0.3s ease, color 0.5s ease",
-      }}
+      className={`absolute left-0 top-0 w-full text-[1.1rem] font-normal leading-normal text-[var(--text-color)] [transition:opacity_0.3s_ease,visibility_0.3s_ease,color_0.5s_ease] ${isActive ? "visible opacity-100" : "invisible opacity-0"
+        }`}
     >
-      {/* Title */}
       <div className="overflow-hidden">
         <div
           ref={(el) => linesRef(el, 0)}
-          className="block"
-          style={{
-            fontWeight: 800,
-            fontSize: "1.8rem",
-            marginBottom: "0.5rem",
-            color: "var(--title-color)",
-            transition: "color 0.5s ease",
-          }}
+          className="mb-2 block text-[1.8rem] font-extrabold text-[var(--title-color)] [transition:color_0.5s_ease]"
         >
           {book.descTitle}
         </div>
       </div>
-      {/* Author */}
       <div className="overflow-hidden">
         <div
           ref={(el) => linesRef(el, 1)}
-          className="block italic"
-          style={{ opacity: 0.8, marginBottom: "1rem" }}
+          className="mb-4 block italic opacity-80"
         >
           {book.author}
         </div>
       </div>
-      {/* Description */}
       <div className="overflow-hidden">
-        <div
-          ref={(el) => linesRef(el, 2)}
-          className="block"
-          style={{ marginBottom: "0.75rem" }}
-        >
+        <div ref={(el) => linesRef(el, 2)} className="mb-3 block">
           {book.description}
         </div>
       </div>

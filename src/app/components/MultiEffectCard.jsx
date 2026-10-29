@@ -1,27 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { Space_Mono } from "next/font/google";
 
-// ─── ImageStackHover ─────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// imageUrl         string   portrait-fashion-009.jpg   Image shown on every stacked layer
-// layerCount       number   10                         Number of stacked layers
-// size             number   600                        Container width/height (px)
-// initialShape     string   "rectangle"                Starting clip shape: rectangle | circle | diamond | hexagon
-// depthStep        number   36                          3D z-offset between layers (px)
-// scale3d          number   0.07                        Per-layer scale falloff in 3D mode
-// tiltMax          number   45                          Max tilt rotation in 3D mode (deg)
-// panMax           number   88                          Max pan translation in 3D mode (px)
-// opacityFalloff   number   0.1                          Per-layer opacity falloff in 3D mode
-// moveAmplify      number   0.54                        Overall 3D pointer-response multiplier
-// tiltBoost        number   1.25                        Extra multiplier applied to tilt
-// panBoost         number   1.25                        Extra multiplier applied to pan
-// showCredit       boolean  true                        Show the small credit link under the widget
-// creditText       string   "ORIGINAL IDEA BY BL/S®"    Credit link label
-// creditHref       string   codepen link                Credit link target
-// ──────────────────────────────────────────────────────────────────────────
+const mono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-mono",
+});
 
 const SHAPES = ["rectangle", "circle", "diamond", "hexagon"];
 
@@ -29,12 +16,42 @@ const CLIP_PATHS = {
   rectangle: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
   circle: "circle(45% at 50% 50%)",
   diamond: "polygon(50% 0%, 14.1% 50%, 50% 100%, 85.9% 50%)",
-  hexagon:
-    "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)",
+  hexagon: "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)",
 };
 
+const SHAPE_BUTTON = {
+  rectangle: "h-4 w-4",
+  circle: "h-4 w-4 rounded-full",
+  diamond: "h-[14px] w-[14px] rotate-45",
+  hexagon: "h-[19px] w-[19px] [clip-path:polygon(25%_6.7%,75%_6.7%,100%_50%,75%_93.3%,25%_93.3%,0%_50%)]",
+};
+
+const SLIDER =
+  "h-0.5 w-20 cursor-pointer appearance-none bg-white/20 outline-none [&::-moz-range-thumb]:h-2 [&::-moz-range-thumb]:w-2 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-white [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:transition-transform hover:[&::-webkit-slider-thumb]:scale-125";
+
+const BLUR_SEQUENCE = [0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1.0, 1.3, 1.6];
+
+const DEFAULT_SHAPE_LABELS = {
+  rectangle: "Rectangle",
+  circle: "Circle",
+  diamond: "Diamond",
+  hexagon: "Hexagon",
+};
+
+const DEFAULT_TOGGLE_LABELS = {
+  rotation: "rotation",
+  blur: "blur",
+  color: "color",
+  opacity: "opacity",
+  parallax: "parallax",
+  threeD: "3d",
+};
+
+const DEFAULT_TUNER_LABELS = { tilt: "tilt", pan: "pan", depth: "depth", amp: "amp" };
+
 export default function MultiEffectCard({
-  imageUrl = "https://assets.codepen.io/7558/portrait-fashion-009.jpg",
+  imageUrl = "https://images.unsplash.com/photo-1749330513873-09ffa91b0aae?auto=format&fit=crop&w=1200&h=1200&q=80",
+  imageAlt = "Stacked image",
   layerCount = 10,
   size = 600,
   initialShape = "rectangle",
@@ -46,14 +63,19 @@ export default function MultiEffectCard({
   moveAmplify = 0.54,
   tiltBoost = 1.25,
   panBoost = 1.25,
-  showCredit = true,
-  creditText = "ORIGINAL IDEA BY BL/S®",
-  creditHref = "https://codepen.io/blacklead-studio/pen/QwjGRmo",
+  shapeLabels = DEFAULT_SHAPE_LABELS,
+  toggleLabels = DEFAULT_TOGGLE_LABELS,
+  tunerLabels = DEFAULT_TUNER_LABELS,
+  onLabel = "on",
+  backgroundColor = "bg-black",
+  className = "",
 }) {
-  const rootRef = useRef(null);
   const containerRef = useRef(null);
-  const settingsRef = useRef(null);
+  const stackRef = useRef(null);
   const apiRef = useRef(null);
+  const shapeRef = useRef(initialShape);
+  const optionsRef = useRef({});
+  const paramsRef = useRef({});
 
   const [activeShape, setActiveShape] = useState(initialShape);
   const [rotationOn, setRotationOn] = useState(false);
@@ -62,807 +84,501 @@ export default function MultiEffectCard({
   const [opacityOn, setOpacityOn] = useState(false);
   const [parallaxOn, setParallaxOn] = useState(false);
   const [threeDOn, setThreeDOn] = useState(false);
-
   const [tilt, setTilt] = useState(tiltMax);
   const [pan, setPan] = useState(panMax);
   const [depth, setDepth] = useState(depthStep);
   const [amp, setAmp] = useState(Math.round(moveAmplify * 100));
 
+  optionsRef.current = {
+    rotation: rotationOn,
+    blur: blurOn,
+    color: colorOn,
+    opacity: opacityOn,
+    parallax: parallaxOn,
+    threeD: threeDOn,
+  };
+
+  paramsRef.current = {
+    depthStep: depth,
+    scale3D: scale3d,
+    tiltMax: tilt,
+    panMax: pan,
+    opacityFalloff,
+    moveAmplify: amp / 100,
+    tiltBoost,
+    panBoost,
+  };
+
   useEffect(() => {
-    const loadScript = (src) =>
-      new Promise((resolve, reject) => {
-        if (document.querySelector(`script[data-id="${src}"]`)) {
-          resolve();
-          return;
-        }
-        const el = document.createElement("script");
-        el.src = src;
-        el.setAttribute("data-id", src);
-        el.onload = resolve;
-        el.onerror = () => reject(new Error(`Failed: ${src}`));
-        document.head.appendChild(el);
-      });
+    const container = containerRef.current;
+    const stack = stackRef.current;
+    if (!container || !stack) return undefined;
 
-    let cancelled = false;
-    let cleanup = () => {};
+    const layers = Array.from(stack.children);
+    const duration = 0.8;
+    const ease = "power2.inOut";
+    const scaleInterval = 0.06;
+    const opacityInterval = 0.05;
+    const rotationInterval = 15;
+    const stagger = 0.1;
+    const followStrength = 0.15;
 
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
-      .then(() => {
-        if (cancelled) return;
-        const { gsap } = window;
-        if (!gsap || !containerRef.current || !rootRef.current) return;
+    let timeline = null;
+    let isParallax = optionsRef.current.parallax;
+    let isOpacity = optionsRef.current.opacity;
+    let isRotation = optionsRef.current.rotation;
+    let isBlur = optionsRef.current.blur;
+    let isColor = optionsRef.current.color;
+    let is3D = optionsRef.current.threeD;
+    let isHovered = false;
+    let rect = container.getBoundingClientRect();
+    let rafId = 0;
+    let pendingEvent = null;
+    let leaveTimer = 0;
 
-        const root = rootRef.current;
-        const container = containerRef.current;
-        const stackEl = document.createElement("div");
-        stackEl.className = "ish-image-stack";
-        Object.assign(stackEl.style, {
-          position: "absolute",
-          inset: "0",
-          willChange: "transform",
-        });
-        const layers = Array.from(
-          container.querySelectorAll(".ish-image-layer"),
-        );
-        layers.forEach((l) => stackEl.appendChild(l));
-        container.appendChild(stackEl);
+    const observer = new ResizeObserver(() => {
+      rect = container.getBoundingClientRect();
+    });
+    observer.observe(container);
 
-        const duration = 0.8,
-          ease = "power2.inOut",
-          scaleInterval = 0.06,
-          opacityInterval = 0.05,
-          rotationInterval = 15;
-        const blurSeq = [0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1.0, 1.3, 1.6];
-        const stagger = 0.1,
-          followStrength = 0.15;
-
-        const cssVarCache = {
-          depthStep,
-          scale3D: scale3d,
-          tiltMax,
-          panMax,
-          opacityFalloff,
-          moveAmplify,
-          tiltBoost,
-          panBoost,
-        };
-
-        const updateCSSCache = () => {
-          const css = getComputedStyle(root);
-          cssVarCache.depthStep =
-            parseFloat(css.getPropertyValue("--ish-depth-step")) || depthStep;
-          cssVarCache.scale3D =
-            parseFloat(css.getPropertyValue("--ish-scale-3d")) || scale3d;
-          cssVarCache.tiltMax =
-            parseFloat(css.getPropertyValue("--ish-tilt-max")) || tiltMax;
-          cssVarCache.panMax =
-            parseFloat(css.getPropertyValue("--ish-pan-max")) || panMax;
-          cssVarCache.opacityFalloff =
-            parseFloat(css.getPropertyValue("--ish-opacity-falloff")) ||
-            opacityFalloff;
-          cssVarCache.moveAmplify =
-            parseFloat(css.getPropertyValue("--ish-move-amplify")) ||
-            moveAmplify;
-          cssVarCache.tiltBoost =
-            parseFloat(css.getPropertyValue("--ish-tilt-boost")) || tiltBoost;
-          cssVarCache.panBoost =
-            parseFloat(css.getPropertyValue("--ish-pan-boost")) || panBoost;
-        };
-        updateCSSCache();
-
-        let timeline = null,
-          isTransitioning = false,
-          isParallax = false,
-          isOpacity = false,
-          isRotation = false,
-          isBlur = false,
-          isColor = false,
-          is3D = false,
-          isHovered = false;
-        let rect = container.getBoundingClientRect();
-
-        let rafId = null;
-        let pendingMouseEvent = null;
-
-        const onResize = () => {
-          rect = container.getBoundingClientRect();
-        };
-        let resizeTimer;
-        const debouncedResize = () => {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(onResize, 50);
-        };
-        window.addEventListener("resize", debouncedResize);
-
-        const quickTos = layers
-          .map((layer, i) => {
-            if (i === 0) return null;
-            const sv = 1 - scaleInterval * i;
-            const mult = sv > 0 ? (1 - sv) * 3 + 0.2 : 1;
-            return {
-              layer,
-              mult,
-              xTo: gsap.quickTo(layer, "x", { duration: 0.6, ease: "power3" }),
-              yTo: gsap.quickTo(layer, "y", { duration: 0.6, ease: "power3" }),
-            };
-          })
-          .filter(Boolean);
-
-        const getScale = (i) => Math.max(1 - scaleInterval * i, 0);
-        const getOpacity = (i) =>
-          !isOpacity ? 1 : Math.max(1 - opacityInterval * i, 0.1);
-        const getRotVal = (i) => rotationInterval * i * (i % 2 === 0 ? 1 : -1);
-        const getBlur = (i) =>
-          !isBlur || i === 0 ? 0 : blurSeq[Math.min(i, blurSeq.length - 1)];
-        const getColor = (i) => {
-          if (!isColor) return "none";
-          if (i === 0) return "grayscale(1)";
-          const ci = Math.min(i * 0.15, 1),
-            sat = 1 + ci * 0.5;
-          return `grayscale(${1 - ci}) saturate(${sat})`;
-        };
-
-        function applyFilters() {
-          layers.forEach((l, i) => {
-            const b = getBlur(i),
-              c = getColor(i);
-            let f = "";
-            if (b > 0) f += `blur(${b}px) `;
-            if (c !== "none") f += c;
-            l.style.filter = f.trim() || "none";
-          });
-        }
-
-        function reset2D() {
-          gsap.killTweensOf(stackEl);
-          gsap.set(layers, {
-            scale: (i, t) => (t === layers[0] ? 1 : 0.95),
-            opacity: (i, t) => (t === layers[0] ? 1 : 0),
-            rotation: 0,
-            rotationZ: 0,
-            x: 0,
-            y: 0,
-            z: 0,
-          });
-          layers.forEach((l) => (l.style.filter = "none"));
-          gsap.set(stackEl, {
-            rotationX: 0,
-            rotationY: 0,
-            rotationZ: 0,
-            x: 0,
-            y: 0,
-            z: 0,
-            scale: 1,
-          });
-        }
-
-        function createTimeline() {
-          if (timeline) timeline.kill();
-          const rev = [...layers].reverse();
-          timeline = gsap.timeline({ paused: true }).to(rev, {
-            scale: (i, t) => getScale(layers.indexOf(t)),
-            opacity: (i, t) => {
-              const idx = layers.indexOf(t);
-              return idx === 0 ? 1 : getOpacity(idx);
-            },
-            rotation: (i, t) => {
-              if (!isRotation) return 0;
-              return getRotVal(layers.indexOf(t));
-            },
-            duration,
-            ease,
-            stagger,
-          });
-          applyFilters();
-        }
-
-        function applyShape(shape) {
-          layers.forEach((l, i) => {
-            if (i === 0) return;
-            l.style.clipPath = CLIP_PATHS[shape];
-          });
-        }
-
-        function center2D() {
-          quickTos.forEach(({ layer }) =>
-            gsap.to(layer, { x: 0, y: 0, duration: 0.6, ease: "power2.out" }),
-          );
-        }
-
-        function compute3DOpacity(i) {
-          const base = Math.max(1 - cssVarCache.opacityFalloff * i, 0.25);
-          return isOpacity ? Math.max(base - opacityInterval * i, 0.1) : base;
-        }
-
-        function layout3D(depthFactor = 1) {
-          const d = cssVarCache.depthStep * depthFactor;
-          layers.forEach((l, i) => {
-            const z = Math.round(i * d) + i * 0.1;
-            const s = Math.max(1 - i * cssVarCache.scale3D, 0.35);
-            const o = compute3DOpacity(i);
-            const rotZ = isRotation ? getRotVal(i) : 0;
-            l.style.transform = `translateZ(${z}px) scale(${s}) rotateZ(${rotZ}deg)`;
-            l.style.opacity = o;
-          });
-          applyFilters();
-        }
-
-        function pose3DFlat() {
-          gsap.to(stackEl, {
-            rotationX: 0,
-            rotationY: 0,
-            x: 0,
-            y: 0,
-            scale: 1,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        }
-
-        function center3D() {
-          gsap.to(stackEl, {
-            rotationX: 0,
-            rotationY: 0,
-            x: 0,
-            y: 0,
-            duration: 0.6,
-            ease: "power2.out",
-          });
-        }
-
-        function enable3D() {
-          is3D = true;
-          if (timeline) timeline.pause(0);
-          const rev = [...layers].reverse();
-          gsap.to(rev, {
-            scale: (i, t) => {
-              const idx = layers.indexOf(t);
-              return idx === 0
-                ? 1
-                : Math.max(1 - idx * cssVarCache.scale3D, 0.35);
-            },
-            opacity: (i, t) => {
-              const idx = layers.indexOf(t);
-              return idx === 0 ? 1 : compute3DOpacity(idx);
-            },
-            duration,
-            ease,
-            stagger,
-            onComplete: () => {
-              layout3D();
-              if (isHovered) {
-                container.classList.add("ish-is-3d");
-                pose3DFlat();
-              }
-            },
-          });
-        }
-
-        function disable3D() {
-          is3D = false;
-          container.classList.remove("ish-is-3d");
-          gsap.killTweensOf(stackEl);
-          gsap.to(stackEl, {
-            rotationX: 0,
-            rotationY: 0,
-            rotationZ: 0,
-            x: 0,
-            y: 0,
-            z: 0,
-            scale: 1,
-            duration: 0.28,
-            ease: "power2.out",
-          });
-          const rev = [...layers].reverse();
-          gsap.to(rev, {
-            scale: (i, t) => (layers.indexOf(t) === 0 ? 1 : 0.95),
-            opacity: (i, t) => (layers.indexOf(t) === 0 ? 1 : 0),
-            rotation: 0,
-            duration,
-            ease,
-            stagger: -stagger,
-            onComplete: () => {
-              layers.forEach((l) => (l.style.transform = ""));
-              reset2D();
-              createTimeline();
-            },
-          });
-        }
-
-        function tiltPan(e) {
-          if (!is3D || !isHovered) return;
-          const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-          const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-          const d = Math.min(1, Math.hypot(nx, ny));
-          const depthFactor = 0.9 + d * 0.2;
-          layout3D(depthFactor);
-
-          const t =
-            cssVarCache.tiltMax *
-            cssVarCache.tiltBoost *
-            cssVarCache.moveAmplify;
-          const p =
-            cssVarCache.panMax * cssVarCache.panBoost * cssVarCache.moveAmplify;
-
-          gsap.to(stackEl, {
-            rotationY: nx * t,
-            rotationX: -ny * t,
-            x: nx * p,
-            y: ny * p,
-            scale: 1,
-            duration: 0.18,
-            ease: "power2.out",
-          });
-        }
-
-        function onEnter() {
-          isHovered = true;
-          if (is3D) {
-            container.classList.add("ish-is-3d");
-            layout3D();
-            pose3DFlat();
-          } else if (timeline) {
-            timeline.play();
-          }
-        }
-
-        function onLeave() {
-          isHovered = false;
-          if (is3D) {
-            center3D();
-            container.classList.remove("ish-is-3d");
-          } else if (timeline && !isParallax) {
-            timeline.reverse();
-          }
-          if (isParallax) center2D();
-          setTimeout(() => {
-            if (!isHovered && !is3D && !isParallax) center2D();
-          }, duration * 1000);
-        }
-
-        function processMouseMove() {
-          if (!pendingMouseEvent) {
-            rafId = null;
-            return;
-          }
-          const e = pendingMouseEvent;
-          pendingMouseEvent = null;
-          rafId = null;
-
-          if (is3D) {
-            const inside =
-              e.clientX >= rect.left &&
-              e.clientX <= rect.left + rect.width &&
-              e.clientY >= rect.top &&
-              e.clientY <= rect.top + rect.height;
-            if (inside) tiltPan(e);
-            else center3D();
-            return;
-          }
-          if (!isParallax || !isHovered) return;
-          const rx = (e.clientX - rect.left) / rect.width - 0.5,
-            ry = (e.clientY - rect.top) / rect.height - 0.5;
-          quickTos.forEach(({ xTo, yTo, mult }) => {
-            xTo(rx * 2 * rect.width * followStrength * mult);
-            yTo(ry * 2 * rect.height * followStrength * mult);
-          });
-        }
-
-        function onMove(e) {
-          pendingMouseEvent = e;
-          if (!rafId) rafId = requestAnimationFrame(processMouseMove);
-        }
-
-        document.addEventListener("mousemove", onMove);
-        container.addEventListener("mouseenter", onEnter);
-        container.addEventListener("mouseleave", onLeave);
-
-        const api = {
-          changeShape(shape) {
-            if (isTransitioning) return;
-            isTransitioning = true;
-            if (timeline) timeline.pause();
-            reset2D();
-            applyShape(shape);
-            createTimeline();
-            isTransitioning = false;
-            if (is3D) layout3D();
-          },
-          toggleRotation(v) {
-            isRotation = v;
-            if (is3D) {
-              layout3D();
-            } else {
-              if (!isRotation)
-                layers.forEach((l) => gsap.set(l, { rotation: 0 }));
-              if (timeline) timeline.kill();
-              createTimeline();
-              timeline.progress(isHovered ? 1 : 0);
-            }
-          },
-          toggleBlur(v) {
-            isBlur = v;
-            applyFilters();
-            if (is3D) layout3D();
-          },
-          toggleColor(v) {
-            isColor = v;
-            applyFilters();
-            if (is3D) layout3D();
-          },
-          toggleOpacity(v) {
-            isOpacity = v;
-            if (is3D) {
-              layout3D();
-            } else {
-              if (timeline) timeline.kill();
-              createTimeline();
-              timeline.progress(isHovered ? 1 : 0);
-            }
-          },
-          toggleParallax(v) {
-            isParallax = v;
-            if (!isParallax) {
-              center2D();
-              if (timeline) {
-                isHovered ? timeline.play() : timeline.reverse();
-              }
-            }
-          },
-          toggle3D(v) {
-            v ? enable3D() : disable3D();
-          },
-          updateCSSCache,
-        };
-        apiRef.current = api;
-
-        reset2D();
-        applyShape(initialShape);
-        createTimeline();
-
-        cleanup = () => {
-          document.removeEventListener("mousemove", onMove);
-          container.removeEventListener("mouseenter", onEnter);
-          container.removeEventListener("mouseleave", onLeave);
-          window.removeEventListener("resize", debouncedResize);
-          if (rafId) cancelAnimationFrame(rafId);
-          if (timeline) timeline.kill();
-          gsap.killTweensOf(stackEl);
-          apiRef.current = null;
+    const quickTos = layers
+      .map((layer, i) => {
+        if (i === 0) return null;
+        const sv = 1 - scaleInterval * i;
+        return {
+          mult: sv > 0 ? (1 - sv) * 3 + 0.2 : 1,
+          xTo: gsap.quickTo(layer, "x", { duration: 0.6, ease: "power3" }),
+          yTo: gsap.quickTo(layer, "y", { duration: 0.6, ease: "power3" }),
         };
       })
-      .catch((e) =>
-        console.error("[ImageStackHover] script load failed:", e.message),
-      );
+      .filter(Boolean);
+
+    const getScale = (i) => Math.max(1 - scaleInterval * i, 0);
+    const getOpacity = (i) => (!isOpacity ? 1 : Math.max(1 - opacityInterval * i, 0.1));
+    const getRotation = (i) => rotationInterval * i * (i % 2 === 0 ? 1 : -1);
+    const getBlur = (i) =>
+      !isBlur || i === 0 ? 0 : BLUR_SEQUENCE[Math.min(i, BLUR_SEQUENCE.length - 1)];
+    const getColor = (i) => {
+      if (!isColor) return "";
+      if (i === 0) return "grayscale(1)";
+      const ci = Math.min(i * 0.15, 1);
+      return `grayscale(${1 - ci}) saturate(${1 + ci * 0.5})`;
+    };
+
+    const applyFilters = () => {
+      layers.forEach((layer, i) => {
+        const blur = getBlur(i);
+        const color = getColor(i);
+        const filter = `${blur > 0 ? `blur(${blur}px) ` : ""}${color}`.trim();
+        layer.style.filter = filter || "none";
+      });
+    };
+
+    const reset2D = () => {
+      gsap.killTweensOf(stack);
+      layers.forEach((layer) => {
+        gsap.killTweensOf(layer);
+        layer.style.transform = "";
+        layer.style.filter = "none";
+      });
+      gsap.set(layers, {
+        scale: (i) => (i === 0 ? 1 : 0.95),
+        opacity: (i) => (i === 0 ? 1 : 0),
+        rotation: 0,
+        x: 0,
+        y: 0,
+        z: 0,
+      });
+      gsap.set(stack, { rotationX: 0, rotationY: 0, rotationZ: 0, x: 0, y: 0, z: 0, scale: 1 });
+    };
+
+    const createTimeline = () => {
+      timeline?.kill();
+      timeline = gsap.timeline({ paused: true }).to([...layers].reverse(), {
+        scale: (_, t) => getScale(layers.indexOf(t)),
+        opacity: (_, t) => {
+          const idx = layers.indexOf(t);
+          return idx === 0 ? 1 : getOpacity(idx);
+        },
+        rotation: (_, t) => (isRotation ? getRotation(layers.indexOf(t)) : 0),
+        duration,
+        ease,
+        stagger,
+      });
+      applyFilters();
+    };
+
+    const applyShape = (shape) => {
+      layers.forEach((layer, i) => {
+        if (i > 0) layer.style.clipPath = CLIP_PATHS[shape];
+      });
+    };
+
+    const center2D = () =>
+      layers.forEach((layer, i) => {
+        if (i > 0) gsap.to(layer, { x: 0, y: 0, duration: 0.6, ease: "power2.out" });
+      });
+
+    const opacity3D = (i) => {
+      const base = Math.max(1 - paramsRef.current.opacityFalloff * i, 0.25);
+      return isOpacity ? Math.max(base - opacityInterval * i, 0.1) : base;
+    };
+
+    const layout3D = (depthFactor = 1) => {
+      const p = paramsRef.current;
+      layers.forEach((layer, i) => {
+        const z = Math.round(i * p.depthStep * depthFactor) + i * 0.1;
+        const s = Math.max(1 - i * p.scale3D, 0.35);
+        const rotZ = isRotation ? getRotation(i) : 0;
+        layer.style.transform = `translateZ(${z}px) scale(${s}) rotateZ(${rotZ}deg)`;
+        layer.style.opacity = opacity3D(i);
+      });
+      applyFilters();
+    };
+
+    const flatten3D = () =>
+      gsap.to(stack, { rotationX: 0, rotationY: 0, x: 0, y: 0, scale: 1, duration: 0.3, ease: "power2.out" });
+
+    const center3D = () =>
+      gsap.to(stack, { rotationX: 0, rotationY: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" });
+
+    const enable3D = () => {
+      is3D = true;
+      timeline?.pause(0);
+      gsap.to([...layers].reverse(), {
+        scale: (_, t) => {
+          const idx = layers.indexOf(t);
+          return idx === 0 ? 1 : Math.max(1 - idx * paramsRef.current.scale3D, 0.35);
+        },
+        opacity: (_, t) => {
+          const idx = layers.indexOf(t);
+          return idx === 0 ? 1 : opacity3D(idx);
+        },
+        duration,
+        ease,
+        stagger,
+        onComplete: () => {
+          layout3D();
+          if (isHovered) {
+            container.dataset.active = "true";
+            flatten3D();
+          }
+        },
+      });
+    };
+
+    const disable3D = () => {
+      is3D = false;
+      delete container.dataset.active;
+      gsap.killTweensOf(stack);
+      gsap.to(stack, {
+        rotationX: 0,
+        rotationY: 0,
+        rotationZ: 0,
+        x: 0,
+        y: 0,
+        z: 0,
+        scale: 1,
+        duration: 0.28,
+        ease: "power2.out",
+      });
+      gsap.to([...layers].reverse(), {
+        scale: (_, t) => (layers.indexOf(t) === 0 ? 1 : 0.95),
+        opacity: (_, t) => (layers.indexOf(t) === 0 ? 1 : 0),
+        rotation: 0,
+        duration,
+        ease,
+        stagger: -stagger,
+        onComplete: () => {
+          reset2D();
+          createTimeline();
+        },
+      });
+    };
+
+    const tiltPan = (e) => {
+      if (!is3D || !isHovered) return;
+      const p = paramsRef.current;
+      const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      layout3D(0.9 + Math.min(1, Math.hypot(nx, ny)) * 0.2);
+      const t = p.tiltMax * p.tiltBoost * p.moveAmplify;
+      const pn = p.panMax * p.panBoost * p.moveAmplify;
+      gsap.to(stack, {
+        rotationY: nx * t,
+        rotationX: -ny * t,
+        x: nx * pn,
+        y: ny * pn,
+        scale: 1,
+        duration: 0.18,
+        ease: "power2.out",
+      });
+    };
+
+    const processMove = () => {
+      const e = pendingEvent;
+      pendingEvent = null;
+      rafId = 0;
+      if (!e) return;
+
+      if (is3D) {
+        const inside =
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom;
+        if (inside) tiltPan(e);
+        else center3D();
+        return;
+      }
+      if (!isParallax || !isHovered) return;
+      const rx = (e.clientX - rect.left) / rect.width - 0.5;
+      const ry = (e.clientY - rect.top) / rect.height - 0.5;
+      quickTos.forEach(({ xTo, yTo, mult }) => {
+        xTo(rx * 2 * rect.width * followStrength * mult);
+        yTo(ry * 2 * rect.height * followStrength * mult);
+      });
+    };
+
+    const onMove = (e) => {
+      pendingEvent = e;
+      if (!rafId) rafId = requestAnimationFrame(processMove);
+    };
+    document.addEventListener("mousemove", onMove);
+
+    const refresh = () => {
+      timeline?.kill();
+      createTimeline();
+      timeline.progress(isHovered ? 1 : 0);
+    };
+
+    apiRef.current = {
+      enter() {
+        isHovered = true;
+        if (is3D) {
+          container.dataset.active = "true";
+          layout3D();
+          flatten3D();
+        } else {
+          timeline?.play();
+        }
+      },
+      leave() {
+        isHovered = false;
+        if (is3D) {
+          center3D();
+          delete container.dataset.active;
+        } else if (!isParallax) {
+          timeline?.reverse();
+        }
+        if (isParallax) center2D();
+        clearTimeout(leaveTimer);
+        leaveTimer = setTimeout(() => {
+          if (!isHovered && !is3D && !isParallax) center2D();
+        }, duration * 1000);
+      },
+      changeShape(shape) {
+        timeline?.pause();
+        reset2D();
+        applyShape(shape);
+        createTimeline();
+        if (is3D) layout3D();
+      },
+      toggleRotation(v) {
+        isRotation = v;
+        if (is3D) {
+          layout3D();
+        } else {
+          if (!v) layers.forEach((layer) => gsap.set(layer, { rotation: 0 }));
+          refresh();
+        }
+      },
+      toggleBlur(v) {
+        isBlur = v;
+        applyFilters();
+        if (is3D) layout3D();
+      },
+      toggleColor(v) {
+        isColor = v;
+        applyFilters();
+        if (is3D) layout3D();
+      },
+      toggleOpacity(v) {
+        isOpacity = v;
+        if (is3D) layout3D();
+        else refresh();
+      },
+      toggleParallax(v) {
+        isParallax = v;
+        if (!v) {
+          center2D();
+          if (isHovered) timeline?.play();
+          else timeline?.reverse();
+        }
+      },
+      toggle3D(v) {
+        if (v) enable3D();
+        else disable3D();
+      },
+    };
+
+    reset2D();
+    applyShape(shapeRef.current);
+    createTimeline();
+    applyFilters();
+    if (is3D) enable3D();
 
     return () => {
-      cancelled = true;
-      cleanup();
+      document.removeEventListener("mousemove", onMove);
+      observer.disconnect();
+      cancelAnimationFrame(rafId);
+      clearTimeout(leaveTimer);
+      timeline?.kill();
+      gsap.killTweensOf([stack, ...layers]);
+      apiRef.current = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [layerCount]);
 
-  useEffect(() => {
-    if (rootRef.current) {
-      rootRef.current.style.setProperty("--ish-tilt-max", String(tilt));
-    }
-    apiRef.current?.updateCSSCache();
-  }, [tilt]);
-
-  useEffect(() => {
-    if (rootRef.current) {
-      rootRef.current.style.setProperty("--ish-pan-max", `${pan}px`);
-    }
-    apiRef.current?.updateCSSCache();
-  }, [pan]);
-
-  useEffect(() => {
-    if (rootRef.current) {
-      rootRef.current.style.setProperty("--ish-depth-step", `${depth}px`);
-    }
-    apiRef.current?.updateCSSCache();
-  }, [depth]);
-
-  useEffect(() => {
-    if (rootRef.current) {
-      rootRef.current.style.setProperty(
-        "--ish-move-amplify",
-        String(amp / 100),
-      );
-    }
-    apiRef.current?.updateCSSCache();
-  }, [amp]);
-
-  const handleShapeClick = (shape) => {
+  const selectShape = (shape) => {
+    shapeRef.current = shape;
     setActiveShape(shape);
     apiRef.current?.changeShape(shape);
   };
 
-  const makeToggleHandler = (name) => () => {
-    const willBeOn = !{
-      rotation: rotationOn,
-      blur: blurOn,
-      color: colorOn,
-      opacity: opacityOn,
-      parallax: parallaxOn,
-      "3d": threeDOn,
-    }[name];
+  const toggle = (name) => {
+    const api = apiRef.current;
+    const current = optionsRef.current;
+    const next = !current[name];
 
-    if (willBeOn && name === "parallax" && threeDOn) {
+    if (next && name === "parallax" && current.threeD) {
       setThreeDOn(false);
-      apiRef.current?.toggle3D(false);
+      api?.toggle3D(false);
     }
-    if (willBeOn && name === "3d" && parallaxOn) {
+    if (next && name === "threeD" && current.parallax) {
       setParallaxOn(false);
-      apiRef.current?.toggleParallax(false);
+      api?.toggleParallax(false);
     }
 
-    if (name === "rotation") {
-      setRotationOn(willBeOn);
-      apiRef.current?.toggleRotation(willBeOn);
-    } else if (name === "blur") {
-      setBlurOn(willBeOn);
-      apiRef.current?.toggleBlur(willBeOn);
-    } else if (name === "color") {
-      setColorOn(willBeOn);
-      apiRef.current?.toggleColor(willBeOn);
-    } else if (name === "opacity") {
-      setOpacityOn(willBeOn);
-      apiRef.current?.toggleOpacity(willBeOn);
-    } else if (name === "parallax") {
-      setParallaxOn(willBeOn);
-      apiRef.current?.toggleParallax(willBeOn);
-    } else if (name === "3d") {
-      setThreeDOn(willBeOn);
-      apiRef.current?.toggle3D(willBeOn);
-    }
+    const setters = {
+      rotation: [setRotationOn, "toggleRotation"],
+      blur: [setBlurOn, "toggleBlur"],
+      color: [setColorOn, "toggleColor"],
+      opacity: [setOpacityOn, "toggleOpacity"],
+      parallax: [setParallaxOn, "toggleParallax"],
+      threeD: [setThreeDOn, "toggle3D"],
+    };
+    const [setState, method] = setters[name];
+    setState(next);
+    api?.[method](next);
   };
+
+  const toggles = [
+    ["rotation", rotationOn],
+    ["blur", blurOn],
+    ["color", colorOn],
+    ["opacity", opacityOn],
+    ["parallax", parallaxOn],
+    ["threeD", threeDOn],
+  ];
+
+  const tuners = [
+    ["tilt", 1, 50, tilt, setTilt, String(tilt).padStart(3, " ")],
+    ["pan", 1, 200, pan, setPan, String(pan).padStart(3, " ")],
+    ["depth", 1, 100, depth, setDepth, String(depth).padStart(3, " ")],
+    ["amp", 1, 300, amp, setAmp, (amp / 100).toFixed(2)],
+  ];
 
   return (
     <div
-      ref={rootRef}
-      className="ish-root min-h-screen flex flex-col items-center justify-center bg-black text-white gap-8 relative"
-      style={{
-        "--ish-depth-step": `${depthStep}px`,
-        "--ish-scale-3d": scale3d,
-        "--ish-tilt-max": tiltMax,
-        "--ish-pan-max": `${panMax}px`,
-        "--ish-opacity-falloff": opacityFalloff,
-        "--ish-move-amplify": moveAmplify,
-        "--ish-tilt-boost": tiltBoost,
-        "--ish-pan-boost": panBoost,
-        backgroundImage:
-          "url(\"data:image/svg+xml,%3csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='dot' patternUnits='userSpaceOnUse' width='20' height='20'%3e%3ccircle cx='10' cy='10' r='1' fill='%23222'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23dot)'/%3e%3c/svg%3e\")",
-      }}
+      className={`${mono.variable} relative flex min-h-screen flex-col items-center justify-center gap-8 text-white [background-image:radial-gradient(circle,#222_1px,transparent_1px)] [background-size:20px_20px] [font-family:var(--font-mono)] ${backgroundColor} ${className}`}
+      style={{ "--size": `${size}px` }}
     >
       <div
         ref={containerRef}
-        className={
-          "ish-image-container relative cursor-pointer border border-white/15" +
-          (threeDOn ? " ish-is-3d" : "")
-        }
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          overflow: threeDOn ? "visible" : "hidden",
-        }}
+        onMouseEnter={() => apiRef.current?.enter()}
+        onMouseLeave={() => apiRef.current?.leave()}
+        className={`relative h-[var(--size)] w-[var(--size)] max-w-full cursor-pointer border border-white/15 data-[active=true]:isolate data-[active=true]:[perspective-origin:50%_50%] data-[active=true]:[perspective:1600px] ${threeDOn ? "overflow-visible" : "overflow-hidden"
+          }`}
       >
-        {Array.from({ length: layerCount }).map((_, i) => (
-          <div
-            key={i}
-            className="ish-image-layer absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url(${imageUrl})`,
-              backfaceVisibility: "hidden",
-              willChange: "transform, opacity",
-              opacity: i === 0 ? 1 : 0,
-              transform: i === 0 ? "none" : "scale(0.95)",
-              clipPath: i === 0 ? undefined : CLIP_PATHS[initialShape],
-            }}
-          />
-        ))}
+        <div
+          ref={stackRef}
+          className="absolute inset-0 [transform-style:flat] will-change-transform [[data-active=true]_&]:[transform-style:preserve-3d]"
+        >
+          {Array.from({ length: layerCount }, (_, i) => (
+            <img
+              key={i}
+              src={imageUrl}
+              alt={i === 0 ? imageAlt : ""}
+              draggable={false}
+              className={`absolute inset-0 h-full w-full object-cover [backface-visibility:hidden] will-change-[transform,opacity] ${i === 0 ? "" : "opacity-0 [transform:scale(0.95)]"
+                }`}
+            />
+          ))}
+        </div>
       </div>
 
-      <div
-        className="ish-controls flex justify-between items-start relative"
-        style={{ width: `${size}px` }}
-      >
-        <div className="flex gap-2.5 items-center">
+      <div className="relative flex w-[var(--size)] max-w-full items-start justify-between max-[480px]:flex-col max-[480px]:items-center max-[480px]:gap-4">
+        <div className="flex items-center gap-2.5">
           {SHAPES.map((shape) => (
             <button
               key={shape}
               type="button"
-              aria-label={shape}
-              onClick={() => handleShapeClick(shape)}
-              className={
-                "ish-shape-btn bg-white border-none cursor-pointer transition-opacity duration-300 " +
-                (shape === "circle" ? "rounded-full " : "") +
-                (shape === "diamond" ? "rotate-45 " : "") +
-                (activeShape === shape
-                  ? "opacity-100"
-                  : "opacity-50 hover:opacity-80")
-              }
-              style={{
-                width:
-                  shape === "diamond"
-                    ? "14px"
-                    : shape === "hexagon"
-                      ? "19px"
-                      : "16px",
-                height:
-                  shape === "diamond"
-                    ? "14px"
-                    : shape === "hexagon"
-                      ? "19px"
-                      : "16px",
-                clipPath: shape === "hexagon" ? CLIP_PATHS.hexagon : undefined,
-              }}
+              aria-label={shapeLabels[shape]}
+              onClick={() => selectShape(shape)}
+              className={`cursor-pointer border-0 bg-white transition-opacity duration-300 ${SHAPE_BUTTON[shape]} ${activeShape === shape ? "opacity-100" : "opacity-50 hover:opacity-80"
+                }`}
             />
           ))}
         </div>
 
-        <div className="ish-toggle-controls flex flex-col gap-2 items-end relative">
-          <ToggleButton
-            label="rotation"
-            active={rotationOn}
-            onClick={makeToggleHandler("rotation")}
-          />
-          <ToggleButton
-            label="blur"
-            active={blurOn}
-            onClick={makeToggleHandler("blur")}
-          />
-          <ToggleButton
-            label="color"
-            active={colorOn}
-            onClick={makeToggleHandler("color")}
-          />
-          <ToggleButton
-            label="opacity"
-            active={opacityOn}
-            onClick={makeToggleHandler("opacity")}
-          />
-          <ToggleButton
-            label="parallax"
-            active={parallaxOn}
-            onClick={makeToggleHandler("parallax")}
-          />
-          <ToggleButton
-            label="3d"
-            active={threeDOn}
-            onClick={makeToggleHandler("3d")}
-          />
+        <div className="relative flex flex-col items-end gap-2 max-[480px]:items-center">
+          {toggles.map(([name, active]) => (
+            <button
+              key={name}
+              type="button"
+              onClick={() => toggle(name)}
+              className={`cursor-pointer border-0 bg-transparent text-xs uppercase tracking-wide transition-colors duration-200 ${active ? "text-white" : "text-neutral-500 hover:text-white"
+                }`}
+            >
+              {active ? `${toggleLabels[name]} ${onLabel}` : toggleLabels[name]}
+            </button>
+          ))}
 
           <div
-            ref={settingsRef}
-            className={
-              "ish-settings-3d absolute top-full right-0 mt-2 overflow-hidden transition-all duration-700 z-[1000] " +
-              (threeDOn ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0")
-            }
+            className={`absolute right-0 top-full z-[1000] mt-2 overflow-hidden transition-all duration-700 ${threeDOn ? "max-h-[200px] opacity-100" : "pointer-events-none max-h-0 opacity-0"
+              }`}
           >
-            <TunerRow
-              label="tilt"
-              min={1}
-              max={50}
-              value={tilt}
-              display={String(tilt).padStart(3, " ")}
-              onChange={setTilt}
-              active={threeDOn}
-              delayIndex={0}
-            />
-            <TunerRow
-              label="pan"
-              min={1}
-              max={200}
-              value={pan}
-              display={String(pan).padStart(3, " ")}
-              onChange={setPan}
-              active={threeDOn}
-              delayIndex={1}
-            />
-            <TunerRow
-              label="depth"
-              min={1}
-              max={100}
-              value={depth}
-              display={String(depth).padStart(3, " ")}
-              onChange={setDepth}
-              active={threeDOn}
-              delayIndex={2}
-            />
-            <TunerRow
-              label="amp"
-              min={1}
-              max={300}
-              value={amp}
-              display={(amp / 100).toFixed(2)}
-              onChange={setAmp}
-              active={threeDOn}
-              delayIndex={3}
-            />
+            {tuners.map(([name, min, max, value, onChange, display], index) => (
+              <div
+                key={name}
+                style={{ transitionDelay: threeDOn ? `${0.1 + index * 0.05}s` : "0s" }}
+                className={`mb-1.5 flex items-center justify-end gap-2 transition-all duration-500 ${threeDOn ? "translate-y-0 opacity-100" : "translate-y-2.5 opacity-0"
+                  }`}
+              >
+                <label
+                  htmlFor={`tuner-${name}`}
+                  className="w-[50px] text-right text-[0.6rem] uppercase tracking-wide text-neutral-500"
+                >
+                  {tunerLabels[name]}
+                </label>
+                <input
+                  id={`tuner-${name}`}
+                  type="range"
+                  min={min}
+                  max={max}
+                  step={1}
+                  value={value}
+                  onChange={(e) => onChange(Number(e.target.value))}
+                  className={SLIDER}
+                />
+                <span className="w-[35px] whitespace-pre text-right text-[0.6rem] text-white [font-variant-numeric:tabular-nums]">
+                  {display}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-
-      {showCredit && (
-        <a
-          href={creditHref}
-          target="_blank"
-          rel="noreferrer"
-          className="ish-credit fixed bottom-5 left-1/2 -translate-x-1/2 font-mono text-xs uppercase tracking-wide text-white/30 no-underline transition-opacity duration-200 hover:opacity-80 hover:text-white/50"
-        >
-          {creditText}
-        </a>
-      )}
-
-      <style>
-        {"" +
-          "@font-face { font-family: 'PP Supply Mono'; src: url('https://assets.codepen.io/7558/PPSupplyMono-Variable.woff2') format('woff2'); font-weight: 400; font-display: swap; } " +
-          ".ish-image-container.ish-is-3d { perspective: 1600px; perspective-origin: 50% 50%; isolation: isolate; } " +
-          ".ish-image-stack { transform-style: flat; } " +
-          ".ish-image-container.ish-is-3d .ish-image-stack { transform-style: preserve-3d; } " +
-          ".ish-credit, .ish-toggle-controls button, .ish-controls span { font-family: 'PP Supply Mono', monospace; } " +
-          ".ish-tuner-slider { -webkit-appearance: none; appearance: none; height: 2px; background: rgba(255,255,255,0.2); outline: none; cursor: pointer; } " +
-          ".ish-tuner-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 8px; height: 8px; background: #4ade80; border-radius: 50%; cursor: pointer; transition: all 0.2s ease; } " +
-          ".ish-tuner-slider::-webkit-slider-thumb:hover { transform: scale(1.3); } " +
-          ".ish-tuner-slider::-moz-range-thumb { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; border: none; cursor: pointer; } " +
-          "@media (max-width: 480px) { .ish-controls { flex-direction: column; gap: 15px; align-items: center; } .ish-toggle-controls { align-items: center; } }"}
-      </style>
-    </div>
-  );
-}
-
-function ToggleButton({ label, active, onClick }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={
-        "bg-transparent border-none cursor-pointer font-mono text-xs uppercase tracking-wide transition-colors duration-200 " +
-        (active ? "text-green-400" : "text-gray-400 hover:text-white")
-      }
-    >
-      {active ? `${label} on` : label}
-    </button>
-  );
-}
-
-function TunerRow({
-  label,
-  min,
-  max,
-  value,
-  display,
-  onChange,
-  active,
-  delayIndex,
-}) {
-  return (
-    <div
-      className="flex items-center gap-2 mb-1.5 justify-end transition-all duration-500"
-      style={{
-        opacity: active ? 1 : 0,
-        transform: active ? "translateY(0)" : "translateY(10px)",
-        transitionDelay: active
-          ? `${0.1 + delayIndex * 0.05}s`
-          : `${0.25 - delayIndex * 0.05}s`,
-      }}
-    >
-      <label className="w-[50px] font-mono text-[0.6rem] uppercase tracking-wide text-gray-400 text-right">
-        {label}
-      </label>
-      <input
-        type="range"
-        className="ish-tuner-slider w-20"
-        min={min}
-        max={max}
-        step={1}
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-      />
-      <span className="w-[35px] font-mono text-[0.6rem] text-green-400 text-right [font-variant-numeric:tabular-nums]">
-        {display}
-      </span>
     </div>
   );
 }

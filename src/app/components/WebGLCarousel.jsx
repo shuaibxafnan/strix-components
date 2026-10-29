@@ -3,39 +3,17 @@
 import { useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
 
-// ─── CarouselCanvas ───────────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────────
-// watermarkText       string    "Culture"   Large background watermark label
-// watermarkOpacity    number    0.05        Opacity of the watermark text
-// watermarkFontSize   string    "35vw"      Font size of the watermark
-// scrollPinLength     string    "+=500%"    ScrollTrigger pin end for carousel
-// watermarkPinLength  string    "+=600%"    ScrollTrigger pin end for watermark
-// watermarkStartX     string    "20%"       Watermark start translate X
-// watermarkEndX       string    "-60%"      Watermark end translate X
-// lenisDuration       number    1.2         Lenis smooth scroll duration
-// cameraZ             number    1.75        Three.js camera Z position
-// cameraY             number    0.3         Three.js camera Y position
-// cameraRotationZ     number    0.01        Camera rotation Z (× 2π)
-// planeWidth          number    1           Three.js plane geometry width
-// planeHeight         number    0.75        Three.js plane geometry height
-// planeSpacing        number    1.1         Horizontal spacing between planes
-// planeRotationY      number    0.03        Each plane Y rotation (× 2π)
-// velocityScale       number    0.00002     RGB-shift velocity multiplier
-// images              string[]  (9 Canary Islands jpegs)
-// ──────────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_IMAGES = [
-  "https://raw.githubusercontent.com/jankohlbach/canary-islands/main/assets/images/slider-1.jpeg",
-  "https://raw.githubusercontent.com/jankohlbach/canary-islands/main/assets/images/slider-2.jpeg",
-  "https://raw.githubusercontent.com/jankohlbach/canary-islands/main/assets/images/slider-3.jpeg",
-  "https://raw.githubusercontent.com/jankohlbach/canary-islands/main/assets/images/slider-4.jpeg",
-  "https://raw.githubusercontent.com/jankohlbach/canary-islands/main/assets/images/slider-5.jpeg",
-  "https://raw.githubusercontent.com/jankohlbach/canary-islands/main/assets/images/slider-6.jpeg",
-  "https://raw.githubusercontent.com/jankohlbach/canary-islands/main/assets/images/slider-7.jpeg",
-  "https://raw.githubusercontent.com/jankohlbach/canary-islands/main/assets/images/slider-8.jpeg",
-  "https://raw.githubusercontent.com/jankohlbach/canary-islands/main/assets/images/slider-9.jpeg",
+  "https://images.unsplash.com/photo-1779877716206-f441d5d384d4?auto=format&fit=crop&w=1080&q=80",
+  "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1080&q=80",
+  "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=1080&q=80",
+  "https://images.unsplash.com/photo-1781513747645-757fb2619e57?auto=format&fit=crop&w=1080&q=80",
+  "https://images.unsplash.com/photo-1780163930838-1502715c3bc1?auto=format&fit=crop&w=1080&q=80",
+  "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=1080&q=80",
+  "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=1080&q=80",
+  "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=1080&q=80",
+  "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=1080&q=80",
 ];
 
 export default function WebGLCarousel({

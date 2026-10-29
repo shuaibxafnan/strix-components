@@ -2,61 +2,51 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── RippleLiquidGallery ─────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// items              Array       [...]       Array of items with images & text
-// rippleStrength     number      0.15        Intensity of WebGL wave distortion
-// rippleSpeed        number      1.8         Velocity of wave propagation
-// rippleFrequency    number      14.0        Density/tightness of wave rings
-// animationDuration  number      0.6         GSAP blend duration (seconds)
-// ──────────────────────────────────────────────────────────────────────────
-
 const LOCKED_BENTO_ITEMS = [
   {
     id: 1,
     title: "Abstract Luminescence",
     category: "Digital Art",
-    src: "https://cdn.dribbble.com/userupload/15845431/file/original-7cb3b3121ef8688728259541f449aa90.png?resize=1024x768&vertical=center",
+    src: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1600&q=80",
     size: "md:col-span-2 md:row-span-2 min-h-[320px] md:min-h-auto", // Big Hero Block (Top Left)
   },
   {
     id: 2,
     title: "Neon Horizon",
     category: "CGI / Motion",
-    src: "https://cdn.dribbble.com/userupload/20812023/file/original-f847da681530f812dd38e256eff7bfc9.png?resize=1024x768&vertical=center",
+    src: "https://images.unsplash.com/photo-1519607641169-6b8a9b9b1c0b?auto=format&fit=crop&w=1600&q=80",
     size: "md:col-span-1 md:row-span-1 min-h-[160px] md:min-h-auto", // Upper Right Slot
   },
   {
     id: 3,
     title: "Chroma Vapor",
     category: "Vaporwave Aesthetic",
-    src: "https://cdn.dribbble.com/userupload/42761901/file/original-be28570edb00fadcbd4adb574a8aac5d.png?resize=1024x768&vertical=center",
+    src: "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&fit=crop&w=1600&q=80",
     size: "md:col-span-1 md:row-span-1 min-h-[160px] md:min-h-auto", // Middle Right Slot (Completes Hero Height)
   },
   {
     id: 4,
     title: "Cybernetic Oasis",
     category: "Surrealism",
-    src: "https://cdn.dribbble.com/userupload/16578759/file/original-22d4b6fd5cf661342470f433ea9e9656.png?resize=1024x1024&vertical=center",
+    src: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1600&q=80",
     size: "md:col-span-1 md:row-span-1 min-h-[160px] md:min-h-auto", // Lower Left Slot
   },
   {
     id: 5,
     title: "Liquid Prismatic",
     category: "3D Experiment",
-    src: "https://cdn.dribbble.com/userupload/16588483/file/original-46d9db02da77a89dbf219607d15e5f3d.png?resize=1024x768&vertical=center",
+    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
     size: "md:col-span-2 md:row-span-1 min-h-[160px] md:min-h-auto", // Lower Right Wide Slot (Completes Row 3)
   },
   {
     id: 6,
     title: "Gilded Velvet",
     category: "Fine Grain Art",
-    src: "https://cdn.dribbble.com/userupload/16204274/file/original-24f91da70cb6de87ca4fdcd75d00ec00.jpg?resize=1024x683&vertical=center",
+    src: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1600&q=80",
     size: "md:col-span-3 md:row-span-1 min-h-[160px] md:min-h-auto", // Full-Width Panoramic Base Row
   },
 ];
+
 
 export default function RippleLiquidGallery({
   items = LOCKED_BENTO_ITEMS,

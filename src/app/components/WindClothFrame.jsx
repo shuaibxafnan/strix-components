@@ -158,7 +158,7 @@ const FRAGMENT_SHADER = `
 
 export default function WindClothFrame({
   bgColor = "#111111",
-  defaultMediaUrl = "https://iili.io/fvTp5sS.md.jpg",
+  defaultMediaUrl = "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=1080&q=80",
   cameraZ = 2.5,
   baseHeight = 1.3,
   enableOrbitControls = true,

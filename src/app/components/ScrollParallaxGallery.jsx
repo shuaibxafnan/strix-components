@@ -1,18 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-// ─── ScrollGallery ────────────────────────────────────────────────────────────
-//
-// Props
-// ─────────────────────────────────────────────────────────────────────────────
-// items        GalleryItem[]   Array of gallery items (see shape below)
-// title        string          "#scroll"     Page heading text
-// scrollEase   number          0.1           Lerp ease factor (0–1)
-// ─────────────────────────────────────────────────────────────────────────────
-//
-// GalleryItem shape:
-// { id, title, description, image, aspectRatio: "700/525" }
+const OVERFLOW = 40;
+const DEFAULT_ROTATION = [50, 70];
 
 const DEFAULT_ITEMS = [
   {
@@ -74,7 +65,8 @@ const DEFAULT_ITEMS = [
     title: "Manul",
     description:
       "'Manul' is the Pallas's cat's name in the Kyrgyz language. It is called 'manol' in the Mongolian language. The name 'Pallas's cat' was coined by William Thomas Blanford in honour of Peter Simon Pallas.",
-    image: "https://get.wallhere.com/photo/manul-wool-fur-snout-667968.jpg",
+    image:
+      "https://images.pexels.com/photos/3912757/pexels-photo-3912757.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     aspectRatio: "600/460",
   },
   {
@@ -88,614 +80,293 @@ const DEFAULT_ITEMS = [
   },
 ];
 
-// ─── MathUtils (same as original) ────────────────────────────────────────────
-const MathUtils = {
-  map: (x, a, b, c, d) => ((x - a) * (d - c)) / (b - a) + c,
-  lerp: (a, b, n) => (1 - n) * a + n * b,
-  getRandomFloat: (min, max) =>
-    parseFloat((Math.random() * (max - min) + min).toFixed(2)),
-};
+const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
+const map = (x, a, b, c, d) => ((x - a) * (d - c)) / (b - a) + c;
+const lerp = (a, b, n) => (1 - n) * a + n * b;
+const random = (min, max) => Math.random() * (max - min) + min;
 
 export default function ScrollParallaxGallery({
   items = DEFAULT_ITEMS,
   title = "#scroll",
+  scrollTopLabel = "Scroll to top",
+  backgroundColor = "bg-black",
+  textColor = "text-white",
+  descriptionColor = "text-white/60",
+  fontTitleFamily = "Righteous",
+  fontTitleUrl = "https://cdn.jsdelivr.net/fontsource/fonts/righteous@latest/latin-400-normal.woff2",
+  fontItemFamily = "Dancing Script",
+  fontItemUrl = "https://cdn.jsdelivr.net/fontsource/fonts/dancing-script@latest/latin-400-normal.woff2",
   scrollEase = 0.1,
+  rotationRange = DEFAULT_ROTATION,
+  imageWidthMax = 600,
 }) {
-  const mainRef = useRef(null);
+  const [enhanced, setEnhanced] = useState(false);
+  const [showTop, setShowTop] = useState(false);
   const scrollableRef = useRef(null);
   const contentRef = useRef(null);
-  const scrollBtnRef = useRef(null);
-  const rafRef = useRef(null);
 
   useEffect(() => {
-    // ── Load external deps ──────────────────────────────────────────────────
-    const loadScript = (src, id) =>
-      new Promise((res, rej) => {
-        if (document.getElementById(id)) {
-          res();
+    setEnhanced(true);
+    return () => setEnhanced(false);
+  }, []);
+
+  useEffect(() => {
+    if (!enhanced) return;
+    const scrollable = scrollableRef.current;
+    const content = contentRef.current;
+    if (!scrollable || !content) return;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const ease = reduceMotion ? 1 : scrollEase;
+    const [minRotation, maxRotation] = reduceMotion ? [0, 0] : rotationRange;
+
+    const entries = Array.from(content.querySelectorAll("[data-item]")).map(
+      (el) => ({
+        el,
+        image: el.querySelector("[data-img]"),
+        wrap: el.querySelector("[data-wrap]"),
+        ry: random(-0.5, 0.5),
+        rz: random(-0.5, 0.5),
+        maxAngle: random(minRotation, maxRotation),
+        top: 0,
+        height: 0,
+        visible: false,
+        active: false,
+        shift: 0,
+        angle: 0,
+      }),
+    );
+    const byElement = new Map(entries.map((entry) => [entry.el, entry]));
+
+    let cancelled = false;
+    let rafId = 0;
+    let winHeight = window.innerHeight;
+    let smooth = window.scrollY;
+
+    const applyScroll = () => {
+      scrollable.style.transform = `translate3d(0,${-smooth}px,0)`;
+    };
+
+    const measure = () => {
+      if (cancelled) return;
+      winHeight = window.innerHeight;
+      document.body.style.height = `${scrollable.offsetHeight}px`;
+      entries.forEach((entry) => {
+        const rect = entry.el.getBoundingClientRect();
+        entry.height = rect.height;
+        entry.top = rect.top + smooth;
+        entry.active = false;
+      });
+    };
+
+    const onScroll = () => {
+      const root = document.documentElement;
+      const total = Math.max(1, root.scrollHeight - root.clientHeight);
+      setShowTop(window.scrollY / total > 0.4);
+    };
+
+    const tick = () => {
+      rafId = requestAnimationFrame(tick);
+      const y = window.scrollY;
+      smooth = lerp(smooth, y, ease);
+      applyScroll();
+
+      entries.forEach((entry) => {
+        if (!entry.visible) {
+          entry.active = false;
           return;
         }
-        const s = document.createElement("script");
-        s.src = src;
-        s.id = id;
-        s.onload = res;
-        s.onerror = () => rej(new Error(`Failed: ${src}`));
-        document.head.appendChild(s);
-      });
-
-    Promise.all([
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js",
-        "jq",
-      ),
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js",
-        "imgloaded",
-      ),
-    ]).then(() => {
-      // make imagesLoaded available as global
-      if (!window.imagesLoaded && window.jQuery) {
-        window.imagesLoaded = window.jQuery.fn.imagesLoaded
-          ? (el, opts, cb) => window.jQuery(el).imagesLoaded(opts, cb)
-          : null;
-      }
-      init();
-    });
-
-    // ── Scroll state ────────────────────────────────────────────────────────
-    let winsize = { width: window.innerWidth, height: window.innerHeight };
-    const calcWinsize = () => {
-      winsize = { width: window.innerWidth, height: window.innerHeight };
-    };
-    window.addEventListener("resize", calcWinsize);
-
-    let docScroll = 0;
-    let lastScroll = 0;
-
-    const getPageYScroll = () => {
-      docScroll = window.pageYOffset || document.documentElement.scrollTop;
-    };
-    window.addEventListener("scroll", getPageYScroll);
-
-    // ── Scroll-to-top button ────────────────────────────────────────────────
-    const btn = scrollBtnRef.current;
-    const handleScrollForBtn = () => {
-      const root = document.documentElement;
-      const scrollTotal = root.scrollHeight - root.clientHeight;
-      if (root.scrollTop / scrollTotal > 0.4) {
-        btn?.classList.add("showBtn");
-      } else {
-        btn?.classList.remove("showBtn");
-      }
-    };
-    document.addEventListener("scroll", handleScrollForBtn);
-    btn?.addEventListener("click", () => {
-      document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    // ── Item class (same logic as original) ─────────────────────────────────
-    class Item {
-      constructor(el) {
-        this.DOM = { el };
-        this.DOM.image = el.querySelector(".content__item-img");
-        this.DOM.imageWrapper = this.DOM.image.parentNode;
-        this.DOM.el.style.perspective = "1000px";
-        this.DOM.imageWrapper.style.transformOrigin = "50% 100%";
-        this.ry = MathUtils.getRandomFloat(-0.5, 0.5);
-        this.rz = MathUtils.getRandomFloat(-0.5, 0.5);
-        this.DOM.title = el.querySelector(".content__item-title");
-        this.DOM.title.style.transform = "translate3d(0,0,200px)";
-
-        this.renderedStyles = {
-          innerTranslationY: {
-            previous: 0,
-            current: 0,
-            ease: scrollEase,
-            setValue: () => {
-              const toValue = parseInt(
-                getComputedStyle(this.DOM.image).getPropertyValue("--overflow"),
-                10,
-              );
-              const fromValue = -1 * toValue;
-              return Math.max(
-                Math.min(
-                  MathUtils.map(
-                    this.props.top - docScroll,
-                    winsize.height,
-                    -1 * this.props.height,
-                    fromValue,
-                    toValue,
-                  ),
-                  toValue,
-                ),
-                fromValue,
-              );
-            },
-          },
-          itemRotation: {
-            previous: 0,
-            current: 0,
-            ease: scrollEase,
-            toValue: MathUtils.getRandomFloat(-70, -50),
-            setValue() {
-              const from = this.toValue * -1;
-              const val = MathUtils.map(
-                this.props?.top - docScroll ?? 0,
-                winsize.height * 1.5,
-                -1 * (this.props?.height ?? 0),
-                from,
-                this.toValue,
-              );
-              return Math.min(Math.max(val, this.toValue), from);
-            },
-          },
-        };
-        // bind props reference for itemRotation setValue
-        this.renderedStyles.itemRotation.setValue =
-          this.renderedStyles.itemRotation.setValue.bind(
-            Object.assign(this.renderedStyles.itemRotation, { props: null }),
-          );
-
-        this.getSize();
-        this.update();
-
-        this.observer = new IntersectionObserver((entries) => {
-          entries.forEach((e) => (this.isVisible = e.intersectionRatio > 0));
-        });
-        this.observer.observe(this.DOM.el);
-        window.addEventListener("resize", () => this.resize());
-      }
-
-      update() {
-        for (const key in this.renderedStyles) {
-          this.renderedStyles[key].current = this.renderedStyles[key].previous =
-            this.renderedStyles[key].setValue.call(this);
-        }
-        this.layout();
-      }
-
-      getSize() {
-        const rect = this.DOM.el.getBoundingClientRect();
-        this.props = { height: rect.height, top: docScroll + rect.top };
-      }
-
-      resize() {
-        this.getSize();
-        this.update();
-      }
-
-      render() {
-        for (const key in this.renderedStyles) {
-          this.renderedStyles[key].current =
-            this.renderedStyles[key].setValue.call(this);
-          this.renderedStyles[key].previous = MathUtils.lerp(
-            this.renderedStyles[key].previous,
-            this.renderedStyles[key].current,
-            this.renderedStyles[key].ease,
-          );
-        }
-        this.layout();
-      }
-
-      layout() {
-        this.DOM.image.style.transform = `translate3d(0,${this.renderedStyles.innerTranslationY.previous}px,0)`;
-        this.DOM.imageWrapper.style.transform = `rotate3d(1,${this.ry},${this.rz},${this.renderedStyles.itemRotation.previous}deg)`;
-      }
-    }
-
-    // ── SmoothScroll class (same logic as original) ──────────────────────────
-    class SmoothScroll {
-      constructor() {
-        this.DOM = {
-          main: mainRef.current,
-          scrollable: scrollableRef.current,
-          content: contentRef.current,
-        };
-        this.items = [];
-        [...this.DOM.content.querySelectorAll(".content__item")].forEach((el) =>
-          this.items.push(new Item(el)),
+        const offset = entry.top - y;
+        const shift = clamp(
+          map(offset, winHeight, -entry.height, -OVERFLOW, OVERFLOW),
+          -OVERFLOW,
+          OVERFLOW,
         );
-        this.renderedStyles = {
-          translationY: {
-            previous: 0,
-            current: 0,
-            ease: scrollEase,
-            setValue: () => docScroll,
-          },
-        };
-        this.setSize();
-        this.update();
-        this.style();
-        window.addEventListener("resize", () => this.setSize());
-        requestAnimationFrame(() => this.render());
-      }
-
-      update() {
-        for (const key in this.renderedStyles) {
-          this.renderedStyles[key].current = this.renderedStyles[key].previous =
-            this.renderedStyles[key].setValue();
+        const angle = clamp(
+          map(offset, winHeight * 1.5, -entry.height, entry.maxAngle, -entry.maxAngle),
+          -entry.maxAngle,
+          entry.maxAngle,
+        );
+        if (entry.active) {
+          entry.shift = lerp(entry.shift, shift, ease);
+          entry.angle = lerp(entry.angle, angle, ease);
+        } else {
+          entry.shift = shift;
+          entry.angle = angle;
+          entry.active = true;
         }
-        this.layout();
-      }
-
-      layout() {
-        this.DOM.scrollable.style.transform = `translate3d(0,${
-          -1 * this.renderedStyles.translationY.previous
-        }px,0)`;
-      }
-
-      setSize() {
-        document.body.style.height = `${this.DOM.scrollable.scrollHeight}px`;
-      }
-
-      style() {
-        this.DOM.main.style.position = "fixed";
-        this.DOM.main.style.width = "100%";
-        this.DOM.main.style.height = "100%";
-        this.DOM.main.style.top = "0";
-        this.DOM.main.style.left = "0";
-        this.DOM.main.style.overflow = "hidden";
-      }
-
-      render() {
-        for (const key in this.renderedStyles) {
-          this.renderedStyles[key].current =
-            this.renderedStyles[key].setValue();
-          this.renderedStyles[key].previous = MathUtils.lerp(
-            this.renderedStyles[key].previous,
-            this.renderedStyles[key].current,
-            this.renderedStyles[key].ease,
-          );
-        }
-        this.layout();
-        for (const item of this.items) {
-          if (item.isVisible) {
-            if (item.insideViewport) {
-              item.render();
-            } else {
-              item.insideViewport = true;
-              item.update();
-            }
-          } else {
-            item.insideViewport = false;
-          }
-        }
-        rafRef.current = requestAnimationFrame(() => this.render());
-      }
-    }
-
-    // ── Init ────────────────────────────────────────────────────────────────
-    function init() {
-      const preloadImages = () =>
-        new Promise((resolve) => {
-          const imgs = document.querySelectorAll(".content__item-img");
-          if (window.imagesLoaded) {
-            window.imagesLoaded(imgs, { background: true }, resolve);
-          } else {
-            resolve();
-          }
-        });
-
-      preloadImages().then(() => {
-        document.body.classList.remove("loading");
-        getPageYScroll();
-        lastScroll = docScroll;
-        new SmoothScroll();
+        entry.image.style.transform = `translate3d(0,${entry.shift}px,0)`;
+        entry.wrap.style.transform = `rotate3d(1,${entry.ry},${entry.rz},${entry.angle}deg)`;
       });
-    }
+    };
+
+    const intersection = new IntersectionObserver((records) => {
+      records.forEach((record) => {
+        const entry = byElement.get(record.target);
+        if (entry) entry.visible = record.isIntersecting;
+      });
+    });
+    entries.forEach((entry) => intersection.observe(entry.el));
+
+    const resize = new ResizeObserver(measure);
+    resize.observe(scrollable);
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", measure);
+    document.fonts?.ready.then(measure);
+
+    applyScroll();
+    measure();
+    onScroll();
+    tick();
 
     return () => {
-      window.removeEventListener("resize", calcWinsize);
-      window.removeEventListener("scroll", getPageYScroll);
-      document.removeEventListener("scroll", handleScrollForBtn);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      // Reset body height on unmount
+      cancelled = true;
+      cancelAnimationFrame(rafId);
+      intersection.disconnect();
+      resize.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", measure);
+      scrollable.style.transform = "";
+      entries.forEach((entry) => {
+        entry.image.style.transform = "";
+        entry.wrap.style.transform = "";
+      });
       document.body.style.height = "";
     };
-  }, [scrollEase]);
+  }, [enhanced, scrollEase, rotationRange[0], rotationRange[1]]);
+
+  const css =
+    '@font-face{font-family:"' +
+    fontTitleFamily +
+    '";src:url("' +
+    fontTitleUrl +
+    '") format("woff2");font-weight:400;font-display:swap;}' +
+    '@font-face{font-family:"' +
+    fontItemFamily +
+    '";src:url("' +
+    fontItemUrl +
+    '") format("woff2");font-weight:400;font-display:swap;}' +
+    "@keyframes gallery-arrow{0%{opacity:0}25%{opacity:1}75%{opacity:0}100%{opacity:0}}";
 
   return (
     <>
-      <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Righteous&display=swap");
+      <style>{css}</style>
 
-        body.loading * { cursor: wait; }
+      <main
+        className={`${backgroundColor} ${textColor} ${enhanced ? "fixed inset-0 overflow-hidden" : ""
+          }`}
+      >
+        <div
+          ref={scrollableRef}
+          className="relative mx-auto grid max-w-[1200px] grid-cols-1 p-[5vw] will-change-transform"
+        >
+          <h1
+            className="m-0 mb-2 text-[6vw] font-normal"
+            style={{ fontFamily: `"${fontTitleFamily}", cursive` }}
+          >
+            {title}
+          </h1>
 
-        body {
-          --color-text: #905348;
-          --color-bg: #120605;
-          --color-link: #8f8f76;
-          --color-link-hover: #fff;
-          --color-description: #7e605b;
-          --font-title: "Dancing Script", serif;
-          --size-title: 6vw;
-          --imgwidthmax: 600px;
-          color: var(--color-text);
-          background-color: var(--color-bg);
-          font-size: 1rem;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          font-family: 'Montserrat', sans-serif;
-        }
-
-        body::-webkit-scrollbar { width: 0.25em; }
-        body::-webkit-scrollbar-track { background: #120605; }
-        body::-webkit-scrollbar-thumb { border-radius: 20px; background: #8d5146; }
-        body::-webkit-scrollbar-corner { background: transparent; }
-
-        a { text-decoration: none; color: var(--color-link); outline: none; }
-        a:hover, a:focus { color: var(--color-link-hover); outline: none; }
-
-        .scrollToTopBtn {
-          background: transparent;
-          border: none;
-          cursor: pointer;
-          position: fixed;
-          width: 100px;
-          bottom: 20px;
-          right: 0px;
-          z-index: 100;
-          opacity: 0;
-          transform: translateY(200px);
-          transition: all 0.5s ease;
-          filter: invert(35%) sepia(12%) saturate(1922%) hue-rotate(321deg) brightness(96%) contrast(88%);
-        }
-        .scrollToTopBtn.showBtn { opacity: 1; transform: translateY(0); }
-
-        .page {
-          display: grid;
-          padding: 5vw;
-          max-width: 1200px;
-          margin: 0 auto;
-          grid-template-columns: 100%;
-          grid-template-areas: "header" "grid";
-          will-change: transform;
-        }
-
-        .page__title {
-          grid-area: header;
-          margin: 0 0 0.5rem;
-          font-family: "Righteous", cursive;
-          font-size: var(--size-title);
-          font-weight: 400;
-        }
-
-        .arrow {
-          width: 60px;
-          height: 80px;
-          position: absolute;
-          top: 1%;
-          right: 5%;
-          z-index: 999;
-        }
-
-        .arrow path {
-          stroke: var(--color-text);
-          stroke-width: 2px;
-          fill: transparent;
-          animation: arrowDown 2s infinite;
-        }
-
-        @keyframes arrowDown {
-          0%   { opacity: 0; }
-          25%  { opacity: 1; }
-          75%  { opacity: 0; }
-          100% { opacity: 0; }
-        }
-
-        .arrow path.a1 { animation-delay: -1s; }
-        .arrow path.a2 { animation-delay: -0.5s; }
-        .arrow path.a3 { animation-delay: 0s; }
-
-        .content {
-          grid-area: grid;
-          margin: 25vh 0 30vh;
-        }
-
-        .content--padded { padding: 0 10vw; }
-
-        .content__item {
-          --imgwidth: calc(var(--imgwidthmax) * var(--aspect-ratio));
-          width: var(--imgwidth);
-          max-width: 100%;
-          position: relative;
-          will-change: transform;
-          margin-bottom: 30vh;
-          display: grid;
-          grid-template-columns: 50% 50%;
-        }
-
-        .content--alternate .content__item { max-width: 90vw; }
-        .content--alternate .content__item:nth-child(even) { margin-left: auto; }
-
-        .content__item--expand {
-          width: 100%;
-          grid-template-columns: minmax(0, var(--imgwidth)) 1fr;
-        }
-
-        .content__item--expand:nth-child(even) {
-          grid-template-columns: 1fr minmax(0, var(--imgwidth));
-        }
-
-        .content__item-imgwrap {
-          position: relative;
-          --imgwidth: 100%;
-          margin: 0 auto;
-          grid-area: 1 / 1 / 3 / 3;
-          overflow: hidden;
-          width: var(--imgwidth);
-          padding-bottom: calc(var(--imgwidth) / (var(--aspect-ratio)));
-          will-change: transform;
-        }
-
-        .content__item--expand .content__item-imgwrap {
-          grid-area: 1 / 1 / 3 / 2;
-        }
-
-        .content__item--expand:nth-child(even) .content__item-imgwrap {
-          grid-area: 1 / 2 / 3 / 3;
-          justify-self: end;
-        }
-
-        .content__item-img {
-          --overflow: 40px;
-          height: calc(100% + (2 * var(--overflow)));
-          top: calc(-1 * var(--overflow));
-          width: 100%;
-          position: absolute;
-          background-size: cover;
-          background-position: 50% 0%;
-          will-change: transform;
-          opacity: 0.8;
-        }
-
-        .content__item-title {
-          position: relative;
-          font-size: var(--size-title);
-          padding: 0 3vw;
-          margin: calc(var(--size-title) * -1 / 2) 0 0 0;
-          align-self: start;
-          line-height: 1;
-          font-family: var(--font-title);
-          font-weight: 400;
-          color: var(--color-title);
-          will-change: transform;
-          mix-blend-mode: var(--blendmode-title);
-        }
-
-        .content__item-description {
-          grid-area: 3 / 1 / 3 / 3;
-          width: 70%;
-          position: relative;
-          margin: 0;
-          padding: 1rem 0 0 0;
-          color: var(--color-description);
-        }
-
-        .content--alternate .content__item-title {
-          grid-area: 3 / 1 / 4 / 2;
-          justify-self: start;
-        }
-
-        .content--alternate .content__item:nth-child(even) .content__item-title {
-          grid-area: 3 / 2 / 4 / 3;
-          justify-self: end;
-          width: auto;
-        }
-
-        .content__item--expand .content__item-description {
-          grid-area: 1 / 2 / 3 / 3;
-          justify-self: start;
-          align-self: start;
-          padding: 0 2rem;
-          width: 250px;
-          font-size: 0.9rem;
-        }
-
-        .content__item--expand:nth-child(even) .content__item-description {
-          grid-area: 1 / 1 / 3 / 2;
-          justify-self: end;
-          text-align: right;
-        }
-
-        .credits { text-align: center; }
-        .credits a { color: var(--color-text); }
-        .credits a:hover { color: #fff; }
-
-        @media screen and (min-width: 53em) {
-          .page--layout-2 {
-            grid-template-columns: 1fr 1fr;
-            grid-template-areas: "header header" "...  meta" "grid grid";
-          }
-        }
-
-        @media screen and (max-width: 40em) {
-          .content__item--expand .content__item-imgwrap,
-          .content__item--expand:nth-child(even) .content__item-imgwrap {
-            grid-area: 1 / 1 / 3 / 3;
-          }
-          .content__item--expand .content__item-description,
-          .content__item--expand:nth-child(even) .content__item-description {
-            grid-area: 3 / 1 / 4 / 3;
-            padding: 1rem 0;
-            width: 100%;
-            text-align: left;
-          }
-          .content--alternate .content__item-title,
-          .content--alternate .content__item:nth-child(even) .content__item-title {
-            grid-area: 1 / 1 / 4 / 2;
-          }
-        }
-      `}</style>
-
-      <main ref={mainRef}>
-        <div data-scroll ref={scrollableRef} className="page page--layout-2">
-          <h1 className="page__title">{title}</h1>
-
-          {/* Animated arrow */}
-          <svg className="arrow" viewBox="0 0 60 80">
-            <path className="a1" d="M0 0 L30 22 L60 0" />
-            <path className="a2" d="M0 20 L30 42 L60 20" />
-            <path className="a3" d="M0 40 L30 62 L60 40" />
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 60 80"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className="absolute right-[5%] top-[1%] z-[999] h-20 w-[60px]"
+          >
+            <path
+              d="M0 0 L30 22 L60 0"
+              className="animate-[gallery-arrow_2s_infinite] [animation-delay:-1s]"
+            />
+            <path
+              d="M0 20 L30 42 L60 20"
+              className="animate-[gallery-arrow_2s_infinite] [animation-delay:-0.5s]"
+            />
+            <path
+              d="M0 40 L30 62 L60 40"
+              className="animate-[gallery-arrow_2s_infinite]"
+            />
           </svg>
 
-          <div
-            ref={contentRef}
-            className="content content--alternate content--padded"
-          >
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="content__item content__item--expand"
-                style={{ "--aspect-ratio": item.aspectRatio }}
-              >
-                <div className="content__item-imgwrap">
+          <div ref={contentRef} className="mb-[30vh] mt-[25vh] px-[10vw]">
+            {items.map((item, i) => {
+              const isEven = i % 2 === 1;
+              return (
+                <div
+                  key={item.id}
+                  data-item
+                  className={`relative mb-[30vh] grid w-full max-w-[90vw] will-change-transform [perspective:1000px] ${isEven ? "ml-auto" : ""
+                    }`}
+                  style={{
+                    "--w": `calc(${imageWidthMax}px * ${item.aspectRatio})`,
+                    gridTemplateColumns: isEven
+                      ? "1fr minmax(0, var(--w))"
+                      : "minmax(0, var(--w)) 1fr",
+                  }}
+                >
                   <div
-                    className="content__item-img"
-                    style={{ backgroundImage: `url(${item.image})` }}
-                  />
-                </div>
-                <h2 className="content__item-title">{item.title}</h2>
-                <p className="content__item-description">{item.description}</p>
-              </div>
-            ))}
+                    data-wrap
+                    className={`relative w-full origin-bottom overflow-hidden will-change-transform max-[40em]:[grid-area:1/1/3/3] ${isEven
+                        ? "justify-self-end [grid-area:1/2/3/3]"
+                        : "[grid-area:1/1/3/2]"
+                      }`}
+                    style={{ aspectRatio: item.aspectRatio }}
+                  >
+                    <div
+                      data-img
+                      className="absolute inset-x-0 -top-[40px] h-[calc(100%+80px)] bg-cover bg-[position:50%_0%] opacity-80 will-change-transform"
+                      style={{ backgroundImage: `url(${item.image})` }}
+                    />
+                  </div>
 
-            <p className="credits">
-              <a
-                href="https://codepen.io/DivineBlow"
-                target="_blank"
-                rel="noreferrer"
-              >
-                DivineBlow
-              </a>
-            </p>
+                  <h2
+                    className={`relative -mt-[3vw] mb-0 self-start px-[3vw] text-[6vw] font-normal leading-none will-change-transform [transform:translate3d(0,0,200px)] max-[40em]:[grid-area:1/1/4/2] ${isEven
+                        ? "justify-self-end [grid-area:3/2/4/3]"
+                        : "justify-self-start [grid-area:3/1/4/2]"
+                      }`}
+                    style={{ fontFamily: `"${fontItemFamily}", serif` }}
+                  >
+                    {item.title}
+                  </h2>
+
+                  <p
+                    className={`relative m-0 w-[250px] self-start px-8 text-[0.9rem] max-[40em]:w-full max-[40em]:px-0 max-[40em]:py-4 max-[40em]:text-left max-[40em]:[grid-area:3/1/4/3] ${descriptionColor} ${isEven
+                        ? "justify-self-end text-right [grid-area:1/1/3/2]"
+                        : "justify-self-start [grid-area:1/2/3/3]"
+                      }`}
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </main>
 
-      {/* Scroll-to-top button */}
       <button
-        ref={scrollBtnRef}
-        className="scrollToTopBtn"
-        aria-label="Scroll to top"
+        type="button"
+        aria-label={scrollTopLabel}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className={`fixed bottom-5 right-5 z-[100] flex h-12 w-12 items-center justify-center border-0 bg-transparent p-0 transition-all duration-500 ease-out ${textColor} ${showTop
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-[200px] opacity-0"
+          }`}
       >
-        <svg viewBox="0 0 512.001 512.001" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M403.015,296.471L264.5,108.591c-4.22-5.725-12.778-5.725-16.999,0l-138.515,187.88
-            c-5.14,6.972-0.162,16.826,8.499,16.826h277.03C403.177,313.297,408.155,303.443,403.015,296.471z"
-          />
-          <path
-            d="M413.693,288.598L275.18,100.718c-4.471-6.066-11.641-9.688-19.178-9.688s-14.707,3.621-19.178,9.688
-            L156.992,209h-34.146L256.001,28.39l136.335,184.924c4.348,5.898,12.653,7.154,18.552,2.806
-            c5.898-4.348,7.154-12.655,2.805-18.552L275.18,9.688C270.708,3.621,263.537,0,256.001,0s-14.707,3.621-19.178,9.688
-            L98.308,197.568c-5.365,7.279-6.166,16.813-2.09,24.884c4.077,8.071,12.226,13.083,21.268,13.083h19.943
-            l-39.121,53.063c-5.365,7.279-6.166,16.813-2.09,24.884c4.077,8.071,12.226,13.083,21.268,13.083h45.236V483.23
-            c0,15.864,12.907,28.771,28.771,28.771h129.015c15.864,0,28.771-12.907,28.771-28.771v-88.805
-            c0-15.864-12.907-28.771-28.771-28.771h-78.976c-7.326,0-13.268,5.94-13.268,13.268
-            c0,7.328,5.941,13.268,13.268,13.268h78.976c1.233,0,2.236,1.003,2.236,2.236v88.805c0,1.233-1.003,2.236-2.236,2.236
-            H191.493c-1.233,0-2.236-1.003-2.236-2.236V326.565h205.257c9.042,0,17.191-5.014,21.268-13.083
-            C419.86,305.411,419.059,295.877,413.693,288.598z M122.846,300.03L256.001,119.42l133.154,180.61L122.846,300.03z"
-          />
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-8 w-8"
+        >
+          <path d="M6 15l6-6 6 6" />
         </svg>
       </button>
     </>

@@ -1,154 +1,95 @@
 "use client";
 
-import { useEffect, useRef, useId } from "react";
+import { useEffect, useRef } from "react";
 
-// ─── ScrollRevealGallery ─────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bgColor            string   #000111    Page/background color behind sections
-// heroImage          string   (pexels)   Hero background image URL
-// heroTitleTop       string   "Just"     Hero title, first line (plain text)
-// heroTitleBottom    string   "scroll"   Hero title, second line (colored span)
-// heroTitleSuffix    string   "it."      Hero title, text after colored span
-// footerImage        string   (pexels)   Footer background image URL
-// footerTitleTop     string   "YOU"      Footer title, first line
-// footerTitleBottom  string   "scrollED" Footer title, second line (colored span)
-// footerTitleSuffix  string   "it."      Footer title, text after colored span
-// accentColor        string   #cde5df    Color used for hero/footer highlighted span
-// items              array    [...]      Work items, each shaped as:
-//                                          {
-//                                            image: string,          // poster/background image
-//                                            videos: [{               // each renders as one video tile
-//                                              poster: string,
-//                                              mp4: string,
-//                                              webm: string,
-//                                            }],
-//                                            titleLines: string[],    // e.g. ["NATURE", "SAVED YOU"]
-//                                            titleAccentWord: string, // word inside titleLines[1] to color
-//                                            titleAccentColor: string,// hex color for that word
-//                                            subtitleLines: string[], // small uppercase lines under title
-//                                          }
-// revealDuration     number   1.25       Duration (s) of the per-line text reveal animation
-// slideDistance      string   "100vw"    Horizontal distance video tiles slide in from
-// imageScaleStart    number   1.4        Initial CSS scale applied to each work image
-// imageScaleEnd      number   1.2        Scale each work image settles to once revealed
-// ──────────────────────────────────────────────────────────────────────────
-//
-// Note: native browser scrolling drives ScrollTrigger here. Lenis
-// (smooth-scroll) was intentionally left out — it isn't reliably hosted on
-// cdnjs, so pulling it from a CDN inside a component is fragile. If you
-// want Lenis smoothing, `npm install lenis` and wire it up at the app
-// layout level instead; ScrollTrigger works fine against plain window
-// scroll without it.
-// ──────────────────────────────────────────────────────────────────────────
+const GSAP_BASE = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/";
+
+const scriptCache = new Map();
+
+const loadScript = (src) => {
+  if (scriptCache.has(src)) return scriptCache.get(src);
+  const promise = new Promise((resolve, reject) => {
+    const el = document.createElement("script");
+    el.src = src;
+    el.onload = resolve;
+    el.onerror = () => {
+      scriptCache.delete(src);
+      reject(new Error(`Failed: ${src}`));
+    };
+    document.head.appendChild(el);
+  });
+  scriptCache.set(src, promise);
+  return promise;
+};
+
+const FILES = ["hd_1920_1080", "uhd_2560_1440"];
+
+const video = (id, fps) => ({
+  sources: fps.flatMap((f) =>
+    FILES.map(
+      (size) =>
+        `https://videos.pexels.com/video-files/${id}/${id}-${size}_${f}fps.mp4`,
+    ),
+  ),
+});
+
+const pexelsStill = (path) =>
+  `https://images.pexels.com/videos/${path}?auto=compress&cs=tinysrgb&w=1600`;
+
+const unsplashStill = (id) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1920&q=70`;
 
 const DEFAULT_ITEMS = [
   {
-    image:
-      "https://moussamamadou.github.io/scroll-trigger-gsap-section/images/pexels-cottonbro-9430460_11zon.jpg",
-    videos: [
-      {
-        poster:
-          "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9430543-uhd_4096_2160_25fps-poster-00001.jpg",
-        mp4: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9430543-uhd_4096_2160_25fps-transcode.mp4",
-        webm: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9430543-uhd_4096_2160_25fps-transcode.webm",
-      },
-      {
-        poster:
-          "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9430549-uhd_4096_2160_25fps-poster-00001.jpg",
-        mp4: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9430549-uhd_4096_2160_25fps-transcode.mp4",
-        webm: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9430549-uhd_4096_2160_25fps-transcode.webm",
-      },
-      {
-        poster:
-          "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9430538-uhd_4096_2160_25fps-1-poster-00001.jpg",
-        mp4: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9430538-uhd_4096_2160_25fps-1-transcode.mp4",
-        webm: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9430538-uhd_4096_2160_25fps-1-transcode.webm",
-      },
-    ],
-    titleLines: ["NATURE", "SAVED YOU"],
-    titleAccentWord: "SAVED",
-    titleAccentColor: "#ffd9b3",
+    image: pexelsStill("8438294/pexels-photo-8438294.jpeg"),
+    videos: [video(8438294, [30]), video(8438292, [30]), video(8438291, [30, 25])],
+    titleLines: ["SEA", "AND STONE"],
+    titleAccentWord: "STONE",
     subtitleLines: [
-      "Rock and Tree",
-      "Air and Sea",
-      "Land and Life",
-      "Leaf and Root",
-      "Sand and Sea",
+      "Rocky coast",
+      "Seen from above",
+      "Waves breaking on stone",
+      "Footage: RDNE Stock project",
     ],
   },
   {
-    image:
-      "https://moussamamadou.github.io/scroll-trigger-gsap-section/images/pexels-cottonbro-9421335_11zon.jpg",
+    image: unsplashStill("1502252430442-aac78f397426"),
     videos: [
-      {
-        poster:
-          "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9421504-uhd_4096_2160_25fps-poster-00001.jpg",
-        mp4: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9421504-uhd_4096_2160_25fps-transcode.mp4",
-        webm: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9421504-uhd_4096_2160_25fps-transcode.webm",
-      },
-      {
-        poster:
-          "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9421502-uhd_4096_2160_25fps-poster-00001.jpg",
-        mp4: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9421502-uhd_4096_2160_25fps-transcode.mp4",
-        webm: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9421502-uhd_4096_2160_25fps-transcode.webm",
-      },
-      {
-        poster:
-          "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9421500-uhd_4096_2160_25fps-poster-00001.jpg",
-        mp4: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9421500-uhd_4096_2160_25fps-transcode.mp4",
-        webm: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9421500-uhd_4096_2160_25fps-transcode.webm",
-      },
+      video(14386849, [30]),
+      video(3177845, [24, 25, 30]),
+      video(6062828, [30]),
     ],
-    titleLines: ["TOUCH", "CHANGES YOU"],
-    titleAccentWord: "CHANGES",
-    titleAccentColor: "#bdd9ff",
+    titleLines: ["PINE", "IN FOG"],
+    titleAccentWord: "FOG",
     subtitleLines: [
-      "Touch and Heal",
-      "Kind and True",
-      "Hand and Heart",
-      "Care and Light",
-      "Joy and Peace",
+      "Pine forest",
+      "Early light",
+      "Mist from above",
+      "Footage: Max Parada Valdivia, James Cheney, Grzegorz Stalmach",
+      "Photo: Paul Pastourmatzis",
     ],
   },
   {
-    image:
-      "https://moussamamadou.github.io/scroll-trigger-gsap-section/images/pexels-cottonbro-9489270_11zon.jpg",
+    image: pexelsStill(
+      "17833704/desert-dune-dunes-maspalomas-17833704.jpeg",
+    ),
     videos: [
-      {
-        poster:
-          "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9489597-uhd_4096_2160_25fps-poster-00001.jpg",
-        mp4: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9489597-uhd_4096_2160_25fps-transcode.mp4",
-        webm: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9489597-uhd_4096_2160_25fps-transcode.webm",
-      },
-      {
-        poster:
-          "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9489600-uhd_4096_2160_25fps-poster-00001.jpg",
-        mp4: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9489600-uhd_4096_2160_25fps-transcode.mp4",
-        webm: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9489600-uhd_4096_2160_25fps-transcode.webm",
-      },
-      {
-        poster:
-          "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9489599-uhd_4096_2160_25fps-poster-00001.jpg",
-        mp4: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9489599-uhd_4096_2160_25fps-transcode.mp4",
-        webm: "https://moussamamadou.github.io/scroll-trigger-gsap-section/videos/9489599-uhd_4096_2160_25fps-transcode.webm",
-      },
+      video(17833704, [25]),
+      video(17833702, [25, 24, 30]),
+      video(17833701, [25, 24, 30]),
     ],
-    titleLines: ["Books", "INSPIRES YOU"],
-    titleAccentWord: "INSPIRES",
-    titleAccentColor: "#e2ffe2",
+    titleLines: ["SAND", "AND WIND"],
+    titleAccentWord: "WIND",
     subtitleLines: [
-      "Book and Life",
-      "Ink and Page",
-      "Read and Rise",
-      "Verse and Voice",
-      "Page and Mind",
+      "Maspalomas, Gran Canaria",
+      "Dunes meeting the sea",
+      "Aerial, 4K",
+      "Footage: Adrien JACTA",
     ],
   },
 ];
 
-function TitleLine({ line, accentWord, accentColor }) {
+function TitleLine({ line, accentWord, accentClass }) {
   if (!accentWord || !line.includes(accentWord)) {
     return <div data-line>{line}</div>;
   }
@@ -156,253 +97,238 @@ function TitleLine({ line, accentWord, accentColor }) {
   return (
     <div data-line>
       {before}
-      <span style={{ color: accentColor }}>{accentWord}</span>
+      <span className={accentClass}>{accentWord}</span>
       {after}
     </div>
   );
 }
 
+function BigTitle({ top, bottom, suffix, accentClass, fontFamily }) {
+  return (
+    <div
+      className="relative flex-1 px-[4vw] pb-[4vw] text-[12.5vw] font-medium uppercase leading-[0.9] text-white"
+      style={{ fontFamily: `"${fontFamily}", sans-serif` }}
+    >
+      {top}
+      <br />
+      <span className={accentClass}>{bottom}</span>
+      {suffix ? ` ${suffix}` : null}
+    </div>
+  );
+}
+
 export default function ScrollTriggerShowcase({
-  bgColor = "#000111",
-  heroImage = "https://moussamamadou.github.io/scroll-trigger-gsap-section/images/pexels-cottonbro-8718352-1_11zon_11zon_11zon.jpg",
-  heroTitleTop = "Just",
-  heroTitleBottom = "scroll",
-  heroTitleSuffix = "it.",
-  footerImage = "https://moussamamadou.github.io/scroll-trigger-gsap-section/images/pexels-cottonbro-8718345_11zon_11zon_11zon.jpg",
-  footerTitleTop = "YOU",
-  footerTitleBottom = "scrollED",
-  footerTitleSuffix = "it.",
-  accentColor = "#cde5df",
   items = DEFAULT_ITEMS,
+  heroImage = unsplashStill("1765871319901-0aaafe3f1a2a"),
+  heroTitleTop = "Three",
+  heroTitleBottom = "terrains",
+  heroTitleSuffix = "",
+  footerImage = pexelsStill(
+    "8774553/beach-canary-islands-desert-drone-8774553.jpeg",
+  ),
+  footerTitleTop = "Scroll",
+  footerTitleBottom = "back",
+  footerTitleSuffix = "up.",
+  backgroundColor = "bg-black",
+  textColor = "text-white",
+  accentColor = "text-white/50",
+  displayFontFamily = "Space Grotesk",
+  displayFontUrl = "https://cdn.jsdelivr.net/fontsource/fonts/space-grotesk@latest/latin-500-normal.woff2",
+  bodyFontFamily = "Sora",
+  bodyFontUrl = "https://cdn.jsdelivr.net/fontsource/fonts/sora@latest/latin-400-normal.woff2",
   revealDuration = 1.25,
   slideDistance = "100vw",
   imageScaleStart = 1.4,
   imageScaleEnd = 1.2,
 }) {
-  const containerRef = useRef(null);
-  const uid = useId().replace(/:/g, "");
+  const rootRef = useRef(null);
 
   useEffect(() => {
-    const root = containerRef.current;
-    if (!root) return;
-
+    let cancelled = false;
     let ctx;
-    const ghostEls = [];
 
-    const loadScript = (src) =>
-      new Promise((resolve, reject) => {
-        if (document.querySelector(`script[data-id="${src}"]`)) {
-          resolve();
-          return;
-        }
-        const el = document.createElement("script");
-        el.src = src;
-        el.setAttribute("data-id", src);
-        el.onload = resolve;
-        el.onerror = () => reject(new Error(`Failed: ${src}`));
-        document.head.appendChild(el);
-      });
+    const run = async () => {
+      await loadScript(GSAP_BASE + "gsap.min.js");
+      await loadScript(GSAP_BASE + "ScrollTrigger.min.js");
+      if (cancelled) return;
 
-    Promise.all([
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
-      ),
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js",
-      ),
-    ])
-      .then(() => {
-        const { gsap } = window;
-        if (!gsap || !root) return;
+      const { gsap, ScrollTrigger } = window;
+      const root = rootRef.current;
+      if (!gsap || !ScrollTrigger || !root) return;
+      gsap.registerPlugin(ScrollTrigger);
 
-        gsap.config({ trialWarn: false });
-        gsap.registerPlugin(window.ScrollTrigger);
-        ctx = gsap.context(() => {
-          const workSection = root.querySelector('[data-work="section"]');
-          const workItems = root.querySelectorAll('[data-work="item"]');
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
-          const ghostContainer = document.createElement("div");
-          ghostContainer.className = "relative";
-          workSection.appendChild(ghostContainer);
+      ctx = gsap.context(() => {
+        const ghosts = gsap.utils.toArray("[data-ghost]");
 
-          workItems.forEach(() => {
-            const ghostItem = document.createElement("div");
-            ghostItem.style.cssText = "width:100%;height:300vh;";
-            ghostContainer.appendChild(ghostItem);
-            ghostEls.push(ghostItem);
-          });
+        gsap.utils.toArray("[data-item]").forEach((item, i) => {
+          const ghost = ghosts[i];
+          const lines = item.querySelectorAll("[data-line]");
+          const image = item.querySelector("[data-image]");
+          const tiles = item.querySelectorAll("[data-tile]");
+          const players = item.querySelectorAll("video");
+          const overlay = item.querySelector("[data-overlay]");
 
-          gsap.set(workItems, {
-            position: "fixed",
-            top: "0",
-            clipPath: "inset(100% 0 0% 0)",
-          });
-
-          workItems.forEach((element, index) => {
-            const lines = element.querySelectorAll("[data-line]");
-            const workImage = element.querySelector('[data-work="image"]');
-            const videoContainer = element.querySelectorAll(
-              '[data-work="video"]',
-            );
-            const overlay = element.querySelectorAll(
-              '[data-work="item-overlay"]',
-            );
-
-            gsap.set(workImage, { scale: imageScaleStart, yPercent: 10 });
-
-            const stStarting = {
-              trigger: ghostEls[index],
-              scrub: true,
-              start: "top bottom",
-              end: "+75vh top",
-            };
-
-            gsap.to(element, {
-              clipPath: "inset(0% 0 0 0)",
-              scrollTrigger: stStarting,
+          let playing = false;
+          const setPlaying = (on) => {
+            if (on === playing) return;
+            playing = on;
+            players.forEach((p) => {
+              if (on && !reduceMotion) p.play().catch(() => { });
+              else p.pause();
             });
+          };
 
-            gsap.to(workImage, {
-              yPercent: 10,
-              scale: imageScaleEnd,
-              scrollTrigger: stStarting,
-            });
+          gsap.set(image, { scale: imageScaleStart, yPercent: 10 });
 
-            gsap.from(lines, {
-              yPercent: 125,
-              rotate: 2.5,
-              ease: "power2.inOut",
-              duration: revealDuration,
+          gsap
+            .timeline({
+              defaults: { ease: "none" },
               scrollTrigger: {
-                trigger: ghostEls[index],
-                start: "top 75%",
-                toggleActions: "play reverse restart reverse",
-              },
-            });
-
-            gsap.to(workImage, {
-              filter: "blur(10px)",
-              opacity: 0.3,
-              ease: "power2.inOut",
-              scrollTrigger: {
-                trigger: ghostEls[index],
+                trigger: ghost,
+                start: "top bottom",
+                end: "bottom top",
                 scrub: true,
-                start: "0 top",
-                end: "35% top",
+                onToggle: (self) => {
+                  gsap.set(item, {
+                    visibility: self.isActive ? "visible" : "hidden",
+                  });
+                  if (!self.isActive) setPlaying(false);
+                },
+                onUpdate: (self) =>
+                  setPlaying(self.progress > 0.2 && self.progress < 0.8),
               },
-            });
+            })
+            .to(item, { clipPath: "inset(0% 0 0 0)", duration: 175 }, 0)
+            .to(image, { scale: imageScaleEnd, duration: 175 }, 0)
+            .to(image, { opacity: 0.3, duration: 105 }, 100)
+            .fromTo(
+              tiles,
+              { x: i % 2 === 0 ? slideDistance : `-${slideDistance}` },
+              { x: 0, duration: 195 },
+              100,
+            )
+            .to(overlay, { opacity: 1, duration: 85 }, 315)
+            .to(tiles, { yPercent: 15, duration: 85 }, 315);
 
-            gsap.from(videoContainer, {
-              x: index % 2 === 0 ? slideDistance : `-${slideDistance}`,
-              scrollTrigger: {
-                trigger: ghostEls[index],
-                scrub: true,
-                start: "0 top",
-                end: "65% top",
-                onLeave: () => {
-                  gsap.set(overlay, { display: "flex", opacity: 0 });
+          if (!reduceMotion) {
+            gsap.fromTo(
+              lines,
+              { yPercent: 125, rotate: 2.5 },
+              {
+                yPercent: 0,
+                rotate: 0,
+                ease: "power2.inOut",
+                duration: revealDuration,
+                stagger: 0.06,
+                scrollTrigger: {
+                  trigger: ghost,
+                  start: "top 75%",
+                  toggleActions: "play reverse restart reverse",
                 },
               },
-            });
-
-            const stFinal = {
-              trigger: ghostEls[index],
-              scrub: true,
-              start: "105% bottom",
-              toggleActions: "play reverse play reverse",
-            };
-
-            gsap.fromTo(
-              overlay,
-              { opacity: 0 },
-              { opacity: 1, scrollTrigger: stFinal },
             );
+          }
+        });
+      }, root);
+    };
 
-            gsap.to(videoContainer, { yPercent: 15, scrollTrigger: stFinal });
-            gsap.to(element, { filter: "blur(1px)", scrollTrigger: stFinal });
-          });
-        }, root);
-      })
-      .catch((e) =>
-        console.error("[ScrollRevealGallery] script load failed:", e.message),
-      );
+    run().catch((e) =>
+      console.error("[ScrollTriggerShowcase] Setup failed:", e.message),
+    );
 
     return () => {
+      cancelled = true;
       if (ctx) ctx.revert();
-      ghostEls.forEach((el) => el.remove());
+      if (rootRef.current) {
+        rootRef.current.querySelectorAll("video").forEach((p) => p.pause());
+      }
     };
   }, [revealDuration, slideDistance, imageScaleStart, imageScaleEnd]);
 
+  const fontCss =
+    '@font-face{font-family:"' +
+    displayFontFamily +
+    '";src:url("' +
+    displayFontUrl +
+    '") format("woff2");font-weight:500;font-display:swap;}' +
+    '@font-face{font-family:"' +
+    bodyFontFamily +
+    '";src:url("' +
+    bodyFontUrl +
+    '") format("woff2");font-weight:400;font-display:swap;}';
+
   return (
     <div
-      ref={containerRef}
-      data-uid={uid}
-      className="relative w-full"
-      style={{ backgroundColor: bgColor }}
+      ref={rootRef}
+      className={`relative w-full antialiased ${backgroundColor} ${textColor}`}
     >
+      <style>{fontCss}</style>
+
       <section className="sticky top-0 z-0 h-screen">
         <div className="relative flex h-full items-end justify-between">
-          <div className="absolute inset-0 h-full w-full">
-            <img
-              src={heroImage}
-              loading="lazy"
-              alt="hero"
-              className="h-full w-full object-cover opacity-60"
-            />
-          </div>
-          <div
-            className="relative flex-1 items-center px-[4vw] pb-[4vw] text-[12.5vw] font-medium uppercase leading-[0.9] text-white"
-            style={{ fontFamily: "Spacegrotesk, sans-serif" }}
-          >
-            <div>
-              {heroTitleTop}
-              <br />
-              <span style={{ color: accentColor }}>{heroTitleBottom} </span>
-              {heroTitleSuffix}
-            </div>
-          </div>
+          <img
+            src={heroImage}
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          />
+          <BigTitle
+            top={heroTitleTop}
+            bottom={heroTitleBottom}
+            suffix={heroTitleSuffix}
+            accentClass={accentColor}
+            fontFamily={displayFontFamily}
+          />
         </div>
       </section>
 
-      <section data-work="section" className="relative z-10">
+      <section className="relative z-10">
         {items.map((item, i) => (
           <div
             key={i}
-            data-work="item"
-            className="relative flex h-screen w-full items-stretch overflow-hidden bg-black"
+            data-item
+            className="invisible fixed inset-x-0 top-0 flex h-screen w-full items-stretch overflow-hidden bg-black [clip-path:inset(100%_0_0_0)]"
           >
-            <div className="absolute h-full w-full">
-              <img
-                data-work="image"
-                src={item.image}
-                loading="lazy"
-                alt={`work-${i}`}
-                className="relative h-full w-full object-cover opacity-75"
-              />
-            </div>
+            <img
+              data-image
+              src={item.image}
+              alt=""
+              aria-hidden="true"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover opacity-75 will-change-transform"
+            />
 
             <div className="relative flex w-full flex-col gap-4 px-[4vw] py-[2vw]">
               <div className="relative z-[1] flex flex-1 items-center justify-center gap-[2.5vw]">
                 {item.videos.map((v, vi) => (
                   <div
                     key={vi}
-                    data-work="video"
-                    className="relative aspect-video flex-1 overflow-hidden"
+                    data-tile
+                    className="relative aspect-video flex-1 overflow-hidden bg-neutral-900 will-change-transform"
                   >
                     <video
-                      autoPlay
-                      loop
                       muted
+                      loop
                       playsInline
-                      style={{
-                        backgroundImage: `url("${v.poster}")`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "50% 50%",
-                      }}
-                      className="absolute -inset-full z-[-100] m-auto h-full w-full object-cover"
+                      preload="metadata"
+                      disablePictureInPicture
+                      aria-hidden="true"
+                      className="absolute inset-0 h-full w-full object-cover"
                     >
-                      <source src={v.mp4} />
-                      <source src={v.webm} />
+                      {v.sources.map((src) => (
+                        <source
+                          key={src}
+                          src={src}
+                          type={
+                            src.endsWith(".webm") ? "video/webm" : "video/mp4"
+                          }
+                        />
+                      ))}
                     </video>
                   </div>
                 ))}
@@ -411,22 +337,22 @@ export default function ScrollTriggerShowcase({
               <div className="relative flex w-full items-end justify-between pt-[4vw]">
                 <div
                   className="relative flex flex-col text-[8vw] font-medium uppercase leading-none text-white"
-                  style={{ fontFamily: "Spacegrotesk, sans-serif" }}
+                  style={{ fontFamily: `"${displayFontFamily}", sans-serif` }}
                 >
                   {item.titleLines.map((line, li) => (
                     <div key={li} className="overflow-hidden">
                       <TitleLine
                         line={line}
                         accentWord={item.titleAccentWord}
-                        accentColor={item.titleAccentColor}
+                        accentClass={item.titleAccentClass ?? accentColor}
                       />
                     </div>
                   ))}
                 </div>
 
                 <div
-                  className="flex flex-col gap-[0.5vw] pr-[1vw] pb-[0.5vw] uppercase text-white"
-                  style={{ fontFamily: "Sora, sans-serif" }}
+                  className="flex max-w-[28vw] flex-col gap-[0.5vw] pb-[0.5vw] pr-[1vw] text-[0.8rem] uppercase leading-snug text-white"
+                  style={{ fontFamily: `"${bodyFontFamily}", sans-serif` }}
                 >
                   {item.subtitleLines.map((line, li) => (
                     <div key={li} className="overflow-hidden">
@@ -438,34 +364,37 @@ export default function ScrollTriggerShowcase({
             </div>
 
             <div
-              data-work="item-overlay"
-              className="pointer-events-none absolute inset-0 z-[2] hidden bg-black"
+              data-overlay
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-[2] bg-black opacity-0"
             />
           </div>
         ))}
+
+        <div>
+          {items.map((_, i) => (
+            <div key={i} data-ghost className="h-[300vh] w-full" />
+          ))}
+        </div>
       </section>
 
       <section className="relative z-10 bg-black">
         <div className="relative flex h-screen items-end justify-between">
-          <div className="absolute h-full w-full">
-            <img
-              src={footerImage}
-              loading="lazy"
-              alt="footer"
-              className="h-full w-full object-cover opacity-60"
-            />
-          </div>
-          <div
-            className="relative flex-1 items-center px-[4vw] pb-[4vw] text-[12.5vw] font-medium uppercase leading-[0.9] text-white"
-            style={{ fontFamily: "Spacegrotesk, sans-serif" }}
-          >
-            <div>
-              {footerTitleTop}
-              <br />
-              <span style={{ color: accentColor }}>{footerTitleBottom} </span>
-              {footerTitleSuffix}
-            </div>
-          </div>
+          <img
+            src={footerImage}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          />
+          <BigTitle
+            top={footerTitleTop}
+            bottom={footerTitleBottom}
+            suffix={footerTitleSuffix}
+            accentClass={accentColor}
+            fontFamily={displayFontFamily}
+          />
         </div>
       </section>
     </div>

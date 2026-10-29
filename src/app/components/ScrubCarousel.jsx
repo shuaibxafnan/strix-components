@@ -2,41 +2,6 @@
 
 import { useEffect, useId, useRef } from "react";
 
-// ─── ScrollSyncedCarousel ────────────────────────────────────────────────────
-//
-// Props
-// ──────────────────────────────────────────────────────────────────────────
-// bgColor            string   #0a0a0a        Page/section background
-// textColor          string   #f5f5f5        Heading + body base color
-// mutedColor         string   #6b6b6b        Muted/secondary text (descriptions, index numbers)
-// accentColor        string   #ff2b1f        Stark accent — slide badge, links, active nav button
-// gridColor          string   #2a2a2a        Grid-line / border color used everywhere
-// sections           array    [see below]    Array of carousel section configs (see shape below)
-// slidesPerView      number   2.25           Desktop slides visible at once
-// slidesPerViewMobile number  1.05           Mobile (<mdBreakpoint) slides visible at once
-// gap                string   0rem           Gap between slides (desktop) — 0 by default so grid lines touch
-// gapMobile          string   0rem           Gap between slides (mobile)
-// mdBreakpoint        number   820            Pixel width where mobile layout kicks in
-// maxWrapperWidth     string   90rem          Max width each carousel's track is measured against
-// sidePadding          string  "1rem"          Horizontal padding shared by header row + slide track (keeps them aligned)
-// sidePaddingMd         string  "2rem"          Horizontal padding at md breakpoint+
-// headingFont         string   "Space Grotesk, sans-serif"   Font stack for display headings
-// bodyFont             string  "Inter, sans-serif"           Font stack for paragraph/label text
-// monoFont             string  "JetBrains Mono, monospace"   Font stack for index numbers + metadata
-// ctaLabel             string  "SOURCE"                      Text shown next to each card's link
-//
-// Each entry in `sections` has this shape:
-// {
-//   id: "collapse",
-//   heading: "Fragments of a Digital Collapse.",
-//   scrub: true,                    // true = pinned + scroll-scrubbed, false = free swipe (arrows only, no dots)
-//   scrubDirection: 1,               // 1 = normal, -1 = reversed scrub direction
-//   aspectRatio: "8 / 5",
-//   aspectRatioMobile: "4 / 3",
-//   slides: [{ image, alt, title, description }, ...],
-// }
-// ──────────────────────────────────────────────────────────────────────────
-
 const DEFAULT_SECTIONS = [
   {
     id: "collapse",
@@ -47,48 +12,42 @@ const DEFAULT_SECTIONS = [
     aspectRatioMobile: "4 / 3",
     slides: [
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-01.png",
+        image: "https://images.unsplash.com/photo-1749330513873-09ffa91b0aae?auto=format&fit=crop&w=1600&q=80",
         alt: "Exploding digital billboard structure",
         title: "Billboard Implosion",
         description:
           "A towering billboard disintegrates into sharp shards and tangled frames, caught mid-collapse in a surreal desert landscape.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-02.png",
+        image: "https://images.unsplash.com/photo-1627896157734-4d7d4388f28b?auto=format&fit=crop&w=1600&q=80",
         alt: "Twisted billboard becoming a sculpture",
         title: "Signal Vortex",
         description:
           "A digital storm of wires and signage spirals upward, twisting collapsed signage into a sculpture of chaotic motion.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-03.png",
+        image: "https://images.unsplash.com/photo-1778789172736-e8ba37c71124?auto=format&fit=crop&w=1600&q=80",
         alt: "Giant shark built from mechanical debris",
         title: "Machine Shark",
         description:
           "A monstrous shark forged from steel and circuitry erupts from the ground, jaws wide in mechanical fury.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-04.png",
+        image: "https://images.unsplash.com/photo-1778961938903-96617183f739?auto=format&fit=crop&w=1600&q=80",
         alt: "Decomposed cartoon head in desert",
         title: "Desert Mascot Ruin",
         description:
           "A decaying robotic icon lies half-buried in sand, its twisted mouth agape like a relic from a lost theme park.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-05.png",
+        image: "https://images.unsplash.com/photo-1678112553355-a9dab855ebf3?auto=format&fit=crop&w=1600&q=80",
         alt: "Exploding structure of digital billboards",
         title: "Outburst of Screens",
         description:
           "An eruption of digital panels and wires tears through the desert silence in a spectacular burst of tech debris.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-06.png",
+        image: "https://images.unsplash.com/photo-1743309411498-a0f4f4b96b65?auto=format&fit=crop&w=1600&q=80",
         alt: "Swirling paper chaos in industrial yard",
         title: "Twister of Sheets",
         description:
@@ -103,50 +62,46 @@ const DEFAULT_SECTIONS = [
     scrubDirection: 1,
     aspectRatio: "1 / 1",
     aspectRatioMobile: "1 / 1",
+    slidesPerView: 4,
+    slidesPerViewMobile: 1.6,
     slides: [
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-07.png",
+        image: "https://images.unsplash.com/photo-1490682143684-14369e18dce8?auto=format&fit=crop&w=1600&q=80",
         alt: "Glitched mouse character with distorted facial features",
         title: "Glitch Mascot Face",
         description:
           "An iconic cartoon face fragments into digital decay, smiling eerily through bands of static distortion.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-08.png",
+        image: "https://images.unsplash.com/photo-1634325232058-e7b8f80cc20b?auto=format&fit=crop&w=1600&q=80",
         alt: "Exploding structure of a giant cartoon mouse head",
         title: "Mascot in Ruin",
         description:
           "A once-cheerful icon collapses violently, scattering wooden debris across a barren digital wasteland.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-09.png",
+        image: "https://images.unsplash.com/photo-1759458856846-097935f54111?auto=format&fit=crop&w=1600&q=80",
         alt: "Organic architecture glitching in desert",
         title: "Pixel Spire",
         description:
           "A twisted tower of organic forms disintegrates under digital strain, architecture rewired by corruption.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-10.png",
+        image: "https://images.unsplash.com/photo-1533387520709-752d83de3630?auto=format&fit=crop&w=1600&q=80",
         alt: "Collapsed alien-looking structure with glitch effects",
         title: "Cradle of Collapse",
         description:
           "An alien form splinters apart in the heat, held together by threads of unreality.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-11.png",
+        image: "https://images.unsplash.com/photo-1752150127767-77bccbed07e2?auto=format&fit=crop&w=1600&q=80",
         alt: "Cartoon dog statue overtaken by mechanical wires",
         title: "Playland Remains",
         description:
           "A cartoon dog gives a thumbs up from a mound of wreckage, half-cheerful, half-abandoned by time.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-12.png",
+        image: "https://images.unsplash.com/photo-1781935307999-e8bb5e62ebb1?auto=format&fit=crop&w=1600&q=80",
         alt: "Distorted mickey-shaped head floating above desert",
         title: "Echo in the Dust",
         description:
@@ -161,66 +116,60 @@ const DEFAULT_SECTIONS = [
     scrubDirection: -1,
     aspectRatio: "3 / 3.25",
     aspectRatioMobile: "4 / 3",
+    slidesPerView: 4.5,
+    slidesPerViewMobile: 1.8,
     slides: [
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-13.png",
+        image: "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=720&q=80",
         alt: "Pagoda-like structure breaking apart with glitch fragments",
         title: "Fractured Pagoda",
         description:
           "A spiraling structure collapses into shards under digital wind, disassembled by glitching vectors.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-14.png",
+        image: "https://images.unsplash.com/photo-1781798715946-2e198afc29a7?auto=format&fit=crop&w=720&q=80",
         alt: "Detached mouse mascot head with cables in post-apocalyptic setting",
         title: "Lost Icon Head",
         description:
           "A familiar character's head lies split on the asphalt, wireframe nerves still twitching at sunset.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-15.png",
+        image: "https://images.unsplash.com/photo-1725161834547-ba8a90bf5a15?auto=format&fit=crop&w=720&q=80",
         alt: "Billboard structure spiraling into a digital tornado",
         title: "Billboard Tornado",
         description:
           "What once was signage twists into a data-storm, pulling itself skyward from the desert floor.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-16.png",
+        image: "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=720&q=80",
         alt: "Glitch-formed ocean wave crashing under a digital sun",
         title: "Wave Error",
         description:
           "A great crest of glitch surges forward like a corrupted tsunami, its foam pixelated into static.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-17.png",
+        image: "https://images.unsplash.com/photo-1779877716206-f441d5d384d4?auto=format&fit=crop&w=720&q=80",
         alt: "Cartoon character face melting through glitch distortions",
         title: "Smile Collapse",
         description:
           "A distorted character smiles through fractured pixels, cheer smeared across broken data streams.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-18.png",
+        image: "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=720&q=80",
         alt: "Constructed mascot face from patched metal with glitching",
         title: "Mascot Redux",
         description:
           "Mechanical ears and a stitched smile define a rebuilt amusement relic, warped by wear.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-19.png",
+        image: "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=720&q=80",
         alt: "Cybernetic shark erupting through ground debris",
         title: "Steel Shark",
         description:
           "A serrated predator bursts through layers of earth and code, jaws open in mechanical frenzy.",
       },
       {
-        image:
-          "https://www.lessrain.com/dev/images-2025/carousel/lr-demo-img-20.png",
+        image: "https://images.unsplash.com/photo-1781513747645-757fb2619e57?auto=format&fit=crop&w=720&q=80",
         alt: "Curved wave of threads and clouds in surreal motion",
         title: "Threaded Tide",
         description:
@@ -237,8 +186,8 @@ export default function ScrubCarousel({
   accentColor = "#ff2b1f",
   gridColor = "#2a2a2a",
   sections = DEFAULT_SECTIONS,
-  slidesPerView = 2.25,
-  slidesPerViewMobile = 1.05,
+  slidesPerView = 3,
+  slidesPerViewMobile = 1.5,
   gap = "0rem",
   gapMobile = "0rem",
   mdBreakpoint = 820,
@@ -321,22 +270,24 @@ export default function ScrubCarousel({
           if (!swiperEl || !wrapperEl) return;
 
           const isScrubActive = section.scrub && !isTouch;
+          const spv = section.slidesPerView ?? slidesPerView;
+          const spvMobile = section.slidesPerViewMobile ?? slidesPerViewMobile;
 
           const swiper = new Swiper(swiperEl, {
-            slidesPerView,
+            slidesPerView: spv,
             spaceBetween: parseFloat(gap) * 16 || 0,
             breakpoints: {
               0: {
-                slidesPerView: slidesPerViewMobile,
+                slidesPerView: spvMobile,
                 spaceBetween: parseFloat(gapMobile) * 16 || 0,
               },
               [mdBreakpoint]: {
-                slidesPerView,
+                slidesPerView: spv,
                 spaceBetween: parseFloat(gap) * 16 || 0,
               },
             },
             centeredSlides: true,
-            speed: 700,
+            speed: isScrubActive ? 0 : 700,
             grabCursor: !isScrubActive,
             watchSlidesProgress: true,
             resistanceRatio: 0.85,
@@ -362,33 +313,38 @@ export default function ScrubCarousel({
 
             const dir = section.scrubDirection === -1 ? -1 : 1;
 
+            const applyProgress = (rawProgress) => {
+              const progress = dir === -1 ? 1 - rawProgress : rawProgress;
+              const min = swiper.minTranslate();
+              const max = swiper.maxTranslate();
+              swiper.setTransition(0);
+              swiper.setTranslate((max - min) * progress + min);
+              swiper.updateActiveIndex();
+              swiper.updateSlidesClasses();
+            };
+
             const st = ScrollTrigger.create({
               id: `carousel-${section.id}-${uid}`,
-              trigger: wrapperEl,
+              trigger: swiperEl,
               pin: swiperEl,
               pinSpacing: true,
+              anticipatePin: 1,
               scrub: true,
               invalidateOnRefresh: true,
-              start: () =>
-                `${wrapperEl.offsetHeight * 0.5}px ${window.innerHeight * 0.5}px`,
+              start: "center center",
               end: () =>
                 `+=${Math.max(
                   swiperEl.offsetWidth,
                   swiper.slides.length * window.innerHeight * 0.5,
                 )}`,
-              onUpdate: (self) => {
-                const progress = dir === -1 ? 1 - self.progress : self.progress;
-                const min = swiper.minTranslate();
-                const max = swiper.maxTranslate();
-                swiper.setTranslate((max - min) * progress + min);
-                swiper.updateActiveIndex();
-                swiper.updateSlidesClasses();
-              },
+              onUpdate: (self) => applyProgress(self.progress),
+              onRefresh: (self) => applyProgress(self.progress),
               onRefreshInit: () => {
                 swiper.updateSize();
                 swiper.updateSlides();
               },
             });
+            applyProgress(st.progress);
             scrollTriggers.current.push(st);
           }
         });
@@ -416,10 +372,6 @@ export default function ScrubCarousel({
     mdBreakpoint,
   ]);
 
-  const trackPaddingStyle = {
-    paddingLeft: sidePadding,
-    paddingRight: sidePadding,
-  };
   const trackPaddingStyleMd = {
     "--pad-mobile": sidePadding,
     "--pad-md": sidePaddingMd,
@@ -500,8 +452,7 @@ export default function ScrubCarousel({
               {section.slides.map((slide, slideIdx) => (
                 <div
                   key={slideIdx}
-                  className="swiper-slide h-auto border-r-2 transition-opacity duration-300"
-                  style={{ borderColor: gridColor }}
+                  className="swiper-slide h-auto transition-opacity duration-300"
                 >
                   <div className="group relative flex h-full flex-col">
                     <div
@@ -529,10 +480,7 @@ export default function ScrubCarousel({
                       </div>
                     </div>
 
-                    <div
-                      className="flex flex-1 flex-col justify-between gap-4 border-t-2 p-4 md:p-5"
-                      style={{ borderColor: gridColor }}
-                    >
+                    <div className="flex flex-1 flex-col justify-between gap-4 p-4 md:p-5">
                       <div>
                         <h3
                           className="text-base font-bold uppercase leading-tight tracking-tight md:text-lg"
@@ -608,24 +556,6 @@ export default function ScrubCarousel({
           </div>
         </section>
       ))}
-
-      <div
-        className="flex items-center justify-between py-10"
-        style={{ paddingLeft: "var(--pad)", paddingRight: "var(--pad)" }}
-      >
-        <span
-          className="text-xs uppercase tracking-widest"
-          style={{ color: mutedColor, fontFamily: monoFont }}
-        >
-          END OF ARCHIVE
-        </span>
-        <span
-          className="text-xs font-bold uppercase tracking-widest"
-          style={{ color: accentColor, fontFamily: monoFont }}
-        >
-          ↑ TOP
-        </span>
-      </div>
     </div>
   );
 }

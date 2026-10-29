@@ -1,855 +1,383 @@
 "use client";
 
-import { useEffect, useRef, useState, useId } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
 
-// ─── MusicPlayer ──────────────────────────────────────────────────────────────
-//
-// A dark-mode music player with full-bleed cover art, frosted-glass controls,
-// a breathing play button, and an animated waveform indicator.
-//
-// Props
-// ─────────────────────────────────────────────────────────────────────────────
-// songs          array    null        Playlist array (see shape below).
-//                                     If omitted, loads the original demo gist.
-// accentColor    string   #c8ff3e     Chartreuse accent — play button glow,
-//                                     active track dot, progress fill.
-// cardBg         string   #0f0f11     Main card background (dark charcoal).
-// playlistBg     string   #141418     Playlist panel background.
-// borderRadius   string   20px        Card + thumbnail corner radius.
-// animDuration   string   0.7s        Expand/collapse + cover slide duration.
-//
-// songs[i] shape:
-//   {
-//     songName: string,
-//     artist:   string,
-//     bg:       string,   // optional — tints the page backdrop when playing
-//     files: {
-//       cover: string,    // image URL
-//       song:  string,    // audio URL
-//     }
-//   }
-//
-// Font note: Inter + Bricolage Grotesque loaded via Google Fonts CDN.
-// icomoon icon font loaded from GitHub CDN — no local install needed.
-// Audio + cover images are blobified on load to avoid CORS issues.
-// ─────────────────────────────────────────────────────────────────────────────
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-display",
+});
 
-// ── icomoon icon font (prev / next / play / pause / playlist) ─────────────────
-const ICOMOON_CSS = `
-@font-face {
-  font-family: "icomoon";
-  src: url("https://raw.githubusercontent.com/abxlfazl/music-player-widget/main/src/assets/icomoon/fonts/icomoon.eot?u8ckod");
-  src: url("https://raw.githubusercontent.com/abxlfazl/music-player-widget/main/src/assets/icomoon/fonts/icomoon.eot?u8ckod#iefix") format("embedded-opentype"),
-       url("https://raw.githubusercontent.com/abxlfazl/music-player-widget/main/src/assets/icomoon/fonts/icomoon.ttf?u8ckod") format("truetype"),
-       url("https://raw.githubusercontent.com/abxlfazl/music-player-widget/main/src/assets/icomoon/fonts/icomoon.woff?u8ckod") format("woff"),
-       url("https://raw.githubusercontent.com/abxlfazl/music-player-widget/main/src/assets/icomoon/fonts/icomoon.svg?u8ckod#icomoon") format("svg");
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-[class^="icon-"], [class*=" icon-"] {
-  font-family: "icomoon" !important;
-  speak: never;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.icon-back:before    { content: "\\e900"; }
-.icon-next:before    { content: "\\e901"; }
-.icon-pause:before   { content: "\\e902"; }
-.icon-play:before    { content: "\\e903"; }
-.icon-playlist:before { content: "\\e904"; }
-`;
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
-// ── Google Fonts: Inter (UI labels/numbers) + Bricolage Grotesque (song names) ─
-const GFONTS_LINK =
-  "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Inter:wght@400;500;600&display=swap";
+const unsplash = (id) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&h=800&q=80`;
 
-// ── Default demo data ─────────────────────────────────────────────────────────
-const DEFAULT_SONGS_URL =
-  "https://gist.githubusercontent.com/abxlfazl/37404417d17230a629683eb3f2f0a88a/raw/366ad64df645e94592847283a306fe2276de458e/music-info.json";
+const DEFAULT_SONGS = [
+  {
+    songName: "Happy Happy HardPopCoreTastic",
+    artist: "Mesostic",
+    cover: unsplash("photo-1749330513873-09ffa91b0aae"),
+    audio:
+      "https://upload.wikimedia.org/wikipedia/commons/6/61/Happy_Happy_HardPopCoreTastic.ogg",
+    duration: "4:33",
+  },
+  {
+    songName: "Friendly Evil Gangsta Synth Hip Hop",
+    artist: "Mesostic",
+    cover: unsplash("photo-1627896157734-4d7d4388f28b"),
+    audio:
+      "https://upload.wikimedia.org/wikipedia/commons/1/10/Friendly_Evil_Gangsta_Synth_Hip_Hop.ogg",
+    duration: "6:15",
+  },
+  {
+    songName: "Laylat al-Uns",
+    artist: "Sanaa of Algiers",
+    cover: unsplash("photo-1778789172736-e8ba37c71124"),
+    audio: "https://upload.wikimedia.org/wikipedia/commons/6/63/Lalat-u-l-uns.ogg",
+    duration: "3:11",
+  },
+];
 
-// ── Waveform bar heights (5 bars, purely decorative) ─────────────────────────
 const WAVE_HEIGHTS = [0.5, 1, 0.7, 0.9, 0.55];
 
+const KEYFRAMES =
+  "@keyframes mp-wave{0%,100%{transform:scaleY(0.3)}50%{transform:scaleY(1)}}";
+
+const formatTime = (secs) => {
+  if (!secs || Number.isNaN(secs)) return "0:00";
+  const minutes = Math.floor(secs / 60);
+  const seconds = String(Math.floor(secs % 60)).padStart(2, "0");
+  return `${minutes}:${seconds}`;
+};
+
+const Icon = ({ children, className = "h-5 w-5" }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    {children}
+  </svg>
+);
+
+const Bars = ({ playing, height }) => (
+  <span className={`flex items-end gap-[2px] ${height}`}>
+    {WAVE_HEIGHTS.map((h, i) => (
+      <span
+        key={i}
+        style={{ "--h": h, "--d": `${0.7 + i * 0.12}s`, "--delay": `${i * 0.08}s` }}
+        className={`block h-full w-[2px] origin-bottom rounded-sm ${playing
+            ? "bg-[var(--accent)] [animation:mp-wave_var(--d)_var(--delay)_ease-in-out_infinite]"
+            : "bg-white/25 [transform:scaleY(var(--h))]"
+          }`}
+      />
+    ))}
+  </span>
+);
+
 export default function MusicPlayer({
-  songs: songsProp = null,
-  accentColor = "#c8ff3e",
-  cardBg = "#0f0f11",
-  playlistBg = "#141418",
+  songs = DEFAULT_SONGS,
+  accentColor = "#ffffff",
+  cardBg = "#0a0a0a",
+  playlistBg = "#141414",
+  backgroundColor = "bg-black",
   borderRadius = "20px",
   animDuration = "0.7s",
+  queueLabel = "Queue",
+  playLabel = "Play",
+  pauseLabel = "Pause",
+  previousLabel = "Previous track",
+  nextLabel = "Next track",
+  showPlaylistLabel = "Show playlist",
+  showNowPlayingLabel = "Show now playing",
+  closePlaylistLabel = "Close playlist",
+  className = "",
 }) {
-  const uid = useId().replace(/:/g, "");
-
-  // ── state ──────────────────────────────────────────────────────────────────
-  const [songs, setSongs] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [loadPct, setLoadPct] = useState(0);
-  const [songIndex, setSongIndex] = useState(0);
-  const [isPlayed, setIsPlayed] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [progressPct, setProgressPct] = useState(0);
+  const audioRef = useRef(null);
+  const progressRef = useRef(null);
+  const scrubbingRef = useRef(false);
+  const wantPlayRef = useRef(false);
+  const [index, setIndex] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState("0:00");
   const [totalTime, setTotalTime] = useState("0:00");
 
-  // ── refs ───────────────────────────────────────────────────────────────────
-  const audioRefs = useRef([]);
-  const progressBarUpdating = useRef(false);
-  const progressElRef = useRef(null);
-
-  // ── helpers ────────────────────────────────────────────────────────────────
-  function fmtTime(secs) {
-    if (!secs || isNaN(secs)) return "0:00";
-    const m = Math.floor(secs / 60);
-    const s = String(Math.floor(secs % 60)).padStart(2, "0");
-    return m + ":" + s;
-  }
-
-  function getAudio(idx) {
-    return audioRefs.current[idx] || null;
-  }
-
-  // ── asset loading (blobify covers + audio to avoid CORS) ──────────────────
-  useEffect(() => {
-    // Inject Google Fonts link
-    if (!document.querySelector("link[data-gf-mp]")) {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = GFONTS_LINK;
-      link.setAttribute("data-gf-mp", "1");
-      document.head.appendChild(link);
-    }
-
-    async function blobify(url) {
-      const res = await fetch(url);
-      const blob = await res.blob();
-      return URL.createObjectURL(blob);
-    }
-
-    async function loadAssets(rawSongs) {
-      let done = 0;
-      const total = rawSongs.length * 2;
-
-      const withCovers = await Promise.all(
-        rawSongs.map(async (s) => {
-          const cover = await blobify(s.files.cover);
-          done++;
-          setLoadPct(Math.round((done / total) * 100));
-          return { ...s, files: { ...s.files, cover } };
-        }),
-      );
-
-      const withSongs = await Promise.all(
-        withCovers.map(async (s) => {
-          const song = await blobify(s.files.song);
-          done++;
-          setLoadPct(Math.round((done / total) * 100));
-          return { ...s, files: { ...s.files, song } };
-        }),
-      );
-
-      return withSongs;
-    }
-
-    async function init() {
-      let rawSongs = songsProp;
-      if (!rawSongs) {
-        const res = await fetch(DEFAULT_SONGS_URL);
-        const data = await res.json();
-        rawSongs = data.songs;
-      }
-      const loaded = await loadAssets(rawSongs);
-      setSongs(loaded);
-      setLoading(false);
-    }
-
-    init().catch(console.error);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const song = songs[index];
 
   useEffect(() => {
-    if (!songs) return;
-    const audio = audioRefs.current[songIndex];
+    const audio = audioRef.current;
     if (!audio) return;
-    function sync() {
-      setTotalTime(fmtTime(audio.duration));
-    }
-    if (audio.duration) {
-      sync();
-    } else {
-      audio.addEventListener("loadedmetadata", sync, { once: true });
-      return () => audio.removeEventListener("loadedmetadata", sync);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [songIndex, songs]);
-
-  // ── playback controls ──────────────────────────────────────────────────────
-  function changeTrack(nextIdx) {
-    if (!songs || nextIdx < 0 || nextIdx >= songs.length) return;
-    if (nextIdx === songIndex) return;
-
-    const prev = getAudio(songIndex);
-    if (prev) {
-      prev.pause();
-      prev.currentTime = 0;
-    }
-
-    setSongIndex(nextIdx);
-    setProgressPct(0);
+    audio.load();
+    setProgress(0);
     setCurrentTime("0:00");
+    setTotalTime("0:00");
+    if (wantPlayRef.current) audio.play().catch(() => setPlaying(false));
+  }, [index]);
 
-    // totalTime is updated by the useEffect that watches songIndex.
-
-    if (isPlayed) setTimeout(() => getAudio(nextIdx)?.play(), 0);
-  }
-
-  function togglePlay() {
-    const audio = getAudio(songIndex);
+  const togglePlay = () => {
+    const audio = audioRef.current;
     if (!audio) return;
-    if (audio.currentTime === audio.duration) {
-      changeTrack(songIndex + 1);
-      return;
-    }
     if (audio.paused) {
-      audio.play();
-      setIsPlayed(true);
+      wantPlayRef.current = true;
+      audio.play().catch(() => setPlaying(false));
     } else {
+      wantPlayRef.current = false;
       audio.pause();
-      setIsPlayed(false);
     }
-  }
+  };
 
-  function handlePlaylistSelect(idx) {
-    if (idx === songIndex) {
+  const changeTrack = (next) => {
+    if (next < 0 || next >= songs.length || next === index) return;
+    setIndex(next);
+  };
+
+  const selectFromPlaylist = (i) => {
+    if (i === index) {
       togglePlay();
       return;
     }
-    changeTrack(idx);
-    setIsPlayed(true);
-    setTimeout(() => getAudio(idx)?.play(), 0);
-  }
+    wantPlayRef.current = true;
+    setIndex(i);
+  };
 
-  // ── progress scrub ─────────────────────────────────────────────────────────
-  function scrubTo(e) {
-    const el = progressElRef.current;
-    if (!el) return;
-    const { left, width } = el.getBoundingClientRect();
+  const handleEnded = () => {
+    if (index < songs.length - 1) setIndex(index + 1);
+    else {
+      wantPlayRef.current = false;
+      setPlaying(false);
+    }
+  };
+
+  const scrubTo = (e) => {
+    const bar = progressRef.current;
+    const audio = audioRef.current;
+    if (!bar || !audio || !audio.duration) return;
+    const { left, width } = bar.getBoundingClientRect();
     const ratio = Math.max(0, Math.min(1, (e.clientX - left) / width));
-    const audio = getAudio(songIndex);
-    if (audio && audio.duration) audio.currentTime = ratio * audio.duration;
-  }
+    audio.currentTime = ratio * audio.duration;
+    setProgress(ratio);
+  };
 
-  // ── timeupdate ─────────────────────────────────────────────────────────────
-  function handleTimeUpdate(idx) {
-    if (idx !== songIndex) return;
-    const audio = getAudio(idx);
-    if (!audio || !audio.duration) return;
-    setProgressPct((audio.currentTime / audio.duration) * 100);
-    setCurrentTime(fmtTime(audio.currentTime));
-    setTotalTime(fmtTime(audio.duration));
-
-    if (audio.currentTime === audio.duration) {
-      if (idx < songs.length - 1) {
-        changeTrack(idx + 1);
-        setIsPlayed(true);
-        setTimeout(() => getAudio(idx + 1)?.play(), 0);
-      } else {
-        setIsPlayed(false);
-      }
-    }
-  }
-
-  const scopedCSS =
-    ICOMOON_CSS +
-    `
-    /* Breathing glow on the play button when playing */
-    @keyframes mp_breathe_${uid} {
-      0%, 100% { box-shadow: 0 0 0 0 ${accentColor}55, 0 0 24px 4px ${accentColor}33; }
-      50%       { box-shadow: 0 0 0 10px ${accentColor}00, 0 0 40px 12px ${accentColor}22; }
-    }
-    /* Waveform bar bounce */
-    @keyframes mp_wave_${uid} {
-      0%, 100% { transform: scaleY(0.3); }
-      50%       { transform: scaleY(1);   }
-    }
-    /* Cover strip transition lock shimmer */
-    @keyframes mp_shimmer_${uid} {
-      0%   { background-position: -200% center; }
-      100% { background-position:  200% center; }
-    }
-    /* Progress bar thumb — shows as a circle on hover */
-    .mp_progress_${uid}:hover .mp_thumb_${uid} { opacity: 1 !important; transform: scale(1) !important; }
-    .mp_progress_${uid}:hover .mp_track_fill_${uid} { height: 4px !important; }
-    /* Playlist row hover */
-    .mp_row_${uid}:hover { background: #ffffff08; }
-    .mp_row_${uid} { transition: background 0.15s; border-radius: 12px; }
-    /* Scrollbar hide */
-    .mp_scroll_${uid}::-webkit-scrollbar { display: none; }
-    .mp_scroll_${uid} { scrollbar-width: none; }
-  `;
-
-  const currentSong = songs?.[songIndex];
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // Render
-  // ─────────────────────────────────────────────────────────────────────────
-  return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: scopedCSS }} />
-
-      {/* Hidden audio elements — one per song */}
-      {songs &&
-        songs.map((s, i) => (
-          <audio
-            key={i}
-            ref={(el) => {
-              audioRefs.current[i] = el;
-            }}
-            src={s.files.song}
-            onTimeUpdate={() => handleTimeUpdate(i)}
-            className="hidden"
-          />
-        ))}
-
-      {/* ── Centering wrapper ── */}
-      <div
-        className="min-h-screen w-full flex items-center justify-center p-4"
-        style={{
-          backgroundColor: "#09090b",
-          fontFamily: "'Inter', sans-serif",
-        }}
-      >
-        {/* ── Loading state ── */}
-        {loading && (
-          <div className="flex flex-col items-center gap-4">
-            <div
-              className="w-10 h-10 rounded-full border-2 border-transparent"
-              style={{
-                borderTopColor: accentColor,
-                animation: "spin 0.8s linear infinite",
-              }}
-            />
-            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-            <span className="text-white/40 text-sm tracking-widest uppercase">
-              {loadPct}%
-            </span>
-          </div>
-        )}
-
-        {/* ── Player card ── */}
-        {!loading && songs && (
-          <div
-            className="relative flex flex-col overflow-hidden select-none"
-            style={{
-              width: 340,
-              borderRadius,
-              backgroundColor: cardBg,
-              boxShadow: "0 32px 80px #000000cc, 0 0 0 1px #ffffff0a",
-              WebkitTapHighlightColor: "transparent",
-            }}
-          >
-            {/* ════════════════════════════════════════
-                COVER ART SECTION
-            ════════════════════════════════════════ */}
-            <div className="relative overflow-hidden" style={{ height: 300 }}>
-              {/* Cover image strip */}
-              <div
-                className="absolute inset-0 flex"
-                style={{
-                  transform: "translateX(" + -songIndex * 100 + "%)",
-                  transition:
-                    "transform " +
-                    animDuration +
-                    " cubic-bezier(0.65,0,0.35,1)",
-                  willChange: "transform",
-                }}
-              >
-                {songs.map((s, i) => (
-                  <img
-                    key={i}
-                    src={s.files.cover}
-                    alt={s.songName}
-                    className="w-full h-full flex-shrink-0 object-cover pointer-events-none"
-                    style={{ minWidth: "100%" }}
-                  />
-                ))}
-              </div>
-
-              {/* Gradient vignette — bottom fade into card */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    "linear-gradient(to bottom, " +
-                    "transparent 40%, " +
-                    cardBg +
-                    "cc 80%, " +
-                    cardBg +
-                    " 100%)",
-                }}
-              />
-
-              {/* Top row: track counter left, playlist button right */}
-              <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 pt-4">
-                <span
-                  className="text-xs font-medium tracking-widest uppercase"
-                  style={{
-                    color: "#ffffff55",
-                    fontFamily: "'Inter', sans-serif",
-                  }}
-                >
-                  {songIndex + 1} / {songs.length}
-                </span>
-                <button
-                  className="flex items-center justify-center rounded-full border-0 cursor-pointer"
-                  style={{
-                    width: 32,
-                    height: 32,
-                    backgroundColor: "#ffffff18",
-                    backdropFilter: "blur(8px)",
-                    color: "#ffffffcc",
-                    fontSize: 14,
-                  }}
-                  onClick={() => setIsExpanded((v) => !v)}
-                  aria-label={isExpanded ? "Show now playing" : "Show playlist"}
-                >
-                  <i className="icon-playlist" />
-                </button>
-              </div>
-
-              {/* Song name + artist — pinned to bottom of cover */}
-              <div className="absolute bottom-0 left-0 right-0 px-5 pb-4">
-                <div
-                  className="font-bold leading-tight truncate"
-                  style={{
-                    fontFamily: "'Bricolage Grotesque', sans-serif",
-                    fontSize: 22,
-                    color: "#ffffff",
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  {currentSong?.songName}
-                </div>
-                <div
-                  className="mt-0.5 text-sm font-medium truncate flex items-center gap-2"
-                  style={{ color: "#ffffff88" }}
-                >
-                  {/* Waveform bars — animated when playing, static when paused */}
-                  <span
-                    className="flex items-end gap-[2px]"
-                    style={{ height: 12 }}
-                  >
-                    {WAVE_HEIGHTS.map((h, i) => (
-                      <span
-                        key={i}
-                        style={{
-                          display: "block",
-                          width: 2,
-                          height: 12,
-                          borderRadius: 2,
-                          backgroundColor: isPlayed ? accentColor : "#ffffff44",
-                          transformOrigin: "bottom",
-                          transform: isPlayed ? undefined : "scaleY(" + h + ")",
-                          animation: isPlayed
-                            ? "mp_wave_" +
-                              uid +
-                              " " +
-                              (0.7 + i * 0.12) +
-                              "s " +
-                              i * 0.08 +
-                              "s ease-in-out infinite"
-                            : "none",
-                        }}
-                      />
-                    ))}
-                  </span>
-                  {currentSong?.artist}
-                </div>
-              </div>
-            </div>
-
-            {/* ════════════════════════════════════════
-                CONTROLS SECTION
-            ════════════════════════════════════════ */}
-            <div
-              className="flex flex-col gap-4 px-5 pt-4 pb-5"
-              style={{ backgroundColor: cardBg }}
-            >
-              {/* Progress bar */}
-              <div className="flex flex-col gap-1.5">
-                <div
-                  ref={progressElRef}
-                  className={
-                    "mp_progress_" +
-                    uid +
-                    " relative flex items-center cursor-pointer"
-                  }
-                  style={{ height: 20 }}
-                  onPointerDown={(e) => {
-                    scrubTo(e);
-                    progressBarUpdating.current = true;
-                  }}
-                >
-                  {/* Track background */}
-                  <div
-                    className="w-full rounded-full overflow-hidden"
-                    style={{ height: 3, backgroundColor: "#ffffff14" }}
-                  >
-                    {/* Filled portion */}
-                    <div
-                      className={
-                        "mp_track_fill_" + uid + " h-full rounded-full"
-                      }
-                      style={{
-                        width: progressPct + "%",
-                        backgroundColor: accentColor,
-                        transition: "width 0.1s linear",
-                      }}
-                    />
-                  </div>
-                  {/* Scrub thumb */}
-                  <div
-                    className={
-                      "mp_thumb_" +
-                      uid +
-                      " absolute rounded-full pointer-events-none"
-                    }
-                    style={{
-                      width: 12,
-                      height: 12,
-                      backgroundColor: "#ffffff",
-                      left: "calc(" + progressPct + "% - 6px)",
-                      opacity: 0,
-                      transform: "scale(0.6)",
-                      transition: "opacity 0.15s, transform 0.15s",
-                      boxShadow: "0 0 8px " + accentColor + "88",
-                    }}
-                  />
-                </div>
-
-                {/* Time stamps */}
-                <div className="flex justify-between">
-                  <span
-                    className="text-[11px] font-medium tabular-nums"
-                    style={{ color: "#ffffff44" }}
-                  >
-                    {currentTime}
-                  </span>
-                  <span
-                    className="text-[11px] font-medium tabular-nums"
-                    style={{ color: "#ffffff44" }}
-                  >
-                    {totalTime}
-                  </span>
-                </div>
-              </div>
-
-              {/* Prev · Play · Next */}
-              <div className="flex items-center justify-between px-2">
-                {/* Previous */}
-                <button
-                  className="flex items-center justify-center border-0 bg-transparent cursor-pointer rounded-full"
-                  style={{
-                    width: 40,
-                    height: 40,
-                    color: songIndex === 0 ? "#ffffff22" : "#ffffff66",
-                    fontSize: 22,
-                    transition: "color 0.15s, transform 0.1s",
-                  }}
-                  onClick={() => changeTrack(songIndex - 1)}
-                  aria-label="Previous track"
-                  onMouseDown={(e) => {
-                    e.currentTarget.style.transform = "scale(0.88)";
-                  }}
-                  onMouseUp={(e) => {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }}
-                >
-                  <i className="icon-back" />
-                </button>
-
-                {/* Play / Pause — the signature breathing button */}
-                <button
-                  className="flex items-center justify-center rounded-full border-0 cursor-pointer"
-                  style={{
-                    width: 60,
-                    height: 60,
-                    backgroundColor: accentColor,
-                    color: "#0f0f11",
-                    fontSize: 20,
-                    flexShrink: 0,
-                    animation: isPlayed
-                      ? "mp_breathe_" + uid + " 2.4s ease-in-out infinite"
-                      : "none",
-                    transition: "transform 0.1s, box-shadow 0.3s",
-                    boxShadow: isPlayed
-                      ? "0 0 24px 4px " + accentColor + "44"
-                      : "none",
-                  }}
-                  onClick={togglePlay}
-                  aria-label={isPlayed ? "Pause" : "Play"}
-                  onMouseDown={(e) => {
-                    e.currentTarget.style.transform = "scale(0.92)";
-                  }}
-                  onMouseUp={(e) => {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }}
-                >
-                  <i className={isPlayed ? "icon-pause" : "icon-play"} />
-                </button>
-
-                {/* Next */}
-                <button
-                  className="flex items-center justify-center border-0 bg-transparent cursor-pointer rounded-full"
-                  style={{
-                    width: 40,
-                    height: 40,
-                    color:
-                      songIndex === songs.length - 1
-                        ? "#ffffff22"
-                        : "#ffffff66",
-                    fontSize: 22,
-                    transition: "color 0.15s, transform 0.1s",
-                  }}
-                  onClick={() => changeTrack(songIndex + 1)}
-                  aria-label="Next track"
-                  onMouseDown={(e) => {
-                    e.currentTarget.style.transform = "scale(0.88)";
-                  }}
-                  onMouseUp={(e) => {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }}
-                >
-                  <i className="icon-next" />
-                </button>
-              </div>
-            </div>
-
-            {/* ════════════════════════════════════════
-                PLAYLIST PANEL (slides up over controls)
-            ════════════════════════════════════════ */}
-            <div
-              className={
-                "mp_scroll_" +
-                uid +
-                " absolute inset-0 overflow-y-auto flex flex-col"
-              }
-              style={{
-                backgroundColor: playlistBg,
-                borderRadius,
-                transform: isExpanded ? "translateY(0)" : "translateY(100%)",
-                transition:
-                  "transform " + animDuration + " cubic-bezier(0.65,0,0.35,1)",
-                willChange: "transform",
-              }}
-            >
-              {/* Playlist header */}
-              <div
-                className="flex items-center justify-between px-5 py-4 flex-shrink-0"
-                style={{ borderBottom: "1px solid #ffffff0a" }}
-              >
-                <span
-                  className="font-semibold text-sm tracking-widest uppercase"
-                  style={{ color: "#ffffff55", letterSpacing: "0.12em" }}
-                >
-                  Queue
-                </span>
-                <button
-                  className="flex items-center justify-center rounded-full border-0 cursor-pointer text-xs"
-                  style={{
-                    width: 28,
-                    height: 28,
-                    backgroundColor: "#ffffff12",
-                    color: "#ffffff88",
-                  }}
-                  onClick={() => setIsExpanded(false)}
-                  aria-label="Close playlist"
-                >
-                  ✕
-                </button>
-              </div>
-
-              {/* Song rows */}
-              <ul className="list-none m-0 p-3 flex flex-col gap-1">
-                {songs.map((s, i) => (
-                  <PlaylistRow
-                    key={i}
-                    uid={uid}
-                    song={s}
-                    index={i}
-                    isActive={i === songIndex}
-                    isPlaying={i === songIndex && isPlayed}
-                    accentColor={accentColor}
-                    waveHeights={WAVE_HEIGHTS}
-                    borderRadius={borderRadius}
-                    onSelect={() => handlePlaylistSelect(i)}
-                  />
-                ))}
-              </ul>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Global pointer listeners for progress scrub drag */}
-      {songs && (
-        <ScrubListeners
-          progressBarUpdating={progressBarUpdating}
-          onScrub={scrubTo}
-          getAudio={() => getAudio(songIndex)}
-        />
-      )}
-    </>
-  );
-}
-
-// ─── PlaylistRow ──────────────────────────────────────────────────────────────
-function PlaylistRow({
-  uid,
-  song,
-  index,
-  isActive,
-  isPlaying,
-  accentColor,
-  waveHeights,
-  borderRadius,
-  onSelect,
-}) {
-  const [duration, setDuration] = useState("");
-
-  function handleLoaded(e) {
-    const d = e.target.duration;
-    if (!d) return;
-    const m = Math.floor(d / 60);
-    const s = String(Math.floor(d % 60)).padStart(2, "0");
-    setDuration(m + ":" + s);
-  }
+  const iconButton =
+    "flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-0 bg-transparent transition-[color,transform] duration-150 active:scale-90 disabled:cursor-default text-white/60 hover:text-white disabled:text-white/15 disabled:hover:text-white/15";
 
   return (
-    <li
-      className={
-        "mp_row_" + uid + " cursor-pointer flex items-center gap-3 px-2 py-2"
-      }
-      onClick={onSelect}
+    <div
+      className={`${bricolage.variable} ${inter.variable} flex min-h-screen w-full items-center justify-center p-4 [font-family:var(--font-sans)] ${backgroundColor} ${className}`}
+      style={{
+        "--accent": accentColor,
+        "--card": cardBg,
+        "--playlist": playlistBg,
+        "--radius": borderRadius,
+        "--dur": animDuration,
+        "--i": index,
+      }}
     >
-      {/* Hidden audio just to get duration */}
+      <style>{KEYFRAMES}</style>
+
       <audio
-        src={song.files.song}
-        onLoadedData={handleLoaded}
-        className="hidden"
+        ref={audioRef}
+        src={song.audio}
+        preload="metadata"
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={handleEnded}
+        onLoadedMetadata={(e) => setTotalTime(formatTime(e.currentTarget.duration))}
+        onTimeUpdate={(e) => {
+          const audio = e.currentTarget;
+          if (!audio.duration) return;
+          setProgress(audio.currentTime / audio.duration);
+          setCurrentTime(formatTime(audio.currentTime));
+        }}
       />
 
-      {/* Thumbnail */}
-      <div className="relative flex-shrink-0">
-        <img
-          src={song.files.cover}
-          alt={song.songName}
-          className="block object-cover"
-          style={{ width: 44, height: 44, borderRadius: 10 }}
-        />
-        {/* Active track overlay */}
-        {isActive && (
-          <div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{
-              borderRadius: 10,
-              backgroundColor: "#00000077",
-            }}
-          >
-            {isPlaying ? (
-              /* Waveform bars on active + playing */
-              <span className="flex items-end gap-[2px]" style={{ height: 14 }}>
-                {waveHeights.map((h, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      display: "block",
-                      width: 2,
-                      height: 14,
-                      borderRadius: 2,
-                      backgroundColor: accentColor,
-                      transformOrigin: "bottom",
-                      animation:
-                        "mp_wave_" +
-                        uid +
-                        " " +
-                        (0.7 + i * 0.12) +
-                        "s " +
-                        i * 0.08 +
-                        "s ease-in-out infinite",
-                    }}
-                  />
-                ))}
-              </span>
-            ) : (
-              /* Paused indicator */
-              <span className="text-[10px]" style={{ color: accentColor }}>
-                ▐▐
-              </span>
-            )}
+      <div className="relative flex w-[340px] max-w-full select-none flex-col overflow-hidden rounded-[var(--radius)] bg-[var(--card)] text-white [-webkit-tap-highlight-color:transparent] [box-shadow:0_32px_80px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.04)]">
+        <div className="relative h-[300px] overflow-hidden">
+          <div className="absolute inset-0 flex transition-transform duration-[var(--dur)] [transform:translateX(calc(var(--i)*-100%))] [transition-timing-function:cubic-bezier(0.65,0,0.35,1)]">
+            {songs.map((s, i) => (
+              <img
+                key={i}
+                src={s.cover}
+                alt={s.songName}
+                className="pointer-events-none h-full w-full min-w-full flex-shrink-0 object-cover"
+              />
+            ))}
           </div>
-        )}
-      </div>
 
-      {/* Song info */}
-      <div className="flex flex-col min-w-0 flex-1">
-        <span
-          className="text-sm font-semibold truncate"
-          style={{
-            fontFamily: "'Bricolage Grotesque', sans-serif",
-            color: isActive ? accentColor : "#ffffffdd",
-            letterSpacing: "-0.01em",
-          }}
-        >
-          {song.songName}
-        </span>
-        <span
-          className="text-xs mt-0.5 truncate"
-          style={{ color: "#ffffff44", fontFamily: "'Inter', sans-serif" }}
-        >
-          {song.artist}
-        </span>
-      </div>
+          <div className="pointer-events-none absolute inset-0 [background:linear-gradient(to_bottom,transparent_40%,color-mix(in_srgb,var(--card)_80%,transparent)_80%,var(--card)_100%)]" />
 
-      {/* Duration */}
-      <span
-        className="text-xs flex-shrink-0 tabular-nums"
-        style={{ color: "#ffffff33", fontFamily: "'Inter', sans-serif" }}
-      >
-        {duration}
-      </span>
-    </li>
+          <div className="absolute inset-x-0 top-0 flex items-center justify-between px-4 pt-4">
+            <span className="text-xs font-medium uppercase tracking-widest text-white/35">
+              {index + 1} / {songs.length}
+            </span>
+            <button
+              type="button"
+              onClick={() => setExpanded((open) => !open)}
+              aria-label={expanded ? showNowPlayingLabel : showPlaylistLabel}
+              className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-0 bg-black/40 text-white/80"
+            >
+              <Icon className="h-4 w-4">
+                <path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h12v2H3z" />
+              </Icon>
+            </button>
+          </div>
+
+          <div className="absolute inset-x-0 bottom-0 px-5 pb-4">
+            <div className="truncate text-[22px] font-bold leading-tight tracking-[-0.02em] [font-family:var(--font-display)]">
+              {song.songName}
+            </div>
+            <div className="mt-0.5 flex items-center gap-2 truncate text-sm font-medium text-white/55">
+              <Bars playing={playing} height="h-3" />
+              {song.artist}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 bg-[var(--card)] px-5 pb-5 pt-4">
+          <div className="flex flex-col gap-1.5">
+            <div
+              ref={progressRef}
+              onPointerDown={(e) => {
+                e.currentTarget.setPointerCapture(e.pointerId);
+                scrubbingRef.current = true;
+                scrubTo(e);
+              }}
+              onPointerMove={(e) => scrubbingRef.current && scrubTo(e)}
+              onPointerUp={() => (scrubbingRef.current = false)}
+              onPointerCancel={() => (scrubbingRef.current = false)}
+              className="group relative flex h-5 cursor-pointer touch-none items-center"
+            >
+              <div className="h-[3px] w-full overflow-hidden rounded-full bg-white/10 transition-[height] group-hover:h-1">
+                <div
+                  className="h-full w-full origin-left rounded-full bg-[var(--accent)]"
+                  style={{ transform: `scaleX(${progress})` }}
+                />
+              </div>
+              <div
+                className="pointer-events-none absolute h-3 w-3 scale-[0.6] rounded-full bg-white opacity-0 transition-[opacity,transform] duration-150 group-hover:scale-100 group-hover:opacity-100"
+                style={{ left: `calc(${progress * 100}% - 6px)` }}
+              />
+            </div>
+
+            <div className="flex justify-between text-[11px] font-medium tabular-nums text-white/30">
+              <span>{currentTime}</span>
+              <span>{totalTime}</span>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between px-2">
+            <button
+              type="button"
+              onClick={() => changeTrack(index - 1)}
+              disabled={index === 0}
+              aria-label={previousLabel}
+              className={iconButton}
+            >
+              <Icon className="h-6 w-6">
+                <rect x="4" y="5" width="3" height="14" rx="1" />
+                <path d="M20 5v14L9 12z" />
+              </Icon>
+            </button>
+
+            <button
+              type="button"
+              onClick={togglePlay}
+              aria-label={playing ? pauseLabel : playLabel}
+              className="relative flex h-[60px] w-[60px] flex-shrink-0 cursor-pointer items-center justify-center rounded-full border-0 bg-[var(--accent)] text-[var(--card)] transition-transform duration-100 active:scale-90"
+            >
+              {playing ? (
+                <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[var(--accent)] opacity-30 [animation-duration:2.4s]" />
+              ) : null}
+              {playing ? (
+                <Icon className="h-6 w-6">
+                  <rect x="6" y="5" width="4.5" height="14" rx="1.2" />
+                  <rect x="13.5" y="5" width="4.5" height="14" rx="1.2" />
+                </Icon>
+              ) : (
+                <Icon className="h-6 w-6">
+                  <path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2z" />
+                </Icon>
+              )}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => changeTrack(index + 1)}
+              disabled={index === songs.length - 1}
+              aria-label={nextLabel}
+              className={iconButton}
+            >
+              <Icon className="h-6 w-6">
+                <rect x="17" y="5" width="3" height="14" rx="1" />
+                <path d="M4 5v14l11-7z" />
+              </Icon>
+            </button>
+          </div>
+        </div>
+
+        <div
+          className={`absolute inset-0 flex flex-col overflow-y-auto rounded-[var(--radius)] bg-[var(--playlist)] transition-transform duration-[var(--dur)] [scrollbar-width:none] [transition-timing-function:cubic-bezier(0.65,0,0.35,1)] [&::-webkit-scrollbar]:hidden ${expanded ? "translate-y-0" : "translate-y-full"
+            }`}
+        >
+          <div className="flex flex-shrink-0 items-center justify-between border-b border-white/5 px-5 py-4">
+            <span className="text-sm font-semibold uppercase tracking-[0.12em] text-white/35">
+              {queueLabel}
+            </span>
+            <button
+              type="button"
+              onClick={() => setExpanded(false)}
+              aria-label={closePlaylistLabel}
+              className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border-0 bg-white/10 text-white/60"
+            >
+              <Icon className="h-3.5 w-3.5">
+                <path d="M5.3 4 12 10.7 18.7 4 20 5.3 13.3 12 20 18.7 18.7 20 12 13.3 5.3 20 4 18.7 10.7 12 4 5.3z" />
+              </Icon>
+            </button>
+          </div>
+
+          <ul className="m-0 flex list-none flex-col gap-1 p-3">
+            {songs.map((s, i) => {
+              const active = i === index;
+              return (
+                <li
+                  key={i}
+                  onClick={() => selectFromPlaylist(i)}
+                  className="flex cursor-pointer items-center gap-3 rounded-xl px-2 py-2 transition-colors duration-150 hover:bg-white/[0.04]"
+                >
+                  <div className="relative flex-shrink-0">
+                    <img
+                      src={s.cover}
+                      alt={s.songName}
+                      className="block h-11 w-11 rounded-[10px] object-cover"
+                    />
+                    {active ? (
+                      <div className="absolute inset-0 flex items-center justify-center rounded-[10px] bg-black/50">
+                        <Bars playing={playing} height="h-3.5" />
+                      </div>
+                    ) : null}
+                  </div>
+
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    <span
+                      className={`truncate text-sm font-semibold tracking-[-0.01em] [font-family:var(--font-display)] ${active ? "text-[var(--accent)]" : "text-white/85"
+                        }`}
+                    >
+                      {s.songName}
+                    </span>
+                    <span className="mt-0.5 truncate text-xs text-white/30">
+                      {s.artist}
+                    </span>
+                  </div>
+
+                  <span className="flex-shrink-0 text-xs tabular-nums text-white/25">
+                    {s.duration}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    </div>
   );
-}
-
-function ScrubListeners({ progressBarUpdating, onScrub, getAudio }) {
-  useEffect(() => {
-    function onMove(e) {
-      if (!progressBarUpdating.current) return;
-      onScrub(e);
-      const a = getAudio();
-      if (a) a.muted = true;
-    }
-    function onUp() {
-      if (progressBarUpdating.current) {
-        const a = getAudio();
-        if (a) a.muted = false;
-        progressBarUpdating.current = false;
-      }
-    }
-    window.addEventListener("pointermove", onMove);
-    window.addEventListener("pointerup", onUp);
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerup", onUp);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return null;
 }
