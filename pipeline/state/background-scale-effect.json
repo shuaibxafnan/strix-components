@@ -4,11 +4,12 @@
   "sourceHash": "f3f65e3d36b8eaa57585d8ae038f0384d8102b0d377c77a22352455de14e7f83",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "hover-background-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.398Z"
+  "note": "Renamed from background-scale-effect (vague). CDN gsap -> import('gsap'); tween cleanup on unmount; dropped md:overflow-hidden.",
+  "updatedAt": "2026-10-31T19:56:29.017Z",
+  "gateOutput": "gates passed"
 }
