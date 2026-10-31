@@ -1,0 +1,70 @@
+{
+  "slug": "audio-wave-visualiser",
+  "name": "Audio Wave Visualiser",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen WebGL shader of three flowing neon wave lines that idle calmly and react to music with bass, mid, high and kick-drum ripples once a play button starts the audio.",
+  "contents": [
+    "Full-screen shader canvas with three wave lines, glowing balls and optional film grain",
+    "Centered caption, large quote headline and subtitle",
+    "Play and pause pill button",
+    "Optional custom dot cursor"
+  ],
+  "behavior": [
+    "Idle slow waves ease into audio-reactive motion when playback starts",
+    "Web Audio analyser splits the spectrum into bass, mid and high bands and detects kick beats",
+    "Kicks trigger ripples, bounce and color flashes",
+    "Audio loops and stops on unmount",
+    "Canvas resizes with its container"
+  ],
+  "props": [
+    { "name": "caption", "type": "string", "default": "Find beauty in the space between sound" },
+    { "name": "quote", "type": "string", "default": "The art of listening" },
+    { "name": "subtitle", "type": "string", "default": "When you learn to see the invisible, you create the impossible" },
+    { "name": "audioSrc", "type": "string", "default": "https://upload.wikimedia.org/wikipedia/commons/6/61/Happy_Happy_HardPopCoreTastic.ogg" },
+    { "name": "playLabel", "type": "string", "default": "Play" },
+    { "name": "pauseLabel", "type": "string", "default": "Pause" },
+    { "name": "colorPreset", "type": "\"Default\" | \"Neon\" | \"Warm\" | \"Cool\" | \"Monochrome\" | \"Cyberpunk\"", "default": "Warm" },
+    { "name": "showCursor", "type": "boolean", "default": true },
+    { "name": "baseSpeed", "type": "number", "default": 1.0 },
+    { "name": "idleSpeed", "type": "number", "default": 0.1 },
+    { "name": "bassReactivity", "type": "number", "default": 0.4 },
+    { "name": "midReactivity", "type": "number", "default": 0.5 },
+    { "name": "highReactivity", "type": "number", "default": 0.4 },
+    { "name": "kickReactivity", "type": "number", "default": 0.6 },
+    { "name": "bounceIntensity", "type": "number", "default": 0.15 },
+    { "name": "waveIntensity", "type": "number", "default": 0.08 },
+    { "name": "waveComplexity", "type": "number", "default": 2.2 },
+    { "name": "rippleIntensity", "type": "number", "default": 0.25 },
+    { "name": "lineThickness", "type": "number", "default": 1.8 },
+    { "name": "lineStraightness", "type": "number", "default": 2.53 },
+    { "name": "idleWaveHeight", "type": "number", "default": 0.01 },
+    { "name": "enableGrain", "type": "boolean", "default": true },
+    { "name": "grainIntensity", "type": "number", "default": 0.075 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Caption, headline, subtitle and button labels",
+    "Audio file URL",
+    "Color preset",
+    "Reactivity, speed, wave shape, line thickness and grain amounts",
+    "Custom cursor on or off"
+  ],
+  "needsCodeEdit": [
+    { "change": "Add or edit color presets", "where": "COLOR_PRESETS" },
+    { "change": "Change frequency bands used for analysis", "where": "BANDS" },
+    { "change": "Change wave shapes and glow look", "where": "FRAGMENT_SHADER" },
+    { "change": "Change headline and caption fonts", "where": "primary" }
+  ],
+  "fixed": [
+    "Root is full-bleed and h-screen with a black background",
+    "Requires user click to start audio because of browser autoplay rules",
+    "Audio source must allow cross-origin access (CORS) for analysis",
+    "Window pointermove listener for the custom cursor is removed on unmount",
+    "Uses next/font/google for the headline and caption fonts"
+  ],
+  "mood": ["energetic", "immersive", "musical", "neon", "dramatic"],
+  "industries": ["music", "entertainment", "events", "creative agency", "nightlife", "podcasts"],
+  "sections": ["hero", "background"],
+  "dependencies": ["three"]
+}

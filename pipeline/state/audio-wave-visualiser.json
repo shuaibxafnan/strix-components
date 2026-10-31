@@ -4,11 +4,12 @@
   "sourceHash": "1c667f7c26d3610898e9b5baf1b6dee1df7d26973fe534bad598f15d4ef6f608",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "audio-wave-visualiser",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.397Z"
+  "note": "Export renamed AudioWaveVisualizer -> AudioWaveVisualiser. next/font/google imports (Boldonse, Bodoni_Moda) kept; conflicts with no-font-imports rule, reviewer to decide. Gates passed.",
+  "updatedAt": "2026-10-31T19:55:52.560Z",
+  "gateOutput": "gates passed"
 }
