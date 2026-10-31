@@ -1,0 +1,61 @@
+{
+  "slug": "bento-unfold-grid",
+  "name": "Bento Unfold Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Dark bento grid of icon cards on a dotted glow background. Clicking a card unfolds it into a full-width featured panel with a view transition, and clicking again or the close button restores it.",
+  "contents": [
+    "Optional header with tag pill, title and subtitle",
+    "Grid of cards, each with SVG icon, title, description and index number",
+    "Featured state with Active badge, Explore button and close button"
+  ],
+  "behavior": [
+    "Card click expands it to a full-width first row using the View Transitions API when available",
+    "Cards lift and glow on hover",
+    "Grid is 1, 2 or 3 columns by screen width"
+  ],
+  "props": [
+    {"name": "cards", "type": "{id,title,description,svgViewBox,svgPath}[]", "default": "6 sample cards"},
+    {"name": "bgColor", "type": "string", "default": "#0a0a0c"},
+    {"name": "accentColor", "type": "string", "default": "#a78bfa"},
+    {"name": "accentColorRgb", "type": "string", "default": "167,139,250"},
+    {"name": "gridGap", "type": "string", "default": "1.25rem"},
+    {"name": "cardBg", "type": "string", "default": "rgba(24,24,27,0.6)"},
+    {"name": "cardBorder", "type": "string", "default": "rgba(63,63,70,0.7)"},
+    {"name": "featuredBg", "type": "string", "default": "#0f0c1e"},
+    {"name": "iconColor", "type": "string", "default": "#52525b"},
+    {"name": "iconColorHover", "type": "string", "default": "#a1a1aa"},
+    {"name": "iconFeaturedColor", "type": "string", "default": "#a78bfa"},
+    {"name": "titleColor", "type": "string", "default": "#f4f4f5"},
+    {"name": "textColor", "type": "string", "default": "#71717a"},
+    {"name": "hoverTranslateY", "type": "string", "default": "-4px"},
+    {"name": "transitionDuration", "type": "string", "default": "240ms"},
+    {"name": "showHeader", "type": "boolean", "default": true},
+    {"name": "headerTagText", "type": "string", "default": "System Architecture"},
+    {"name": "headerTitle", "type": "string", "default": "Engineered Core Modality"},
+    {"name": "headerSubtitle", "type": "string", "default": "Select a processing partition to scale its operational pipeline, monitor performance threads, and review integration docs."},
+    {"name": "activeLabel", "type": "string", "default": "Active"},
+    {"name": "exploreLabel", "type": "string", "default": "Explore →"},
+    {"name": "closeLabel", "type": "string", "default": "Close featured card"},
+    {"name": "detailsLabel", "type": "string", "default": "View details →"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Cards, icons, all text and labels, header visibility",
+    "Background, accent, card, icon and text colors, grid gap, hover lift and transition speed"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change grid column counts", "where": "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 classes on the grid div"},
+    {"change": "Remove the dotted pattern or top glow", "where": "The two absolute pointer-events-none divs at the top of the root"},
+    {"change": "Make Explore button do something", "where": "button with onMouseEnter in the isFeatured branch of Card"}
+  ],
+  "fixed": [
+    "Root is at least the viewport height with its own dark background and overflow hidden",
+    "Status dot in the header tag is a fixed green",
+    "Featured card uses document.startViewTransition when the browser supports it"
+  ],
+  "mood": ["dark", "techy", "modern", "sleek"],
+  "industries": ["saas", "developer tools", "ai", "fintech"],
+  "sections": ["features", "services"],
+  "dependencies": []
+}
