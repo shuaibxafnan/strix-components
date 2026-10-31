@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "acid-squares",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.593Z"
+  "note": "Bits describe-only. Category backgrounds-3d. Needs WebGL2; fills parent. className/rest not listed as props. Gates passed.",
+  "updatedAt": "2026-10-31T19:44:31.228Z",
+  "gateOutput": "gates passed"
 }

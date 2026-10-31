@@ -1,0 +1,103 @@
+{
+    "slug": "acid-squares",
+    "name": "Acid Squares",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 background of a glossy tiled grid of squares or rounds that ripples with waves, pulses and mouse hover, lit by two colored lights with grain and an optional intro reveal.",
+    "contents": [
+        "Container div with a full-size canvas rendering a displaced, lit tile mesh"
+    ],
+    "behavior": [
+        "Tiles undulate with animated waves and emit expanding pulse rings",
+        "Pointer hover presses or lifts tiles near the cursor; click spawns a ripple",
+        "Intro reveal animates in over about 3 seconds, skipped with reduced motion",
+        "Rendering pauses when offscreen or tab hidden",
+        "Resolution capped at device pixel ratio 2"
+    ],
+    "props": [
+        {"name": "color", "type": "string", "default": "#120f17"},
+        {"name": "accentColor", "type": "string", "default": "#ff4fb8"},
+        {"name": "secondaryColor", "type": "string", "default": "#3b6bff"},
+        {"name": "tileSize", "type": "number", "default": 1},
+        {"name": "gap", "type": "number", "default": 0.12},
+        {"name": "roundness", "type": "number", "default": 0.25},
+        {"name": "softness", "type": "number", "default": 0.5},
+        {"name": "bulge", "type": "number", "default": 0.3},
+        {"name": "rotation", "type": "number", "default": 35},
+        {"name": "gloss", "type": "number", "default": 0.6},
+        {"name": "waves", "type": "number", "default": 1},
+        {"name": "waveScale", "type": "number", "default": 1},
+        {"name": "speed", "type": "number", "default": 0.6},
+        {"name": "shape", "type": "'square' | 'round'", "default": "square"},
+        {"name": "pulse", "type": "number", "default": 1},
+        {"name": "pulseSpeed", "type": "number", "default": 0.45},
+        {"name": "pulseSpacing", "type": "number", "default": 1},
+        {"name": "pulseWidth", "type": "number", "default": 1},
+        {"name": "pulseOrigin", "type": "'center' | 'random'", "default": "center"},
+        {"name": "brightness", "type": "number", "default": 1},
+        {"name": "lighting", "type": "'split' | 'backlit' | 'overhead'", "default": "split"},
+        {"name": "tilt", "type": "number", "default": 0.7},
+        {"name": "zoom", "type": "number", "default": 1},
+        {"name": "depth", "type": "number", "default": 10},
+        {"name": "grain", "type": "number", "default": 0.12},
+        {"name": "fade", "type": "number", "default": 0},
+        {"name": "opacity", "type": "number", "default": 1},
+        {"name": "intro", "type": "boolean", "default": true},
+        {"name": "mouseInteraction", "type": "boolean", "default": true},
+        {"name": "hoverEffect", "type": "'press' | 'lift' | 'none'", "default": "press"},
+        {"name": "mouseStrength", "type": "number", "default": 1},
+        {"name": "mouseRadius", "type": "number", "default": 0.35},
+        {"name": "pulseOnClick", "type": "boolean", "default": true},
+        {"name": "detail", "type": "'low' | 'medium' | 'high'", "default": "medium"},
+        {"name": "lightMode", "type": "boolean", "default": false},
+        {"name": "paused", "type": "boolean", "default": false},
+        {"name": "dpr", "type": "number", "default": "undefined"}
+    ],
+    "editableByProps": [
+        "Base, accent and secondary colors, brightness, gloss, grain, opacity and light mode",
+        "Tile shape, size, gap, roundness, softness, bulge, rotation, tilt, zoom and depth",
+        "Wave, pulse and speed settings, lighting preset and mesh detail",
+        "Intro, mouse hover effect, strength, radius, click pulse, pause and pixel ratio"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add a new lighting preset",
+            "where": "LIGHTING constant"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change the maximum simultaneous ripples",
+            "where": "MAX_RIPPLES constant"
+        },
+        {
+            "change": "Change the surface look or shading",
+            "where": "FRAGMENT shader string"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable",
+        "Fills its parent (h-full w-full), so the parent needs a size",
+        "Listens to pointer events on window and document for the whole page, even outside the container",
+        "Canvas is aria-hidden and decorative",
+        "Pixel ratio capped at 2 and render size capped at 2400px",
+        "Maximum 8 simultaneous ripples",
+        "Props are clamped to fixed ranges",
+        "Colors are parsed through a 2D canvas, so any CSS color works"
+    ],
+    "mood": ["futuristic", "bold", "playful", "glossy"],
+    "industries": ["tech", "gaming", "music", "creative agency", "fashion"],
+    "sections": ["hero", "background"],
+    "dependencies": [],
+    "variants": {
+        "prop": "lighting",
+        "default": "split",
+        "options": [
+            {"value": "split", "look": "Two side lights from opposite sides, balanced shading", "useWhen": "General purpose default"},
+            {"value": "backlit", "look": "Low lights from behind, glowing rim highlights", "useWhen": "Dramatic dark hero"},
+            {"value": "overhead", "look": "Soft top-down lights, even tile shading", "useWhen": "Calmer, flatter look"}
+        ]
+    }
+}
