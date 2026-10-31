@@ -1,0 +1,43 @@
+{
+ "slug":"thumb-strip-slideshow","name":"Thumb Strip Slideshow","category":"sliders-carousels","isReactBits":false,
+ "description":"Full-screen slideshow with a large active slide, big title, description and buttons, plus a strip of upcoming thumbnails that expand into the hero on each change.",
+ "contents":["Full-screen slides with image, name and description","Row of upcoming slide thumbnails","Two call-to-action buttons","Prev/next arrows with slide counter and top progress bar"],
+ "behavior":["Autoplays to the next slide on a timer with a progress bar","Thumbnail expands to full screen while the old slide slides out","Title, description and buttons blur-fade in staggered","Arrows move forward or back","Compact layout under 1000px and 690px"],
+ "props":[
+  {"name":"slides","type":"{image,name,description}[]","default":"8 sample slides"},
+  {"name":"accentColor","type":"string","default":"#ffffff"},
+  {"name":"onAccentColor","type":"string","default":"#0a0a0a"},
+  {"name":"fontFamily","type":"string","default":"Archivo"},
+  {"name":"grayscale","type":"boolean","default":true},
+  {"name":"contentLeft","type":"string","default":"100px"},
+  {"name":"contentWidth","type":"string","default":"460px"},
+  {"name":"nameFontSize","type":"string","default":"clamp(3.5rem, 10vw, 8.5rem)"},
+  {"name":"desFontSize","type":"string","default":"1.125rem"},
+  {"name":"primaryLabel","type":"string","default":"See more"},
+  {"name":"primaryHref","type":"string","default":"#"},
+  {"name":"secondaryLabel","type":"string","default":"Subscribe"},
+  {"name":"secondaryHref","type":"string","default":"#"},
+  {"name":"counterOf","type":"string","default":"of"},
+  {"name":"prevLabel","type":"string","default":"Previous slide"},
+  {"name":"nextLabel","type":"string","default":"Next slide"},
+  {"name":"thumbWidth","type":"string","default":"180px"},
+  {"name":"thumbHeight","type":"string","default":"250px"},
+  {"name":"thumbTop","type":"string","default":"80%"},
+  {"name":"thumbStartLeft","type":"string","default":"67%"},
+  {"name":"thumbGap","type":"number","default":200},
+  {"name":"timeRunning","type":"number","default":3000},
+  {"name":"timeAutoNext","type":"number","default":7000},
+  {"name":"progressHeight","type":"string","default":"3px"},
+  {"name":"className","type":"string","default":""}
+ ],
+ "editableByProps":["Slides, images, titles, descriptions, button text and links","Accent colors, font, grayscale toggle","Thumbnail size, position, spacing and text sizes","Autoplay and transition timing"],
+ "needsCodeEdit":[
+  {"change":"Change the gradient overlay on slides","where":"The aria-hidden span with bg-[linear-gradient"},
+  {"change":"Change the slide transition style","where":"The slider-item class list on each slide"}
+ ],
+ "fixed":["Loads the Archivo font from Google Fonts","Fills the full viewport height","Thumbnail strip shows up to four upcoming slides, the rest are hidden","Mobile breakpoints at 1000px and 690px override content offset and thumbnail size"],
+ "mood":["cinematic","editorial","bold"],
+ "industries":["photography","travel","film","fashion"],
+ "sections":["hero","gallery"],
+ "dependencies":[]
+}
