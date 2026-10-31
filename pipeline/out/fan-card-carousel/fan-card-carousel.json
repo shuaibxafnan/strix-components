@@ -1,0 +1,54 @@
+{
+    "slug": "fan-card-carousel",
+    "name": "Fan Card Carousel",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Full-screen gradient stage with a deck of image cards fanned along a rotated arc. Scroll, drag, or click to bring a card to the front, with a trailing custom cursor.",
+    "contents": [
+        "Stack of image cards, each with a large index number, title and photo",
+        "Full-screen gradient background",
+        "Two-part custom cursor ring and dot"
+    ],
+    "behavior": [
+        "Mouse wheel and drag or touch swipe move progress through the deck",
+        "Clicking a card jumps it to the front",
+        "Cards translate and rotate along an arc based on distance from the active card, with z-order and opacity fading",
+        "Custom cursor elements follow the pointer with eased lag on fine pointer devices"
+    ],
+    "props": [
+        { "name": "bgGradientStart", "type": "string", "default": "#000000" },
+        { "name": "bgGradientEnd", "type": "string", "default": "#220033" },
+        { "name": "speedWheel", "type": "number", "default": 0.02 },
+        { "name": "speedDrag", "type": "number", "default": -0.1 },
+        { "name": "customItems", "type": "{id,title,src}[]", "default": "10 sample city photos" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Number of cards, their index labels, titles and images",
+        "Background gradient colors",
+        "Wheel and drag sensitivity and direction"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change card size or fan angle and spread",
+            "where": "carousel-item style block with clamp widths and the transform calc"
+        },
+        {
+            "change": "Change cursor look",
+            "where": "cursor-node divs at the end of the component"
+        },
+        {
+            "change": "Change card overlay gradient or text styling",
+            "where": "carousel-box class with before: utilities"
+        }
+    ],
+    "fixed": [
+        "Listens to wheel, mouse and touch events on window and removes them on unmount",
+        "Renders a custom cursor fixed to the viewport on fine pointer devices",
+        "Root fills the full viewport height"
+    ],
+    "mood": ["dramatic", "immersive", "modern", "cinematic"],
+    "industries": ["travel", "photography", "portfolio", "events", "real estate"],
+    "sections": ["gallery", "portfolio", "hero"],
+    "dependencies": []
+}

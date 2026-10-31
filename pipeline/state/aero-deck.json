@@ -4,11 +4,12 @@
   "sourceHash": "c3d4624c0c4206da1726dcf9dcb963b490367506b73626c220f07dab93fd08e1",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "fan-card-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.392Z"
+  "note": "Renamed from aero-deck. Removed isMounted state and hidden placeholder; className prop; empty placeholders removed. Agent could not run gates.",
+  "updatedAt": "2026-10-31T19:47:32.710Z",
+  "gateOutput": "gates passed"
 }
