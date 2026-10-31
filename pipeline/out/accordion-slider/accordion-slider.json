@@ -1,0 +1,37 @@
+{
+ "slug":"accordion-slider","name":"Accordion Slider","category":"sliders-carousels","isReactBits":false,
+ "description":"Full-height horizontal accordion of image panels. The active panel expands in color and shows a glass spec card with details and badges, while the others collapse to grayscale strips with a vertical label.",
+ "contents":["Image panels with number, brand, name, subtitle, spec rows and badges","Status label and slide counter","Previous and next buttons"],
+ "behavior":["Clicking a panel expands it and collapses the others; clicking the active panel collapses all","Flex-based transition with staggered reveal of the card content","Arrow keys move between panels via a window keydown listener","Stacks vertically at 768px and below"],
+ "props":[
+  {"name":"slides","type":"{image,number,brand,name,subtitle,specs:{label,value}[],badges:{label,value}[]}[]","default":"4 sample car slides"},
+  {"name":"initialActive","type":"number","default":0},
+  {"name":"height","type":"string","default":"100vh"},
+  {"name":"collapsedFlex","type":"number","default":1},
+  {"name":"activeFlex","type":"number","default":3.5},
+  {"name":"transitionDuration","type":"string","default":"0.75s"},
+  {"name":"transitionEasing","type":"string","default":"cubic-bezier(0.4, 0, 0.2, 1)"},
+  {"name":"accentColor","type":"string","default":"#c9a96e"},
+  {"name":"badgeBg","type":"string","default":"rgba(255,255,255,0.08)"},
+  {"name":"overlayColor","type":"string","default":"rgba(0,0,0,0.55)"},
+  {"name":"glassBackground","type":"string","default":"rgba(10,10,10,0.55)"},
+  {"name":"glassBorder","type":"string","default":"rgba(255,255,255,0.1)"},
+  {"name":"showroomLabel","type":"string","default":"Now in Showroom"},
+  {"name":"titleFont","type":"string","default":"'Cormorant Garamond', Georgia, serif"},
+  {"name":"bodyFont","type":"string","default":"'DM Sans', system-ui, sans-serif"},
+  {"name":"showNav","type":"boolean","default":true},
+  {"name":"enableKeyboard","type":"boolean","default":true},
+  {"name":"onSlideChange","type":"function","default":null},
+  {"name":"className","type":"string","default":""}
+ ],
+ "editableByProps":["Slides, images, specs and badges","Accent, overlay, glass and badge colors","Height, panel proportions, transition timing and fonts","Nav buttons, keyboard control and label text"],
+ "needsCodeEdit":[
+  {"change":"Change the dark section background","where":"background '#080808' on the root div"},
+  {"change":"Change the mobile breakpoint","where":"@media (max-width: 768px) rule in the style block"}
+ ],
+ "fixed":["Adds a window keydown listener for arrow keys while mounted, removed on unmount","Imports Cormorant Garamond and DM Sans from Google Fonts"],
+ "mood":["luxury","dark","cinematic","elegant"],
+ "industries":["automotive","luxury goods","real estate","travel"],
+ "sections":["hero","gallery","portfolio"],
+ "dependencies":[]
+}
