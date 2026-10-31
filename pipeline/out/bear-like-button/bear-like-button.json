@@ -1,0 +1,41 @@
+{
+  "slug": "bear-like-button",
+  "name": "Bear Like Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Animated like button with a counter. Clicking it makes a bear paw slap the button, which morphs into a heart with confetti-like line bursts and rolls the count up by one.",
+  "contents": [
+    "Button with label, heart and bear paw icon, and a two-digit counter",
+    "Hidden celebration lines, slap ring and burst effects shown on click"
+  ],
+  "behavior": [
+    "Hover slides the paw in and fades the label",
+    "Click triggers a paw slap, ripple, colorful line burst and morph into a pink heart with the count incremented",
+    "Clicking again resets the button to its idle state",
+    "Celebration colors are randomized on each click"
+  ],
+  "props": [
+    { "name": "label", "type": "string", "default": "Like" },
+    { "name": "initialCount", "type": "number", "default": 86 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Button label text",
+    "Starting like count"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change idle and liked colors", "where": "RESIZE_TL and RESET_TL timelines inside the useEffect" },
+    { "change": "Change bear paw colors", "where": "BEAR_ONE_DARK and BEAR_TWO_DARK constants" },
+    { "change": "Change button size or font size", "where": "SEGMENT constant and the transformer button className" },
+    { "change": "Change number of celebration lines", "where": "Array.from calls for Wiggle and Dashed in the render" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Loads the Roboto font through a Google Fonts link element",
+    "Counter supports two digits and shows the initial count plus one when liked"
+  ],
+  "mood": ["playful", "friendly", "cute", "energetic"],
+  "industries": ["social media", "blogging", "e-commerce", "entertainment", "education"],
+  "sections": ["other"],
+  "dependencies": ["gsap"]
+}
