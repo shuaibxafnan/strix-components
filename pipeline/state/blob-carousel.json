@@ -4,11 +4,12 @@
   "sourceHash": "6acfdfbdaf9e7c271a769ae5d42bf195dac43cfe8de11965255f9d365d63359f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "blob-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.401Z"
+  "note": "CDN gsap -> import('gsap'); frame added (was min-h-screen); removed unused prevActive and scaledSize; imageAlt and className props. Gates passed.",
+  "updatedAt": "2026-10-31T20:04:24.426Z",
+  "gateOutput": "gates passed"
 }
