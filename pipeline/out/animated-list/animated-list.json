@@ -1,0 +1,112 @@
+{
+    "slug": "animated-list",
+    "name": "Animated List",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Scrollable selectable list of glassy tiles that spring in and out as they enter the viewport, with a spring-driven selection ring, edge fade masks and keyboard navigation.",
+    "contents": [
+        "Framed scroll viewport with a listbox of item tiles (icon or image, title, description, meta)",
+        "Spring-animated selection ring that follows the selected item",
+        "Top and bottom fade masks and optional custom scrollbar",
+        "15 sample file items with Hugeicons icons"
+    ],
+    "behavior": [
+        "Items animate in and out as they scroll into view, with staggered entrance once the list enters the page",
+        "Selection ring glides between items using a damped spring simulation",
+        "Hover selects items; arrow keys, Home, End, Enter and Space navigate and activate",
+        "Keyboard selection auto-scrolls the selected item into view smoothly",
+        "Fade masks at top and bottom grow with scroll position",
+        "Reduced motion switches the animation to a plain fade and snaps the ring"
+    ],
+    "props": [
+        { "name": "items", "type": "(string | {id,icon,image,title,description,meta})[]", "default": "15 sample file items" },
+        { "name": "onItemSelect", "type": "(item, index) => void", "default": null },
+        { "name": "renderItem", "type": "(item, index, isSelected) => ReactNode", "default": null },
+        { "name": "initialSelectedIndex", "type": "number", "default": -1 },
+        { "name": "selectOnHover", "type": "boolean", "default": true },
+        { "name": "enableArrowNavigation", "type": "boolean", "default": true },
+        { "name": "loop", "type": "boolean", "default": false },
+        { "name": "animation", "type": "'pop' | 'slide' | 'fade' | 'none'", "default": "pop" },
+        { "name": "animateOnce", "type": "boolean", "default": false },
+        { "name": "stagger", "type": "number", "default": 0.05 },
+        { "name": "showGradients", "type": "boolean", "default": true },
+        { "name": "fadeSize", "type": "number", "default": 56 },
+        { "name": "displayScrollbar", "type": "boolean", "default": true },
+        { "name": "frame", "type": "boolean", "default": true },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "accentColor", "type": "string", "default": null },
+        { "name": "radius", "type": "number", "default": 14 },
+        { "name": "gap", "type": "number", "default": 8 },
+        { "name": "width", "type": "number | string", "default": 420 },
+        { "name": "maxHeight", "type": "number | string", "default": 440 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "itemClassName", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Items content (titles, descriptions, meta, icons, images) or fully custom rows via renderItem",
+        "Selection behavior: initial index, hover select, arrow navigation, looping, select callback",
+        "Entrance animation style, stagger, animate-once",
+        "Dark or light theme, accent color, corner radius, gap, width, max height",
+        "Fade masks, fade size, scrollbar visibility, glass frame on or off",
+        "Extra classes and inline style on root and items"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change theme colors or add a new theme",
+            "where": "THEMES constant"
+        },
+        {
+            "change": "Change spring feel of entrance or ring",
+            "where": "SPRING constant and the omega and zeta values in the frame function"
+        },
+        {
+            "change": "Add or tweak entrance poses",
+            "where": "HIDDEN constant"
+        },
+        {
+            "change": "Change default sample items",
+            "where": "DEFAULT_ITEMS constant"
+        }
+    ],
+    "fixed": [
+        "Requires @hugeicons/react and @hugeicons/core-free-icons for the default sample icons",
+        "Listens for keydown on window; arrow keys work when the list is focused or hovered with nothing else focused, and preventDefault stops page scrolling for those keys",
+        "Uses Tailwind utility classes with arbitrary values and CSS variables prefixed --al-",
+        "Uses CSS linear() easing spring with a cubic-bezier fallback",
+        "Entrance triggers only when the list reaches the viewport (IntersectionObserver, 10% bottom margin)",
+        "Text sizes of default item rows are hardcoded",
+        "Unknown theme falls back to dark; unknown animation value is treated as none"
+    ],
+    "mood": [
+        "polished",
+        "modern",
+        "playful",
+        "glassy"
+    ],
+    "industries": [
+        "saas",
+        "productivity",
+        "developer tools",
+        "creative tools"
+    ],
+    "sections": [
+        "features",
+        "other"
+    ],
+    "dependencies": [
+        "react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+    ],
+    "variants": {
+        "prop": "animation",
+        "default": "pop",
+        "options": [
+            { "value": "pop", "look": "Items scale up from 80% while shifting 12px in, with a springy overshoot", "useWhen": "Product UI mockup in a features section where a lively, bouncy list should draw attention" },
+            { "value": "slide", "look": "Items travel 28px vertically with a slight scale, a larger sweeping motion", "useWhen": "Activity feed or changelog list inside a long scrolling page that needs clear directional motion" },
+            { "value": "fade", "look": "Items fade with only a 4px nudge", "useWhen": "Settings or menu panel where motion should stay subtle" },
+            { "value": "none", "look": "Items always visible with no entrance or exit animation", "useWhen": "Dense data or navigation lists where animation would distract" }
+        ]
+    }
+}

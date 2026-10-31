@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "animated-list",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.607Z"
+  "note": "Bits describe-only. Category ui-elements. Variants axis: animation; theme under editableByProps. Window keydown listener with preventDefault. Needs @hugeicons packages. Gates passed.",
+  "updatedAt": "2026-10-31T19:50:02.131Z",
+  "gateOutput": "gates passed"
 }
