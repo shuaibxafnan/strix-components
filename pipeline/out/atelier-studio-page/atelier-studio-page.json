@@ -23,27 +23,412 @@
         "Respects reduced motion by skipping animations and smooth scroll"
     ],
     "props": [
-        {"name": "bgColor", "type": "string", "default": "#ffffff"},
-        {"name": "textColor", "type": "string", "default": "#000000"},
-        {"name": "darkColor", "type": "string", "default": "#000000"},
-        {"name": "accentColor", "type": "string", "default": "#a3a3a3"},
-        {"name": "cardBgColor", "type": "string", "default": "#ffffff"},
-        {"name": "cardTextColor", "type": "string", "default": "#000000"},
-        {"name": "className", "type": "string", "default": ""},
-        {"name": "brandTitleLines", "type": "string[]", "default": ["ATELIER", "NORTH"]},
-        {"name": "visionLabel", "type": "string", "default": "[VISION]"},
-        {"name": "ctaHref", "type": "string", "default": "mailto:info@ateliernorth.com"},
-        {"name": "ctaLabel", "type": "string", "default": "info@ateliernorth.com"},
-        {"name": "indexItems", "type": "{tag,label}[]", "default": "4 sample items"},
-        {"name": "navLinks", "type": "{label,href}[]", "default": "3 sample links"},
-        {"name": "services", "type": "{title,description,items}[]", "default": "3 sample services"},
-        {"name": "projects", "type": "{number,title,location,image}[]", "default": "5 sample projects"},
-        {"name": "members", "type": "{role,name,bio,number}[]", "default": "6 sample members"},
-        {"name": "footerLinks", "type": "{label,href}[]", "default": "2 sample links"},
-        {"name": "copyright", "type": "string", "default": "© 2026 ATELIER NORTH"}
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#ffffff"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "darkColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "accentColor",
+            "type": "string",
+            "default": "#a3a3a3"
+        },
+        {
+            "name": "cardBgColor",
+            "type": "string",
+            "default": "#ffffff"
+        },
+        {
+            "name": "cardTextColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "brandTitleLines",
+            "type": "string[]",
+            "default": [
+                "ATELIER",
+                "NORTH"
+            ]
+        },
+        {
+            "name": "visionLabel",
+            "type": "string",
+            "default": "[VISION]"
+        },
+        {
+            "name": "visionText",
+            "type": "string",
+            "default": "Creating thoughtful architecture and interior spaces for everyday living. We believe beautiful spaces should feel calm, welcoming, and naturally connected to the people who live in them."
+        },
+        {
+            "name": "ctaHref",
+            "type": "string",
+            "default": "mailto:info@ateliernorth.com"
+        },
+        {
+            "name": "ctaLabel",
+            "type": "string",
+            "default": "info@ateliernorth.com"
+        },
+        {
+            "name": "scrollLabels",
+            "type": "string[][]",
+            "default": [
+                [
+                    "SCROLL",
+                    "[↓]"
+                ],
+                [
+                    "INDEX",
+                    "[+]"
+                ],
+                [
+                    "SCROLL",
+                    "[↓]"
+                ]
+            ]
+        },
+        {
+            "name": "indexItems",
+            "type": "{tag,label}[]",
+            "default": [
+                {
+                    "tag": "[ABOUT]",
+                    "label": "WHO WE ARE"
+                },
+                {
+                    "tag": "[PROJECTS]",
+                    "label": "SELECTED WORKS"
+                },
+                {
+                    "tag": "[MEMBERS]",
+                    "label": "OUR TEAM"
+                },
+                {
+                    "tag": "[CONTACT]",
+                    "label": "GET IN TOUCH"
+                }
+            ]
+        },
+        {
+            "name": "navLinks",
+            "type": "{label,href}[]",
+            "default": [
+                {
+                    "label": "ABOUT",
+                    "href": "#about"
+                },
+                {
+                    "label": "PROJECTS",
+                    "href": "#projects"
+                },
+                {
+                    "label": "MEMBERS",
+                    "href": "#members"
+                }
+            ]
+        },
+        {
+            "name": "sectionIds",
+            "type": "{about,projects,members}",
+            "default": {
+                "about": "about",
+                "projects": "projects",
+                "members": "members"
+            }
+        },
+        {
+            "name": "menuOpenLabel",
+            "type": "string",
+            "default": "MENU"
+        },
+        {
+            "name": "menuCloseLabel",
+            "type": "string",
+            "default": "CLOSE"
+        },
+        {
+            "name": "menuTitle",
+            "type": "string",
+            "default": "[MENU]"
+        },
+        {
+            "name": "menuEmailLabel",
+            "type": "string",
+            "default": "[EMAIL]"
+        },
+        {
+            "name": "aboutTag",
+            "type": "string",
+            "default": "[ABOUT]"
+        },
+        {
+            "name": "aboutText",
+            "type": "string",
+            "default": "We are a small architecture studio based in Tokyo. We work across architecture, interiors, and design consulting, creating thoughtful spaces for modern living."
+        },
+        {
+            "name": "aboutTitleWords",
+            "type": "string[]",
+            "default": [
+                "WHO",
+                "WE",
+                "ARE"
+            ]
+        },
+        {
+            "name": "floatingItems",
+            "type": "string[]",
+            "default": [
+                "WHAT WE DO ???",
+                "WHAT WE DO ???",
+                "WHAT WE DO ???"
+            ]
+        },
+        {
+            "name": "infoItems",
+            "type": "{words,value}[]",
+            "default": [
+                {
+                    "words": [
+                        "We're",
+                        "based",
+                        "in"
+                    ],
+                    "value": "JAPAN"
+                },
+                {
+                    "words": [
+                        "We're",
+                        "founded",
+                        "in"
+                    ],
+                    "value": "2026"
+                }
+            ]
+        },
+        {
+            "name": "services",
+            "type": "{title,description,items}[]",
+            "default": [
+                {
+                    "title": "ARCHITECTURE",
+                    "description": "Designing residential and commercial spaces with a timeless, contemporary approach.",
+                    "items": [
+                        "CUSTOM RESIDENTIAL DESIGN",
+                        "SMALL COMMERCIAL BUILDINGS",
+                        "RENOVATIONS & ADAPTIVE REUSE"
+                    ]
+                },
+                {
+                    "title": "INTERIORS",
+                    "description": "Creating warm, functional interiors that enhance everyday living.",
+                    "items": [
+                        "INTERIOR SPACE PLANNING",
+                        "CUSTOM FURNITURE & MATERIAL SELECTION",
+                        "LIGHTING & ATMOSPHERE DESIGN"
+                    ]
+                },
+                {
+                    "title": "CONSULTING",
+                    "description": "Helping clients shape clear ideas through thoughtful design direction.",
+                    "items": [
+                        "DESIGN STRATEGY & CONCEPT DEVELOPMENT",
+                        "SITE & FEASIBILITY STUDIES",
+                        "CLIENT WORKSHOPS"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "projectsTag",
+            "type": "string",
+            "default": "[PROJECTS]"
+        },
+        {
+            "name": "projectsText",
+            "type": "string",
+            "default": "A selection of projects we've had the pleasure of working on. From residential homes to commercial and cultural spaces, each project reflects our commitment to thoughtful design."
+        },
+        {
+            "name": "projectsTitleLines",
+            "type": "string[]",
+            "default": [
+                "SELECTED",
+                "WORKS"
+            ]
+        },
+        {
+            "name": "projects",
+            "type": "{number,title,location,image}[]",
+            "default": [
+                {
+                    "number": "(01)",
+                    "title": "Sora Museum",
+                    "location": "Aoyama, Tokyo",
+                    "image": "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=80"
+                },
+                {
+                    "number": "(02)",
+                    "title": "Forest Residence",
+                    "location": "Okutama, Tokyo",
+                    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+                },
+                {
+                    "number": "(03)",
+                    "title": "Linear House",
+                    "location": "Kiyosumi, Tokyo",
+                    "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+                },
+                {
+                    "number": "(04)",
+                    "title": "Glass Pavilion",
+                    "location": "Daikanyama, Tokyo",
+                    "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
+                },
+                {
+                    "number": "(05)",
+                    "title": "Frame Stadio",
+                    "location": "Minato, Tokyo",
+                    "image": "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1200&q=80"
+                }
+            ]
+        },
+        {
+            "name": "membersTag",
+            "type": "string",
+            "default": "[MEMBERS]"
+        },
+        {
+            "name": "membersText",
+            "type": "string",
+            "default": "Meet the people behind our studio. A small team of architects and designers dedicated to creating thoughtful spaces for everyday living."
+        },
+        {
+            "name": "membersTitle",
+            "type": "string",
+            "default": "OUR TEAM"
+        },
+        {
+            "name": "members",
+            "type": "{role,name,bio,number}[]",
+            "default": [
+                {
+                    "role": "Founder",
+                    "name": "Haruto Sato",
+                    "bio": "Leads the studio with a focus on residential architecture.",
+                    "number": "/001"
+                },
+                {
+                    "role": "Lead Architect",
+                    "name": "Mei Takahashi",
+                    "bio": "Develops concepts and architectural planning.",
+                    "number": "/002"
+                },
+                {
+                    "role": "Interior Designer",
+                    "name": "Yuna Ito",
+                    "bio": "Creates warm and functional interior experiences.",
+                    "number": "/003"
+                },
+                {
+                    "role": "Project Architect",
+                    "name": "Ren Nakamura",
+                    "bio": "Oversees technical design and project coordination.",
+                    "number": "/004"
+                },
+                {
+                    "role": "Visual Designer",
+                    "name": "Aoi Kuroda",
+                    "bio": "Shapes the studio's visual identity and presentations.",
+                    "number": "/005"
+                },
+                {
+                    "role": "New Member",
+                    "name": "Maybe You?",
+                    "bio": "We are always looking for talented individuals to join our team.",
+                    "number": "/006"
+                }
+            ]
+        },
+        {
+            "name": "contactTag",
+            "type": "string",
+            "default": "[CONTACT]"
+        },
+        {
+            "name": "contactText",
+            "type": "string",
+            "default": "Thank you for taking the time to explore our studio. No matter how small your project or inquiry may be, we'd love to hear from you. Let's start with a conversation."
+        },
+        {
+            "name": "officeLabel",
+            "type": "string",
+            "default": "OUR OFFICE"
+        },
+        {
+            "name": "officeAddressLines",
+            "type": "string[]",
+            "default": [
+                "2F, 3-12-8 Aoyama",
+                "Minato-ku, Tokyo 107-0062, Japan"
+            ]
+        },
+        {
+            "name": "footerTitle",
+            "type": "string",
+            "default": "GET IN TOUCH"
+        },
+        {
+            "name": "footerLinks",
+            "type": "{label,href}[]",
+            "default": [
+                {
+                    "label": "TERMS OF USE",
+                    "href": "#"
+                },
+                {
+                    "label": "PRIVACY POLICY",
+                    "href": "#"
+                }
+            ]
+        },
+        {
+            "name": "copyright",
+            "type": "string",
+            "default": "© 2026 ATELIER NORTH"
+        },
+        {
+            "name": "backToTopLabel",
+            "type": "string",
+            "default": "BACK TO TOP"
+        },
+        {
+            "name": "backToTopArrow",
+            "type": "string",
+            "default": "[↑]"
+        }
     ],
     "editableByProps": [
-        "All text, links, images, projects, services and team members",
+        "All text: brand title, vision, section tags and copy, menu labels, scroll labels, floating items, info items, office address, footer title, back to top label",
+        "Links: navigation, CTA, footer links, section ids",
+        "Content lists: index items, services, projects with images, team members",
         "Background, text, dark section, accent and card colors"
     ],
     "needsCodeEdit": [
@@ -71,8 +456,27 @@
         "Includes a 600vh pinned team section to give the pin scroll room",
         "Pixel transition grids at section edges use bgColor and darkColor so those must match the section colors"
     ],
-    "mood": ["editorial", "minimal", "architectural", "bold"],
-    "industries": ["architecture", "interior design", "real estate", "design studio"],
-    "sections": ["hero", "about", "services", "portfolio", "contact"],
-    "dependencies": ["gsap", "lenis"]
+    "mood": [
+        "editorial",
+        "minimal",
+        "architectural",
+        "bold"
+    ],
+    "industries": [
+        "architecture",
+        "interior design",
+        "real estate",
+        "design studio"
+    ],
+    "sections": [
+        "hero",
+        "about",
+        "services",
+        "portfolio",
+        "contact"
+    ],
+    "dependencies": [
+        "gsap",
+        "lenis"
+    ]
 }
