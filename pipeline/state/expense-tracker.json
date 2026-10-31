@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "expense-tracker",
+  "sourcePath": "src/app/components/ExpenseTracker.jsx",
+  "sourceHash": "510dd9e89d2ce4193c8750d0269b8daed41189515fa70d32ce0d4dc70700fd0d",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.435Z"
+}

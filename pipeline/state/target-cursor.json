@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "target-cursor",
+  "sourcePath": "src/app/components/bits/animations/Target_Cursor.jsx",
+  "sourceHash": "62bcf2de06fae2bb2b17ade8198fef7ca920d6fdce37afc13d90ebedd67595f3",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "target-cursor",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.593Z"
+}

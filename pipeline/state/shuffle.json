@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "shuffle",
+  "sourcePath": "src/app/components/bits/text_animations/Shuffle.jsx",
+  "sourceHash": "177acb9264c2cac1787d5810fef0bc506522967865e2690912e8174f2109859a",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "shuffle",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.632Z"
+}

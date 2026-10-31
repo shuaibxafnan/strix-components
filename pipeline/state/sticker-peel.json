@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "sticker-peel",
+  "sourcePath": "src/app/components/bits/animations/Sticker_Peel.jsx",
+  "sourceHash": "5df92f41e2c31e624a0b87065163d45e4a8470b63c85e4a8e952b01d5e39ee21",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "sticker-peel",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.592Z"
+}

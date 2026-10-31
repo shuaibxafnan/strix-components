@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "elastic-morph-button",
+  "sourcePath": "src/app/components/ElasticMorphButton.jsx",
+  "sourceHash": "3b5eefb109f3486970bbe16aeba75470afffbf952c6da23243f24431f8fb03ca",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.431Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "dither-veil",
+  "sourcePath": "src/app/components/bits/animations/Dither_Veil.jsx",
+  "sourceHash": "b20ee3851d46fa3045c79253de8f0e66a97b0f2acc33a1b3247021bfed3e31d4",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "dither-veil",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.584Z"
+}

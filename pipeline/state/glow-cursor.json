@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "glow-cursor",
+  "sourcePath": "src/app/components/bits/animations/Glow_Cursor.jsx",
+  "sourceHash": "ff0f9f43731b66bf6571e20758e8bb799e0ef5a641a4fba0e784ebedab811030",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "glow-cursor",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.587Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "action-bar",
+  "sourcePath": "src/app/components/ActionBar.jsx",
+  "sourceHash": "e7ff4e900370e4c23019c98ab977553e3841e41b406bb02fd7d549bdde2926c5",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.391Z"
+}

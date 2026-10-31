@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "distort-reveal-crt",
+  "sourcePath": "src/app/components/DistortRevealCRT.jsx",
+  "sourceHash": "9ae0c585e7c36606c023e01ad25ad48c73fcf5df09dab509d9f87bd53a13f644",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.421Z"
+}

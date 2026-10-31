@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "nested-faq",
+  "sourcePath": "src/app/components/NestedFaq.jsx",
+  "sourceHash": "05711fcfcc9c6692f2944a9b6cff77dfabdd874530b9f199dba5bbf6d922e837",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.503Z"
+}

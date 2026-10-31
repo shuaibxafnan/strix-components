@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "text-loop",
+  "sourcePath": "src/app/components/bits/text_animations/Text_Loop.jsx",
+  "sourceHash": "11fb03fb900f68099b943dc339fa87c8f368d032caa5baf53bd39d6c9d77a73c",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "text-loop",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.634Z"
+}

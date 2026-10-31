@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "color-bends",
+  "sourcePath": "src/app/components/bits/background/Color_Bends.jsx",
+  "sourceHash": "46239164b4ca43a20dc59b38b2cbf1f274b209685d31fd5a9286d24b234992d3",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "color-bends",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.594Z"
+}

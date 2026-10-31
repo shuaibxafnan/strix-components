@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "folder",
+  "sourcePath": "src/app/components/bits/components/Folder.jsx",
+  "sourceHash": "09f1ca9b8ba9a793a187b548be007b6aedddee823bc0c1bec93384a9753264d7",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "folder",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.613Z"
+}

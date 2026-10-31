@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "tilted-card",
+  "sourcePath": "src/app/components/bits/components/Tilted_Card.jsx",
+  "sourceHash": "902d604ec8dd0ad929ef874394a77e5fb079e543ecf260ad41949cbfdd9ce74a",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "tilted-card",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.618Z"
+}

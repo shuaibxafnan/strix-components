@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "flex-carousel",
+  "sourcePath": "src/app/components/bits/components/Flex_Carousel.jsx",
+  "sourceHash": "ee9902d4c3b19f862825396de116c8edb81c1843902512a0aef79edec8012fa8",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "flex-carousel",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.611Z"
+}

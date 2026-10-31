@@ -71,7 +71,8 @@
         "Needs one background color fewer than the number of sections, extra colors are ignored",
         "Changes the page body background while mounted and resets it on unmount",
         "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
-        "Image column is pinned and stacked in a fixed 400px frame on desktop"
+        "Image column is pinned and stacked in a fixed 400px frame on desktop",
+        "Includes 30vh spacers above and below the showcase to give the pin scroll room"
     ],
     "mood": [
         "editorial",

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "card-nav",
+  "sourcePath": "src/app/components/bits/components/Card_Nav.jsx",
+  "sourceHash": "a8442e19c187e4cb556b882571d6d6ca78de77faf743520ff37162e3c95c6fd6",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "card-nav",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.608Z"
+}

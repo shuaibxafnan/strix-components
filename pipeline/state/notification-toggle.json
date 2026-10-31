@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "notification-toggle",
+  "sourcePath": "src/app/components/NotificationToggle.jsx",
+  "sourceHash": "d912138e27d17e4de91c978ca87a03c9d5b5ed03c947b8b1257a03e373722de1",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.505Z"
+}

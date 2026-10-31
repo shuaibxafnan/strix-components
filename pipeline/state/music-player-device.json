@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "music-player-device",
+  "sourcePath": "src/app/components/MusicPlayerDevice.jsx",
+  "sourceHash": "e13265222aa77250bbd19c6073f925354d2efccb11759207d3c87acf75506946",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.501Z"
+}

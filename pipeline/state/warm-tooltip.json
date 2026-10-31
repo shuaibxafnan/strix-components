@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "warm-tooltip",
+  "sourcePath": "src/app/components/bits/micro/Warm_Tooltip.jsx",
+  "sourceHash": "94c979d15487f429bb17256e3593cb4ac22e4084a472754d495839b0a16fb7a5",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "warm-tooltip",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.627Z"
+}

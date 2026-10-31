@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "electric-logo",
+  "sourcePath": "src/app/components/bits/animations/Electric_Logo.jsx",
+  "sourceHash": "df9c21565e43539235de31a5ebe3821d049627f22dbed00263617baf7ce6b5a8",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "electric-logo",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.585Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "specular-button",
+  "sourcePath": "src/app/components/bits/components/Specular_Button.jsx",
+  "sourceHash": "c0b30ae676cc71ba9689fc59294cf848756646b2404c11c35124b8184badcf72",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "specular-button",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.617Z"
+}

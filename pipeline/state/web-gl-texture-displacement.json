@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "web-gl-texture-displacement",
+  "sourcePath": "src/app/components/WebGLTextureDisplacement.jsx",
+  "sourceHash": "347720c9f664106c4b08f82e95c5bd9d400dab7ef2cb8454be2d9147228a9abc",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.579Z"
+}

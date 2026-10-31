@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "liquid-ether",
+  "sourcePath": "src/app/components/bits/background/Liquid_Ether.jsx",
+  "sourceHash": "748c9c7aec9a2f7c1e21d568fa7023af8df47d08700d9347f56bc29b714dc49b",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "liquid-ether",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.600Z"
+}

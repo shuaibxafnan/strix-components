@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "infinite-spiral",
+  "sourcePath": "src/app/components/bits/components/Infinite_Spiral.jsx",
+  "sourceHash": "0fd18147eb7803d96affcaa573e8462f3c10956695177deae0e4dbf0c76a7666",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "infinite-spiral",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.614Z"
+}

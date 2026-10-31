@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "carousel",
+  "sourcePath": "src/app/components/bits/components/Carousel.jsx",
+  "sourceHash": "eae48276feae0506c8240cb7fb87969fe4337d1eb446ca1afe5f0fdde43da561",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "carousel",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.609Z"
+}

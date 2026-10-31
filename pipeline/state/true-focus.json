@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "true-focus",
+  "sourcePath": "src/app/components/bits/text_animations/True_Focus.jsx",
+  "sourceHash": "8f1da1c6f75d8d68131c160b5ff78a78e7acc32f97c2fbb29c520bdb9b651287",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "true-focus",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.635Z"
+}

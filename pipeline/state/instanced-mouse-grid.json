@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "instanced-mouse-grid",
+  "sourcePath": "src/app/components/InstancedMouseGrid.jsx",
+  "sourceHash": "bfba1e851aed2d34a3a72387c62c2dd5040c42fd0e5171c349bdc8ff915c035f",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.480Z"
+}

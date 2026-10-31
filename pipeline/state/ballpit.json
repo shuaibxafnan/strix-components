@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "ballpit",
+  "sourcePath": "src/app/components/bits/background/Ballpit.jsx",
+  "sourceHash": "020d6960a7e4bc784798db5daec24a0848d534fdaf0f467587d86758fc167c03",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "ballpit",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.593Z"
+}

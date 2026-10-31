@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "magnet",
+  "sourcePath": "src/app/components/bits/animations/Magnet.jsx",
+  "sourceHash": "3cbade03608557e0c564d73ce0b74181ae067b9f341b9207a6908a5e2488813d",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "magnet",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.588Z"
+}

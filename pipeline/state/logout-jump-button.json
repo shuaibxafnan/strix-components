@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "logout-jump-button",
+  "sourcePath": "src/app/components/LogoutJumpButton.jsx",
+  "sourceHash": "fcbd153ec0858da9a2c8abd1506fa28c9d349c6e51da7968abba78e159c9fd76",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.490Z"
+}

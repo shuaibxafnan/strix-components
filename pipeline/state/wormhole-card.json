@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "wormhole-card",
+  "sourcePath": "src/app/components/WormholeCard.jsx",
+  "sourceHash": "cf7c044364c381b44728b8d439b93c78499081535834d1faeb63911e81268053",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.581Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "theme-picker",
+  "sourcePath": "src/app/components/ThemePicker.jsx",
+  "sourceHash": "f0d376e7cb6f4ba160e622f0b35efdc1865a346de88273c2a14cf16ffba0f4f9",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.570Z"
+}

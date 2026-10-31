@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "animated-list",
+  "sourcePath": "src/app/components/bits/components/Animated_List.jsx",
+  "sourceHash": "e1e1ad1b9c84f3f3676b54aae4afeb6b1eafabc547258cc6da7e008832223e3f",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "animated-list",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.607Z"
+}

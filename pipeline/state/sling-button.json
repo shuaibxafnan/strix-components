@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "sling-button",
+  "sourcePath": "src/app/components/bits/micro/Sling_Button.jsx",
+  "sourceHash": "e6e7d6d3c708d8916841b17640ec022f4c91f86c372fb73d0347dbdeee83ed7f",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "sling-button",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.625Z"
+}

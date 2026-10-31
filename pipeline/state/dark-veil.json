@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "dark-veil",
+  "sourcePath": "src/app/components/bits/background/Dark_Veil.jsx",
+  "sourceHash": "449a8ab8410142b24589cd8d627292670160dd645074b8bb9227cbd49a648d8a",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "dark-veil",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.594Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "decay-card",
+  "sourcePath": "src/app/components/bits/components/Decay_Card.jsx",
+  "sourceHash": "9d28cd96eed41fd1cf92522203a2ac3a35fd406931d0cf08270c2ed99e07dd93",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "decay-card",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.610Z"
+}

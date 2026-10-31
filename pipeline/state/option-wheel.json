@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "option-wheel",
+  "sourcePath": "src/app/components/bits/components/Option_Wheel.jsx",
+  "sourceHash": "64179f61b4ae94d2579edcb64bd80400dd2c0218e1c76214a437971a20dd9f10",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "option-wheel",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.616Z"
+}

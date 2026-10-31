@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "micro-stats",
+  "sourcePath": "src/app/components/bits/background/Micro_Stats.jsx",
+  "sourceHash": "c9f917870d762c2c42fe770e2088368627a3b4607c1283a170a06dab885f2369",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "micro-stats",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.600Z"
+}

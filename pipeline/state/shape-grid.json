@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "shape-grid",
+  "sourcePath": "src/app/components/bits/background/Shape_Grid.jsx",
+  "sourceHash": "0034c2adbb2b7a2140569838ce77041e67cf3049cdb25dd0c25d32b1a5f07322",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "shape-grid",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.604Z"
+}

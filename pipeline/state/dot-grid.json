@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "dot-grid",
+  "sourcePath": "src/app/components/bits/background/Dot_Grid.jsx",
+  "sourceHash": "4c183bb1963227e22cdbe516cab07a3dab1ed960a6a2a5722ccd471098c89e54",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "dot-grid",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.595Z"
+}

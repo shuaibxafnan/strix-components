@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "grid-to-full-preview",
+  "sourcePath": "src/app/components/GridToFullPreview.jsx",
+  "sourceHash": "743cac19333a2d9a28c41034823d50097192dcc1b5f50866ce783f4def09a9d1",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.457Z"
+}

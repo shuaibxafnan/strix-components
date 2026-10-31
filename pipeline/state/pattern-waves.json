@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "pattern-waves",
+  "sourcePath": "src/app/components/bits/background/Pattern_Waves.jsx",
+  "sourceHash": "a987eed507e29c4081939246da36bf8d4f510083b346ea316ab81bcefe14ae79",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "pattern-waves",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.601Z"
+}

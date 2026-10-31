@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "waves",
+  "sourcePath": "src/app/components/bits/background/Waves.jsx",
+  "sourceHash": "0a7a37d9eb50ec1b7263b3e48c3f30b61130cb1ceb8f5162b98cb6d9a597a8b0",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "waves",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.606Z"
+}

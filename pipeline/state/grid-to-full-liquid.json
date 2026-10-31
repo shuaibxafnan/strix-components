@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "grid-to-full-liquid",
+  "sourcePath": "src/app/components/GridToFullLiquid.jsx",
+  "sourceHash": "ccb4831cfec61a4b26213499f669c532217e9a228c2983b69af39ba306f18627",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.456Z"
+}

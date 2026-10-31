@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "refine-frame",
+  "sourcePath": "src/app/components/bits/micro/Refine_Frame.jsx",
+  "sourceHash": "33808ccbdaf6f42bc4f6341fabf1e0be802236a4d8263f55c7dd35dd88cab5aa",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "refine-frame",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.623Z"
+}

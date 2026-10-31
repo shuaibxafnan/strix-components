@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "text-type",
+  "sourcePath": "src/app/components/bits/text_animations/Text_Type.jsx",
+  "sourceHash": "a320a94e394b6118783c39b12a3ffb7f564c40dd4a3e8a59b6e610394a3763df",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "text-type",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.635Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "circular-carousel",
+  "sourcePath": "src/app/components/bits/components/Circular_Carousel.jsx",
+  "sourceHash": "0565129ff0be49bd567bcb8b1d84275c6271c13868a36c33770c752ecc3b01e8",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "circular-carousel",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.610Z"
+}

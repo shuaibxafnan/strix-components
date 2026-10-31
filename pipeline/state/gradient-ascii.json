@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "gradient-ascii",
+  "sourcePath": "src/app/components/bits/background/Gradient_ASCII.jsx",
+  "sourceHash": "626594eb4077985d4b42d9a0573ae5b06f4c0d76ac710f78e0a39b83564a83d6",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "gradient-ascii",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.597Z"
+}

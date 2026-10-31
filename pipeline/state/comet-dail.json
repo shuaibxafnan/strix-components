@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "comet-dail",
+  "sourcePath": "src/app/components/bits/micro/Comet_Dail.jsx",
+  "sourceHash": "7fd5318534beb379eb94032b8324cd6ff7136101ad084c221b3417c843b3aa34",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "comet-dail",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.620Z"
+}

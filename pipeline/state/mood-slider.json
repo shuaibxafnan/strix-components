@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "mood-slider",
+  "sourcePath": "src/app/components/MoodSlider.jsx",
+  "sourceHash": "ff177c20e3d02f9e5b48e15fb21348bf55b10c0a421c76d647a94121cb881a2a",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.496Z"
+}

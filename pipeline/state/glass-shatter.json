@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "glass-shatter",
+  "sourcePath": "src/app/components/GlassShatter.jsx",
+  "sourceHash": "dcff14a89521d201b14b4dcfb4ada0f414e7873d300c417765654456b07ac3eb",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.449Z"
+}

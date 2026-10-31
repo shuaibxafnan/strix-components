@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "split-flap-text",
+  "sourcePath": "src/app/components/bits/text_animations/Split_Flap_Text.jsx",
+  "sourceHash": "9d72e228f5742b9b0aed9473adfe46f8dd409473f4869e6063c30ca3ef8a2327",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "split-flap-text",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.632Z"
+}

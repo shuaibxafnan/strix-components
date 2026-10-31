@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "blur-text",
+  "sourcePath": "src/app/components/bits/text_animations/Blur_text.jsx",
+  "sourceHash": "ec3e472d6f9ce6eabec799f81f5f9e6a7bd3465c08653c10ad98aaf1413b9767",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "blur-text",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.628Z"
+}

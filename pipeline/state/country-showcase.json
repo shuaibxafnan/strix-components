@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "country-showcase",
+  "sourcePath": "src/app/components/CountryShowcase.jsx",
+  "sourceHash": "5e21be62b6d14786305139e6da976f3ea00e35ded9583696bfc93af69e91c43f",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.414Z"
+}

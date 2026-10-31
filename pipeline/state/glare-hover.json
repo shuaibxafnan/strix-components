@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "glare-hover",
+  "sourcePath": "src/app/components/bits/animations/Glare_Hover.jsx",
+  "sourceHash": "43af536f57e7b8ddb17eb672a50b2807c7e60e20c9edb96659b1c6eda978d85f",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "glare-hover",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.586Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "scroll-sync-web-gl",
+  "sourcePath": "src/app/components/ScrollSyncWebGL.jsx",
+  "sourceHash": "01018bc12e0ac44721817a176d727cdb92401c7493536659962c24ab151e751e",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.532Z"
+}

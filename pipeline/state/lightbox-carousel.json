@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "lightbox-carousel",
+  "sourcePath": "src/app/components/LightboxCarousel.jsx",
+  "sourceHash": "640acb667284e5b2109d098b83878677a1313dbfb55f336e33ac62a67f6611a7",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.487Z"
+}

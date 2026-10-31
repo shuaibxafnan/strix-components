@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "lattice-loader",
+  "sourcePath": "src/app/components/bits/micro/Lattice_Loader.jsx",
+  "sourceHash": "fa207d07eadfadcc9c0790a2b5b3e51571e98a7e527c6a6be6b98845f9dd2243",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "lattice-loader",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.622Z"
+}

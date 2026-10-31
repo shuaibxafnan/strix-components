@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "bento-gallery",
+  "sourcePath": "src/app/components/BentoGallery.jsx",
+  "sourceHash": "acc6ed755d30ddf4cd96ed8cd8d7d5c7e141d9cd41e3180a6cb62237a94ff14c",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.399Z"
+}

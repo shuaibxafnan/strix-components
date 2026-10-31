@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "plasma-wave",
+  "sourcePath": "src/app/components/bits/background/Plasma_Wave.jsx",
+  "sourceHash": "f3b606dc1efec03ff39814977bb2a82e0068a2b5727d1bbdeaaef77002159a7c",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "plasma-wave",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.602Z"
+}

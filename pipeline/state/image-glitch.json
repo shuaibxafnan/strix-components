@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "image-glitch",
+  "sourcePath": "src/app/components/ImageGlitch.jsx",
+  "sourceHash": "73cd93404700a07aa9d63961af98ec9d2b71bde0c1bac8a760d3423aaa7fc4ca",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.464Z"
+}

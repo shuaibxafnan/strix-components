@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "tear-ticket",
+  "sourcePath": "src/app/components/bits/micro/Tear_Ticket.jsx",
+  "sourceHash": "d344b272ad140c3b30d516d079a885afed8d5df3a6b243e4e9059c99472b4f06",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "tear-ticket",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.626Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "ripple-grid",
+  "sourcePath": "src/app/components/bits/background/Ripple_Grid.jsx",
+  "sourceHash": "e50af2de95efc3b1ea2367dc287ef216c27db04f16dda68471132275321c0a2c",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "ripple-grid",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.603Z"
+}

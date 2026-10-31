@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "magic-rings",
+  "sourcePath": "src/app/components/bits/background/Magic_Rings.jsx",
+  "sourceHash": "fc9217f0e357887a26c56d78320a1abb659afef05dd5397812bb09c36da89c39",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "magic-rings",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.600Z"
+}

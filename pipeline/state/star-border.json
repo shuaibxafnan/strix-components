@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "star-border",
+  "sourcePath": "src/app/components/bits/animations/Star_Border.jsx",
+  "sourceHash": "f62ba3e3699406e4399047042c4a63e30a9c483a94e881f227ae8efef79b6c1d",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "star-border",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.591Z"
+}

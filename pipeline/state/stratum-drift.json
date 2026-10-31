@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "stratum-drift",
+  "sourcePath": "src/app/components/StratumDrift.jsx",
+  "sourceHash": "bdbe5dfd72a4717e78166777544f4573a920028adacfb734fc931c3419bb3416",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.563Z"
+}

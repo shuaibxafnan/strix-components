@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "wake-slider",
+  "sourcePath": "src/app/components/bits/micro/Wake_Slider.jsx",
+  "sourceHash": "92ac9a97b7d1130ca01a43dd9699165431941a8b8ab679eeda54097f9fb7aa3e",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "wake-slider",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.627Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "fluid-glass",
+  "sourcePath": "src/app/components/bits/components/Fluid_Glass.jsx",
+  "sourceHash": "20fdea9e8c9d465466721ed454dee6c1dd7e55a14064ebc621093e3b9dc5fbb6",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "fluid-glass",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.612Z"
+}

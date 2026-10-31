@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "apple-dock-nav",
+  "sourcePath": "src/app/components/AppleDockNav.jsx",
+  "sourceHash": "ba89b12f53da8826aa386263cc92637f9e52622143b0801276d6c323bd52d695",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.395Z"
+}

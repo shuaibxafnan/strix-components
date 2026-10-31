@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "bell-toggle",
+  "sourcePath": "src/app/components/bits/micro/Bell_Toggle.jsx",
+  "sourceHash": "f0090e2e4db62af52754f81856c181afe31db2bf69e2faa694d0c8a882a91194",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "bell-toggle",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.618Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "grid-worm",
+  "sourcePath": "src/app/components/GridWorm.jsx",
+  "sourceHash": "e91836ffd34d63cd6e4cb192c569adf0b0634a9fa655f50fb60c02145eb96c14",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.457Z"
+}

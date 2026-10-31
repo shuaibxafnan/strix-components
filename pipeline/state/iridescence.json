@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "iridescence",
+  "sourcePath": "src/app/components/bits/background/Iridescence.jsx",
+  "sourceHash": "a87914b51596f65493ed3af171a71a625248b1e3c7be4b0bc27de6623ed0e987",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "iridescence",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.598Z"
+}

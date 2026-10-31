@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "pan-gallery",
+  "sourcePath": "src/app/components/PanGallery.jsx",
+  "sourceHash": "70722195a2cff8e2222c2188c5ad07c5b52c8262b74a45225992eb9ce0584fe4",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.507Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "play-pause-button",
+  "sourcePath": "src/app/components/PlayPauseButton.jsx",
+  "sourceHash": "d45d5e969e86a54b68714f9f1add1ff9228914f460eddeef5e79900a581f4d5f",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.513Z"
+}

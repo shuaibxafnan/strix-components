@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "stroke-text",
+  "sourcePath": "src/app/components/bits/text_animations/Stroke_Text.jsx",
+  "sourceHash": "4008e2cf6ca20801f23f336069325f5487c7b1c1850e8526baf6dbbf2f8f001f",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "stroke-text",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.633Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "cursor-grid",
+  "sourcePath": "src/app/components/bits/animations/Cursor_Grid.jsx",
+  "sourceHash": "548601eb4fee15ac4d5fbc45de893f24c402fc08227d1c4c51bb475a51a8b55d",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "cursor-grid",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.584Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "laser-flow",
+  "sourcePath": "src/app/components/bits/animations/Laser_Flow.jsx",
+  "sourceHash": "1c1bc406717ca5ed79052a0e5275e566f1c1a7de4992094a344369d026a08df0",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "laser-flow",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.587Z"
+}

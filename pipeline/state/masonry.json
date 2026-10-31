@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "masonry",
+  "sourcePath": "src/app/components/bits/components/Masonry.jsx",
+  "sourceHash": "07126f8f02207f3ac8a98c2157e262a625420933cb48c267c56943ecda2ed87b",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "masonry",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.615Z"
+}

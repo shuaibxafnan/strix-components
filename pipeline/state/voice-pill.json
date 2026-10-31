@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "voice-pill",
+  "sourcePath": "src/app/components/bits/micro/Voice_Pill.jsx",
+  "sourceHash": "40df43e80674b27b0014157128a148f42279800edc6d77561bc41885de71b298",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "voice-pill",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.627Z"
+}

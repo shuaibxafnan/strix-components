@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "swappable-cards",
+  "sourcePath": "src/app/components/SwappableCards.jsx",
+  "sourceHash": "b40df94d710ce1365b5142d0d6fa25537d966261e2c8bd999b6d6f711b74c02a",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.566Z"
+}

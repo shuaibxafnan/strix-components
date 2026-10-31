@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "halftone-reveal",
+  "sourcePath": "src/app/components/bits/animations/Halftone_Reveal.jsx",
+  "sourceHash": "3904f9eb90067877a50d4f15f3d7d513cefe4f2c25f196bd740cfce25dbda400",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "halftone-reveal",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.587Z"
+}

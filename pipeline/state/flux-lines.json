@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "flux-lines",
+  "sourcePath": "src/app/components/bits/background/Flux_Lines.jsx",
+  "sourceHash": "0df408544e16e4a8440f2f9d122b7cf99c161b795a995ef98fe95b125b3a423e",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "flux-lines",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.596Z"
+}

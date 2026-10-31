@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "components-profile-card",
+  "sourcePath": "src/app/components/bits/components/Profile_Card.jsx",
+  "sourceHash": "4416ce18eb2496701d60d06d9286a4527166fe52ec553372dbd3f619487323f2",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "components-profile-card",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.616Z"
+}

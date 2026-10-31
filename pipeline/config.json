@@ -1,0 +1,39 @@
+{
+    "componentsPath": "src/app/components",
+    "bitsPath": "src/app/components/bits",
+    "retryCap": 3,
+    "batchSize": 15,
+    "maxPerRun": 40,
+    "staleInProgressMinutes": 60,
+    "categories": [
+        "backgrounds-3d",
+        "text-effects",
+        "cursor-effects",
+        "sliders-carousels",
+        "cards-galleries",
+        "navigation-menus",
+        "scroll-section-layouts",
+        "ui-elements"
+    ],
+    "sections": [
+        "hero",
+        "navbar",
+        "footer",
+        "features",
+        "about",
+        "services",
+        "portfolio",
+        "gallery",
+        "testimonials",
+        "pricing",
+        "stats",
+        "faq",
+        "cta",
+        "contact",
+        "logos",
+        "blog",
+        "background",
+        "global",
+        "other"
+    ]
+}

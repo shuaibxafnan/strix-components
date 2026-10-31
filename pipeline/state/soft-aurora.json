@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "soft-aurora",
+  "sourcePath": "src/app/components/bits/background/Soft_Aurora.jsx",
+  "sourceHash": "dd7ca389cb4510129a2f9f3f11cb67ec54f5eff830a623c26f766de99b439d35",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "soft-aurora",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.606Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "bento-flip-gallery",
+  "sourcePath": "src/app/components/BentoFlipGallery.jsx",
+  "sourceHash": "13caf852a2c7727516040b135db770937400f01509b8b8efe9dd6cc85df8c068",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.398Z"
+}

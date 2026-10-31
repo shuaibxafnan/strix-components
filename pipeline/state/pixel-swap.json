@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "pixel-swap",
+  "sourcePath": "src/app/components/bits/animations/Pixel_Swap.jsx",
+  "sourceHash": "aaa83a5e2aef7ad7e38e884a48dfc78bdde682989bbb46a9612dd15bbd324f95",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "pixel-swap",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.589Z"
+}

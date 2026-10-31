@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "peek-rating",
+  "sourcePath": "src/app/components/bits/micro/Peek_Rating.jsx",
+  "sourceHash": "7287d5c19adf419ea8b32f176b4dcdd0633c2ee980407d494cf85675f0a59b30",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "peek-rating",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.623Z"
+}

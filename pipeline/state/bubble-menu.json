@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "bubble-menu",
+  "sourcePath": "src/app/components/bits/components/Bubble_Menu.jsx",
+  "sourceHash": "03dcc24d1bf711f7b7b32e3a556199205d1809b41ef981b945d1f8a74a859526",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "bubble-menu",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.608Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "side-rays",
+  "sourcePath": "src/app/components/bits/background/Side_Rays.jsx",
+  "sourceHash": "9a21e613845c7faca70a3e4b39ba78308bc77670fe71889e1417b7b44e1b2ddd",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "side-rays",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.604Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "click-spark",
+  "sourcePath": "src/app/components/bits/animations/Click_Spark.jsx",
+  "sourceHash": "67068e933e350e11c6acef52d9c0bfc9d43ba9197876be8765bfa3024a74f89f",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "click-spark",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.583Z"
+}

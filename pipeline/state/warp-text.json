@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "warp-text",
+  "sourcePath": "src/app/components/bits/text_animations/Warp_Text.jsx",
+  "sourceHash": "e93f8365b60320867e0096f9131b474dbb013006c1a5bbfe4790feb542e06cf1",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "warp-text",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.635Z"
+}

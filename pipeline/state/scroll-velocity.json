@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "scroll-velocity",
+  "sourcePath": "src/app/components/bits/text_animations/Scroll_Velocity.jsx",
+  "sourceHash": "d3aed4982b8a0055e3d655953ad31356af4ce83c825ec231d73cfbc235aaf697",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "scroll-velocity",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.632Z"
+}

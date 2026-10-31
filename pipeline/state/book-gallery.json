@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "book-gallery",
+  "sourcePath": "src/app/components/BookGallery.jsx",
+  "sourceHash": "2ba8e5a3366f470de5c2df96c91fb035a011b133da4d3a4c4af9ba1420f403bc",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.402Z"
+}

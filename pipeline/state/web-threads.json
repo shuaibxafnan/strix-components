@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "web-threads",
+  "sourcePath": "src/app/components/bits/background/Web_Threads.jsx",
+  "sourceHash": "ca02d82646f9b4cea205f051a593acf2db739e21177d3f40f5905782138a6d04",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "web-threads",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.607Z"
+}

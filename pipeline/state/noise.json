@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "noise",
+  "sourcePath": "src/app/components/bits/animations/Noise.jsx",
+  "sourceHash": "2bf6ad775cb2954f3965d0a0e0bd99f69af4a5fea2b1d6ae4d24dfd630172d3a",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "noise",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.588Z"
+}

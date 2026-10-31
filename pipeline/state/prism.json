@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "prism",
+  "sourcePath": "src/app/components/bits/background/Prism.jsx",
+  "sourceHash": "088b0b9ca5c8edf9b9ca22792e7e9da04b1933639b27657bcae76eaa58992f61",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "prism",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.602Z"
+}

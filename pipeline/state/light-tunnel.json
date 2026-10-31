@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "light-tunnel",
+  "sourcePath": "src/app/components/bits/background/Light_Tunnel.jsx",
+  "sourceHash": "090a466151fccc93d27d8c573901c291b4eaf2894ea0eeac8de91bf098c7ad0f",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "light-tunnel",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.598Z"
+}

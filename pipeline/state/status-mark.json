@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "status-mark",
+  "sourcePath": "src/app/components/bits/micro/Status_Mark.jsx",
+  "sourceHash": "df153657a4c85a57b0464d5e0361c1832d07ce6542e399c7e6ef69a8cad11d40",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "status-mark",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.625Z"
+}

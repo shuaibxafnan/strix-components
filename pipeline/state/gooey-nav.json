@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "gooey-nav",
+  "sourcePath": "src/app/components/bits/components/Gooey_Nav.jsx",
+  "sourceHash": "ab32f6acd903bf6985ba6c2e1af3bf9cffae2f2f3e56779e7436d2ea6c77d35c",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "gooey-nav",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.613Z"
+}

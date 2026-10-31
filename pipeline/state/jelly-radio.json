@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "jelly-radio",
+  "sourcePath": "src/app/components/bits/micro/Jelly_Radio.jsx",
+  "sourceHash": "6281f1f33b344eea540a330ce0e7a884666aa36c3b33e486f654cafecaec4117",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "jelly-radio",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.622Z"
+}

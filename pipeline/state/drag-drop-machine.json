@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "drag-drop-machine",
+  "sourcePath": "src/app/components/DragDropMachine.jsx",
+  "sourceHash": "2552174807b4f585cf682ff632555c1d409ca176fde1505a4ea4a08bf1eb483e",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.423Z"
+}

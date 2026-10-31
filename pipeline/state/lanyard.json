@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "lanyard",
+  "sourcePath": "src/app/components/bits/components/Lanyard.jsx",
+  "sourceHash": "c36ddf44c3804838dfb8049b84facae49bc91634cbb2bd0c9411028269d7f6b3",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "lanyard",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.614Z"
+}

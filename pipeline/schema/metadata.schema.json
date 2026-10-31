@@ -162,6 +162,47 @@
             "items": {
                 "type": "string"
             }
+        },
+        "variants": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "prop",
+                "default",
+                "options"
+            ],
+            "properties": {
+                "prop": {
+                    "type": "string"
+                },
+                "default": {
+                    "type": "string"
+                },
+                "options": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "value",
+                            "look",
+                            "useWhen"
+                        ],
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            },
+                            "look": {
+                                "type": "string"
+                            },
+                            "useWhen": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

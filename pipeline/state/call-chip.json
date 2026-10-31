@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "call-chip",
+  "sourcePath": "src/app/components/bits/micro/Call_Chip.jsx",
+  "sourceHash": "25499788baadc2d66019d02a7fa83a2e4c89c48edf09fddd678199ede254054e",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "call-chip",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.619Z"
+}

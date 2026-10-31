@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "sliced-waves",
+  "sourcePath": "src/app/components/bits/background/Sliced_Waves.jsx",
+  "sourceHash": "ccf3d21e0232937ee98f2339f3fb7b9993135f3accdfb07f7b242157b717447e",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "sliced-waves",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.605Z"
+}

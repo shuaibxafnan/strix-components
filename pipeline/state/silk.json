@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "silk",
+  "sourcePath": "src/app/components/bits/background/Silk.jsx",
+  "sourceHash": "3660d71c75997cba060f34016c07eb2bf60060513786cdef41e25aec095e6ab9",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "silk",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.605Z"
+}

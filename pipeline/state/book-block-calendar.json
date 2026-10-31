@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "book-block-calendar",
+  "sourcePath": "src/app/components/BookBlockCalendar.jsx",
+  "sourceHash": "d011785a91d9b79c50ee649c6091f89096d483bf25da2851e839831adede12b3",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.402Z"
+}

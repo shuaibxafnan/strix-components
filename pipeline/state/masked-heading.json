@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "masked-heading",
+  "sourcePath": "src/app/components/bits/text_animations/Masked_Heading.jsx",
+  "sourceHash": "f05ac9b804f3915e9f439ebed1ff6a129511b7a435e2c377e5b905a6be6a2a85",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "masked-heading",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.630Z"
+}

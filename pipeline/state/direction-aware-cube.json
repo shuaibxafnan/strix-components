@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "direction-aware-cube",
+  "sourcePath": "src/app/components/DirectionAwareCube.jsx",
+  "sourceHash": "0855e4dcef09a575776f35d39bd77b026004335ee44eb6b658c48eb7cc32d68c",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.421Z"
+}

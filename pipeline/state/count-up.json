@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "count-up",
+  "sourcePath": "src/app/components/bits/text_animations/Count_Up.jsx",
+  "sourceHash": "1a516e4e7c8900271cd65efa738b803ed1c6b6b6ebb869326181f5d8411821d8",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "count-up",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.628Z"
+}

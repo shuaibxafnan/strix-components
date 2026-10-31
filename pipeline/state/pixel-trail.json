@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "pixel-trail",
+  "sourcePath": "src/app/components/bits/animations/Pixel_Trail.jsx",
+  "sourceHash": "7d1fca9b9d40d2149d88fdecac6eb4ee5224969ab0af02a6ddb3f0d3fb6690d7",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "pixel-trail",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.590Z"
+}

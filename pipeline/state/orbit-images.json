@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "orbit-images",
+  "sourcePath": "src/app/components/bits/animations/Orbit_Images.jsx",
+  "sourceHash": "71fd4c5b938aec8a4e9f8683a26c8dc219c785e9be50cbb323edcd333ec7f07c",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "orbit-images",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.589Z"
+}

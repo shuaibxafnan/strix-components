@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "shiny-button",
+  "sourcePath": "src/app/components/ShinyButton.jsx",
+  "sourceHash": "bf35c8f650acf69ce105a4a40c153532b5d015faa0f6dfdceb7cb22511c60d13",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.538Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "prompt-bar",
+  "sourcePath": "src/app/components/bits/micro/Prompt_Bar.jsx",
+  "sourceHash": "15c7a2038974fa84f9cdf2c17c3bd0ae3ecc816d093c09187758e04f3f5e539b",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "prompt-bar",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.623Z"
+}

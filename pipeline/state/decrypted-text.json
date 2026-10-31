@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "decrypted-text",
+  "sourcePath": "src/app/components/bits/text_animations/Decrypted_Text.jsx",
+  "sourceHash": "10b46e9842559bd624a809e33d7982aa894ca9f3e177b9ebcc6f443baa78756e",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "decrypted-text",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.629Z"
+}

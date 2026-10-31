@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "flip-card",
+  "sourcePath": "src/app/components/bits/micro/Flip_Card.jsx",
+  "sourceHash": "74e363bc506ffacb521784a87b31385bc9ad409c97e717f6e5d4a63c4da08f31",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "flip-card",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.620Z"
+}

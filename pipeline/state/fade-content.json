@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "fade-content",
+  "sourcePath": "src/app/components/bits/animations/Fade_Content.jsx",
+  "sourceHash": "722d2868baf803ca304b9cf8baa110d40aa50f5d6e97cfa5a8422b3241059c9d",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "fade-content",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.586Z"
+}

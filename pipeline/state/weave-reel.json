@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "weave-reel",
+  "sourcePath": "src/app/components/WeaveReel.jsx",
+  "sourceHash": "ca4d104c9d4ba1ca3794ff3036286470ab9b176ed6cd2ed3aa529983ed67d615",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.578Z"
+}

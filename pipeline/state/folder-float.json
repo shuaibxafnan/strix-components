@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "folder-float",
+  "sourcePath": "src/app/components/bits/micro/Folder_Float.jsx",
+  "sourceHash": "97f1bf38e9282fbfd9c1c64a3579b3a691d15e2915e43d3bc91b829aa32b3237",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "folder-float",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.621Z"
+}

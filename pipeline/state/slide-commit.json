@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "slide-commit",
+  "sourcePath": "src/app/components/bits/micro/Slide_Commit.jsx",
+  "sourceHash": "15afbf8e1eaac1f90caaa073d38fd790af675de9644129b1c5baa01b2cba0c9d",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "slide-commit",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.624Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "magic-bento",
+  "sourcePath": "src/app/components/bits/components/Magic_Bento.jsx",
+  "sourceHash": "618d6431ebf53935e0946e47f9e7556c863f36c46c25cf1dbcfba3eb0c829885",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "magic-bento",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.615Z"
+}

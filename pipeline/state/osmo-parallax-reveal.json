@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "osmo-parallax-reveal",
+  "sourcePath": "src/app/components/OsmoParallaxReveal.jsx",
+  "sourceHash": "675bb2923f5c729a5c81c77fdf52def4a85fd2cff9391a270ce3b326d6257eb2",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.506Z"
+}

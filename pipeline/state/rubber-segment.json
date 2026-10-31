@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "rubber-segment",
+  "sourcePath": "src/app/components/bits/micro/Rubber_Segment.jsx",
+  "sourceHash": "46011ad129bdee7b468b3d06f07fc3f11fc6e8aa81703b2bd789e6307ffd9146",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "rubber-segment",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.624Z"
+}

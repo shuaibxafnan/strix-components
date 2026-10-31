@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "ghost-fibers",
+  "sourcePath": "src/app/components/bits/background/Ghost_Fibers.jsx",
+  "sourceHash": "2b6447a25fd2e6b3c022d3b9b76dce34bfc35d46413cfb0a867a7f4f28ecc588",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "ghost-fibers",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.596Z"
+}

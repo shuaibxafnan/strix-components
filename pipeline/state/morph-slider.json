@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "morph-slider",
+  "sourcePath": "src/app/components/bits/components/Morph_Slider.jsx",
+  "sourceHash": "66f147cb95bf50ae779daddd15a327a8b73add2c0fa5e8bbf4b2b5e1eb01f04f",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "morph-slider",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.616Z"
+}

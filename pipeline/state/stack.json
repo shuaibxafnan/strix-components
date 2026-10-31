@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "stack",
+  "sourcePath": "src/app/components/bits/components/Stack.jsx",
+  "sourceHash": "23fc0cdfec8fefb6115553be28a58745b8ded6f52aa328d6136494e2459e62b5",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "stack",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.617Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "gradient-text",
+  "sourcePath": "src/app/components/bits/text_animations/Gradient_Text.jsx",
+  "sourceHash": "627a57c5ffaa78489b93141e4ff4fbc2e7ab701963b1159fcee764994ad78633",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "gradient-text",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.630Z"
+}

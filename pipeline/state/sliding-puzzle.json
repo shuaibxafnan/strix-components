@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "sliding-puzzle",
+  "sourcePath": "src/app/components/SlidingPuzzle.jsx",
+  "sourceHash": "d5dd640e2d7f86b48b87ca80636962bc5ac843e466c799772984efab93abedab",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.549Z"
+}

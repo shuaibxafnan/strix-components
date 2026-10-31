@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "audio-wave-visualiser",
+  "sourcePath": "src/app/components/AudioWaveVisualiser.jsx",
+  "sourceHash": "1c667f7c26d3610898e9b5baf1b6dee1df7d26973fe534bad598f15d4ef6f608",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.397Z"
+}

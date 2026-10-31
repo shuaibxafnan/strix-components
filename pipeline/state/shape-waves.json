@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "shape-waves",
+  "sourcePath": "src/app/components/bits/background/Shape_Waves.jsx",
+  "sourceHash": "33e63e2362fdecf277470f820bad4c09cf7f7a6ba2d84059082e9c6c991cc0d1",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "shape-waves",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.604Z"
+}

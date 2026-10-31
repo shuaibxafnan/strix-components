@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "code-slots",
+  "sourcePath": "src/app/components/bits/micro/Code_Slots.jsx",
+  "sourceHash": "ab47f49dab3b130efa2df81db3a7199088322724b6064237f4054293241f5ac1",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "code-slots",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.619Z"
+}

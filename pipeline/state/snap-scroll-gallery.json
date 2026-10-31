@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "snap-scroll-gallery",
+  "sourcePath": "src/app/components/SnapScrollGallery.jsx",
+  "sourceHash": "15b347f6f9902741b30dace21b442fc4634d31499eb544ca474c5b0edb3717ac",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.551Z"
+}

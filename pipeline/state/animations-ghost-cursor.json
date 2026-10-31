@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "animations-ghost-cursor",
+  "sourcePath": "src/app/components/bits/animations/Ghost_Cursor.jsx",
+  "sourceHash": "f8f25c8902a6c87f564398028b49c6963106b7686dcb3b245f40e66a6cdf2bfb",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "animations-ghost-cursor",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.586Z"
+}

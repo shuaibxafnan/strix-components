@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "animated-content",
+  "sourcePath": "src/app/components/bits/animations/Animated_Content.jsx",
+  "sourceHash": "14a4584189032eef340f658d13619aa6d43c62940dec93be33c1330ee9726250",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "animated-content",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.583Z"
+}

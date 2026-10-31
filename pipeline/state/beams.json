@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "beams",
+  "sourcePath": "src/app/components/bits/background/Beams.jsx",
+  "sourceHash": "8a444cd6642576452ef497c73a4321557c83b4f323475979946ead48491ea82b",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "beams",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.594Z"
+}

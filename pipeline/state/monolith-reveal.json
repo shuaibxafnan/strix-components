@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "monolith-reveal",
+  "sourcePath": "src/app/components/MonolithReveal.jsx",
+  "sourceHash": "9b2a9012d6acbf6d534141058fb4733343be46b7e5b0bd1349d9f002b27684dd",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.496Z"
+}

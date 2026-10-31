@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "elastic-grid-center-lag",
+  "sourcePath": "src/app/components/ElasticGridCenterLag.jsx",
+  "sourceHash": "53646cef0e1280d7c7e94972ebb30c75c2399cb8e7851a7ca1245c1605705263",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.430Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "scroll-reveal",
+  "sourcePath": "src/app/components/bits/text_animations/Scroll_Reveal.jsx",
+  "sourceHash": "23e80ea41f4bf1b9e442b68170dea9f5b6dbe6750e66eff8cc0f3918c80677f5",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "scroll-reveal",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.631Z"
+}

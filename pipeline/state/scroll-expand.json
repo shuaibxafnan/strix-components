@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "scroll-expand",
+  "sourcePath": "src/app/components/bits/animations/Scroll_Expand.jsx",
+  "sourceHash": "9ed2295d19f1fc0cd99daa7d0dac7d55356034123fcbc412050ec015cc6731dc",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "scroll-expand",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.590Z"
+}

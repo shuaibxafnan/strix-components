@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "drag-gallery",
+  "sourcePath": "src/app/components/DragGallery.jsx",
+  "sourceHash": "3e4ad3726909b58ff6a2bb1718b705c64dcd01e342166238b1f2406087fff76a",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.423Z"
+}

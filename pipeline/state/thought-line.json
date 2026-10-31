@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "thought-line",
+  "sourcePath": "src/app/components/bits/micro/Thought_Line.jsx",
+  "sourceHash": "de1ce1f967e4ca08f10927fb548ab86e292df7d2e3e7a14f58eb2dedc897110c",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "thought-line",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.626Z"
+}

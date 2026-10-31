@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "book-shelf",
+  "sourcePath": "src/app/components/BookShelf.jsx",
+  "sourceHash": "1a609fac125bc2f8db136764d9cf246a4f3e590b33b4cdfba26b8d52e2f9ebba",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.402Z"
+}

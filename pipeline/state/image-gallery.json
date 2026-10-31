@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "image-gallery",
+  "sourcePath": "src/app/components/ImageGallery.jsx",
+  "sourceHash": "b06ef06ace6542ece10cf0a41365e681f6a20a53b00e088b2b2b09c43cd7f53c",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.464Z"
+}

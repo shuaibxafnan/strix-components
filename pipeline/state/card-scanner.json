@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "card-scanner",
+  "sourcePath": "src/app/components/CardScanner.jsx",
+  "sourceHash": "62e37dc3e61898a2f9ac4f619c7580e3619d70a54f6d50bac6cfd99b753a8b90",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.404Z"
+}

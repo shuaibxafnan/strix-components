@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "news-ticker",
+  "sourcePath": "src/app/components/NewsTicker.jsx",
+  "sourceHash": "d1fb26f9758ead8a55b75054b99abf6c41f4a291380bc3cafe7ed468ce6a8ba5",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.503Z"
+}

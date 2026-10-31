@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "music-player",
+  "sourcePath": "src/app/components/MusicPlayer.jsx",
+  "sourceHash": "707da3a67f9f989a037baee1719066833797cf568207bfbfe27cfa7b9781f792",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.501Z"
+}

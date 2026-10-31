@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "crystallized-ball",
+  "sourcePath": "src/app/components/bits/animations/Crystallized_Ball.jsx",
+  "sourceHash": "1b8fa9baeede9f137adbad491a6c00a3f2e9380e980d94988f0cc4d6bc032261",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "crystallized-ball",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.584Z"
+}

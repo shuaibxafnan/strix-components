@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "donate-envelope-button",
+  "sourcePath": "src/app/components/DonateEnvelopeButton.jsx",
+  "sourceHash": "b3aa1566dc260d60efce383262a934971c434239ed22d676a41b3cc0aea1b449",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.422Z"
+}

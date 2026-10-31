@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "metallic-paint",
+  "sourcePath": "src/app/components/bits/animations/Metallic_Paint.jsx",
+  "sourceHash": "eff5fbe5fe8aed008df28e7b9ca14e571ca64c1fdf6a2b2056dff5069e0a6028",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "metallic-paint",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.588Z"
+}

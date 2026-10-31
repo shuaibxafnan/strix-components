@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "pixel-transition",
+  "sourcePath": "src/app/components/bits/animations/Pixel_Transition.jsx",
+  "sourceHash": "797163a6efa5dd8d2b5301c7da108ad1f792832f88b5e2e25f7cbcd62e638e9c",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "pixel-transition",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.590Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "tinder-carousel",
+  "sourcePath": "src/app/components/TinderCarousel.jsx",
+  "sourceHash": "1c144e225a845ea684e8dc7807380cf4fac36f52b86ff7af7ec0123c3c00f03d",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.571Z"
+}

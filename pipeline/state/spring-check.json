@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "spring-check",
+  "sourcePath": "src/app/components/bits/micro/Spring_Check.jsx",
+  "sourceHash": "04dc5483cb83ae61e8ab373f8872f4556f3e5a67213e86ccb23e1b66390c25a3",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "spring-check",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.625Z"
+}

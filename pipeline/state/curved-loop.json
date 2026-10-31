@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "curved-loop",
+  "sourcePath": "src/app/components/bits/text_animations/Curved_Loop.jsx",
+  "sourceHash": "31d963988b8d7ace490fe0316b3c6d3ab35bd707274f611c4131cda677f8b2dc",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "curved-loop",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.629Z"
+}

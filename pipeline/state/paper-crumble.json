@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "paper-crumble",
+  "sourcePath": "src/app/components/bits/micro/Paper_Crumble.jsx",
+  "sourceHash": "8f55637f66d8426a67ffa20b7d7ab8c8149c76d49869a82faf6f25c746c1f64c",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "paper-crumble",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.622Z"
+}

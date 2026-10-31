@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "shape-blur",
+  "sourcePath": "src/app/components/bits/animations/Shape_Blur.jsx",
+  "sourceHash": "8ecc40e442d8bf35e1e011894da0c9eb4eeaebbf1e9abf987831165b73989553",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "shape-blur",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.591Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "branched-menu",
+  "sourcePath": "src/app/components/bits/micro/Branched_Menu.jsx",
+  "sourceHash": "3a3b981b415462f862867d10f0a89969e0f1261defdb84a251804dee63e06824",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "branched-menu",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.619Z"
+}

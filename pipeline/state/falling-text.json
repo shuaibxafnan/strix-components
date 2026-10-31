@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "falling-text",
+  "sourcePath": "src/app/components/bits/text_animations/Falling_Text.jsx",
+  "sourceHash": "d1f0706100422b76bbd6d16868f23ee8380724d843111b023cdf5ad81ef81a17",
+  "isReactBits": true,
+  "bitsFolder": "text_animations",
+  "slug": "falling-text",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.629Z"
+}

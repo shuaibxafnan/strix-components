@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "stepper",
+  "sourcePath": "src/app/components/bits/components/Stepper.jsx",
+  "sourceHash": "795d8a9fe47ef49fec25d014333ab8cc4881b15918af391c51ea121a7e5b4886",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "stepper",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.618Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "plasma",
+  "sourcePath": "src/app/components/bits/background/Plasma.jsx",
+  "sourceHash": "4ae0e03a504e0b60c267a42b3f9a5bd53867c0f6351b498211b541562a2c3136",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "plasma",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.602Z"
+}

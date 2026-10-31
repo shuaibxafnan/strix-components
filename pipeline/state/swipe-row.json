@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "swipe-row",
+  "sourcePath": "src/app/components/bits/micro/Swipe_Row.jsx",
+  "sourceHash": "e4296be5c681f10b1b7d5a49dae5e13c50383c516886fb094ea9fb74681d729e",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "swipe-row",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.625Z"
+}

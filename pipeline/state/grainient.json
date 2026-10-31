@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "grainient",
+  "sourcePath": "src/app/components/bits/background/Grainient.jsx",
+  "sourceHash": "f9f84279110343fd62e053a2dae1295b88d5ebe493981ea69ee55135ca91ff27",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "grainient",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.597Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "bounce-cards",
+  "sourcePath": "src/app/components/bits/components/Bounce_Cards.jsx",
+  "sourceHash": "cf92e4190f8563228261fd3bf1e22f7e79fedf9abd789e8a422702a34757f20a",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "bounce-cards",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.608Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "faulty-terminal",
+  "sourcePath": "src/app/components/bits/background/Faulty_Terminal.jsx",
+  "sourceHash": "eea2906e6a83b42a5a57a47168069fdd93994c16ba65d77b610fcc081679d013",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "faulty-terminal",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.595Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "elastic-glitch-slider",
+  "sourcePath": "src/app/components/ElasticGlitchSlider.jsx",
+  "sourceHash": "eb54568df966187aae294d64bdb3203c57aa8eaaa5b45188c30d50bf360de4ed",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.430Z"
+}

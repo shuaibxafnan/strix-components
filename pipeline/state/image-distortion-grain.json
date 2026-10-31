@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "image-distortion-grain",
+  "sourcePath": "src/app/components/ImageDistortionGrain.jsx",
+  "sourceHash": "b69e2e0434ee0f6810a33b63f54bf2139a21ce534f5f24280d5f6b8cc2ba7e0a",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.463Z"
+}

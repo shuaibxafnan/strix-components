@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "border-glow",
+  "sourcePath": "src/app/components/bits/components/Border_Glow.jsx",
+  "sourceHash": "c0c9a863a4633f5273a7a5c466da49188f4c403fb08c5b455c64ba6dfb68b719",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "border-glow",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.607Z"
+}

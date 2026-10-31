@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "card-swap",
+  "sourcePath": "src/app/components/bits/components/Card_Swap.jsx",
+  "sourceHash": "c01a4c398b017e79c4511d551aa0fd30d41e56d8ad5875e12c227a6bc6693451",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "card-swap",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.609Z"
+}

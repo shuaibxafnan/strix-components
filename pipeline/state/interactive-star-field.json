@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "interactive-star-field",
+  "sourcePath": "src/app/components/InteractiveStarField.jsx",
+  "sourceHash": "eb9b4da3bf09d667225a0333c7a7ddda132e164709bee1d27ff60641c6768440",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.482Z"
+}

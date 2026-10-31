@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "scanner",
+  "sourcePath": "src/app/components/bits/background/Scanner.jsx",
+  "sourceHash": "13d68bf1df4536be4928f572a69654dd50c6ca4fe2883a1874ab59ff96e748e4",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "scanner",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.603Z"
+}

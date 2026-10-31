@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "glide-select",
+  "sourcePath": "src/app/components/bits/micro/Glide_Select.jsx",
+  "sourceHash": "e8d3dbfea8dbd65e8962c9fad6e33b4bdee7ce7dccbb194320d9300432178e6f",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "glide-select",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.621Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "line-waves",
+  "sourcePath": "src/app/components/bits/background/Line_Waves.jsx",
+  "sourceHash": "21b4a44a5c57f69ab9a04a6a8645955b93433808f9778b19dbc4f42e21b6eab3",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "line-waves",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.599Z"
+}

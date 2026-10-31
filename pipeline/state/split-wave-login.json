@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "split-wave-login",
+  "sourcePath": "src/app/components/SplitWaveLogin.jsx",
+  "sourceHash": "eb7b75aaef6a538fc8f76071d61c4b5ff1f2e01c7d624f01ffb22337b1504849",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.555Z"
+}

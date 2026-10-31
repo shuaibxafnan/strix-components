@@ -259,6 +259,8 @@ export default function ArchScroll({
     return (
         <div ref={rootRef} className={className} style={{ color: textColor }}>
             <div className="mx-auto max-w-[1440px] p-8 max-[560px]:p-[10px]">
+                <div className="h-[30vh] w-full" />
+
                 <div
                     data-arch="main"
                     className="mx-auto flex max-w-[1100px] justify-between gap-[60px] max-[900px]:gap-[30px] max-[768px]:flex-col max-[768px]:gap-5 max-[560px]:gap-3"
@@ -313,6 +315,8 @@ export default function ArchScroll({
                         ))}
                     </div>
                 </div>
+
+                <div className="h-[30vh] w-full" />
             </div>
         </div>
     );

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "connected-grid",
+  "sourcePath": "src/app/components/ConnectedGrid.jsx",
+  "sourceHash": "ad527e746e78f38723025e32edaf2eb6f7663e9b6f235e9f1d3f3165660191f9",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.412Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "lightning",
+  "sourcePath": "src/app/components/bits/background/Lightning.jsx",
+  "sourceHash": "9eba0b3f7146c808d32d5fba714d7559a84bf430a2cdd5217337d52f9cc18be9",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "lightning",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.599Z"
+}

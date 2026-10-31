@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "elastic-stack",
+  "sourcePath": "src/app/components/ElasticStack.jsx",
+  "sourceHash": "032df770cbebff0006f17a6a748d1a6058904c06fe4d2d93dde30b755e553b89",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.432Z"
+}

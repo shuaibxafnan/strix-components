@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "swarm-cursor",
+  "sourcePath": "src/app/components/bits/animations/Swarm_Cursor.jsx",
+  "sourceHash": "b1c7453d612cc2ac474347e2552ed0745183baa98463f29132b6560f8e297eec",
+  "isReactBits": true,
+  "bitsFolder": "animations",
+  "slug": "swarm-cursor",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.592Z"
+}

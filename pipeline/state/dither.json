@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "dither",
+  "sourcePath": "src/app/components/bits/background/Dither.jsx",
+  "sourceHash": "4dbc0c71cec17962f616399c6ef12b5a374776ffe69964a3cef9f663c02cb0b6",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "dither",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.595Z"
+}

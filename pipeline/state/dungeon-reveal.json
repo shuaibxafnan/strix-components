@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "dungeon-reveal",
+  "sourcePath": "src/app/components/DungeonReveal.jsx",
+  "sourceHash": "d51d8dd2edad9e32c967e133d05f17ae86e3d658d1205b6180870995b2457b5d",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.428Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "dock",
+  "sourcePath": "src/app/components/bits/components/Dock.jsx",
+  "sourceHash": "b9af3096b11e2a2393670472f92e928fa16a3d91720f89624cbbcd33dc5034c0",
+  "isReactBits": true,
+  "bitsFolder": "components",
+  "slug": "dock",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.611Z"
+}

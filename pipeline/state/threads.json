@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "threads",
+  "sourcePath": "src/app/components/bits/background/Threads.jsx",
+  "sourceHash": "6f79d774c41f5e9af43339f72e750ecdfc1a364bc92464f6c8ec5e90a8a04fb2",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "threads",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.606Z"
+}

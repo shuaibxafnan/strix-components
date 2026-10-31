@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "shredder",
+  "sourcePath": "src/app/components/bits/micro/Shredder.jsx",
+  "sourceHash": "6622a325588c4e8ee4c7febbe845c82c5d70a6442acd03f48d4ca9d8024e7422",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "shredder",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.624Z"
+}

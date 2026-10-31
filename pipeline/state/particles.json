@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "particles",
+  "sourcePath": "src/app/components/bits/background/Particles.jsx",
+  "sourceHash": "3e94bc6bca21162bb182988ce73917e45941c26e4d74f51768bcd8a0b644d91d",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "particles",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.601Z"
+}

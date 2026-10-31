@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "flow-field",
+  "sourcePath": "src/app/components/FlowField.jsx",
+  "sourceHash": "75a3b7139572bb986fc65a42e8a62c5fa8d4b359dec78dd4d354dbfbe40e356c",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.442Z"
+}

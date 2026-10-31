@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "flying-button",
+  "sourcePath": "src/app/components/bits/micro/Flying_Button.jsx",
+  "sourceHash": "0a58b34f15c23eeaaddee59e454b7ec64c74dfde9d93be8f8c3f1a382acdea93",
+  "isReactBits": true,
+  "bitsFolder": "micro",
+  "slug": "flying-button",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.621Z"
+}

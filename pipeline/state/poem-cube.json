@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "poem-cube",
+  "sourcePath": "src/app/components/PoemCube.jsx",
+  "sourceHash": "f842bbd471bc648f7ac5fffa6dc89d30aed5463112c953fd8d4a9b6bfdfb664c",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.514Z"
+}

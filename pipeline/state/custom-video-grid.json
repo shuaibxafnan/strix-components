@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "custom-video-grid",
+  "sourcePath": "src/app/components/CustomVideoGrid.jsx",
+  "sourceHash": "9b74121657e4cfce2a12583886dbf86dba235ac9389a7621d03c36ed69f6854e",
+  "isReactBits": false,
+  "bitsFolder": null,
+  "slug": "",
+  "nameLocked": false,
+  "status": "rewrite_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.417Z"
+}

@@ -1,0 +1,14 @@
+{
+  "sourceSlug": "pixel-snow",
+  "sourcePath": "src/app/components/bits/background/Pixel_Snow.jsx",
+  "sourceHash": "e98c06a41637e06661d1c09bec544287c2b638bdb6c69653f11fecce0d3a50f6",
+  "isReactBits": true,
+  "bitsFolder": "background",
+  "slug": "pixel-snow",
+  "nameLocked": true,
+  "status": "analyze_queued",
+  "attempt": 0,
+  "comments": [],
+  "note": "",
+  "updatedAt": "2026-10-31T17:23:39.601Z"
+}
