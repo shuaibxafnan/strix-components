@@ -1,0 +1,112 @@
+{
+    "slug": "swipe-row",
+    "name": "Swipe Row",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Swipeable list row that slides aside to reveal action buttons, with rubber-band drag, flick momentum, and a full swipe that commits the primary action and collapses the row.",
+    "contents": [
+        "Row surface holding any children, with a hidden accessible toggle button",
+        "Action drawer with one button per action, the first being the primary action",
+        "Screen-reader live region announcing state"
+    ],
+    "behavior": [
+        "Pointer drag past a 10px threshold reveals actions with rubber-band resistance",
+        "Flick velocity or drag distance decides whether the drawer snaps open or closed",
+        "Dragging past the commit point expands the primary action and releasing commits it",
+        "Committed row slides out, then collapses its height and fades before onCommit fires",
+        "Keyboard: arrow key toggles drawer, Escape closes, Delete or Backspace commits primary when open",
+        "Reduced motion uses short eased tweens instead of springs",
+        "Optional vibration on touch when the commit point is reached"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": null },
+        { "name": "actions", "type": "{id,label,icon?,color?,dismiss?,onSelect?}[]", "default": [{ "id": "delete", "label": "Delete" }] },
+        { "name": "actionColor", "type": "string", "default": "#e5484d" },
+        { "name": "drawerColor", "type": "string", "default": "#3f3f46" },
+        { "name": "rowColor", "type": "string", "default": "#27272a" },
+        { "name": "textColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "height", "type": "number", "default": 64 },
+        { "name": "radius", "type": "number", "default": 16 },
+        { "name": "actionWidth", "type": "number", "default": 80 },
+        { "name": "direction", "type": "'left' | 'right'", "default": "left" },
+        { "name": "snapBounce", "type": "number", "default": 0.2 },
+        { "name": "resistance", "type": "number", "default": 0.55 },
+        { "name": "collapseMs", "type": "number", "default": 200 },
+        { "name": "commitAt", "type": "number", "default": 0.6 },
+        { "name": "fullSwipe", "type": "boolean", "default": true },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "open", "type": "boolean", "default": null },
+        { "name": "onOpenChange", "type": "(open:boolean)=>void", "default": null },
+        { "name": "onAction", "type": "(action)=>void", "default": null },
+        { "name": "onCommit", "type": "(action)=>void", "default": null },
+        { "name": "closeOnAction", "type": "boolean", "default": true },
+        { "name": "haptic", "type": "boolean", "default": true },
+        { "name": "label", "type": "string", "default": "List item" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Row content through children and the accessible label",
+        "Actions: count, labels, icons, per-action colors, callbacks",
+        "Colors for row, drawer, primary action and text",
+        "Row height, corner radius, action button width",
+        "Swipe direction, drag resistance, snap bounce, commit threshold, full swipe on or off",
+        "Collapse duration, disabled state, controlled open state, haptics"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change drag activation distance",
+            "where": "HYST constant"
+        },
+        {
+            "change": "Change flick sensitivity or momentum",
+            "where": "FLICK, DECEL and VMAX constants"
+        },
+        {
+            "change": "Change the default primary action icon",
+            "where": "HugeiconsIcon Delete02Icon in the primary motion.button"
+        },
+        {
+            "change": "Change action label typography",
+            "where": "text-[11px] span classes inside the action buttons"
+        },
+        {
+            "change": "Change the settle spring feel",
+            "where": "SPRING_UI constant and the settle function"
+        }
+    ],
+    "fixed": [
+        "Requires motion and @hugeicons/react with @hugeicons/core-free-icons installed",
+        "Client component using pointer events and a ResizeObserver",
+        "Registers window pointermove, pointerup and pointercancel listeners during a drag",
+        "First action in the actions array is always the primary, full-swipe action",
+        "Actions with dismiss true also commit and collapse the row",
+        "Only left or right direction, horizontal swipe only; vertical movement scrolls the page",
+        "Row collapse relies on the parent letting the row height and margin transition",
+        "Keyboard toggle button is visually hidden until focused",
+        "Announcement strings are hardcoded English",
+        "Vibration only on touch pointers where supported"
+    ],
+    "mood": [
+        "minimal",
+        "tactile",
+        "modern",
+        "dark"
+    ],
+    "industries": [
+        "saas",
+        "productivity",
+        "email",
+        "mobile apps",
+        "fintech"
+    ],
+    "sections": [
+        "features",
+        "other"
+    ],
+    "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+    ]
+}
