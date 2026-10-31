@@ -1,0 +1,94 @@
+{
+    "slug": "blur-text",
+    "name": "Blur Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Animated text that resolves from blur into focus word by word or letter by letter, with five entrance effects, configurable stagger order, triggers, looping and hover focus.",
+    "contents": [
+        "Paragraph of text split into words or characters, each animated separately",
+        "Screen reader only copy of the full text"
+    ],
+    "behavior": [
+        "Each piece animates from blurred and transparent to sharp with a staggered delay",
+        "Starts on scroll into view, on load, on hover or on click depending on trigger",
+        "Hover and click triggers replay the animation by running an exit then re-entry",
+        "Optional loop plays exit and entry repeatedly after loopDelay seconds",
+        "Optional color tint transitions from fromColor to the final color",
+        "Optional focusOnHover blurs and dims the other words while one word is hovered",
+        "Respects the user reduced motion setting"
+    ],
+    "props": [
+        {"name": "text", "type": "string", "default": ""},
+        {"name": "delay", "type": "number", "default": 200},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "animateBy", "type": "'words' | 'letters'", "default": "words"},
+        {"name": "direction", "type": "'top' | 'bottom' | 'left' | 'right'", "default": "top"},
+        {"name": "threshold", "type": "number", "default": 0.1},
+        {"name": "rootMargin", "type": "string", "default": "0px"},
+        {"name": "animationFrom", "type": "object", "default": "undefined"},
+        {"name": "animationTo", "type": "object[]", "default": "undefined"},
+        {"name": "easing", "type": "string | number[] | function", "default": "undefined"},
+        {"name": "onAnimationComplete", "type": "function", "default": "undefined"},
+        {"name": "stepDuration", "type": "number", "default": 0.35},
+        {"name": "blur", "type": "number", "default": 10},
+        {"name": "distance", "type": "number", "default": 50},
+        {"name": "effect", "type": "'blur' | 'zoom' | 'tilt' | 'focus' | 'drift'", "default": "blur"},
+        {"name": "staggerFrom", "type": "'start' | 'end' | 'center' | 'random'", "default": "start"},
+        {"name": "trigger", "type": "'view' | 'load' | 'hover' | 'click'", "default": "view"},
+        {"name": "loop", "type": "boolean", "default": false},
+        {"name": "loopDelay", "type": "number", "default": 2},
+        {"name": "color", "type": "string", "default": "undefined"},
+        {"name": "fromColor", "type": "string", "default": "undefined"},
+        {"name": "focusOnHover", "type": "boolean", "default": false}
+    ],
+    "editableByProps": [
+        "Text, split mode (words or letters), class names and text color",
+        "Effect style, direction, blur amount, travel distance, step duration and stagger delay",
+        "Stagger order, trigger, looping and loop delay",
+        "Custom start and end keyframes with easing, start color tint, hover focus, completion callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the spring bounce or settle feel of an effect",
+            "where": "buildEffect function, bounce and settle fields"
+        },
+        {
+            "change": "Change the color tint easing",
+            "where": "CSS_EASE constant"
+        },
+        {
+            "change": "Change the dimming strength of focusOnHover",
+            "where": "dim constant and wordStyle function"
+        },
+        {
+            "change": "Add a new entrance effect",
+            "where": "buildEffect function"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package and Tailwind CSS classes (flex, inline-flex, sr-only, will-change)",
+        "Marked as a client component",
+        "Pieces are aria-hidden with a sr-only copy of the text for accessibility",
+        "Uses an IntersectionObserver when trigger is view",
+        "Hover trigger replays only after the animation has settled",
+        "Exit animation duration is 1.3 times stepDuration with stagger 0.4 times the entry stagger",
+        "Random stagger order is deterministic from the text",
+        "When animationFrom, animationTo or easing is passed, the built in effect keyframes are replaced",
+        "direction only affects which axis and side the effect uses, and drift only distinguishes left from the others"
+    ],
+    "mood": ["playful", "modern", "elegant", "dynamic"],
+    "industries": ["creative agency", "saas", "portfolio", "entertainment", "fashion"],
+    "sections": ["hero", "about", "cta"],
+    "dependencies": ["motion"],
+    "variants": {
+        "prop": "effect",
+        "default": "blur",
+        "options": [
+            {"value": "blur", "look": "Text slides in from the chosen direction while sharpening from blur, with a light bounce", "useWhen": "Default hero headline reveal on page load or scroll"},
+            {"value": "zoom", "look": "Text scales down from large and blurred into place with a small overshoot", "useWhen": "Bold statement or product name that should land with impact"},
+            {"value": "tilt", "look": "Text flips in with 3D rotation and blur, pivoting at an edge", "useWhen": "Playful section titles on creative or portfolio pages"},
+            {"value": "focus", "look": "Text stays in place and simply sharpens from a soft, enlarged blur with no movement", "useWhen": "Calm taglines or long intro paragraphs where motion should stay subtle"},
+            {"value": "drift", "look": "Text glides in sideways with a skew that straightens out while unblurring", "useWhen": "Fast, kinetic headlines on landing pages or banners"}
+        ]
+    }
+}
