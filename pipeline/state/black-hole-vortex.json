@@ -4,11 +4,12 @@
   "sourceHash": "e85c9ca02d59826f5c9ae75484276387447ef63a986bb04d01de986e841c74ce",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "black-hole-vortex",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.400Z"
+  "note": "CDN easing-utils import -> import('easing-utils'); removed easingUtilsCdnUrl prop and catch fallback; className prop. Gates passed.",
+  "updatedAt": "2026-10-31T20:02:54.479Z",
+  "gateOutput": "gates passed"
 }
