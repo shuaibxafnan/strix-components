@@ -1,0 +1,167 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "slug",
+        "name",
+        "category",
+        "isReactBits",
+        "description",
+        "contents",
+        "behavior",
+        "props",
+        "editableByProps",
+        "needsCodeEdit",
+        "fixed",
+        "mood",
+        "industries",
+        "sections",
+        "dependencies"
+    ],
+    "properties": {
+        "slug": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "name": {
+            "type": "string",
+            "minLength": 2
+        },
+        "category": {
+            "enum": [
+                "backgrounds-3d",
+                "text-effects",
+                "cursor-effects",
+                "sliders-carousels",
+                "cards-galleries",
+                "navigation-menus",
+                "scroll-section-layouts",
+                "ui-elements"
+            ]
+        },
+        "isReactBits": {
+            "type": "boolean"
+        },
+        "description": {
+            "type": "string",
+            "minLength": 40,
+            "maxLength": 400
+        },
+        "contents": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "string"
+            }
+        },
+        "behavior": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "props": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "name",
+                    "type",
+                    "default"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "default": {}
+                }
+            }
+        },
+        "editableByProps": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "string"
+            }
+        },
+        "needsCodeEdit": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "change",
+                    "where"
+                ],
+                "properties": {
+                    "change": {
+                        "type": "string"
+                    },
+                    "where": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "fixed": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "mood": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 5,
+            "items": {
+                "type": "string"
+            }
+        },
+        "industries": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "items": {
+                "type": "string"
+            }
+        },
+        "sections": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "enum": [
+                    "hero",
+                    "navbar",
+                    "footer",
+                    "features",
+                    "about",
+                    "services",
+                    "portfolio",
+                    "gallery",
+                    "testimonials",
+                    "pricing",
+                    "stats",
+                    "faq",
+                    "cta",
+                    "contact",
+                    "logos",
+                    "blog",
+                    "background",
+                    "global",
+                    "other"
+                ]
+            }
+        },
+        "dependencies": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}
