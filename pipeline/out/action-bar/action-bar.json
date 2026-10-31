@@ -1,0 +1,46 @@
+{
+  "slug": "action-bar",
+  "name": "Action Bar",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Floating icon toolbar with a glassy lens pointer that springs between buttons on hover and selection, plus delayed label tooltips above each icon.",
+  "contents": [
+    "Row of icon buttons with accessible labels",
+    "Glass lens pointer following hover and selection",
+    "Tooltip label above hovered button"
+  ],
+  "behavior": [
+    "Pointer glides with a spring easing to the hovered or focused button and returns to the selected one on leave",
+    "Click selects a button and fills its icon with the accent color",
+    "Tooltip appears after a delay, and faster when moving between buttons",
+    "Pointer position is re-measured with a ResizeObserver"
+  ],
+  "props": [
+    {"name": "items", "type": "{icon,label}[]", "default": "6 sample items (Profile, Pinned, Following, Inbox, Edit, Business)"},
+    {"name": "initialIndex", "type": "number", "default": 2},
+    {"name": "tooltipDelay", "type": "number", "default": 300},
+    {"name": "tooltipQuick", "type": "number", "default": 100},
+    {"name": "accentColor", "type": "string", "default": "#ef4444"},
+    {"name": "accentBgColor", "type": "string", "default": "#fef2f2"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Number of buttons, their Material Symbols icon names and labels",
+    "Initially selected button and tooltip timings",
+    "Selected state colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change bar surface or border colors", "where": "className on the barRef div"},
+    {"change": "Change pointer spring feel", "where": "SPRING constant"},
+    {"change": "Change lens distortion strength", "where": "feDisplacementMap inside the cyber-filter"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Loads the Material Symbols Outlined icon font through a link element, so icon values must be Material Symbols names",
+    "Lens distortion uses an SVG backdrop filter that may not render in all browsers"
+  ],
+  "mood": ["modern", "glassy", "minimal", "playful"],
+  "industries": ["saas", "social", "productivity", "mobile apps"],
+  "sections": ["other"],
+  "dependencies": []
+}
