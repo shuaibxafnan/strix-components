@@ -1,0 +1,44 @@
+{
+  "slug": "bento-gallery",
+  "name": "Bento Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Dense bento-style image grid with mixed column and row spans. Images dim until hovered, then brighten and zoom with an accent border, and clicking opens a fullscreen lightbox.",
+  "contents": [
+    "Grid of image tiles with optional column and row spans",
+    "Fullscreen lightbox with image, caption, counter, close and previous/next buttons"
+  ],
+  "behavior": [
+    "Tiles are dimmed and brighten with zoom, accent border and expand icon on hover or focus",
+    "Click opens a lightbox with fade and slide-up animation",
+    "Escape closes, arrow keys navigate, navigation wraps around",
+    "Page scroll is locked while the lightbox is open"
+  ],
+  "props": [
+    { "name": "images", "type": "{id,src,alt,colSpan?,rowSpan?}[]", "default": "10 sample images" },
+    { "name": "accentColor", "type": "string", "default": "#f0a500" },
+    { "name": "bgColor", "type": "string", "default": "#111416" },
+    { "name": "gridCols", "type": "number (1-8)", "default": 5 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, alt text and tile spans",
+    "Accent color and background color",
+    "Number of columns on screens wider than 640px"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change tile height or gap", "where": "auto-rows and gap classes on the main grid element" },
+    { "change": "Change dimming level of idle tiles", "where": "brightness-[0.55] class on the tile img" },
+    { "change": "Change lightbox backdrop", "where": "background style in the Modal root div" }
+  ],
+  "fixed": [
+    "Sets body overflow hidden while the lightbox is open and resets it on close and unmount",
+    "Adds a window keydown listener while the lightbox is open",
+    "Spans apply only on screens wider than 640px, evaluated at render",
+    "Grid is capped at 780px wide"
+  ],
+  "mood": ["dark", "editorial", "modern", "immersive"],
+  "industries": ["photography", "portfolio", "travel", "agency", "fashion"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
