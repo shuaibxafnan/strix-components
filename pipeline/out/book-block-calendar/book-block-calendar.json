@@ -1,0 +1,67 @@
+{
+  "slug": "book-block-calendar",
+  "name": "Book Block Calendar",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Wall calendar with a photo and a month grid on each page. Pages flip like a book with 3D half-page folds and shadows, using arrow buttons or the keyboard.",
+  "contents": [
+    "Twelve month pages, each with a photo, a month and year badge and a Monday-first day grid",
+    "Previous and next round arrow buttons",
+    "Optional caption line"
+  ],
+  "behavior": [
+    "Pages flip horizontally in 3D around the middle fold with animated shadows",
+    "Arrow keys flip pages when keyboard is enabled",
+    "At the first or last page without circular mode, the page bounces back",
+    "Photo zooms slightly on hover",
+    "Reduced motion preference shortens the flip"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "12 sample photo URLs" },
+    { "name": "year", "type": "number", "default": "current year" },
+    { "name": "width", "type": "number", "default": 580 },
+    { "name": "height", "type": "number", "default": 640 },
+    { "name": "calendarHeight", "type": "number", "default": 310 },
+    { "name": "speed", "type": "number", "default": 700 },
+    { "name": "shadows", "type": "boolean", "default": true },
+    { "name": "circular", "type": "boolean", "default": false },
+    { "name": "keyboard", "type": "boolean", "default": true },
+    { "name": "caption", "type": "string", "default": "" },
+    { "name": "pageColor", "type": "string", "default": "#ffffff" },
+    { "name": "textColor", "type": "string", "default": "#3f3f46" },
+    { "name": "mutedColor", "type": "string", "default": "#a1a1aa" },
+    { "name": "lineColor", "type": "string", "default": "#f4f4f5" },
+    { "name": "buttonColor", "type": "string", "default": "#ffffff" },
+    { "name": "buttonTextColor", "type": "string", "default": "#3f3f46" },
+    { "name": "captionColor", "type": "string", "default": "#71717a" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Year, photos, caption, size and photo-to-grid height split",
+    "Flip speed, shadows, circular looping and keyboard control",
+    "Page, text, line, button and caption colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the first day of the week or weekday labels",
+      "where": "WEEKDAYS_SHORT constant and the lead calculation in buildMonth"
+    },
+    {
+      "change": "Change month names or language",
+      "where": "MONTHS constant"
+    },
+    {
+      "change": "Change the month badge style over the photo",
+      "where": "Month badge div with backdrop-blur-md inside the bb-item"
+    }
+  ],
+  "fixed": [
+    "Always shows twelve months, photos repeat if fewer than twelve are given",
+    "Listens for arrow keys on the document while keyboard is enabled and removes the listener on unmount",
+    "Flip uses a fixed horizontal fold with 1300px perspective"
+  ],
+  "mood": ["elegant", "tactile", "playful", "editorial"],
+  "industries": ["travel", "photography", "stationery", "lifestyle", "events"],
+  "sections": ["features", "other"],
+  "dependencies": []
+}
