@@ -1,0 +1,75 @@
+{
+    "slug": "artistry-portfolio",
+    "name": "Artistry Portfolio",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Full-page minimalist artist portfolio with fixed header and scroll progress line, word-reveal headline, parallax hero image, lightbox gallery, exhibitions list and footer.",
+    "contents": [
+        "Fixed header with brand, tagline, scroll progress line, nav links and contact button",
+        "Hero with animated headline, parallax grayscale image, caption and about text",
+        "Gallery grid with captions and fullscreen lightbox, plus quote",
+        "Exhibitions chronology list",
+        "Footer with email, socials, studio lines, copyright and back to top link"
+    ],
+    "behavior": [
+        "Headline words slide up and hero image wipes open on load",
+        "Gallery, quote and exhibition rows fade up when scrolled into view",
+        "Hero image shifts with page scroll and the header line shows scroll progress",
+        "Nav underline follows the section in view, links scroll smoothly to sections by id",
+        "Lightbox supports arrow keys, Escape and locks body scroll while open",
+        "Images turn from grayscale to color on hover"
+    ],
+    "props": [
+        {"name": "brand", "type": "string", "default": "STUDIO NAME"},
+        {"name": "tagline", "type": "string", "default": "Visual Archetype Studio"},
+        {"name": "navItems", "type": "{id,label}[]", "default": "home, about, exhibitions"},
+        {"name": "contactLabel", "type": "string", "default": "Contact"},
+        {"name": "title", "type": "string", "default": "The Architecture of Silent Canvas."},
+        {"name": "aboutText", "type": "string", "default": "I am a visual artist exploring the intersection of mental landscapes and corporal reality. Through stark structures and negative space, my canvas strips away chaos to present what remains."},
+        {"name": "heroImage", "type": "string", "default": "sample image url"},
+        {"name": "heroImageAlt", "type": "string", "default": "Primary visual canvas portrait"},
+        {"name": "heroCaption", "type": "string", "default": "Untitled study, 2026"},
+        {"name": "galleryAlt", "type": "string", "default": "Gallery work"},
+        {"name": "images", "type": "(string|{src,title,meta,alt})[]", "default": "4 sample works"},
+        {"name": "quote", "type": "string", "default": "\"When the mind becomes a labyrinth of anxious thoughts, art offers a thin structural thread back to reality.\""},
+        {"name": "quoteCredit", "type": "string", "default": ""},
+        {"name": "exhibitionsHeading", "type": "string", "default": "Selected Exhibitions"},
+        {"name": "exhibitionsSubheading", "type": "string", "default": "Chronology"},
+        {"name": "exhibitions", "type": "{year,title,location,type,href}[]", "default": "4 sample exhibitions"},
+        {"name": "email", "type": "string", "default": "hello@example.com"},
+        {"name": "footerStatus", "type": "string", "default": "Available for Global Collaborations"},
+        {"name": "socialsHeading", "type": "string", "default": "Socials"},
+        {"name": "socials", "type": "{label,href}[]", "default": "Instagram, Twitter"},
+        {"name": "studioHeading", "type": "string", "default": "Studio"},
+        {"name": "studioLines", "type": "string[]", "default": ["Stockholm, SE", "Remote / Worldwide"]},
+        {"name": "copyright", "type": "string", "default": "Studio Name. All Rights Reserved."},
+        {"name": "backToTopLabel", "type": "string", "default": "Back to top"},
+        {"name": "lightboxLabels", "type": "{close,previous,next}", "default": {"close": "Close", "previous": "Previous image", "next": "Next image"}},
+        {"name": "bgColor", "type": "string", "default": "#fbfbfa"},
+        {"name": "textColor", "type": "string", "default": "#1c1c1b"},
+        {"name": "footerColor", "type": "string", "default": "#18181b"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "All text, links, images, captions, exhibitions and socials",
+        "Page, text and footer background colors",
+        "Navigation items and their section ids"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change header background and bar colors", "where": "header element with mix-blend-difference"},
+        {"change": "Remove the film grain overlay", "where": "svg with feTurbulence filter"},
+        {"change": "Change headline reveal speed", "where": "EASE constant and transitionDelay in the h1"}
+    ],
+    "fixed": [
+        "Header is fixed to the top of the viewport and uses blend mode difference",
+        "Film grain overlay is fixed over the whole viewport",
+        "Scroll progress and parallax read window scroll",
+        "Nav links scroll to elements by id, so the first three navItems ids map to hero, gallery and exhibitions sections",
+        "Locks body overflow while the lightbox is open and restores it on close",
+        "Gray scale image styling and monospace and serif font classes come from the host fonts"
+    ],
+    "mood": ["minimal", "editorial", "monochrome", "elegant"],
+    "industries": ["art", "photography", "design", "architecture", "creative studios"],
+    "sections": ["hero", "gallery", "portfolio"],
+    "dependencies": []
+}
