@@ -1,0 +1,200 @@
+{
+    "slug": "circular-web-gl-gallery",
+    "name": "Circular Web GL Gallery",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Full-screen WebGL gallery where image planes bend along a circular arc with wavy vertex motion, floating background planes, wheel and drag inertia, snapping and a live caption with counter.",
+    "contents": [
+        "Heading and tagline overlay",
+        "Looping arc of image planes",
+        "Floating colored background planes",
+        "Caption and index counter for the active item"
+    ],
+    "behavior": [
+        "Wheel and pointer or touch drag move the loop with eased inertia",
+        "Snaps to the nearest item after input",
+        "Planes wave with a speed-dependent vertex distortion",
+        "Caption and counter update to the centered item",
+        "Renderer, listeners and WebGL context are released on unmount"
+    ],
+    "props": [
+        {
+            "name": "items",
+            "type": "{image,text}[]",
+            "default": "12 sample landmarks"
+        },
+        {
+            "name": "duplicate",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#cbcabd"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#545050"
+        },
+        {
+            "name": "planeColor",
+            "type": "string",
+            "default": "#c4c3b6"
+        },
+        {
+            "name": "bendRadius",
+            "type": "number",
+            "default": 75
+        },
+        {
+            "name": "bendOffset",
+            "type": "number",
+            "default": 74.5
+        },
+        {
+            "name": "rotateAmount",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "planeWidth",
+            "type": "number",
+            "default": 700
+        },
+        {
+            "name": "planeHeight",
+            "type": "number",
+            "default": 900
+        },
+        {
+            "name": "planePadding",
+            "type": "number",
+            "default": 2
+        },
+        {
+            "name": "scrollEase",
+            "type": "number",
+            "default": 0.05
+        },
+        {
+            "name": "wheelStrength",
+            "type": "number",
+            "default": 0.005
+        },
+        {
+            "name": "dragStrength",
+            "type": "number",
+            "default": 0.01
+        },
+        {
+            "name": "snapToItem",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "snapDelay",
+            "type": "number",
+            "default": 200
+        },
+        {
+            "name": "waveAmplitude",
+            "type": "number",
+            "default": 1.5
+        },
+        {
+            "name": "waveSpeed",
+            "type": "number",
+            "default": 0.04
+        },
+        {
+            "name": "cameraFov",
+            "type": "number",
+            "default": 45
+        },
+        {
+            "name": "cameraZ",
+            "type": "number",
+            "default": 20
+        },
+        {
+            "name": "bgPlaneCount",
+            "type": "number",
+            "default": 50
+        },
+        {
+            "name": "bgPlaneDrift",
+            "type": "number",
+            "default": 0.05
+        },
+        {
+            "name": "showCaption",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "heading",
+            "type": "string",
+            "default": "Circular Gallery"
+        },
+        {
+            "name": "tagline",
+            "type": "string",
+            "default": "an endless webgl carousel"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Items (image and caption), heading, tagline",
+        "Background, text and background plane colors",
+        "Arc curvature, plane size, spacing, wave, camera",
+        "Scroll easing, wheel and drag strength, snapping",
+        "Caption visibility and background plane count"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change image shading or add effects",
+            "where": "IMAGE_FRAGMENT constant"
+        },
+        {
+            "change": "Change wave distortion",
+            "where": "IMAGE_VERTEX constant"
+        },
+        {
+            "change": "Move the overlay text layout",
+            "where": "Overlay grid div with min-[53em] classes in the returned JSX"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL and the ogl package",
+        "Images must allow cross-origin loading",
+        "Section is h-screen and captures wheel and drag input over itself",
+        "Window resize, mouse and touch listeners are attached while mounted and removed on unmount"
+    ],
+    "mood": [
+        "elegant",
+        "immersive",
+        "editorial",
+        "calm"
+    ],
+    "industries": [
+        "travel",
+        "architecture",
+        "photography",
+        "art",
+        "hospitality"
+    ],
+    "sections": [
+        "gallery",
+        "portfolio",
+        "hero"
+    ],
+    "dependencies": [
+        "ogl"
+    ]
+}
