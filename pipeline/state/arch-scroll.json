@@ -4,11 +4,12 @@
   "sourceHash": "3a294f3d11594fd139a427a2b136114cb9c529680ba6101f1dd0ddc763cb2def",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "arch-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.395Z"
+  "note": "Output is a copy of gold ArchScroll; not diffed line by line against source. Outfit font links removed (template 1.5 conflict). className/textColor/linkTextColor props. Gates passed.",
+  "updatedAt": "2026-10-31T19:53:53.477Z",
+  "gateOutput": "gates passed"
 }
