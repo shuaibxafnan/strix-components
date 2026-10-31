@@ -1,0 +1,95 @@
+{
+    "slug": "arch-scroll",
+    "name": "Arch Scroll",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Pinned scroll showcase where text sections scroll on the left while images reveal one by one on the right, with the page background shifting color between sections.",
+    "contents": [
+        "Sections list, each with title, description, colored link button with leaf icon",
+        "Pinned image column with one image frame per section"
+    ],
+    "behavior": [
+        "Smooth scrolling through Lenis",
+        "Images reveal by clip-path wipe from bottom while the image position shifts",
+        "Page body background animates between section colors",
+        "Desktop pins the image column, screens 768px and below stack text and image per section with a parallax shift"
+    ],
+    "props": [
+        {
+            "name": "sections",
+            "type": "{title,desc,linkLabel,linkHref,linkColor,linkTextColor,imgSrc,imgAlt}[]",
+            "default": "4 sample sections"
+        },
+        {
+            "name": "bgColors",
+            "type": "string[]",
+            "default": [
+                "#EDF9FF",
+                "#FFECF2",
+                "#FFE8DB"
+            ]
+        },
+        {
+            "name": "initialBg",
+            "type": "string",
+            "default": "#f9ffe7"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#121212"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Number of sections, all text, links, images and button colors",
+        "Page background colors and text color"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Reveal images from top or sideways instead of bottom",
+            "where": "CLIP_CLOSED constant and the clipPath tween in the min-width 769px block"
+        },
+        {
+            "change": "Disable smooth scrolling",
+            "where": "Lenis setup block at the start of the async function inside the useEffect"
+        },
+        {
+            "change": "Animate a wrapper background instead of the page body",
+            "where": "The 'body' targets in the fromTo calls and the document.body.style lines"
+        },
+        {
+            "change": "Swap image column to the left",
+            "where": "Order of the two column divs inside data-arch main"
+        }
+    ],
+    "fixed": [
+        "Needs one background color fewer than the number of sections, extra colors are ignored",
+        "Changes the page body background while mounted and resets it on unmount",
+        "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+        "Image column is pinned and stacked in a fixed 400px frame on desktop"
+    ],
+    "mood": [
+        "editorial",
+        "calm",
+        "modern"
+    ],
+    "industries": [
+        "architecture",
+        "real estate",
+        "sustainability",
+        "travel"
+    ],
+    "sections": [
+        "features",
+        "portfolio"
+    ],
+    "dependencies": [
+        "gsap",
+        "lenis"
+    ]
+}
