@@ -4,11 +4,12 @@
   "sourceHash": "ba89b12f53da8826aa386263cc92637f9e52622143b0801276d6c323bd52d695",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "magnify-dock-nav",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.395Z"
+  "note": "apple-dock-nav -> magnify-dock-nav; removed demo bg/min-h-screen wrapper, bgColor, textColor, unused showCredits; no frame (fixed dock); no variants",
+  "updatedAt": "2026-10-31T19:53:11.370Z",
+  "gateOutput": "gates passed"
 }

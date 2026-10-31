@@ -1,0 +1,43 @@
+{
+  "slug": "magnify-dock-nav",
+  "name": "Magnify Dock Nav",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Bottom-docked row of app icons that magnify on hover, with neighboring icons scaling down by distance and a tooltip label rising above the hovered icon.",
+  "contents": ["Row of icon links with labels shown as tooltips"],
+  "behavior": [
+    "Hovered icon grows to the hover size, the two neighbors on each side grow to intermediate sizes",
+    "Sizes animate with a configurable duration and easing",
+    "Tooltip fades and slides up above the hovered icon"
+  ],
+  "props": [
+    {"name": "items", "type": "{icon,label,href}[]", "default": "11 sample app icons"},
+    {"name": "tooltipBgColor", "type": "string", "default": "#f5f5f5"},
+    {"name": "tooltipTextColor", "type": "string", "default": "#131313"},
+    {"name": "baseSize", "type": "string", "default": "5em"},
+    {"name": "hoverSize", "type": "string", "default": "8em"},
+    {"name": "siblingCloseSize", "type": "string", "default": "7em"},
+    {"name": "siblingFarSize", "type": "string", "default": "6em"},
+    {"name": "transitionDuration", "type": "string", "default": "500ms"},
+    {"name": "transitionEase", "type": "string", "default": "cubic-bezier(0.16,1,0.3,1)"},
+    {"name": "gapFromBottom", "type": "string", "default": "10vh"},
+    {"name": "fontScale", "type": "string", "default": "1.4vw"},
+    {"name": "tooltipOffset", "type": "string", "default": "-140%"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Icons, labels and links",
+    "Tooltip colors",
+    "Icon sizes, magnify steps, animation timing, dock position and scale"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change how many neighbors magnify", "where": "widthFor function"}
+  ],
+  "fixed": [
+    "Dock is fixed to the viewport bottom, centered, above page content (z-index 100)"
+  ],
+  "mood": ["playful", "modern", "minimal"],
+  "industries": ["saas", "portfolio", "creative agency", "technology"],
+  "sections": ["navbar", "global"],
+  "dependencies": []
+}
