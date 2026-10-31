@@ -1,0 +1,70 @@
+{
+  "slug": "motion-reel",
+  "name": "Motion Reel",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen WebGL video reel with shader transitions between three clips, a large serif title, a play button and chapter links that trigger the transition.",
+  "contents": [
+    "Full-screen WebGL canvas showing three videos with a canvas-drawn fallback",
+    "Large serif title that slides up per variant",
+    "Intro paragraph and a round play button",
+    "Chapter list that switches between the three clips"
+  ],
+  "behavior": [
+    "Videos are tested and loaded, play button enables when ready",
+    "Pressing play fades the picture in from below",
+    "Chapter click runs a shader transition to the chosen clip",
+    "Falls back to animated canvas patterns if videos cannot load, and shows an error text without WebGL",
+    "Resets all frames, videos and GL resources on unmount"
+  ],
+  "props": [
+    {"name": "variant", "type": "\"circle\" | \"slide\" | \"ripple\" | \"twist\"", "default": "circle"},
+    {"name": "intro", "type": "string", "default": "Three short films on a single surface. Choose one and the picture folds into the next."},
+    {"name": "enterLabel", "type": "string", "default": "Play"},
+    {"name": "loadingLabel", "type": "string", "default": "Loading"},
+    {"name": "errorLabel", "type": "string", "default": "WebGL is not available in this browser."},
+    {"name": "chapters", "type": "string[]", "default": ["Wake up", "Rejoice", "Breathe"]},
+    {"name": "titles", "type": "{circle,slide,ripple,twist}", "default": {"circle": "Ungovernable", "slide": "Unbreakable", "ripple": "Insubordinate", "twist": "Thriving"}},
+    {"name": "durations", "type": "{circle,slide,ripple,twist}", "default": {"circle": 2.5, "slide": 1, "ripple": 1, "twist": 1}},
+    {"name": "videos", "type": "string[]", "default": [
+      "https://videos.pexels.com/video-files/5214219/5214219-hd_1920_1080_25fps.mp4",
+      "https://videos.pexels.com/video-files/5992517/5992517-hd_1920_1080_30fps.mp4",
+      "https://videos.pexels.com/video-files/1578318/1578318-hd_1920_1080_30fps.mp4"
+    ]},
+    {"name": "bgColor", "type": "string", "default": "#000000"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Transition style, titles per style and transition durations",
+    "Intro, button and status labels, chapter names",
+    "Three video sources",
+    "Background and text colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the fallback canvas patterns", "where": "drawers array"},
+    {"change": "Add or edit a transition effect", "where": "BODIES object"},
+    {"change": "Change title and font styling", "where": "h1 element"}
+  ],
+  "fixed": [
+    "Needs exactly three videos, extra entries are ignored",
+    "Uses the next/font Google fonts Bodoni Moda and Hanken Grotesk",
+    "Videos must allow cross-origin loading, otherwise the canvas fallback is used",
+    "Requires WebGL support",
+    "Root fills the viewport height"
+  ],
+  "mood": ["cinematic", "editorial", "dramatic", "immersive"],
+  "industries": ["film", "fashion", "creative agency", "music", "advertising"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": [],
+  "variants": {
+    "prop": "variant",
+    "default": "circle",
+    "options": [
+      {"value": "circle", "look": "A circular reveal expands from the center to bring in the next clip", "useWhen": "A film studio hero wanting a soft, focal transition between showreel clips"},
+      {"value": "slide", "look": "Vertical stripes slide the clips sideways past each other", "useWhen": "A sports or event landing page with energetic, quick cuts"},
+      {"value": "ripple", "look": "Fine vertical ripples distort and dissolve one clip into the next", "useWhen": "A music or wellness hero needing a fluid, watery change"},
+      {"value": "twist", "look": "A twisting vertical wipe rotates the picture into the next clip", "useWhen": "A fashion or creative agency reel that wants a bold, graphic transition"}
+    ]
+  }
+}

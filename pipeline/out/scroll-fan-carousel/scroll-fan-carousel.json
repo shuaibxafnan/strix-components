@@ -1,0 +1,110 @@
+{
+    "slug": "scroll-fan-carousel",
+    "name": "Scroll Fan Carousel",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Scroll-driven 3D card carousel where a stack of image cards fans out in perspective and falls away one by one as the user scrolls through a pinned viewport.",
+    "contents": [
+        "Stack of image cards, each with category label and title over a dark gradient",
+        "Animated scroll cue arrow at the bottom of the screen"
+    ],
+    "behavior": [
+        "Cards enter with an intro animation, then scrolling scrubs them through a 3D fall-away timeline",
+        "Viewport is pinned with ScrollTrigger while the tall wrapper scrolls",
+        "Cards are grayscale and turn to color on hover",
+        "Scroll arrow loops a stroke animation and fades out after the first scroll"
+    ],
+    "props": [
+        {
+            "name": "cardsData",
+            "type": "{title,category,img}[]",
+            "default": "7 sample cards"
+        },
+        {
+            "name": "perspective",
+            "type": "number",
+            "default": 350
+        },
+        {
+            "name": "cardMaxWidth",
+            "type": "number",
+            "default": 420
+        },
+        {
+            "name": "cardMaxHeight",
+            "type": "number",
+            "default": 580
+        },
+        {
+            "name": "scrollHeight",
+            "type": "string",
+            "default": "800vh"
+        },
+        {
+            "name": "arrowColor",
+            "type": "string",
+            "default": "#FFFFFF"
+        },
+        {
+            "name": "backgroundColor",
+            "type": "string",
+            "default": "#0a0a0a"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#FFFFFF"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Number of cards, titles, categories and images",
+        "Perspective depth, card max size and total scroll length",
+        "Background, text and arrow colors"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Remove grayscale and color-on-hover look",
+            "where": "grayscale class on the carousel-card div"
+        },
+        {
+            "change": "Change the fan and fall motion",
+            "where": "The timeline built with transformOrigin and stagger tweens on .carousel-card"
+        },
+        {
+            "change": "Change the image overlay gradient",
+            "where": "linear-gradient in the backgroundImage style"
+        }
+    ],
+    "fixed": [
+        "Takes over page scrolling: a tall wrapper pins the viewport with ScrollTrigger and scrubs the animation",
+        "Scroll cue arrow is fixed to the bottom of the screen",
+        "Renders nothing until mounted on the client",
+        "Card size is 65% by 75% of the viewport up to the max size props"
+    ],
+    "mood": [
+        "dramatic",
+        "dark",
+        "cinematic",
+        "modern"
+    ],
+    "industries": [
+        "portfolio",
+        "creative agency",
+        "automotive",
+        "photography",
+        "technology"
+    ],
+    "sections": [
+        "hero",
+        "portfolio",
+        "gallery"
+    ],
+    "dependencies": [
+        "gsap"
+    ]
+}

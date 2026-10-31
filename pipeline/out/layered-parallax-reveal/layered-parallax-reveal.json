@@ -1,0 +1,67 @@
+{
+  "slug": "layered-parallax-reveal",
+  "name": "Layered Parallax Reveal",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen hero of stacked photo layers with a large title between them. On scroll each layer moves at its own speed to create depth, fading into a dark section below.",
+  "contents": [
+    "Background photo layer, mountain layer, large title layer and foreground person layer",
+    "Bottom fade gradient and a following empty scroll section"
+  ],
+  "behavior": [
+    "Four layers shift vertically at different percentages while scrolling through the hero",
+    "Optional smooth scrolling through Lenis synced to the GSAP ticker",
+    "Animation is tied to ScrollTrigger with configurable start, end and scrub"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#121212" },
+    { "name": "textColor", "type": "string", "default": "#EFEEEC" },
+    { "name": "lineColor", "type": "string", "default": "#000000" },
+    { "name": "fadeColorRgb", "type": "string", "default": "0,0,0" },
+    { "name": "spacerColor", "type": "string", "default": "#000000" },
+    { "name": "title", "type": "string", "default": "Parallax" },
+    { "name": "titleFontSize", "type": "string", "default": "11vw" },
+    { "name": "sectionPadding", "type": "string", "default": "2rem" },
+    { "name": "layer1Image", "type": "string", "default": "https://images.unsplash.com/photo-1590372648787-fa5a935c2c40?q=80&w=1920&auto=format&fit=crop" },
+    { "name": "layer2Image", "type": "string", "default": "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/mountain.png" },
+    { "name": "layer4Image", "type": "string", "default": "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/person.png" },
+    { "name": "layer1YPercent", "type": "number", "default": 70 },
+    { "name": "layer2YPercent", "type": "number", "default": 55 },
+    { "name": "layer3YPercent", "type": "number", "default": 40 },
+    { "name": "layer4YPercent", "type": "number", "default": 10 },
+    { "name": "scrub", "type": "number | boolean", "default": 0 },
+    { "name": "triggerStart", "type": "string", "default": "0% 0%" },
+    { "name": "triggerEnd", "type": "string", "default": "100% 0%" },
+    { "name": "enableLenis", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Title text and size, all three images",
+    "Background, text, line, fade and spacer colors",
+    "Movement distance of each layer, scrub and trigger range",
+    "Turn smooth scrolling on or off"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Add or remove parallax layers",
+      "where": "layers array inside the useEffect"
+    },
+    {
+      "change": "Change the fade gradient stops",
+      "where": "linear-gradient background in the bottom fade div"
+    },
+    {
+      "change": "Put content in the section after the hero",
+      "where": "last section element with spacerColor"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when enableLenis is true, so it should be the only smooth scroll on the page",
+    "Includes a 100svh empty section below the hero that gives the parallax its scroll range",
+    "Hero fades into the next section with a bottom gradient"
+  ],
+  "mood": ["cinematic", "dramatic", "immersive", "modern"],
+  "industries": ["travel", "outdoor", "photography", "film", "agency"],
+  "sections": ["hero"],
+  "dependencies": ["gsap", "lenis"]
+}

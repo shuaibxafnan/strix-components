@@ -1,0 +1,78 @@
+{
+    "slug": "atelier-studio-page",
+    "name": "Atelier Studio Page",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Full architecture studio landing page with a character-reveal hero, outlined about title, pixelated image reveals, a pinned team section and a footer, all driven by scroll and smooth scrolling.",
+    "contents": [
+        "Hero with brand title, vision text, email button and index grid",
+        "Fixed header navigation with mobile menu overlay",
+        "About section with floating placeholders, info tiles and service cards",
+        "Projects grid with pixelated image reveals",
+        "Pinned team section with member cards",
+        "Footer with contact, office address, links and back to top"
+    ],
+    "behavior": [
+        "Smooth scrolling through Lenis with animated anchor navigation",
+        "Header hides on scroll down and returns on scroll up",
+        "Hero and footer titles reveal character by character",
+        "About title fills in from outline on scroll",
+        "Project images depixelate when scrolled into view",
+        "Pixel grid color transitions between sections on scroll",
+        "Team title is pinned while member cards scroll over it",
+        "Respects reduced motion by skipping animations and smooth scroll"
+    ],
+    "props": [
+        {"name": "bgColor", "type": "string", "default": "#ffffff"},
+        {"name": "textColor", "type": "string", "default": "#000000"},
+        {"name": "darkColor", "type": "string", "default": "#000000"},
+        {"name": "accentColor", "type": "string", "default": "#a3a3a3"},
+        {"name": "cardBgColor", "type": "string", "default": "#ffffff"},
+        {"name": "cardTextColor", "type": "string", "default": "#000000"},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "brandTitleLines", "type": "string[]", "default": ["ATELIER", "NORTH"]},
+        {"name": "visionLabel", "type": "string", "default": "[VISION]"},
+        {"name": "ctaHref", "type": "string", "default": "mailto:info@ateliernorth.com"},
+        {"name": "ctaLabel", "type": "string", "default": "info@ateliernorth.com"},
+        {"name": "indexItems", "type": "{tag,label}[]", "default": "4 sample items"},
+        {"name": "navLinks", "type": "{label,href}[]", "default": "3 sample links"},
+        {"name": "services", "type": "{title,description,items}[]", "default": "3 sample services"},
+        {"name": "projects", "type": "{number,title,location,image}[]", "default": "5 sample projects"},
+        {"name": "members", "type": "{role,name,bio,number}[]", "default": "6 sample members"},
+        {"name": "footerLinks", "type": "{label,href}[]", "default": "2 sample links"},
+        {"name": "copyright", "type": "string", "default": "© 2026 ATELIER NORTH"}
+    ],
+    "editableByProps": [
+        "All text, links, images, projects, services and team members",
+        "Background, text, dark section, accent and card colors"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change fonts",
+            "where": "loadFonts function and the anton constant"
+        },
+        {
+            "change": "Change the project grid placement",
+            "where": "projectSlots constant"
+        },
+        {
+            "change": "Change the team card placement",
+            "where": "memberSlots constant"
+        },
+        {
+            "change": "Change pixel grid density",
+            "where": "pixelGrid constant and the pixels function inside the useEffect"
+        }
+    ],
+    "fixed": [
+        "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+        "Header and mobile menu are fixed to the viewport",
+        "Loads Anton and Kode Mono from Google Fonts at runtime",
+        "Includes a 600vh pinned team section to give the pin scroll room",
+        "Pixel transition grids at section edges use bgColor and darkColor so those must match the section colors"
+    ],
+    "mood": ["editorial", "minimal", "architectural", "bold"],
+    "industries": ["architecture", "interior design", "real estate", "design studio"],
+    "sections": ["hero", "about", "services", "portfolio", "contact"],
+    "dependencies": ["gsap", "lenis"]
+}

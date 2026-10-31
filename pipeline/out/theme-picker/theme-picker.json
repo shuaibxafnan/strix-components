@@ -1,0 +1,40 @@
+{
+  "slug": "theme-picker",
+  "name": "Theme Picker",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Centered card that previews four color themes as selectable swatch tiles, with a sliding-icon cycle button and a footer button. The whole card recolors on selection.",
+  "contents": [
+    "Card with title, description and sliding icon cycle button",
+    "Grid of theme tiles with icon, name and overlapping color chips",
+    "Footer cycle button"
+  ],
+  "behavior": [
+    "Selecting a tile or cycling applies that theme's tokens as CSS variables with a color transition",
+    "Active tile shows a ring and checkmark badge",
+    "Top icon column slides vertically to the active theme icon"
+  ],
+  "props": [
+    { "name": "title", "type": "string", "default": "Variable Themes" },
+    { "name": "description", "type": "string", "default": "Cycle through 4 distinctive interface layers, optimized from darkest to lightest configurations." },
+    { "name": "buttonLabel", "type": "string", "default": "Cycle Theme" },
+    { "name": "themes", "type": "Record<string,{bg,border,surface,textPrimary,textSecondary,primary,textInverse}>", "default": "dark, sunset, sunrise, light token sets" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Title, description and button label",
+    "All theme names and their seven color tokens"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change theme icons", "where": "ICONS constant and the icon components" },
+    { "change": "Change icon slide distance", "where": "translateY style on the sliding track" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Icons are chosen by theme position and cycle after four themes"
+  ],
+  "mood": ["clean", "playful", "modern"],
+  "industries": ["saas", "design tools", "developer tools"],
+  "sections": ["features", "other"],
+  "dependencies": []
+}

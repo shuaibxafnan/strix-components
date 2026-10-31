@@ -1,0 +1,99 @@
+{
+    "slug": "flowing-menu",
+    "name": "Flowing Menu",
+    "category": "navigation-menus",
+    "isReactBits": true,
+    "description": "Full-height list menu where a spring-driven colored band follows the cursor across rows, revealing a scrolling marquee of the item text with optional images.",
+    "contents": [
+        "Vertical list of rows, each a link or button with label, optional index number, meta text and arrow icon",
+        "Per-row hidden marquee band with repeated text and optional pill, rounded or circle image",
+        "Optional dividers between rows and a dot marking the active item",
+        "Optional floating band layer that carries content between rows"
+    ],
+    "behavior": [
+        "Band springs to the hovered row with stretch and magnet lean toward the cursor, and releases to the top or bottom edge on pointer leave",
+        "Marquee scrolls inside the band, and cursor horizontal speed adds extra push",
+        "Keyboard focus-visible moves the band to the focused row, touch tap moves it on pointer down",
+        "Intro animation slides labels up, fades details, draws dividers, then sweeps the band down the rows",
+        "Respects prefers-reduced-motion by skipping the intro, springs and marquee movement",
+        "Row dimming of inactive rows when dimInactive is on"
+    ],
+    "props": [
+        { "name": "items", "type": "{text,link?,meta?,marquee?,image?}[]", "default": [] },
+        { "name": "speed", "type": "number", "default": 60 },
+        { "name": "direction", "type": "'left' | 'right' | 'alternate'", "default": "left" },
+        { "name": "followCursor", "type": "number", "default": 0.4 },
+        { "name": "duration", "type": "number", "default": 0.5 },
+        { "name": "stretch", "type": "number", "default": 0.6 },
+        { "name": "magnet", "type": "number", "default": 0.25 },
+        { "name": "bandInset", "type": "number", "default": 0 },
+        { "name": "bandRadius", "type": "number", "default": 0 },
+        { "name": "carryContent", "type": "boolean", "default": false },
+        { "name": "textColor", "type": "string", "default": "#ffffff" },
+        { "name": "bgColor", "type": "string", "default": "#120F17" },
+        { "name": "marqueeBgColor", "type": "string", "default": "#ffffff" },
+        { "name": "marqueeTextColor", "type": "string", "default": "#120F17" },
+        { "name": "borderColor", "type": "string", "default": "rgba(255, 255, 255, 0.14)" },
+        { "name": "dividers", "type": "boolean", "default": true },
+        { "name": "dimInactive", "type": "boolean", "default": false },
+        { "name": "align", "type": "'center' | 'left'", "default": "center" },
+        { "name": "showIndex", "type": "boolean", "default": false },
+        { "name": "showArrow", "type": "boolean", "default": false },
+        { "name": "imageShape", "type": "'pill' | 'rounded' | 'circle'", "default": "pill" },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "activeIndex", "type": "number", "default": "undefined" },
+        { "name": "onItemClick", "type": "(item, index, event) => void", "default": "undefined" },
+        { "name": "ariaLabel", "type": "string", "default": "Menu" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Menu items: labels, links, meta text, marquee text and images",
+        "Marquee speed, direction, cursor push, spring duration, stretch and magnet",
+        "Band inset and corner radius, and whether content is carried between rows",
+        "Text, background, band, band text and divider colors",
+        "Dividers, index numbers, arrows, dimming, left or center alignment, intro on or off",
+        "Active item marker, click handler, aria label, className and inline style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the arrow icon",
+            "where": "ArrowUpRight01Icon import and the HugeiconsIcon in the END span"
+        },
+        {
+            "change": "Change intro timing or easing",
+            "where": "EASE constant and the intro useIsoLayoutEffect with node.animate calls"
+        },
+        {
+            "change": "Change font sizes of labels and marquee text",
+            "where": "LABEL and PART_TEXT class constants"
+        },
+        {
+            "change": "Change minimum row height",
+            "where": "ITEM class constant (min-h-14)"
+        }
+    ],
+    "fixed": [
+        "Fills its parent with h-full w-full, so the parent must have a set height",
+        "Rows share the height equally, with a 56px minimum",
+        "Uses container query units, so text scales with row size",
+        "Needs Tailwind and the hugeicons packages",
+        "Animation runs on a custom requestAnimationFrame loop with a spring model",
+        "Pointer hover effects are ignored for touch pointers, which use tap instead",
+        "A row renders as an anchor when item.link is set, otherwise as a button",
+        "Items are keyed by text and index"
+    ],
+    "mood": ["bold", "playful", "modern", "editorial"],
+    "industries": ["agency", "portfolio", "fashion", "creative studio", "events"],
+    "sections": ["navbar", "portfolio", "services"],
+    "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+    "variants": {
+        "prop": "imageShape",
+        "default": "pill",
+        "options": [
+            { "value": "pill", "look": "Wide oval images in the marquee band", "useWhen": "Menu of landscape project or category thumbnails" },
+            { "value": "rounded", "look": "3:2 rounded rectangle images", "useWhen": "Menu showing photo previews of work or destinations" },
+            { "value": "circle", "look": "Square circular images", "useWhen": "Menu of people, products or avatar-like icons" }
+        ]
+    }
+}
