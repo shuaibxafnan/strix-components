@@ -1,0 +1,23 @@
+{
+"slug":"accordion-gallery","name":"Accordion Gallery","category":"cards-galleries","isReactBits":false,
+"description":"Horizontal row of staggered image cards where the hovered card expands while the others fade, forming an accordion style gallery.",
+"contents":["Row of image cards with staggered vertical offsets"],
+"behavior":["Hovered card expands its width and its image zooms slightly","Other cards fade while one is hovered","Card height switches between mobile and desktop values at 768px","Renders nothing until mounted on the client"],
+"props":[
+{"name":"items","type":"{id,src,alt}[]","default":"10 sample images"},
+{"name":"gridBgColor","type":"string","default":"#f0f0f0"},
+{"name":"cardBgColor","type":"string","default":"#ffffff"},
+{"name":"maxContainerWidth","type":"string","default":"1440px"},
+{"name":"containerPadding","type":"string","default":"0 3rem"},
+{"name":"cardMinPercent","type":"number","default":1},
+{"name":"cardActivePercent","type":"number","default":30},
+{"name":"cardHeightMobile","type":"number","default":400},
+{"name":"cardHeightDesktop","type":"number","default":600},
+{"name":"transitionSpeed","type":"number","default":600},
+{"name":"initialOpacity","type":"number","default":0.2},
+{"name":"className","type":"string","default":""}],
+"editableByProps":["Images and alt text","Background and card colors","Container width and padding","Expanded and collapsed widths, card heights, transition speed, faded opacity"],
+"needsCodeEdit":[{"change":"Change the staggered vertical offsets of cards","where":"getMarginTopClass function"}],
+"fixed":["Staggered offsets are hardcoded for the first 10 positions","Mobile card height is read from window width once at render"],
+"mood":["modern","playful","clean"],"industries":["photography","portfolio","travel","fashion"],
+"sections":["gallery","portfolio"],"dependencies":[]}
