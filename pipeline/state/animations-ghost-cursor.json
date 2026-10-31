@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "animations-ghost-cursor",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.586Z"
+  "note": "Bits describe-only. Category cursor-effects. Needs WebGL2 + EXT_color_buffer_float; pointer listeners on window/document; theme documented as variants. Gates passed.",
+  "updatedAt": "2026-10-31T19:52:37.383Z",
+  "gateOutput": "gates passed"
 }
