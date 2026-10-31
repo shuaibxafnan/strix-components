@@ -1,0 +1,66 @@
+{
+    "slug": "book-shelf",
+    "name": "Book Shelf",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Interactive bookshelf where hovering a book slides it out of the shelf with a shadow shift while its title, author and description animate in below.",
+    "contents": [
+        "Row of book covers with a narrow side-spine book on a shelf board",
+        "Description block per book with title, author and text",
+        "Optional dot grid background"
+    ],
+    "behavior": [
+        "Hovering a book pulls its cover forward, shifts pages and grows its floor shadow with GSAP timelines",
+        "Description lines slide up in a stagger for the hovered book and slide out for the previous one",
+        "Leaving the shelf returns to the default open book"
+    ],
+    "props": [
+        { "name": "books", "type": "{index,title,coverSrc,coverAlt,descTitle,author,description}[]", "default": "3 sample books" },
+        { "name": "sideBook", "type": "{index,title,descTitle,author,description} | null", "default": "Design Systems sample" },
+        { "name": "defaultOpenIndex", "type": "number", "default": 2 },
+        { "name": "shelfMaxWidth", "type": "string", "default": "800px" },
+        { "name": "fontFamily", "type": "string", "default": "Bricolage Grotesque" },
+        { "name": "enableDotGrid", "type": "boolean", "default": true },
+        { "name": "backgroundColor", "type": "string", "default": "#ffffff" },
+        { "name": "textColor", "type": "string", "default": "#333333" },
+        { "name": "titleColor", "type": "string", "default": "#000000" },
+        { "name": "shelfBackground", "type": "string", "default": "linear-gradient(to bottom, #f0f0f0, #e0e0e0)" },
+        { "name": "backCoverColor", "type": "string", "default": "#111111" },
+        { "name": "pageColor", "type": "string", "default": "#ffffff" },
+        { "name": "shadowColor", "type": "string", "default": "rgba(0,0,0,0.15)" },
+        { "name": "sideBookBackground", "type": "string", "default": "linear-gradient(to right, #444 0%, #666 50%, #444 100%)" },
+        { "name": "sideBookTextColor", "type": "string", "default": "#f0f0f0" },
+        { "name": "dotColor", "type": "string", "default": "rgba(0,0,0,0.15)" },
+        { "name": "bookHeight", "type": "number", "default": 220 },
+        { "name": "bookWidth", "type": "number", "default": 160 },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Books, covers, descriptions, side book and default open book",
+        "All colors, shelf width, book size, font family and dot grid"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change hover pull-out distance or timing of a book",
+            "where": "bookTimelinesRef setup inside the first useEffect"
+        },
+        {
+            "change": "Change description reveal motion",
+            "where": "animateDescIn function"
+        },
+        {
+            "change": "Change shelf position or description area size",
+            "where": "bottom-[270px] shelf board and bottom-[30px] description container"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Loads the Bricolage Grotesque font from Google Fonts through link tags",
+        "Needs at least two books for the side book to appear between them",
+        "Shelf layout is positioned inside a fixed 500px tall stage"
+    ],
+    "mood": ["editorial", "tactile", "minimal", "calm"],
+    "industries": ["publishing", "bookstores", "education", "design studios", "libraries"],
+    "sections": ["portfolio", "gallery", "features"],
+    "dependencies": ["gsap"]
+}
