@@ -6,10 +6,15 @@
   "bitsFolder": null,
   "slug": "atelier-studio-page",
   "nameLocked": true,
-  "status": "gate_failed",
-  "attempt": 0,
-  "comments": [],
+  "status": "retry_requested",
+  "attempt": 1,
+  "comments": [
+    {
+      "at": "2026-10-31T19:26:17.483Z",
+      "text": "Two fixes. 1) JSON props is incomplete: list every prop in the component signature in props with type and default, and update editableByProps and needsCodeEdit to match. 2) Every addEventListener in the component must have a matching removeEventListener in the same effect cleanup. Fix the code for this only, change nothing else."
+    }
+  ],
   "note": "CDN loaders replaced with imports (gsap, lenis); removed tutorial note and credit props/cells. Props list partial. Agent gates not run (missing ajv, @babel/parser).",
-  "updatedAt": "2026-10-31T19:03:24.084Z",
-  "gateOutput": "node:internal/modules/package_json_reader:314\n  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);\n        ^\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find package 'ajv' imported from /home/user/strix-components/pipeline/scripts/gates.mjs\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)\n    at packageResolve (node:internal/modules/esm/resolve:772:81)\n    at moduleResolve (node:internal/modules/esm/resolve:859:18)\n    at defaultResolve (node:internal/modules/esm/resolve:989:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)\n    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)\n    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)\n    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {\n  code: 'ERR_MODULE_NOT_FOUND'\n}\n\nNode.js v22.23.4"
+  "updatedAt": "2026-10-31T19:26:17.484Z",
+  "gateOutput": "ERROR prop visionText is in code but not in JSON props\nERROR prop scrollLabels is in code but not in JSON props\nERROR prop sectionIds is in code but not in JSON props\nERROR prop menuOpenLabel is in code but not in JSON props\nERROR prop menuCloseLabel is in code but not in JSON props\nERROR prop menuTitle is in code but not in JSON props\nERROR prop menuEmailLabel is in code but not in JSON props\nERROR prop aboutTag is in code but not in JSON props\nERROR prop aboutText is in code but not in JSON props\nERROR prop aboutTitleWords is in code but not in JSON props\nERROR prop floatingItems is in code but not in JSON props\nERROR prop infoItems is in code but not in JSON props\nERROR prop projectsTag is in code but not in JSON props\nERROR prop projectsText is in code but not in JSON props\nERROR prop projectsTitleLines is in code but not in JSON props\nERROR prop membersTag is in code but not in JSON props\nERROR prop membersText is in code but not in JSON props\nERROR prop membersTitle is in code but not in JSON props\nERROR prop contactTag is in code but not in JSON props\nERROR prop contactText is in code but not in JSON props\nERROR prop officeLabel is in code but not in JSON props\nERROR prop officeAddressLines is in code but not in JSON props\nERROR prop footerTitle is in code but not in JSON props\nERROR prop backToTopLabel is in code but not in JSON props\nERROR prop backToTopArrow is in code but not in JSON props\nERROR addEventListener without removeEventListener"
 }

@@ -120,8 +120,12 @@ if (meta.variants) {
     if (new Set(values).size !== values.length) err("duplicate variant values");
     for (const v of values) {
         const safe = v.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        if (!new RegExp(`["'\`]${safe}["'\`]`).test(code)) {
-            err(`variant value ${v} not found in code`);
+        const quoted = new RegExp(`["'\`]${safe}["'\`]`).test(code);
+        const asKey = new RegExp(`(^|[\\s,{])${safe}\\s*:`, "m").test(code);
+        const asWord = new RegExp(`\\b${safe}\\b`).test(code);
+        if (!quoted && !asKey) {
+            if (asWord) warn(`variant value ${v} only found as a bare word in code`);
+            else err(`variant value ${v} not found in code`);
         }
     }
     const safeProp = prop.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -199,7 +203,10 @@ if (state.isReactBits) {
     if (/<style\b/.test(code) && !/`/.test(code)) warn("style tag without template literal");
 
     const has = (re) => re.test(code);
-    if (has(/addEventListener\(/) && !has(/removeEventListener\(/)) err("addEventListener without removeEventListener");
+    if (has(/addEventListener\(/) && !has(/removeEventListener\(/)) {
+        if (has(/once\s*:\s*true/)) warn("addEventListener with once and no removeEventListener");
+        else if (!has(/AbortController|\bsignal\s*[:,}]/)) err("addEventListener without removeEventListener");
+    }
     if (has(/setInterval\(/) && !has(/clearInterval\(/)) err("setInterval without clearInterval");
     if (has(/requestAnimationFrame\(/) && !has(/cancelAnimationFrame\(/)) warn("requestAnimationFrame without cancelAnimationFrame");
     if (has(/setTimeout\(/) && !has(/clearTimeout\(/)) warn("setTimeout without clearTimeout");

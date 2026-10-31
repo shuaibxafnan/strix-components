@@ -6,10 +6,10 @@
   "bitsFolder": null,
   "slug": "theme-picker",
   "nameLocked": true,
-  "status": "gate_failed",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
   "note": "Frame added; added themes, className props. First-click off-by-one kept from source. Agent gates not run (missing ajv, @babel/parser).",
-  "updatedAt": "2026-10-31T19:01:26.636Z",
-  "gateOutput": "node:internal/modules/package_json_reader:314\n  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);\n        ^\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find package 'ajv' imported from /home/user/strix-components/pipeline/scripts/gates.mjs\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)\n    at packageResolve (node:internal/modules/esm/resolve:772:81)\n    at moduleResolve (node:internal/modules/esm/resolve:859:18)\n    at defaultResolve (node:internal/modules/esm/resolve:989:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)\n    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)\n    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)\n    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {\n  code: 'ERR_MODULE_NOT_FOUND'\n}\n\nNode.js v22.23.4"
+  "updatedAt": "2026-10-31T19:15:55.576Z",
+  "gateOutput": "gates passed"
 }

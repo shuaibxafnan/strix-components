@@ -33,6 +33,14 @@ const slugTaken = (slug, selfSourceSlug) =>
             (s.sourceSlug === slug || s.slug === slug),
     );
 
+const runGates = (slug) => {
+    const gates = path.join(PIPELINE, "scripts", "gates.mjs");
+    if (!fs.existsSync(gates)) fail("scripts/gates.mjs not found");
+    const run = spawnSync(process.execPath, [gates, slug], { encoding: "utf8" });
+    const output = `${run.stdout ?? ""}${run.stderr ?? ""}`.trim().slice(0, 2000);
+    return { ok: run.status === 0, output };
+};
+
 if (cmd === "list") {
     const order = (s) => (s.status === "retry_requested" ? 0 : 1);
     listStates()
@@ -70,18 +78,39 @@ if (cmd === "list") {
     s.note = flags.note ?? "";
     writeState(s);
 
-    const gates = path.join(PIPELINE, "scripts", "gates.mjs");
-    if (!fs.existsSync(gates)) fail("scripts/gates.mjs not found");
-    const run = spawnSync(process.execPath, [gates, slug], { encoding: "utf8" });
-    const output = `${run.stdout ?? ""}${run.stderr ?? ""}`.trim().slice(0, 2000);
-
-    s.gateOutput = output;
-    s.status = run.status === 0 ? "in_review" : "gate_failed";
+    const result = runGates(slug);
+    s.gateOutput = result.output;
+    s.status = result.ok ? "in_review" : "gate_failed";
     delete s.startedAt;
     delete s.resumeStatus;
     writeState(s);
     console.log(`${s.sourceSlug} -> ${s.status}`);
-    if (run.status !== 0) console.log(output);
+    if (!result.ok) console.log(result.output);
+} else if (cmd === "regate") {
+    const s = need(args[0]);
+    if (!["gate_failed", "in_review"].includes(s.status)) {
+        fail(`${s.sourceSlug} is ${s.status}, regate only works on gate_failed or in_review`);
+    }
+    const result = runGates(s.slug || s.sourceSlug);
+    s.gateOutput = result.output;
+    s.status = result.ok ? "in_review" : "gate_failed";
+    writeState(s);
+    console.log(`${s.sourceSlug} -> ${s.status}`);
+    if (!result.ok) console.log(result.output);
+} else if (cmd === "retry") {
+    const s = need(args[0]);
+    if (!["gate_failed", "in_review"].includes(s.status)) fail(`${s.sourceSlug} is ${s.status}`);
+    if (!flags.comment) fail("--comment is required");
+    if (s.attempt >= config.retryCap) {
+        s.status = "needs_manual";
+        writeState(s);
+        fail(`${s.sourceSlug} reached the retry cap of ${config.retryCap}`);
+    }
+    s.attempt += 1;
+    s.comments.push({ at: new Date().toISOString(), text: flags.comment });
+    s.status = "retry_requested";
+    writeState(s);
+    console.log(`${s.sourceSlug} -> retry_requested (attempt ${s.attempt})`);
 } else if (cmd === "reset-stale") {
     const limit = config.staleInProgressMinutes * 60 * 1000;
     let count = 0;
@@ -97,5 +126,5 @@ if (cmd === "list") {
     }
     console.log(`reset ${count}`);
 } else {
-    fail("commands: list <status...>, summary, get <slug>, start <slug>, finish <slug> --slug <s> --note <n>, reset-stale [--force yes]");
+    fail("commands: list <status...>, summary, get <slug>, start <slug>, finish <slug> --slug <s> --note <n>, regate <slug>, reset-stale [--force yes]");
 }
