@@ -1,0 +1,41 @@
+{
+  "slug": "animated-text-buttons",
+  "name": "Animated Text Buttons",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Row of three pill buttons whose letters animate one by one on hover: a jumping bounce, a smoke blur-out, and a skewed drive-by.",
+  "contents": ["Three pill buttons with per-letter spans: jumping, smoke and drive hover styles"],
+  "behavior": [
+    "On hover each letter plays a staggered keyframe animation",
+    "Buttons lift and gain a stronger shadow on hover",
+    "Layout stacks vertically on small screens and sits in a row from sm up"
+  ],
+  "props": [
+    {"name": "primaryBg", "type": "string", "default": "#275efe"},
+    {"name": "primaryText", "type": "string", "default": "#ffffff"},
+    {"name": "darkBg", "type": "string", "default": "#2F3545"},
+    {"name": "darkText", "type": "string", "default": "#ffffff"},
+    {"name": "whiteBg", "type": "string", "default": "#ffffff"},
+    {"name": "whiteText", "type": "string", "default": "#275efe"},
+    {"name": "fontSize", "type": "string", "default": "16px"},
+    {"name": "letterSpacing", "type": "string", "default": "0.5px"},
+    {"name": "jumpingLabel", "type": "string", "default": "Jumping"},
+    {"name": "smokeLabel", "type": "string", "default": "Smoke"},
+    {"name": "driveLabel", "type": "string", "default": "Drive"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Button labels, background and text colors, font size and letter spacing"],
+  "needsCodeEdit": [
+    {"change": "Change the number of buttons or their hover effects", "where": "The three button elements and the move, smoke and drive keyframes in the style block"},
+    {"change": "Change the button shadow colors", "where": "The box-shadow classes on each button"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Button shadow colors are hardcoded in the classes",
+    "Keyframes move, smoke and drive are injected as global CSS"
+  ],
+  "mood": ["playful", "modern", "energetic"],
+  "industries": ["saas", "creative agency", "e-commerce", "gaming"],
+  "sections": ["hero", "cta"],
+  "dependencies": []
+}
