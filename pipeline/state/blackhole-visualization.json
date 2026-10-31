@@ -4,11 +4,12 @@
   "sourceHash": "598586815d10343f931c310c00c68a3099f5b4126a95da9c1999543d2f87b5bb",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "black-hole-portal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.401Z"
+  "note": "BlackHoleVisualization -> BlackHolePortal. Removed CDN gsap script load (unused), isMounted placeholder; added enterLabel and className props; fixed cleanup of rAF and click timeouts. No frame change (full-bleed). No variants.",
+  "updatedAt": "2026-10-31T20:03:34.626Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }
