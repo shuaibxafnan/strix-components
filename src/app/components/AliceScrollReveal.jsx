@@ -7,9 +7,16 @@ const CLIP_CLOSED =
 const CLIP_OPEN =
   "polygon(0 0, 100% 0, 100% 0%, 0 0%, 0 100%, 100% 100%, 100% 100%, 0 100%)";
 
+const RULE = "border-[color-mix(in_srgb,currentColor_25%,transparent)]";
+const PAD = "px-[clamp(20px,4vw,56px)]";
+const BODY =
+  "text-[clamp(1.125rem,1.35vw,1.3125rem)]";
+const DROP_CAP =
+  "first-letter:float-left first-letter:mr-3 first-letter:mt-[0.12em] first-letter:text-[4.6em] first-letter:font-medium first-letter:leading-[0.72]";
+
 const DEFAULT_IMAGES = [
   {
-    src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png",
+    src: "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/card.png",
     alt: "A Poké Ball item",
     width: 300,
     top: "-8%",
@@ -19,7 +26,7 @@ const DEFAULT_IMAGES = [
     speed: 3,
   },
   {
-    src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    src: "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/lady.png",
     alt: "Pikachu falling",
     width: 300,
     top: "18%",
@@ -28,7 +35,7 @@ const DEFAULT_IMAGES = [
     speed: 4,
   },
   {
-    src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/great-ball.png",
+    src: "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/book.png",
     alt: "An open item book",
     width: 90,
     top: "6%",
@@ -36,7 +43,7 @@ const DEFAULT_IMAGES = [
     speed: 5,
   },
   {
-    src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ultra-ball.png",
+    src: "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/watch.png",
     alt: "A pocket watch item",
     width: 120,
     top: "-12%",
@@ -44,7 +51,7 @@ const DEFAULT_IMAGES = [
     speed: 6,
   },
   {
-    src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png",
+    src: "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/lamp.png",
     alt: "A kettle item",
     width: 55,
     top: "-20%",
@@ -79,9 +86,22 @@ const DEFAULT_TRAILING = [
 export default function AliceScrollReveal({
   headingText = "RABBIT HOLE",
   introHeading = "Alice’s Adventures\nin Wonderland",
+  introAuthor = "Lewis Carroll",
+  introYear = "1865",
+  introHint = "Scroll to fall",
+  introNote = "In which a white rabbit leads Alice astray.",
+  leadingChapterLabel = "Chapter",
+  leadingNumeral = "I",
+  leadingTitle = "Down the Rabbit-Hole",
   leadingParagraphs = DEFAULT_LEADING,
+  pullQuote = "“And what is the use of a book,” thought Alice, “without pictures or conversations?”",
+  pullQuoteSource = "Alice, Chapter I",
   revealParagraphs = DEFAULT_REVEAL,
+  trailingTitle = "The Long Hall",
+  trailingNumeral = "II",
   trailingParagraphs = DEFAULT_TRAILING,
+  outroText = "“Curiouser and curiouser!”",
+  outroSource = "Alice, Chapter II",
   images = DEFAULT_IMAGES,
   bgColor = "#000000",
   revealBgColor = "#FFFFFF",
@@ -90,10 +110,12 @@ export default function AliceScrollReveal({
   contentBgColor = "#FFFFFF",
   contentTextColor = "#111111",
   fontFamily = "'Open Sans', system-ui, sans-serif",
-  bodyLineHeight = "1.75",
+  serifFamily = "'EB Garamond', Georgia, serif",
+  bodyLineHeight = "1.7",
   articleMaxWidth = "31.25rem",
-  introFontSize = "clamp(1.875rem, 8.083vw - 0.217rem, 6.25rem)",
-  introLineHeight = "clamp(2.813rem, 9.815vw + 0.273rem, 8.125rem)",
+  introFontSize = "clamp(2.75rem, 9.5vw, 9rem)",
+  introLineHeight = "0.95",
+  introTracking = "-0.02em",
   headingFontSize = "clamp(3.125rem, 12.61vw - 0.138rem, 15.625rem)",
   headingLineHeight = "clamp(4.688rem, 15.763vw + 0.609rem, 20.313rem)",
   headingTracking = "-0.01em",
@@ -141,7 +163,7 @@ export default function AliceScrollReveal({
 
     const run = async () => {
       await loadStyle(
-        "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap",
+        "https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Open+Sans:wght@400;700;800&display=swap",
       );
       await loadScript(
         "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js",
@@ -168,6 +190,59 @@ export default function AliceScrollReveal({
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       ctx = gsap.context(() => {
+        const lift = (selector) => {
+          root.querySelectorAll(selector).forEach((el) => {
+            gsap.fromTo(
+              el,
+              { y: 36 },
+              {
+                y: 0,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top bottom",
+                  end: "top 72%",
+                  scrub: true,
+                },
+              },
+            );
+          });
+        };
+
+        if (!reduced) {
+          const lines = root.querySelectorAll(".intro__line-inner");
+          const intro = root.querySelector(".intro");
+          if (lines.length && intro) {
+            gsap.from(lines, {
+              yPercent: 110,
+              duration: 1.3,
+              ease: "power4.out",
+              stagger: 0.14,
+            });
+            lines.forEach((el, i) => {
+              gsap.to(el, {
+                x: (i % 2 ? 1 : -1) * window.innerWidth * 0.06,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: intro,
+                  start: "top top",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              });
+            });
+          }
+          const cue = root.querySelector(".intro__cue");
+          if (cue) {
+            gsap.fromTo(
+              cue,
+              { yPercent: -100 },
+              { yPercent: 200, duration: 1.6, ease: "power2.inOut", repeat: -1 },
+            );
+          }
+          lift(".lift-lead");
+        }
+
         const section = root.querySelector(".hero-reveal");
         const stage = root.querySelector(".hero-reveal__stage");
         const header = root.querySelector(".hero-reveal__header");
@@ -249,6 +324,8 @@ export default function AliceScrollReveal({
             0,
           );
         });
+
+        lift(".lift-trail");
       }, root);
 
       requestAnimationFrame(() => {
@@ -277,7 +354,7 @@ export default function AliceScrollReveal({
   return (
     <main
       ref={rootRef}
-      className="main relative max-w-[100vw] overflow-x-hidden"
+      className="main relative max-w-[100vw] overflow-x-clip"
       style={{
         backgroundColor: contentBgColor,
         color: contentTextColor,
@@ -286,28 +363,113 @@ export default function AliceScrollReveal({
       }}
     >
       {introHeading ? (
-        <section className="intro flex min-h-screen items-center justify-center px-[1.5rem]">
-          <h1
-            className="intro__heading whitespace-pre-line text-center font-extrabold"
-            style={{ fontSize: introFontSize, lineHeight: introLineHeight }}
+        <section
+          className={
+            "intro relative flex min-h-screen flex-col justify-between pt-8 pb-10 " +
+            PAD
+          }
+          style={{ fontFamily: serifFamily }}
+        >
+          <div
+            className={
+              "flex items-start justify-between border-b pb-4 text-[0.95rem] " +
+              RULE
+            }
           >
-            {introHeading}
+            <span>{introAuthor}</span>
+            <span>{introYear}</span>
+          </div>
+
+          <h1
+            className="intro__heading flex flex-col py-12 font-medium"
+            style={{
+              fontSize: introFontSize,
+              lineHeight: introLineHeight,
+              letterSpacing: introTracking,
+            }}
+          >
+            {introHeading.split("\n").map((line, i) => (
+              <span
+                key={i}
+                className={
+                  "block overflow-hidden pb-[0.08em] " +
+                  (i % 2 ? "self-end text-right" : "self-start")
+                }
+              >
+                <span className="intro__line-inner inline-block will-change-transform">
+                  {line}
+                </span>
+              </span>
+            ))}
           </h1>
+
+          <div
+            className={
+              "flex items-end justify-between gap-8 border-t pt-4 text-[0.95rem] " +
+              RULE
+            }
+          >
+            <div className="flex items-center gap-4">
+              <span className="relative block h-12 w-px overflow-hidden bg-[color-mix(in_srgb,currentColor_20%,transparent)]">
+                <span className="intro__cue absolute inset-x-0 top-0 block h-1/2 bg-current" />
+              </span>
+              <span>{introHint}</span>
+            </div>
+            <p className="max-w-[18rem] text-right italic leading-snug">
+              {introNote}
+            </p>
+          </div>
         </section>
       ) : null}
 
       {leadingParagraphs.length ? (
-        <section className="content flex justify-center py-[6.25rem] px-[1.5rem]">
-          <article
-            className="article space-y-6"
-            style={{ maxWidth: articleMaxWidth }}
-          >
-            {leadingParagraphs.map((p, i) => (
-              <p key={i} className="m-0">
-                {p}
+        <section
+          className={"py-[clamp(5rem,12vw,10rem)] " + PAD}
+          style={{ fontFamily: serifFamily }}
+        >
+          <div className="mx-auto grid max-w-[80rem] gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,40rem)]">
+            <div className="lg:sticky lg:top-24 lg:self-start">
+              <p className="text-[0.95rem]">{leadingChapterLabel}</p>
+              <p className="text-[clamp(6rem,15vw,14rem)] font-medium leading-[0.8] tracking-[-0.03em]">
+                {leadingNumeral}
               </p>
-            ))}
-          </article>
+              <h2 className="mt-6 max-w-[14ch] text-[clamp(1.5rem,2.4vw,2.25rem)] font-medium leading-[1.1]">
+                {leadingTitle}
+              </h2>
+            </div>
+
+            <article
+              className={BODY}
+              style={{ lineHeight: bodyLineHeight }}
+            >
+              {leadingParagraphs.map((p, i) => (
+                <p
+                  key={i}
+                  className={
+                    "lift-lead m-0 mb-[1.5em] last:mb-0 " + (i === 0 ? DROP_CAP : "")
+                  }
+                >
+                  {p}
+                </p>
+              ))}
+            </article>
+          </div>
+
+          {pullQuote ? (
+            <figure className="mx-auto mt-[clamp(4rem,9vw,8rem)] max-w-[80rem]">
+              <blockquote
+                className={
+                  "lift-lead m-0 border-y py-[clamp(2.5rem,6vw,5rem)] text-[clamp(1.75rem,4.2vw,3.75rem)] leading-[1.1] tracking-[-0.01em] " +
+                  RULE
+                }
+              >
+                {pullQuote}
+              </blockquote>
+              <figcaption className="mt-4 text-[0.95rem]">
+                {pullQuoteSource}
+              </figcaption>
+            </figure>
+          ) : null}
         </section>
       ) : null}
 
@@ -393,17 +555,51 @@ export default function AliceScrollReveal({
       </section>
 
       {trailingParagraphs.length ? (
-        <section className="content flex justify-center py-[6.25rem] px-[1.5rem]">
-          <article
-            className="article space-y-6"
-            style={{ maxWidth: articleMaxWidth }}
-          >
-            {trailingParagraphs.map((p, i) => (
-              <p key={i} className="m-0">
-                {p}
+        <section
+          className={"py-[clamp(5rem,12vw,10rem)] " + PAD}
+          style={{ fontFamily: serifFamily }}
+        >
+          <div className="mx-auto max-w-[80rem]">
+            <div
+              className={
+                "mb-[clamp(2rem,5vw,4rem)] flex items-end justify-between gap-6 border-b pb-6 " +
+                RULE
+              }
+            >
+              <h2 className="m-0 text-[clamp(2rem,5vw,4.5rem)] font-medium leading-none tracking-[-0.02em]">
+                {trailingTitle}
+              </h2>
+              <p className="m-0 text-[clamp(3rem,8vw,7rem)] font-medium leading-[0.8] tracking-[-0.03em]">
+                {trailingNumeral}
               </p>
-            ))}
-          </article>
+            </div>
+
+            <article
+              className={
+                BODY +
+                " lg:columns-2 lg:gap-16 [&>p]:mb-[1.5em]"
+              }
+              style={{ lineHeight: bodyLineHeight }}
+            >
+              {trailingParagraphs.map((p, i) => (
+                <p
+                  key={i}
+                  className={"lift-trail m-0 " + (i === 0 ? DROP_CAP : "")}
+                >
+                  {p}
+                </p>
+              ))}
+            </article>
+
+            {outroText ? (
+              <div className="mt-[clamp(4rem,9vw,8rem)]">
+                <p className="lift-trail m-0 mx-auto max-w-[22ch] text-center text-[clamp(2.25rem,6vw,5.5rem)] font-medium leading-[1.02] tracking-[-0.01em]">
+                  {outroText}
+                </p>
+                <p className="mt-6 text-center text-[0.95rem]">{outroSource}</p>
+              </div>
+            ) : null}
+          </div>
         </section>
       ) : null}
     </main>
