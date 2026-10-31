@@ -4,11 +4,12 @@
   "sourceHash": "2ba8e5a3366f470de5c2df96c91fb035a011b133da4d3a4c4af9ba1420f403bc",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "book-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.402Z"
+  "note": "Component BookGallery3D -> BookGallery; className, headingColor, fallbackColor props; comments and empty placeholders removed. Gates passed.",
+  "updatedAt": "2026-10-31T20:06:16.559Z",
+  "gateOutput": "gates passed"
 }
