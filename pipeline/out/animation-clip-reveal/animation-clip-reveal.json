@@ -1,0 +1,41 @@
+{
+  "slug": "animation-clip-reveal",
+  "name": "Animation Clip Reveal",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen hero that reveals three stacked image boxes with clip-path wipes, a counting number, then turns into a video slider with side image columns, captions and arrow controls.",
+  "contents": ["Three centered clip-reveal boxes (video and images)", "Counter with animated corner lines", "Scrolling left image column", "Right thumbnail", "Title and caption text", "Previous and next arrows", "Slide index"],
+  "behavior": ["Intro plays automatically: boxes wipe in, split apart, count up, then merge", "Left column scrolls endlessly", "Arrows swap video, side images and text with clip-path wipes", "Scales down on small viewports", "Side columns hide below the lg breakpoint"],
+  "props": [
+    {"name": "className", "type": "string", "default": "\"\""},
+    {"name": "bgColor", "type": "string", "default": "\"#070707\""},
+    {"name": "textColor", "type": "string", "default": "\"#ffffff\""},
+    {"name": "lineColor", "type": "string", "default": "\"#d9d9d9\""},
+    {"name": "prevLabel", "type": "string", "default": "\"Previous slide\""},
+    {"name": "nextLabel", "type": "string", "default": "\"Next slide\""},
+    {"name": "counterTarget", "type": "number", "default": "100"},
+    {"name": "slides", "type": "{title: string, caption: string}[]", "default": "DEFAULT_SLIDES"},
+    {"name": "centerVideoSrcs", "type": "string[]", "default": "[FLOWER_VIDEO, FLOWER_VIDEO, FLOWER_VIDEO]"},
+    {"name": "centerVideoPoster", "type": "string", "default": "unsplash(\"1749330513873-09ffa91b0aae\", 800, 536)"},
+    {"name": "secondImgSrc", "type": "string", "default": "unsplash(\"1778789172736-e8ba37c71124\", 800, 536)"},
+    {"name": "thirdImgSrc", "type": "string", "default": "\"https://interactive-examples.mdn.mozilla.net/media/cc0-images/painted-hand-298-332.jpg\""},
+    {"name": "leftColumnSets", "type": "{orange: string, blue: string, green: string}[]", "default": "DEFAULT_LEFT_COLUMN_SETS"},
+    {"name": "leftLoopRepeats", "type": "number", "default": "2"},
+    {"name": "rightImageSet", "type": "{orange: string, blue: string, green: string}", "default": "trio(unsplash(\"1634325232058-e7b8f80cc20b\", 356, 482))"},
+    {"name": "tones", "type": "string[]", "default": "DEFAULT_TONES"},
+    {"name": "hopEase", "type": "string", "default": "\"M0,0 C0.3,0 0.1,1 1,1\""},
+    {"name": "introBoxDuration", "type": "number", "default": "0.5"},
+    {"name": "scrollDuration", "type": "number", "default": "16"}
+  ],
+  "editableByProps": ["Background, text and line colors", "Slide titles and captions", "Videos, posters and all images", "Final counter value", "Intro and scroll speed, easing curve", "Arrow labels", "Per-slide hue tones"],
+  "needsCodeEdit": [
+    {"change": "Number of slides beyond three", "where": "imageSequences"},
+    {"change": "Slide index text (_0, /03)", "where": "try-"},
+    {"change": "Box size and layout", "where": "wrapper-"}
+  ],
+  "fixed": ["Loads gsap and its CustomEase plugin by dynamic import and reverts all tweens on unmount", "Exactly three slides are supported by the animation logic", "Intro runs once on mount"],
+  "mood": ["cinematic", "bold", "editorial", "dark"],
+  "industries": ["fashion", "eyewear", "photography", "agency", "ecommerce"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": ["gsap"]
+}

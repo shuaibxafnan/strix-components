@@ -4,11 +4,12 @@
   "sourceHash": "1b4d8062abd278d1caf182445dcbddad3fd477fd1d67a902fa7ac793e96bcd3d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "animation-clip-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.394Z"
+  "note": "CDN gsap/CustomEase -> npm imports; tweens in gsap.context with revert; className/textColor/lineColor/prevLabel/nextLabel props; logic fixed to 3 slides. Gates passed.",
+  "updatedAt": "2026-10-31T19:51:58.658Z",
+  "gateOutput": "gates passed"
 }
