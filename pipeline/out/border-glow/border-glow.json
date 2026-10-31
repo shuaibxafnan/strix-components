@@ -1,0 +1,70 @@
+{
+    "slug": "border-glow",
+    "name": "Border Glow",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Card container whose edges light up with a mesh-gradient border and soft outer glow that follows the pointer angle near the edges, with an optional automatic intro sweep.",
+    "contents": [
+        "Rounded card wrapper that renders any children inside",
+        "Mesh gradient border layer, gradient fill layer near edges, and outer box-shadow glow layer"
+    ],
+    "behavior": [
+        "Glow and border appear on hover, strongest when the pointer is near an edge",
+        "Light cone rotates to point toward the pointer angle from the card center",
+        "Fades in over 0.25s on enter and out over 0.75s on leave",
+        "When animated is true, plays a one-time sweep around the card on mount without hover",
+        "Switches to light-surface styling when backgroundColor is a light hex color"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "edgeSensitivity", "type": "number", "default": 30 },
+        { "name": "glowColor", "type": "string", "default": "40 80 80" },
+        { "name": "backgroundColor", "type": "string", "default": "#120F17" },
+        { "name": "borderRadius", "type": "number", "default": 28 },
+        { "name": "glowRadius", "type": "number", "default": 40 },
+        { "name": "glowIntensity", "type": "number", "default": 1.0 },
+        { "name": "coneSpread", "type": "number", "default": 25 },
+        { "name": "animated", "type": "boolean", "default": false },
+        { "name": "colors", "type": "string[]", "default": ["#c084fc", "#f472b6", "#38bdf8"] },
+        { "name": "fillOpacity", "type": "number", "default": 0.5 }
+    ],
+    "editableByProps": [
+        "Card content through children",
+        "Background color, corner radius, gradient colors and glow color as 'H S L' string",
+        "Glow size, intensity, cone width, edge sensitivity and fill strength",
+        "Intro sweep on mount through animated"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change sweep timing or angles",
+            "where": "useEffect with animateValue calls and angleStart/angleEnd constants"
+        },
+        {
+            "change": "Change mesh gradient layout",
+            "where": "GRADIENT_POSITIONS and COLOR_MAP constants"
+        },
+        {
+            "change": "Change fade durations",
+            "where": "transition styles using 0.25s and 0.75s"
+        },
+        {
+            "change": "Change card drop shadow",
+            "where": "boxShadow style on the root div"
+        }
+    ],
+    "fixed": [
+        "Root is a relative grid card with no sizing, so it needs content or a className for width and height",
+        "Uses at most three colors from colors, extras are ignored and short arrays reuse the last color",
+        "glowColor must be space separated H S L numbers, invalid values fall back to 40 80 80",
+        "Light-surface detection only works with hex backgroundColor values",
+        "Children sit in a scrollable flex column with overflow auto",
+        "Glow extends outside the card by glowRadius, so parents with overflow hidden will clip it",
+        "Requires Tailwind CSS classes and browser support for CSS mask composite and conic-gradient",
+        "Sweep runs once when animated becomes true"
+    ],
+    "mood": ["futuristic", "glowing", "modern", "premium"],
+    "industries": ["saas", "ai", "gaming", "fintech", "crypto"],
+    "sections": ["features", "pricing", "other"],
+    "dependencies": []
+}
