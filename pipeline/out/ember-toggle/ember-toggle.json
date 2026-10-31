@@ -1,0 +1,60 @@
+{
+  "slug": "ember-toggle",
+  "name": "Ember Toggle",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Rust-textured on/off switch with a glowing ember thumb, sun and moon icons, and an animated OFF/ON label. Works controlled or uncontrolled.",
+  "contents": [
+    "Checkbox switch with track, sliding thumb, glowing inner dot",
+    "Sun and moon icons",
+    "OFF/ON text label"
+  ],
+  "behavior": [
+    "Thumb slides and track glow changes on toggle",
+    "Inner dot and ON label pulse while on",
+    "Track scales slightly on hover",
+    "Supports controlled and uncontrolled state"
+  ],
+  "props": [
+    {"name": "checked", "type": "boolean", "default": "undefined"},
+    {"name": "defaultChecked", "type": "boolean", "default": false},
+    {"name": "onChange", "type": "function", "default": "undefined"},
+    {"name": "trackWidth", "type": "string", "default": "w-[76px]"},
+    {"name": "trackHeight", "type": "string", "default": "h-[38px]"},
+    {"name": "trackRadius", "type": "string", "default": "rounded-[6px]"},
+    {"name": "thumbSize", "type": "string", "default": "w-[26px] h-[26px]"},
+    {"name": "thumbActiveWidth", "type": "string", "default": "w-[32px]"},
+    {"name": "thumbRadius", "type": "string", "default": "rounded-[4px]"},
+    {"name": "innerDotSize", "type": "string", "default": "w-3 h-3"},
+    {"name": "offBorderColor", "type": "string", "default": "#3a302a"},
+    {"name": "onBorderColor", "type": "string", "default": "#b04528"},
+    {"name": "offThumbBorder", "type": "string", "default": "#6a5a4a"},
+    {"name": "onThumbBorder", "type": "string", "default": "#ff7040"},
+    {"name": "onGlowColor", "type": "string", "default": "224, 90, 48"},
+    {"name": "labelOffColor", "type": "string", "default": "#5a5040"},
+    {"name": "labelOnColor", "type": "string", "default": "#e05a30"},
+    {"name": "showLabel", "type": "boolean", "default": true},
+    {"name": "labelOff", "type": "string", "default": "OFF"},
+    {"name": "labelOn", "type": "string", "default": "ON"},
+    {"name": "labelClassName", "type": "string", "default": ""},
+    {"name": "disabled", "type": "boolean", "default": false},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Track and thumb sizes and radii",
+    "Border, glow and label colors",
+    "Label text and visibility",
+    "Controlled or default state, disabled"
+  ],
+  "needsCodeEdit": [
+    {"change": "Track and thumb gradients and ember colors", "where": "isOn ? \"linear-gradient(145deg,#e05a30"},
+    {"change": "Glow pulse keyframes", "where": "@keyframes _emberGlow"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto."
+  ],
+  "mood": ["dark", "fiery", "industrial", "tactile"],
+  "industries": ["gaming", "technology", "saas", "automotive"],
+  "sections": ["other"],
+  "dependencies": []
+}
