@@ -1,0 +1,51 @@
+{
+  "slug": "photo-card-stack",
+  "name": "Photo Card Stack",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Dark widget with a stack of tilted photo cards on the left and matching title and description on the right. Prev and next buttons throw the top card out and back into the stack.",
+  "contents": [
+    "Stack of tilted image cards",
+    "Index label, title and description for the active entry",
+    "Previous and next arrow buttons"
+  ],
+  "behavior": [
+    "Next and previous cycle through entries in a loop",
+    "Active card slides out left and settles back on top with a spring keyframe animation",
+    "Text cross-fades and slides when the entry changes",
+    "Images zoom slightly on widget hover",
+    "Shows a pulsing skeleton until mounted"
+  ],
+  "props": [
+    {"name": "data", "type": "{title,description,image,rotation}[]", "default": "4 sample activities"},
+    {"name": "maxWidgetWidth", "type": "string", "default": "640px"},
+    {"name": "imageColumnWidth", "type": "string", "default": "220px"},
+    {"name": "widgetBgColor", "type": "string", "default": "#09090b"},
+    {"name": "cardBorderColor", "type": "string", "default": "rgba(255,255,255,0.1)"},
+    {"name": "titleColor", "type": "string", "default": "#ffffff"},
+    {"name": "textColor", "type": "string", "default": "#a1a1aa"},
+    {"name": "titleSize", "type": "string", "default": "text-2xl"},
+    {"name": "textSize", "type": "string", "default": "text-sm"},
+    {"name": "animationDuration", "type": "string", "default": "0.66s"},
+    {"name": "initialIndex", "type": "number", "default": 0},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Entries: titles, descriptions, images and card tilt",
+    "Widget size, colors, text sizes and animation duration",
+    "Starting entry"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the index label text or accent dot color", "where": "INDEX // label with the emerald dot span"},
+    {"change": "Change the card throw-out motion", "where": "moveOutIn keyframes in the style tag"},
+    {"change": "Change button styling or icons", "where": "nav element with the two buttons"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Button colors and the green index dot are hardcoded"
+  ],
+  "mood": ["playful", "dark", "modern"],
+  "industries": ["travel", "events", "entertainment", "lifestyle"],
+  "sections": ["features", "gallery"],
+  "dependencies": []
+}

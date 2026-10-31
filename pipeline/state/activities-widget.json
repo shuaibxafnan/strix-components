@@ -4,11 +4,12 @@
   "sourceHash": "515a564ae828e8e32235d5e20066bd6c11fcb360f7b7c35361c6fb8d921d351f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "photo-card-stack",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.391Z"
+  "note": "Renamed from activities-widget (vague). Frame added; style jsx global -> style; className prop; empty placeholders removed.",
+  "updatedAt": "2026-10-31T19:45:56.983Z",
+  "gateOutput": "gates passed"
 }
