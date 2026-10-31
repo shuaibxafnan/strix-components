@@ -4,11 +4,12 @@
   "sourceHash": "68d2e6cd688b5f238baa2cae2e8d8f817b618fdf5c247d11601d837ee3e44479",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "animated-check-box",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.393Z"
+  "note": "Frame added; eyebrow/clearLabel/checkAllLabel/className props; h1->h2; comments removed. Not rendered. Gates passed.",
+  "updatedAt": "2026-10-31T19:48:56.030Z",
+  "gateOutput": "gates passed"
 }
