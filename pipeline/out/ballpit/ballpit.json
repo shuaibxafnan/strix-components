@@ -1,0 +1,109 @@
+{
+    "slug": "ballpit",
+    "name": "Ballpit",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "Full-container WebGL2 ball pit where hundreds of shaded spheres fall, collide and pile up with physics, follow the cursor, can be grabbed and thrown, and burst apart on click.",
+    "contents": [
+        "Wrapper div containing a single WebGL2 canvas",
+        "Instanced sphere renderer with custom GLSL shaders (studio lighting, ambient shading, tone mapping)",
+        "Custom 3D physics: sphere collisions, walls, grid broadphase, cursor ball and grab-and-throw"
+    ],
+    "behavior": [
+        "Spheres drop in from above on mount and settle into a pile, or glide out from the center when gravity is near zero",
+        "A cursor sphere follows the pointer and pushes balls around while the pointer is inside the container",
+        "Pressing on a ball grabs it, releasing throws it with the pointer velocity",
+        "A quick click without dragging triggers a burst that blasts nearby balls away and flashes the light",
+        "A point light follows the cursor and rests above the pile when the pointer leaves",
+        "Rendering pauses when offscreen, tab hidden or the scene is at rest, and wakes on interaction",
+        "Reduced motion preference disables the intro drop, drift and click burst"
+    ],
+    "props": [
+        { "name": "count", "type": "number", "default": 200 },
+        { "name": "colors", "type": "string[]", "default": ["#ffffff"] },
+        { "name": "material", "type": "'satin' | 'matte' | 'gloss' | 'frosted' | 'metal'", "default": "satin" },
+        { "name": "minSize", "type": "number", "default": 0.5 },
+        { "name": "maxSize", "type": "number", "default": 1 },
+        { "name": "gravity", "type": "number", "default": 0.5 },
+        { "name": "friction", "type": "number", "default": 0.9975 },
+        { "name": "wallBounce", "type": "number", "default": 0.95 },
+        { "name": "bounce", "type": "number", "default": 0.85 },
+        { "name": "depth", "type": "number", "default": 2 },
+        { "name": "drift", "type": "number", "default": 0 },
+        { "name": "followCursor", "type": "boolean", "default": true },
+        { "name": "cursorSize", "type": "number", "default": 1 },
+        { "name": "grab", "type": "boolean", "default": true },
+        { "name": "clickEffect", "type": "string", "default": "burst" },
+        { "name": "lightColor", "type": "string", "default": "#ffffff" },
+        { "name": "lightIntensity", "type": "number", "default": 1 },
+        { "name": "exposure", "type": "number", "default": 1 },
+        { "name": "shadows", "type": "number", "default": 0.6 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "dpr", "type": "number", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": null }
+    ],
+    "editableByProps": [
+        "Ball count (1 to 4000), colors palette, min and max size",
+        "Surface material (satin, matte, gloss, frosted, metal)",
+        "Gravity, friction, bounciness, depth of the pit and ambient drift",
+        "Cursor ball on or off and its size, grab and throw, click burst",
+        "Light color and intensity, exposure, contact shadow strength",
+        "Intro drop on or off, pixel ratio, container className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or tune the material looks",
+            "where": "MATERIALS constant"
+        },
+        {
+            "change": "Change camera field of view or distance",
+            "where": "FOV and CAMERA_Z constants"
+        },
+        {
+            "change": "Change the maximum ball speed",
+            "where": "MAX_SPEED constant"
+        },
+        {
+            "change": "Add other click effects besides burst",
+            "where": "release function and burst function"
+        },
+        {
+            "change": "Change the studio reflection lighting or tone mapping",
+            "where": "studio and aces functions in the FRAGMENT shader"
+        },
+        {
+            "change": "Use a different color for the cursor ball",
+            "where": "cursor branch of the draw function (uses palette[0])"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if the context or shader fails",
+        "Container must have a height, it fills its parent with w-full h-full and overflow hidden",
+        "Listens for pointer events on window and document, so interaction works even when other elements overlay the container (links and buttons are ignored)",
+        "Pointer down on a ball calls preventDefault for mouse input",
+        "Only the 'burst' value of clickEffect has an effect, any other value disables click bursts",
+        "lightIntensity values above 20 are divided by 200",
+        "Canvas pixel ratio is capped at 2",
+        "Canvas background is transparent, balls are lit by a fixed studio environment",
+        "Cursor ball uses the first color of the colors palette",
+        "Aspect ratio above 1.5 is clamped and balls shrink on small containers (fit factor 0.4 to 1)",
+        "Physics settings are read live, but changes to dpr trigger a resize and count changes add or remove balls",
+        "Releases the WebGL context on unmount"
+    ],
+    "mood": ["playful", "energetic", "modern", "tactile"],
+    "industries": ["creative agency", "gaming", "saas", "e-commerce", "education"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": [],
+    "variants": {
+        "prop": "material",
+        "default": "satin",
+        "options": [
+            { "value": "satin", "look": "Soft semi-gloss plastic with a light clear coat", "useWhen": "A friendly general-purpose look" },
+            { "value": "matte", "look": "Flat, rough, chalky balls with little reflection", "useWhen": "A calm, minimal or pastel design" },
+            { "value": "gloss", "look": "Shiny, sharp highlights with a strong clear coat", "useWhen": "A bold, candy-like or playful design" },
+            { "value": "frosted", "look": "Translucent frosted glass with soft glow and edge transparency", "useWhen": "A glassy, light and dreamy design" },
+            { "value": "metal", "look": "Fully metallic balls reflecting the studio environment", "useWhen": "A premium or techy design" }
+        ]
+    }
+}
