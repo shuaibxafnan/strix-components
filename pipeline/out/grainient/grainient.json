@@ -1,0 +1,101 @@
+{
+    "slug": "grainient",
+    "name": "Grainient",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 animated gradient background with flowing warped color bands, silky shading, film grain, and pointer stirring with click swirls. Fills its parent container.",
+    "contents": [
+        "Container div with a single full-size canvas rendered by two WebGL2 shader passes (gradient field and grain composite)"
+    ],
+    "behavior": [
+        "Gradient flows continuously through noise warping, linear or radial",
+        "Pointer movement over the window stirs the gradient with a fading trail",
+        "Click or tap inside the container creates a twirl swirl",
+        "Intro animation fades the gradient in over about 1.6 seconds",
+        "Grain animates at about 24 fps",
+        "Rendering pauses when offscreen or the tab is hidden",
+        "Reduced motion preference disables flow, grain animation, stirring, swirls and intro",
+        "Light mode lifts and inverts the palette toward white tints"
+    ],
+    "props": [
+        { "name": "colors", "type": "string[]", "default": ["#120f17", "#2a0f0a", "#9a3412", "#f97316", "#fed7aa"] },
+        { "name": "type", "type": "'linear' | 'radial'", "default": "linear" },
+        { "name": "angle", "type": "number", "default": 55 },
+        { "name": "bands", "type": "number", "default": 1 },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "flow", "type": "number", "default": 0.8 },
+        { "name": "scale", "type": "number", "default": 1 },
+        { "name": "softness", "type": "number", "default": 1 },
+        { "name": "silk", "type": "number", "default": 0.35 },
+        { "name": "grainAmount", "type": "number", "default": 0.08 },
+        { "name": "grainSize", "type": "number", "default": 1.2 },
+        { "name": "grainAnimated", "type": "boolean", "default": true },
+        { "name": "contrast", "type": "number", "default": 1 },
+        { "name": "saturation", "type": "number", "default": 1 },
+        { "name": "variation", "type": "number", "default": 0 },
+        { "name": "interactive", "type": "boolean", "default": true },
+        { "name": "stir", "type": "number", "default": 1 },
+        { "name": "clickSwirl", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": null }
+    ],
+    "editableByProps": [
+        "Palette (up to 8 colors), gradient type, angle, band count, scale and softness",
+        "Motion: speed, flow amount, variation seed, intro on or off",
+        "Look: silk shading, contrast, saturation, light mode",
+        "Grain amount, size and animation",
+        "Interaction: pointer stirring, stir strength, click swirl",
+        "Render pixel ratio cap and container className, style, extra DOM props"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change stir or swirl radius and lifetime",
+            "where": "STIR_LIFE, TWIRL_LIFE constants and the 0.045 falloff and twirl radius values in updateTouches and FIELD shader"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change grain animation rate",
+            "where": "grainClock > 1 / 24 check in the frame function"
+        },
+        {
+            "change": "Change light mode strength",
+            "where": "LIFT constant and syncPalette"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable",
+        "Fills the parent, so the parent needs a defined height",
+        "Uses at most 8 colors, extra colors are ignored",
+        "Pointer and click listeners are attached to window, so stirring responds to the whole page while the pointer is over the container",
+        "Gradient field renders at half canvas resolution",
+        "Pixel ratio capped at 2",
+        "Respects prefers-reduced-motion, read once on mount",
+        "Canvas is aria-hidden and decorative"
+    ],
+    "mood": ["warm", "atmospheric", "modern", "artistic"],
+    "industries": ["creative agency", "music", "fashion", "saas", "events"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": [],
+    "variants": {
+        "prop": "type",
+        "default": "linear",
+        "options": [
+            {
+                "value": "linear",
+                "look": "Directional gradient flowing along the set angle with warped bands",
+                "useWhen": "Full-width hero or section backdrop behind headline text"
+            },
+            {
+                "value": "radial",
+                "look": "Gradient radiating from the center with a slowly rotating warp",
+                "useWhen": "Centered spotlight style backdrop for a single product or call-to-action block"
+            }
+        ]
+    }
+}
