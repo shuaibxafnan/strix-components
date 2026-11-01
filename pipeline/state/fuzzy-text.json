@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "fuzzy-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.630Z"
+  "note": "Category text-effects. Variants on direction: horizontal, vertical, both. JSX unchanged.",
+  "updatedAt": "2026-11-01T07:23:21.470Z",
+  "gateOutput": "gates passed"
 }
