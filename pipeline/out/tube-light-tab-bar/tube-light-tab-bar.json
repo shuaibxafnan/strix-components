@@ -1,0 +1,30 @@
+{
+  "slug": "tube-light-tab-bar",
+  "name": "Tube Light Tab Bar",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Compact dark icon tab bar with a glowing tube light bar that slides over the active tab and casts a soft light cone, while icons light up in sequence.",
+  "contents": ["Five icon tabs (home, bookmark, plus, user, settings) as SVG paths", "Sliding light bar with a light cone"],
+  "behavior": ["Clicking a tab slides the light bar to it", "Icons between old and new tab light up in sequence", "Calls onTabChange with the new index"],
+  "props": [
+    {"name": "icons", "type": "{id,viewBox,path}[]", "default": "5 sample icons"},
+    {"name": "navBgColor", "type": "string", "default": "rgb(0,0,0)"},
+    {"name": "activeColor", "type": "string", "default": "#ffffff"},
+    {"name": "iconUnlitColor", "type": "string", "default": "#ffffff"},
+    {"name": "unlitOpacity", "type": "number", "default": 0.4},
+    {"name": "transitionSpeed", "type": "number", "default": 400},
+    {"name": "initialIndex", "type": "number", "default": 0},
+    {"name": "onTabChange", "type": "function", "default": "undefined"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Icons, bar and light colors, unlit opacity, slide speed, initial tab, change callback"],
+  "needsCodeEdit": [
+    {"change": "Change the number of tabs beyond five", "where": "grid-cols-5 class on the nav element"},
+    {"change": "Place the light bar at the bottom", "where": "the light bar div with ref lightRef"}
+  ],
+  "fixed": ["Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.", "Bar is 350px wide (shrinks on narrow screens) with five columns"],
+  "mood": ["modern", "minimal", "sleek"],
+  "industries": ["mobile apps", "saas", "gaming", "fintech"],
+  "sections": ["navbar"],
+  "dependencies": []
+}

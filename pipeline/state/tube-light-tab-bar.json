@@ -4,11 +4,12 @@
   "sourceHash": "3f20715cde358c0733694e726a502e50c191f85f6326f5fbad3313dfb769fc65",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "tube-light-tab-bar",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.573Z"
+  "note": "No rename of slug. Removed containerBgColor prop and grey demo bg (judgement call), stray {} and invalid width-[160%]. Frame kept. Added className, icons prop, interval cleanup. No variants. max-w-full on bar.",
+  "updatedAt": "2026-11-01T15:15:44.817Z",
+  "gateOutput": "gates passed"
 }
