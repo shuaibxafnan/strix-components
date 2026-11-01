@@ -4,11 +4,12 @@
   "sourceHash": "51064968b4a733280d3283b7120217908f79ecf46163561e318fd9aef6948441",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "futuristic-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.446Z"
+  "note": "Root w-screen to w-full. Canvas circle now responsive via min(size, 90vw). No frame, no variants. Caveat: circle and thumbnails may overlap on very short viewports.",
+  "updatedAt": "2026-11-01T07:22:43.525Z",
+  "gateOutput": "gates passed"
 }
