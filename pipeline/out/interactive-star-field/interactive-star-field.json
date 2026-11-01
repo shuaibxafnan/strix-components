@@ -1,0 +1,53 @@
+{
+    "slug": "interactive-star-field",
+    "name": "Interactive Star Field",
+    "category": "backgrounds-3d",
+    "isReactBits": false,
+    "description": "Full-screen canvas starfield with a slow zoom drift. Stars streak and shift in the opposite direction of the pointer or finger, over a dark background with soft purple and cyan glows.",
+    "contents": [
+        "Fixed full-screen canvas of streaking stars",
+        "Dark background with two soft radial glows"
+    ],
+    "behavior": [
+        "Stars drift outward from the center with a constant zoom velocity",
+        "Pointer movement adds velocity, stars streak opposite to the mouse and with the finger on touch",
+        "Stars that leave the edge are recycled from the side they are moving toward",
+        "Star count scales with window size, canvas resizes on window resize and uses device pixel ratio"
+    ],
+    "props": [
+        { "name": "starColor", "type": "string", "default": "#fff" },
+        { "name": "starSize", "type": "number", "default": 3 },
+        { "name": "starMinScale", "type": "number", "default": 0.2 },
+        { "name": "overflowThreshold", "type": "number", "default": 50 },
+        { "name": "baseVelocityZ", "type": "number", "default": 0.0005 },
+        { "name": "friction", "type": "number", "default": 0.96 },
+        { "name": "easeFactor", "type": "number", "default": 0.8 },
+        { "name": "customStarCount", "type": "number | null", "default": null },
+        { "name": "backgroundColor", "type": "string", "default": "#000000" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Star color, size, density, depth range and drift speed",
+        "Pointer response through friction and easing",
+        "Background color"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the glow colors behind the stars",
+            "where": "bg-[radial-gradient(...)] classes on the root div"
+        },
+        {
+            "change": "Change the star tail length",
+            "where": "tailX and tailY in the render function"
+        }
+    ],
+    "fixed": [
+        "Root is fixed and covers the whole viewport, it sits over the page unless given a lower z-index through className",
+        "Touch dragging on the canvas is captured and prevents page scrolling over it",
+        "Glow gradients are part of the root classes"
+    ],
+    "mood": ["cosmic", "dark", "immersive", "futuristic"],
+    "industries": ["space", "technology", "gaming", "music", "creative agency"],
+    "sections": ["background", "hero"],
+    "dependencies": []
+}

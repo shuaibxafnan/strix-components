@@ -4,11 +4,12 @@
   "sourceHash": "668be7a4dcf5e3b5a712e79da2978f9ae2bf23f4d8fe2d4377377b0dce11c5d0",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "interactive-photo-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.482Z"
+  "note": "Replaced CDN GSAP loader with dynamic import (gsap dep). Added className on root and placeholder. No frame change, no variants. No responsive changes; grid measured once on mount (fixed).",
+  "updatedAt": "2026-11-01T09:05:00.161Z",
+  "gateOutput": "gates passed"
 }

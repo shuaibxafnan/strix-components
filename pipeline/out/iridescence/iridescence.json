@@ -1,0 +1,95 @@
+{
+    "slug": "iridescence",
+    "name": "Iridescence",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "Full-area WebGL2 shader background of flowing iridescent color waves that stir under the pointer, swirl on click, and can be tinted, rotated, faded at the edges and paused.",
+    "contents": [
+        "Root div containing a single full-size WebGL canvas rendering a fragment shader"
+    ],
+    "behavior": [
+        "Animated iridescent color pattern driven by time and speed",
+        "Pattern shifts toward the pointer and a stir field distorts it as the pointer moves over the page",
+        "Soft highlight sheen follows the pointer",
+        "Click or tap creates a decaying swirl at that point, up to 6 at once",
+        "Rendering pauses when scrolled out of view and when idle",
+        "Canvas resizes with its container, pixel ratio capped at 2 and scaled by resolution",
+        "With reduced motion enabled the animation, stir and click swirl are disabled"
+    ],
+    "props": [
+        { "name": "color", "type": "[number,number,number] | string", "default": [1, 1, 1] },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "amplitude", "type": "number", "default": 0.1 },
+        { "name": "mouseReact", "type": "boolean", "default": true },
+        { "name": "scale", "type": "number", "default": 1 },
+        { "name": "detail", "type": "number", "default": 8 },
+        { "name": "rotation", "type": "number", "default": 0 },
+        { "name": "warp", "type": "number", "default": 1 },
+        { "name": "hueShift", "type": "number", "default": 0 },
+        { "name": "saturation", "type": "number", "default": 1 },
+        { "name": "brightness", "type": "number", "default": 1.5 },
+        { "name": "contrast", "type": "number", "default": 1 },
+        { "name": "stir", "type": "number", "default": 0.5 },
+        { "name": "sheen", "type": "number", "default": 0.3 },
+        { "name": "clickSwirl", "type": "boolean", "default": true },
+        { "name": "grain", "type": "number", "default": 0 },
+        { "name": "fade", "type": "number", "default": 0 },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "resolution", "type": "number", "default": 1 },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Tint color as RGB array (0 to 1) or any CSS color string",
+        "Animation speed, pause, pattern scale, rotation, detail and warp",
+        "Hue shift, saturation, brightness, contrast, grain and overall opacity",
+        "Pointer reaction, stir strength, sheen, click swirl and edge fade",
+        "Render resolution and container size through className or style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the pattern or color math of the effect",
+            "where": "FRAGMENT shader constant"
+        },
+        {
+            "change": "Change the number or lifetime of click swirls",
+            "where": "MAX_SWIRLS and SWIRL_LIFE constants"
+        },
+        {
+            "change": "Change pointer stir brush size or strength",
+            "where": "brush function"
+        },
+        {
+            "change": "Change how fast the stir distortion fades",
+            "where": "relaxField function"
+        }
+    ],
+    "fixed": [
+        "Root is h-full w-full, so the parent must have a defined height or the background collapses; use className or style to size or position it (for example absolute inset-0)",
+        "Requires WebGL2; renders nothing if unsupported or the shader fails to compile",
+        "Listens for pointer events on window, so pointer reaction and click swirl work even when content sits above the canvas",
+        "Detail is clamped to 1 to 24, grain, fade and opacity to 0 to 1, resolution to 0.1 to 2",
+        "Respects prefers-reduced-motion by freezing animation and disabling stir and swirl",
+        "Sizes from its container and handles resize, works on mobile, but heavy shader detail may be slow on low-end phones"
+    ],
+    "mood": [
+        "futuristic",
+        "dreamy",
+        "vibrant",
+        "fluid"
+    ],
+    "industries": [
+        "tech",
+        "creative agency",
+        "music",
+        "fashion",
+        "web3"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "cta"
+    ],
+    "dependencies": []
+}

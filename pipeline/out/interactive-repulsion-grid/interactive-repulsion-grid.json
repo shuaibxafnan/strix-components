@@ -1,0 +1,43 @@
+{
+  "slug": "interactive-repulsion-grid",
+  "name": "Interactive Repulsion Grid",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen canvas dot grid where dots swell near the pointer or finger, revealing an image through the growing dots like a halftone mask.",
+  "contents": [
+    "Full-viewport canvas with a regular grid of dots",
+    "Cover-fitted image visible only through the dots"
+  ],
+  "behavior": [
+    "Dots near the mouse or touch point grow with distance falloff and ease back when it moves away",
+    "Image is clipped by the dot shapes, dots show as solid color until the image loads",
+    "Canvas and grid rebuild on window resize"
+  ],
+  "props": [
+    {"name": "imageUrl", "type": "string", "default": "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1080&q=80"},
+    {"name": "baseGridSize", "type": "number", "default": 30},
+    {"name": "baseDotRadius", "type": "number", "default": 1},
+    {"name": "mouseProximity", "type": "number", "default": 125},
+    {"name": "maxGrowthAmt", "type": "number", "default": 60},
+    {"name": "easeValue", "type": "number", "default": 0.075},
+    {"name": "bgColor", "type": "string", "default": "#1a1a1a"},
+    {"name": "dotColor", "type": "string", "default": "#000000"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Image, grid spacing, dot size, reach and max growth of the pointer effect, easing speed",
+    "Background color and dot color"
+  ],
+  "needsCodeEdit": [
+    {"change": "Shrink dots near the pointer instead of growing", "where": "proximityHandler function"},
+    {"change": "Use square dots instead of circles", "where": "Circle class draw method"}
+  ],
+  "fixed": [
+    "Canvas always matches the window size, not the container",
+    "Listens to window mouse and touch movement while mounted and removes listeners on unmount"
+  ],
+  "mood": ["interactive", "playful", "modern"],
+  "industries": ["creative agency", "photography", "fashion", "portfolio"],
+  "sections": ["hero", "background"],
+  "dependencies": []
+}

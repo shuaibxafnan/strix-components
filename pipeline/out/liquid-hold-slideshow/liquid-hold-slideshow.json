@@ -1,0 +1,95 @@
+{
+  "slug": "liquid-hold-slideshow",
+  "name": "Liquid Hold Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen WebGL image slideshow where slides dissolve through a liquid displacement warp. Pressing and holding the image stretches the distortion, and arrows, dots and keys change slides.",
+  "contents": [
+    "Full-screen stack of image slides with optional captions",
+    "Previous and next arrows, dot indicators, and a hint label"
+  ],
+  "behavior": [
+    "Slide change ramps a noise displacement filter, crossfades the images, then releases it",
+    "Press and hold or hover warps the image and slowly rotates the displacement map",
+    "Idle displacement map drifts continuously when autoPlay is on",
+    "Arrow keys switch slides, optional timed auto advance, optional looping",
+    "Canvas fades in once all images have loaded"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "5 sample image URLs"},
+    {"name": "captions", "type": "string[]", "default": []},
+    {"name": "stageWidth", "type": "number", "default": 1920},
+    {"name": "stageHeight", "type": "number", "default": 1080},
+    {"name": "canvasScale", "type": "number", "default": 1.2},
+    {"name": "autoPlay", "type": "boolean", "default": true},
+    {"name": "autoPlaySpeedX", "type": "number", "default": 0.3},
+    {"name": "autoPlaySpeedY", "type": "number", "default": 0.3},
+    {"name": "displaceScaleX", "type": "number", "default": 800},
+    {"name": "displaceScaleY", "type": "number", "default": 500},
+    {"name": "idleDisplaceScale", "type": "number", "default": 20},
+    {"name": "rampDuration", "type": "number", "default": 1.5},
+    {"name": "releaseDuration", "type": "number", "default": 1.5},
+    {"name": "releaseOffset", "type": "number", "default": 0.8},
+    {"name": "fadeOutDuration", "type": "number", "default": 1.5},
+    {"name": "fadeInDuration", "type": "number", "default": 1},
+    {"name": "fadeInOffset", "type": "number", "default": 1},
+    {"name": "rampEase", "type": "string", "default": "power2.out"},
+    {"name": "releaseEase", "type": "string", "default": "expo.out"},
+    {"name": "noiseSize", "type": "number", "default": 512},
+    {"name": "noiseCells", "type": "number", "default": 3},
+    {"name": "noiseOctaves", "type": "number", "default": 4},
+    {"name": "noiseContrast", "type": "number", "default": 1.4},
+    {"name": "displacementImage", "type": "string", "default": ""},
+    {"name": "displaceAutoFit", "type": "boolean", "default": true},
+    {"name": "displacementCenter", "type": "boolean", "default": true},
+    {"name": "mapScale", "type": "number", "default": 2},
+    {"name": "interactive", "type": "boolean", "default": true},
+    {"name": "interactionEvent", "type": "\"click\" | \"hover\" | \"both\"", "default": "click"},
+    {"name": "holdStrengthX", "type": "number", "default": 1200},
+    {"name": "holdStrengthY", "type": "number", "default": 200},
+    {"name": "hoverStrength", "type": "number", "default": 100},
+    {"name": "holdDuration", "type": "number", "default": 1},
+    {"name": "dispatchPointerOver", "type": "boolean", "default": false},
+    {"name": "spinOnHover", "type": "boolean", "default": true},
+    {"name": "captionColor", "type": "string", "default": "#ffffff"},
+    {"name": "captionSize", "type": "number", "default": 14},
+    {"name": "captionSpacing", "type": "number", "default": 20},
+    {"name": "captionWrapWidth", "type": "number", "default": 400},
+    {"name": "loop", "type": "boolean", "default": true},
+    {"name": "autoAdvance", "type": "boolean", "default": false},
+    {"name": "autoAdvanceDelay", "type": "number", "default": 6000},
+    {"name": "showArrows", "type": "boolean", "default": true},
+    {"name": "showDots", "type": "boolean", "default": true},
+    {"name": "showHint", "type": "boolean", "default": true},
+    {"name": "hintText", "type": "string", "default": "Click and hold"},
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "navColor", "type": "string", "default": "#ffffffcc"},
+    {"name": "navHoverColor", "type": "string", "default": "#ffffff"},
+    {"name": "revealDuration", "type": "number", "default": 600},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, captions, hint text and caption styling",
+    "Distortion strength, timing, easing and noise texture or custom displacement image",
+    "Interaction mode, autoplay, auto advance, looping",
+    "Visibility of arrows, dots and hint, plus background and nav colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the arrow icon shape",
+      "where": "polygon element inside the Previous slide and Next slide buttons"
+    },
+    {
+      "change": "Change the slide transition sequence",
+      "where": "moveTo function timeline"
+    }
+  ],
+  "fixed": [
+    "Listens to ArrowLeft and ArrowRight keys on window while mounted and removes the listener on unmount",
+    "Requires pixi.js version 4 (4.8.x), not 5 or later. Root fills the viewport height (h-screen) and the canvas is rendered at a fixed stageWidth by stageHeight then scaled to cover"
+  ],
+  "mood": ["immersive", "fluid", "cinematic", "dramatic"],
+  "industries": ["photography", "fashion", "travel", "art", "agency"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["pixi.js", "gsap"]
+}

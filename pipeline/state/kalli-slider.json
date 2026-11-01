@@ -4,11 +4,12 @@
   "sourceHash": "ea13f339b9c316ebb93ebfdb6fe5cd059ed32eeb08cd9b3b15aed2239eb07ea6",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "tile-image-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.484Z"
+  "note": "renamed kalli-slider -> tile-image-slider (brand name). Frame: none (full-screen slider). Variants: none. Responsive: fixed (fluid title size/offset, smaller pill and thumb on mobile, wider title). Replaced CDN gsap script loader with dynamic import of gsap npm; added cleanup of timelines. Added tile alt, nextLabel, buttonAriaLabel, className props. Kept Google Fonts @import.",
+  "updatedAt": "2026-11-01T09:11:17.017Z",
+  "gateOutput": "gates passed"
 }

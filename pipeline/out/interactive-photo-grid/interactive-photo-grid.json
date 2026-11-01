@@ -1,0 +1,68 @@
+{
+    "slug": "interactive-photo-grid",
+    "name": "Interactive Photo Grid",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Full-screen tilted 3D grid of photo cards drifting in alternating vertical columns. Hover pauses a column and reveals the title, click expands a card into a detail panel with previous and next navigation.",
+    "contents": [
+        "Five columns of photo cards looping the items array",
+        "Large heading, subheading and hint overlay",
+        "Detail panel with index counter, title, year, description, back, previous and next controls"
+    ],
+    "behavior": [
+        "Columns scroll endlessly in alternating directions inside a perspective-tilted grid",
+        "Hovering or focusing a card pauses its column, dims the others and slides up the title bar",
+        "Clicking a card flattens the grid and expands the card beside a detail panel",
+        "Escape or the back button returns to the grid",
+        "Respects reduced motion by not starting the drift",
+        "Panel stacks under the image below 768px"
+    ],
+    "props": [
+        { "name": "items", "type": "{image,title,year,description}[]", "default": "12 sample photos" },
+        { "name": "heading", "type": "string", "default": "Selected Works" },
+        { "name": "subheading", "type": "string", "default": "Quiet studies in light, space and absence." },
+        { "name": "hint", "type": "string", "default": "Hover to pause a column. Click to open." },
+        { "name": "backLabel", "type": "string", "default": "Back to grid" },
+        { "name": "prevLabel", "type": "string", "default": "Previous" },
+        { "name": "nextLabel", "type": "string", "default": "Next" },
+        { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+        { "name": "textColor", "type": "string", "default": "text-white" },
+        { "name": "panelPerspective", "type": "number", "default": 800 },
+        { "name": "gridRotationX", "type": "number", "default": 15 },
+        { "name": "gridRotationY", "type": "number", "default": -15 },
+        { "name": "gridRotationZ", "type": "number", "default": 10 },
+        { "name": "gridLeftPosition", "type": "string", "default": "75%" },
+        { "name": "gridWidth", "type": "number", "default": 1200 },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "All photos, titles, years and descriptions",
+        "Heading, subheading, hint and button labels",
+        "Background and text colors as Tailwind classes",
+        "Grid tilt, perspective, position and width"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change number of columns or rows",
+            "where": "COLUMNS and ROWS constants"
+        },
+        {
+            "change": "Change column drift speeds",
+            "where": "COLUMN_DURATION constant"
+        },
+        {
+            "change": "Change hover dimming look",
+            "where": "DIMMED constant"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height. Override with className using an important modifier such as !h-auto.",
+        "Cards are fixed at 400x640 and scaled by JS based on container height",
+        "Grid layout is measured once on mount and not recalculated on window resize",
+        "Heading overlay uses white text with difference blend mode"
+    ],
+    "mood": ["cinematic", "bold", "immersive", "editorial"],
+    "industries": ["photography", "art", "fashion", "architecture", "agency"],
+    "sections": ["gallery", "portfolio", "hero"],
+    "dependencies": ["gsap"]
+}

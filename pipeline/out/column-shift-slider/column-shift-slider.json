@@ -1,0 +1,52 @@
+{
+    "slug": "column-shift-slider",
+    "name": "Column Shift Slider",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Auto-advancing image strip where grid column widths animate between preset fraction patterns, so images grow, shrink, and slide in and out, with a progress line underneath.",
+    "contents": [
+        "Row of captioned images laid out in a grid",
+        "Thin progress line showing time until the next slide"
+    ],
+    "behavior": [
+        "Grid column fractions animate to the next pattern on an interval",
+        "Click, Enter, Space or ArrowRight advances, ArrowLeft goes back",
+        "Columns set to 0fr fade out",
+        "Autoplay and progress line are disabled with reduced motion"
+    ],
+    "props": [
+        { "name": "images", "type": "{src,label}[]", "default": "6 sample images" },
+        { "name": "patterns", "type": "string[]", "default": "6 grid-template-columns patterns" },
+        { "name": "ariaLabel", "type": "string", "default": "Next slide" },
+        { "name": "transitionSpeed", "type": "string", "default": "duration-[600ms]" },
+        { "name": "slideInterval", "type": "number", "default": 2000 },
+        { "name": "fontFamily", "type": "string", "default": "M PLUS Rounded 1c" },
+        { "name": "fontUrl", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/m-plus-rounded-1c@latest/latin-500-normal.woff2" },
+        { "name": "backgroundColor", "type": "string", "default": "#ffffff" },
+        { "name": "textColor", "type": "string", "default": "#000000" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Images, captions, and column patterns",
+        "Autoplay interval and transition duration",
+        "Background and text color, caption font"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the easing curve",
+            "where": "ease constant"
+        },
+        {
+            "change": "Change image aspect ratio",
+            "where": "aspect-[4/5] class on the img"
+        }
+    ],
+    "fixed": [
+        "Each pattern needs one fraction per image",
+        "Root is at least a full viewport tall and vertically centers the slider"
+    ],
+    "mood": ["playful", "editorial", "minimal"],
+    "industries": ["photography", "fashion", "art", "design studio"],
+    "sections": ["gallery", "portfolio"],
+    "dependencies": []
+}

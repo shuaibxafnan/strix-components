@@ -4,11 +4,12 @@
   "sourceHash": "4b938dfe0583711da367ba0fefead3d7ced8cadd64d58f6695919b05086a198f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "loading-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.490Z"
+  "note": "Root set to w-full h-screen flex center, demo bg dropped (fixed). Added readyLabel, loadingLabel, pauseLabel, resumeLabel, resetLabel, surfaceColor, checkColor props. Removed empty placeholders and Plus_Jakarta_Sans class (no font import). No variants, responsive ok. Kept autoStart effect with empty deps.",
+  "updatedAt": "2026-11-01T09:27:46.824Z",
+  "gateOutput": "gates passed"
 }

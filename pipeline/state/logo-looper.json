@@ -4,11 +4,12 @@
   "sourceHash": "7894783f1ca5607483e53364eedfc0a671ba48bd2c737947e9170e9e7dcb119f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "logo-looper",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.490Z"
+  "note": "Frame added: w-full h-screen flex center relative overflow-hidden with className (fixed). Removed fixed grid overlay and theme prop (host must supply bg). CSS vars moved from documentElement to root style. Added logos, textColor, fringeColors, className props. Shuffle runs once on mount without re-render (original behavior). No variants, responsive ok.",
+  "updatedAt": "2026-11-01T09:28:33.295Z",
+  "gateOutput": "gates passed"
 }

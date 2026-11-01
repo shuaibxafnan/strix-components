@@ -1,0 +1,45 @@
+{
+    "slug": "interactive-fluid-mask",
+    "name": "Interactive Fluid Mask",
+    "category": "cursor-effects",
+    "isReactBits": false,
+    "description": "Full-screen image hidden behind a lettered mask that is revealed by the cursor, with a liquid flowmap distortion that follows pointer movement and fades out.",
+    "contents": [
+        "Full-viewport WebGL canvas showing a background image",
+        "SVG lettering mask in a solid color over the canvas",
+        "Spinner shown until the image has loaded"
+    ],
+    "behavior": [
+        "Mouse or touch movement paints a flowmap that distorts the image with RGB-split ripples",
+        "Distortion dissipates over time after the pointer stops",
+        "Mask fades out once the image texture is loaded",
+        "Canvas resizes with the window"
+    ],
+    "props": [
+        {"name": "bgImageUrl", "type": "string", "default": "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1080&q=80"},
+        {"name": "maskColor", "type": "string", "default": "#ffffff"},
+        {"name": "dissipation", "type": "number", "default": 0.92},
+        {"name": "falloff", "type": "number", "default": 0.3},
+        {"name": "shapeColor", "type": "string", "default": "#000000"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Background image, mask and lettering colors",
+        "Trail length (dissipation) and brush size (falloff)"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the lettering shape", "where": "svg element with viewBox 1040 205.1"},
+        {"change": "Change the distortion strength or color split", "where": "fragmentShader constant"},
+        {"change": "Change the image aspect ratio used for cover fitting", "where": "imageSize constant"}
+    ],
+    "fixed": [
+        "Lettering shape is a hardcoded SVG",
+        "Image is assumed to be 2048x1638 for cover fitting",
+        "Pointer listeners are attached to window",
+        "Canvas sizes to the full window, not its container"
+    ],
+    "mood": ["playful", "bold", "fluid", "modern"],
+    "industries": ["creative agency", "fashion", "portfolio", "entertainment"],
+    "sections": ["hero"],
+    "dependencies": ["ogl"]
+}

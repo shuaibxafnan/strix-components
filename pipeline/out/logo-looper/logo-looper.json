@@ -1,0 +1,58 @@
+{
+  "slug": "logo-looper",
+  "name": "Logo Looper",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Columns of brand logos that loop in and out with a blurred, color-fringed chromatic offset, each column staggered so the logos swap in a rolling wave.",
+  "contents": [
+    "Grid of columns, each stacking several looping SVG logos",
+    "20 default brand logo icons as SVG paths"
+  ],
+  "behavior": [
+    "Each logo fades in with blur and diagonal movement, holds, then fades out the opposite way",
+    "Three colored fringe layers plus a current-color layer blend with hard-light",
+    "Columns are staggered by a sine-based delay",
+    "Logo order is shuffled on mount",
+    "Columns wrap on narrow screens"
+  ],
+  "props": [
+    { "name": "logos", "type": "{title,path}[]", "default": "20 sample logos" },
+    { "name": "items", "type": "number", "default": 4 },
+    { "name": "duration", "type": "number", "default": 20 },
+    { "name": "stagger", "type": "number", "default": 0.6 },
+    { "name": "movementX", "type": "number", "default": 14 },
+    { "name": "movementY", "type": "number", "default": 34 },
+    { "name": "blur", "type": "number", "default": 2 },
+    { "name": "step", "type": "number", "default": 2 },
+    { "name": "underlap", "type": "number", "default": 2 },
+    { "name": "transition", "type": "number", "default": 1 },
+    { "name": "columnCount", "type": "number", "default": 4 },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "fringeColors", "type": "string[]", "default": ["red", "yellow", "#1061ff"] },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Logo list (title and SVG path), column count, logos per column",
+    "Timing, stagger, movement, blur and overlap values",
+    "Logo color and the three fringe colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change logo size or column spacing",
+      "where": "className of the main element and the svg with h-12"
+    },
+    {
+      "change": "Change the keyframe motion",
+      "where": "buildKeyframes function"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Logos are SVG path data viewBox 0 0 24 24",
+    "Needs a background supplied by the host page, the component is transparent"
+  ],
+  "mood": ["modern", "playful", "tech", "dynamic"],
+  "industries": ["saas", "technology", "agency", "startup"],
+  "sections": ["logos"],
+  "dependencies": []
+}

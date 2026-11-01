@@ -1,0 +1,136 @@
+{
+    "slug": "lanyard",
+    "name": "Lanyard",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "Interactive 3D hanging ID card on a woven strap with metal clamp and ring, rendered in WebGL with a custom physics simulation. Drag to swing the card, click to flip between front and back images.",
+    "contents": [
+        "WebGL canvas filling its container",
+        "Rounded card with slot, front and back faces from images or a solid color",
+        "Woven strap with metal clamp, eyelet and ring"
+    ],
+    "behavior": [
+        "Card and strap swing with simulated gravity, damping, elasticity and a gentle breeze",
+        "Drag the card to pull it around, releasing lets it swing back",
+        "A quick click or tap flips the card to its other side",
+        "Optional intro where the card drops in and settles",
+        "Rendering pauses when offscreen, the tab is hidden, or the card has come to rest with no breeze",
+        "Respects prefers-reduced-motion by disabling intro and breeze",
+        "Resizes with its container and cleans up renderer, textures and listeners on unmount"
+    ],
+    "props": [
+        { "name": "frontImage", "type": "string", "default": "undefined" },
+        { "name": "backImage", "type": "string", "default": "undefined (falls back to front image)" },
+        { "name": "imageFit", "type": "'cover' | 'contain'", "default": "cover" },
+        { "name": "cardColor", "type": "string", "default": "#ffffff" },
+        { "name": "orientation", "type": "'portrait' | 'landscape'", "default": "portrait" },
+        { "name": "finish", "type": "'glossy' | 'matte' | 'holographic' | 'metallic'", "default": "glossy" },
+        { "name": "cornerRadius", "type": "number (0 to 1)", "default": 0.3 },
+        { "name": "size", "type": "number (0.15 to 0.9)", "default": 0.6 },
+        { "name": "anchor", "type": "'left' | 'center' | 'right'", "default": "center" },
+        { "name": "strapLength", "type": "number (0 to 1)", "default": 0.5 },
+        { "name": "strapImage", "type": "string", "default": "undefined" },
+        { "name": "strapColor", "type": "string", "default": "#111111" },
+        { "name": "strapWidth", "type": "number (0.4 to 2)", "default": 0.65 },
+        { "name": "metal", "type": "'silver' | 'gold' | 'graphite'", "default": "silver" },
+        { "name": "gravity", "type": "number (0 to 3)", "default": 1 },
+        { "name": "damping", "type": "number (0 to 1)", "default": 0.5 },
+        { "name": "elasticity", "type": "number (0 to 1)", "default": 0.5 },
+        { "name": "breeze", "type": "number (0 to 1)", "default": 0.5 },
+        { "name": "interactive", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Front, back and strap images, image fit, card and strap colors",
+        "Card orientation, corner radius, finish, hardware metal",
+        "Card size, horizontal anchor, strap length and width",
+        "Physics feel: gravity, damping, elasticity, breeze",
+        "Dragging and intro animation on or off, container size through className or style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change card dimensions or aspect ratio",
+            "where": "CARD_SIZES constant"
+        },
+        {
+            "change": "Add or tweak card finishes",
+            "where": "FINISHES constant"
+        },
+        {
+            "change": "Add more hardware metals",
+            "where": "METALS constant"
+        },
+        {
+            "change": "Change lighting and reflections",
+            "where": "buildEnvironment function and keyLight and fillLight in the useEffect"
+        },
+        {
+            "change": "Change flip speed or click time threshold",
+            "where": "FLIP_SPIN constant and flip function, 450ms check in onPointerUp"
+        },
+        {
+            "change": "Change the number of anchor positions",
+            "where": "ANCHORS constant"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL, renders nothing if the renderer cannot be created",
+        "Root fills its parent with w-full h-full, so the parent must have a defined height or the canvas collapses",
+        "Transparent canvas, no background is drawn",
+        "Canvas is aria-hidden and has no text alternative",
+        "Pointer events on the canvas are captured while dragging and touch-action is pan-y when interactive, so vertical page scroll still works outside the card",
+        "Pixel ratio is capped at 2 and face textures are 1024px wide",
+        "Card images loaded from other origins must allow CORS, otherwise they are skipped",
+        "Camera framing keeps the card at least 72 percent of the width, so it scales down on narrow containers and works on mobile",
+        "Strap is always rendered in a fixed single-clamp design with 4 physics joints"
+    ],
+    "mood": [
+        "futuristic",
+        "playful",
+        "premium",
+        "tactile"
+    ],
+    "industries": [
+        "events",
+        "technology",
+        "conferences",
+        "education",
+        "recruiting"
+    ],
+    "sections": [
+        "hero",
+        "about",
+        "other"
+    ],
+    "dependencies": [
+        "three"
+    ],
+    "variants": {
+        "prop": "finish",
+        "default": "glossy",
+        "options": [
+            {
+                "value": "glossy",
+                "look": "Shiny plastic card with clear coat reflections",
+                "useWhen": "Event badge or conference pass on a hero where a clean, modern card is wanted"
+            },
+            {
+                "value": "matte",
+                "look": "Soft non-reflective card surface",
+                "useWhen": "Minimal or editorial team page where the card artwork should read without glare"
+            },
+            {
+                "value": "holographic",
+                "look": "Rainbow foil shimmer and sparkle that shifts as the card moves",
+                "useWhen": "Product launch, membership or collectible style hero that should feel special"
+            },
+            {
+                "value": "metallic",
+                "look": "Brushed metal card with anisotropic highlights",
+                "useWhen": "Premium or tech brand VIP pass section"
+            }
+        ]
+    }
+}

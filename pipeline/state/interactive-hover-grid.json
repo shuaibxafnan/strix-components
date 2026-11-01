@@ -4,11 +4,12 @@
   "sourceHash": "47211607c14cbbce4d202e3c639ec9c93f26ce1c89cd3f9ad87c9630d7c62591",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "interactive-hover-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.481Z"
+  "note": "Removed showCitation prop and Reference link block, empty placeholders. No frame added, className merged on root. No variants. mousemove changed to pointermove for touch. Kept window-level pointer tracking (fixed).",
+  "updatedAt": "2026-11-01T09:04:17.339Z",
+  "gateOutput": "gates passed"
 }

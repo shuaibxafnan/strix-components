@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "iridescence",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.598Z"
+  "note": "React Bits, JSX copied unchanged. Category backgrounds-3d, no deps, no variants. Fixed: parent needs defined height; needs WebGL2; window pointer listeners; reduced-motion disables animation; heavy shader on low-end phones.",
+  "updatedAt": "2026-11-01T09:07:24.121Z",
+  "gateOutput": "gates passed"
 }

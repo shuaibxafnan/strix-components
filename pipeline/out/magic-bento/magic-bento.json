@@ -1,0 +1,98 @@
+{
+    "slug": "magic-bento",
+    "name": "Magic Bento",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Responsive bento grid of interactive cards with cursor spotlight, border glow, optional stars, tilt, magnetism and click ripple. Ships six animated product visuals and accepts custom content or images.",
+    "contents": [
+        "Grid of cards, each with optional icon, label, visual, title and description",
+        "Six built-in animated visuals: analytics chart, dashboard bars, collaboration doc, automation steps, integration hub, security settings",
+        "Optional background image with scrim per card",
+        "Cards render as links, buttons or plain blocks depending on href and click handlers"
+    ],
+    "behavior": [
+        "Spotlight and border glow follow the pointer across the whole grid",
+        "Optional star particles on a canvas inside the hovered card",
+        "Optional 3D tilt and magnetic pull on the hovered card",
+        "Press scale and ripple wave on click",
+        "Staggered intro animation when scrolled into view",
+        "Built-in visuals replay their animations on hover and click",
+        "Column count drops to 2 or 1 automatically when cells get too narrow",
+        "Animations are disabled for prefers-reduced-motion users",
+        "Description text auto-hides until hover when textAutoHide is on"
+    ],
+    "props": [
+        { "name": "items", "type": "{id,title,description,label,icon,visual,content,image,href,target,rel,colSpan,rowSpan,onClick}[]", "default": "6 sample items (Analytics, Dashboard, Collaboration, Automation, Integration, Security)" },
+        { "name": "columns", "type": "number", "default": 4 },
+        { "name": "rowHeight", "type": "number", "default": 200 },
+        { "name": "gap", "type": "number", "default": 12 },
+        { "name": "radius", "type": "number", "default": 20 },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "glowColor", "type": "string", "default": "undefined (theme ink color)" },
+        { "name": "textAutoHide", "type": "boolean", "default": true },
+        { "name": "enableBorderGlow", "type": "boolean", "default": true },
+        { "name": "enableSpotlight", "type": "boolean", "default": true },
+        { "name": "spotlightRadius", "type": "number", "default": 300 },
+        { "name": "enableStars", "type": "boolean", "default": false },
+        { "name": "particleCount", "type": "number", "default": 24 },
+        { "name": "enableTilt", "type": "boolean", "default": false },
+        { "name": "enableMagnetism", "type": "boolean", "default": false },
+        { "name": "clickEffect", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "disableAnimations", "type": "boolean", "default": false },
+        { "name": "onItemClick", "type": "(item, index) => void", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Cards, their text, icons, images, links, built-in visual choice or custom content, and column/row spans",
+        "Column count, row height, gap and corner radius",
+        "Dark or light theme and glow color",
+        "Toggle spotlight, border glow, stars, tilt, magnetism, click effect, intro and all animation",
+        "Spotlight size and star count"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or restyle built-in visuals",
+            "where": "VISUALS map and the Visual components above it"
+        },
+        {
+            "change": "Change theme colors",
+            "where": "THEMES constant"
+        },
+        {
+            "change": "Adjust tilt and magnet strength",
+            "where": "TILT and MAGNET constants"
+        },
+        {
+            "change": "Change minimum card width before columns collapse",
+            "where": "MIN_CELL and MIN_PAIR constants"
+        },
+        {
+            "change": "Change intro stagger timing",
+            "where": "STAGGER constant"
+        }
+    ],
+    "fixed": [
+        "Requires @hugeicons/react and @hugeicons/core-free-icons",
+        "Needs Tailwind CSS for its utility classes",
+        "Injects its own style tag with keyframes",
+        "Listens to window pointer, scroll and resize events and document pointerout while mounted",
+        "Built-in visuals are string keys, not configurable by props",
+        "Column count collapses to 2 or 1 on narrow containers, so it works on small screens",
+        "Pointer effects (spotlight, tilt, magnetism, stars) need a hover-capable pointer",
+        "Respects prefers-reduced-motion and cannot override it"
+    ],
+    "mood": ["modern", "futuristic", "polished", "tech"],
+    "industries": ["saas", "software", "fintech", "ai", "startups"],
+    "sections": ["features", "services", "other"],
+    "dependencies": ["react", "@hugeicons/react", "@hugeicons/core-free-icons"],
+    "variants": {
+        "prop": "theme",
+        "default": "dark",
+        "options": [
+            { "value": "dark", "look": "Dark card surfaces with light ink and glow", "useWhen": "The page has a dark background" },
+            { "value": "light", "look": "Light card surfaces with dark ink and glow", "useWhen": "The page has a light background" }
+        ]
+    }
+}

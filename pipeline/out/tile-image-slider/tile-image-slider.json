@@ -1,0 +1,61 @@
+{
+    "slug": "tile-image-slider",
+    "name": "Tile Image Slider",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Full-screen image slider with a large animated headline, category label, slide counter, progress bar, and an up-next pill button with thumbnail that advances the slide with a crossfade.",
+    "contents": [
+        "Full-bleed background image with dark gradient overlay",
+        "Slide counter, category label, and multi-line headline",
+        "Bottom progress bar",
+        "Up-next pill button with thumbnail, next category, and arrow"
+    ],
+    "behavior": [
+        "Clicking the pill crossfades and scales to the next image, loops at the end",
+        "Headline scrolls up to the next title, pill slides out and springs back",
+        "Progress bar refills on each slide",
+        "Image is fitted to the container on window resize"
+    ],
+    "props": [
+        { "name": "tiles", "type": "{image,thumb,alt,title,category}[]", "default": "3 sample tiles" },
+        { "name": "accentColor", "type": "string", "default": "#e8ff57" },
+        { "name": "overlayOpacity", "type": "number", "default": 0.38 },
+        { "name": "titleSize", "type": "string", "default": "clamp(2rem, 6vw, 3.6rem)" },
+        { "name": "titleLeft", "type": "string", "default": "clamp(1.25rem, 4vw, 4rem)" },
+        { "name": "pillBg", "type": "string", "default": "rgba(0,0,0,0.72)" },
+        { "name": "pillBlur", "type": "string", "default": "12px" },
+        { "name": "swingDuration", "type": "number", "default": 0.7 },
+        { "name": "nextLabel", "type": "string", "default": "up next" },
+        { "name": "buttonAriaLabel", "type": "string", "default": "Next slide" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Slides: images, thumbnails, alt text, titles (HTML line breaks allowed), categories",
+        "Accent color, overlay darkness, pill background and blur",
+        "Title size and left offset, animation duration, button labels"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the image aspect ratio used for fitting",
+            "where": "fitImages function (imgRatio)"
+        },
+        {
+            "change": "Change fonts or the pill hover arrow motion",
+            "where": "STYLES constant"
+        },
+        {
+            "change": "Add auto-play",
+            "where": "handleNext function"
+        }
+    ],
+    "fixed": [
+        "Slider fills the viewport height (h-screen); override with className",
+        "Advances only by clicking the pill button",
+        "Loads Space Grotesk and Space Mono from Google Fonts through an @import in STYLES",
+        "Assumes images are about 3:2 when fitting"
+    ],
+    "mood": ["cinematic", "editorial", "modern", "bold"],
+    "industries": ["photography", "travel", "media", "agency", "fashion"],
+    "sections": ["hero", "gallery"],
+    "dependencies": ["gsap"]
+}

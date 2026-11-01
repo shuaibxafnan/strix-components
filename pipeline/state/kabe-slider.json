@@ -4,11 +4,12 @@
   "sourceHash": "adb56c4d8d14f9283d6d97f0a1707b7b790aac4f87d0ae7b8695e5bfcfa87c32",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "column-shift-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.484Z"
+  "note": "kabe-slider -> column-shift-slider (Kabe cryptic). No ambiguous removals. Frame: none (slider, full-width). Variants: none. Kept font-face injection (font needed). Colors changed from tailwind classes to color values. responsive: already ok",
+  "updatedAt": "2026-11-01T09:10:02.926Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,28 @@
+{
+  "slug": "multilingual-matrix-rain",
+  "name": "Multilingual Matrix Rain",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen canvas Matrix-style digital rain whose falling streams spell out greetings in many world languages, with flickering digits and a bright head on each column.",
+  "contents": ["Full-viewport black canvas with falling character streams built from multilingual hello-world phrases"],
+  "behavior": ["Streams fall at random speeds and wrap to the top", "Characters randomly flicker into digits", "Canvas resizes with the window and rebuilds streams", "Animation frame and resize listener are cleaned up on unmount"],
+  "props": [
+    {"name": "charSize", "type": "number", "default": 18},
+    {"name": "minSpeed", "type": "number", "default": 1},
+    {"name": "maxSpeed", "type": "number", "default": 3},
+    {"name": "baseHue", "type": "number", "default": 120},
+    {"name": "fontStyle", "type": "string", "default": "monospace"},
+    {"name": "fadeAlpha", "type": "number", "default": 0.08},
+    {"name": "phrases", "type": "string[]", "default": "DEFAULT_PHRASES (about 90 greetings)"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Rain hue", "Character size", "Fall speed range", "Trail length via fade alpha", "Font family", "Phrase list"],
+  "needsCodeEdit": [
+    {"change": "Change the black background and trail fade color", "where": "renderLoop"}
+  ],
+  "fixed": ["Canvas is sized to the window, not the container", "Background is black"],
+  "mood": ["techy", "futuristic", "dark", "hacker"],
+  "industries": ["technology", "cybersecurity", "gaming", "software", "developer tools"],
+  "sections": ["hero", "background"],
+  "dependencies": []
+}

@@ -1,0 +1,54 @@
+{
+  "slug": "loading-button",
+  "name": "Loading Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Pill-shaped progress button that draws its outline as a loading bar with a spinner and percentage, supports pause and resume, then fills in with an animated double check and a Done label.",
+  "contents": [
+    "Outlined rounded button with spinner and percentage counter",
+    "Pause and resume toggle",
+    "Done state with animated double check, label and reset button"
+  ],
+  "behavior": [
+    "Starts automatically after a delay and progresses with an ease-in-out curve",
+    "Border stroke fills as progress advances",
+    "Pause button swaps with a play icon using a slide and fade",
+    "On completion the button fills with the accent color and the checks draw in",
+    "Reset button replays the sequence"
+  ],
+  "props": [
+    { "name": "durationMs", "type": "number", "default": 5500 },
+    { "name": "startDelay", "type": "number", "default": 1000 },
+    { "name": "autoStart", "type": "boolean", "default": true },
+    { "name": "onComplete", "type": "function", "default": null },
+    { "name": "onReset", "type": "function", "default": null },
+    { "name": "accentColor", "type": "string", "default": "#1578ff" },
+    { "name": "pauseColor", "type": "string", "default": "#ff542b" },
+    { "name": "doneLabel", "type": "string", "default": "Done" },
+    { "name": "readyLabel", "type": "string", "default": "Ready" },
+    { "name": "loadingLabel", "type": "string", "default": "Loading" },
+    { "name": "pauseLabel", "type": "string", "default": "Pause" },
+    { "name": "resumeLabel", "type": "string", "default": "Resume" },
+    { "name": "resetLabel", "type": "string", "default": "Reset" },
+    { "name": "surfaceColor", "type": "string", "default": "#ffffff" },
+    { "name": "checkColor", "type": "string", "default": "#ffffff" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Duration, start delay and auto start",
+    "Accent, pause, surface and check colors",
+    "Done label and accessibility labels",
+    "Completion and reset callbacks"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change button size", "where": "SVG_PERIMETER" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Button size is fixed at 212 by 62 pixels"
+  ],
+  "mood": ["playful", "clean", "modern", "interactive"],
+  "industries": ["saas", "fintech", "ecommerce", "productivity", "developer tools"],
+  "sections": ["cta", "other"],
+  "dependencies": []
+}

@@ -1,0 +1,75 @@
+{
+  "slug": "layout-formation-scroll",
+  "name": "Layout Formation Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Photography portfolio page where nine image grids assemble on scroll, each pinned in turn with staggered, rotated and 3D entrances, separated by text sections under a parallax hero frame.",
+  "contents": [
+    "Hero frame with logo text, tags, name, tagline and scroll hint",
+    "Nine pinned image grids with different formation animations",
+    "Titled intro, about, life, ethics, inspiration, process, collaborations, style, future and contact text sections"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis synced to GSAP ticker",
+    "Hero frame shifts down, scales and darkens while scrolling away",
+    "Each grid pins at center and its images fly, rotate, skew or flip into place, scrubbed by scroll",
+    "Images are preloaded before animations start, then the page scrolls to top"
+  ],
+  "props": [
+    {"name": "name", "type": "string", "default": "Lennox Montgomery"},
+    {"name": "tagline", "type": "string", "default": "Layout Formation on Scroll"},
+    {"name": "logoText", "type": "string", "default": "LM"},
+    {"name": "tags", "type": "string[]", "default": ["#scroll", "#grid"]},
+    {"name": "bgColor", "type": "string", "default": "#0e0d0e"},
+    {"name": "frameBgColor", "type": "string", "default": "#7a7364"},
+    {"name": "textColor", "type": "string", "default": "#f5f3ee"},
+    {"name": "images", "type": "string[]", "default": "25 sample Unsplash photos"},
+    {"name": "introText", "type": "string", "default": "Welcome to the portfolio. In a world dominated by speed and constant motion, this photography invites you to slow down and immerse yourself in a visual experience that touches human fragility."},
+    {"name": "aboutText", "type": "string", "default": "The lens captures the quiet ache of reality, where shadow and light blur the line between seen and felt. Soft, muted tones breathe life into the ordinary, revealing textures hidden in plain sight."},
+    {"name": "lifeText", "type": "string", "default": "Born amid the gentle interplay of light and shadow in the city's quieter corners, the eye was drawn early on to the unnoticed beauty in the mundane, the softness in the grit."},
+    {"name": "workEthicsText", "type": "string", "default": "Driven by a strong sense of discipline and dedication, the work reflects a deep commitment to craft and personal growth, with a relentless focus on innovation and detail."},
+    {"name": "inspirationText", "type": "string", "default": "Inspiration comes from the quiet, in-between moments of everyday life — the fleeting light at dawn, the subtle movement of shadows, the way stillness can carry untold stories."},
+    {"name": "processText", "type": "string", "default": "The creative process begins with stillness and observation, letting the moment speak before any action is taken, immersing in the quiet shifts of light, texture, and mood."},
+    {"name": "collaborationsText", "type": "string", "default": "Known for openness to new ideas and innovative approaches, the work thrives on the energy of collaborating with fellow artists, designers, and creative professionals."},
+    {"name": "styleText", "type": "string", "default": "The style is rooted in subtlety and restraint, capturing the delicate balance between light and shadow, presence and absence, favoring soft textures and a timeless aesthetic."},
+    {"name": "futureText", "type": "string", "default": "Looking ahead, the work envisions diving deeper into the exploration of intimacy and impermanence, blending photography with film and sound for immersive experiences."},
+    {"name": "title1", "type": "string", "default": "Rawness"},
+    {"name": "subtitle1", "type": "string", "default": "Captured in every moment"},
+    {"name": "title2", "type": "string", "default": "Explorations"},
+    {"name": "subtitle2", "type": "string", "default": "Nothing left unseen"},
+    {"name": "title3", "type": "string", "default": "Unspoken"},
+    {"name": "subtitle3", "type": "string", "default": "Love will not save us"},
+    {"name": "scrubSpeed", "type": "number", "default": 0.4},
+    {"name": "lerp", "type": "number", "default": 0.15},
+    {"name": "scrollHint", "type": "string", "default": "Scroll to explore"},
+    {"name": "contactText", "type": "string", "default": "Interested in collaborating or just want to say hello? Reach out — always open to new projects and conversations."},
+    {"name": "grid2Items", "type": "{label,text}[]", "default": "3 sample captions"},
+    {"name": "grid3Items", "type": "{label,text}[]", "default": "2 sample captions"},
+    {"name": "grid7Items", "type": "{label,text}[]", "default": "2 sample captions"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Hero name, tagline, logo text, tags and scroll hint",
+    "All section texts, grid titles, subtitles and captions",
+    "Image list, background, frame and text colors",
+    "Scroll scrub speed and Lenis smoothing"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the grid layouts or image counts", "where": "The data-grid-1 to data-grid-9 blocks in the returned JSX"},
+    {"change": "Change a formation animation", "where": "The gsap timelines for grid1 to grid9 inside the useEffect"},
+    {"change": "Change the 3D entrance intensity", "where": "calcInitialTransform function"},
+    {"change": "Change grid placement of the first grid", "where": "POS and GRID1_ORDER constants"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Pins each grid for 150% to 250% of scroll range, giving the page a long scroll length",
+    "Hides the page scrollbar through a global style rule while mounted",
+    "Scrolls the window to top after images load",
+    "Number of grids and their image counts are fixed, images repeat when fewer are supplied",
+    "Layout uses fixed grid column counts, images become small on narrow screens"
+  ],
+  "mood": ["editorial", "elegant", "dark", "artistic", "immersive"],
+  "industries": ["photography", "art", "fashion", "design studio", "portfolio"],
+  "sections": ["hero", "portfolio", "gallery"],
+  "dependencies": ["gsap", "lenis"]
+}

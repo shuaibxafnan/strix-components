@@ -1,0 +1,75 @@
+{
+  "slug": "letters-menu-hover",
+  "name": "Letters Menu Hover",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Large typographic menu where hovering a word flips its letters in a staggered 3D roll and reveals a rotating image card that follows the cursor, with a numbered counter and a custom dot cursor.",
+  "contents": [
+    "Menu of big uppercase words, each with a hidden reveal image",
+    "Optional numbered counter before each item",
+    "Optional body text block below the menu",
+    "Optional custom dot cursor"
+  ],
+  "behavior": [
+    "Words slide in with a stagger on load",
+    "Hovering a word after a short delay rolls its letters out and in with a staggered 3D flip",
+    "An image card scales in and follows the pointer with eased position and rotation based on mouse speed and direction",
+    "Image card drops away on leave",
+    "Custom cursor grows and fades over menu items and is hidden on coarse pointers",
+    "Intro animation is skipped when reduced motion is preferred",
+    "Layout wraps on small screens and scales type up from 53em"
+  ],
+  "props": [
+    {"name": "items", "type": "{label,image}[]", "default": "6 sample items"},
+    {"name": "bgColor", "type": "string", "default": "#f7f5f0"},
+    {"name": "textColor", "type": "string", "default": "#000000"},
+    {"name": "counterColor", "type": "string", "default": "#ccc0a2"},
+    {"name": "showCounter", "type": "boolean", "default": true},
+    {"name": "bodyText", "type": "string", "default": "8 line sample poem"},
+    {"name": "bodyTextColor", "type": "string", "default": "#111111"},
+    {"name": "displayFontUrl", "type": "string", "default": "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&display=swap"},
+    {"name": "bodyFontUrl", "type": "string", "default": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&display=swap"},
+    {"name": "displayFontFamily", "type": "string", "default": "'Big Shoulders Display', sans-serif"},
+    {"name": "bodyFontFamily", "type": "string", "default": "'Space Grotesk', sans-serif"},
+    {"name": "fontSize", "type": "string", "default": "2rem"},
+    {"name": "fontSizeLarge", "type": "string", "default": "10vw"},
+    {"name": "letterPadding", "type": "string", "default": "1.25rem"},
+    {"name": "letterPaddingLarge", "type": "string", "default": "3vw"},
+    {"name": "revealWidth", "type": "number", "default": 350},
+    {"name": "revealHeight", "type": "number", "default": 450},
+    {"name": "hoverDelay", "type": "number", "default": 100},
+    {"name": "startingAngle", "type": "number", "default": -30},
+    {"name": "rotationRange", "type": "number", "default": 100},
+    {"name": "lerpAmount", "type": "number", "default": 0.15},
+    {"name": "charDuration", "type": "number", "default": 0.5},
+    {"name": "charStagger", "type": "number", "default": 0.025},
+    {"name": "revealDuration", "type": "number", "default": 1.3},
+    {"name": "introStagger", "type": "number", "default": 0.05},
+    {"name": "showCursor", "type": "boolean", "default": true},
+    {"name": "cursorColor", "type": "string", "default": "#e0530e"},
+    {"name": "cursorSize", "type": "number", "default": 20},
+    {"name": "fadeOverlay", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Menu labels and reveal images",
+    "Background, text, counter, body text and cursor colors",
+    "Font sizes, letter padding, fonts and font URLs",
+    "Reveal card size, hover delay, rotation and easing amounts",
+    "Letter flip and reveal timing",
+    "Counter, cursor, bottom fade and body text toggles"
+  ],
+  "needsCodeEdit": [
+    {"change": "Make items link to pages", "where": "the anchor element with data-cursor-target inside items.map"},
+    {"change": "Change the letter flip direction or easing", "where": "animateCharsIn and animateCharsOut functions"}
+  ],
+  "fixed": [
+    "Root fills the viewport height (h-screen) and clips overflow. Override with className using an important modifier such as !h-auto.",
+    "Window mousemove listeners are added and removed on unmount",
+    "Hover reveal depends on mouse events, touch devices get the tap-triggered hover emulation only"
+  ],
+  "mood": ["editorial", "bold", "playful", "creative"],
+  "industries": ["creative agency", "portfolio", "fashion", "photography", "publishing"],
+  "sections": ["hero", "navbar", "portfolio"],
+  "dependencies": ["gsap"]
+}

@@ -1,0 +1,85 @@
+{
+    "slug": "line-waves",
+    "name": "Line Waves",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 shader background of thin warped parallel lines that flow like waves, with a drifting highlight band, color cycling, a mouse lens distortion, click ripples and an intro sweep reveal.",
+    "contents": [
+        "Container div filling its parent",
+        "Single absolutely positioned canvas rendering a full-screen WebGL2 fragment shader"
+    ],
+    "behavior": [
+        "Lines are warped by layered sine waves that animate over time, rotated by the rotation prop",
+        "A soft highlight band drifts across the lines and brightens them",
+        "Line color cycles through three colors over time",
+        "Mouse position creates a lens distortion that follows the pointer with easing",
+        "Clicking inside the container spawns up to 4 expanding ripples",
+        "Intro sweeps the lines in from left to right on first mount",
+        "Rendering pauses when offscreen or tab hidden and resumes on wake",
+        "Reduced motion preference slows animation and disables mouse lens and ripples",
+        "Recovers from WebGL context loss by reinitializing"
+    ],
+    "props": [
+        { "name": "color1", "type": "string", "default": "#ffffff" },
+        { "name": "color2", "type": "string", "default": "#ffffff" },
+        { "name": "color3", "type": "string", "default": "#ffffff" },
+        { "name": "colorCycleSpeed", "type": "number", "default": 1 },
+        { "name": "speed", "type": "number", "default": 0.3 },
+        { "name": "lineCount", "type": "number", "default": 72 },
+        { "name": "lineWidth", "type": "number", "default": 1.3 },
+        { "name": "glow", "type": "number", "default": 0.6 },
+        { "name": "brightness", "type": "number", "default": 1 },
+        { "name": "highlight", "type": "number", "default": 1 },
+        { "name": "highlightWidth", "type": "number", "default": 1 },
+        { "name": "warpIntensity", "type": "number", "default": 1 },
+        { "name": "warpScale", "type": "number", "default": 1 },
+        { "name": "rotation", "type": "number", "default": -33 },
+        { "name": "edgeFade", "type": "number", "default": 0 },
+        { "name": "enableMouseInteraction", "type": "boolean", "default": true },
+        { "name": "mouseInfluence", "type": "number", "default": 2 },
+        { "name": "clickRipple", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "maxDevicePixelRatio", "type": "number", "default": 2 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Three line colors, color cycle speed, brightness, glow and opacity",
+        "Animation speed, line count, line width, rotation and edge fade",
+        "Warp intensity and scale, highlight strength and width",
+        "Mouse lens, click ripple and intro toggles, light mode ink rendering, pixel ratio cap"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the number of simultaneous click ripples",
+            "where": "MAX_RIPPLES constant"
+        },
+        {
+            "change": "Change the shape of the wave motion",
+            "where": "bend function in the FRAGMENT shader"
+        },
+        {
+            "change": "Change the intro duration",
+            "where": "reveal increment (dt / 1.8) in the frame function"
+        },
+        {
+            "change": "Change the render resolution budget",
+            "where": "PIXEL_BUDGET constant"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if unavailable",
+        "Root is h-full w-full, so the parent must have a defined height",
+        "Transparent background: all three colors default to white, so set colors for it to be visible on light backgrounds or use lightMode",
+        "Adds window pointer listeners for move, down, up, cancel and a documentElement pointerleave listener, all removed on unmount",
+        "Pointer events are read from the window, so the canvas does not capture clicks and content can sit above it",
+        "Canvas resolution is capped by a 2.4M pixel budget and maxDevicePixelRatio",
+        "Works on mobile sizes since it resizes from its container with a ResizeObserver; touch ends clear the lens"
+    ],
+    "mood": ["futuristic", "elegant", "dynamic", "minimal"],
+    "industries": ["technology", "saas", "AI", "creative agency", "fintech"],
+    "sections": ["hero", "background"],
+    "dependencies": []
+}

@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "light-tunnel",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.598Z"
+  "note": "React Bits, JSX copied unchanged. Category backgrounds-3d, no variants, no deps. Fixed: needs WebGL2; parent needs defined height; window pointer listeners, click surge only inside container; motion frozen under reduced-motion; default colors white so needs dark bg unless lightMode; pixel ratio capped at 2.",
+  "updatedAt": "2026-11-01T09:19:35.362Z",
+  "gateOutput": "gates passed"
 }

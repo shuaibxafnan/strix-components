@@ -1,0 +1,48 @@
+{
+  "slug": "loop-reflection-carousel",
+  "name": "Loop Reflection Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Pinned scroll-driven infinite loop carousel where image cards glide across the screen, scaling and fading in and out, each with a blurred mirrored reflection beneath it.",
+  "contents": [
+    "Loop of image cards with type label and title",
+    "Blurred faded reflection under each card",
+    "Previous and next arrow buttons"
+  ],
+  "behavior": [
+    "Section is pinned while scrolling scrubs the card loop, wrapping endlessly in both directions",
+    "Cards scale and fade in from the center and travel across, then out",
+    "Arrow buttons step the loop by one card spacing",
+    "Cards lift slightly on hover"
+  ],
+  "props": [
+    {"name": "pics", "type": "string[]", "default": "6 sample photo URLs"},
+    {"name": "titles", "type": "string[]", "default": ["Mountain", "Stars", "Skies", "Water", "Trips"]},
+    {"name": "types", "type": "string[]", "default": ["Guide", "Planner", "Discuss"]},
+    {"name": "cardCount", "type": "number", "default": 10},
+    {"name": "spacing", "type": "number", "default": 0.2},
+    {"name": "scrollLength", "type": "number", "default": 3000},
+    {"name": "bgColor", "type": "string", "default": "hsl(220, 34%, 5%)"},
+    {"name": "reflectionBlur", "type": "number", "default": 5},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, titles and type labels, cycled across the cards",
+    "Number of cards, spacing, scroll distance",
+    "Background color and reflection blur"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change card size", "where": "w-56 h-72 classes on the card li and gallery__content ul"},
+    {"change": "Change travel distance or card scale curve", "where": "xPercent and scale fromTo calls in buildLoop"},
+    {"change": "Change reflection offset", "where": "top-8 class on the aria-hidden reflection div in SingleCard"}
+  ],
+  "fixed": [
+    "Pins the gallery and uses page scroll for scrubbing through ScrollTrigger, with a scroll range set by scrollLength",
+    "Root is full-width and one viewport tall",
+    "Card type labels are picked from types with a fixed stride of 3"
+  ],
+  "mood": ["cinematic", "modern", "dark", "elegant"],
+  "industries": ["travel", "photography", "portfolio", "media"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["gsap"]
+}

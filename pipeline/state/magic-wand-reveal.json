@@ -4,11 +4,12 @@
   "sourceHash": "7eab76d922da3f7924663d9d3a9b4fb9a7e95d935bededc364162c6ce3e7b33a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "magic-wand-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.491Z"
+  "note": "Removed empty placeholders and runtime Font Awesome CDN injection; icon now inline SVG using iconColor. Added className, imageAlt, passive touchmove listener with cleanup. No frame change, no variants. Category cursor-effects. Kept mounted placeholder.",
+  "updatedAt": "2026-11-01T09:32:11.712Z",
+  "gateOutput": "gates passed"
 }

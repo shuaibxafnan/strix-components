@@ -1,0 +1,55 @@
+{
+    "slug": "interactive-subscribe",
+    "name": "Interactive Subscribe",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Email subscribe card with a draggable cartoon character whose eyes follow the pointer and the typing caret, shows an error pose on invalid email and a confetti success state.",
+    "contents": [
+        "Header with title, subtitle and status badge",
+        "Track with draggable character face and eyes",
+        "Email input with subscribe button",
+        "Success banner replacing the form"
+    ],
+    "behavior": [
+        "Character drags horizontally along the track with rubber band edges and inertia",
+        "Pupils follow the pointer, or the text caret while the input is focused",
+        "Invalid email shows a curved error label and an open mouth",
+        "Valid submit shows a success banner and fires confetti, tap the banner to fire again"
+    ],
+    "props": [
+        {"name": "accentColor", "type": "string", "default": "#FF79F1"},
+        {"name": "characterFill", "type": "string", "default": "#BD00A9"},
+        {"name": "skinColor", "type": "string", "default": "#FFDBE4"},
+        {"name": "successBg", "type": "string", "default": "#29D259"},
+        {"name": "sensitivity", "type": "number", "default": 400},
+        {"name": "maxPupilMoveX", "type": "number", "default": 16},
+        {"name": "maxPupilMoveY", "type": "number", "default": 20},
+        {"name": "title", "type": "string", "default": "Join Orbit"},
+        {"name": "subtitle", "type": "string", "default": "Drag to calibrate track position"},
+        {"name": "statusLabel", "type": "string", "default": "Active"},
+        {"name": "placeholder", "type": "string", "default": "name@domain.com"},
+        {"name": "buttonLabel", "type": "string", "default": "Subscribe"},
+        {"name": "errorText", "type": "string", "default": "Invalid Email Target"},
+        {"name": "successText", "type": "string", "default": "Access Granted"},
+        {"name": "errorColor", "type": "string", "default": "#EF4444"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "All text labels",
+        "Accent, character, skin, success and error colors",
+        "Eye tracking range and sensitivity"
+    ],
+    "needsCodeEdit": [
+        {"change": "Handle form submission with a real API call", "where": "handleFormSubmit function"},
+        {"change": "Change confetti particles", "where": "burstAtElement function"}
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Card surface colors are dark and hardcoded in the card classes",
+        "Character artwork is inline SVG"
+    ],
+    "mood": ["playful", "dark", "friendly", "interactive"],
+    "industries": ["saas", "newsletter", "startup", "media", "agency"],
+    "sections": ["cta", "contact"],
+    "dependencies": ["canvas-confetti"]
+}

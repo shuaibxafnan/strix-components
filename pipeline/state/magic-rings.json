@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "magic-rings",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.600Z"
+  "note": "React Bits, JSX copied unchanged. Category backgrounds-3d, no deps. Variants: motion (pulse, ripple, breathe); theme not a variant (schema allows one). Fixed: needs WebGL2; parent needs defined height; window-wide pointer listeners; rings capped at 12, bursts at 3; heavy on low-end mobile GPUs, lower maxDevicePixelRatio.",
+  "updatedAt": "2026-11-01T09:31:31.140Z",
+  "gateOutput": "gates passed"
 }

@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "jelly-radio",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.622Z"
+  "note": "React Bits, JSX copied unchanged. Category ui-elements, no variants. Needs Tailwind and motion. Fixed: single non-wrapping chip row may overflow on narrow screens; keyboard selection instant, only clicks animate.",
+  "updatedAt": "2026-11-01T09:08:45.414Z",
+  "gateOutput": "gates passed"
 }

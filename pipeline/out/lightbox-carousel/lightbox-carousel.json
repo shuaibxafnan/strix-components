@@ -1,0 +1,49 @@
+{
+  "slug": "lightbox-carousel",
+  "name": "Lightbox Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Vertical 3D ring of image cards that auto-rotates and can be dragged up or down. Clicking a card opens the image in a fullscreen lightbox overlay.",
+  "contents": ["Rotating 3D ring of glowing image cards", "Fullscreen lightbox overlay with close button"],
+  "behavior": [
+    "Ring rotates one step on an interval and pauses on hover, drag or open lightbox",
+    "Drag with mouse or touch vertically to rotate the ring",
+    "Click a card to open its image in a fading overlay, click backdrop or X to close",
+    "Cards have a pulsing glow behind them"
+  ],
+  "props": [
+    {"name": "width", "type": "string", "default": "300px"},
+    {"name": "height", "type": "string", "default": "400px"},
+    {"name": "perspective", "type": "string", "default": "1000px"},
+    {"name": "cardWidth", "type": "string", "default": "300px"},
+    {"name": "cardHeight", "type": "string", "default": "200px"},
+    {"name": "cardRadius", "type": "string", "default": "15px"},
+    {"name": "radius", "type": "number", "default": 180},
+    {"name": "autoRotateDelay", "type": "number", "default": 3000},
+    {"name": "dragSensitivity", "type": "number", "default": 0.5},
+    {"name": "bodyBg", "type": "string", "default": "#111"},
+    {"name": "overlayColor", "type": "string", "default": "rgba(0,0,0,0.8)"},
+    {"name": "closeColor", "type": "string", "default": "#ffffff"},
+    {"name": "expandedAlt", "type": "string", "default": "Expanded view"},
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "cardItems", "type": "{src,alt}[]", "default": "6 sample images"}
+  ],
+  "editableByProps": [
+    "Images and their alt text, number of cards",
+    "Ring and card sizes, radius, perspective, rotation delay, drag sensitivity",
+    "Background and overlay colors, close button color"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the glow color or pulse speed", "where": "before: classes on the card div and the pulseGlow keyframes"},
+    {"change": "Rotate horizontally instead of vertically", "where": "rotateX transforms in applyRotation and the card style"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Lightbox overlay is position fixed over the whole viewport",
+    "Window mouseup and touchend listeners are added while mounted and removed on unmount"
+  ],
+  "mood": ["immersive", "modern", "dark", "playful"],
+  "industries": ["photography", "portfolio", "fashion", "travel", "real estate"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

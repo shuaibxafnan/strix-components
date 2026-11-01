@@ -1,0 +1,91 @@
+{
+    "slug": "magic-rings",
+    "name": "Magic Rings",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 background of glowing concentric rings that pulse, ripple or breathe, with optional tilt, prism dispersion, grain, mouse follow and click bursts. Fills its parent container.",
+    "contents": [
+        "Container div with a transparent full-size WebGL canvas",
+        "Up to 12 glowing rings blending between two colors"
+    ],
+    "behavior": [
+        "Rings animate in one of three motions and play an intro fade-in on first mount",
+        "Rings tilt and shift with the pointer through parallax, and optionally follow the mouse with hover glow",
+        "Clicking or tapping spawns up to 3 expanding burst rings",
+        "Pauses rendering when off screen or tab hidden, and skips the intro under reduced motion",
+        "Recovers after WebGL context loss"
+    ],
+    "props": [
+        { "name": "color", "type": "string", "default": "#A855F7" },
+        { "name": "colorTwo", "type": "string", "default": "#6366F1" },
+        { "name": "ringCount", "type": "number", "default": 6 },
+        { "name": "motion", "type": "'pulse' | 'ripple' | 'breathe'", "default": "pulse" },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "lineThickness", "type": "number", "default": 2 },
+        { "name": "glow", "type": "number", "default": 1 },
+        { "name": "baseRadius", "type": "number", "default": 0.35 },
+        { "name": "radiusStep", "type": "number", "default": 0.1 },
+        { "name": "expansion", "type": "number", "default": 0.1 },
+        { "name": "taper", "type": "number", "default": 1.5 },
+        { "name": "rotation", "type": "number", "default": 0 },
+        { "name": "spin", "type": "number", "default": 0 },
+        { "name": "tilt", "type": "number", "default": 0 },
+        { "name": "dispersion", "type": "number", "default": 0 },
+        { "name": "grain", "type": "number", "default": 0 },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "followMouse", "type": "boolean", "default": false },
+        { "name": "mouseInfluence", "type": "number", "default": 0.2 },
+        { "name": "hoverScale", "type": "number", "default": 1.2 },
+        { "name": "hoverIntensity", "type": "number", "default": 1 },
+        { "name": "parallax", "type": "number", "default": 0.05 },
+        { "name": "clickBurst", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "theme", "type": "string", "default": "dark" },
+        { "name": "maxDevicePixelRatio", "type": "number", "default": 2 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Two ring colors, ring count, radius, spacing and taper",
+        "Motion style, speed, line thickness, glow, opacity, rotation, spin and 3D tilt",
+        "Prism dispersion and film grain",
+        "Mouse follow, hover, parallax, click bursts and intro",
+        "Light theme for light backgrounds, pixel ratio cap, container className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Allow more than 12 rings or more than 3 simultaneous bursts",
+            "where": "MAX_RINGS and MAX_BURSTS constants at the top of the file"
+        },
+        {
+            "change": "Change pulse timing of the rings",
+            "where": "CYCLE, STAGGER and BURST_LIFE constants"
+        },
+        {
+            "change": "Add a new motion style",
+            "where": "MOTIONS array and the ripple/breathe branches in the frame function"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if unavailable",
+        "Fills the parent, so the parent needs a defined height",
+        "Canvas has pointer-events none, pointer input is read from window listeners over the whole page",
+        "Listens to window pointer events and document visibility while mounted",
+        "Ring count is capped at 12 and bursts at 3",
+        "Uses a 3D-style canvas, heavy on low-end mobile GPUs; lower maxDevicePixelRatio there",
+        "Rendering is transparent so the background behind it shows through"
+    ],
+    "mood": ["magical", "futuristic", "glowing", "mystic"],
+    "industries": ["gaming", "tech", "ai", "entertainment", "crypto"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": [],
+    "variants": {
+        "prop": "motion",
+        "default": "pulse",
+        "options": [
+            { "value": "pulse", "look": "Rings fade in and out in staggered pulses while expanding outward", "useWhen": "A lively, energetic hero background" },
+            { "value": "ripple", "look": "Wave travels across the ring set like ripples on water", "useWhen": "A fluid, flowing feel" },
+            { "value": "breathe", "look": "Rings gently swell and contract in a slow wave", "useWhen": "A calm, ambient backdrop" }
+        ]
+    }
+}

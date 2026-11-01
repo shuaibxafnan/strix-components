@@ -4,11 +4,12 @@
   "sourceHash": "fcbd153ec0858da9a2c8abd1506fa28c9d349c6e51da7968abba78e159c9fd76",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "logout-jump-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.490Z"
+  "note": "Removed stray empty placeholders. Frame added: div w-full h-screen flex center with className (source root was a fragment). Variants dark/light kept from existing variant prop; conflicts with template no-dark/light rule, reviewer to decide. Kept mounted gate, Quicksand font-family without import, fixed 130x40 size.",
+  "updatedAt": "2026-11-01T09:29:13.611Z",
+  "gateOutput": "gates passed"
 }

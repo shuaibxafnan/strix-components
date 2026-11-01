@@ -1,0 +1,76 @@
+{
+  "slug": "bento-grid-slideshow",
+  "name": "Bento Grid Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen slideshow of bento-style image grids. Each slide has its own tile layout, and tiles are covered and uncovered by staggered color wipes when moving between slides, with a hover tint and mouse parallax.",
+  "contents": [
+    "Slides, each with a title, a set of positioned image tiles and previous and next arrow tiles",
+    "Vertical slide title per slide"
+  ],
+  "behavior": [
+    "Previous and next tiles or arrow keys switch slides",
+    "Tiles wipe out then in with per-tile staggered delays",
+    "Tiles shift with mouse position for a depth effect",
+    "Hovered tiles get a blend-mode color overlay",
+    "Screens at the mobile breakpoint switch to a scrollable auto-fill grid with horizontal titles"
+  ],
+  "props": [
+    { "name": "slides", "type": "{title,areas,delays,titleArea,prevArea,nextArea,prevDelay,nextDelay,images}[]", "default": "3 sample slides" },
+    { "name": "images", "type": "string[]", "default": "25 sample images" },
+    { "name": "columns", "type": "number", "default": 30 },
+    { "name": "rows", "type": "number", "default": 30 },
+    { "name": "gap", "type": "number", "default": 20 },
+    { "name": "inset", "type": "string", "default": "3em" },
+    { "name": "bgColor", "type": "string", "default": "#252626" },
+    { "name": "revealColor", "type": "string", "default": "#252626" },
+    { "name": "revealDuration", "type": "number", "default": 0.8 },
+    { "name": "revealEase", "type": "string", "default": "cubic-bezier(0.7,0,0.3,1)" },
+    { "name": "revealDirection", "type": "string", "default": "ttb" },
+    { "name": "textDuration", "type": "number", "default": 0.8 },
+    { "name": "titleColor", "type": "string", "default": "#1f2ee0" },
+    { "name": "titleSize", "type": "string", "default": "3.5vh" },
+    { "name": "displayFont", "type": "string", "default": "Kanit, sans-serif" },
+    { "name": "bodyFont", "type": "string", "default": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif" },
+    { "name": "navColor", "type": "string", "default": "#000000" },
+    { "name": "navBg", "type": "string", "default": "#fffa3a" },
+    { "name": "navColorHover", "type": "string", "default": "#ffffff" },
+    { "name": "navBgHover", "type": "string", "default": "#1f2ee0" },
+    { "name": "hoverBlendColor", "type": "string", "default": "#0013ff" },
+    { "name": "hoverBlendMode", "type": "string", "default": "exclusion" },
+    { "name": "enableHoverBlend", "type": "boolean", "default": true },
+    { "name": "enableTilt", "type": "boolean", "default": true },
+    { "name": "tiltX", "type": "number", "default": 25 },
+    { "name": "tiltY", "type": "number", "default": 25 },
+    { "name": "enableKeyboard", "type": "boolean", "default": true },
+    { "name": "loop", "type": "boolean", "default": true },
+    { "name": "mobileBreakpoint", "type": "string", "default": "60em" },
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "onChange", "type": "function|null", "default": null }
+  ],
+  "editableByProps": [
+    "Slides, titles, tile grid areas, stagger delays and images",
+    "Grid size, gap and inset",
+    "Background, wipe, title, arrow and hover colors",
+    "Wipe direction, duration, easing, tilt strength, looping and keyboard control"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the arrow icon",
+      "where": "NAV_ARROW constant"
+    },
+    {
+      "change": "Change the mobile layout",
+      "where": "media query block at the end of the css template literal"
+    }
+  ],
+  "fixed": [
+    "Listens to window keydown for arrow keys and window mousemove for tilt while mounted, removed on unmount",
+    "Fills the viewport height with overflow hidden",
+    "Display font is not loaded by the component, the host must provide Kanit or set displayFont"
+  ],
+  "mood": ["bold", "playful", "editorial", "dynamic"],
+  "industries": ["travel", "photography", "fashion", "agency", "portfolio"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": []
+}

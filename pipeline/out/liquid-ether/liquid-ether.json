@@ -1,0 +1,91 @@
+{
+    "slug": "liquid-ether",
+    "name": "Liquid Ether",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 fluid simulation background that renders flowing colored liquid which reacts to pointer movement and clicks, with an idle auto-demo motion and an intro animation.",
+    "contents": [
+        "Container div with a single full-size WebGL canvas"
+    ],
+    "behavior": [
+        "Runs a GPU fluid solver (advection, pressure projection) and colors the flow from a gradient palette",
+        "Pointer movement anywhere on the window pushes the fluid",
+        "Pointer press triggers a burst when clickBurst is on",
+        "Auto-demo moves a virtual cursor after the pointer has been idle for autoResumeDelay",
+        "Intro animation plays on first mount",
+        "Pauses when offscreen or the tab is hidden, recovers from WebGL context loss",
+        "Respects prefers-reduced-motion by skipping the intro and auto-demo loop"
+    ],
+    "props": [
+        { "name": "colors", "type": "string[] | string", "default": ["#5227FF", "#FF9FFC", "#B497CF"] },
+        { "name": "intensity", "type": "number", "default": 1 },
+        { "name": "mouseForce", "type": "number", "default": 20 },
+        { "name": "cursorSize", "type": "number", "default": 100 },
+        { "name": "persistence", "type": "number", "default": 0.75 },
+        { "name": "viscosity", "type": "number", "default": 0 },
+        { "name": "resolution", "type": "number", "default": 0.5 },
+        { "name": "bounceEdges", "type": "boolean", "default": false },
+        { "name": "clickBurst", "type": "boolean", "default": true },
+        { "name": "autoDemo", "type": "boolean", "default": true },
+        { "name": "autoSpeed", "type": "number", "default": 0.5 },
+        { "name": "autoIntensity", "type": "number", "default": 2.2 },
+        { "name": "autoResumeDelay", "type": "number", "default": 1000 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "backgroundColor", "type": "string", "default": "transparent" },
+        { "name": "maxDevicePixelRatio", "type": "number", "default": 2 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Fluid colors, intensity, background color and light mode",
+        "Pointer force, brush size, persistence, viscosity and edge bounce",
+        "Simulation resolution and max device pixel ratio for performance",
+        "Click burst, auto-demo speed, strength and resume delay, intro on or off",
+        "Container sizing and positioning through className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the number of pressure solver iterations",
+            "where": "PRESSURE_STEPS constant at the top of the file"
+        },
+        {
+            "change": "Change the rendering pixel and grid cell limits",
+            "where": "PIXEL_BUDGET and MAX_CELLS constants"
+        },
+        {
+            "change": "Change how colors are shaded from the flow",
+            "where": "DISPLAY shader string"
+        },
+        {
+            "change": "Listen to pointer only inside the component instead of the whole window",
+            "where": "window.addEventListener pointermove, pointerdown, pointerup calls in the main useEffect"
+        }
+    ],
+    "fixed": [
+        "Needs WebGL2 and float color buffer support, otherwise nothing renders and the canvas stays blank with no fallback",
+        "Container is h-full w-full, so the parent must have a defined height and should be positioned",
+        "Listens to pointer events on the whole window, not only over the component, so content above it should use pointer-events as needed",
+        "Canvas is aria-hidden and not interactive itself",
+        "Heavy GPU load on low-end mobile devices, lower resolution or maxDevicePixelRatio there",
+        "Client component only ('use client')"
+    ],
+    "mood": [
+        "futuristic",
+        "fluid",
+        "dreamy",
+        "immersive"
+    ],
+    "industries": [
+        "technology",
+        "creative agency",
+        "gaming",
+        "music",
+        "fashion"
+    ],
+    "sections": [
+        "hero",
+        "background"
+    ],
+    "dependencies": []
+}

@@ -4,11 +4,12 @@
   "sourceHash": "9c4f00ca94e4a7810d9f7ff60a0d7b4b0e736af9b69d9ac7749d06b3631e4762",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "liquid-hold-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.488Z"
+  "note": "CDN pixi.js/gsap loaders and fallbacks replaced by dynamic imports; catch-and-log now silent. pixi.js must be 4.8.x (v4 API), version recorded in fixed not deps. No frame, no variants, responsive ok. Fixed: window keydown listener for arrows.",
+  "updatedAt": "2026-11-01T09:24:09.705Z",
+  "gateOutput": "gates passed"
 }

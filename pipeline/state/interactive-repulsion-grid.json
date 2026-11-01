@@ -4,11 +4,12 @@
   "sourceHash": "b654020c82b0f9fdd9aa451ee16760265971d3db6276451c34fbab3416c3363e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "interactive-repulsion-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.482Z"
+  "note": "Removed empty placeholders, empty div, isClient/SSR placeholder, unused ref. bgColorClass replaced by bgColor hex prop; added dotColor, className. Helpers moved to module level. No frame, no variants. Canvas sized from window (fixed).",
+  "updatedAt": "2026-11-01T09:05:34.307Z",
+  "gateOutput": "gates passed"
 }

@@ -4,11 +4,12 @@
   "sourceHash": "70c75f84c30ce26fafb49087a180ce5caa8c67e4c25b92769289c3871c85dc69",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "interactive-subscribe",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.483Z"
+  "note": "Root frame replaced with w-full h-screen flex center, demo bg dropped. Added text/color props and className. Confetti URL import changed to dynamic import (canvas-confetti dep). Cleared timeout and rAF on unmount. No variants. Comments stripped by hand (strip-comments failed: AST changed). Dark card colors hardcoded (fixed).",
+  "updatedAt": "2026-11-01T09:06:52.684Z",
+  "gateOutput": "gates passed"
 }

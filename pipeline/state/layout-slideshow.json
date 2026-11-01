@@ -4,11 +4,12 @@
   "sourceHash": "a2ce4ad2b96f1ea49aba0478825e8e44cbde67872ab03dd47ab7fce995d93939",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "layout-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.486Z"
+  "note": "Removed header comment block. No frame, no variants (layouts are per-slide data). stagePadding and wrapInset defaults changed to clamp() for mobile. Kept font-family props and Unsplash default images. Fixed: window keydown listener. Gate warning: requestAnimationFrame without cancelAnimationFrame, left as is.",
+  "updatedAt": "2026-11-01T09:17:03.098Z",
+  "gateOutput": "WARN  requestAnimationFrame without cancelAnimationFrame\ngates passed"
 }

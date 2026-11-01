@@ -4,11 +4,12 @@
   "sourceHash": "ce7bdab2e78e0f05cf0707d9d0464bc228c7ffa96e7410b738e04d52c2d3cbd2",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "jigsaw-puzzle",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.484Z"
+  "note": "Renamed prop bgColorDark to labelColor; added className; removed unused uploadRef, useRef import, comments. No frame, no variants. Category ui-elements, no deps. Fixed: 200vh scroll spacer, full-screen file input and drop label.",
+  "updatedAt": "2026-11-01T09:09:28.677Z",
+  "gateOutput": "gates passed"
 }

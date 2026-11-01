@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "lattice-loader",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.622Z"
+  "note": "React Bits, JSX copied unchanged. Category ui-elements. Variants via pattern prop (10 patterns, default orbit). Fixed: only 3x3 and 4x4 grids; undefined patterns fall back to orbit/sweep; custom lit durations limited to 62/45/35/25; per-instance style tag; relies on Tailwind arbitrary values.",
+  "updatedAt": "2026-11-01T09:15:08.568Z",
+  "gateOutput": "gates passed"
 }
