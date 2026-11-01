@@ -1,0 +1,153 @@
+{
+    "slug": "squircle-avatar-generator",
+    "name": "Squircle Avatar Generator",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Image upload tool that crops a photo into an adjustable squircle avatar with drag repositioning, zoom, shape presets, and PNG export at several resolutions.",
+    "contents": [
+        "Upload card with drag and drop zone",
+        "Editor card with canvas preview, shape presets, shape and zoom sliders, resolution picker, reset and export buttons"
+    ],
+    "behavior": [
+        "Drop or pick an image file up to the size limit",
+        "Drag the image inside the canvas with mouse or touch to reposition",
+        "Shape slider morphs from circle to square using a superellipse curve",
+        "Export downloads a transparent PNG at the chosen size",
+        "Editor stacks vertically on small screens"
+    ],
+    "props": [
+        {
+            "name": "maxUploadSizeMb",
+            "type": "number",
+            "default": 10
+        },
+        {
+            "name": "defaultShapeVal",
+            "type": "number",
+            "default": 20
+        },
+        {
+            "name": "defaultZoomVal",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "primaryBtnColor",
+            "type": "string",
+            "default": "#0f172a"
+        },
+        {
+            "name": "accentBgColor",
+            "type": "string",
+            "default": "#f8fafc"
+        },
+        {
+            "name": "title",
+            "type": "string",
+            "default": "Squircle Avatar"
+        },
+        {
+            "name": "subtitle",
+            "type": "string",
+            "default": "Generate perfect corners for profile assets"
+        },
+        {
+            "name": "dropLabel",
+            "type": "string",
+            "default": "Drop image here or click to browse"
+        },
+        {
+            "name": "formatsLabel",
+            "type": "string",
+            "default": "Supports JPG, PNG formats up to"
+        },
+        {
+            "name": "badgeLabel",
+            "type": "string",
+            "default": "Workspace"
+        },
+        {
+            "name": "editorTitle",
+            "type": "string",
+            "default": "Adjust Appearance"
+        },
+        {
+            "name": "presetsLabel",
+            "type": "string",
+            "default": "Geometry Presets"
+        },
+        {
+            "name": "shapeLabel",
+            "type": "string",
+            "default": "Radius Curve Matrix"
+        },
+        {
+            "name": "zoomLabel",
+            "type": "string",
+            "default": "Magnification Scaling"
+        },
+        {
+            "name": "resolutionLabel",
+            "type": "string",
+            "default": "Resolution Allocation"
+        },
+        {
+            "name": "dragHint",
+            "type": "string",
+            "default": "Drag inside the box to reposition image"
+        },
+        {
+            "name": "resetLabel",
+            "type": "string",
+            "default": "Reset Image"
+        },
+        {
+            "name": "exportLabel",
+            "type": "string",
+            "default": "Export Asset"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "All visible labels and headings",
+        "Upload size limit, default shape and zoom",
+        "Export button color and background color"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change available export resolutions",
+            "where": "[512, 256, 128, 64].map in the resolution grid"
+        },
+        {
+            "change": "Change shape preset buttons",
+            "where": "[0, 20, 40, 60, 100].map in the presets grid"
+        },
+        {
+            "change": "Change card, border and text colors",
+            "where": "slate Tailwind classes on the cards"
+        }
+    ],
+    "fixed": [
+        "Root fills at least the viewport height and centers its content. Override with className using an important modifier such as !min-h-0.",
+        "Preview canvas resolution is fixed at 300px and scales down on narrow screens"
+    ],
+    "mood": [
+        "clean",
+        "minimal",
+        "utilitarian"
+    ],
+    "industries": [
+        "saas",
+        "social",
+        "creative tools",
+        "ecommerce"
+    ],
+    "sections": [
+        "other"
+    ],
+    "dependencies": []
+}
