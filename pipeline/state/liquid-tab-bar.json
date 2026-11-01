@@ -4,11 +4,12 @@
   "sourceHash": "b88dde177140725725881f05ebfd55ec0cd9542f956465550d2afcac67a535d9",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "liquid-tab-bar",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.489Z"
+  "note": "Removed screenBgColor and demo bg, isMounted placeholder, id=tabbar, empty placeholders, CDN loading. gsap and gsap/MorphSVGPlugin now dynamic imports (only gsap in deps; MorphSVGPlugin availability in installed gsap not checked). Dropped no-plugin fallback tween. Added className, labels, unmount cleanup. Frame added: w-full h-screen flex center (fixed). Responsive changed: list width min(375px,100vw-2rem), clamp gaps, indicator repositioned on resize. Fixed filter id limits to one instance. Not run.",
+  "updatedAt": "2026-11-01T09:27:05.156Z",
+  "gateOutput": "gates passed"
 }

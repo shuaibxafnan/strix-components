@@ -1,0 +1,48 @@
+{
+    "slug": "liquid-tab-bar",
+    "name": "Liquid Tab Bar",
+    "category": "navigation-menus",
+    "isReactBits": false,
+    "description": "Bottom tab bar with four icon tabs and a liquid blob indicator that morphs and slides to the selected tab while the icon switches from outline to filled.",
+    "contents": [
+        "Rounded tab bar with four icon buttons (home, chat, folder, user)",
+        "Morphing goo indicator under the active tab"
+    ],
+    "behavior": [
+        "Clicking a tab morphs the indicator path, lifts a droplet and slides the indicator to the new tab",
+        "Active icon swaps from outline to filled through a circular clip reveal",
+        "Indicator position is recalculated on window resize"
+    ],
+    "props": [
+        { "name": "activeColor", "type": "string", "default": "#763FEE" },
+        { "name": "navBgColor", "type": "string", "default": "#FFFFFF" },
+        { "name": "labels", "type": "string[]", "default": ["Home", "Chat", "Folders", "Profile"] },
+        { "name": "initialActiveIndex", "type": "number", "default": 0 },
+        { "name": "onTabChange", "type": "(index:number)=>void", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Indicator and icon color, bar background color",
+        "Accessible labels, initially active tab, tab change callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the tab icons or their number",
+            "where": "ICON_SYMBOLS constant"
+        },
+        {
+            "change": "Change the blob morph shapes or timing",
+            "where": "morphSVG keyframes in handleTabClick and MORPH_REST constant"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Requires the gsap package including gsap/MorphSVGPlugin",
+        "Bar width is capped at 375px and shrinks to fit narrow screens",
+        "Uses a fixed SVG filter id, so only one instance per page is safe"
+    ],
+    "mood": ["playful", "modern", "smooth"],
+    "industries": ["mobile apps", "saas", "fintech", "social"],
+    "sections": ["navbar", "other"],
+    "dependencies": ["gsap"]
+}
