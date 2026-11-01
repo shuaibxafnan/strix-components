@@ -1,0 +1,94 @@
+{
+  "slug": "scroll-graph",
+  "name": "Scroll Graph",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Pinned scroll-driven line graph on a dark panel: a glowing signal path draws as you scroll, data dots and drop ticks pop in, and the camera zooms and pans to follow a pulsing focal point.",
+  "contents": [
+    "Intro section with eyebrow and headline",
+    "Pinned SVG graph with grid, scanlines, glowing path, data dots, drop ticks and pulsing focal marker",
+    "Outro section with eyebrow and headline"
+  ],
+  "behavior": [
+    "Scroll-scrubbed path drawing along the line with a focal point following it",
+    "Dots and ticks pop in with a stagger",
+    "Camera scale and pan animate while the graph is pinned",
+    "Eyebrow blinks and focal ring pulses, disabled under reduced motion"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#14100A" },
+    { "name": "panelColor", "type": "string", "default": "#1F160D" },
+    { "name": "textColor", "type": "string", "default": "#FDF6E9" },
+    { "name": "signalColor", "type": "string", "default": "#FFB000" },
+    { "name": "signalDimColor", "type": "string", "default": "#6B4A1E" },
+    { "name": "highlightColor", "type": "string", "default": "#FFD666" },
+    { "name": "fontDisplay", "type": "string", "default": "Space Grotesk" },
+    { "name": "fontMono", "type": "string", "default": "IBM Plex Mono" },
+    { "name": "introEyebrow", "type": "string", "default": "◍ SIGNAL LIVE" },
+    { "name": "introHeadline", "type": "string", "default": "Scroll to trace the signal" },
+    { "name": "outroEyebrow", "type": "string", "default": "◍ END OF TRACE" },
+    { "name": "outroHeadline", "type": "string", "default": "You've reached the source" },
+    { "name": "introHeight", "type": "string", "default": "50vh" },
+    { "name": "scrollHeight", "type": "string", "default": "300vh" },
+    { "name": "outroHeight", "type": "string", "default": "100vh" },
+    { "name": "bgImageUrl", "type": "string | null", "default": null },
+    { "name": "dotRadius", "type": "number", "default": 1.5 },
+    { "name": "focalRadius", "type": "number", "default": 2 },
+    { "name": "glowRadius", "type": "number", "default": 6 },
+    { "name": "pathData", "type": "string", "default": "M16.5 54c3.83-6 9.33-12 9.33-12L35.5 32.5S44 22.33 44.67 21s6.33-6.83 9.5-7 13.83 14 19 15.67 7.17-4 9.17-3.5 14.5 11.33 18.17 12 8.67-.67 10-3" },
+    { "name": "dots", "type": "{cx,cy}[]", "default": "10 sample points" },
+    { "name": "baselineY", "type": "number", "default": 95 },
+    { "name": "showDropTicks", "type": "boolean", "default": true },
+    { "name": "showGrid", "type": "boolean", "default": true },
+    { "name": "gridLineCount", "type": "number", "default": 5 },
+    { "name": "showScanlines", "type": "boolean", "default": true },
+    { "name": "scanlineOpacity", "type": "number", "default": 0.05 },
+    { "name": "panScaleStart", "type": "number", "default": 2 },
+    { "name": "panScaleEnd", "type": "number", "default": 0.4 },
+    { "name": "panXStart", "type": "number", "default": 61 },
+    { "name": "panXEnd", "type": "number", "default": 81 },
+    { "name": "panYStart", "type": "number", "default": 50 },
+    { "name": "panYEnd", "type": "number", "default": 45 },
+    { "name": "panScaleEase", "type": "string", "default": "expo.inOut" },
+    { "name": "panFollowDuration", "type": "number", "default": 0.3 },
+    { "name": "drawDuration", "type": "number", "default": 1 },
+    { "name": "dotsStartOffset", "type": "number", "default": 0.13 },
+    { "name": "dotsStagger", "type": "number", "default": 0.102 },
+    { "name": "dotsPopDuration", "type": "number", "default": 0.03 },
+    { "name": "fadeInDuration", "type": "number", "default": 0.1 },
+    { "name": "pinStart", "type": "string", "default": "0 0" },
+    { "name": "pinEnd", "type": "string", "default": "100% 100%" },
+    { "name": "scrubAmount", "type": "number", "default": 1 },
+    { "name": "ringPulseDuration", "type": "number", "default": 2.4 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All colors, intro and outro text, fonts, section heights",
+    "Graph path, data points, grid, ticks, scanlines and optional background image",
+    "Camera pan and zoom, animation timing, pin range and scrub smoothing"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Move the start dot when changing the path start",
+      "where": "circle with cx=\"16.5\" cy=\"54\" inside the g with fill={signalColor}"
+    },
+    {
+      "change": "Change the graph viewBox size",
+      "where": "viewBox=\"0 0 122 98\" on the svg"
+    },
+    {
+      "change": "Change the blink or ring pulse animation",
+      "where": "keyframes in the style tag with dangerouslySetInnerHTML"
+    }
+  ],
+  "fixed": [
+    "Graph section is pinned with ScrollTrigger for its full height",
+    "Data dots and drop ticks must use the same dots array",
+    "Google Fonts Space Grotesk and IBM Plex Mono are imported in the style tag; changing font props requires matching fonts to be available",
+    "Graph drawing coordinates use a fixed 122 by 98 viewBox"
+  ],
+  "mood": ["technical", "dark", "futuristic", "data-driven"],
+  "industries": ["fintech", "analytics", "saas", "crypto", "monitoring"],
+  "sections": ["features", "stats"],
+  "dependencies": ["gsap"]
+}
