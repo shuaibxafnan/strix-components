@@ -1,0 +1,50 @@
+{
+  "slug": "scroll-line-reveal",
+  "name": "Scroll Line Reveal",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Full-screen text sections where each paragraph is split into lines that slide up from a masked edge in a stagger as it scrolls into view, with Lenis smooth scrolling.",
+  "contents": [
+    "One full-height section per text paragraph, centered"
+  ],
+  "behavior": [
+    "Paragraph split into lines, each line slides up from behind a clipping mask with stagger",
+    "Animation replays on scroll back and resets when leaving view",
+    "Lines re-split after viewport resize, debounced",
+    "Smooth scrolling through Lenis"
+  ],
+  "props": [
+    { "name": "sections", "type": "string[]", "default": "2 sample paragraphs" },
+    { "name": "bgColor", "type": "string", "default": "#ffffff" },
+    { "name": "textColor", "type": "string", "default": "#000000" },
+    { "name": "lenisLerp", "type": "number", "default": 0.07 },
+    { "name": "stagger", "type": "number", "default": 0.15 },
+    { "name": "ease", "type": "string", "default": "power1.inOut" },
+    { "name": "debounceMs", "type": "number", "default": 500 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of sections and all paragraph text",
+    "Background and text colors",
+    "Smoothness, stagger and easing of the reveal"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the font size or line height",
+      "where": "style prop with fontSize on the root div"
+    },
+    {
+      "change": "Change the trigger point or replay behavior",
+      "where": "scrollTrigger block inside setTextRevealAnimations"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Each section is at least one viewport tall to give scroll room",
+    "Loads the Poppins font through a Google Fonts import"
+  ],
+  "mood": ["elegant", "minimal", "editorial", "calm"],
+  "industries": ["agency", "portfolio", "storytelling", "luxury"],
+  "sections": ["about", "other"],
+  "dependencies": ["gsap", "lenis", "split-type"]
+}
