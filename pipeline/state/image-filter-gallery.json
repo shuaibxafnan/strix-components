@@ -4,11 +4,12 @@
   "sourceHash": "ff6fc5d2d646179b4be611b8f0af1aaf1432b41cd806c53eaaebc9cbd3521472",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-filter-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.463Z"
+  "note": "Slug kept. Gates passed. Filter side effects moved from useMemo to useEffect with cleanup. baguetteBox CDN replaced by npm dynamic import (baguettebox.js, css path unverified). Hardcoded strings made props, className added, highlightColor now hex via inline style. Removed empty comment braces, unused animate-fadeIn, unused useMemo import.",
+  "updatedAt": "2026-11-01T08:31:05.351Z",
+  "gateOutput": "gates passed"
 }
