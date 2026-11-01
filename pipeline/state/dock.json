@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "dock",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.611Z"
+  "note": "Bits describe-only. Gates passed. Absolutely positioned, parent needs relative and size; menus portal to body z-index 1000; window pointer listeners; shrinks to 40% on narrow; touch magnify via long-press/focus only; no built-in icons; theme variants dark/light.",
+  "updatedAt": "2026-11-01T06:19:02.902Z",
+  "gateOutput": "gates passed"
 }
