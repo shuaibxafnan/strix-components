@@ -4,11 +4,12 @@
   "sourceHash": "5b75ce2af078c03e17787108b857bab484832cb3c768e45b5b339008ffbc5de2",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "staggered-particles-effect",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.559Z"
+  "note": "className added. Empty placeholder removed. Cleanup pauses manualMovementTimeout. No frame, no variants. Category backgrounds-3d. Dep animejs. Idle path viewport measured once on mount.",
+  "updatedAt": "2026-11-01T13:20:37.200Z",
+  "gateOutput": "gates passed"
 }
