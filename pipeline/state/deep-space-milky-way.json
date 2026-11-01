@@ -4,11 +4,12 @@
   "sourceHash": "091a938a12894329ab889b7363f1d4f78cc6ee2dbfda8d7b5c07af60ccb55814",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "deep-space-milky-way",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.419Z"
+  "note": "Rewritten. Gates passed. Removed unused containerRef, isClient state/effect. Added className, shootingStarColors prop. Absolute inset-0 background; window-sized canvases in fixed. No frame; no variants.",
+  "updatedAt": "2026-11-01T06:12:08.209Z",
+  "gateOutput": "gates passed"
 }
