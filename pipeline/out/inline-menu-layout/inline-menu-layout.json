@@ -1,0 +1,78 @@
+{
+  "slug": "inline-menu-layout",
+  "name": "Inline Menu Layout",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Large inline typographic category menu with a cursor-following image reveal on hover. Clicking a category swaps the menu for a titled gallery of items, with a back arrow to return.",
+  "contents": [
+    "Inline list of category labels with item counts",
+    "Hover reveal image per category",
+    "Gallery per category with image, title, meta and plus button",
+    "Back arrow button",
+    "Custom circle cursor"
+  ],
+  "behavior": [
+    "Hovering a label shows a cover image that follows the mouse with eased position and speed-based rotation",
+    "Clicking a label animates the menu out and the category gallery in with staggered motion",
+    "Back arrow reverses the transition",
+    "Gallery images scale slightly when hovering the plus button",
+    "Custom circle cursor trails the mouse and grows on interactive targets, shown only on fine pointers"
+  ],
+  "props": [
+    {"name": "categories", "type": "{label,cover,items:{title,meta,image}[]}[]", "default": "12 sample categories"},
+    {"name": "bgColor", "type": "string", "default": "#D5D7CE"},
+    {"name": "textColor", "type": "string", "default": "#000"},
+    {"name": "accentColor", "type": "string", "default": "#e63811"},
+    {"name": "fontHref", "type": "string", "default": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@500;600&display=swap"},
+    {"name": "titleFontFamily", "type": "string", "default": "\"Bodoni Moda\", \"Didot\", \"Times New Roman\", serif"},
+    {"name": "bodyFontFamily", "type": "string", "default": "\"Archivo\", \"Helvetica Neue\", Arial, sans-serif"},
+    {"name": "titleLetterSpacing", "type": "string", "default": "-0.02em"},
+    {"name": "metaLetterSpacing", "type": "string", "default": "0.12em"},
+    {"name": "menuFontSize", "type": "string", "default": "clamp(2rem,8vw,4.75rem)"},
+    {"name": "contentFontSize", "type": "string", "default": "clamp(3rem,9vw,6rem)"},
+    {"name": "hoverImageWidth", "type": "number", "default": 300},
+    {"name": "hoverImageHeight", "type": "number", "default": 400},
+    {"name": "hoverImageWidthSm", "type": "number", "default": 150},
+    {"name": "hoverImageHeightSm", "type": "number", "default": 200},
+    {"name": "lerpAmount", "type": "number", "default": 0.08},
+    {"name": "rotationLerp", "type": "number", "default": 0.05},
+    {"name": "maxRotation", "type": "number", "default": 100},
+    {"name": "mouseSpeedClamp", "type": "number", "default": 200},
+    {"name": "revealDuration", "type": "number", "default": 0.8},
+    {"name": "transitionDuration", "type": "number", "default": 1},
+    {"name": "backDuration", "type": "number", "default": 0.4},
+    {"name": "galleryMinWidth", "type": "number", "default": 175},
+    {"name": "galleryGap", "type": "string", "default": "2.5rem"},
+    {"name": "showCursor", "type": "boolean", "default": true},
+    {"name": "cursorSize", "type": "number", "default": 30},
+    {"name": "cursorRadius", "type": "number", "default": 7.5},
+    {"name": "backArrowColor", "type": "string", "default": "#afb1a8"},
+    {"name": "cursorStroke", "type": "string", "default": "#000"},
+    {"name": "cursorStrokeWidth", "type": "number", "default": 1},
+    {"name": "cursorLerp", "type": "number", "default": 0.2},
+    {"name": "cursorHoverScale", "type": "number", "default": 2},
+    {"name": "cursorHoverOpacity", "type": "number", "default": 0.3},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Category labels, covers, item titles, meta and images",
+    "Colors, fonts, letter spacing and font sizes",
+    "Hover image size, easing and rotation",
+    "Transition durations",
+    "Gallery column width and gap",
+    "Custom cursor visibility, size and style"
+  ],
+  "needsCodeEdit": [
+    {"where": "data-gallery-more", "change": "Replace the plus symbol in the gallery caption button"}
+  ],
+  "fixed": [
+    "Loads the font stylesheet by appending a link tag to document.head, left in place on unmount",
+    "Window mousemove listeners are added and removed on unmount",
+    "Custom cursor is hidden on touch devices; hover image reveal needs a mouse, category click works on touch",
+    "Root has a minimum height of one screen"
+  ],
+  "mood": ["editorial", "elegant", "playful", "bold"],
+  "industries": ["portfolio", "photography", "fashion", "art", "agency"],
+  "sections": ["portfolio", "gallery", "navbar"],
+  "dependencies": ["gsap"]
+}
