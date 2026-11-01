@@ -1,0 +1,70 @@
+{
+  "slug": "displace-slider",
+  "name": "Displace Slider",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen WebGL slider that transitions between background photos with a displacement-map distortion while framed photo cards slide out and in with staggered motion.",
+  "contents": [
+    "Full-screen WebGL background image per slide",
+    "Two framed photos per slide in the center",
+    "Numbered bullet navigation on the right edge",
+    "Scroll hint label at the bottom"
+  ],
+  "behavior": [
+    "Background crossfades through a generated displacement map using a three.js shader",
+    "Photos slide out upward and the next slide's photos slide in with stagger",
+    "Advances on mouse wheel and click, bullets jump to a slide",
+    "Scroll hint animates away after the first transition",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    {"name": "slides", "type": "{background,images[]}[]", "default": "3 sample slides"},
+    {"name": "bgColor", "type": "string", "default": "#111111"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "dispIntensity", "type": "number", "default": 0.5},
+    {"name": "dispDuration", "type": "number", "default": 2.5},
+    {"name": "dispBlobs", "type": "number", "default": 28},
+    {"name": "dispBlobSize", "type": "number", "default": 0.42},
+    {"name": "dispSeed", "type": "number", "default": 7},
+    {"name": "dispResolution", "type": "number", "default": 512},
+    {"name": "imageDuration", "type": "number", "default": 1.5},
+    {"name": "imageStagger", "type": "number", "default": 0.075},
+    {"name": "imageExitY", "type": "number", "default": -185},
+    {"name": "imageEnterY", "type": "number", "default": 150},
+    {"name": "imageScaleY", "type": "number", "default": 1.5},
+    {"name": "imageWidth", "type": "string", "default": "25vw"},
+    {"name": "imageHeight", "type": "string", "default": "70vh"},
+    {"name": "imageOffset", "type": "string", "default": "1.5rem"},
+    {"name": "textDuration", "type": "number", "default": 2},
+    {"name": "bulletDimAlpha", "type": "number", "default": 0.25},
+    {"name": "showBullets", "type": "boolean", "default": true},
+    {"name": "showScrollHint", "type": "boolean", "default": true},
+    {"name": "scrollHintLabel", "type": "string", "default": "Scroll"},
+    {"name": "enableWheel", "type": "boolean", "default": true},
+    {"name": "enableClick", "type": "boolean", "default": true},
+    {"name": "fontFamily", "type": "string", "default": "'Helvetica Neue', Helvetica, Arial, sans-serif"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides, background images and photo images",
+    "Background and text colors, font family",
+    "Distortion strength, duration, blob count, size, seed and resolution",
+    "Photo size, offset, motion distances and timings",
+    "Bullets, scroll hint and its label, wheel and click triggers"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the displacement shader look", "where": "FRAG_SHADER constant"},
+    {"change": "Change the sequence of slide transition animations", "where": "transitionTo function"},
+    {"change": "Show more or fewer photos per slide in a different layout", "where": "slides.map block with data-photo figures"}
+  ],
+  "fixed": [
+    "Listens to window wheel events to advance slides and removes the listener on unmount",
+    "Requires WebGL support",
+    "Root is full viewport height and starts invisible until the libraries load",
+    "Photo frames shrink to a 6rem minimum on small screens and are clipped by the root"
+  ],
+  "mood": ["editorial", "fluid", "cinematic", "fashion"],
+  "industries": ["fashion", "photography", "e-commerce", "art", "travel"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": ["three", "gsap"]
+}
