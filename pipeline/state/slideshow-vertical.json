@@ -4,11 +4,12 @@
   "sourceHash": "74d0b1e10c327f7236452e20562675e54cdff55cb710d893c81033cfa4c20094",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "vertical-parallax-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.548Z"
+  "note": "renamed slideshow-vertical -> vertical-parallax-slideshow; no frame; no variants; responsive: nav offsets and hint margin reduced on small screens; gsap CDN scripts replaced by npm dynamic import, timeline killed on unmount",
+  "updatedAt": "2026-11-01T12:51:20.601Z",
+  "gateOutput": "gates passed"
 }
