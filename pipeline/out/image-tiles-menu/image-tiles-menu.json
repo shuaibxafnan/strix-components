@@ -1,0 +1,78 @@
+{
+  "slug": "image-tiles-menu",
+  "name": "Image Tiles Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-screen list menu where hovering an item slides its title and reveals a scattered grid of image tiles, and clicking flips the tiles into a detail view with a split-character title, description and neighbor thumbnails.",
+  "contents": [
+    "Menu items with accent-letter titles and descriptions",
+    "Scattered image tile grid per item",
+    "Detail view per item with back button and previous and next thumbnails"
+  ],
+  "behavior": [
+    "Hover shifts the title, fades in the description and staggers in image tiles",
+    "Click flips the tiles into a single image with GSAP Flip while characters slide out and in",
+    "Back button reverses the transition to the menu",
+    "Below the breakpoint descriptions and side thumbnails are hidden and the layout stacks"
+  ],
+  "props": [
+    { "name": "items", "type": "{title:[string,0|1][],desc:string}[]", "default": "7 sample drink items" },
+    { "name": "images", "type": "string[]", "default": "Unsplash image set" },
+    { "name": "positions", "type": "[number,number][]", "default": "28 grid row and column pairs" },
+    { "name": "bgColor", "type": "string", "default": "#141418" },
+    { "name": "titleColor", "type": "string", "default": "#393634" },
+    { "name": "titleAccentColor", "type": "string", "default": "#e0d2c4" },
+    { "name": "titleHoverColor", "type": "string", "default": "#efafa5" },
+    { "name": "descColor", "type": "string", "default": "#f1f1f1" },
+    { "name": "borderColor", "type": "string", "default": "rgb(91 91 91 / 44%)" },
+    { "name": "contentTitleColor", "type": "string", "default": "#99dde2" },
+    { "name": "contentAccentColor", "type": "string", "default": "#e2d2c3" },
+    { "name": "contentDescColor", "type": "string", "default": "#656569" },
+    { "name": "backColor", "type": "string", "default": "#fff" },
+    { "name": "backBorderColor", "type": "string", "default": "rgba(255,255,255,0.3)" },
+    { "name": "fontUrl", "type": "string", "default": "Google Fonts Archivo and Bodoni Moda URL" },
+    { "name": "displayFont", "type": "string", "default": "\"Bodoni Moda\", serif" },
+    { "name": "bodyFont", "type": "string", "default": "\"Archivo\", system-ui, sans-serif" },
+    { "name": "titleLineHeight", "type": "number", "default": 1 },
+    { "name": "tileWidth", "type": "string", "default": "18vw" },
+    { "name": "tileRatio", "type": "string", "default": "4 / 3" },
+    { "name": "thumbHeight", "type": "string", "default": "50vh" },
+    { "name": "thumbBrightness", "type": "number", "default": 0.3 },
+    { "name": "titleOffset", "type": "number", "default": 50 },
+    { "name": "hoverDuration", "type": "number", "default": 0.5 },
+    { "name": "leaveDuration", "type": "number", "default": 0.3 },
+    { "name": "tileStagger", "type": "number", "default": 0.045 },
+    { "name": "tileScaleFrom", "type": "number", "default": 0.5 },
+    { "name": "openDuration", "type": "number", "default": 0.75 },
+    { "name": "closeDuration", "type": "number", "default": 0.6 },
+    { "name": "flipStagger", "type": "number", "default": 0.02 },
+    { "name": "charStagger", "type": "number", "default": 0.025 },
+    { "name": "breakpoint", "type": "string", "default": "53em" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Menu items, titles with accent letters, descriptions and images",
+    "Tile positions, size and aspect ratio",
+    "All colors, fonts and animation timings",
+    "Mobile breakpoint"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change which easing the hover and open transitions use",
+      "where": "onEnter and onClick timelines inside the useEffect"
+    },
+    {
+      "change": "Change the four-quadrant split of each image into tiles",
+      "where": "QUADRANTS constant"
+    }
+  ],
+  "fixed": [
+    "Fills 100vh of the page and hides until thumbnail images have loaded",
+    "Loads the font stylesheet from fontUrl into document head",
+    "Hover reveal only on devices with a pointer, touch users tap an item to open it"
+  ],
+  "mood": ["editorial", "elegant", "dark", "interactive"],
+  "industries": ["food and beverage", "fashion", "agency", "portfolio", "retail"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": ["gsap", "imagesloaded"]
+}

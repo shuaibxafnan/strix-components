@@ -4,11 +4,12 @@
   "sourceHash": "3e00e2a5172d8b3884c6231aa2e6ecabedadc024a9d35f6fd4b1073d6c47168f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-tiles-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.467Z"
+  "note": "Slug kept. Gates passed. gsap, Flip, imagesloaded CDN scripts replaced by npm dynamic imports; gsap and imagesloaded in dependencies. Unmount now kills tweens and item timelines. className added. Font link kept. Menu items are anchors without href; touch claim in fixed unverified.",
+  "updatedAt": "2026-11-01T08:39:56.798Z",
+  "gateOutput": "gates passed"
 }
