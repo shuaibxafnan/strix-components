@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "lanyard",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.614Z"
+  "note": "React Bits, JSX copied unchanged. Category backgrounds-3d, dep three. Variants: glossy, matte, holographic, metallic. Fixed: needs WebGL; parent needs height; canvas aria-hidden; cross-origin images need CORS.",
+  "updatedAt": "2026-11-01T09:13:47.217Z",
+  "gateOutput": "gates passed"
 }
