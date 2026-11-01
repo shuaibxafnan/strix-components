@@ -1,0 +1,44 @@
+{
+  "slug": "cylinder-carousel",
+  "name": "Cylinder Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Vertical 3D cylinder of image tiles that you spin by dragging or swiping up and down, with perspective depth and a short hint caption above.",
+  "contents": ["Ring of image tiles arranged around a 3D cylinder", "Hint caption above the cylinder", "Invisible drag zone over the cylinder"],
+  "behavior": [
+    "Drag or swipe vertically to rotate the cylinder around the X axis with eased transition",
+    "Tile radius is computed from tile size, gap and image count",
+    "Touch moves on the body are blocked while dragging",
+    "Tiles beyond the seventh load lazily"
+  ],
+  "props": [
+    {"name": "itemWidth", "type": "number", "default": 45},
+    {"name": "itemHeight", "type": "number", "default": 45},
+    {"name": "itemGap", "type": "number", "default": 5},
+    {"name": "perspective", "type": "number", "default": 250},
+    {"name": "translateZ", "type": "number", "default": -100},
+    {"name": "bgColor", "type": "string", "default": "#f8fafc"},
+    {"name": "tipColor", "type": "string", "default": "#64748b"},
+    {"name": "tipText", "type": "string", "default": "Use your finger or mouse to swipe up and down :)"},
+    {"name": "imageList", "type": "string[]", "default": "24 picsum sample images"},
+    {"name": "imageAlt", "type": "string", "default": ""},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, tile size, gap, perspective and depth",
+    "Background and hint colors, hint text, image alt text"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change drag sensitivity", "where": "swiperTrackHeight constant in handlePointerMove"},
+    {"change": "Change tile corner radius", "where": "borderRadius in the img style"}
+  ],
+  "fixed": [
+    "Adds a non-passive touchmove listener on document.body that blocks scrolling while dragging, removed on unmount",
+    "Root is full viewport height",
+    "Drag zone is fixed at 120px wide and up to 468px tall"
+  ],
+  "mood": ["playful", "modern", "interactive", "dimensional"],
+  "industries": ["portfolio", "photography", "fashion", "ecommerce", "creative agency"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": []
+}
