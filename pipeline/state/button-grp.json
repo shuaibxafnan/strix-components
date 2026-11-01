@@ -4,11 +4,12 @@
   "sourceHash": "538567e2999a3d5ea67dcc24e3bbb8edcc393f211a1d84b97c5f512838a775fb",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "icon-button-group",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.403Z"
+  "note": "Renamed from button-grp (cryptic). Frame kept; demo containerBg removed; buttons array prop (Cut/Copy/Paste defaults); className; unused containerRef removed; indicator width hardcoded (needsCodeEdit).",
+  "updatedAt": "2026-11-01T04:54:51.586Z",
+  "gateOutput": "gates passed"
 }

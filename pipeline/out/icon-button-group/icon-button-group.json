@@ -1,0 +1,44 @@
+{
+  "slug": "icon-button-group",
+  "name": "Icon Button Group",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Segmented bar of icon buttons with one active state, a colored highlight, a bounce on selection and a sliding underline indicator that follows the active button.",
+  "contents": ["Three icon buttons (Cut, Copy, Paste) in a dark bar", "Sliding underline indicator"],
+  "behavior": [
+    "Clicking a button makes it active and calls onChange with its index",
+    "Active button bounces and takes the active color and background",
+    "Underline indicator slides to the active button",
+    "Icons scale up on hover"
+  ],
+  "props": [
+    {"name": "buttons", "type": "{label,icon}[]", "default": "Cut, Copy, Paste with SVG path data"},
+    {"name": "groupBg", "type": "string", "default": "#000000"},
+    {"name": "activeBg", "type": "string", "default": "#0a0a0a"},
+    {"name": "defaultColor", "type": "string", "default": "#6a6a6a"},
+    {"name": "activeColor", "type": "string", "default": "#fdd901"},
+    {"name": "groupWidth", "type": "string", "default": "300px"},
+    {"name": "groupHeight", "type": "string", "default": "60px"},
+    {"name": "initialActive", "type": "number", "default": 0},
+    {"name": "onChange", "type": "function", "default": null},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Button labels and icon path data",
+    "Bar, active background, inactive and active colors",
+    "Bar width and height, initially active button",
+    "Change callback"
+  ],
+  "needsCodeEdit": [
+    {"change": "Indicator width and step when using a different button count or bar width", "where": "indicatorLeft"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Icons use a 448x512 viewBox",
+    "Indicator is 100px wide and steps 99.3px per button"
+  ],
+  "mood": ["minimal", "dark", "tactile", "compact"],
+  "industries": ["saas", "creative tools", "productivity", "editors"],
+  "sections": ["other"],
+  "dependencies": []
+}
