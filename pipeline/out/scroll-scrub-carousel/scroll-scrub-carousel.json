@@ -1,0 +1,61 @@
+{
+  "slug": "scroll-scrub-carousel",
+  "name": "Scroll Scrub Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Stack of titled image carousels where some pin to the screen and scrub sideways with page scroll, while others are swipeable with arrow buttons. Slides fade by distance from center.",
+  "contents": [
+    "Sections list, each with a heading, counter and a row of image slides",
+    "Each slide has image, numbered badge, title, description and a link label",
+    "Arrow buttons on non-scrubbing sections"
+  ],
+  "behavior": [
+    "Scrub sections pin in place and move the slides horizontally as the page scrolls, forward or reversed",
+    "On touch devices scrub sections become normal swipe carousels",
+    "Non-scrub sections slide by drag or arrow buttons",
+    "Slides fade by distance from the centered slide",
+    "Slides per view change at the mobile breakpoint"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#0a0a0a" },
+    { "name": "textColor", "type": "string", "default": "#f5f5f5" },
+    { "name": "mutedColor", "type": "string", "default": "#6b6b6b" },
+    { "name": "accentColor", "type": "string", "default": "#ff2b1f" },
+    { "name": "gridColor", "type": "string", "default": "#2a2a2a" },
+    { "name": "sections", "type": "{id,heading,scrub,scrubDirection,aspectRatio,aspectRatioMobile,slidesPerView,slidesPerViewMobile,slides:{image,alt,title,description,href}[]}[]", "default": "3 sample sections" },
+    { "name": "slidesPerView", "type": "number", "default": 3 },
+    { "name": "slidesPerViewMobile", "type": "number", "default": 1.5 },
+    { "name": "gap", "type": "string", "default": "0rem" },
+    { "name": "gapMobile", "type": "string", "default": "0rem" },
+    { "name": "mdBreakpoint", "type": "number", "default": 820 },
+    { "name": "sidePadding", "type": "string", "default": "1rem" },
+    { "name": "sidePaddingMd", "type": "string", "default": "2rem" },
+    { "name": "headingFont", "type": "string", "default": "Space Grotesk, sans-serif" },
+    { "name": "bodyFont", "type": "string", "default": "Inter, sans-serif" },
+    { "name": "monoFont", "type": "string", "default": "JetBrains Mono, monospace" },
+    { "name": "ctaLabel", "type": "string", "default": "VIEW" },
+    { "name": "ctaHref", "type": "string", "default": "#" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Sections, headings, slides, images, text and link label",
+    "Scrub on or off and direction per section",
+    "Slides per view, gap and side padding for mobile and desktop",
+    "All colors and fonts"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change fade range of side slides", "where": "progress handler inside the Swiper options" },
+    { "change": "Change how long each scrub section stays pinned", "where": "end function inside ScrollTrigger.create" },
+    { "change": "Change arrow button style", "where": "swiper-prev-btn and swiper-next-btn divs" }
+  ],
+  "fixed": [
+    "Scrub sections pin to the screen and take scroll distance from the page",
+    "Slide links are not clickable (pointer events disabled)",
+    "Needs swiper stylesheet loaded from the swiper package",
+    "Font families are props but no font files are loaded, host must provide them"
+  ],
+  "mood": ["editorial", "bold", "dark", "experimental"],
+  "industries": ["art", "photography", "agency", "fashion", "media"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": ["gsap", "swiper"]
+}
