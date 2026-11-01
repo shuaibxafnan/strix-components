@@ -4,11 +4,12 @@
   "sourceHash": "cdff98f16d58974ba062654438a36de22e004daed786d37d48f7689617d19f93",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "ink-transition",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.479Z"
+  "note": "Slug kept. Only change: className prop merged into placeholder and main root. Font props and injected @font-face kept. Colors remain Tailwind class props. Unmounted placeholder kept. Responsive already ok.",
+  "updatedAt": "2026-11-01T08:56:49.717Z",
+  "gateOutput": "gates passed"
 }
