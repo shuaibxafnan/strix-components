@@ -4,11 +4,12 @@
   "sourceHash": "f80daa52615af3daff0b38ac981a202e410951afd55696a4c11197a01a7c7759",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "stratum-veil",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.564Z"
+  "note": "Rewritten to template. CDN Lenis loader replaced with dynamic import of lenis; smoothScrollSources prop removed; disposed guard added. Gates passed; warning: style tag without template literal, left as source.",
+  "updatedAt": "2026-11-01T13:57:56.467Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }
