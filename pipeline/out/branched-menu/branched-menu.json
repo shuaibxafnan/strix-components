@@ -1,0 +1,170 @@
+{
+    "slug": "branched-menu",
+    "name": "Branched Menu",
+    "category": "navigation-menus",
+    "isReactBits": true,
+    "description": "Vertical collapsible menu with a trunk line and curved branch connectors to child rows. Selecting a child draws an accent line along its branch while a marker glides to the section heading.",
+    "contents": [
+        "Vertical nav with section headings that fold open and closed",
+        "SVG trunk and rounded branch lines to each child row, with optional icons",
+        "Accent path that draws to the active child and a sliding marker on the left rail"
+    ],
+    "behavior": [
+        "Clicking a heading with children toggles its section with an animated grid-row fold",
+        "Clicking a child sets it active, draws the accent branch and highlights the row",
+        "Items without children act as direct selectable leaves",
+        "Marker slides to the active section heading and hides when that section is collapsed",
+        "Marker repositions without animation on resize",
+        "Collapsed child buttons are removed from tab order",
+        "Reduced motion preference disables fold, draw and marker slide transitions"
+    ],
+    "props": [
+        {
+            "name": "items",
+            "type": "{label,value?,icon?,children?:{value,label,icon?}[]}[]",
+            "default": "2 sample sections (Getting started, Components) with 4 children each"
+        },
+        {
+            "name": "defaultOpen",
+            "type": "number | number[]",
+            "default": 0
+        },
+        {
+            "name": "defaultActive",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "onSelect",
+            "type": "(value, item) => void",
+            "default": "undefined"
+        },
+        {
+            "name": "onToggle",
+            "type": "(index, isOpen) => void",
+            "default": "undefined"
+        },
+        {
+            "name": "color",
+            "type": "string",
+            "default": "#f5f5f5"
+        },
+        {
+            "name": "accentColor",
+            "type": "string",
+            "default": "#f5f5f5"
+        },
+        {
+            "name": "lineColor",
+            "type": "string",
+            "default": "#3f3f46"
+        },
+        {
+            "name": "width",
+            "type": "number",
+            "default": 240
+        },
+        {
+            "name": "rowHeight",
+            "type": "number",
+            "default": 36
+        },
+        {
+            "name": "indent",
+            "type": "number",
+            "default": 40
+        },
+        {
+            "name": "trunk",
+            "type": "number",
+            "default": 14
+        },
+        {
+            "name": "radius",
+            "type": "number",
+            "default": 10
+        },
+        {
+            "name": "lineWidth",
+            "type": "number",
+            "default": 1.5
+        },
+        {
+            "name": "fontSize",
+            "type": "number",
+            "default": 14
+        },
+        {
+            "name": "drawDuration",
+            "type": "number",
+            "default": 400
+        },
+        {
+            "name": "foldDuration",
+            "type": "number",
+            "default": 300
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Menu items, labels, values, icons and nesting",
+        "Initially open sections and initially active child",
+        "Select and toggle callbacks",
+        "Text, accent and line colors",
+        "Width, row height, indent, trunk position, corner radius, line width and font size",
+        "Branch draw and fold durations"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Allow only one open section at a time",
+            "where": "toggle function"
+        },
+        {
+            "change": "Change the easing of the fold or marker glide",
+            "where": "grid-template-rows transition class on the fold wrapper and the markerRef span"
+        },
+        {
+            "change": "Change heading size relative to children",
+            "where": "font-size calc(var(--bm-font)+1px) class on the section heading button"
+        },
+        {
+            "change": "Add more than one nesting level",
+            "where": "kids.map blocks inside items.map"
+        }
+    ],
+    "fixed": [
+        "Requires @hugeicons/react and @hugeicons/core-free-icons for the default icons",
+        "Needs Tailwind CSS with arbitrary value and group-data variants",
+        "Only one level of nesting is supported",
+        "Children need unique value strings, used as keys and active identifiers",
+        "Uses a ResizeObserver on the nav to reposition the marker",
+        "Text color inherits font family from the parent and muted color is 55% of color",
+        "Left rail is a fixed 2px gradient fading to transparent",
+        "Marker height is fixed at 16px and the body padding at 6px"
+    ],
+    "mood": [
+        "minimal",
+        "technical",
+        "clean",
+        "modern"
+    ],
+    "industries": [
+        "SaaS",
+        "developer tools",
+        "documentation",
+        "software"
+    ],
+    "sections": [
+        "navbar",
+        "other"
+    ],
+    "dependencies": [
+        "react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+    ]
+}
