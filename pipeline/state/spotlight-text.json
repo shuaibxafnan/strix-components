@@ -4,11 +4,12 @@
   "sourceHash": "e41d6c37618ae490dccc83aab80290a2f065ad8ed384f80fc5bddd838441ded3",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "spotlight-text",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.556Z"
+  "note": "className added. Button offset made responsive. No frame, no variants. Kept @font-face with fontFamily/fontUrl props. WORD_PATHS needs code edit. Category text-effects.",
+  "updatedAt": "2026-11-01T13:14:05.054Z",
+  "gateOutput": "gates passed"
 }

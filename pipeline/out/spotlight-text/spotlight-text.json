@@ -1,0 +1,53 @@
+{
+  "slug": "spotlight-text",
+  "name": "Spotlight Text",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Full-screen SVG word mark hidden in darkness that is revealed by a swinging spotlight beam, with an outline stroke draw inside the light and a button to toggle the beam.",
+  "contents": [
+    "Full-screen background image",
+    "SVG lettering drawn from path data",
+    "Swinging light cone with glow",
+    "Toggle button for the light"
+  ],
+  "behavior": [
+    "Spotlight swings left and right on an infinite alternating loop",
+    "Letters are revealed as outlined strokes inside the light and filled elsewhere",
+    "Stroke outline continuously draws in and out",
+    "Button fades the light cone in and out",
+    "Animations are disabled with reduced motion"
+  ],
+  "props": [
+    { "name": "backgroundImage", "type": "string", "default": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=1920&q=70" },
+    { "name": "hideLabel", "type": "string", "default": "Hide light" },
+    { "name": "showLabel", "type": "string", "default": "Show light" },
+    { "name": "initiallyLit", "type": "boolean", "default": true },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "wordFill", "type": "string", "default": "fill-black" },
+    { "name": "strokeColor", "type": "string", "default": "stroke-white" },
+    { "name": "lightColor", "type": "string", "default": "#ffffff" },
+    { "name": "buttonColor", "type": "string", "default": "border-white/60 text-white hover:bg-white hover:text-black" },
+    { "name": "fontFamily", "type": "string", "default": "Inter Tight" },
+    { "name": "fontUrl", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/inter-tight@latest/latin-500-normal.woff2" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Background image, background color, word fill and stroke colors",
+    "Light color",
+    "Button labels, initial light state, button colors",
+    "Button font family and font file"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change the lettering", "where": "WORD_PATHS" },
+    { "change": "Change swing speed, angle or pivot", "where": "ROTATE" },
+    { "change": "Change stroke draw timing", "where": "KEYFRAMES" }
+  ],
+  "fixed": [
+    "Lettering is fixed SVG path data",
+    "Root fills the viewport height as a full-bleed section; override with className using an important modifier such as !h-auto"
+  ],
+  "mood": ["dramatic", "cinematic", "mysterious", "bold"],
+  "industries": ["entertainment", "film", "gaming", "events", "agency"],
+  "sections": ["hero"],
+  "dependencies": []
+}
