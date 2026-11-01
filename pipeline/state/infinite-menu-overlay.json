@@ -4,11 +4,12 @@
   "sourceHash": "d61e470dae3965e532321d7ad7d4948317770734bf96308f4b9f1ccfb8ac8f82",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "curve-wipe-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.473Z"
+  "note": "x",
+  "updatedAt": "2026-11-01T08:50:01.942Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

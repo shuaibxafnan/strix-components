@@ -1,0 +1,86 @@
+{
+  "slug": "curve-wipe-menu",
+  "name": "Curve Wipe Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-screen fashion landing with a big title and a menu button that opens a curved SVG wipe revealing a dark overlay with large menu words over rotated, endlessly sliding image tile rows.",
+  "contents": [
+    "Small heading with subtitle and round menu button",
+    "Large two-line title with an arrow icon",
+    "Menu overlay with staggered menu words and close button",
+    "Rotated rows of looping round and pill-shaped image tiles"
+  ],
+  "behavior": [
+    "Opening runs a GSAP curved SVG wipe, titles slide up and menu words stagger in",
+    "Closing reverses the wipe and restores the title",
+    "Tile rows scroll horizontally at different speeds in a loop, disabled with reduced motion",
+    "Menu item hover changes word and small label colors"
+  ],
+  "props": [
+    { "name": "headingMain", "type": "string", "default": "London 2022" },
+    { "name": "headingSub", "type": "string", "default": "spring / summer collection" },
+    { "name": "titleMain", "type": "string", "default": "Theodore" },
+    { "name": "titleSub", "type": "string", "default": "Stravassos" },
+    { "name": "openLabel", "type": "string", "default": "Open menu" },
+    { "name": "closeLabel", "type": "string", "default": "Close menu" },
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "menuItems", "type": "{tiny,text,tinyFirst}[]", "default": "4 sample items" },
+    { "name": "tileRows", "type": "{src,large}[][]", "default": "3 rows of sample images" },
+    { "name": "bgColor", "type": "string", "default": "#4f6c5e" },
+    { "name": "menuBgColor", "type": "string", "default": "#000000" },
+    { "name": "textColor", "type": "string", "default": "#000000" },
+    { "name": "menuTextColor", "type": "string", "default": "#3e4843" },
+    { "name": "titleMainColor", "type": "string", "default": "#000000" },
+    { "name": "titleMainOpenColor", "type": "string", "default": "#ffffff" },
+    { "name": "headingSubColor", "type": "string", "default": "#374b41" },
+    { "name": "menuItemColor", "type": "string", "default": "#7ec59d" },
+    { "name": "menuItemHover", "type": "string", "default": "#128b47" },
+    { "name": "menuTinyColor", "type": "string", "default": "#7ec59d" },
+    { "name": "buttonColor", "type": "string", "default": "#000000" },
+    { "name": "buttonHoverColor", "type": "string", "default": "#79a18a" },
+    { "name": "closeColor", "type": "string", "default": "#ffffff" },
+    { "name": "closeHoverColor", "type": "string", "default": "#79a18a" },
+    { "name": "overlayColor", "type": "string", "default": "#000000" },
+    { "name": "fontUrl", "type": "string", "default": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,300;6..96,400;6..96,500&display=swap" },
+    { "name": "fontFamily", "type": "string", "default": "'Bodoni Moda', serif" },
+    { "name": "titleMainSize", "type": "string", "default": "20vw" },
+    { "name": "titleSubSize", "type": "string", "default": "7vw" },
+    { "name": "menuItemSize", "type": "string", "default": "9vw" },
+    { "name": "tileRotation", "type": "number", "default": 22.5 },
+    { "name": "tileOpacity", "type": "number", "default": 0.5 },
+    { "name": "tileSize", "type": "string", "default": "30vh" },
+    { "name": "tileLargeSize", "type": "string", "default": "100vh" },
+    { "name": "tileSpeeds", "type": "number[]", "default": [10, 16, 22] },
+    { "name": "openDuration", "type": "number", "default": 0.8 },
+    { "name": "itemStagger", "type": "number", "default": 0.05 }
+  ],
+  "editableByProps": [
+    "All text, labels, menu items and tile images",
+    "All colors, font, title and menu sizes",
+    "Tile rotation, opacity, size, speeds and wipe timing"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Make menu links navigate",
+      "where": "The a element inside the nav in the menuItems map"
+    },
+    {
+      "change": "Change the wipe curve shapes",
+      "where": "The attr d paths in openMenu and closeMenu"
+    },
+    {
+      "change": "Enable the enter arrow button",
+      "where": "The disabled button with aria-label Enter the site"
+    }
+  ],
+  "fixed": [
+    "Fills the viewport height as a full-screen section",
+    "Loads the font stylesheet link into the document head and leaves it after unmount",
+    "Menu links have no href by default",
+    "Layout uses viewport units so it is built for full-screen use"
+  ],
+  "mood": ["fashion", "editorial", "bold", "elegant"],
+  "industries": ["fashion", "luxury", "photography", "agency", "events"],
+  "sections": ["hero", "navbar"],
+  "dependencies": ["gsap"]
+}
