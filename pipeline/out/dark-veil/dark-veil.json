@@ -1,0 +1,100 @@
+{
+    "slug": "dark-veil",
+    "name": "Dark Veil",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 shader background that renders a flowing, glowing veil of light in a chosen color, with pointer-reactive distortion, a soft intro fade-in and optional light-mode ink rendering.",
+    "contents": [
+        "Container div filling its parent with one absolutely positioned WebGL canvas",
+        "Neural-network generated field shader plus a composite shader for glow, sheen, grain and edge fade"
+    ],
+    "behavior": [
+        "Veil drifts and morphs continuously over time at the given speed",
+        "Pointer movement over the page bends, rotates and drags the veil and moves a highlight light",
+        "Intro fades and unfolds the veil in over 1.8 seconds",
+        "Rendering pauses when offscreen or the tab is hidden and resumes automatically",
+        "Respects reduced motion: no animation, no intro, no pointer interaction",
+        "Re-renders when props change without recreating the WebGL context"
+    ],
+    "props": [
+        { "name": "color", "type": "string (CSS color)", "default": "#6b12ff" },
+        { "name": "speed", "type": "number", "default": 0.5 },
+        { "name": "scale", "type": "number (min 0.1)", "default": 1 },
+        { "name": "rotation", "type": "number (degrees)", "default": 0 },
+        { "name": "flow", "type": "number (min 0)", "default": 1 },
+        { "name": "warp", "type": "number (min 0)", "default": 0 },
+        { "name": "variation", "type": "number", "default": 0 },
+        { "name": "brightness", "type": "number (min 0)", "default": 1 },
+        { "name": "sheen", "type": "number (min 0)", "default": 0 },
+        { "name": "glow", "type": "number (min 0)", "default": 0.4 },
+        { "name": "grain", "type": "number (min 0)", "default": 0.03 },
+        { "name": "quality", "type": "number (0.25 to 1)", "default": 0.5 },
+        { "name": "mouseInteraction", "type": "boolean", "default": true },
+        { "name": "mouseStrength", "type": "number (min 0)", "default": 1 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "fade", "type": "number (0 to 1)", "default": 0 },
+        { "name": "opacity", "type": "number (0 to 1)", "default": 1 },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number | undefined", "default": "undefined (uses devicePixelRatio, capped at 2)" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Veil color, brightness, glow, sheen and grain",
+        "Animation speed, flow, warp, scale, rotation and a variation seed for different shapes",
+        "Pointer interaction on or off and its strength, intro on or off, paused state",
+        "Edge fade, overall opacity, and light-mode rendering for light page backgrounds",
+        "Render quality and pixel ratio for performance",
+        "Size and position through className"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the veil pattern or its fixed base look",
+            "where": "cppn function in the FIELD shader string and the uSeed values in render"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change the maximum internal field resolution",
+            "where": "MAX_FIELD_PIXELS constant and the resize function"
+        },
+        {
+            "change": "Listen to pointer only inside the container instead of the whole window",
+            "where": "window pointermove listener and onPointerMove in the useEffect"
+        }
+    ],
+    "fixed": [
+        "Needs a parent with a defined height, root is h-full w-full and collapses otherwise",
+        "Requires WebGL2, renders nothing if unavailable or shader compile fails, no fallback",
+        "Listens to window pointermove and documentElement pointerleave while mounted, removed on unmount",
+        "Pointer effects apply even when the pointer is over content above the canvas",
+        "Dark mode output is bright light on a transparent background, best on dark pages, use lightMode for light pages",
+        "Canvas device pixel ratio is capped at 2 and internal field pixels capped near 900000",
+        "Several props are clamped in code, for example quality 0.25 to 1, fade and opacity 0 to 1",
+        "Heavy GPU shader, may be slow on low-end mobile, lower quality to compensate",
+        "Layout is container-sized with ResizeObserver, works on mobile, tablet and desktop"
+    ],
+    "mood": [
+        "mysterious",
+        "futuristic",
+        "ethereal",
+        "dark",
+        "immersive"
+    ],
+    "industries": [
+        "technology",
+        "AI",
+        "gaming",
+        "music",
+        "creative agency",
+        "crypto"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "cta"
+    ],
+    "dependencies": []
+}
