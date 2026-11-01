@@ -4,11 +4,12 @@
   "sourceHash": "677c81df6909ef080bdfb9f669b684b2dbf6a7f7bac70f7ff8b864a48f59006a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "magnetic-cursor",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.492Z"
+  "note": "gates passed. Header comment block removed; frame added; className prop added. Font Awesome CDN link kept. No variants.",
+  "updatedAt": "2026-11-01T09:39:51.052Z",
+  "gateOutput": "gates passed"
 }
