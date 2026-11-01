@@ -1,0 +1,48 @@
+{
+  "slug": "destination-slider",
+  "name": "Destination Slider",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-width destination slider showing one large image at a time with a wipe reveal, a titled label card, a description, dot and counter indicators, and square arrow buttons.",
+  "contents": [
+    "Active slide with image, city title link, label and description",
+    "Dot indicators and a numbered counter",
+    "Previous and next square arrow buttons"
+  ],
+  "behavior": [
+    "Image reveals with a white wipe from right to left on each slide change",
+    "Title and description fade in after the image",
+    "Arrow left and right keys change slides",
+    "Optional autoplay, loops at the ends",
+    "Desktop overlays the title card on the image, mobile places the title below it"
+  ],
+  "props": [
+    {"name": "slides", "type": "{id,city,description,imageUrl,href}[]", "default": "4 sample Japan destinations"},
+    {"name": "accentColor", "type": "string", "default": "#e83f43"},
+    {"name": "label", "type": "string", "default": "Destination"},
+    {"name": "textColor", "type": "string", "default": "#232323"},
+    {"name": "mutedColor", "type": "string", "default": "#8d8d8d"},
+    {"name": "backgroundColor", "type": "string", "default": "#ffffff"},
+    {"name": "autoPlay", "type": "boolean", "default": false},
+    {"name": "autoPlayInterval", "type": "number", "default": 4000},
+    {"name": "showDots", "type": "boolean", "default": true},
+    {"name": "showCounter", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides, images, titles, descriptions and links",
+    "Accent, text, muted and background colors",
+    "Label text, autoplay, dots and counter visibility"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the reveal direction or duration", "where": "revealRight keyframes in the style tag of SlideItem"},
+    {"change": "Change image height", "where": "h-[50vh] md:h-[65vh] classes on the img in SlideItem"}
+  ],
+  "fixed": [
+    "Listens for ArrowLeft and ArrowRight on the document while mounted and removes the listener on unmount"
+  ],
+  "mood": ["editorial", "clean", "travel", "elegant"],
+  "industries": ["travel", "tourism", "hospitality", "real estate"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": []
+}
