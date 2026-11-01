@@ -1,0 +1,51 @@
+{
+  "slug": "sneaker-reveal",
+  "name": "Sneaker Reveal",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Before and after image comparison where a dirty sneaker photo is wiped away over a clean one by following the pointer, with a draggable-looking divider handle and caption.",
+  "contents": [
+    "Clean image with a dirty image layered on top and clipped",
+    "Divider line with circular arrow handle",
+    "Before and After labels",
+    "Brand line and tagline caption, thin accent bars at top and bottom"
+  ],
+  "behavior": [
+    "Divider follows the pointer horizontally with eased friction while hovering",
+    "Eases back to the center when the pointer leaves"
+  ],
+  "props": [
+    {"name": "cleanSrc", "type": "string", "default": "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/clean.png"},
+    {"name": "dirtySrc", "type": "string", "default": "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/dirty.png"},
+    {"name": "friction", "type": "number", "default": 0.15},
+    {"name": "frictionOut", "type": "number", "default": 0.075},
+    {"name": "accentColor", "type": "string", "default": "#1E3A8A"},
+    {"name": "brand", "type": "string", "default": "Professional Cleaning"},
+    {"name": "tagline", "type": "string", "default": "Authentic Sneaker Care"},
+    {"name": "cleanAlt", "type": "string", "default": "Clean sneaker"},
+    {"name": "dirtyAlt", "type": "string", "default": "Dirty sneaker"},
+    {"name": "beforeLabel", "type": "string", "default": "Before"},
+    {"name": "afterLabel", "type": "string", "default": "After"},
+    {"name": "backgroundColor", "type": "string", "default": "#ffffff"},
+    {"name": "mutedColor", "type": "string", "default": "#999999"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Both images, alt text, labels, brand and tagline",
+    "Accent, background and muted text colors",
+    "Easing speed of the divider"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the image width", "where": "w-[90vw] max-w-[560px] classes on the containerRef div"},
+    {"change": "Remove the accent bars", "where": "h-[3px] divs at the top and bottom of main"}
+  ],
+  "fixed": [
+    "Root is absolutely positioned and fills its nearest positioned parent",
+    "Loads Bebas Neue and DM Sans from Google Fonts",
+    "Reveal follows hover pointer only, so on touch it stays centered until touched and moved"
+  ],
+  "mood": ["clean", "minimal", "playful"],
+  "industries": ["fashion", "e-commerce", "cleaning services", "retail"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": []
+}

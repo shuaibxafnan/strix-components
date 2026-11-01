@@ -4,11 +4,12 @@
   "sourceHash": "3cb242d61703e3a37924d9210280953ac7518635f216ffe95772e492019e3739",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sneaker-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.551Z"
+  "note": "Ambiguous removal: brand name The Clean Industry, default brand now Professional Cleaning. Dead pctX state removed. Alt, label, color props and className added. Google Fonts import kept. No variants.",
+  "updatedAt": "2026-11-01T12:57:35.499Z",
+  "gateOutput": "gates passed"
 }
