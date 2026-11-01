@@ -4,11 +4,12 @@
   "sourceHash": "6bec1d4ed78a1f9b369996ef587fc3bdfcf2890a4a5a3083598580cb3e27de66",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "glow-keyboard",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.451Z"
+  "note": "No rename. Theme select removed, now variant prop (spring, summer, autumn, winter, custom; default winter). Frame added. Demo bg/text removed. Mounted gate kept for client-only random colors. Key text small at 360px (cqi units).",
+  "updatedAt": "2026-11-01T07:46:57.041Z",
+  "gateOutput": "gates passed"
 }
