@@ -1,0 +1,63 @@
+{
+  "slug": "multi-effect-card",
+  "name": "Multi Effect Card",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Interactive image card made of stacked copies that fan out on hover, with switchable clip shapes and toggles for rotation, blur, color, opacity, parallax and a 3D tilt mode with tuning sliders.",
+  "contents": [
+    "Square image card built from stacked layers of one image",
+    "Row of four shape buttons (rectangle, circle, diamond, hexagon)",
+    "Column of effect toggles and four sliders that appear in 3D mode"
+  ],
+  "behavior": [
+    "Hover fans the stacked layers out with scale, opacity and rotation stagger",
+    "Parallax mode shifts layers with the cursor",
+    "3D mode spreads layers in depth and tilts and pans the stack following the mouse",
+    "Parallax and 3D are mutually exclusive",
+    "Layout stacks the controls vertically on screens 480px and below"
+  ],
+  "props": [
+    { "name": "imageUrl", "type": "string", "default": "https://images.unsplash.com/photo-1749330513873-09ffa91b0aae?auto=format&fit=crop&w=1200&h=1200&q=80" },
+    { "name": "imageAlt", "type": "string", "default": "Stacked image" },
+    { "name": "layerCount", "type": "number", "default": 10 },
+    { "name": "size", "type": "number", "default": 600 },
+    { "name": "initialShape", "type": "\"rectangle\" | \"circle\" | \"diamond\" | \"hexagon\"", "default": "rectangle" },
+    { "name": "depthStep", "type": "number", "default": 36 },
+    { "name": "scale3d", "type": "number", "default": 0.07 },
+    { "name": "tiltMax", "type": "number", "default": 45 },
+    { "name": "panMax", "type": "number", "default": 88 },
+    { "name": "opacityFalloff", "type": "number", "default": 0.1 },
+    { "name": "moveAmplify", "type": "number", "default": 0.54 },
+    { "name": "tiltBoost", "type": "number", "default": 1.25 },
+    { "name": "panBoost", "type": "number", "default": 1.25 },
+    { "name": "shapeLabels", "type": "{rectangle,circle,diamond,hexagon}", "default": { "rectangle": "Rectangle", "circle": "Circle", "diamond": "Diamond", "hexagon": "Hexagon" } },
+    { "name": "toggleLabels", "type": "{rotation,blur,color,opacity,parallax,threeD}", "default": { "rotation": "rotation", "blur": "blur", "color": "color", "opacity": "opacity", "parallax": "parallax", "threeD": "3d" } },
+    { "name": "tunerLabels", "type": "{tilt,pan,depth,amp}", "default": { "tilt": "tilt", "pan": "pan", "depth": "depth", "amp": "amp" } },
+    { "name": "onLabel", "type": "string", "default": "on" },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Image, alt text, layer count and card size",
+    "Starting clip shape and all button, toggle and slider labels",
+    "3D depth, scale, tilt, pan and opacity tuning values",
+    "Background color class"
+  ],
+  "needsCodeEdit": [
+    { "change": "Add or change clip shapes", "where": "CLIP_PATHS constant" },
+    { "change": "Change fan-out timing and easing", "where": "duration and ease constants inside the useEffect" },
+    { "change": "Change blur strength per layer", "where": "BLUR_SEQUENCE constant" },
+    { "change": "Change parallax follow strength", "where": "followStrength constant inside the useEffect" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Uses the Space Mono font through next/font/google, so it requires Next.js",
+    "Mouse move listener is attached to the document and removed on unmount",
+    "Effects are driven by mouse hover, touch devices get only the emulated tap hover",
+    "Root has a dotted grid background and white text, so the background prop should stay dark"
+  ],
+  "mood": ["playful", "techy", "dark", "experimental"],
+  "industries": ["creative agency", "photography", "design studio", "portfolio", "fashion"],
+  "sections": ["portfolio", "gallery", "other"],
+  "dependencies": ["gsap"]
+}
