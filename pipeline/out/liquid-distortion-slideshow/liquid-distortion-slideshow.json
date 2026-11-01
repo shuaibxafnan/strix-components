@@ -1,0 +1,79 @@
+{
+  "slug": "liquid-distortion-slideshow",
+  "name": "Liquid Distortion Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen WebGL image slideshow that transitions between slides with a liquid displacement distortion and crossfade, with arrows, dots, optional counter, captions and keyboard control.",
+  "contents": [
+    "Full-screen Pixi canvas showing the current image",
+    "Optional centered caption per slide",
+    "Previous and next arrow buttons",
+    "Dot pagination and optional counter"
+  ],
+  "behavior": [
+    "Slides change through an animated displacement filter driven by a procedural noise map or a custom image",
+    "Noise map drifts continuously while autoPlay is on",
+    "Arrow keys switch slides",
+    "Optional auto advance, loop, and hover or click distortion on the canvas"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "5 sample image URLs" },
+    { "name": "captions", "type": "string[]", "default": [] },
+    { "name": "stageWidth", "type": "number", "default": 1920 },
+    { "name": "stageHeight", "type": "number", "default": 1080 },
+    { "name": "canvasScale", "type": "number", "default": 1.2 },
+    { "name": "autoPlay", "type": "boolean", "default": true },
+    { "name": "autoPlaySpeedX", "type": "number", "default": 10 },
+    { "name": "autoPlaySpeedY", "type": "number", "default": 3 },
+    { "name": "displaceScaleX", "type": "number", "default": 200 },
+    { "name": "displaceScaleY", "type": "number", "default": 70 },
+    { "name": "idleDisplaceScale", "type": "number", "default": 20 },
+    { "name": "distortDuration", "type": "number", "default": 1 },
+    { "name": "fadeDuration", "type": "number", "default": 0.5 },
+    { "name": "noiseSize", "type": "number", "default": 512 },
+    { "name": "noiseCells", "type": "number", "default": 4 },
+    { "name": "noiseOctaves", "type": "number", "default": 4 },
+    { "name": "noiseContrast", "type": "number", "default": 1.6 },
+    { "name": "displacementImage", "type": "string", "default": "" },
+    { "name": "displaceAutoFit", "type": "boolean", "default": false },
+    { "name": "wacky", "type": "boolean", "default": false },
+    { "name": "interactive", "type": "boolean", "default": false },
+    { "name": "interactionEvent", "type": "\"hover\" | \"click\" | \"both\"", "default": "hover" },
+    { "name": "loop", "type": "boolean", "default": true },
+    { "name": "autoAdvance", "type": "boolean", "default": false },
+    { "name": "autoAdvanceDelay", "type": "number", "default": 5000 },
+    { "name": "showArrows", "type": "boolean", "default": true },
+    { "name": "showDots", "type": "boolean", "default": true },
+    { "name": "showCounter", "type": "boolean", "default": false },
+    { "name": "bgColor", "type": "string", "default": "#000" },
+    { "name": "navColor", "type": "string", "default": "#ffffffcc" },
+    { "name": "navHoverColor", "type": "string", "default": "#ffffff" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "fadeInDuration", "type": "number", "default": 600 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, captions and which controls are shown",
+    "Distortion strength, durations, noise look or custom displacement map",
+    "Auto advance, looping and hover or click interaction",
+    "Background, navigation and caption colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the arrow icon shape",
+      "where": "polygon element inside the Previous slide and Next slide buttons"
+    },
+    {
+      "change": "Change the distortion sequence order",
+      "where": "timeline chain inside the moveTo function"
+    }
+  ],
+  "fixed": [
+    "Arrow left and right keys are bound on window while mounted and removed on unmount",
+    "Root is full-bleed and fills the viewport height"
+  ],
+  "mood": ["cinematic", "fluid", "immersive", "dramatic"],
+  "industries": ["photography", "travel", "fashion", "film", "art"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["pixi.js", "gsap"]
+}

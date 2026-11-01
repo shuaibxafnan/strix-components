@@ -4,11 +4,12 @@
   "sourceHash": "4eef178101e69956d7475c8b75cf4170c03245662ac6492aa21c27b7e0560605",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "liquid-distortion-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.488Z"
+  "note": "Component renamed to LiquidDistortionSlideshow. CDN loaders replaced by dynamic imports of pixi.js and gsap; code uses Pixi 4 APIs so pixi.js must be pinned to 4.x (version not in JSON deps). console.error replaced with empty catch. No frame, no variants, responsive ok. Fixed: window ArrowLeft/ArrowRight key listener.",
+  "updatedAt": "2026-11-01T09:22:45.831Z",
+  "gateOutput": "gates passed"
 }
