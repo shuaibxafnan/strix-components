@@ -4,11 +4,12 @@
   "sourceHash": "0aeaa9474b81c7b42b14a511695ae9daaf425a5b0346fb17c09a475fe2e3e9ce",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "vertical-warp-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.413Z"
+  "note": "renamed contenplative-warp-slideshow -> vertical-warp-slideshow; CDN script loading replaced by npm gsap dynamic import; no frame; no variants",
+  "updatedAt": "2026-11-01T05:17:06.284Z",
+  "gateOutput": "gates passed"
 }
