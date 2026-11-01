@@ -1,0 +1,67 @@
+{
+  "slug": "one-element-scroll",
+  "name": "One Element Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Editorial fashion scroll page where a single image element morphs and travels between placeholders in each section using GSAP Flip, with parallax columns, sliding titles and revealed images.",
+  "contents": [
+    "Full-screen hero image that becomes the shared moving element",
+    "Centered title, column of images, three-line headline with inline images, side text block, tall text block, image grid and related cards row"
+  ],
+  "behavior": [
+    "One image is fitted to each section placeholder in turn through scrubbed GSAP Flip",
+    "Title spans slide in from alternating sides, inline images scale and fade in on scroll",
+    "Column and text parallax, related cards scale in from the center",
+    "Smooth scrolling through Lenis",
+    "Layout switches between stacked and side-by-side at 53em"
+  ],
+  "props": [
+    { "name": "mainImage", "type": "string", "default": "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=720&q=80" },
+    { "name": "heroTitleLines", "type": "string[]", "default": ["Seraph", "Kamos"] },
+    { "name": "columnImages", "type": "string[]", "default": "4 sample images" },
+    { "name": "linesRow1Words", "type": "string[]", "default": ["Natural", "Garments"] },
+    { "name": "linesRow2", "type": "{before,image,after}", "default": "Crafted with / image / love" },
+    { "name": "linesRow3", "type": "{before,image,after}", "default": "with / image / respect" },
+    { "name": "sidesLeadIn", "type": "string", "default": "Welcome to Seraph Kamos" },
+    { "name": "sidesText", "type": "string", "default": "sample brand paragraph" },
+    { "name": "centerTallText", "type": "string", "default": "sample brand paragraph" },
+    { "name": "gridImages", "type": "string[]", "default": "8 sample images" },
+    { "name": "relatedCards", "type": "{title,href,image}[]", "default": "5 sample cards" },
+    { "name": "outroTitle", "type": "string", "default": "More you might like" },
+    { "name": "textColor", "type": "string", "default": "#503717" },
+    { "name": "bgColor", "type": "string", "default": "rgb(234 234 234)" },
+    { "name": "gradientColor1", "type": "string", "default": "rgb(234 234 234 / 80%)" },
+    { "name": "gradientColor2", "type": "string", "default": "rgb(229 134 27 / 30%)" },
+    { "name": "linkHoverColor", "type": "string", "default": "#e1c093" },
+    { "name": "titleColor", "type": "string", "default": "#000" },
+    { "name": "bodyFontFamily", "type": "string", "default": "\"capitana\", sans-serif" },
+    { "name": "headingFontFamily", "type": "string", "default": "\"harpagan\", sans-serif" },
+    { "name": "fontKitHref", "type": "string", "default": "https://use.typekit.net/klj1rev.css" },
+    { "name": "flipDuration", "type": "number", "default": 1 },
+    { "name": "flipEase", "type": "string", "default": "sine.inOut" },
+    { "name": "lenisLerp", "type": "number", "default": 0.1 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All headline, paragraph and card text, links and images",
+    "Text, title, background, gradient and link hover colors",
+    "Fonts and font kit stylesheet",
+    "Flip duration and easing, scroll smoothing"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change which sections the moving image lands in", "where": "elements with the data-step attribute" },
+    { "change": "Change parallax distances", "where": "addParallaxToColumnImages function" },
+    { "change": "Change title slide distance", "where": "animateSpansOnScroll function" }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Kills all ScrollTrigger instances on unmount",
+    "Loads the typekit font stylesheet into the document head",
+    "Each section is a full viewport height and the outro uses large vertical margins for scroll range",
+    "Moving image needs one data-step placeholder per stop, in page order"
+  ],
+  "mood": ["editorial", "elegant", "organic", "refined"],
+  "industries": ["fashion", "lifestyle", "sustainability", "portfolio", "e-commerce"],
+  "sections": ["hero", "features", "portfolio"],
+  "dependencies": ["gsap", "lenis"]
+}
