@@ -4,11 +4,12 @@
   "sourceHash": "259a6eb1a870566f841554349b12049a42e516fa516cd2c4118aca115354c700",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "diagonal-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.419Z"
+  "note": "Rewritten. Gates passed. GSAP CDN loader replaced with import(gsap), listed in dependencies. rAF for mousemove/mouseleave cancelled on unmount. Added prevLabel, nextLabel, closeLabel props. Needs at least 4 slides (fixed). No frame; no variants.",
+  "updatedAt": "2026-11-01T06:13:48.769Z",
+  "gateOutput": "gates passed"
 }
