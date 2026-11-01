@@ -4,11 +4,12 @@
   "sourceHash": "cf7c044364c381b44728b8d439b93c78499081535834d1faeb63911e81268053",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "wormhole-card",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.581Z"
+  "note": "No rename. Root min-h-screen to h-screen. Kept Manrope next/font/google (in fixed). Nothing removed. No variants.",
+  "updatedAt": "2026-11-01T15:39:34.522Z",
+  "gateOutput": "gates passed"
 }
