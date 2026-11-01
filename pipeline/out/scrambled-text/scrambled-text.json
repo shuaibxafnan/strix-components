@@ -1,0 +1,82 @@
+{
+    "slug": "scrambled-text",
+    "name": "Scrambled Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Text that decodes from scrambled characters on scroll-in, then reacts to the pointer by scrambling or physically lifting, blurring or magnifying nearby letters, with a click shockwave.",
+    "contents": [
+        "Single text block split into characters, with a screen-reader-only copy of the text"
+    ],
+    "behavior": [
+        "Intro decode: characters scramble and resolve at staggered times when the block enters the viewport",
+        "Pointer movement near characters triggers scramble, or a physical effect, depending on effect",
+        "Physical effects use eased falloff and trail smoothing driven by requestAnimationFrame",
+        "Click or tap emits an expanding wave that scrambles characters and pushes them outward",
+        "Scrambled characters can be tinted with scrambleColor",
+        "Respects prefers-reduced-motion by skipping the intro and physical effects",
+        "Waits for fonts to load before splitting and measuring"
+    ],
+    "props": [
+        { "name": "radius", "type": "number", "default": 100 },
+        { "name": "duration", "type": "number", "default": 1.2 },
+        { "name": "speed", "type": "number", "default": 0.5 },
+        { "name": "scrambleChars", "type": "string", "default": ".:" },
+        { "name": "scrambleColor", "type": "string", "default": "" },
+        { "name": "effect", "type": "'scramble' | 'lift' | 'blur' | 'magnify'", "default": "scramble" },
+        { "name": "strength", "type": "number", "default": 1 },
+        { "name": "trail", "type": "number", "default": 0.6 },
+        { "name": "clickBurst", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "fontFamily", "type": "string", "default": "" },
+        { "name": "color", "type": "string", "default": "" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": {} },
+        { "name": "children", "type": "string", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Text content via children",
+        "Effect style, strength, radius and trail",
+        "Scramble duration, speed, characters and scramble color",
+        "Intro decode and click burst on or off",
+        "Font family, text color, extra classes and inline styles"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the outer margin, max width or font size",
+            "where": "className string on the root div in the returned JSX"
+        },
+        {
+            "change": "Change which effects count as physical or add a new one",
+            "where": "PHYSICAL constant and the paint function"
+        },
+        {
+            "change": "Change intro trigger point",
+            "where": "IntersectionObserver rootMargin in the intro block"
+        },
+        {
+            "change": "Change pointer smoothing speed",
+            "where": "follow and attack constants in the tick function"
+        }
+    ],
+    "fixed": [
+        "Requires GSAP with the SplitText and ScrambleTextPlugin plugins, registered at module level",
+        "Splits text into per-character spans, so children should be a plain string for the animation to update on text change",
+        "Pointer based, so hover effects do not apply on touch; only tap burst works there",
+        "Root has fixed 7vw margin, 800px max width, monospace font and clamp(14px,4vw,32px) font size unless overridden",
+        "Single text paragraph only, no multi-element content"
+    ],
+    "mood": ["playful", "techy", "interactive", "edgy"],
+    "industries": ["technology", "gaming", "creative agency", "music", "crypto"],
+    "sections": ["hero", "about", "cta"],
+    "dependencies": ["react", "gsap"],
+    "variants": {
+        "prop": "effect",
+        "default": "scramble",
+        "options": [
+            { "value": "scramble", "look": "Letters near the pointer scramble into random characters and resolve back", "useWhen": "Hero headline or tagline that should feel like a hacker or decoding interface" },
+            { "value": "lift", "look": "Letters near the pointer rise upward with smooth falloff", "useWhen": "Calm about or intro paragraph that needs a subtle tactile hover" },
+            { "value": "blur", "look": "Letters near the pointer blur, fade and slightly enlarge", "useWhen": "Atmospheric statement text where a soft focus-shift hover suits the mood" },
+            { "value": "magnify", "look": "Letters near the pointer swell and spread away from it like a lens", "useWhen": "Large display heading where the pointer acts as a magnifier" }
+        ]
+    }
+}

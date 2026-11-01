@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "scrambled-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.631Z"
+  "note": "Gates passed. Category text-effects. Variants on effect prop. Needs GSAP SplitText and ScrambleTextPlugin; children must be a string; root has hardcoded margin/max-width/font size.",
+  "updatedAt": "2026-11-01T11:17:04.119Z",
+  "gateOutput": "gates passed"
 }
