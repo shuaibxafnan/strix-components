@@ -1,0 +1,104 @@
+{
+    "slug": "flip-card",
+    "name": "Flip Card",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Two-sided card that flips on click, keyboard or drag with spring physics, plus pointer tilt, moving glare, hover lift and a soft shadow. Front and back accept any React content.",
+    "contents": [
+        "Front face and back face slots that take any React node",
+        "Optional glare overlay on each face",
+        "Optional blurred ground shadow under the card"
+    ],
+    "behavior": [
+        "Click, Enter or Space flips the card with a spring rotation",
+        "Dragging along the flip axis rotates the card and snaps to front or back using release velocity",
+        "Mouse hover tilts the card toward the pointer and moves a glare highlight, then scales up slightly",
+        "Works controlled (flipped plus onFlipChange) or uncontrolled (defaultFlipped)",
+        "With reduced motion enabled the flip is instant, drag and tilt are off, and faces cross-fade",
+        "Hidden face is marked inert and aria-hidden, the card exposes role button with aria-pressed"
+    ],
+    "props": [
+        { "name": "front", "type": "ReactNode", "default": null },
+        { "name": "back", "type": "ReactNode", "default": null },
+        { "name": "flipped", "type": "boolean", "default": "undefined (uncontrolled)" },
+        { "name": "defaultFlipped", "type": "boolean", "default": false },
+        { "name": "onFlipChange", "type": "(isBack: boolean) => void", "default": "undefined" },
+        { "name": "axis", "type": "'y' | 'x'", "default": "y" },
+        { "name": "flipOnClick", "type": "boolean", "default": true },
+        { "name": "draggable", "type": "boolean", "default": true },
+        { "name": "dragDistance", "type": "number", "default": 0 },
+        { "name": "tilt", "type": "boolean", "default": true },
+        { "name": "tiltMax", "type": "number", "default": 12 },
+        { "name": "glare", "type": "boolean", "default": true },
+        { "name": "glareOpacity", "type": "number", "default": 0.22 },
+        { "name": "hoverScale", "type": "number", "default": 1.03 },
+        { "name": "perspective", "type": "number", "default": 1100 },
+        { "name": "stiffness", "type": "number", "default": 170 },
+        { "name": "damping", "type": "number", "default": 20 },
+        { "name": "width", "type": "number", "default": 300 },
+        { "name": "height", "type": "number", "default": 400 },
+        { "name": "radius", "type": "number", "default": 22 },
+        { "name": "background", "type": "string", "default": "#27272a" },
+        { "name": "color", "type": "string", "default": "#f5f5f5" },
+        { "name": "shadow", "type": "boolean", "default": true },
+        { "name": "shadowColor", "type": "string", "default": "#000000" },
+        { "name": "shadowOpacity", "type": "number", "default": 0.45 },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "ariaLabel", "type": "string", "default": "Flip card" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Front and back content, card size, corner radius, background and text color",
+        "Flip direction (horizontal or vertical axis), click and drag flipping, disabled state",
+        "Tilt strength, glare on or off and intensity, hover scale, perspective",
+        "Spring stiffness and damping, shadow on or off, color and opacity",
+        "Controlled or uncontrolled flip state and change callback, aria label, extra class"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the drag release throw strength or touch and mouse drag threshold",
+            "where": "FLING and SLOP constants at the top of the file"
+        },
+        {
+            "change": "Change tilt or hover lift spring feel",
+            "where": "TILT_SPRING and LIFT_SPRING constants"
+        },
+        {
+            "change": "Restyle the glare gradient",
+            "where": "The radial-gradient span rendered inside each face when glare is true"
+        },
+        {
+            "change": "Change the reduced-motion cross-fade timing",
+            "where": "group-data-[fade] transition classes on the two face divs"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package and Tailwind CSS with arbitrary value and group-data variants support",
+        "Card is a fixed pixel width and height (max-width 100%), so tall cards on narrow screens need a smaller width prop",
+        "Only two faces, a single flip of 180 degrees per interaction",
+        "Tilt and glare follow mouse and pen only, touch gets drag and tap but no tilt",
+        "Face background and text color are shared by both faces",
+        "Touch scrolling stays enabled on the cross axis (pan-y for y axis, pan-x for x axis)",
+        "Works on small screens, drag threshold is larger for touch"
+    ],
+    "mood": ["playful", "interactive", "modern", "polished"],
+    "industries": ["e-commerce", "education", "gaming", "saas", "creative agency"],
+    "sections": ["features", "portfolio", "services", "pricing"],
+    "dependencies": ["motion"],
+    "variants": {
+        "prop": "axis",
+        "default": "y",
+        "options": [
+            {
+                "value": "y",
+                "look": "Card spins sideways like a book page around its vertical axis, drag horizontally",
+                "useWhen": "Feature or team card grids where each card reveals details on the back"
+            },
+            {
+                "value": "x",
+                "look": "Card flips up and over around its horizontal axis, drag vertically",
+                "useWhen": "Flashcard or quiz sections where the answer sits on the back like a turned card"
+            }
+        ]
+    }
+}
