@@ -1,0 +1,71 @@
+{
+  "slug": "image-grid-tapes",
+  "name": "Image Grid Tapes",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen hero where a scattered grid of images drifts and rotates with the mouse, behind a large two-line title, with a smooth following ring cursor.",
+  "contents": [
+    "Ten image tiles placed on a 50 by 50 grid",
+    "Large title with a smaller subtitle line",
+    "Custom ring cursor"
+  ],
+  "behavior": [
+    "Tiles scale in and fade in from the center with a stagger",
+    "Tiles move and rotate toward the mouse position with eased lerp, each with its own random range",
+    "Ring cursor follows the mouse with easing and appears on first move, shown only on fine pointers",
+    "Native cursor is hidden over the component"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "13 sample image urls"},
+    {"name": "title", "type": "string", "default": "Grip"},
+    {"name": "subtitle", "type": "string", "default": "tapes"},
+    {"name": "bgColor", "type": "string", "default": "#832f05"},
+    {"name": "textColor", "type": "string", "default": "#000000"},
+    {"name": "subTextColor", "type": "string", "default": "#ec9e34"},
+    {"name": "cursorStroke", "type": "string", "default": "#000000"},
+    {"name": "cursorFill", "type": "string", "default": "none"},
+    {"name": "cursorStrokeWidth", "type": "number", "default": 1},
+    {"name": "cursorSize", "type": "number", "default": 80},
+    {"name": "cursorRadius", "type": "number", "default": 20},
+    {"name": "cursorEase", "type": "number", "default": 0.2},
+    {"name": "showCursor", "type": "boolean", "default": true},
+    {"name": "gridColumns", "type": "number", "default": 50},
+    {"name": "gridRows", "type": "number", "default": 50},
+    {"name": "gridOverflow", "type": "number", "default": 10},
+    {"name": "itemEase", "type": "number", "default": 0.07},
+    {"name": "xRange", "type": "number[]", "default": [15, 60]},
+    {"name": "yRange", "type": "number[]", "default": [30, 90]},
+    {"name": "rotationRange", "type": "number", "default": 15},
+    {"name": "imgOverflow", "type": "number", "default": 100},
+    {"name": "revealDuration", "type": "number", "default": 2},
+    {"name": "fadeDuration", "type": "number", "default": 3},
+    {"name": "startScale", "type": "number", "default": 0.7},
+    {"name": "finalOpacity", "type": "number", "default": 0.8},
+    {"name": "staggerAmount", "type": "number", "default": 0.6},
+    {"name": "titleSize", "type": "string", "default": "10vw"},
+    {"name": "subtitleSize", "type": "string", "default": "4.5vw"},
+    {"name": "fontUrl", "type": "string", "default": "https://api.fontshare.com/v2/css?f[]=zodiak@400,700&f[]=switzer@400,500&display=swap"},
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "fontFamily", "type": "string", "default": "Switzer, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"},
+    {"name": "titleFontFamily", "type": "string", "default": "Zodiak, Georgia, Times New Roman, serif"}
+  ],
+  "editableByProps": [
+    "Images, title and subtitle text",
+    "Background, text, subtitle and cursor colors",
+    "Motion strength, easing, reveal timing and grid size",
+    "Cursor size, shape and visibility, fonts and title sizes"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change tile positions or count", "where": "POSITIONS constant"}
+  ],
+  "fixed": [
+    "Hides the native cursor over the component",
+    "Loads the font stylesheet into document head when fontUrl is set",
+    "Mouse driven motion, on touch devices tiles stay static and the ring cursor is hidden",
+    "Root is full-width and one viewport tall"
+  ],
+  "mood": ["playful", "bold", "editorial", "dynamic"],
+  "industries": ["fashion", "creative agency", "photography", "music"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}
