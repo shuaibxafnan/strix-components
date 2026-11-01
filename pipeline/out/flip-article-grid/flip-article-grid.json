@@ -1,0 +1,32 @@
+{
+ "slug":"flip-article-grid","name":"Flip Article Grid","category":"cards-galleries","isReactBits":false,
+ "description":"Article list that toggles between a horizontal list and a two-column card grid with a FLIP layout animation and a background color shift.",
+ "contents":["Heading with view label and toggle button","Article items with image, title, tags and date"],
+ "behavior":["Toggle button switches list and card layouts","Images and text blocks animate to their new positions with a FLIP transition","Background and text colors transition between views","Items lift slightly on hover"],
+ "props":[
+  {"name":"articles","type":"{title,tags,date,image,imageAlt}[]","default":"4 sample articles"},
+  {"name":"heading","type":"string","default":"Latest Articles"},
+  {"name":"listLabel","type":"string","default":"List view"},
+  {"name":"cardLabel","type":"string","default":"Grid view"},
+  {"name":"toListAriaLabel","type":"string","default":"Switch to list view"},
+  {"name":"toCardAriaLabel","type":"string","default":"Switch to card view"},
+  {"name":"lightColor","type":"string","default":"#f5f2ed"},
+  {"name":"darkColor","type":"string","default":"#0f0e0c"},
+  {"name":"cardSurface","type":"string","default":"#ffffff"},
+  {"name":"className","type":"string","default":""},
+  {"name":"bgList","type":"string","default":"#f5f2ed"},
+  {"name":"bgCard","type":"string","default":"#0f0e0c"},
+  {"name":"duration","type":"string","default":"0.55s"},
+  {"name":"easing","type":"string","default":"cubic-bezier(0.6, 0, 0.4, 1)"}
+ ],
+ "editableByProps":["Articles, heading, labels, images and tags","Background, text and card colors","Animation duration and easing"],
+ "needsCodeEdit":[
+  {"change":"Change the card view column count","where":"grid-cols-2 class on the grid container"},
+  {"change":"Change list item height or image width","where":"grid-cols-[clamp(110px,30vw,200px)_1fr] h-[140px] class on article"}
+ ],
+ "fixed":["Starts in list view, view state is internal"],
+ "mood":["editorial","clean","smooth","minimal"],
+ "industries":["publishing","blog","media","agency","education"],
+ "sections":["blog","gallery"],
+ "dependencies":[]
+}
