@@ -4,11 +4,12 @@
   "sourceHash": "3f0fc097ebf3691ce302ffd0398a81f3401f1e7e855ad159d4e93200e6e66604",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sliced-text-image",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.542Z"
+  "note": "CDN loaders replaced by imports of gsap and lenis, lenisSrc prop removed. gsap.context cleanup, className added. Fonts supplied by host. No variants.",
+  "updatedAt": "2026-11-01T12:37:52.883Z",
+  "gateOutput": "gates passed"
 }

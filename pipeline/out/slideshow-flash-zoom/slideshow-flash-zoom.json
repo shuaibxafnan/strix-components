@@ -1,0 +1,56 @@
+{
+  "slug": "slideshow-flash-zoom",
+  "name": "Slideshow Flash Zoom",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen image slideshow where each new slide slides in from below while scaling up, with an inner image zoom and a bright flash that settles to normal. Driven by wheel, touch, drag or arrow buttons.",
+  "contents": [
+    "Stacked full-screen background-image slides",
+    "Scroll hint label with previous and next round arrow buttons"
+  ],
+  "behavior": [
+    "Wheel, touch and pointer gestures move to the previous or next slide through GSAP Observer",
+    "New slide scales in and slides vertically while the inner image zooms out from a brightness flash",
+    "Previous slide fades out, slides loop endlessly",
+    "Gestures are ignored while a transition runs",
+    "Images are preloaded before the slideshow becomes visible"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "5 sample image URLs"},
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "textColor", "type": "string", "default": "#fff"},
+    {"name": "mainDuration", "type": "number", "default": 1.2},
+    {"name": "mainEase", "type": "string", "default": "expo"},
+    {"name": "exitEase", "type": "string", "default": "power2"},
+    {"name": "enterScale", "type": "number", "default": 0},
+    {"name": "innerStartScale", "type": "number", "default": 2},
+    {"name": "flashBrightness", "type": "number", "default": 600},
+    {"name": "wheelSpeed", "type": "number", "default": -1},
+    {"name": "wheelTolerance", "type": "number", "default": 10},
+    {"name": "showNavButtons", "type": "boolean", "default": true},
+    {"name": "scrollHintText", "type": "string", "default": "scroll / drag"},
+    {"name": "navButtonBg", "type": "string", "default": "#fff"},
+    {"name": "navButtonColor", "type": "string", "default": "#000"},
+    {"name": "navButtonSize", "type": "number", "default": 60},
+    {"name": "navButtonHoverBg", "type": "string", "default": "#ccc"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slide images and their count",
+    "Background, hint text and nav button colors and size",
+    "Transition duration, easing, start scales and flash brightness",
+    "Wheel sensitivity and nav button visibility, hint text"
+  ],
+  "needsCodeEdit": [
+    {"change": "Make the slides move horizontally", "where": "yPercent in the fromTo call on upcomingSlide"},
+    {"change": "Change arrow glyphs on the buttons", "where": "&larr; and &rarr; inside the two nav buttons"}
+  ],
+  "fixed": [
+    "Fills the viewport height and the container is hidden until images finish loading",
+    "Wheel and touch gestures on the slideshow area trigger slide changes"
+  ],
+  "mood": ["cinematic", "bold", "immersive", "dynamic"],
+  "industries": ["photography", "travel", "fashion", "film", "agency"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

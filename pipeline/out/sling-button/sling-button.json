@@ -1,0 +1,103 @@
+{
+    "slug": "sling-button",
+    "name": "Sling Button",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Round send button you drag back like a slingshot. A rubber band stretches, an arc fills as it arms, and on release the pad springs forward and bursts particles while firing onSend.",
+    "contents": [
+        "Circular draggable pad button with an arrow icon or custom children",
+        "Dark circular well behind the pad with a progress arc",
+        "Stretching rubber band drawn between well and pad",
+        "Burst of particle dots on launch",
+        "Screen reader hint text"
+    ],
+    "behavior": [
+        "Dragging pulls the pad with rubber-band resistance up to maxPull, the icon rotates to aim opposite the pull",
+        "Arc and band highlight fill as the pull approaches armAt, the pad scales up and strokes thicken once armed",
+        "Releasing when armed calls onSend, springs the pad back with recoil and sprays particles opposite the pull",
+        "Releasing before arming or pressing Escape cancels and springs back without sending",
+        "A tap or click without dragging calls onSend when tapSends is true",
+        "Reduced motion skips the spring and particles and only flashes the well and fades the band",
+        "Hover and press scale the pad slightly on fine pointers"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": "arrow up icon" },
+        { "name": "onSend", "type": "() => void", "default": "undefined" },
+        { "name": "padColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "iconColor", "type": "string", "default": "#18181b" },
+        { "name": "accentColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "wellColor", "type": "string", "default": "#27272a" },
+        { "name": "bandColor", "type": "string", "default": "#52525b" },
+        { "name": "size", "type": "number", "default": 56 },
+        { "name": "strokeWidth", "type": "number", "default": 3 },
+        { "name": "armAt", "type": "number", "default": 48 },
+        { "name": "maxPull", "type": "number", "default": 160 },
+        { "name": "launchSpeed", "type": "number", "default": 2600 },
+        { "name": "recoil", "type": "number", "default": 0.2 },
+        { "name": "flight", "type": "number", "default": 120 },
+        { "name": "particles", "type": "number", "default": 14 },
+        { "name": "spread", "type": "number", "default": 60 },
+        { "name": "axis", "type": "string", "default": "any" },
+        { "name": "tapSends", "type": "boolean", "default": true },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "ariaLabel", "type": "string", "default": "Send" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "All colors: pad, icon, accent, well and band",
+        "Button size and stroke width",
+        "Pull distance to arm, max pull, launch speed and spring recoil",
+        "Particle count, flight distance and spread angle",
+        "Drag axis lock (any, horizontal or vertical), tap to send, disabled state",
+        "Custom icon or content through children, aria label, extra class name, onSend callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the screen reader hint text",
+            "where": "The span with id hintId at the end of the returned JSX"
+        },
+        {
+            "change": "Change particle animation duration or easing",
+            "where": "DOT_MS and EASE_OUT constants"
+        },
+        {
+            "change": "Change the default icon",
+            "where": "HugeiconsIcon with ArrowUp02Icon in the button children fallback"
+        },
+        {
+            "change": "Change velocity caps for the throw",
+            "where": "FINGER_MAX, HAND_MAX and POWER_CAP constants"
+        }
+    ],
+    "fixed": [
+        "Requires Tailwind CSS with arbitrary value and group-data variants, plus motion and @hugeicons/react with @hugeicons/core-free-icons",
+        "Client component only ('use client')",
+        "Only the primary mouse button starts a drag, pointer capture is used and touch scrolling is disabled on the button (touch-none)",
+        "Gap between pad and well is fixed at 4px",
+        "Particle dots use the accent color and always fly opposite the pull direction",
+        "Drag-based interaction, touch users must drag, though a tap still sends when tapSends is true",
+        "Keyboard activation (Enter or Space) sends directly through the click handler, drag is pointer only"
+    ],
+    "mood": [
+        "playful",
+        "tactile",
+        "modern",
+        "dark"
+    ],
+    "industries": [
+        "saas",
+        "messaging",
+        "productivity",
+        "creative agencies"
+    ],
+    "sections": [
+        "cta",
+        "contact",
+        "other"
+    ],
+    "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+    ]
+}

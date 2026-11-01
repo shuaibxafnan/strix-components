@@ -1,0 +1,81 @@
+{
+    "slug": "silk",
+    "name": "Silk",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 silk fabric background with flowing folds, soft sheen, glow and film grain. Reacts to the pointer with a bend, moving light and click ripples, and has a light mode.",
+    "contents": [
+        "Container div holding a full-size WebGL canvas that renders the animated silk surface"
+    ],
+    "behavior": [
+        "Folds flow continuously at a speed set by the speed prop",
+        "Intro animation unfolds the fabric and fades it in over about 2.2 seconds",
+        "Pointer over the page bends the fabric, drags it with movement and tilts the light toward the cursor",
+        "Clicks inside the component send a ripple ring across the fabric, up to 4 at once",
+        "Rendering pauses when offscreen or the tab is hidden, and idles when nothing is moving",
+        "Respects prefers-reduced-motion by freezing flow, intro and pointer effects",
+        "Glow is a bloom pass rendered at quarter resolution"
+    ],
+    "props": [
+        { "name": "speed", "type": "number", "default": 5 },
+        { "name": "scale", "type": "number", "default": 1 },
+        { "name": "color", "type": "string", "default": "#7B7481" },
+        { "name": "sheenColor", "type": "string", "default": "#ffffff" },
+        { "name": "noiseIntensity", "type": "number", "default": 1.5 },
+        { "name": "rotation", "type": "number", "default": 0 },
+        { "name": "sheen", "type": "number", "default": 0.5 },
+        { "name": "depth", "type": "number", "default": 0.5 },
+        { "name": "glow", "type": "number", "default": 0.3 },
+        { "name": "ripple", "type": "number", "default": 1 },
+        { "name": "wave", "type": "number", "default": 1 },
+        { "name": "variation", "type": "number", "default": 0 },
+        { "name": "mouseInteraction", "type": "boolean", "default": true },
+        { "name": "interactionStrength", "type": "number", "default": 1 },
+        { "name": "clickRipple", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "fade", "type": "number", "default": 0 },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number", "default": "undefined (uses devicePixelRatio, capped at 2)" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Fabric color, sheen color, and dark or light rendering through lightMode",
+        "Flow speed, pause, fold scale, rotation, wave, ripple and a variation seed for different patterns",
+        "Depth, sheen, glow and grain intensity",
+        "Pointer interaction, interaction strength, click ripples and the intro animation",
+        "Edge fade to transparent, pixel ratio, sizing through className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the light direction at rest",
+            "where": "DEFAULT_LIGHT constant"
+        },
+        {
+            "change": "Change intro duration or click ripple lifetime",
+            "where": "INTRO_SECONDS and WAVE_LIFE constants"
+        },
+        {
+            "change": "Change the fold pattern or ripple strength of clicks",
+            "where": "silk and bend functions inside the SILK shader string"
+        },
+        {
+            "change": "Change the size of the pointer bend area",
+            "where": "0.32 argument of the uPointer uniform in setShared"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if unavailable",
+        "Fills its parent, so the parent needs a defined height",
+        "Pointer and click listeners are attached to the window, so interaction works over content layered above it",
+        "Uses a hardcoded pointer bend area, light tilt and a maximum of 4 simultaneous ripples",
+        "Pixel ratio is capped at 2",
+        "Canvas is aria-hidden and purely decorative",
+        "Resizes with its container, works on mobile but is GPU heavy on low-end phones and has no touch hover, so interaction is tap ripples and touch moves only"
+    ],
+    "mood": ["elegant", "luxurious", "calm", "modern", "dark"],
+    "industries": ["fashion", "luxury", "beauty", "technology", "interior design", "agency"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": []
+}

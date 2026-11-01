@@ -1,0 +1,94 @@
+{
+    "slug": "shuffle",
+    "name": "Shuffle",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Text effect that splits a string into characters and shuffles each one through random glyphs before settling, triggered on scroll into view and on hover, with slide, flip or blur styles.",
+    "contents": [
+        "Single text element (configurable tag) split into per-character cells"
+    ],
+    "behavior": [
+        "Characters are split with GSAP SplitText and each rolls through random characters before landing on the real one",
+        "Plays when the element scrolls into view through ScrollTrigger, once by default",
+        "Replays on mouseenter, or with hoverRadius above 0 shuffles only the characters near the pointer",
+        "Stagger order set by animationMode: evenodd, center, sequence or random delay",
+        "Can loop, tint characters during the roll and call a callback when finished",
+        "Skips the animation when the user prefers reduced motion"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": {} },
+        { "name": "shuffleDirection", "type": "'right' | 'left' | 'up' | 'down'", "default": "right" },
+        { "name": "duration", "type": "number", "default": 0.35 },
+        { "name": "maxDelay", "type": "number", "default": 0 },
+        { "name": "ease", "type": "string", "default": "power3.out" },
+        { "name": "threshold", "type": "number", "default": 0.1 },
+        { "name": "rootMargin", "type": "string", "default": "-100px" },
+        { "name": "tag", "type": "string", "default": "p" },
+        { "name": "textAlign", "type": "string", "default": "center" },
+        { "name": "onShuffleComplete", "type": "function", "default": null },
+        { "name": "shuffleTimes", "type": "number", "default": 1 },
+        { "name": "animationMode", "type": "'evenodd' | 'center' | 'sequence' | 'random'", "default": "evenodd" },
+        { "name": "loop", "type": "boolean", "default": false },
+        { "name": "loopDelay", "type": "number", "default": 0 },
+        { "name": "stagger", "type": "number", "default": 0.03 },
+        { "name": "scrambleCharset", "type": "string", "default": "" },
+        { "name": "colorFrom", "type": "string", "default": null },
+        { "name": "colorTo", "type": "string", "default": null },
+        { "name": "triggerOnce", "type": "boolean", "default": true },
+        { "name": "respectReducedMotion", "type": "boolean", "default": true },
+        { "name": "triggerOnHover", "type": "boolean", "default": true },
+        { "name": "effect", "type": "'slide' | 'flip' | 'blur'", "default": "slide" },
+        { "name": "hoverRadius", "type": "number", "default": 0 },
+        { "name": "motionBlur", "type": "boolean", "default": false },
+        { "name": "color", "type": "string", "default": null },
+        { "name": "accentColor", "type": "string", "default": null }
+    ],
+    "editableByProps": [
+        "Text, wrapper tag, alignment, className and inline style",
+        "Direction, duration, easing, stagger, roll count, delay and animation order",
+        "Scramble character set, text color, start and end colors, accent color for random glyphs",
+        "Scroll trigger threshold and margin, trigger once, loop, hover trigger and hover radius",
+        "Motion blur and reduced motion handling",
+        "Completion callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the default font or text size",
+            "where": "commonStyle fontFamily and the classes template string (text-[4rem])"
+        },
+        {
+            "change": "Change blur strength or number of blur levels",
+            "where": "BLUR_STEPS constant and ensureFilters function"
+        },
+        {
+            "change": "Change the flip depth or perspective",
+            "where": "renderFlip function and the perspective style in build"
+        }
+    ],
+    "fixed": [
+        "Default font is Press Start 2P but the font is not loaded by the component, it must be loaded by the page or overridden with a font- class in className",
+        "Text is forced uppercase at 4rem with leading-none unless overridden by className",
+        "Registers GSAP ScrollTrigger and SplitText plugins globally",
+        "Appends a hidden SVG filter element to document.body when blur is used and removes it on unmount",
+        "Element stays invisible until the animation is created, or until reduced motion skips it",
+        "Hover local mode listens to pointermove on window",
+        "Waits for document fonts to load before building",
+        "Fixed text size is large and may wrap on small screens, set a smaller size through className",
+        "Effect prop selects the style: slide, flip, or blur, unknown values fall back to slide"
+    ],
+    "mood": ["playful", "retro", "bold", "techy"],
+    "industries": ["gaming", "technology", "creative agency", "entertainment"],
+    "sections": ["hero", "cta"],
+    "dependencies": ["gsap", "@gsap/react"],
+    "variants": {
+        "prop": "effect",
+        "default": "slide",
+        "options": [
+            { "value": "slide", "look": "Each character slides like a slot reel through random glyphs inside a clipped cell", "useWhen": "Hero headline that should feel like a retro arcade or slot machine reveal" },
+            { "value": "flip", "look": "Each character flips in 3D around its axis while the glyph changes", "useWhen": "Departure-board style heading or stat label on a tech landing page" },
+            { "value": "blur", "look": "Characters swap glyphs with motion blur and fading while shifting slightly", "useWhen": "Smooth, modern section title where a soft fast scramble fits better than hard clipping" }
+        ]
+    }
+}

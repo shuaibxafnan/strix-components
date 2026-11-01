@@ -4,11 +4,12 @@
   "sourceHash": "ee093fad771da71c68cbf1cef781de2caf9e28fe335cb9482c775dbdac4aa3ed",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "tarot-card-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.540Z"
+  "note": "Renamed from silent-hill-tarot-carousel (brand name). Props added for cards and labels. Layout unchanged, mobile unchecked. Default text still mentions Silent Hill.",
+  "updatedAt": "2026-11-01T12:33:49.603Z",
+  "gateOutput": "gates passed"
 }

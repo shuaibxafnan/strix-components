@@ -4,11 +4,12 @@
   "sourceHash": "69ff8a49247c0824b0e15d79daed0309ac39f39d54a0e63e1c92d64673c7b5d8",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-horizontal-stretch",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.545Z"
+  "note": "CDN loader replaced by gsap imports. Tweens killed on unmount, className added. Slides are background images with no alt text. No variants.",
+  "updatedAt": "2026-11-01T12:45:34.312Z",
+  "gateOutput": "gates passed"
 }

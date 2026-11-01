@@ -1,0 +1,225 @@
+{
+    "slug": "slide-crossroads",
+    "name": "Slide Crossroads",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Tilted three-column slideshow with huge titles over images. Click the sides to slide, click the center to open a full detail view with a title reveal and sliding panel. Mouse parallax and custom cursors.",
+    "contents": [
+        "Slides with outlined number, image, caption and large split-letter title",
+        "Detail view per slide with image, meta line, title and copy"
+    ],
+    "behavior": [
+        "Whole stage is rotated by an incline angle",
+        "Left and right zones slide to previous or next slide with a skew stretch, looping endlessly",
+        "Center zone opens a detail view; letters fly out and a revealer panel slides away, close by clicking the image",
+        "Hovering the center image scales it",
+        "Mouse position drives eased parallax on images and titles",
+        "Custom SVG cursors per zone: arrows, plus, close"
+    ],
+    "props": [
+        {
+            "name": "slides",
+            "type": "{number,caption,title,meta,image,copy}[]",
+            "default": "6 sample slides"
+        },
+        {
+            "name": "inclineAngle",
+            "type": "number",
+            "default": -8
+        },
+        {
+            "name": "columnGap",
+            "type": "string",
+            "default": "18vw"
+        },
+        {
+            "name": "slideHeight",
+            "type": "string",
+            "default": "35vw"
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#e6e6ea"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#5d5d5d"
+        },
+        {
+            "name": "titleColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "numberColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "captionColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "contentTitleColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "contentMetaColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "contentTextColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "cursorColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "titleFontSize",
+            "type": "string",
+            "default": "10vw"
+        },
+        {
+            "name": "numberFontSize",
+            "type": "string",
+            "default": "4.25vw"
+        },
+        {
+            "name": "contentTitleFontSize",
+            "type": "string",
+            "default": "8vw"
+        },
+        {
+            "name": "titleFontFamily",
+            "type": "string",
+            "default": "Georgia, 'Times New Roman', serif"
+        },
+        {
+            "name": "bodyFontFamily",
+            "type": "string",
+            "default": "'Helvetica Neue', Helvetica, Arial, sans-serif"
+        },
+        {
+            "name": "copyFontFamily",
+            "type": "string",
+            "default": "Georgia, 'Times New Roman', serif"
+        },
+        {
+            "name": "navDuration",
+            "type": "number",
+            "default": 1.2
+        },
+        {
+            "name": "navSkewScale",
+            "type": "number",
+            "default": 1.3
+        },
+        {
+            "name": "openDuration",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "letterStagger",
+            "type": "number",
+            "default": 0.04
+        },
+        {
+            "name": "letterFlyDistance",
+            "type": "number",
+            "default": 600
+        },
+        {
+            "name": "hoverScale",
+            "type": "number",
+            "default": 1.02
+        },
+        {
+            "name": "hoverImageScale",
+            "type": "number",
+            "default": 1.05
+        },
+        {
+            "name": "parallaxAmount",
+            "type": "number",
+            "default": 15
+        },
+        {
+            "name": "parallaxTitleFactor",
+            "type": "number",
+            "default": 4
+        },
+        {
+            "name": "parallaxEase",
+            "type": "number",
+            "default": 0.03
+        },
+        {
+            "name": "showRules",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Slides content: number, caption, title, meta, image, copy",
+        "Tilt angle, column gap, image height and type sizes",
+        "All colors, cursor color and font families",
+        "Animation durations, stagger, fly distance, hover scales and parallax",
+        "Toggle dash rules before captions"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change number of visible slides per view",
+            "where": "setVisible function"
+        },
+        {
+            "change": "Change the custom cursor shapes",
+            "where": "arrowLeft, arrowRight, plusCursor and closeCursor constants"
+        },
+        {
+            "change": "Change the slide and open animations",
+            "where": "move, outElements and inElements functions"
+        }
+    ],
+    "fixed": [
+        "Root is a full viewport height section that fades in once GSAP loads",
+        "Needs at least 3 slides",
+        "Layout is sized in vw units and a 30/40/30 detail grid, best on tablet and desktop; small phones show a compact version",
+        "Custom cursors and hover scale apply on pointer devices only; clicks work on touch",
+        "Injects a scoped style block and tracks window mouse movement, removed on unmount"
+    ],
+    "mood": [
+        "editorial",
+        "bold",
+        "dynamic",
+        "artistic"
+    ],
+    "industries": [
+        "photography",
+        "fashion",
+        "art",
+        "agency",
+        "travel"
+    ],
+    "sections": [
+        "hero",
+        "portfolio",
+        "gallery"
+    ],
+    "dependencies": [
+        "gsap"
+    ]
+}

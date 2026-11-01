@@ -1,0 +1,40 @@
+{
+  "slug": "smash-submit",
+  "name": "Smash Submit",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Gamified submit button where repeated clicks make a tiny stick figure lift a barbell. Reaching the top swaps the label to a success message and bursts confetti.",
+  "contents": ["Button with a stick figure lifter and barbell icon", "Idle label and success label", "Click ripples and confetti burst"],
+  "behavior": [
+    "Each click pumps progress; progress decays when idle",
+    "Figure limbs and barbell interpolate through keyframes as progress rises",
+    "At full progress the label swaps, confetti bursts, then the button resets after 2 seconds",
+    "Click ripple expands from the pointer position"
+  ],
+  "props": [
+    {"name": "initialText", "type": "string", "default": "Smash to submit"},
+    {"name": "completedText", "type": "string", "default": "Yaay! Submitted."},
+    {"name": "buttonBg", "type": "string", "default": "#171827"},
+    {"name": "buttonHoverBg", "type": "string", "default": "#0D0F18"},
+    {"name": "personColor", "type": "string", "default": "#F6F8FF"},
+    {"name": "weightBarColor", "type": "string", "default": "#275EFE"},
+    {"name": "weightDiskColor", "type": "string", "default": "#5C86FF"},
+    {"name": "confettiCount", "type": "number", "default": 100},
+    {"name": "loopSpeedFps", "type": "number", "default": 60},
+    {"name": "textColor", "type": "string", "default": "#F6F8FF"},
+    {"name": "legColor", "type": "string", "default": "#D1D6EE"},
+    {"name": "shadowColor", "type": "string", "default": "rgba(0, 9, 61, 0.12)"},
+    {"name": "confettiColors", "type": "string[]", "default": ["#7d32f5", "#f6e434", "#63fdf1", "#e672da", "#295dfe", "#6e57ff"]},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Both labels", "Button, hover, text and shadow colors", "Figure, leg and barbell colors", "Confetti amount and colors", "Animation loop rate"],
+  "needsCodeEdit": [
+    {"change": "Adjust lift pose keyframes", "where": "keyframes"},
+    {"change": "Change button size or corner radius", "where": "min-w-[190px]"}
+  ],
+  "fixed": ["Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.", "Reset delay after completion is 2 seconds"],
+  "mood": ["playful", "energetic", "friendly"],
+  "industries": ["saas", "fitness", "forms", "gaming", "education"],
+  "sections": ["cta", "contact"],
+  "dependencies": []
+}

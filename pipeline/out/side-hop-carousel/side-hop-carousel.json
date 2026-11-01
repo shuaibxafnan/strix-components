@@ -1,0 +1,73 @@
+{
+  "slug": "side-hop-carousel",
+  "name": "Side Hop Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen horizontal scroll-snap carousel driven by CSS scroll timelines. Each slide image grows from a small clipped card to full bleed while eyebrow, title and description animate in.",
+  "contents": [
+    "Full-bleed background image per slide",
+    "Optional header with heading and rule",
+    "Description, numbered page indicator with progress bar, eyebrow and large serif title per slide",
+    "Fallback message for browsers without scroll-driven animations"
+  ],
+  "behavior": [
+    "Horizontal scroll-snap track drives all animation through CSS scroll and view timelines",
+    "Images grow from a clipped, scaled card to full bleed and then zoom slightly",
+    "Texts slide and skew in at the centre of each slide and fade out",
+    "Page numbers are anchor links that jump to a slide",
+    "Shows only the fallback text where scroll-driven animations are unsupported"
+  ],
+  "props": [
+    { "name": "slides", "type": "{image,eyebrow,title,emphasis,description}[]", "default": "3 sample slides" },
+    { "name": "bgColor", "type": "string", "default": "#000000" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "heading", "type": "string", "default": "Field Notes" },
+    { "name": "showHeader", "type": "boolean", "default": true },
+    { "name": "showEyebrow", "type": "boolean", "default": true },
+    { "name": "showDescription", "type": "boolean", "default": true },
+    { "name": "showIndicator", "type": "boolean", "default": true },
+    { "name": "slideWidth", "type": "string", "default": "70cqw" },
+    { "name": "slidePeek", "type": "string", "default": "30cqw" },
+    { "name": "rangeStart", "type": "string", "default": "30cqw" },
+    { "name": "growStartScale", "type": "number", "default": 0.15 },
+    { "name": "growStartInsetX", "type": "string", "default": "25%" },
+    { "name": "growStartRound", "type": "string", "default": "35cqmin" },
+    { "name": "growStartShiftX", "type": "string", "default": "70%" },
+    { "name": "growSettle", "type": "number", "default": 58.75 },
+    { "name": "growEndScale", "type": "number", "default": 1.5 },
+    { "name": "growEndShiftX", "type": "string", "default": "-16%" },
+    { "name": "idleOpacity", "type": "number", "default": 0.5 },
+    { "name": "scrollSmooth", "type": "boolean", "default": true },
+    { "name": "descriptionWidth", "type": "string", "default": "17rem" },
+    { "name": "captionWidth", "type": "string", "default": "31rem" },
+    { "name": "titleClassName", "type": "string", "default": "text-6xl md:text-8xl" },
+    { "name": "serifFamily", "type": "string", "default": "Cardo, ui-serif, Georgia, serif" },
+    { "name": "sansFamily", "type": "string", "default": "Inter, ui-sans-serif, system-ui, sans-serif" },
+    { "name": "fallbackText", "type": "string", "default": "This browser does not support scroll-driven animations." },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Slides: images, eyebrows, titles, emphasized words, descriptions",
+    "Background and text colors, heading, visibility of header, eyebrow, description and indicator",
+    "Slide sizing and the grow animation parameters, title size, fonts, fallback text"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the text reveal animation",
+      "where": "keyframes template literal (text, text-up keyframes)"
+    },
+    {
+      "change": "Add a custom header content such as links",
+      "where": "header element"
+    }
+  ],
+  "fixed": [
+    "Relies on CSS scroll-driven animations and timeline-scope, other browsers see the fallback text",
+    "Fonts are not loaded by the component, the host page must provide Cardo and Inter or the fallbacks are used",
+    "Fills at least the viewport height"
+  ],
+  "mood": ["cinematic", "editorial", "bold", "immersive"],
+  "industries": ["e-commerce", "fashion", "travel", "product design", "sustainability"],
+  "sections": ["hero", "portfolio", "gallery"],
+  "dependencies": []
+}

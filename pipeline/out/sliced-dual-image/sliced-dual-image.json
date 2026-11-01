@@ -1,0 +1,77 @@
+{
+  "slug": "sliced-dual-image",
+  "name": "Sliced Dual Image",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen slideshow where each image is cut into many thin slices alternating between two images, with glitching slice offsets, letter-by-letter text reveals and a city nav to switch slides.",
+  "contents": [
+    "Full-screen stack of thin slices alternating between an even and an odd image per slide",
+    "Per-slide headline and accent lines placed on a grid",
+    "Text navigation list with one entry per slide",
+    "Date line with glitching letters"
+  ],
+  "behavior": [
+    "Clicking a nav entry glitches the slices, crossfades to the new image pair and fades slide letters out and in at random delays",
+    "Date letters jitter at random intervals",
+    "Navigation is locked while a transition runs",
+    "All timers are cleared on unmount"
+  ],
+  "props": [
+    {"name": "slides", "type": "{evenImage,oddImage,navLabel,lines:{text,area,accent}[]}[]", "default": "3 sample slides"},
+    {"name": "sliceCount", "type": "number", "default": 179},
+    {"name": "orientation", "type": "\"horizontal\" | \"vertical\"", "default": "horizontal"},
+    {"name": "sliceGap", "type": "number", "default": 0},
+    {"name": "sliceLayout", "type": "\"full\" | \"offset\"", "default": "full"},
+    {"name": "offsetAmount", "type": "number", "default": 10},
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "overlayColor", "type": "string", "default": "#555555"},
+    {"name": "headingColor", "type": "string", "default": "#f3dd20"},
+    {"name": "accentColor", "type": "string", "default": "#22f7c5"},
+    {"name": "dateColor", "type": "string", "default": "#ffffff"},
+    {"name": "navColor", "type": "string", "default": "#f3dd22"},
+    {"name": "navActiveColor", "type": "string", "default": "#f09467"},
+    {"name": "fontFamily", "type": "string", "default": "ui-monospace, SFMono-Regular, Menlo, monospace"},
+    {"name": "headingSize", "type": "string", "default": "8vmax"},
+    {"name": "accentSize", "type": "string", "default": "4vh"},
+    {"name": "navSize", "type": "string", "default": "3.5vh"},
+    {"name": "dateSize", "type": "string", "default": "6vh"},
+    {"name": "dateText", "type": "string", "default": "23 → 28 Jan 2018"},
+    {"name": "showDate", "type": "boolean", "default": true},
+    {"name": "showNav", "type": "boolean", "default": true},
+    {"name": "gridColumns", "type": "number", "default": 20},
+    {"name": "gridRows", "type": "number", "default": 7},
+    {"name": "navArea", "type": "string", "default": "5 / 2 / auto / 20"},
+    {"name": "dateArea", "type": "string", "default": "7 / 5 / auto / 20"},
+    {"name": "letterFadeMin", "type": "number", "default": 200},
+    {"name": "letterFadeMax", "type": "number", "default": 1000},
+    {"name": "letterFadeSpeed", "type": "number", "default": 120},
+    {"name": "glitchLeadMs", "type": "number", "default": 1000},
+    {"name": "glitchTailMs", "type": "number", "default": 500},
+    {"name": "glitchStepMin", "type": "number", "default": 50},
+    {"name": "glitchStepMax", "type": "number", "default": 100},
+    {"name": "glitchIterations", "type": "number", "default": 5},
+    {"name": "glitchAmplitude", "type": "number", "default": 0.5},
+    {"name": "crossfadeMs", "type": "number", "default": 500},
+    {"name": "glitchDate", "type": "boolean", "default": true},
+    {"name": "dateGlitchRange", "type": "number", "default": 5},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides, images, nav labels, headline lines and their grid areas",
+    "Slice count, orientation, gap and offset layout",
+    "All colors, font family, text sizes, date text",
+    "Glitch, letter fade and crossfade timings"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the slice clip shape", "where": "sliceNodes block clip constant"},
+    {"change": "Change letter reveal behavior", "where": "revealLetters function"}
+  ],
+  "fixed": [
+    "Component fills the viewport height (h-screen) with hidden overflow",
+    "Slices are sized with viewport units"
+  ],
+  "mood": ["glitchy", "bold", "editorial", "futuristic"],
+  "industries": ["travel", "events", "art", "media", "agency"],
+  "sections": ["hero", "gallery"],
+  "dependencies": []
+}

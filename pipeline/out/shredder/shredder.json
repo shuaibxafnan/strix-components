@@ -1,0 +1,99 @@
+{
+    "slug": "shredder",
+    "name": "Shredder",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Draggable list of cards that can be fed into a paper shredder slit at the bottom, turning into falling curled strips drawn on a canvas, with drag reordering and optional self-playing demo.",
+    "contents": [
+        "Vertical stack of caller-rendered item cards",
+        "Shredder slit bar near the bottom",
+        "Canvas area under the slit where shredded strips fall and pile up"
+    ],
+    "behavior": [
+        "Items can be dragged to reorder, with a tilt and lift while held",
+        "Dragging an item into the slit feeds it through and shreds it into curled strips",
+        "Delete or Backspace on a focused item shreds it",
+        "With autoFeed the item is pulled through the slit automatically once dropped past the bite point",
+        "Shredded items are revived and loop back when loop or loopAfterDelete is set",
+        "autoAnimate shreds items one by one on its own and revives them when the list is empty",
+        "Item images are prefetched as data URLs to rasterize them for the shred effect"
+    ],
+    "props": [
+        { "name": "items", "type": "{id}[]", "default": [] },
+        { "name": "renderItem", "type": "(item, index) => ReactNode", "default": "required, no default" },
+        { "name": "onShred", "type": "(item) => void", "default": "undefined" },
+        { "name": "onReorder", "type": "(items) => void", "default": "undefined" },
+        { "name": "width", "type": "number", "default": 340 },
+        { "name": "height", "type": "number", "default": 460 },
+        { "name": "inset", "type": "number", "default": 14 },
+        { "name": "gap", "type": "number", "default": 10 },
+        { "name": "slitHeight", "type": "number", "default": 4 },
+        { "name": "fallHeight", "type": "number", "default": 140 },
+        { "name": "feedSpeed", "type": "number", "default": 180 },
+        { "name": "bite", "type": "number", "default": 18 },
+        { "name": "autoFeed", "type": "boolean", "default": true },
+        { "name": "stripWidth", "type": "number", "default": 10 },
+        { "name": "curl", "type": "number", "default": 1 },
+        { "name": "autoAnimate", "type": "boolean", "default": false },
+        { "name": "loop", "type": "boolean", "default": false },
+        { "name": "loopAfterDelete", "type": "boolean", "default": false },
+        { "name": "dragTilt", "type": "number", "default": 6 },
+        { "name": "lift", "type": "number", "default": 1.02 },
+        { "name": "slitColor", "type": "string", "default": "#3f3f46" },
+        { "name": "color", "type": "string", "default": "#f5f5f5" },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Items and how each card looks through renderItem",
+        "Width, height, inset, gap, slit and fall area sizes",
+        "Feed speed, bite distance, strip width, curl, drag tilt and lift",
+        "Auto feed, auto demo, looping and disabled state",
+        "Slit color and strip color",
+        "Callbacks on shred and reorder"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change how fast strips fall or how bouncy the pile is",
+            "where": "STACK_K and STACK_C constants at the top of the file"
+        },
+        {
+            "change": "Change the stagger between strips",
+            "where": "STAGGER constant at the top of the file"
+        },
+        {
+            "change": "Change the delay and pacing of the autoAnimate demo",
+            "where": "The wait calls inside play() in the autoAnimate useEffect"
+        },
+        {
+            "change": "Change the overflow of the strip canvas beyond the card width",
+            "where": "OVER constant at the top of the file"
+        }
+    ],
+    "fixed": [
+        "Each item must have a unique id, and items must be same-origin or CORS-enabled for images to shred correctly",
+        "renderItem is required, the component throws without it",
+        "Fetches item image URLs with CORS to rasterize them for shredding",
+        "Fixed height frame, items beyond the height are clipped above the slit",
+        "Relies on pointer events and drag, so it needs touch and mouse input, and Delete or Backspace for keyboard",
+        "Width is capped at 100% of the parent so it fits small screens, but height is fixed in pixels",
+        "Strip physics, stagger and entry timings are hardcoded constants",
+        "Respects prefers-reduced-motion in its helper logic"
+    ],
+    "mood": [
+        "playful",
+        "tactile",
+        "quirky"
+    ],
+    "industries": [
+        "productivity",
+        "security",
+        "saas",
+        "creative"
+    ],
+    "sections": [
+        "features",
+        "other"
+    ],
+    "dependencies": []
+}

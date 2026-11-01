@@ -4,11 +4,12 @@
   "sourceHash": "0254176d7177e7fb48f81775448f4717ce3b83a3f1a4bbd28d91b293e7964dff",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-perspective-flip",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.546Z"
+  "note": "CDN loader replaced by gsap imports. Timeline killed on unmount, className and nav aria-labels added, smaller mobile nav offsets. No variants.",
+  "updatedAt": "2026-11-01T12:47:33.564Z",
+  "gateOutput": "gates passed"
 }

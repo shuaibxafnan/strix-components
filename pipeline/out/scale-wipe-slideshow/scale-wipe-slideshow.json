@@ -1,0 +1,56 @@
+{
+  "slug": "scale-wipe-slideshow",
+  "name": "Scale Wipe Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen image slideshow where slides swap with a horizontal scaleX wipe, driven by wheel, touch drag, or round arrow buttons.",
+  "contents": [
+    "Stack of full-bleed background images",
+    "Scroll hint text with previous and next round arrow buttons"
+  ],
+  "behavior": [
+    "Current slide collapses horizontally while the next one expands from the opposite edge",
+    "Navigates on wheel, touch, pointer drag, or button click and loops around",
+    "Ignores input while a transition is running",
+    "Images are preloaded before the slideshow becomes visible"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "5 sample image URLs" },
+    { "name": "bgColor", "type": "string", "default": "#000" },
+    { "name": "textColor", "type": "string", "default": "#fff" },
+    { "name": "transitionDuration", "type": "number", "default": 1.2 },
+    { "name": "transitionEase", "type": "string", "default": "power4.inOut" },
+    { "name": "wheelSpeed", "type": "number", "default": -1 },
+    { "name": "wheelTolerance", "type": "number", "default": 10 },
+    { "name": "showNavButtons", "type": "boolean", "default": true },
+    { "name": "scrollHintText", "type": "string", "default": "scroll / drag" },
+    { "name": "navButtonBg", "type": "string", "default": "#fff" },
+    { "name": "navButtonColor", "type": "string", "default": "#000" },
+    { "name": "navButtonSize", "type": "number", "default": 60 },
+    { "name": "navButtonHoverBg", "type": "string", "default": "#ccc" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, background and text colors",
+    "Transition duration, easing, wheel speed and tolerance",
+    "Navigation buttons visibility, size, colors and hint text"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Wipe vertically instead of horizontally",
+      "where": "scaleX tweens and transformOrigin values inside the navigate function"
+    },
+    {
+      "change": "Add captions per slide",
+      "where": "images.map block inside the slides grid"
+    }
+  ],
+  "fixed": [
+    "Takes over wheel, touch and pointer input on its own full-screen area through a GSAP Observer",
+    "Root is full-width and one screen tall"
+  ],
+  "mood": ["cinematic", "bold", "immersive"],
+  "industries": ["photography", "travel", "fashion", "agency", "portfolio"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}

@@ -1,0 +1,45 @@
+{
+  "slug": "slide-projector",
+  "name": "Slide Projector",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Vintage slide projector style image slideshow with slides sliding in, a flickering light, floating dust motes, a caption and a slide counter inside a dark framed panel.",
+  "contents": [
+    "Framed panel showing one image at a time",
+    "Caption with the image title and a two digit slide counter",
+    "Floating dust motes over the image"
+  ],
+  "behavior": [
+    "Auto advances through images on a timer with a slide and rotate transition",
+    "Initial blur fades out shortly after mount",
+    "Panel brightness flickers randomly every 24ms",
+    "Dust motes spawn at an interval and drift and fade out",
+    "Caption and counter are hidden below the md breakpoint"
+  ],
+  "props": [
+    {"name": "images", "type": "{src,alt,title}[]", "default": "4 sample ocean images"},
+    {"name": "slideDuration", "type": "number", "default": 5000},
+    {"name": "moteInterval", "type": "number", "default": 4000},
+    {"name": "initialBlur", "type": "number", "default": 0.4},
+    {"name": "baseColor", "type": "string", "default": "#0c0d0e"},
+    {"name": "panelColor", "type": "string", "default": "#141619"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, alt text and caption titles",
+    "Slide timing, dust mote frequency and initial blur",
+    "Background and panel colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the slide in transition angle or distance", "where": "transform style in the images.map block"},
+    {"change": "Change the flicker range or speed", "where": "lightInterval effect"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Panel size is based on vmin units"
+  ],
+  "mood": ["nostalgic", "cinematic", "calm", "atmospheric"],
+  "industries": ["photography", "travel", "art", "hospitality", "real estate"],
+  "sections": ["gallery", "hero"],
+  "dependencies": []
+}

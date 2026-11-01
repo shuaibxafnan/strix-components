@@ -4,11 +4,12 @@
   "sourceHash": "a8ce1e269d6048ac32bbfd87926eee1fe32f9a709b692ffc23e5e8b6f5ae39bf",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sliced-dual-image",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.541Z"
+  "note": "Source already clean, comments stripped only. Gate warning setTimeout without clearTimeout, timers cleared via refs. No variants.",
+  "updatedAt": "2026-11-01T12:37:01.046Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

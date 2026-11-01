@@ -4,11 +4,12 @@
   "sourceHash": "2d3b22d24fb81f1af3883742aa24a06190fc1aee514193b0792241e4bc8585e7",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-flash-zoom",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.545Z"
+  "note": "CDN loader replaced by gsap imports. Timeline killed on unmount, className and nav aria-labels added, mobile nav offsets, console.error removed. No variants.",
+  "updatedAt": "2026-11-01T12:44:53.245Z",
+  "gateOutput": "gates passed"
 }

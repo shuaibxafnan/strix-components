@@ -1,0 +1,63 @@
+{
+  "slug": "sliced-text-image",
+  "name": "Sliced Text Image",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Long scrolling poem page where large headings are sliced into vertical strips that fly in and assemble on scroll, over a tilted grid of dimmed background image tiles.",
+  "contents": [
+    "Paragraph blocks of faint body lines",
+    "Sliced display headings in several sizes, fonts, colors and glows",
+    "Decorative grid of rotated image tiles behind the text"
+  ],
+  "behavior": [
+    "Each sliced heading is split into columns that animate into place, scrubbed by scroll, using one of six effects",
+    "Background image tiles rotate as they scroll through the viewport",
+    "Smooth scrolling through Lenis",
+    "Strip offsets are re-measured on window resize"
+  ],
+  "props": [
+    {"name": "blocks", "type": "({type:'paragraph',lines}|{type:'sliced',text,size,font,effect,align,shadow,color,blend,spaced,full,uppercase,lowercase,cells})[]", "default": "sample poem with paragraphs and sliced headings"},
+    {"name": "images", "type": "string[]", "default": "9 sample photos"},
+    {"name": "decoCount", "type": "number", "default": 36},
+    {"name": "decoRows", "type": "number", "default": 36},
+    {"name": "decoWidth", "type": "string", "default": "80%"},
+    {"name": "decoLeft", "type": "string", "default": "10%"},
+    {"name": "decoBrightness", "type": "number", "default": 0.6},
+    {"name": "decoRadius", "type": "number", "default": 4},
+    {"name": "decoRotateFrom", "type": "number", "default": -8},
+    {"name": "decoRotateTo", "type": "number", "default": 5},
+    {"name": "decoOrigin", "type": "string", "default": "800% 50%"},
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "textColor", "type": "string", "default": "#f0f0f0"},
+    {"name": "cellsByEffect", "type": "object", "default": {"1": 4, "2": 4, "3": 4, "4": 6, "5": 6, "6": 6}},
+    {"name": "defaultCells", "type": "number", "default": 6},
+    {"name": "fonts", "type": "string[]", "default": "8 font-family stacks"},
+    {"name": "sizes", "type": "object", "default": {"s": "clamp(2rem, 6vw, 3rem)", "m": "clamp(3rem, 10vw, 8rem)", "xl": "clamp(5rem, 18vw, 22rem)", "xxl": "clamp(5rem, 25vw, 22rem)"}},
+    {"name": "colors", "type": "object", "default": {"default": "#fff", "red": "#8b1e18", "brightRed": "#be2017"}},
+    {"name": "shadows", "type": "object", "default": {"none": "none", "white": "0 0 10px rgba(255 255 255 / 80%)", "red": "0 0 10px rgba(139 30 24 / 80%)"}},
+    {"name": "scrubStart", "type": "string", "default": "top bottom"},
+    {"name": "scrubEnd", "type": "string", "default": "top top+=10%"},
+    {"name": "smoothScroll", "type": "boolean", "default": true},
+    {"name": "lenisLerp", "type": "number", "default": 0.2},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All paragraph and heading text, sizes, fonts, colors, glows and effect choice per block",
+    "Background tile images, count, brightness, rotation and radius",
+    "Background and text colors, scroll trigger range, smooth scroll toggle"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change or add slice animation styles", "where": "timelines object inside the useEffect"},
+    {"change": "Change the tile grid layout", "where": "css template literal with the -deco rules"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when smoothScroll is true, so it should be the only smooth scroll on the page",
+    "Font families are referenced by name only and must be loaded by the host page, otherwise fallback stacks are used",
+    "Heading blocks marked full use min-h-screen and spaced headings use 20vh margins to give the scroll effect room",
+    "Content stays hidden until images, fonts and libraries are ready"
+  ],
+  "mood": ["dramatic", "dark", "editorial", "cinematic"],
+  "industries": ["music", "film", "fashion", "art", "publishing"],
+  "sections": ["hero", "about", "other"],
+  "dependencies": ["gsap", "lenis"]
+}

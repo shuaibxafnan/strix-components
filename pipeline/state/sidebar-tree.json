@@ -4,11 +4,12 @@
   "sourceHash": "ad453ebdd20aa6845e4bc680d0482c96d55d88943bebfcd805528025ac173009",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sidebar-tree",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.540Z"
+  "note": "Removed logo header and follow link. Frame added. New text and color props. Responsive padding. Indentation of search and nav blocks off.",
+  "updatedAt": "2026-11-01T12:33:01.168Z",
+  "gateOutput": "gates passed"
 }

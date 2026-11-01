@@ -1,0 +1,65 @@
+{
+  "slug": "sliding-puzzle",
+  "name": "Sliding Puzzle",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Interactive sliding image puzzle section with a draggable tile grid next to an intro column with title, stats and a reset button, over a soft blurred blob background.",
+  "contents": [
+    "Eyebrow label, two-tone heading, subheading",
+    "Stats row with grid size, piece count and infinity moves",
+    "Reset button",
+    "Grid of draggable image tiles with one empty cell",
+    "Blurred gradient blob background"
+  ],
+  "behavior": [
+    "Tiles next to the empty cell can be dragged into it and snap to the grid",
+    "Reset button returns all tiles to their start positions once a move has been made",
+    "GSAP Draggable is loaded by dynamic import and cleaned up on unmount",
+    "Two columns on tablet and desktop, stacked on mobile"
+  ],
+  "props": [
+    { "name": "gridSize", "type": "number", "default": 3 },
+    { "name": "overlapThreshold", "type": "string", "default": "20%" },
+    { "name": "swapDuration", "type": "number", "default": 0.2 },
+    { "name": "accentColor", "type": "string", "default": "#84cc16" },
+    { "name": "badgeLabel", "type": "string", "default": "New game" },
+    { "name": "headingLight", "type": "string", "default": "Solve" },
+    { "name": "headingBold", "type": "string", "default": "the puzzle." },
+    { "name": "subheading", "type": "string", "default": "Discover the image by moving the pieces one by one." },
+    { "name": "gridLabel", "type": "string", "default": "Grid" },
+    { "name": "piecesLabel", "type": "string", "default": "Pieces" },
+    { "name": "movesLabel", "type": "string", "default": "Moves" },
+    { "name": "resetLabel", "type": "string", "default": "Start again" },
+    { "name": "pieces", "type": "string[]", "default": "8 sample image URLs" },
+    { "name": "piecePadding", "type": "string", "default": "3px" },
+    { "name": "pieceRadius", "type": "string", "default": "4px" },
+    { "name": "bgFrom", "type": "string", "default": "#d7ff96" },
+    { "name": "bgTo", "type": "string", "default": "#a3e635" },
+    { "name": "backgroundColor", "type": "string", "default": "#f5f5f4" },
+    { "name": "textColor", "type": "string", "default": "#1c1917" },
+    { "name": "mutedColor", "type": "string", "default": "#a8a29e" },
+    { "name": "buttonColor", "type": "string", "default": "#1c1917" },
+    { "name": "buttonTextColor", "type": "string", "default": "#ffffff" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All text labels, heading and subheading",
+    "Tile images, grid size, padding and radius",
+    "Swap duration and drop overlap threshold",
+    "Background, text, muted, accent, button and blob colors"
+  ],
+  "needsCodeEdit": [
+    { "change": "Position of the empty cell", "where": "isEmpty" },
+    { "change": "Blob background shape", "where": "sp-blob-grad" }
+  ],
+  "fixed": [
+    "Pieces array length must equal gridSize * gridSize - 1",
+    "Empty cell is always top-left and tiles start in solved order, not shuffled",
+    "Tile size is measured once on mount and is not recalculated on window resize",
+    "Section is at least one viewport tall"
+  ],
+  "mood": ["playful", "clean", "interactive", "fresh"],
+  "industries": ["portfolio", "games", "agency", "photography", "education"],
+  "sections": ["other", "about"],
+  "dependencies": ["gsap"]
+}

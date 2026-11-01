@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "sling-button",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.625Z"
+  "note": "Bits: JSON only. Drag-based, keyboard sends via click. Needs motion and @hugeicons. No variants.",
+  "updatedAt": "2026-11-01T12:55:00.061Z",
+  "gateOutput": "gates passed"
 }

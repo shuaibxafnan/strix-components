@@ -4,11 +4,12 @@
   "sourceHash": "2bd3b61081458c69ffaedb8c192b0be7a88e393960318fc5a5c0f1d2acd275be",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slanted-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.541Z"
+  "note": "Root w-full, mobile dot gap, controls fixed to absolute, rail follows intervalDuration, timeout cleanup. Added backgroundColor, className, slide alt. Fonts link kept. No variants.",
+  "updatedAt": "2026-11-01T12:36:26.039Z",
+  "gateOutput": "gates passed"
 }

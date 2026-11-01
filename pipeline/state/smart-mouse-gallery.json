@@ -4,11 +4,12 @@
   "sourceHash": "14932a9433dbce5dae09f4c3610109f16aafdfd2a3b894c31edda1be4815a5d0",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "smart-mouse-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.550Z"
+  "note": "Tiles wrap below lg, className added. Font Awesome CDN stylesheet kept, removed on unmount. Cursor is mouse-only. No variants.",
+  "updatedAt": "2026-11-01T12:55:41.757Z",
+  "gateOutput": "gates passed"
 }

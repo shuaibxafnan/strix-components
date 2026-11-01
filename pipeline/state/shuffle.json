@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "shuffle",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.632Z"
+  "note": "Bits: JSON only. Variants slide, flip, blur. Font not loaded by component. Needs gsap, @gsap/react.",
+  "updatedAt": "2026-11-01T12:30:50.004Z",
+  "gateOutput": "gates passed"
 }

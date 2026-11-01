@@ -1,0 +1,82 @@
+{
+    "slug": "slide-commit",
+    "name": "Slide Commit",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Slide-to-confirm control with a draggable handle that springs back if released early and commits when dragged to the end, with pending spinner, success and error states.",
+    "contents": [
+        "Dark track with a centered hint label",
+        "Draggable handle with arrow icon that becomes a spinner, then a check with a done label",
+        "Error label shown in the track on failure"
+    ],
+    "behavior": [
+        "Handle follows the pointer and springs back with a bounce when released before the end",
+        "Reaching the end calls onConfirm; a returned promise shows a spinner for at least 300ms",
+        "Success turns the handle green with a check and done label, then resets after holdMs",
+        "Rejected promise or thrown error turns the handle red, shakes the track and shows the error label",
+        "Handle squashes when pulled backwards and swells slightly on mouse hover",
+        "Keyboard support with arrow keys, Home, End and Escape, as an ARIA slider",
+        "Reduced motion replaces springs with short eases"
+    ],
+    "props": [
+        { "name": "label", "type": "string", "default": "Slide to pay" },
+        { "name": "doneLabel", "type": "string", "default": "Paid" },
+        { "name": "errorLabel", "type": "string", "default": "Payment failed" },
+        { "name": "onConfirm", "type": "() => void | Promise", "default": null },
+        { "name": "onDone", "type": "() => void", "default": null },
+        { "name": "onError", "type": "(reason) => void", "default": null },
+        { "name": "trackColor", "type": "string", "default": "#262626" },
+        { "name": "handleColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "successColor", "type": "string", "default": "#22c55e" },
+        { "name": "dangerColor", "type": "string", "default": "#e5484d" },
+        { "name": "width", "type": "number", "default": 280 },
+        { "name": "height", "type": "number", "default": 56 },
+        { "name": "radius", "type": "number", "default": 28 },
+        { "name": "speed", "type": "number", "default": 50 },
+        { "name": "returnBounce", "type": "number", "default": 0.38 },
+        { "name": "landingDip", "type": "number", "default": 0.026 },
+        { "name": "holdMs", "type": "number", "default": 1500 },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "icon", "type": "ReactNode", "default": null },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Labels for idle, success and error states",
+        "Track, handle, success and error colors",
+        "Size, corner radius, spring speed, bounce and landing dip",
+        "How long the success state is held",
+        "Disabled state, custom handle icon, confirm, done and error callbacks"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the error shake motion",
+            "where": "SHAKE constant"
+        },
+        {
+            "change": "Change minimum spinner time",
+            "where": "MIN_PENDING constant"
+        },
+        {
+            "change": "Change handle padding inside the track",
+            "where": "PAD constant"
+        },
+        {
+            "change": "Change the success check icon or spinner",
+            "where": "Tick02Icon usage and Spinner component"
+        }
+    ],
+    "fixed": [
+        "Requires motion and @hugeicons packages",
+        "Fixed pixel width and height, not responsive to the container; keep width within the viewport on small screens",
+        "Drag is horizontal left to right only and uses touch-none on the track",
+        "Hover swell only applies to mouse on fine pointer devices",
+        "Injects a style tag with the spinner keyframes",
+        "Reaching 100% travel commits; a partial drag always returns",
+        "Reduced motion preference is read from the system, not a prop",
+        "Aria labels and the live region text ('Working') are hardcoded"
+    ],
+    "mood": ["sleek", "tactile", "minimal", "modern"],
+    "industries": ["fintech", "e-commerce", "saas", "banking"],
+    "sections": ["cta", "other"],
+    "dependencies": ["motion", "@hugeicons/react", "@hugeicons/core-free-icons"]
+}

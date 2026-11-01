@@ -4,11 +4,12 @@
   "sourceHash": "10a328ed56813c1f528c24f6ec46f185976682bd1665fe4bd388c8b5e27b8621",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "skew-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.540Z"
+  "note": "Title clamp for responsive, className on both roots. Root height and column offset kept, assume about 12 images per column. No variants.",
+  "updatedAt": "2026-11-01T12:35:00.314Z",
+  "gateOutput": "gates passed"
 }

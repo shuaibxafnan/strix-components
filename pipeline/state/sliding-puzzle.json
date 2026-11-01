@@ -4,11 +4,12 @@
   "sourceHash": "d5dd640e2d7f86b48b87ca80636962bc5ac843e466c799772984efab93abedab",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sliding-puzzle",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.549Z"
+  "note": "Ambiguous removal: personal contact link and unused credit props. CDN gsap replaced by imports, accentColor now hex, heading and label props added. Tile size measured once on mount. Gate warning setTimeout, timers cleared on unmount. No variants.",
+  "updatedAt": "2026-11-01T12:53:22.372Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

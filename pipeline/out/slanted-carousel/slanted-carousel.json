@@ -1,0 +1,44 @@
+{
+  "slug": "slanted-carousel",
+  "name": "Slanted Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen editorial slideshow with skewed background images, a floating slanted thumbnail card, serif headings, autoplay progress rail and mouse parallax.",
+  "contents": [
+    "Full-screen slides with background image, subtitle, title, description and watermark number",
+    "Slanted thumbnail card on large screens",
+    "Previous and next buttons, line indicators and autoplay progress bar"
+  ],
+  "behavior": [
+    "Autoplay advances slides on an interval with a progress rail",
+    "Background image shifts with mouse movement",
+    "Arrow keys and swipe change slides",
+    "Text staggers in on each slide change"
+  ],
+  "props": [
+    {"name": "slidesData", "type": "{id,number,subtitle,title,description,bgImg,thumbImg,alt}[]", "default": "5 sample slides"},
+    {"name": "autoPlay", "type": "boolean", "default": true},
+    {"name": "intervalDuration", "type": "number", "default": 5500},
+    {"name": "accentColor", "type": "string", "default": "#D4AF37"},
+    {"name": "enableParallax", "type": "boolean", "default": true},
+    {"name": "backgroundColor", "type": "string", "default": "#0A0A0B"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Number of slides, all text, images and alt text",
+    "Autoplay, interval, parallax, accent and background colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change overlay tint or text colors", "where": "bg-gradient-to-r from-[#0D0E11]/95 overlay div"},
+    {"change": "Change transition speed", "where": "setTimeout in handleTransition"}
+  ],
+  "fixed": [
+    "Arrow keys control the slides through a window keydown listener",
+    "Injects a Google Fonts link (Playfair Display, Plus Jakarta Sans) into document head",
+    "Root is h-screen; controls are positioned inside it"
+  ],
+  "mood": ["elegant", "cinematic", "editorial", "minimal"],
+  "industries": ["architecture", "travel", "photography", "real estate", "luxury"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": []
+}

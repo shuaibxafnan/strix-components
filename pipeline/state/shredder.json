@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "shredder",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.624Z"
+  "note": "Bits: JSON only. Strip physics and autoAnimate timings hardcoded. Logic not read in detail.",
+  "updatedAt": "2026-11-01T12:30:09.970Z",
+  "gateOutput": "gates passed"
 }

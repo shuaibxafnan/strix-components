@@ -4,11 +4,12 @@
   "sourceHash": "b718bf186720158362c3420504ee248d745dbec8c3e6c17d6e406b9d12b89963",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-tilt-spin",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.548Z"
+  "note": "CDN loader replaced by gsap imports. Timeline killed on unmount, className added, smaller mobile nav offsets. No variants.",
+  "updatedAt": "2026-11-01T12:50:43.151Z",
+  "gateOutput": "gates passed"
 }

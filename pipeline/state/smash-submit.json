@@ -4,11 +4,12 @@
   "sourceHash": "db64abac14a10b505969936488a6ca1d8790622fd1683f65c54d4080d8e46777",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "smash-submit",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.550Z"
+  "note": "Component renamed SmashSubmit. Frame added, demo bg removed. Color props and className added. Timers cleared on unmount via helper. Gate warning setTimeout is a false positive. No variants.",
+  "updatedAt": "2026-11-01T12:56:18.648Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

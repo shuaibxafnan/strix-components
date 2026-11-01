@@ -1,0 +1,55 @@
+{
+  "slug": "slideshow-spin-away",
+  "name": "Slideshow Spin Away",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen image slideshow where the current slide spins and shrinks away while the next one rotates and scales in, driven by wheel, touch, drag or arrow buttons.",
+  "contents": ["Full-screen image slides", "Scroll hint text with previous and next round arrow buttons"],
+  "behavior": [
+    "Wheel, touch and pointer drag navigate between slides with looping",
+    "Outgoing slide rotates, scales to zero and drifts sideways while the incoming slide rotates and scales in",
+    "Input is locked while a transition runs"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "5 sample image URLs"},
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "textColor", "type": "string", "default": "#fff"},
+    {"name": "mainEase", "type": "string", "default": "expo"},
+    {"name": "exitDuration", "type": "number", "default": 1},
+    {"name": "exitEase", "type": "string", "default": "power4"},
+    {"name": "exitRotation", "type": "number", "default": 500},
+    {"name": "exitXPercent", "type": "number", "default": -20},
+    {"name": "enterDelay", "type": "number", "default": 0.3},
+    {"name": "enterDuration", "type": "number", "default": 0.6},
+    {"name": "enterEase", "type": "string", "default": "power4"},
+    {"name": "enterStartScale", "type": "number", "default": 1.4},
+    {"name": "enterStartRotation", "type": "number", "default": -90},
+    {"name": "enterXPercent", "type": "number", "default": 20},
+    {"name": "wheelSpeed", "type": "number", "default": -1},
+    {"name": "wheelTolerance", "type": "number", "default": 10},
+    {"name": "showNavButtons", "type": "boolean", "default": true},
+    {"name": "scrollHintText", "type": "string", "default": "scroll / drag"},
+    {"name": "navButtonBg", "type": "string", "default": "#fff"},
+    {"name": "navButtonColor", "type": "string", "default": "#000"},
+    {"name": "navButtonSize", "type": "number", "default": 60},
+    {"name": "navButtonHoverBg", "type": "string", "default": "#ccc"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images and number of slides",
+    "Exit and enter rotation, scale, offset, duration, delay and easing",
+    "Wheel sensitivity, colors, hint text, and nav button size and colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change arrow glyphs on the buttons", "where": "&larr; and &rarr; in the nav buttons"},
+    {"change": "Change which gestures trigger navigation", "where": "Observer.create call with type wheel,touch,pointer"}
+  ],
+  "fixed": [
+    "Fills the viewport height and covers it with slides; override with className using an important modifier such as !h-96",
+    "Wheel and touch gestures over the slideshow drive navigation"
+  ],
+  "mood": ["dynamic", "bold", "cinematic"],
+  "industries": ["photography", "travel", "fashion", "portfolio"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}

@@ -1,0 +1,85 @@
+{
+    "slug": "sliced-waves",
+    "name": "Sliced Waves",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 background of glowing vertical bars forming flowing, perspective-tilted ribbon waves in a three-color gradient, with film grain, intro sweep and pointer focus effect.",
+    "contents": [
+        "Full-size container with a single WebGL2 canvas filling it"
+    ],
+    "behavior": [
+        "Ribbons of vertical bars undulate over time with animated colors blending between three palette colors",
+        "Intro sweep grows the bars from left to right on mount",
+        "Pointer over the page focuses the nearest bar, sharpening it and lifting brightness locally",
+        "Rendering pauses when offscreen or tab hidden, and animation is static with reduced motion",
+        "Resizes with its container, render resolution capped at 2560px and pixel ratio at 2"
+    ],
+    "props": [
+        { "name": "color1", "type": "string", "default": "#ffd9a8" },
+        { "name": "color2", "type": "string", "default": "#ff5fa2" },
+        { "name": "color3", "type": "string", "default": "#5b8cff" },
+        { "name": "ribbons", "type": "number", "default": 3 },
+        { "name": "spacing", "type": "number", "default": 28 },
+        { "name": "barWidth", "type": "number", "default": 0.5 },
+        { "name": "ribbonHeight", "type": "number", "default": 0.26 },
+        { "name": "spread", "type": "number", "default": 0.1 },
+        { "name": "amplitude", "type": "number", "default": 0.1 },
+        { "name": "frequency", "type": "number", "default": 1 },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "perspective", "type": "number", "default": 0.45 },
+        { "name": "curve", "type": "number", "default": 0.5 },
+        { "name": "blur", "type": "number", "default": 0.6 },
+        { "name": "glow", "type": "number", "default": 1 },
+        { "name": "brightness", "type": "number", "default": 1.25 },
+        { "name": "position", "type": "number", "default": 0.78 },
+        { "name": "rotation", "type": "number", "default": 0 },
+        { "name": "slices", "type": "number", "default": 0 },
+        { "name": "grain", "type": "number", "default": 0.08 },
+        { "name": "mouseInteraction", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "fade", "type": "number", "default": 0 },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Three gradient colors, number of ribbons (1 to 6), bar spacing and width",
+        "Ribbon height, spread, wave amplitude, frequency and speed",
+        "Perspective, curve, blur, glow, brightness, vertical position, rotation",
+        "Horizontal slicing of bars, grain, edge fade, opacity",
+        "Pointer interaction, intro, pause, light mode for light backgrounds, pixel ratio"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the wave motion shape",
+            "where": "wave calculation inside the build function"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change pointer focus spring or lift response",
+            "where": "focusVelocity and lift updates in the frame function"
+        },
+        {
+            "change": "Raise the render resolution cap",
+            "where": "MAX_RENDER_DIM constant"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable",
+        "Fills its parent, so the parent needs a defined height",
+        "Listens to pointer movement on the whole window, not only the container",
+        "Honors prefers-reduced-motion by disabling motion, intro and pointer effects",
+        "Maximum of 6 ribbons; the palette has exactly three colors",
+        "Output is transparent with additive glow; light mode is a separate rendering path chosen by lightMode",
+        "Scales to any screen size via container resize, but heavy GPU load on small mobile devices is possible at high ribbon counts"
+    ],
+    "mood": ["futuristic", "dreamy", "vibrant", "modern"],
+    "industries": ["technology", "music", "creative agency", "fintech", "events"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": []
+}

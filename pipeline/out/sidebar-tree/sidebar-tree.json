@@ -1,0 +1,50 @@
+{
+  "slug": "sidebar-tree",
+  "name": "Sidebar Tree",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Accessible collapsible sidebar navigation tree with a live search filter, keyboard navigation, and animated expand and collapse with blur and fade.",
+  "contents": [
+    "Search input with slash shortcut hint",
+    "Nested tree of links in groups with expand icons and current page marker"
+  ],
+  "behavior": [
+    "Branches expand and collapse with a grid height transition plus fade, blur and slide",
+    "Typing 3 or more characters filters the tree, highlights matches and expands their ancestors",
+    "Full keyboard support: arrows, Home, End, Enter, Space, type-ahead; slash focuses search, Escape clears it",
+    "Panel is vertically resizable"
+  ],
+  "props": [
+    { "name": "data", "type": "{label,groups:{items:{id,label,href,current,items}[]}[]}", "default": "Sample university site tree" },
+    { "name": "duration", "type": "number", "default": 0.26 },
+    { "name": "opacity", "type": "number", "default": 0.4 },
+    { "name": "blur", "type": "number", "default": 10 },
+    { "name": "translate", "type": "number", "default": 12 },
+    { "name": "searchPlaceholder", "type": "string", "default": "search..." },
+    { "name": "searchLabel", "type": "string", "default": "Filter navigation tree" },
+    { "name": "accentColor", "type": "string", "default": "hsl(0 90% 66%)" },
+    { "name": "borderColor", "type": "string", "default": "rgba(0,0,0,0.2)" },
+    { "name": "panelBackground", "type": "string", "default": "rgba(255,255,255,0.85)" },
+    { "name": "textColor", "type": "string", "default": "hsl(0 0% 54%)" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Tree structure, labels, links and initial current item",
+    "Animation duration, fade, blur and slide distance",
+    "Search placeholder and label, accent, border, background and text colors"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change panel height or minimum width", "where": "sidebar-root wrapper div style height and aside min-w-[250px]" },
+    { "change": "Change search match highlight colors", "where": "search states rules for data-search-match in the style block" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Adds a document keydown listener for the slash key to focus search, removed on unmount",
+    "Loads Noto Sans Mono through a Google Fonts import in the style block",
+    "Search filters only from 3 characters"
+  ],
+  "mood": ["clean", "technical", "minimal"],
+  "industries": ["saas", "documentation", "education", "developer tools"],
+  "sections": ["navbar", "other"],
+  "dependencies": []
+}

@@ -4,11 +4,12 @@
   "sourceHash": "621d8a027c8c8457492f799f6b3373b87a03cc196e178d7439a715c6c51b0a4d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-curtain-zoom",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.544Z"
+  "note": "CDN loader replaced by gsap imports. Observer and tweens killed on unmount, className and nav aria-labels added, mobile nav offsets. No variants.",
+  "updatedAt": "2026-11-01T12:42:40.812Z",
+  "gateOutput": "gates passed"
 }

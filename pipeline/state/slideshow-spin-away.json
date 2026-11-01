@@ -4,11 +4,12 @@
   "sourceHash": "b55bfa450b366c92085ea477b687dc817fe6adad05363f453eda3883013a930b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-spin-away",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.547Z"
+  "note": "CDN loader replaced by gsap imports. Timeline and tweens killed on unmount, className added, mobile nav offsets, console.error and trialWarn removed. Nav has no aria-labels. No variants.",
+  "updatedAt": "2026-11-01T12:50:02.660Z",
+  "gateOutput": "gates passed"
 }

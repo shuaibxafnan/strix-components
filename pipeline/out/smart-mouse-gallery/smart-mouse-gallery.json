@@ -1,0 +1,51 @@
+{
+  "slug": "smart-mouse-gallery",
+  "name": "Smart Mouse Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Row of dimmed image tiles with a custom circular cursor that grows over a tile and shows an icon matching that tile, while the hovered image brightens and zooms.",
+  "contents": [
+    "Row of image tiles, each tagged with a type and a Font Awesome icon class",
+    "Custom round cursor with an icon inside"
+  ],
+  "behavior": [
+    "Custom cursor follows the mouse with a smooth Web Animations transition",
+    "Cursor scales up and shows the tile icon when over a tile, hides the icon elsewhere",
+    "Hovered tile raises opacity and zooms its background image",
+    "Tiles wrap into rows below 1024px and stay in one row on large screens"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "bg-[#0a0f14]" },
+    { "name": "cursorBgColor", "type": "string", "default": "bg-white" },
+    { "name": "cursorSize", "type": "number", "default": 20 },
+    { "name": "scaleMultiplier", "type": "number", "default": 6 },
+    { "name": "animDuration", "type": "number", "default": 600 },
+    { "name": "initialOpacity", "type": "string", "default": "opacity-50" },
+    { "name": "hoverOpacity", "type": "string", "default": "hover:opacity-90" },
+    { "name": "items", "type": "{type,image,iconClass}[]", "default": "6 animal sample items" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of tiles, their images and cursor icons",
+    "Background, cursor color and size, zoom scale, animation duration, tile opacities"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change tile aspect ratio or size",
+      "where": "aspect-[1/1.25] w-[clamp(150px,30vmin,500px)] classes on the items.map tile"
+    },
+    {
+      "change": "Change the fallback cursor icon",
+      "where": "getCursorIconClass function"
+    }
+  ],
+  "fixed": [
+    "Loads the Font Awesome stylesheet from a CDN when not already on the page and removes it on unmount if it added it",
+    "Custom cursor is hidden until the mouse enters the component and needs a mouse, so touch devices see only the tiles",
+    "Root is at least full viewport height"
+  ],
+  "mood": ["dark", "playful", "interactive", "modern"],
+  "industries": ["pet care", "photography", "zoo", "travel", "portfolio"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

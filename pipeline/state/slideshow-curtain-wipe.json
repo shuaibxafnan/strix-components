@@ -4,11 +4,12 @@
   "sourceHash": "5045479cde001bc1b0819147d19afe079776bb3f2f1f90d57a4a1734fc8d82a5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-curtain-wipe",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.543Z"
+  "note": "CDN loader replaced by gsap imports. Timeline killed on unmount, className added, mobile nav offsets. Slides have no alt text. No variants.",
+  "updatedAt": "2026-11-01T12:41:55.926Z",
+  "gateOutput": "gates passed"
 }

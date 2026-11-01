@@ -1,0 +1,83 @@
+{
+    "slug": "side-rays",
+    "name": "Side Rays",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 background of soft two-color light shafts fanning in from a corner or side, with optional drifting dust motes, mouse-aimed beams, and a fade-in intro.",
+    "contents": [
+        "Wrapper div filling its parent with one full-size canvas rendering the rays"
+    ],
+    "behavior": [
+        "Fragment shader draws two blended fans of animated shafts with glow, falloff and optional sparkle dust",
+        "Beams lean toward the pointer with spring easing and a focused brighter shaft while the pointer is over the component",
+        "Intro reveal grows the light outward over about 1.6 seconds on first mount",
+        "Pauses rendering when off screen or tab hidden, resumes automatically",
+        "Reduced motion slows the animation, disables sway and mouse tracking, and skips the intro",
+        "Canvas resolution is capped by maxDevicePixelRatio and a pixel budget, resizes with the container, and recovers from WebGL context loss",
+        "Light mode switches to dark ink-style rays for light backgrounds"
+    ],
+    "props": [
+        { "name": "rayColor1", "type": "string", "default": "#FFC46B" },
+        { "name": "rayColor2", "type": "string", "default": "#96c8ff" },
+        { "name": "blend", "type": "number", "default": 0.6 },
+        { "name": "origin", "type": "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'right' | 'left'", "default": "top-right" },
+        { "name": "speed", "type": "number", "default": 2.5 },
+        { "name": "intensity", "type": "number", "default": 2 },
+        { "name": "spread", "type": "number", "default": 2 },
+        { "name": "density", "type": "number", "default": 5 },
+        { "name": "sharpness", "type": "number", "default": 0.5 },
+        { "name": "tilt", "type": "number", "default": 0 },
+        { "name": "falloff", "type": "number", "default": 1.6 },
+        { "name": "glow", "type": "number", "default": 1 },
+        { "name": "saturation", "type": "number", "default": 1 },
+        { "name": "dust", "type": "number", "default": 0 },
+        { "name": "followMouse", "type": "boolean", "default": true },
+        { "name": "mouseInfluence", "type": "number", "default": 0.5 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "maxDevicePixelRatio", "type": "number", "default": 2 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Both ray colors and how much they blend",
+        "Origin corner or side, tilt angle, spread, density, sharpness, falloff",
+        "Speed, intensity, glow, saturation, opacity",
+        "Dust sparkle amount, mouse following and its strength, intro on or off",
+        "Light mode for bright backgrounds",
+        "Render resolution cap, wrapper className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add more origin positions or change where the light source sits",
+            "where": "ORIGINS constant, geometryFor function and the source/heading lines in the FRAGMENT shader"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "reveal increment (dt / 1.6) in the frame function"
+        },
+        {
+            "change": "Change mouse spring feel",
+            "where": "stiffness and damping constants in the frame function"
+        },
+        {
+            "change": "Add a third ray color",
+            "where": "uColorA, uColorB uniforms and the light mix in the FRAGMENT shader"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable or shader compile fails",
+        "Fills its parent (h-full w-full), so the parent must have a size and positioning",
+        "Wrapper is pointer-events-none and the canvas is aria-hidden, so it is purely decorative",
+        "Listens to window pointer events and document pointerleave for mouse tracking, cleaned up on unmount",
+        "Only two ray fans exist, with a fixed two-color setup",
+        "Output is transparent with premultiplied alpha; rays are drawn over whatever is behind",
+        "Heavy shader on large or high-DPI screens; pixel budget caps resolution, which may soften rays on mobile and large displays",
+        "Client component ('use client'), uses useEffect and refs"
+    ],
+    "mood": ["ethereal", "dramatic", "futuristic", "calm"],
+    "industries": ["saas", "ai", "creative studio", "wellness", "events"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": ["react"]
+}

@@ -1,0 +1,47 @@
+{
+  "slug": "skew-scroll",
+  "name": "Skew Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Three-column image gallery pinned to the viewport where columns move in opposite directions on scroll and images skew with scroll speed, under a large centered title.",
+  "contents": [
+    "Large centered title",
+    "Three columns of background images"
+  ],
+  "behavior": [
+    "Columns 1 and 3 move up while column 2 moves down as the page scrolls",
+    "Images skew based on scroll velocity, clamped to a max angle, and ease back to flat after scrolling stops"
+  ],
+  "props": [
+    {"name": "title", "type": "string", "default": "Gallery"},
+    {"name": "maxSkew", "type": "number", "default": 45},
+    {"name": "scrollSpeedModifier", "type": "number", "default": 1.0},
+    {"name": "containerBg", "type": "string", "default": "bg-[#1a1a1a]"},
+    {"name": "titleColor", "type": "string", "default": "text-white"},
+    {"name": "resetDuration", "type": "number", "default": 100},
+    {"name": "imagesCol1", "type": "string[]", "default": "12 sample Unsplash images"},
+    {"name": "imagesCol2", "type": "string[]", "default": "12 sample Unsplash images"},
+    {"name": "imagesCol3", "type": "string[]", "default": "12 sample Unsplash images"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Title text and color",
+    "Images in each column",
+    "Background color via Tailwind class",
+    "Maximum skew angle, skew sensitivity and reset delay"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the scroll range of the section", "where": "h-[4200px] class on the root div"},
+    {"change": "Change the column offset for the middle column", "where": "-3211 constant in scrollTransforms"}
+  ],
+  "fixed": [
+    "Root is 4200px tall to provide scroll range for the sticky gallery",
+    "Listens to window scroll and ties column movement to page scroll position",
+    "Title is fixed in the viewport center",
+    "Column offsets assume about 12 images per column"
+  ],
+  "mood": ["bold", "dynamic", "modern", "dark"],
+  "industries": ["photography", "fashion", "agency", "art", "portfolio"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

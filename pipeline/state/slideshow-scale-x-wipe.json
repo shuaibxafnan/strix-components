@@ -4,11 +4,12 @@
   "sourceHash": "d82c6dcc12722713edb3429cea77dc09aa27244e424fe9e761418fdf5a44b653",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scale-wipe-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.547Z"
+  "note": "slideshow-scale-x-wipe -> scale-wipe-slideshow. Frame: none (full-screen slider). Variants: none. Replaced CDN script loading with dynamic imports of gsap and gsap/Observer. Removed unused innerRef, console.error, gsap.config. Added className, kill tweens on unmount. Responsive: nav offsets and hint margin scaled for small screens.",
+  "updatedAt": "2026-11-01T12:48:22.299Z",
+  "gateOutput": "gates passed"
 }
