@@ -1,0 +1,55 @@
+{
+  "slug": "glitchy-grid",
+  "name": "Glitchy Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen image grid slideshow where each chapter shows eight images in a mosaic with mouse parallax, a glitch effect on hover, and a stacked-in transition between chapters.",
+  "contents": [
+    "Chapters, each with an eyebrow, a title and up to eight grid images",
+    "Dot-line navigation to switch chapters"
+  ],
+  "behavior": [
+    "Images drift with eased mouse parallax",
+    "Hovering an image plays a clip-path glitch with offset copies and a flash",
+    "Changing chapter slides the old images out and stacks the new ones in with random rotation while the background shifts color",
+    "Optional autoplay cycles through chapters",
+    "Navigation sits at the bottom right on small screens and the right edge on medium screens and up"
+  ],
+  "props": [
+    {"name": "slides", "type": "{eyebrow,title,images[]}[]", "default": "3 sample chapters with 8 images each"},
+    {"name": "bgColor", "type": "string", "default": "#0b0b0c"},
+    {"name": "transitionColor", "type": "string", "default": "#16171a"},
+    {"name": "textColor", "type": "string", "default": "#f4f4f5"},
+    {"name": "mutedColor", "type": "string", "default": "#6b6b73"},
+    {"name": "parallaxX", "type": "number", "default": 22},
+    {"name": "parallaxY", "type": "number", "default": 18},
+    {"name": "parallaxEase", "type": "number", "default": 0.07},
+    {"name": "glitchGap", "type": "number", "default": 10},
+    {"name": "glitchGapVertical", "type": "number", "default": 2},
+    {"name": "hideDuration", "type": "number", "default": 0.6},
+    {"name": "showDuration", "type": "number", "default": 0.9},
+    {"name": "stackScale", "type": "number", "default": 1.8},
+    {"name": "stackRotation", "type": "number", "default": 8},
+    {"name": "autoplay", "type": "boolean", "default": false},
+    {"name": "autoplayDelay", "type": "number", "default": 6000},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Number of chapters, eyebrow and title text, images",
+    "Background, transition, text and muted colors",
+    "Parallax strength and easing, glitch offsets, transition timing, stack scale and rotation, autoplay"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the image positions in the grid", "where": "ITEM_AREAS constant"},
+    {"change": "Change the glitch animation shapes", "where": "GLITCH_KEYFRAMES constant"}
+  ],
+  "fixed": [
+    "Root is a full-viewport-height section",
+    "Each chapter shows at most 8 images, matching the 8 grid positions",
+    "Mouse parallax uses window mouse position and has no touch equivalent; hover glitch is desktop only"
+  ],
+  "mood": ["dark", "edgy", "editorial", "futuristic"],
+  "industries": ["photography", "fashion", "creative agency", "art", "music"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}
