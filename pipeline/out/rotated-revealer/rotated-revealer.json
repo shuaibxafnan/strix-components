@@ -1,0 +1,71 @@
+{
+  "slug": "rotated-revealer",
+  "name": "Rotated Revealer",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen photographer portfolio intro where a dark tilted panel with a title and enter link splits away on click to reveal a page with a scrolling photo reel.",
+  "contents": [
+    "Rotated intro panel with image, letter-split title and enter link",
+    "Revealed page with back arrow, title, paragraph, social links, category list and numbered photo reel"
+  ],
+  "behavior": [
+    "Click or Enter on the enter link plays a GSAP timeline that slides the rotated panel halves apart and fades the intro",
+    "Back arrow reverses the timeline",
+    "Hovering the enter link makes random title letters flick up and drop back",
+    "Layout stacks in one column on mobile and uses a three column grid from 768px"
+  ],
+  "props": [
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "angle", "type": "number", "default": 35},
+    {"name": "introTitle", "type": "string", "default": "Bottega Ricci"},
+    {"name": "enterLabel", "type": "string", "default": "enter"},
+    {"name": "introImage", "type": "string", "default": "Unsplash portrait URL"},
+    {"name": "panelColor", "type": "string", "default": "#0e0e0e"},
+    {"name": "introTitleColor", "type": "string", "default": "#ffffff"},
+    {"name": "enterColor", "type": "string", "default": "#ffffff"},
+    {"name": "pageBg", "type": "string", "default": "#ffffff"},
+    {"name": "title", "type": "string", "default": "Andrea\nRicci"},
+    {"name": "titleColor", "type": "string", "default": "#111111"},
+    {"name": "text", "type": "string", "default": "All photographs are memento mori sample paragraph"},
+    {"name": "textColor", "type": "string", "default": "#868181"},
+    {"name": "images", "type": "string[]", "default": "4 sample Unsplash URLs"},
+    {"name": "numbers", "type": "string[] | null", "default": null},
+    {"name": "numberColor", "type": "string", "default": "#111111"},
+    {"name": "selectHeading", "type": "string", "default": "select"},
+    {"name": "selectItems", "type": "string[]", "default": ["all", "portraits", "b & w", "nude"]},
+    {"name": "selectIndex", "type": "number", "default": 0},
+    {"name": "selectColor", "type": "string", "default": "#868181"},
+    {"name": "selectActiveColor", "type": "string", "default": "#111111"},
+    {"name": "socialLinks", "type": "{label}[]", "default": [{"label": "In"}, {"label": "Tw"}]},
+    {"name": "socialColor", "type": "string", "default": "#555555"},
+    {"name": "socialHoverColor", "type": "string", "default": "#000000"},
+    {"name": "duration", "type": "number", "default": 1.2},
+    {"name": "ease", "type": "string", "default": "expo.inOut"},
+    {"name": "imageShift", "type": "number", "default": -150},
+    {"name": "imageScaleY", "type": "number", "default": 1.1},
+    {"name": "letterStagger", "type": "number", "default": 0.04},
+    {"name": "reelOffset", "type": "number", "default": 100},
+    {"name": "hoverLetters", "type": "boolean", "default": true},
+    {"name": "hoverStagger", "type": "number", "default": 0.04},
+    {"name": "displayFont", "type": "string", "default": "Georgia, 'Times New Roman', serif"},
+    {"name": "bodyFont", "type": "string", "default": "Futura, 'Century Gothic', 'Trebuchet MS', sans-serif"}
+  ],
+  "editableByProps": [
+    "All text, images, category list, social labels and reel numbers",
+    "All colors, tilt angle, animation duration, easing and offsets",
+    "Fonts and hover letter effect"
+  ],
+  "needsCodeEdit": [
+    {"change": "Social link destinations", "where": "socialLinks map with the span role link"},
+    {"change": "Change the reveal direction", "where": "innerRef and reverseRef tweens in the timeline"}
+  ],
+  "fixed": [
+    "Fills the viewport height with hidden overflow",
+    "Requires the gsap package",
+    "Category and social items are not wired to any action"
+  ],
+  "mood": ["editorial", "elegant", "cinematic"],
+  "industries": ["photography", "art", "fashion", "design"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": ["gsap"]
+}
