@@ -4,11 +4,12 @@
   "sourceHash": "b87423ce11a6160d0ab26c2e0e2a8b17f2424c5eb3c939dc45d56d7a7f3d1a58",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "favorite-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.437Z"
+  "note": "gsap via dynamic import replacing CDN loader; click listener and timeout now cleaned on unmount; removed mounted state, empty comments, invalid height-[119px] class; added className. Frame is root div wrapping button (deviation, fixed). Toggle state in DOM classes (fixed). No variants.",
+  "updatedAt": "2026-11-01T06:52:58.649Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,40 @@
+{
+  "slug": "favorite-button",
+  "name": "Favorite Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Compact toggle button with a star icon that launches out of the button, flips, drops back in and settles active, with a squash bounce and elastic hole effect.",
+  "contents": ["Button with animated star icon and text label"],
+  "behavior": [
+    "Click toggles an active state with a GSAP keyframe animation of the star jumping, dropping in, rotating and bouncing",
+    "Clicks are ignored while the animation runs",
+    "Button background squeezes slightly while pressed"
+  ],
+  "props": [
+    {"name": "label", "type": "string", "default": "Favorite"},
+    {"name": "defaultBg", "type": "string", "default": "#313440"},
+    {"name": "activeBg", "type": "string", "default": "#313440"},
+    {"name": "textColor", "type": "string", "default": "#FAFBFF"},
+    {"name": "starDefaultColor", "type": "string", "default": "#62677C"},
+    {"name": "starActiveColor", "type": "string", "default": "#F6C206"},
+    {"name": "starFaceDefault", "type": "string", "default": "#1F2128"},
+    {"name": "starFaceActive", "type": "string", "default": "#845901"},
+    {"name": "starHoleColor", "type": "string", "default": "#16181E"},
+    {"name": "starHoleInnerColor", "type": "string", "default": "#20232C"},
+    {"name": "minWidth", "type": "string", "default": "125px"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Label text", "Button, text, star, face and hole colors", "Minimum button width"],
+  "needsCodeEdit": [
+    {"change": "Change the animation timing or star jump height", "where": "keyframes array inside handleClick"},
+    {"change": "Run an action when toggled", "where": "handleClick function"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Toggle state is kept through DOM classes and is not exposed to the parent"
+  ],
+  "mood": ["playful", "polished", "minimal"],
+  "industries": ["saas", "ecommerce", "social", "media", "education"],
+  "sections": ["other"],
+  "dependencies": ["gsap"]
+}
