@@ -1,0 +1,56 @@
+{
+    "slug": "jigsaw-puzzle",
+    "name": "Jigsaw Puzzle",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Image split into 16 jigsaw pieces that fly in rotated from outside the screen and snap together as the page scrolls. Visitors can drop their own image to replace it.",
+    "contents": [
+        "Fixed SVG jigsaw of 16 image-filled pieces",
+        "Full-screen invisible file input with a dashed drop label"
+    ],
+    "behavior": [
+        "Piece positions and rotations are driven by scroll progress, assembling over the first viewport of scrolling",
+        "Dropping or choosing an image file replaces the puzzle picture",
+        "Dashed drop label fades in while a file is dragged over the page"
+    ],
+    "props": [
+        {"name": "imageUrl", "type": "string", "default": "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1080&q=80"},
+        {"name": "size", "type": "string", "default": "50vmin"},
+        {"name": "rows", "type": "number", "default": 4},
+        {"name": "columns", "type": "number", "default": 4},
+        {"name": "strokeWidth", "type": "string", "default": "0.5vmin"},
+        {"name": "bgColor", "type": "string", "default": "#f3f0ed"},
+        {"name": "labelColor", "type": "string", "default": "#242733"},
+        {"name": "labelText", "type": "string", "default": "Drop an image to update the jigsaw"},
+        {"name": "labelFontSize", "type": "string", "default": "32px"},
+        {"name": "borderRadius", "type": "string", "default": "0.5em"},
+        {"name": "pageHeight", "type": "string", "default": "200vh"},
+        {"name": "onImageChange", "type": "function", "default": "undefined"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Image, puzzle size, background and stroke color",
+        "Drop label text, size, color and corner radius",
+        "Scroll length through pageHeight"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Use a different piece shape or piece count",
+            "where": "PIECE_PATHS constant"
+        },
+        {
+            "change": "Change the starting rotation of pieces",
+            "where": "START_ROTATIONS constant"
+        }
+    ],
+    "fixed": [
+        "Listens to window scroll and resize while mounted and removes the listeners on unmount",
+        "Scroll range comes from the pageHeight block (200vh) the root renders to give the pieces room to assemble",
+        "Puzzle and drop input are position fixed and cover the viewport",
+        "Piece paths are a fixed 4 by 4 layout"
+    ],
+    "mood": ["playful", "interactive", "creative"],
+    "industries": ["creative agency", "education", "games", "photography"],
+    "sections": ["hero", "other"],
+    "dependencies": []
+}
