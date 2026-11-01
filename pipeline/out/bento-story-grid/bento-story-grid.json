@@ -1,0 +1,49 @@
+{
+  "slug": "bento-story-grid",
+  "name": "Bento Story Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Responsive bento grid of story cards with a full-width featured card followed by two-up and three-up rows, each with image, tag, title and date, revealing on scroll.",
+  "contents": [
+    "Section title header",
+    "Featured hero card with image beside text",
+    "Grid of story cards with image, tag, title and date"
+  ],
+  "behavior": [
+    "Non-featured cards slide up and fade in when scrolled into view",
+    "Card images scale slightly on hover",
+    "Reveal animation is skipped when reduced motion is preferred",
+    "Grid goes from one column on mobile to two on tablet to twelve on desktop"
+  ],
+  "props": [
+    {"name": "sectionTitle", "type": "string", "default": "Latest Stories"},
+    {"name": "cardsData", "type": "{id,href,isHero,tag,title,date,imgSrc,imgAlt,isHeadingH4}[]", "default": "8 sample vase stories"},
+    {"name": "gridColumnsMobile", "type": "string", "default": "grid-cols-1"},
+    {"name": "gridColumnsTablet", "type": "string", "default": "md:grid-cols-2"},
+    {"name": "gridColumnsDesktop", "type": "string", "default": "lg:grid-cols-12"},
+    {"name": "gapSpacing", "type": "string", "default": "gap-8"},
+    {"name": "cardMinBlockSize", "type": "string", "default": "min-h-[360px]"},
+    {"name": "bgColor", "type": "string", "default": "#fafafa"},
+    {"name": "textColor", "type": "string", "default": "#0b0b0c"},
+    {"name": "cardColor", "type": "string", "default": "#ffffff"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Title, cards, images, links, tags and dates",
+    "Background, text and card colors",
+    "Grid column classes, gap and minimum card height"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change which cards span which columns", "where": "columnSpanClass constant inside the cardsData map"},
+    {"change": "Change card heights per row", "where": "heightClass constant inside the cardsData map"}
+  ],
+  "fixed": [
+    "Only the first card should be marked isHero, it spans the full width",
+    "Cards at index 1 to 4 span half the desktop row, the rest span a third",
+    "Content width is capped at 975px on desktop"
+  ],
+  "mood": ["clean", "editorial", "minimal"],
+  "industries": ["ecommerce", "publishing", "crafts", "lifestyle"],
+  "sections": ["blog", "portfolio"],
+  "dependencies": []
+}
