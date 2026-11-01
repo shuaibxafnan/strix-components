@@ -1,0 +1,95 @@
+{
+    "slug": "circular-carousel",
+    "name": "Circular Carousel",
+    "category": "sliders-carousels",
+    "isReactBits": true,
+    "description": "Draggable 3D image carousel that arranges photos on a cylinder, orbit, vertical wheel or inward panorama, with drift or step autoplay, momentum, parallax and optional captions.",
+    "contents": [
+        "Ring of image cards built from curved tiles, each with title and subtitle data",
+        "Optional caption with animated two-digit counter for the active item",
+        "Screen reader live region announcing the active slide"
+    ],
+    "behavior": [
+        "Intro animation on load (rise, assemble, spin or none) after images preload",
+        "Autoplay drifts continuously or steps every few seconds, pausing on mouse hover",
+        "Drag with momentum and optional snapping to the nearest card",
+        "Pointer parallax tilts the scene and drag stretches it",
+        "Wheel scrolling over the carousel rotates it",
+        "Keyboard arrows, Home, End and Enter or Space navigate and activate",
+        "Clicking a card focuses it and fires onItemClick",
+        "Changing items cross-fades old images out when the count is unchanged",
+        "Render loop pauses when off screen or tab hidden",
+        "Reduced motion disables intro, autoplay, parallax and stretch"
+    ],
+    "props": [
+        {"name": "items", "type": "{src,alt,title,subtitle}[]", "default": "10 sample grayscale Unsplash photos"},
+        {"name": "preset", "type": "'cylinder' | 'orbit' | 'wheel' | 'panorama'", "default": "cylinder"},
+        {"name": "intro", "type": "'assemble' | 'rise' | 'spin' | 'none'", "default": "rise"},
+        {"name": "cardWidth", "type": "number", "default": 220},
+        {"name": "aspectRatio", "type": "number", "default": 1},
+        {"name": "gap", "type": "number", "default": 25},
+        {"name": "curve", "type": "number", "default": "undefined (preset value)"},
+        {"name": "tilt", "type": "number", "default": "undefined (preset value)"},
+        {"name": "perspective", "type": "number", "default": "undefined (preset value)"},
+        {"name": "autoplay", "type": "'drift' | 'step' | 'off'", "default": "drift"},
+        {"name": "speed", "type": "number", "default": 14},
+        {"name": "interval", "type": "number", "default": 3},
+        {"name": "direction", "type": "'left' | 'right'", "default": "left"},
+        {"name": "draggable", "type": "boolean", "default": true},
+        {"name": "momentum", "type": "number", "default": 0.6},
+        {"name": "snap", "type": "boolean", "default": true},
+        {"name": "pauseOnHover", "type": "boolean", "default": true},
+        {"name": "focusOnClick", "type": "boolean", "default": true},
+        {"name": "parallax", "type": "number", "default": 0.3},
+        {"name": "stretch", "type": "number", "default": 0.5},
+        {"name": "depthFade", "type": "number", "default": 0.55},
+        {"name": "fadeColor", "type": "string", "default": "#000000"},
+        {"name": "innerShade", "type": "number", "default": 0.6},
+        {"name": "cornerRadius", "type": "number", "default": 12},
+        {"name": "captions", "type": "boolean", "default": false},
+        {"name": "onChange", "type": "(index: number) => void", "default": "undefined"},
+        {"name": "onItemClick", "type": "(item, index) => void", "default": "undefined"},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "style", "type": "object", "default": "undefined"}
+    ],
+    "editableByProps": [
+        "Images, alt text, titles and subtitles, any number of items",
+        "Layout preset, card size, aspect ratio, gap, curvature, tilt, perspective",
+        "Intro style, autoplay mode, speed, interval, direction",
+        "Drag, momentum, snapping, hover pause, click focus",
+        "Parallax, stretch, depth fade, fade color, inner shade, corner radius",
+        "Captions toggle, change and click callbacks, container class and style"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change preset geometry or add a new layout", "where": "PRESETS constant"},
+        {"change": "Change intro, swap or spring timing", "where": "INTRO_LENGTH, SWAP_LENGTH, SWAP_SPREAD and SPRING constants"},
+        {"change": "Restore color photos", "where": "photo helper (sat=-100 in the URL)"},
+        {"change": "Change edge fade masks", "where": "MASKS constant"},
+        {"change": "Change the carousel aria label", "where": "aria-label=\"Image carousel\" on the root element"}
+    ],
+    "fixed": [
+        "Fills its parent (h-full w-full), so the parent needs a defined height",
+        "Sample photos are loaded from images.unsplash.com and forced grayscale",
+        "Preloads up to the first 16 images, intro starts after load or a 2.4 second timeout",
+        "Wheel events over the carousel are captured with preventDefault, blocking page scroll there",
+        "Panorama preset ignores the perspective prop and wheel preset limits the visible window",
+        "Orbit preset ignores curve",
+        "Injects a style tag with keyframes for caption and image swap animations",
+        "Uses Tailwind classes and a 'use client' directive",
+        "Caption area reserves 76px of space"
+    ],
+    "mood": ["immersive", "modern", "editorial", "dramatic"],
+    "industries": ["photography", "fashion", "architecture", "portfolio", "travel"],
+    "sections": ["gallery", "portfolio", "hero"],
+    "dependencies": ["react"],
+    "variants": {
+        "prop": "preset",
+        "default": "cylinder",
+        "options": [
+            {"value": "cylinder", "look": "Horizontal ring of curved cards seen from the outside with slight tilt", "useWhen": "A classic 3D rotating gallery"},
+            {"value": "orbit", "look": "Wider ring of flat cards that always face the viewer, tilted from above", "useWhen": "You want flat uncurved images circling in space"},
+            {"value": "wheel", "look": "Vertical wheel rotating on the X axis with fading top and bottom edges", "useWhen": "A vertical scrolling feel in a tall container"},
+            {"value": "panorama", "look": "Camera inside the ring looking at curved cards with fading left and right edges", "useWhen": "An immersive panoramic strip"}
+        ]
+    }
+}
