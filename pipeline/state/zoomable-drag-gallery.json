@@ -4,11 +4,12 @@
   "sourceHash": "4275d857dda5079e8643a61970330875b08627d288a9eedcdea5b14126ef724e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "zoomable-drag-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.582Z"
+  "note": "No rename. Removed logo header and its GSAP fade (ambiguous), next/font Space_Grotesk/Space_Mono (now font-sans/font-mono). Responsive caption/controls fixes. Fixed layers, body overlay, document shortcuts kept (in fixed). No frame, no variants.",
+  "updatedAt": "2026-11-01T15:43:23.123Z",
+  "gateOutput": "gates passed"
 }
