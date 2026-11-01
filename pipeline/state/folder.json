@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "folder",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.613Z"
+  "note": "Category ui-elements. Variants: solid, glass, matte. No deps. Animation engine lines 1276-2040 not read in full by agent. JSX unchanged.",
+  "updatedAt": "2026-11-01T07:16:58.187Z",
+  "gateOutput": "gates passed"
 }

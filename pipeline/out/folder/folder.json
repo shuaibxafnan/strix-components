@@ -1,0 +1,108 @@
+{
+    "slug": "folder",
+    "name": "Folder",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Interactive 3D-style folder that opens to reveal draggable document cards, in flap or book mode, with spring physics, optional WebGL glass, drag and drop and controlled open state.",
+    "contents": [
+        "Folder body with back panel, tab with optional label and front cover that swings open",
+        "Up to 6 document cards from items, custom children, images or React nodes",
+        "Optional WebGL canvas that renders the frosted glass front"
+    ],
+    "behavior": [
+        "Front cover opens like a flap or a book cover with spring animation",
+        "Hover makes documents peek out of the folder",
+        "Opens on click or hover depending on openOn, closes on outside click or Escape",
+        "Documents can be dragged out and dropped back into the folder",
+        "Clicking a document zooms it to the front when zoomOnClick is true",
+        "Intro animation drops the documents in on first appearance",
+        "Reduced motion preference makes springs fully damped",
+        "Open layout of the documents is spread, row or stack"
+    ],
+    "props": [
+        { "name": "items", "type": "(string | number | {title,description,image,alt,content} | ReactNode)[]", "default": "undefined (3 sample items: Brand guidelines, Launch plan, Moodboard)" },
+        { "name": "label", "type": "string", "default": "undefined" },
+        { "name": "mode", "type": "'flap' | 'book'", "default": "flap" },
+        { "name": "variant", "type": "'solid' | 'glass' | 'matte'", "default": "solid" },
+        { "name": "color", "type": "string", "default": "#3d8bff" },
+        { "name": "paperColor", "type": "string", "default": "#ffffff" },
+        { "name": "tabPosition", "type": "'left' | 'center' | 'right'", "default": "right" },
+        { "name": "layout", "type": "'spread' | 'row' | 'stack'", "default": "spread" },
+        { "name": "size", "type": "number", "default": 1 },
+        { "name": "openOn", "type": "'click' | 'hover'", "default": "click" },
+        { "name": "open", "type": "boolean", "default": "undefined" },
+        { "name": "defaultOpen", "type": "boolean", "default": false },
+        { "name": "onOpenChange", "type": "(open: boolean) => void", "default": "undefined" },
+        { "name": "onItemClick", "type": "function", "default": "undefined" },
+        { "name": "onItemDrop", "type": "function", "default": "undefined" },
+        { "name": "draggable", "type": "boolean", "default": true },
+        { "name": "zoomOnClick", "type": "boolean", "default": true },
+        { "name": "peek", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "tilt", "type": "number", "default": 0.5 },
+        { "name": "bounce", "type": "number", "default": 0.4 },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "frost", "type": "number", "default": 0.25 },
+        { "name": "closeOnOutsideClick", "type": "boolean", "default": true },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" },
+        { "name": "children", "type": "ReactNode", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Folder color, paper color, surface style, theme and size",
+        "Flap or book mode, tab position and label, open layout of documents",
+        "Document contents (text, images, custom nodes) up to 6",
+        "Open trigger, controlled or default open state, open callback",
+        "Drag, zoom, peek, intro toggles and motion feel (tilt, bounce, speed, frost)"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Allow more than 6 documents",
+            "where": "MAX_ITEMS constant (also FLAP_REST, SPREAD_TURN and SPREAD_DROP tables sized for 6)"
+        },
+        {
+            "change": "Change the default sample documents",
+            "where": "DEFAULT_ITEMS constant"
+        },
+        {
+            "change": "Change folder proportions or corner radius",
+            "where": "measureFolder function"
+        },
+        {
+            "change": "Change glass lighting or refraction look",
+            "where": "GLASS fragment shader string"
+        },
+        {
+            "change": "Change the look of the default blank document card",
+            "where": "DocumentCard component"
+        },
+        {
+            "change": "Add a new surface style",
+            "where": "SKINS object"
+        }
+    ],
+    "fixed": [
+        "Requires a browser with canvas; the glass variant needs WebGL2 and falls back to CSS backdrop blur when unavailable",
+        "Client component only ('use client'), uses window, document and canvas",
+        "Adds document-level pointerdown and keydown listeners and window pointerup/pointercancel listeners while mounted",
+        "Uses an IntersectionObserver to start the intro when visible",
+        "Shows at most 6 documents, extras are ignored",
+        "Folder base size is fixed at 224x176 (flap) or 180x232 (book) pixels, scaled only by size, and the open layout extends beyond the folder bounds so it needs free space around it on small screens",
+        "Relies on Tailwind arbitrary value classes and CSS variables set internally",
+        "Document text on the glass canvas is rasterized from DOM, so only simple text and images render in the glass variant"
+    ],
+    "mood": ["playful", "tactile", "modern", "polished"],
+    "industries": ["file storage", "saas", "design agency", "portfolio", "productivity"],
+    "sections": ["features", "portfolio", "other"],
+    "dependencies": [],
+    "variants": {
+        "prop": "variant",
+        "default": "solid",
+        "options": [
+            { "value": "solid", "look": "Opaque gradient folder in the chosen color with a soft top highlight", "useWhen": "Default clean colored folder on any background" },
+            { "value": "glass", "look": "Frosted translucent front that refracts and blurs the documents behind it, rendered with WebGL", "useWhen": "Premium or glassmorphism interfaces over rich backgrounds" },
+            { "value": "matte", "look": "Flat single-tone folder with no gradient or highlight", "useWhen": "Minimal flat design systems" }
+        ]
+    }
+}
