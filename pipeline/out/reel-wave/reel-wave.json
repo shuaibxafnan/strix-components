@@ -1,0 +1,52 @@
+{
+  "slug": "reel-wave",
+  "name": "Reel Wave",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen WebGL gallery of image columns that loop endlessly and bend into a wave as the page scrolls, with column speed and direction driven by scroll velocity.",
+  "contents": [
+    "Three columns of looping image planes rendered in a fixed full-screen canvas",
+    "Loading progress indicator"
+  ],
+  "behavior": [
+    "Images move with Lenis scroll velocity and wrap around infinitely",
+    "Vertex shader bends planes along a cosine curve and stretches them with scroll speed",
+    "Columns move at different speeds and opposite directions",
+    "Images are cover-fitted in the fragment shader"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "25 sample image URLs"},
+    {"name": "imageSize", "type": "[number, number]", "default": [1, 1]},
+    {"name": "gap", "type": "number", "default": 0.05},
+    {"name": "curveStrength", "type": "number", "default": 1},
+    {"name": "curveFrequency", "type": "number", "default": 0.4},
+    {"name": "direction", "type": "\"vertical\" | \"horizontal\"", "default": "vertical"},
+    {"name": "columns", "type": "{position,wheelFactor,wheelDirection}[]", "default": "3 columns at x 0, 1.1, -1.1"},
+    {"name": "scrollSpeedSmoothing", "type": "number", "default": 0},
+    {"name": "cameraZ", "type": "number", "default": 3},
+    {"name": "bgColor", "type": "string", "default": "#f8f8f8"},
+    {"name": "includeLenis", "type": "boolean", "default": true},
+    {"name": "lenisOptions", "type": "object", "default": {"infinite": true, "syncTouch": true}},
+    {"name": "showLoader", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, sizes, gap and number of columns with their positions and speeds",
+    "Curve strength, frequency, scroll direction, smoothing and camera distance",
+    "Background color, Lenis usage and options, loader visibility"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the image fit or add effects to the picture", "where": "IMAGE_FRAGMENT_SHADER constant"},
+    {"change": "Change how the planes bend", "where": "VERTICAL_VERTEX_SHADER and HORIZONTAL_VERTEX_SHADER constants"},
+    {"change": "Change scroll sensitivity", "where": "useLenis callback in ReelColumn"}
+  ],
+  "fixed": [
+    "Canvas is fixed to the full viewport and covers the page",
+    "Takes over page scrolling with Lenis when includeLenis is true, so it should be the only smooth scroll on the page",
+    "Images only move while the page scrolls, so the page needs scroll height or infinite Lenis"
+  ],
+  "mood": ["immersive", "playful", "modern", "dynamic"],
+  "industries": ["photography", "fashion", "art", "creative agency", "portfolio"],
+  "sections": ["background", "gallery", "hero"],
+  "dependencies": ["three", "@react-three/fiber", "@react-three/drei", "lenis"]
+}
