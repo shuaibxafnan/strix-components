@@ -1,0 +1,61 @@
+{
+  "slug": "synthwave-hero",
+  "name": "Synthwave Hero",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen retro synthwave hero with an endlessly scrolling perspective neon grid, horizon glow, scanlines and a glowing center title that tilts with the mouse or device orientation.",
+  "contents": [
+    "Perspective neon grid scrolling toward the viewer",
+    "Horizon glow and scanline overlays",
+    "Glowing center title or custom center content"
+  ],
+  "behavior": [
+    "Scene and title fade in over the intro duration while the perspective settles",
+    "Grid scrolls infinitely and the title hovers gently",
+    "Mouse position or device tilt rotates the scene and shifts the grid via GSAP",
+    "Reduced motion stops the grid scroll and hover"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#222"},
+    {"name": "gridColor", "type": "string", "default": "#e6175d"},
+    {"name": "gridLineOpacity", "type": "number", "default": 0.2},
+    {"name": "horizonColor", "type": "string", "default": "#e6175d"},
+    {"name": "scanlineColor", "type": "string", "default": "#222"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "sceneScale", "type": "number", "default": 4},
+    {"name": "gridSpread", "type": "number", "default": 440},
+    {"name": "gridTilt", "type": "number", "default": 60},
+    {"name": "perspectiveVh", "type": "number", "default": 20},
+    {"name": "gridSizeX", "type": "number", "default": 8},
+    {"name": "gridSizeY", "type": "number", "default": 20},
+    {"name": "gridSpeed", "type": "number", "default": 0.5},
+    {"name": "introDuration", "type": "number", "default": 3.6},
+    {"name": "hoverDuration", "type": "number", "default": 3.6},
+    {"name": "showScanlines", "type": "boolean", "default": true},
+    {"name": "showHorizonGlow", "type": "boolean", "default": true},
+    {"name": "enableTilt", "type": "boolean", "default": true},
+    {"name": "tiltStrength", "type": "number", "default": 8},
+    {"name": "gridParallax", "type": "number", "default": 4},
+    {"name": "centerText", "type": "string", "default": "SYNTHWAVE"},
+    {"name": "centerContent", "type": "ReactNode", "default": null},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Title text or fully custom center content",
+    "Background, grid, horizon, scanline and text colors",
+    "Grid density, tilt, speed, spread and perspective",
+    "Intro and hover timing, tilt strength, scanline and glow toggles"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the title glow or typography", "where": "textShadow style on the centerText span"},
+    {"change": "Change the hover bobbing motion", "where": "aHover keyframes in buildCss"}
+  ],
+  "fixed": [
+    "Adds window mousemove and deviceorientation listeners while tilt is enabled and removes them on unmount",
+    "Root fills the viewport height (h-screen)"
+  ],
+  "mood": ["retro", "neon", "energetic", "futuristic"],
+  "industries": ["music", "gaming", "entertainment", "events", "creative agency"],
+  "sections": ["hero", "background"],
+  "dependencies": ["gsap"]
+}
