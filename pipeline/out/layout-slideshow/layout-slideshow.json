@@ -1,0 +1,63 @@
+{
+  "slug": "layout-slideshow",
+  "name": "Layout Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-height image slideshow where each slide arranges its photos in a different layout (split, stack, deck, scatter, grid, orbit, shear) with staggered transitions, a big title and arrow navigation.",
+  "contents": [
+    "Slides, each with a layout name, image list, title, text and optional caption",
+    "Large serif title with body text per slide",
+    "Slide counter, previous and next arrow buttons, loading ring"
+  ],
+  "behavior": [
+    "Images are preloaded and a loader ring shows until they decode",
+    "Navigating animates the current images out and the next slide's images in with per-layout motion and staggering",
+    "Arrow keys navigate, optional autoplay and looping",
+    "Layout sizes use clamp and vw units so slides scale on small screens"
+  ],
+  "props": [
+    { "name": "slides", "type": "{layout,images[],title,text,caption}[]", "default": "7 sample slides" },
+    { "name": "startIndex", "type": "number", "default": 0 },
+    { "name": "height", "type": "string", "default": "100vh" },
+    { "name": "maxHeight", "type": "string", "default": "1000px" },
+    { "name": "maxWidth", "type": "string", "default": "1600px" },
+    { "name": "stagePadding", "type": "string", "default": "clamp(3em, 10vh, 6em) clamp(1em, 8vw, 5em)" },
+    { "name": "bgColor", "type": "string", "default": "#17181a" },
+    { "name": "accentColor", "type": "string", "default": "#ffe14d" },
+    { "name": "titleColor", "type": "string", "default": "#ececea" },
+    { "name": "textColor", "type": "string", "default": "#9a9c9e" },
+    { "name": "titleFont", "type": "string", "default": "'Times New Roman', Georgia, serif" },
+    { "name": "titleSize", "type": "string", "default": "clamp(2.6rem, 9vw, 7.2rem)" },
+    { "name": "bodyFont", "type": "string", "default": "'Lucida Console', Menlo, Monaco, monospace" },
+    { "name": "imageOpacity", "type": "number", "default": 0.62 },
+    { "name": "wrapInset", "type": "string", "default": "clamp(0.5em, 3vw, 3em)" },
+    { "name": "loop", "type": "boolean", "default": true },
+    { "name": "keyboard", "type": "boolean", "default": true },
+    { "name": "autoplay", "type": "boolean", "default": false },
+    { "name": "autoplayDelay", "type": "number", "default": 5000 },
+    { "name": "showArrows", "type": "boolean", "default": true },
+    { "name": "showCounter", "type": "boolean", "default": true },
+    { "name": "showLoader", "type": "boolean", "default": true },
+    { "name": "arrowColor", "type": "string", "default": "" },
+    { "name": "arrowHoverColor", "type": "string", "default": "#ffffff" },
+    { "name": "transitionSpeed", "type": "number", "default": 1 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Slides, their layouts, images, titles, text and captions",
+    "Colors, fonts, title size, stage size and padding",
+    "Looping, autoplay, keyboard, arrows, counter, loader and transition speed"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change motion or timing of a layout transition", "where": "LAYOUT_MOTION constant" },
+    { "change": "Add a new image arrangement", "where": "itemStyle function" }
+  ],
+  "fixed": [
+    "Arrow keys are captured on window while keyboard is true and removed on unmount",
+    "Layout names are limited to split, stack, deck, scatter, grid, orbit, shear; unknown names use the shear arrangement and split motion"
+  ],
+  "mood": ["editorial", "dark", "dynamic", "cinematic"],
+  "industries": ["photography", "travel", "fashion", "agency", "portfolio"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": []
+}
