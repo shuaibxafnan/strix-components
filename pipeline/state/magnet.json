@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "magnet",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.588Z"
+  "note": "gates passed. cursor-effects. Touch ignored, no-op under reduced motion, shared global listeners, wrapper inline-block relative. ...props not listed in props (gate rejected); noted in editableByProps. No variants, frame, deps.",
+  "updatedAt": "2026-11-01T09:37:44.914Z",
+  "gateOutput": "gates passed"
 }

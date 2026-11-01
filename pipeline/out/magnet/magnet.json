@@ -1,0 +1,66 @@
+{
+    "slug": "magnet",
+    "name": "Magnet",
+    "category": "cursor-effects",
+    "isReactBits": true,
+    "description": "Wrapper that pulls its children toward the cursor when the pointer comes near, using a spring simulation with optional tilt and scale, and settles back when the pointer leaves.",
+    "contents": [
+        "Outer inline-block wrapper div with the interaction area",
+        "Inner div that receives the transform, wrapping any children"
+    ],
+    "behavior": [
+        "Children translate toward the pointer inside a padding zone around the wrapper, with pull easing out via smoothstep",
+        "Spring physics (stiffness, damping, mass) drives movement, tilt and scale, and the loop sleeps when at rest",
+        "Optional 3D tilt and scale toward the pointer",
+        "When exclusive, only the nearest magnet on the page reacts at once",
+        "Sets data-magnet-active attribute on the wrapper and calls onActiveChange while engaged",
+        "Respects prefers-reduced-motion by staying still",
+        "Touch pointers are ignored"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": "undefined" },
+        { "name": "padding", "type": "number", "default": 100 },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "magnetStrength", "type": "number", "default": 2 },
+        { "name": "maxOffset", "type": "number", "default": "undefined" },
+        { "name": "exclusive", "type": "boolean", "default": true },
+        { "name": "axis", "type": "'both' | 'x' | 'y'", "default": "both" },
+        { "name": "tilt", "type": "number", "default": 0 },
+        { "name": "scale", "type": "number", "default": 1 },
+        { "name": "spring", "type": "{stiffness?,damping?,mass?}", "default": "{ stiffness: 170, damping: 16, mass: 1 }" },
+        { "name": "onActiveChange", "type": "(active: boolean) => void", "default": "undefined" },
+        { "name": "wrapperClassName", "type": "string", "default": "" },
+        { "name": "innerClassName", "type": "string", "default": "" },
+        { "name": "style", "type": "CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Children content, trigger distance, pull strength, max offset and axis lock",
+        "Tilt angle, hover scale and spring feel",
+        "Disabling, exclusive mode, active callback, classes, wrapper style and extra div attributes via rest props"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the tilt perspective depth",
+            "where": "perspective(800px) in the apply function"
+        },
+        {
+            "change": "Ignore mouse and allow touch pointers",
+            "where": "pointerType check in onPointerMove inside attach"
+        },
+        {
+            "change": "Change the point where the pull starts to fade",
+            "where": "smoothstep call in the measure function"
+        }
+    ],
+    "fixed": [
+        "Registers global window listeners (pointermove, scroll, blur) and a documentElement pointerleave listener shared by all magnets, removed when the last one unmounts",
+        "Touch input does not trigger the effect, so there is no magnet effect on touch-only devices",
+        "Does nothing when prefers-reduced-motion is reduce",
+        "Wrapper is always position relative and inline-block, and the inner div uses will-change transform",
+        "Client component, requires a browser environment"
+    ],
+    "mood": ["playful", "interactive", "modern"],
+    "industries": ["creative agency", "saas", "portfolio", "e-commerce"],
+    "sections": ["hero", "cta", "other"],
+    "dependencies": []
+}
