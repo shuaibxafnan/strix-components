@@ -1,0 +1,44 @@
+{
+  "slug": "cursor-video-grid",
+  "name": "Cursor Video Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Responsive grid of video cards with a custom circular cursor that shows play or pause on hover. Click toggles playback, one video plays at a time, with a progress bar.",
+  "contents": [
+    "Video cards with category tag, title, hint text and play/pause button",
+    "Custom circular cursor following the pointer"
+  ],
+  "behavior": [
+    "Click a card to play or pause, starting one pauses the others",
+    "Cursor circle scales in on card hover and swaps play and pause icons",
+    "Thin progress bar tracks playback, live dot pulses while playing",
+    "One column on mobile, two columns from large screens"
+  ],
+  "props": [
+    {"name": "videos", "type": "{id,src,title,category}[]", "default": "2 sample videos"},
+    {"name": "playHint", "type": "string", "default": "Click to play"},
+    {"name": "pauseHint", "type": "string", "default": "Click to pause"},
+    {"name": "playLabel", "type": "string", "default": "Play"},
+    {"name": "pauseLabel", "type": "string", "default": "Pause"},
+    {"name": "cursorBgColor", "type": "string", "default": "bg-emerald-400"},
+    {"name": "activeBorderColor", "type": "string", "default": "border-emerald-500/50"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Videos, titles, categories, hint and label text",
+    "Cursor and progress bar color, active card border color"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the focus ring and live dot colors", "where": "ring-emerald-400 class on the card div"},
+    {"change": "Change the column count", "where": "lg:grid-cols-2 class on the grid div"}
+  ],
+  "fixed": [
+    "Adds a window pointermove listener for the custom cursor and removes it on unmount",
+    "Native cursor is hidden over the videos, so the custom cursor is needed",
+    "Cursor is pointer-driven and has no effect on touch, where tapping a card still toggles playback"
+  ],
+  "mood": ["modern", "dark", "cinematic", "interactive"],
+  "industries": ["film", "photography", "agency", "media", "nature"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

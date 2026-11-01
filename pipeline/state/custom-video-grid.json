@@ -4,11 +4,12 @@
   "sourceHash": "9b74121657e4cfce2a12583886dbf86dba235ac9389a7621d03c36ed69f6854e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "cursor-video-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.417Z"
+  "note": "custom-video-grid -> cursor-video-grid. Removed bg-neutral-950, glow blobs, min-h-screen (ambiguous, treated as demo decoration). Root w-full p-4 md:p-8, className added. No frame; no variants. Hardcoded emerald focus ring, ping dot, shadow in needsCodeEdit.",
+  "updatedAt": "2026-11-01T06:07:08.415Z",
+  "gateOutput": "gates passed"
 }
