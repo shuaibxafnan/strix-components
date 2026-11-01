@@ -4,11 +4,12 @@
   "sourceHash": "347720c9f664106c4b08f82e95c5bd9d400dab7ef2cb8454be2d9147228a9abc",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "hover-displacement-image",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.579Z"
+  "note": "Renamed web-gl-texture-displacement -> hover-displacement-image. Frame kept, className added, bg to backgroundColor prop, imageAlt prop. Removed dead code. Tween kill on unmount, touch listeners added. Unused uMouse/uReso uniforms kept. No variants.",
+  "updatedAt": "2026-11-01T15:35:55.756Z",
+  "gateOutput": "gates passed"
 }
