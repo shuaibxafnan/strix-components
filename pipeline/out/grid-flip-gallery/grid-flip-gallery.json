@@ -1,0 +1,60 @@
+{
+  "slug": "grid-flip-gallery",
+  "name": "Grid Flip Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Masonry-style image grid with size buttons that change the column count, animating every tile to its new position with a GSAP Flip, random stagger and a blur flash.",
+  "contents": [
+    "Row of size buttons (50% to 150%)",
+    "Grid of image tiles with mixed aspect ratios and small number labels"
+  ],
+  "behavior": [
+    "Clicking a size button re-flows the grid to a new column count with a staggered Flip animation",
+    "Container blurs and brightens briefly during the transition",
+    "Images dim by default and brighten on hover",
+    "On screens below 640px the column count is halved"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "25 sample image URLs" },
+    { "name": "items", "type": "{aspect,label}[]", "default": "25 sample items" },
+    { "name": "bgColor", "type": "string", "default": "#0e0e0e" },
+    { "name": "textColor", "type": "string", "default": "#b0b0b0" },
+    { "name": "gap", "type": "string", "default": "1.5rem" },
+    { "name": "maxWidth", "type": "string", "default": "1200px" },
+    { "name": "sizes", "type": "string[]", "default": ["50%", "75%", "100%", "125%", "150%"] },
+    { "name": "columnsMap", "type": "Record<string, number>", "default": { "50%": 16, "75%": 10, "100%": 8, "125%": 6, "150%": 4 } },
+    { "name": "defaultSize", "type": "string", "default": "75%" },
+    { "name": "flipDuration", "type": "number", "default": 1 },
+    { "name": "staggerAmount", "type": "number", "default": 0.3 },
+    { "name": "ease", "type": "string", "default": "expo.inOut" },
+    { "name": "imageBrightness", "type": "number", "default": 0.8 },
+    { "name": "hoverBrightness", "type": "number", "default": 1 },
+    { "name": "showButtons", "type": "boolean", "default": true },
+    { "name": "buttonActiveBg", "type": "string", "default": "#b0b0b0" },
+    { "name": "buttonActiveText", "type": "string", "default": "#0e0e0e" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, tile aspect ratios and labels",
+    "Size button labels and the column count for each",
+    "Colors, gap, max width, animation duration, stagger and ease, image brightness"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the blur and brightness flash during the transition",
+      "where": "keyframes array inside the fromTo call in handleSizeClick"
+    },
+    {
+      "change": "Change the mobile column reduction",
+      "where": "getColumns function"
+    }
+  ],
+  "fixed": [
+    "Stagger order is random on every transition",
+    "Number of items drives the tile count, images repeat if fewer than items"
+  ],
+  "mood": ["dark", "playful", "modern"],
+  "industries": ["photography", "portfolio", "design agency", "fashion"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

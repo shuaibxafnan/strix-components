@@ -4,11 +4,12 @@
   "sourceHash": "d4b97edbcc040f92ab6ed0f90eaa60edb4011daab3b5c1abd6e70928aae0a644",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "grid-flip-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.452Z"
+  "note": "No rename. GSAP CDN loader replaced with dynamic imports (gsap, gsap/Flip). Added className. Removed min-h-screen, console.error, trialWarn. Columns halved below 640px via matchMedia; buttons wrap. Variants: none.",
+  "updatedAt": "2026-11-01T07:53:04.053Z",
+  "gateOutput": "gates passed"
 }
