@@ -4,11 +4,12 @@
   "sourceHash": "707da3a67f9f989a037baee1719066833797cf568207bfbfe27cfa7b9781f792",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "music-player",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.501Z"
+  "note": "gates passed. ui-elements. Root changed to h-screen frame, p-4 and backgroundColor prop removed. next/font/google imports kept per template 1.5 (Next.js only, in fixed); flagged for review against no-font-imports rule. No variants.",
+  "updatedAt": "2026-11-01T10:00:30.911Z",
+  "gateOutput": "gates passed"
 }
