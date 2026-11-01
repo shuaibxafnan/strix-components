@@ -1,0 +1,53 @@
+{
+    "slug": "sweet-parallax-card",
+    "name": "Sweet Parallax Card",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Rounded showcase card with a large title behind a cut-out product image, soft progressive blur at the bottom, and layered parallax that follows the mouse or device tilt.",
+    "contents": [
+        "Card with background photo, big outlined title, floating hero product image",
+        "Location line with pin icon and a subtitle over a progressive blur"
+    ],
+    "behavior": [
+        "Background, title and hero image shift at different depths following mouse position",
+        "On touch devices the first tap enables device orientation tilt, asking permission on iOS",
+        "Progressive blur built from five masked backdrop-blur layers"
+    ],
+    "props": [
+        {"name": "bodyBgGradient", "type": "string", "default": "from-black to-white"},
+        {"name": "cardWidth", "type": "string", "default": "600px"},
+        {"name": "cardAspectRatio", "type": "string", "default": "aspect-[2/1.1]"},
+        {"name": "cardRadius", "type": "string", "default": "rounded-[4em]"},
+        {"name": "mainTitle", "type": "string", "default": "Ceramics"},
+        {"name": "locationTitle", "type": "string", "default": "Kiln Studio"},
+        {"name": "regionSubTitle", "type": "string", "default": "Handmade in small batches"},
+        {"name": "bgImage", "type": "string", "default": "https://images.unsplash.com/photo-1769203905448-0ba060069e6f?auto=format&fit=crop&w=1400&q=80"},
+        {"name": "bgAlt", "type": "string", "default": "Earthenware jug on draped fabric"},
+        {"name": "heroImage", "type": "string", "default": "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/duo-brown.png"},
+        {"name": "heroAlt", "type": "string", "default": "Two tone brown vase"},
+        {"name": "heroWidth", "type": "string", "default": "60%"},
+        {"name": "heroHeight", "type": "string", "default": "100%"},
+        {"name": "mouseIntensityX", "type": "number", "default": 30},
+        {"name": "mouseIntensityY", "type": "number", "default": 20},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Title, location, subtitle, both images and alt text",
+        "Card size, aspect ratio, corner radius and backdrop gradient classes",
+        "Hero image size and parallax strength"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the blur strength or falloff", "where": "BLUR_LAYERS constant"},
+        {"change": "Change the pin icon", "where": "svg inside the location paragraph"}
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Listens to window mousemove and click for the parallax and resets them on unmount",
+        "Root disables touch scrolling and text selection (touch-none)",
+        "Uses Bebas Neue and Rubik through next/font/google"
+    ],
+    "mood": ["elegant", "playful", "modern", "soft"],
+    "industries": ["ecommerce", "ceramics", "travel", "lifestyle", "retail"],
+    "sections": ["portfolio", "features"],
+    "dependencies": []
+}
