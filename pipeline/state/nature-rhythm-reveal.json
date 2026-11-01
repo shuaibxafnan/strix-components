@@ -4,11 +4,12 @@
   "sourceHash": "f4a018cd533702c4c56fd59a6904b11a89e1d9fe7b722c03ba48b329eb6cf8b5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "depth-scan-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.502Z"
+  "note": "Renamed nature-rhythm-reveal -> depth-scan-reveal. className added; comments stripped; logic unchanged. next/font Tomorrow import and fixed loader overlay kept (fixed). Needs WebGPU and matching depth map. No frame, no variants.",
+  "updatedAt": "2026-11-01T10:03:00.900Z",
+  "gateOutput": "gates passed"
 }
