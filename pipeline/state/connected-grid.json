@@ -4,11 +4,12 @@
   "sourceHash": "ad527e746e78f38723025e32edaf2eb6f7663e9b6f235e9f1d3f3165660191f9",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "connected-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.412Z"
+  "note": "CDN gsap/ScrollTrigger/lenis -> npm dynamic imports. Removed page header and heading prop, End of the line outro and outroTitle prop, and mt-[10vh]/mb-[50vh] margins (ambiguous). Lenis takes over page scroll. Gate warning: style tag without template literal (scoped CSS string via dangerouslySetInnerHTML).",
+  "updatedAt": "2026-11-01T05:15:35.544Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

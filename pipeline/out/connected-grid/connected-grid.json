@@ -1,0 +1,54 @@
+{
+  "slug": "connected-grid",
+  "name": "Connected Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Scroll-driven staggered image grid where each photo scales up from a corner as it enters, with captions sliding in from the side, laid out on an 8-column grid with smooth scrolling.",
+  "contents": [
+    "Grid of image figures placed by row, column and span, each with title and year caption"
+  ],
+  "behavior": [
+    "Each frame scales from a top corner while the inner image zooms out, scrubbed by scroll",
+    "Captions slide in and fade, direction depends on whether the item sits left of the previous one",
+    "Smooth scrolling through Lenis",
+    "Below 53em the grid collapses to a single column"
+  ],
+  "props": [
+    {"name": "items", "type": "{src,title,year,row,col,span}[]", "default": "13 sample items"},
+    {"name": "bgColor", "type": "string", "default": "#0f0e0e"},
+    {"name": "textColor", "type": "string", "default": "#f0f0f0"},
+    {"name": "titleColor", "type": "string", "default": "#7f7f8f"},
+    {"name": "yearColor", "type": "string", "default": "#b9b3af"},
+    {"name": "columns", "type": "number", "default": 8},
+    {"name": "gapRem", "type": "number", "default": 4},
+    {"name": "imgRatio", "type": "number", "default": 1.5},
+    {"name": "captionOffset", "type": "number", "default": 1},
+    {"name": "imgScaleFrom", "type": "number", "default": 0},
+    {"name": "innerScaleFrom", "type": "number", "default": 5},
+    {"name": "captionShift", "type": "number", "default": 100},
+    {"name": "scrollStart", "type": "string", "default": "top bottom-=15%"},
+    {"name": "scrollEnd", "type": "string", "default": "+=100%"},
+    {"name": "ease", "type": "string", "default": "power4"},
+    {"name": "captionEase", "type": "string", "default": "power1"},
+    {"name": "lerp", "type": "number", "default": 0.15},
+    {"name": "smoothScroll", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, titles, years and grid placement of every item",
+    "Background, text, title and year colors",
+    "Column count, gap, image ratio, scroll range, easing and smooth scroll"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the breakpoint where the grid becomes a single column", "where": "min-width:53em media query in the css string"},
+    {"change": "Change the reveal animation", "where": "gsap timeline with fromTo calls inside gridItems.forEach"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+    "Relies on the ScrollTrigger plugin and page scroll for the reveal"
+  ],
+  "mood": ["editorial", "elegant", "dark", "modern"],
+  "industries": ["architecture", "hospitality", "interior design", "travel", "photography"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": ["gsap", "lenis"]
+}
