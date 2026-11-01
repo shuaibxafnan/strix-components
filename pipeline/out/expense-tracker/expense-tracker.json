@@ -1,0 +1,60 @@
+{
+  "slug": "expense-tracker",
+  "name": "Expense Tracker",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Dark accordion list of expense categories with totals, per-item icons, trend badges and amounts. Only one category is open at a time, with a monthly header showing the grand total.",
+  "contents": [
+    "Header with month pill, grand total and title",
+    "Collapsible category cards with icon previews, item count and total",
+    "Item rows with icon, title, trend badge and amount"
+  ],
+  "behavior": [
+    "Clicking a card expands it and collapses the others",
+    "Expanded rows slide in with a stagger",
+    "Toggle icon rotates between chevron and close"
+  ],
+  "props": [
+    {"name": "categories", "type": "{id,title,items:{id,icon,title,amount,trend}[]}[]", "default": "3 sample categories"},
+    {"name": "maxWidth", "type": "string", "default": "min(480px, 94vw)"},
+    {"name": "cardGap", "type": "string", "default": "10px"},
+    {"name": "backgroundColor", "type": "string", "default": "#0c0c0c"},
+    {"name": "cardBg", "type": "string", "default": "#141414"},
+    {"name": "cardExpandedBg", "type": "string", "default": "#181818"},
+    {"name": "borderColor", "type": "string", "default": "rgba(255,255,255,0.07)"},
+    {"name": "iconBg", "type": "string", "default": "rgba(255,255,255,0.06)"},
+    {"name": "iconExpandedBg", "type": "string", "default": "#1e1e1e"},
+    {"name": "accentColor", "type": "string", "default": "#c9a96e"},
+    {"name": "textPrimary", "type": "string", "default": "#f0ece4"},
+    {"name": "textSecondary", "type": "string", "default": "rgba(240,236,228,0.65)"},
+    {"name": "textMuted", "type": "string", "default": "rgba(240,236,228,0.28)"},
+    {"name": "titleFont", "type": "string", "default": "'Cormorant Garamond', Georgia, serif"},
+    {"name": "bodyFont", "type": "string", "default": "'DM Sans', system-ui, sans-serif"},
+    {"name": "showHeader", "type": "boolean", "default": true},
+    {"name": "headerTitle", "type": "string", "default": "Expenses"},
+    {"name": "headerSubtitle", "type": "string | null", "default": null},
+    {"name": "totalLabel", "type": "string", "default": "Total"},
+    {"name": "itemsLabel", "type": "string", "default": "items"},
+    {"name": "periodLabel", "type": "string", "default": "this month"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Categories, items, amounts, trends and labels",
+    "All colors, fonts, width and card spacing",
+    "Header visibility, title and subtitle"
+  ],
+  "needsCodeEdit": [
+    {"change": "Add new icons for custom item types", "where": "Icons object"},
+    {"change": "Allow several cards open at once", "where": "expandedId state and toggle function"},
+    {"change": "Change currency symbol", "where": "fmt function"}
+  ],
+  "fixed": [
+    "Header month pill always shows the current month and year",
+    "Item icon must be one of the keys in the Icons object",
+    "Loads Cormorant Garamond and DM Sans through a Google Fonts import"
+  ],
+  "mood": ["elegant", "dark", "minimal", "premium"],
+  "industries": ["fintech", "banking", "saas", "personal finance"],
+  "sections": ["features", "other"],
+  "dependencies": []
+}
