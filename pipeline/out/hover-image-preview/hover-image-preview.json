@@ -1,0 +1,45 @@
+{
+  "slug": "hover-image-preview",
+  "name": "Hover Image Preview",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Paragraph with highlighted inline links that reveal a floating image lens following the cursor with eased motion and inner parallax when a link is hovered.",
+  "contents": [
+    "Paragraph of text with inline highlighted links",
+    "Floating image lens that follows the cursor",
+    "Dotted background"
+  ],
+  "behavior": [
+    "Lens trails the pointer with eased animation and the image inside shifts with parallax",
+    "Hovering a link expands the lens from a small dot to a rounded image card and crossfades images",
+    "Surrounding text dims while the lens is shown",
+    "On touch, tapping a link toggles the lens and touch position moves it"
+  ],
+  "props": [
+    { "name": "intro", "type": "string", "default": "Contrary to popular belief, Lorem Ipsum is not " },
+    { "name": "links", "type": "{id,text,after,src}[]", "default": "4 sample links with Unsplash images" },
+    { "name": "primaryTextColor", "type": "string", "default": "#0f172a" },
+    { "name": "highlightColor", "type": "string", "default": "#fbbf24" },
+    { "name": "linkTextColor", "type": "string", "default": "#4f46e5" },
+    { "name": "backgroundColor", "type": "string", "default": "#fbfbfd" },
+    { "name": "dotColor", "type": "string", "default": "#e2e8f0" },
+    { "name": "lensSize", "type": "number", "default": 340 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Intro text, link labels, trailing text and images",
+    "All colors and lens width"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change lens speed", "where": "frameEase and innerEase constants in updatePhysics" },
+    { "change": "Change lens aspect ratio", "where": "lensHeight constant" }
+  ],
+  "fixed": [
+    "Lens uses a fixed-position element and window mouse and touch listeners, removed on unmount",
+    "Root fills at least the viewport height and centers its content."
+  ],
+  "mood": ["editorial", "playful", "minimal", "interactive"],
+  "industries": ["editorial", "portfolio", "agency", "publishing", "creative"],
+  "sections": ["about", "other"],
+  "dependencies": []
+}
