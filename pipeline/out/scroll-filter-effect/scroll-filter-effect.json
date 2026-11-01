@@ -1,0 +1,61 @@
+{
+  "slug": "scroll-filter-effect",
+  "name": "Scroll Filter Effect",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Scroll-driven image reveals where each image grows out of an SVG turbulence-distorted mask while two-part titles flip from a centered row into a grid layout beside it.",
+  "contents": [
+    "Seven story sections, each with a two-part title, paragraph and masked image",
+    "Per-section SVG filter with turbulence displacement"
+  ],
+  "behavior": [
+    "Image mask (circle or path) expands with scroll while a displacement filter distorts its edge",
+    "Titles move from a centered row into a per-section grid layout using GSAP Flip",
+    "Image scales up and brightens as it reveals",
+    "Smooth scrolling through Lenis, optional",
+    "Below 53em sections use a simple stacked layout, from 53em each section uses its own grid layout"
+  ],
+  "props": [
+    { "name": "items", "type": "{titleUp,titleDown,text,src,width,height,layout,mask,rFinal,dInitial,dFinal,baseFrequency,numOctaves,scale,dilate,blur,imageScale}[]", "default": "7 sample sections" },
+    { "name": "bgColor", "type": "string", "default": "#000" },
+    { "name": "textColor", "type": "string", "default": "#fff" },
+    { "name": "scrollStart", "type": "string", "default": "clamp(top bottom-=10%)" },
+    { "name": "scrollEnd", "type": "string", "default": "+=40%" },
+    { "name": "imageScale", "type": "number", "default": 1.2 },
+    { "name": "pathImageScale", "type": "number", "default": 1 },
+    { "name": "brightnessFrom", "type": "number", "default": 100 },
+    { "name": "brightnessTo", "type": "number", "default": 150 },
+    { "name": "titleSize", "type": "string", "default": "clamp(2rem,15vw,9rem)" },
+    { "name": "titleGap", "type": "string", "default": "1em" },
+    { "name": "textOpacity", "type": "number", "default": 0.5 },
+    { "name": "itemSpacing", "type": "string", "default": "30vmax" },
+    { "name": "lerp", "type": "number", "default": 0.1 },
+    { "name": "smoothScroll", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of sections, titles, text, images, layout number and mask settings",
+    "Background and text colors, title size and gap, text opacity, spacing between sections",
+    "Scroll start and end, image scale and brightness range, smooth scroll on or off"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Add or modify grid layouts",
+      "where": "LAYOUT_CSS constant"
+    },
+    {
+      "change": "Change title font weights or italic styling",
+      "where": "[data-title-up] and [data-title-down] rules in the css string"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+    "Each section has a 100vh title step and large spacing between sections to give the scroll animation its range",
+    "Layout number must be 1 to 7 to match a layout in LAYOUT_CSS",
+    "Desktop grid layouts apply from 53em, narrower screens use a simple stacked layout"
+  ],
+  "mood": ["cinematic", "dramatic", "editorial", "dark"],
+  "industries": ["film", "photography", "gaming", "publishing", "travel"],
+  "sections": ["portfolio", "gallery", "features"],
+  "dependencies": ["gsap", "lenis"]
+}
