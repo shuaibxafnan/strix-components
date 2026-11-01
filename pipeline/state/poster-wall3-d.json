@@ -4,11 +4,12 @@
   "sourceHash": "e3793bc76d80ef52a7b6d833e5238c4dd782c7023bc115ba23a669138d088083",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "movie-poster-wall",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.515Z"
+  "note": "renamed PosterWall3D -> MoviePosterWall; frame: none (root h-full -> h-screen); variants: none; responsive: already ok; kept default TMDB key, localStorage, wheel capture",
+  "updatedAt": "2026-11-01T10:52:13.887Z",
+  "gateOutput": "gates passed"
 }

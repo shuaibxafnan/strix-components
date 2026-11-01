@@ -1,0 +1,69 @@
+{
+  "slug": "movie-poster-wall",
+  "name": "Movie Poster Wall",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "WebGL wall of tilted movie and TV posters pulled from TMDB that drifts upward on its own and speeds up on mouse wheel, with a large centered logo overlay.",
+  "contents": [
+    "Three.js canvas with a grid of rounded poster meshes in tilted perspective",
+    "Centered logo text with optional subtext overlay"
+  ],
+  "behavior": [
+    "Posters are fetched from TMDB and cached in localStorage, shuffled each load",
+    "Wall scrolls upward automatically and loops by recycling rows",
+    "Mouse wheel over the component advances the wall instead of scrolling the page",
+    "Canvas resizes with the window width"
+  ],
+  "props": [
+    {"name":"tmdbApiKey","type":"string","default":"17f6c7973c2ed29ef001953add2d04d3"},
+    {"name":"watchProviders","type":"number[]","default":[386,387]},
+    {"name":"logoText","type":"string","default":"STRIX"},
+    {"name":"logoSubtext","type":"string","default":""},
+    {"name":"logoFont","type":"string","default":"system-ui, sans-serif"},
+    {"name":"logoColor","type":"string","default":"#ffffff"},
+    {"name":"logoSize","type":"string","default":"8vw"},
+    {"name":"logoSubSize","type":"string","default":"2vw"},
+    {"name":"logoLetterSpacing","type":"string","default":"0.3em"},
+    {"name":"showLogo","type":"boolean","default":true},
+    {"name":"cols","type":"number","default":11},
+    {"name":"rows","type":"number","default":10},
+    {"name":"posterW","type":"number","default":27},
+    {"name":"posterH","type":"number","default":40},
+    {"name":"posterPadding","type":"number","default":2},
+    {"name":"posterRadius","type":"number","default":3},
+    {"name":"posterResIndex","type":"number","default":2},
+    {"name":"fov","type":"number","default":75},
+    {"name":"cameraRotationX","type":"number","default":0.6},
+    {"name":"cameraY","type":"number|null","default":null},
+    {"name":"cameraZ","type":"number","default":100},
+    {"name":"lightIntensity","type":"number","default":2500},
+    {"name":"lightDistance","type":"number","default":500},
+    {"name":"lightZ","type":"number","default":50},
+    {"name":"autoScrollSpeed","type":"number","default":0.3},
+    {"name":"scrollMultiplier","type":"number","default":1},
+    {"name":"scrollIdleMs","type":"number","default":50},
+    {"name":"backgroundColor","type":"string","default":"#000000"},
+    {"name":"className","type":"string","default":""}
+  ],
+  "editableByProps": [
+    "Logo text, subtext, font, color, size, spacing and visibility",
+    "Grid size, poster dimensions, spacing and corner radius",
+    "Camera angle, field of view, light, scroll speeds and background color",
+    "TMDB key and streaming providers"
+  ],
+  "needsCodeEdit": [
+    {"change":"Use a different poster source than TMDB","where":"fetchAssetList and renderPosters functions inside the useEffect"},
+    {"change":"Change the logo text shadow","where":"textShadow in the logo span style"},
+    {"change":"Change the canvas aspect ratio","where":"414 / 1075 in canvasH and onResize"}
+  ],
+  "fixed": [
+    "Requires network access to the TMDB API and image CDN and uses localStorage for caching",
+    "Mouse wheel over the component is captured with preventDefault, so the page does not scroll while hovering it",
+    "Canvas is sized to window width at a fixed aspect ratio and pinned to the bottom of a full-viewport container",
+    "Ships with a default TMDB API key that should be replaced with your own"
+  ],
+  "mood": ["cinematic","immersive","bold","dark"],
+  "industries": ["streaming","entertainment","film","media"],
+  "sections": ["hero","background"],
+  "dependencies": ["three"]
+}
