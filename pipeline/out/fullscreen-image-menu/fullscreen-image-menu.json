@@ -1,0 +1,47 @@
+{
+  "slug": "fullscreen-image-menu",
+  "name": "Fullscreen Image Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-screen hero with a looping video or image background and a round toggle button that opens a right-aligned link list. Hovering a link crossfades the background to that link's image.",
+  "contents": [
+    "Logo text block at top left",
+    "Looping background video with poster, or a hero image",
+    "Round hamburger toggle button at top right",
+    "Numbered link list with subtitle and serif italic label",
+    "One full-bleed background image per link"
+  ],
+  "behavior": [
+    "Toggle button morphs into a cross and slides the link list in",
+    "Hero dims when open and dims further while a link is hovered or focused",
+    "Hovered or focused link crossfades in its own background image with a slight zoom",
+    "Link rows shift left and show an underline on hover"
+  ],
+  "props": [
+    { "name": "logoTextTop", "type": "string", "default": "STUDIO" },
+    { "name": "logoTextBottom", "type": "string", "default": "HOME" },
+    { "name": "linksData", "type": "{num,label,sub,href,bg,bgAlt}[]", "default": "4 sample links" },
+    { "name": "heroImage", "type": "string", "default": "https://images.unsplash.com/photo-1743309411498-a0f4f4b96b65?auto=format&fit=crop&w=2000&q=80" },
+    { "name": "heroAlt", "type": "string", "default": "Hero background" },
+    { "name": "videoSrc", "type": "string", "default": "https://www.pexels.com/download/video/12426854/" },
+    { "name": "toggleLabel", "type": "string", "default": "Toggle menu" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Logo text, link count, labels, subtitles, numbers, hrefs and per-link images",
+    "Hero video or image; an empty videoSrc shows the image instead",
+    "Toggle button aria label"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change colors, blur and dimming levels", "where": "scrim and baseOpacity constants" },
+    { "change": "Change fonts", "where": "serif and sans font definitions at the top" }
+  ],
+  "fixed": [
+    "Uses next/font/google for Cormorant Garamond and Inter, so it needs Next.js",
+    "Fills the viewport height as a full-bleed section"
+  ],
+  "mood": ["cinematic", "elegant", "immersive", "minimal"],
+  "industries": ["travel", "hospitality", "architecture", "fashion", "agency"],
+  "sections": ["hero", "navbar"],
+  "dependencies": []
+}
