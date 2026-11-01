@@ -1,0 +1,73 @@
+{
+  "slug": "full-screen-column-morph",
+  "name": "Full Screen Column Morph",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen image that morphs into a narrow center column while the neighboring images fold in from both sides in 3D, with a big title that wipes away. A button toggles back.",
+  "contents": [
+    "Full-viewport gradient background with a row of image columns",
+    "Large title split into characters",
+    "Toggle button"
+  ],
+  "behavior": [
+    "Clip-path morph between full-screen and narrow column image",
+    "Side columns rotate in with 3D perspective and staggered fold",
+    "Title characters scale out and back in with stagger",
+    "Optional brightness flash when returning to full screen",
+    "Ignores clicks while animating"
+  ],
+  "props": [
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "images", "type": "string[]", "default": "5 sample images"},
+    {"name": "currentIndex", "type": "number", "default": 2},
+    {"name": "title", "type": "string", "default": "Adventure"},
+    {"name": "buttonLabel", "type": "string", "default": "Toggle effect"},
+    {"name": "startOpen", "type": "boolean", "default": true},
+    {"name": "bgColor", "type": "string", "default": "#010101"},
+    {"name": "bgColor2", "type": "string", "default": "#272b31"},
+    {"name": "titleColor", "type": "string", "default": "#ffffff"},
+    {"name": "titleSize", "type": "string", "default": "11vw"},
+    {"name": "titleWeight", "type": "number", "default": 600},
+    {"name": "titleTracking", "type": "string", "default": "-0.01em"},
+    {"name": "uppercase", "type": "boolean", "default": true},
+    {"name": "buttonBg", "type": "string", "default": "#ffffff"},
+    {"name": "buttonColor", "type": "string", "default": "#1e2f32"},
+    {"name": "clipLeft", "type": "number", "default": 39},
+    {"name": "clipRight", "type": "number", "default": 61},
+    {"name": "columnGap", "type": "string", "default": "0"},
+    {"name": "columnRadius", "type": "string", "default": "0"},
+    {"name": "previewScale", "type": "number", "default": 1.25},
+    {"name": "perspective", "type": "number", "default": 1000},
+    {"name": "rotateY", "type": "number", "default": 60},
+    {"name": "columnOpacity", "type": "number", "default": 0.7},
+    {"name": "exitScale", "type": "number", "default": 0.8},
+    {"name": "duration", "type": "number", "default": 1.2},
+    {"name": "closeDuration", "type": "number", "default": 1},
+    {"name": "foldDuration", "type": "number", "default": 0.7},
+    {"name": "foldDelay", "type": "number", "default": 0.45},
+    {"name": "charStagger", "type": "number", "default": 0.3},
+    {"name": "columnStagger", "type": "number", "default": 0.2},
+    {"name": "easeIn", "type": "string", "default": "power4.inOut"},
+    {"name": "easeOut", "type": "string", "default": "expo"},
+    {"name": "flashFilter", "type": "boolean", "default": true}
+  ],
+  "editableByProps": [
+    "Images, featured image index, title and button label",
+    "Colors for background gradient, title and button",
+    "Title size, weight, tracking and case",
+    "Column clip width, gap, radius, 3D rotation, opacity and scale",
+    "Durations, staggers and easing"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the title position", "where": "h2 element with mt-[10vh]"},
+    {"change": "Change the closing animation", "where": "showPreview function"}
+  ],
+  "fixed": [
+    "Root is full-bleed and always h-screen",
+    "Needs an odd-friendly image count with the featured image hidden from the side columns"
+  ],
+  "mood": ["cinematic", "bold", "immersive", "modern"],
+  "industries": ["travel", "photography", "fashion", "film", "portfolio"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}
