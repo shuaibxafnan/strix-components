@@ -1,0 +1,70 @@
+{
+    "slug": "status-mark",
+    "name": "Status Mark",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Small animated status icon with optional label. Morphs between pending, in progress (spinner or progress ring), completed (check), failed and cancelled (cross), with strikethrough on done.",
+    "contents": [
+        "SVG ring icon with check and cross paths",
+        "Optional text label with strikethrough line on completion"
+    ],
+    "behavior": [
+        "Ring morphs from dashed (pending) to solid arc (running, done, failed) with spring and eased motion",
+        "Running without progress spins an indeterminate arc, with a progress number it fills the ring to that fraction",
+        "Done draws a check in the done color, failed draws a cross in the error color, cancelled draws a cross in the base color",
+        "Label is struck through on done when strike is true",
+        "Reduced motion disables spinning and morphing, indeterminate state breathes by opacity instead"
+    ],
+    "props": [
+        {"name": "status", "type": "'pending' | 'running' | 'done' | 'failed' | 'cancelled'", "default": "pending"},
+        {"name": "progress", "type": "number (0 to 1)", "default": "undefined"},
+        {"name": "label", "type": "ReactNode", "default": "undefined"},
+        {"name": "color", "type": "string", "default": "currentColor"},
+        {"name": "doneColor", "type": "string", "default": "#22c55e"},
+        {"name": "errorColor", "type": "string", "default": "#ef4444"},
+        {"name": "size", "type": "number", "default": 20},
+        {"name": "strokeWidth", "type": "number", "default": 2},
+        {"name": "dashes", "type": "number", "default": 8},
+        {"name": "fontSize", "type": "number", "default": 14},
+        {"name": "spinDuration", "type": "number", "default": 1100},
+        {"name": "arcLength", "type": "number", "default": 0.68},
+        {"name": "drawDuration", "type": "number", "default": 240},
+        {"name": "fillOpacity", "type": "number", "default": 0.06},
+        {"name": "strike", "type": "boolean", "default": true},
+        {"name": "strikeDelay", "type": "number", "default": 60},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "style", "type": "object", "default": "undefined"}
+    ],
+    "editableByProps": [
+        "Status, progress fraction and label text",
+        "Colors for base, done and error states",
+        "Icon size, stroke width, dash count, label font size",
+        "Spin speed, arc length, check draw duration, fill opacity, strikethrough on or off and its delay"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the spoken status names or add a status",
+            "where": "TEXT constant and the group-data-[status=...] classes"
+        },
+        {
+            "change": "Change check or cross shapes",
+            "where": "CHECK and CROSS constants"
+        },
+        {
+            "change": "Change morph or spring timing",
+            "where": "UI and MORPH constants"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package (motion/react)",
+        "Inline-flex element with no frame, sized by the size prop",
+        "Cancelled status keeps the base color and dims the label",
+        "Spoken status text is hardcoded in English in the TEXT constant",
+        "Injects a small style tag for the sm-breathe keyframes",
+        "Works at all screen sizes, no hover interaction"
+    ],
+    "mood": ["minimal", "clean", "functional"],
+    "industries": ["saas", "devtools", "project management", "fintech"],
+    "sections": ["features", "other"],
+    "dependencies": ["motion"]
+}
