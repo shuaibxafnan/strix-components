@@ -4,11 +4,12 @@
   "sourceHash": "bfb667c0f64398f367694bc8e6b763076d91fa32d18683c7f0c7708759e9d83a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "clipped-scroll-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.409Z"
+  "note": "CDN gsap/ScrollTrigger -> npm dynamic imports; imageAlts prop (default [], alts still empty). Category scroll-section-layouts. Gates passed.",
+  "updatedAt": "2026-11-01T05:08:43.857Z",
+  "gateOutput": "gates passed"
 }

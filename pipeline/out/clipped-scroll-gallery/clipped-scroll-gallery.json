@@ -1,0 +1,68 @@
+{
+    "slug": "clipped-scroll-gallery",
+    "name": "Clipped Scroll Gallery",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Pinned scroll sequence where a 3D perspective image collage zooms toward the viewer, followed by full-screen slides that wipe away with clip-path while a thumbnail stack reveals in sync.",
+    "contents": [
+        "Header and footer labels around the sequence",
+        "Perspective collage of images at configurable positions",
+        "Slides with blurred background image, title and meta lines",
+        "Thumbnail stack beside the slides"
+    ],
+    "behavior": [
+        "Gallery section is pinned and scrubbed: the wrapper moves along Z while each image scales up",
+        "Slide section is pinned and each slide clip-path wipes upward to reveal the next",
+        "Thumbnails wipe in sync with a scrub lag",
+        "Layout refreshes on prop changes and all triggers are reverted on unmount"
+    ],
+    "props": [
+        { "name": "images", "type": "string[]", "default": "12 sample Unsplash images" },
+        { "name": "imageAlts", "type": "string[]", "default": [] },
+        { "name": "bgColor", "type": "string", "default": "#0a0a0a" },
+        { "name": "textColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "headerLabel", "type": "string", "default": "scroll down" },
+        { "name": "footerLabel", "type": "string", "default": "scroll up" },
+        { "name": "showBookends", "type": "boolean", "default": true },
+        { "name": "spacerCount", "type": "number", "default": 2 },
+        { "name": "perspective", "type": "string", "default": "100dvh" },
+        { "name": "galleryScrollLength", "type": "number", "default": 3 },
+        { "name": "galleryEndZ", "type": "string", "default": "50dvh" },
+        { "name": "galleryLayout", "type": "{width,left,right,top,endScale,aspect}[]", "default": "6 sample positions" },
+        { "name": "galleryCenterIndex", "type": "number", "default": 4 },
+        { "name": "slides", "type": "{title,meta,imageIndex}[]", "default": "3 sample slides" },
+        { "name": "parallaxScrollLength", "type": "number", "default": 3 },
+        { "name": "parallaxScrub", "type": "number", "default": 1 },
+        { "name": "blurAmount", "type": "number", "default": 12 },
+        { "name": "blurScale", "type": "number", "default": 1.1 },
+        { "name": "thumbWidth", "type": "string", "default": "35%" },
+        { "name": "thumbLeft", "type": "string", "default": "7.5%" },
+        { "name": "thumbAspect", "type": "string", "default": "1/1" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Images, alt text, slide titles and meta lines",
+        "Collage positions, sizes and zoom amounts",
+        "Background and text colors, header and footer labels",
+        "Scroll lengths, blur, thumbnail size and position"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the wipe direction of slides",
+            "where": "CLOSED_CLIP constant"
+        },
+        {
+            "change": "Change typography",
+            "where": "Root div className font-[Helvetica,Arial,sans-serif]"
+        }
+    ],
+    "fixed": [
+        "Pins two sections with GSAP ScrollTrigger and adds scroll distance to the page",
+        "Includes full-screen spacer blocks between the gallery and slides (spacerCount) to give scroll room",
+        "Image index slots are shared between the collage and slides and wrap around the images array"
+    ],
+    "mood": ["cinematic", "immersive", "editorial", "dark"],
+    "industries": ["photography", "portfolio", "travel", "art", "agency"],
+    "sections": ["gallery", "portfolio"],
+    "dependencies": ["gsap"]
+}
