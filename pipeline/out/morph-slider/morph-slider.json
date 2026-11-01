@@ -1,0 +1,204 @@
+{
+    "slug": "morph-slider",
+    "name": "Morph Slider",
+    "category": "sliders-carousels",
+    "isReactBits": true,
+    "description": "WebGL image slider that transitions between slides with shader effects (melt, ripple, shear, swirl), with drag to scrub, arrows, dot indicators, captions and optional autoplay.",
+    "contents": [
+        "WebGL canvas rendering the current and next image with a transition shader",
+        "Caption pill per slide that fades and blurs in",
+        "Previous and next arrow buttons",
+        "Dot indicators",
+        "Rounded dark frame filling its parent"
+    ],
+    "behavior": [
+        "Images are blended in a fragment shader with chromatic aberration, slow idle drift and a soft vignette tinted by overlayColor",
+        "Dragging horizontally scrubs the transition progress, release past 40 percent completes it, otherwise it snaps back",
+        "Arrow keys, arrow buttons and dots trigger a timed gsap transition",
+        "Optional autoplay advances after a delay and pauses while the mouse hovers",
+        "Loop wraps around the ends, with loop off the slider stops at the first and last slide",
+        "Honors prefers-reduced-motion by dropping distortion effects and shortening durations",
+        "Ripple transition starts from the pointer position of the last press"
+    ],
+    "props": [
+        {
+            "name": "items",
+            "type": "{image,caption}[]",
+            "default": "4 sample Unsplash images captioned One to Four"
+        },
+        {
+            "name": "startIndex",
+            "type": "number",
+            "default": 0
+        },
+        {
+            "name": "transition",
+            "type": "'melt' | 'ripple' | 'shear' | 'swirl'",
+            "default": "melt"
+        },
+        {
+            "name": "duration",
+            "type": "number",
+            "default": 1.1
+        },
+        {
+            "name": "ease",
+            "type": "string",
+            "default": "power2.inOut"
+        },
+        {
+            "name": "intensity",
+            "type": "number",
+            "default": 0.55
+        },
+        {
+            "name": "scale",
+            "type": "number",
+            "default": 2.4
+        },
+        {
+            "name": "aberration",
+            "type": "number",
+            "default": 0.35
+        },
+        {
+            "name": "drift",
+            "type": "number",
+            "default": 0.4
+        },
+        {
+            "name": "autoplay",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "autoplayDelay",
+            "type": "number",
+            "default": 4
+        },
+        {
+            "name": "loop",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "radius",
+            "type": "number",
+            "default": 16
+        },
+        {
+            "name": "overlayColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "showCaptions",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "showControls",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "showIndicators",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Slide images and captions, number of slides, starting slide",
+        "Transition style, duration, easing, distortion intensity, noise scale, aberration and idle drift",
+        "Autoplay on or off and delay, looping",
+        "Corner radius and vignette overlay color",
+        "Show or hide captions, arrow controls and dot indicators",
+        "Size and extra styling through className, extra props are spread on the root"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change arrow button, caption or dot styling and colors",
+            "where": "Tailwind classes in the JSX of MorphSlider (showCaptions, showControls, showIndicators blocks)"
+        },
+        {
+            "change": "Add a new transition effect",
+            "where": "TRANSITIONS constant and the uMode branches in fragmentShader"
+        },
+        {
+            "change": "Change the fallback color shown before images load",
+            "where": "makeFallbackTexture function"
+        },
+        {
+            "change": "Change the drag completion threshold or release speed",
+            "where": "endDrag method of MorphEngine"
+        },
+        {
+            "change": "Change the frame background color",
+            "where": "bg-[#0c0c0e] class on the root div"
+        }
+    ],
+    "fixed": [
+        "Root is w-full h-full, so the parent must have an explicit height or the slider collapses",
+        "Images must allow cross-origin loading (CORS) since they are loaded as WebGL textures",
+        "Needs WebGL support, there is no non-WebGL fallback and slides stay dark until images load",
+        "Engine is rebuilt whenever the items array identity or startIndex changes, so pass a stable items array",
+        "Pixel ratio is capped at 2",
+        "Captions, controls and indicators have fixed pixel positions and sizes, and aria labels are hardcoded English",
+        "Touch scrolling is limited to vertical (touch-action pan-y) so horizontal swipes drag the slider",
+        "Requires gsap and ogl",
+        "Usable on small screens as the canvas follows the container size"
+    ],
+    "mood": [
+        "immersive",
+        "cinematic",
+        "fluid",
+        "modern"
+    ],
+    "industries": [
+        "photography",
+        "travel",
+        "fashion",
+        "real estate",
+        "creative agency"
+    ],
+    "sections": [
+        "hero",
+        "gallery",
+        "portfolio"
+    ],
+    "dependencies": [
+        "ogl",
+        "gsap"
+    ],
+    "variants": {
+        "prop": "transition",
+        "default": "melt",
+        "options": [
+            {
+                "value": "melt",
+                "look": "Noise-warped dissolve where the next image bleeds through organic fbm blobs",
+                "useWhen": "Hero or lookbook slider for a soft, artistic brand such as a photography studio"
+            },
+            {
+                "value": "ripple",
+                "look": "Circular wave expanding from the pointer press position, revealing the next image inside the ring",
+                "useWhen": "Interactive showcase where visitors click or drag and the effect should respond to where they touch"
+            },
+            {
+                "value": "shear",
+                "look": "Horizontal sliced strips that jitter sideways while a wipe sweeps across in the swipe direction",
+                "useWhen": "Tech, music or streetwear landing page that wants a glitchy, energetic slide change"
+            },
+            {
+                "value": "swirl",
+                "look": "Both images twist around the center while crossfading",
+                "useWhen": "Product or travel feature slider that wants a dreamy, hypnotic transition"
+            }
+        ]
+    }
+}
