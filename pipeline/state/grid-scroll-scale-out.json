@@ -4,11 +4,12 @@
   "sourceHash": "5519d9f92b59a01bca24cc057a98f3f1436aac223b5ec4ab81639c65fb728f98",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "grid-scroll-scale-out",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.454Z"
+  "note": "No rename. CDN loader and new Function import replaced with dynamic imports; deps gsap, lenis. Added className. Dropped smooth:true. Removed console.error catch. Frame: none. Variants: none. Lenis takes over scroll.",
+  "updatedAt": "2026-11-01T07:56:36.350Z",
+  "gateOutput": "gates passed"
 }
