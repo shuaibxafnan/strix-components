@@ -4,11 +4,12 @@
   "sourceHash": "d3289e1500d0c1da6133f8a0f20276af8d986287352b7542d35bcfdb1166b2af",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "projector-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.518Z"
+  "note": "Gates passed. Frame kept (full-screen centered). Added className. Renders placeholder until mount. No variants.",
+  "updatedAt": "2026-11-01T10:57:42.823Z",
+  "gateOutput": "gates passed"
 }

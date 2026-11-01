@@ -1,0 +1,56 @@
+{
+    "slug": "projector-slideshow",
+    "name": "Projector Slideshow",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Old-school projector slideshow where photos slide in with a quick sweep, with lens blur, light flicker and drifting dust motes over a framed screen.",
+    "contents": [
+        "Framed projection screen showing one image at a time",
+        "Floating dust motes layered over the images"
+    ],
+    "behavior": [
+        "Advances to the next image on an interval with a fast slide and rotate transition",
+        "Image starts blurred and focuses shortly after mount",
+        "Screen brightness flickers randomly",
+        "Dust motes spawn periodically and drift across the screen while fading"
+    ],
+    "props": [
+        {"name": "images", "type": "{src,alt}[]", "default": "4 sample ocean photos"},
+        {"name": "slideDuration", "type": "number", "default": 5000},
+        {"name": "transitionDuration", "type": "number", "default": 270},
+        {"name": "size", "type": "string", "default": "w-[100vmin] h-[80vmin]"},
+        {"name": "containerBg", "type": "string", "default": "bg-[#eee]"},
+        {"name": "pageBg", "type": "string", "default": "bg-[#888]"},
+        {"name": "baseBlur", "type": "number", "default": 0.4},
+        {"name": "flickerInterval", "type": "number", "default": 16},
+        {"name": "boxShadow", "type": "string", "default": "shadow-[0.25em_0.25em_2.5em_rgba(0,0,0,0.6),inset_0_0_6em_rgba(0,0,0,0.375)]"},
+        {"name": "moteSpawnInterval", "type": "number", "default": 4000},
+        {"name": "moteBaseDuration", "type": "number", "default": 8500},
+        {"name": "moteRandomDurationRange", "type": "number", "default": 3000},
+        {"name": "moteColor", "type": "string", "default": "bg-black"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Images and alt text, slide timing and transition speed",
+        "Screen size, background, shadow and mote colors as Tailwind classes",
+        "Blur, flicker rate and dust mote timing"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the slide transition motion",
+            "where": "The transform strings inside the images map"
+        },
+        {
+            "change": "Change mote size or opacity range",
+            "where": "createMote function inside the mote useEffect"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Renders an empty placeholder until mounted to avoid hydration mismatch"
+    ],
+    "mood": ["nostalgic", "cinematic", "warm"],
+    "industries": ["photography", "film", "travel", "events"],
+    "sections": ["gallery", "hero"],
+    "dependencies": []
+}
