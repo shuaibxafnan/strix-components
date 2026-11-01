@@ -1,0 +1,129 @@
+{
+  "slug": "stretch-morph-text",
+  "name": "Stretch Morph Text",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Bold SVG lettering in four stacked color layers that stretch tall, squish flat, then settle, looping with a staggered per-letter wave on a solid background.",
+  "contents": [
+    "Seven-glyph SVG wordmark drawn as four stacked colored layers"
+  ],
+  "behavior": [
+    "Each layer runs a looping GSAP timeline: stretch up, squish down, stretch, return",
+    "Letters animate with a stagger and layers start with offset delays"
+  ],
+  "props": [
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#000"
+    },
+    {
+      "name": "colorOne",
+      "type": "string",
+      "default": "#F41144"
+    },
+    {
+      "name": "colorTwo",
+      "type": "string",
+      "default": "#6E0DFE"
+    },
+    {
+      "name": "colorThree",
+      "type": "string",
+      "default": "#F3C607"
+    },
+    {
+      "name": "colorFour",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "stretchScale",
+      "type": "number",
+      "default": 4.5
+    },
+    {
+      "name": "squishScale",
+      "type": "number",
+      "default": 0.35
+    },
+    {
+      "name": "squishShift",
+      "type": "number",
+      "default": 68
+    },
+    {
+      "name": "stretchShift",
+      "type": "number",
+      "default": -52
+    },
+    {
+      "name": "morphDuration",
+      "type": "number",
+      "default": 0.22
+    },
+    {
+      "name": "morphDelay",
+      "type": "number",
+      "default": 0.12
+    },
+    {
+      "name": "staggerEach",
+      "type": "number",
+      "default": 0.065
+    },
+    {
+      "name": "layerDelays",
+      "type": "number[]",
+      "default": [
+        0.15,
+        0.1,
+        0.05,
+        0
+      ]
+    },
+    {
+      "name": "repeatDelay",
+      "type": "number",
+      "default": 0.65
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Background and four layer colors",
+    "Stretch and squish amounts, shifts, durations, stagger, layer delays and loop pause"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the lettering",
+      "where": "LETTER_PATHS constant"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Text shape is fixed SVG paths"
+  ],
+  "mood": [
+    "bold",
+    "playful",
+    "energetic",
+    "retro"
+  ],
+  "industries": [
+    "music",
+    "entertainment",
+    "fashion",
+    "media",
+    "events"
+  ],
+  "sections": [
+    "hero"
+  ],
+  "dependencies": [
+    "gsap"
+  ]
+}
