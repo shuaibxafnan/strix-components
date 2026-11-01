@@ -4,11 +4,12 @@
   "sourceHash": "abc2dbb782efa6931272cc7be78446338529ebc0b05103a4102d9c27c881185e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "mountain-parallax-card",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.499Z"
+  "note": "gates passed. bodyBgGradient prop and mounted skeleton removed; frame root h-screen with className. vanilla-tilt via dynamic import, destroyed on cleanup. Google Fonts injection kept (fixed). No variants.",
+  "updatedAt": "2026-11-01T09:56:29.443Z",
+  "gateOutput": "gates passed"
 }

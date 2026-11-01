@@ -1,0 +1,50 @@
+{
+  "slug": "mountain-parallax-card",
+  "name": "Mountain Parallax Card",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Photo destination card with a 3D tilt and glare on hover, layered depth parallax, a gold glowing frame, an elevation badge, location title and a call to action button.",
+  "contents": [
+    "Full-bleed background photo card with glowing gold border",
+    "Elevation badge, location title with icon, destination subtitle",
+    "Call to action button with arrow icon"
+  ],
+  "behavior": [
+    "Card tilts toward the pointer with glare and slight scale using vanilla-tilt",
+    "Inner layers sit at different translateZ depths for a parallax feel",
+    "Border glow intensifies on hover",
+    "Card width is capped and scales down on small screens"
+  ],
+  "props": [
+    {"name": "cardWidth", "type": "string", "default": "350px"},
+    {"name": "cardAspectRatio", "type": "string", "default": "aspect-[9/12]"},
+    {"name": "bgImage", "type": "string", "default": "https://images.unsplash.com/photo-1779862946918-a129ac57c60e?auto=format&fit=crop&w=1080&q=80"},
+    {"name": "borderGlowColor", "type": "string", "default": "rgba(255,214,102,0.4)"},
+    {"name": "elevationText", "type": "string", "default": "4,478 m"},
+    {"name": "locationName", "type": "string", "default": "Matterhorn"},
+    {"name": "destinationText", "type": "string", "default": "Zermatt, Switzerland"},
+    {"name": "btnText", "type": "string", "default": "Take the tour"},
+    {"name": "maxTilt", "type": "number", "default": 10},
+    {"name": "tiltSpeed", "type": "number", "default": 500},
+    {"name": "perspective", "type": "number", "default": 1800},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Background image, all text, button label",
+    "Card width, aspect ratio and border glow color",
+    "Tilt strength, speed and perspective"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change gold accent colors of badge, button and hover glow", "where": "hover:shadow-[0_0_0_3px_rgba(255,214,102,0.6)...] class on the tilt card and the yellow classes on the badge and button"},
+    {"change": "Change glare strength or hover scale", "where": "VanillaTilt.init options inside the useEffect"},
+    {"change": "Change title and body fonts", "where": "link element with id mountain-card-fonts and font-['Playfair_Display'] class on the h1"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Injects a Google Fonts link (Inter, Playfair Display) into document head once"
+  ],
+  "mood": ["elegant", "adventurous", "premium", "tactile"],
+  "industries": ["travel", "tourism", "hospitality", "outdoor", "real estate"],
+  "sections": ["portfolio", "features", "cta"],
+  "dependencies": ["vanilla-tilt"]
+}
