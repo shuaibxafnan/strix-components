@@ -4,11 +4,12 @@
   "sourceHash": "10c2fc92e6bbd2acc88900e8db7a08dd6aa9290dcd6b4ce765e67ee7dcc614f9",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "justified-lightbox-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.512Z"
+  "note": "Renamed PexelsGallery->JustifiedLightboxGallery. Removed Gallery Collection header and min-h-screen (ambiguous), empty comment placeholders, invalid classes. Added className, py-8 root. Lightbox sets body overflow hidden, reset on close/unmount.",
+  "updatedAt": "2026-11-01T10:32:36.442Z",
+  "gateOutput": "gates passed"
 }

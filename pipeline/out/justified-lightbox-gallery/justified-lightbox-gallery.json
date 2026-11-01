@@ -1,0 +1,50 @@
+{
+  "slug": "justified-lightbox-gallery",
+  "name": "Justified Lightbox Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Justified-row photo gallery where images fill each row at equal height, with a dim and zoom hover effect and a fullscreen lightbox with keyboard and button navigation.",
+  "contents": [
+    "Flexible justified grid of 28 landscape images",
+    "Fullscreen lightbox with caption, counter, close and previous/next buttons"
+  ],
+  "behavior": [
+    "Images fade in once loaded and lazy load",
+    "Hover or focus brightens and zooms the image and shows an accent border",
+    "Click, Enter or Space opens the lightbox; Escape closes, arrow keys navigate with wraparound",
+    "Page scroll is locked while the lightbox is open",
+    "Below 480px the grid becomes a single column"
+  ],
+  "props": [
+    { "name": "images", "type": "{id,src,alt}[]", "default": "28 sample nature photos" },
+    { "name": "rowHeight", "type": "string", "default": "h-[32vh] sm:h-[40vh]" },
+    { "name": "gap", "type": "string", "default": "p-[3px]" },
+    { "name": "bgColor", "type": "string", "default": "bg-[#18191e]" },
+    { "name": "accentColor", "type": "string", "default": "#c8a96e" },
+    { "name": "dimOnHover", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, alt text and captions",
+    "Row height, gap, background class and accent color",
+    "Toggle dimmed resting state of images"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change lightbox backdrop color or animation",
+      "where": "Modal function root div and the fadeIn and slideUp keyframes"
+    },
+    {
+      "change": "Change small-screen breakpoint behavior",
+      "where": "max-[480px] classes on the ul and li elements"
+    }
+  ],
+  "fixed": [
+    "Sets document body overflow to hidden while the lightbox is open and resets it on close and unmount",
+    "Lightbox listens for keydown on window while open"
+  ],
+  "mood": ["photographic", "immersive", "elegant", "dark"],
+  "industries": ["photography", "travel", "outdoor", "portfolio", "editorial"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
