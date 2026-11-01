@@ -1,0 +1,118 @@
+{
+    "slug": "prism",
+    "name": "Prism",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 raymarched glowing pyramid prism with iridescent color bands that rotates, tilts toward the pointer, and fills its container as an animated background.",
+    "contents": [
+        "Container div holding a full-size WebGL2 canvas rendering a raymarched glowing prism"
+    ],
+    "behavior": [
+        "Fragment shader raymarches a pyramid shape with glowing color bands, with optional palette from custom colors",
+        "Animation type rotates the prism on its Y axis, rotates it in 3D, tilts only on hover, or stays static",
+        "Prism tilts toward the pointer with inertia while the pointer is inside the container",
+        "Glow ignites with an intro fade-in on mount",
+        "Render loop pauses when offscreen, tab hidden, or nothing is animating; reduced motion disables spin, intro and tilt",
+        "Canvas resizes with the container through ResizeObserver, rendered at reduced resolution for performance"
+    ],
+    "props": [
+        { "name": "height", "type": "number", "default": 3.5 },
+        { "name": "baseWidth", "type": "number", "default": 5.5 },
+        { "name": "animationType", "type": "'rotate' | '3drotate' | 'rotate3d' | 'hover' | 'static'", "default": "rotate" },
+        { "name": "glow", "type": "number", "default": 1 },
+        { "name": "offset", "type": "{x:number,y:number}", "default": "undefined (0,0)" },
+        { "name": "noise", "type": "number", "default": 0 },
+        { "name": "scale", "type": "number", "default": 3.6 },
+        { "name": "hueShift", "type": "number (degrees)", "default": 0 },
+        { "name": "colorFrequency", "type": "number", "default": 1 },
+        { "name": "colors", "type": "string[] (max 8 CSS colors)", "default": "undefined" },
+        { "name": "saturation", "type": "number", "default": 1.5 },
+        { "name": "timeScale", "type": "number", "default": 0.5 },
+        { "name": "interactive", "type": "boolean", "default": true },
+        { "name": "hoverStrength", "type": "number", "default": 2 },
+        { "name": "inertia", "type": "number", "default": 0.05 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "resolution", "type": "number (0.25 to 1)", "default": 0.5 },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number", "default": "undefined (device pixel ratio, max 2)" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Prism size and shape (height, baseWidth), zoom (scale) and position (offset)",
+        "Colors through a custom palette, hueShift, saturation, colorFrequency, glow and noise grain",
+        "Animation mode, speed, pointer tilt strength, inertia and intro on or off",
+        "Light mode for use on light backgrounds, render resolution and dpr",
+        "Container className, style and extra DOM attributes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the prism shape or the raymarch look",
+            "where": "pyramid function and main in the FRAGMENT shader string"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Listen to pointer only on the container instead of the whole window",
+            "where": "window pointermove listener in the useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if the context or shader fails",
+        "Fills its parent (h-full w-full), so the parent needs a defined height",
+        "Pointer tracking is attached to the window, not the container",
+        "Settings are read live, but the WebGL setup runs once on mount",
+        "Palette limited to 8 colors",
+        "Heavy 100-step raymarch per pixel, can be costly on weak mobile GPUs; resolution defaults to 0.5 to compensate",
+        "Hover tilt has no touch equivalent; on touch devices it is just a spinning or static prism",
+        "Canvas scales with the container, so it works on mobile, tablet and desktop"
+    ],
+    "mood": [
+        "futuristic",
+        "luminous",
+        "dramatic",
+        "iridescent"
+    ],
+    "industries": [
+        "technology",
+        "saas",
+        "ai",
+        "crypto",
+        "gaming",
+        "creative agency"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "cta"
+    ],
+    "dependencies": [],
+    "variants": {
+        "prop": "animationType",
+        "default": "rotate",
+        "options": [
+            {
+                "value": "rotate",
+                "look": "Prism spins around its vertical axis with slight pointer tilt",
+                "useWhen": "Hero background that should feel alive and continuously moving"
+            },
+            {
+                "value": "3drotate",
+                "look": "Prism tumbles on all axes with a wobbling motion",
+                "useWhen": "Showcase or launch hero for a tech product wanting a more dynamic 3D object"
+            },
+            {
+                "value": "hover",
+                "look": "Prism stays still and tilts strongly toward the pointer",
+                "useWhen": "Interactive section where the visitor's mouse should drive the motion and idle stays calm"
+            },
+            {
+                "value": "static",
+                "look": "Fixed prism with no spin, only subtle optional pointer tilt",
+                "useWhen": "Behind dense text or pricing content where motion would distract"
+            }
+        ]
+    }
+}

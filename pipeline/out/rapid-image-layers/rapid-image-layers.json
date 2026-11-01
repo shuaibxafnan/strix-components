@@ -1,0 +1,321 @@
+{
+    "slug": "rapid-image-layers",
+    "name": "Rapid Image Layers",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Full-bleed intro stage with a three-title menu. Clicking the active title sweeps stacked image layers upward and reveals a scattered image grid, with a distorting circle cursor.",
+    "contents": [
+        "Menu of titles with subtitles, one active",
+        "Scattered grid of images",
+        "Stack of full-screen image layers used for the reveal",
+        "Circle cursor following the mouse"
+    ],
+    "behavior": [
+        "Click on the active title plays a GSAP timeline: layers wipe in one after another, then the last exits and grid images rise with random offsets",
+        "Reveal can replay on another click when replayable is true",
+        "Circle cursor eases toward the mouse, grows and distorts with turbulence on hover over the active title",
+        "Cursor shows only on fine pointer devices",
+        "Stage is 400px tall below 53em and full viewport height above"
+    ],
+    "props": [
+        {
+            "name": "layerImages",
+            "type": "string[]",
+            "default": "10 sample images"
+        },
+        {
+            "name": "gridImages",
+            "type": "string[]",
+            "default": "6 sample images"
+        },
+        {
+            "name": "gridAreas",
+            "type": "string[]",
+            "default": "6 grid areas"
+        },
+        {
+            "name": "menuItems",
+            "type": "{title,subtitle}[]",
+            "default": "3 sample menu items"
+        },
+        {
+            "name": "activeIndex",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "replayable",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#0F0E0E"
+        },
+        {
+            "name": "lineColor",
+            "type": "string",
+            "default": "#ffffff"
+        },
+        {
+            "name": "gridWidth",
+            "type": "string",
+            "default": "80vw"
+        },
+        {
+            "name": "gridHeight",
+            "type": "string",
+            "default": "93%"
+        },
+        {
+            "name": "gridGap",
+            "type": "string",
+            "default": "1vw"
+        },
+        {
+            "name": "gridColumns",
+            "type": "number",
+            "default": 13
+        },
+        {
+            "name": "gridRows",
+            "type": "number",
+            "default": 8
+        },
+        {
+            "name": "imageBrightness",
+            "type": "number",
+            "default": 0.7
+        },
+        {
+            "name": "menuWidth",
+            "type": "string",
+            "default": "110vw"
+        },
+        {
+            "name": "stageHeightMobile",
+            "type": "string",
+            "default": "400px"
+        },
+        {
+            "name": "titleFontFamily",
+            "type": "string",
+            "default": "Georgia, 'Times New Roman', serif"
+        },
+        {
+            "name": "idleTitleColor",
+            "type": "string",
+            "default": "#3c3a3b"
+        },
+        {
+            "name": "idleSubtitleColor",
+            "type": "string",
+            "default": "#3e3c3d"
+        },
+        {
+            "name": "introTitleColor",
+            "type": "string",
+            "default": "#e5e2e2"
+        },
+        {
+            "name": "revealedTitleColor",
+            "type": "string",
+            "default": "#ffffff"
+        },
+        {
+            "name": "activeSubtitleColor",
+            "type": "string",
+            "default": "#644B47"
+        },
+        {
+            "name": "hoverTitleColor",
+            "type": "string",
+            "default": "#ffffff"
+        },
+        {
+            "name": "hoverSubtitleColor",
+            "type": "string",
+            "default": "#88524a"
+        },
+        {
+            "name": "introTitleSize",
+            "type": "string",
+            "default": "5vw"
+        },
+        {
+            "name": "activeTitleSize",
+            "type": "string",
+            "default": "7vw"
+        },
+        {
+            "name": "revealedTitleSize",
+            "type": "string",
+            "default": "9vw"
+        },
+        {
+            "name": "subtitleSize",
+            "type": "string",
+            "default": "1.5vw"
+        },
+        {
+            "name": "counterLabel",
+            "type": "string",
+            "default": "01"
+        },
+        {
+            "name": "layerDuration",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "panelDelay",
+            "type": "number",
+            "default": 0.15
+        },
+        {
+            "name": "panelEase",
+            "type": "string",
+            "default": "power2.inOut"
+        },
+        {
+            "name": "exitEase",
+            "type": "string",
+            "default": "expo.inOut"
+        },
+        {
+            "name": "gridEase",
+            "type": "string",
+            "default": "expo.out"
+        },
+        {
+            "name": "gridRevealFactor",
+            "type": "number",
+            "default": 2
+        },
+        {
+            "name": "gridOffsetMin",
+            "type": "number",
+            "default": 100
+        },
+        {
+            "name": "gridOffsetMax",
+            "type": "number",
+            "default": 500
+        },
+        {
+            "name": "layersZIndex",
+            "type": "number",
+            "default": 50
+        },
+        {
+            "name": "cursorEnabled",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "cursorRadius",
+            "type": "number",
+            "default": 60
+        },
+        {
+            "name": "cursorHoverRadius",
+            "type": "number",
+            "default": 100
+        },
+        {
+            "name": "cursorStroke",
+            "type": "string",
+            "default": "#644B47"
+        },
+        {
+            "name": "cursorStrokeWidth",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "cursorFill",
+            "type": "string",
+            "default": "none"
+        },
+        {
+            "name": "cursorEase",
+            "type": "number",
+            "default": 0.2
+        },
+        {
+            "name": "turbulenceAmount",
+            "type": "number",
+            "default": 0.09
+        },
+        {
+            "name": "turbulenceDuration",
+            "type": "number",
+            "default": 0.4
+        },
+        {
+            "name": "onRevealStart",
+            "type": "function",
+            "default": null
+        },
+        {
+            "name": "onRevealComplete",
+            "type": "function",
+            "default": null
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Layer, grid images, grid areas and menu text",
+        "Colors for background, titles, subtitles and cursor",
+        "Title sizes, grid size, gap, columns, rows",
+        "Timing and easing of the reveal",
+        "Cursor size, easing and turbulence",
+        "Reveal callbacks"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the number of menu slots that show as active or add more states",
+            "where": "menuItems map inside the nav element"
+        },
+        {
+            "change": "Change distortion filter look",
+            "where": "feTurbulence and feDisplacementMap inside the filter element"
+        }
+    ],
+    "fixed": [
+        "Loads gsap by dynamic import",
+        "Mouse move listener on window is removed on unmount",
+        "Layer panels cover the whole component, with the last layer needing at least one layer image",
+        "Cursor is hidden on touch devices"
+    ],
+    "mood": [
+        "dramatic",
+        "editorial",
+        "dark",
+        "cinematic"
+    ],
+    "industries": [
+        "film",
+        "fashion",
+        "photography",
+        "music",
+        "gaming"
+    ],
+    "sections": [
+        "hero",
+        "portfolio"
+    ],
+    "dependencies": [
+        "gsap"
+    ]
+}

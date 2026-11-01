@@ -4,11 +4,12 @@
   "sourceHash": "07b12fc99003b8512c52d23421ca69801a42ad17901345cdd7ff4535a70ac917",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "progress-timeline",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.517Z"
+  "note": "Gates passed. Frame h-screen. Font Awesome CDN link kept (loadFontAwesome), now removed on unmount. No variants.",
+  "updatedAt": "2026-11-01T10:55:31.613Z",
+  "gateOutput": "gates passed"
 }

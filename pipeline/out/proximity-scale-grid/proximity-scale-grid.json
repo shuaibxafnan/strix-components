@@ -1,0 +1,47 @@
+{
+  "slug": "proximity-scale-grid",
+  "name": "Proximity Scale Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Scattered icon and label cards that scale up smoothly as the pointer comes near them and ease back when it leaves, powered by GSAP.",
+  "contents": [
+    "Scattered cards, each with an icon image, title and slight rotation",
+    "Solid background field"
+  ],
+  "behavior": [
+    "Each card scales based on pointer distance to its center within a radius",
+    "Cards ease back to normal scale when the pointer leaves the grid",
+    "Works with touch through pointer events"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#0e100f" },
+    { "name": "textColor", "type": "string", "default": "#fffce1" },
+    { "name": "cards", "type": "{icon,title,x,y,r}[]", "default": "14 sample cards" },
+    { "name": "radius", "type": "number", "default": 200 },
+    { "name": "maxScale", "type": "number", "default": 2.5 },
+    { "name": "duration", "type": "number", "default": 0.35 },
+    { "name": "leaveDuration", "type": "number", "default": 0.7 },
+    { "name": "ease", "type": "string", "default": "power2.out" },
+    { "name": "gridHeight", "type": "number", "default": 620 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Cards: icons, titles, positions in percent and rotation",
+    "Background and text colors",
+    "Influence radius, max scale, easing and durations, grid height"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change card label typography",
+      "where": "span with font-semibold text-sm inside proximity-card"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Grid stage is capped at 900px wide and 85vh tall; card positions are percentages of it"
+  ],
+  "mood": ["playful", "modern", "techy", "dark"],
+  "industries": ["saas", "education", "developer tools", "creative agency"],
+  "sections": ["features", "gallery"],
+  "dependencies": ["gsap"]
+}

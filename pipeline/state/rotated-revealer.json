@@ -4,11 +4,12 @@
   "sourceHash": "d8ffc80ef92c39d41c73166baa08e8c5fcc21d1ebe999a8688c23619a4671475",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "rotated-revealer",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.525Z"
+  "note": "Gates passed. GSAP CDN loader and gsapUrl prop removed; dynamic import, gsap added to dependencies (untested). Timeline killed on unmount. Added className. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:13:33.312Z",
+  "gateOutput": "gates passed"
 }

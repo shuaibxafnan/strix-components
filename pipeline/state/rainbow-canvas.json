@@ -4,11 +4,12 @@
   "sourceHash": "01f6a674f7e1b5e1086404fdede0b4e63dc7822ff633a312f1485e1f293472b9",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "rainbow-canvas",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.520Z"
+  "note": "Gates passed. Zdog unpkg loader replaced by dynamic import, zdog added to dependencies (untested). Cleanup fixed. Added rainbowColors, cloudColors, className props. Frame h-screen. No variants.",
+  "updatedAt": "2026-11-01T11:01:58.049Z",
+  "gateOutput": "gates passed"
 }

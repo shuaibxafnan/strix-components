@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "rotating-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.631Z"
+  "note": "Gates passed. Category text-effects. Variants on effect prop. texts required; needs motion.",
+  "updatedAt": "2026-11-01T11:14:11.352Z",
+  "gateOutput": "gates passed"
 }

@@ -4,11 +4,12 @@
   "sourceHash": "e8271fce0f9fa2641df2ff558517ee0a2df96c748cd25070104b19635426485a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "push-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.519Z"
+  "note": "Gates passed. GSAP/Flip CDN replaced by dynamic imports, gsap added to dependencies (untested). Variants: default, rounded, scale. No frame.",
+  "updatedAt": "2026-11-01T10:59:45.292Z",
+  "gateOutput": "gates passed"
 }

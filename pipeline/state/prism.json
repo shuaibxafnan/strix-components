@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "prism",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.602Z"
+  "note": "Category backgrounds-3d. Variants on animationType. Needs WebGL2; parent needs height; heavy raymarch on weak mobile GPUs.",
+  "updatedAt": "2026-11-01T10:52:59.105Z",
+  "gateOutput": "gates passed"
 }

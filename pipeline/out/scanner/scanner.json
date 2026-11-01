@@ -1,0 +1,129 @@
+{
+    "slug": "scanner",
+    "name": "Scanner",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 background of rippling thin lines with a glowing scan sweep moving across them, chromatic color split, scanlines and grain, reacting to the pointer and to clicks.",
+    "contents": [
+        "Container div filling its parent with a single full-size canvas",
+        "Fragment shader drawing wavy line bands, a moving scan sweep, glow, vignette, scanlines and grain"
+    ],
+    "behavior": [
+        "Line field ripples continuously and a bright sweep travels across it, optionally reversed",
+        "Intro wipe reveals the lines over 2 seconds on mount",
+        "Pointer over the page bends lines around the cursor, either repelling or attracting",
+        "Click inside the area emits an expanding ping ripple, up to 6 at once",
+        "Pauses rendering when off screen, tab hidden, or idle",
+        "Respects reduced motion by freezing the wave and sweep and disabling pings and intro"
+    ],
+    "props": [
+        { "name": "color1", "type": "string", "default": "#5227FF" },
+        { "name": "color2", "type": "string", "default": "#FF9FFC" },
+        { "name": "color3", "type": "string", "default": "#FFFFFF" },
+        { "name": "speed", "type": "number", "default": 0.5 },
+        { "name": "sweepSpeed", "type": "number", "default": 0.25 },
+        { "name": "sweepWidth", "type": "number", "default": 1.6 },
+        { "name": "trail", "type": "number", "default": 0.5 },
+        { "name": "reverse", "type": "boolean", "default": false },
+        { "name": "scale", "type": "number", "default": 1.5 },
+        { "name": "frequency", "type": "number", "default": 2 },
+        { "name": "ripple", "type": "number", "default": 0.22 },
+        { "name": "bandDensity", "type": "number", "default": 11 },
+        { "name": "lineWidth", "type": "number", "default": 1.2 },
+        { "name": "glow", "type": "number", "default": 0.6 },
+        { "name": "scanDirection", "type": "'vertical' | 'horizontal' | 'diagonal'", "default": "vertical" },
+        { "name": "colorSpread", "type": "number", "default": 0.7 },
+        { "name": "brightness", "type": "number", "default": 1 },
+        { "name": "vignette", "type": "number", "default": 0.3 },
+        { "name": "scanline", "type": "boolean", "default": true },
+        { "name": "scanlineIntensity", "type": "number", "default": 0.5 },
+        { "name": "grain", "type": "boolean", "default": true },
+        { "name": "grainIntensity", "type": "number", "default": 0.04 },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "mouseInteraction", "type": "boolean", "default": true },
+        { "name": "mouseRadius", "type": "number", "default": 0.5 },
+        { "name": "mouseStrength", "type": "number", "default": 0.7 },
+        { "name": "mouseMode", "type": "'repel' | 'attract'", "default": "repel" },
+        { "name": "clickEffect", "type": "'ping' | string", "default": "ping" },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number | undefined", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object | undefined", "default": null }
+    ],
+    "editableByProps": [
+        "Three line and glow colors",
+        "Wave speed, sweep speed, width, trail length and reverse direction",
+        "Line density, width, ripple, frequency, scale, glow and brightness",
+        "Scan direction, color split, vignette, scanlines, grain and opacity",
+        "Pointer interaction radius, strength and repel or attract mode, click ping on or off, intro on or off",
+        "Light mode for light backgrounds, pixel ratio, className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Raise or lower the number of simultaneous click pings",
+            "where": "MAX_PINGS constant"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change line shape or wave pattern",
+            "where": "signal function in the FRAGMENT shader"
+        },
+        {
+            "change": "Change pointer smoothing or idle pause timing",
+            "where": "frame function inside the first useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable or the shader fails to compile",
+        "Fills its parent, so the parent needs a defined width and height",
+        "Pointer and click listeners are attached to window, so interaction works even when other content sits above the canvas",
+        "Canvas is aria-hidden and decorative only",
+        "Pixel ratio capped at 2",
+        "Click ping only works when clickEffect is 'ping'; any other value disables it",
+        "Pings last 4 seconds and the pointer follow is smoothed",
+        "Rendering stops when off screen, tab hidden or idle"
+    ],
+    "mood": [
+        "futuristic",
+        "techy",
+        "dramatic",
+        "dreamy"
+    ],
+    "industries": [
+        "technology",
+        "AI",
+        "cybersecurity",
+        "gaming",
+        "music"
+    ],
+    "sections": [
+        "hero",
+        "background"
+    ],
+    "dependencies": [],
+    "variants": {
+        "prop": "scanDirection",
+        "default": "vertical",
+        "options": [
+            {
+                "value": "vertical",
+                "look": "Vertical lines with the sweep moving horizontally across the area",
+                "useWhen": "Hero behind centered headline where a left-to-right sweep frames the text"
+            },
+            {
+                "value": "horizontal",
+                "look": "Horizontal lines with the sweep moving vertically",
+                "useWhen": "Wide banner or section divider where a top-to-bottom scan suits stacked content"
+            },
+            {
+                "value": "diagonal",
+                "look": "Diagonal lines with the sweep running along 45 degrees",
+                "useWhen": "Dynamic landing hero or product launch section that needs more energy"
+            }
+        ]
+    }
+}

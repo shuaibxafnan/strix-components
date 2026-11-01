@@ -4,11 +4,12 @@
   "sourceHash": "f9346934fa15ac32452308e864eeb0dc931f1c176bda218ea9473e10f0ae5264",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "reel-wave",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.522Z"
+  "note": "Gates passed. Comments stripped, className added. Fixed full-viewport canvas, Lenis scroll takeover. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:05:42.338Z",
+  "gateOutput": "gates passed"
 }

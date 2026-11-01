@@ -4,11 +4,12 @@
   "sourceHash": "512fb7ac613af15afbe69f1d44033b00add84e25d44bcc961816d9af1dc0c66e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "polaroid-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.514Z"
+  "note": "Gates passed, warning: style tag without template literal (scoped CSS by concatenation, kept). Removed demo header, intro, footer, unused .hover-line. GSAP/Flip now dynamic imports; gsap added to dependencies. No variants.",
+  "updatedAt": "2026-11-01T10:50:31.794Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

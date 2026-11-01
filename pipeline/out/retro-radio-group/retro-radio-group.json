@@ -1,0 +1,28 @@
+{
+  "slug": "retro-radio-group",
+  "name": "Retro Radio Group",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Retro paper-styled radio button panel with hard offset shadows, a moving scanline overlay, bouncing selection dot and jittering label on hover.",
+  "contents": ["Panel with a list of radio options, each with a hand-drawn circle and label"],
+  "behavior": ["Panel lifts on hover", "Selected dot bounces in", "Hovered label jitters and takes the accent color", "Scanline overlay drifts continuously"],
+  "props": [
+    {"name": "name", "type": "string", "default": "player"},
+    {"name": "options", "type": "{id,label}[]", "default": "4 sample options"},
+    {"name": "defaultValue", "type": "string", "default": "cassette"},
+    {"name": "onChange", "type": "function", "default": "() => {}"},
+    {"name": "accentColor", "type": "string", "default": "#d11111"},
+    {"name": "accentShadowColor", "type": "string", "default": "#770000"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Option ids and labels", "Default selection and input name", "Accent and accent shadow colors", "Change callback"],
+  "needsCodeEdit": [
+    {"change": "Change panel background or border colors", "where": "group/panel root className"},
+    {"change": "Adjust animation timing", "where": "retro-bounce keyframes in the style block"}
+  ],
+  "fixed": ["Renders nothing until mounted on the client", "Panel width is 320px capped to the container width"],
+  "mood": ["retro", "playful", "nostalgic"],
+  "industries": ["music", "gaming", "entertainment", "creative agencies"],
+  "sections": ["other"],
+  "dependencies": []
+}

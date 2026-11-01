@@ -1,0 +1,32 @@
+{
+  "slug": "range-slider",
+  "name": "Range Slider",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Neumorphic numbered range slider with an inset groove and a glossy glowing ball that glides to the selected step, built on a hidden native range input.",
+  "contents": ["Inset groove track with numbered step labels", "Glossy round handle with accent glow"],
+  "behavior": ["Handle slides with eased transition to the selected value", "Native range input handles drag, click and keyboard", "Handle position recalculated on window resize"],
+  "props": [
+    {"name": "min", "type": "number", "default": 1},
+    {"name": "max", "type": "number", "default": 7},
+    {"name": "step", "type": "number", "default": 1},
+    {"name": "defaultValue", "type": "number", "default": 4},
+    {"name": "accentColor", "type": "string", "default": "#ff622a"},
+    {"name": "bgColor", "type": "string", "default": "#efefef"},
+    {"name": "onChange", "type": "function", "default": null},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Range, step and initial value", "Accent and background colors", "Change callback"],
+  "needsCodeEdit": [
+    {"change": "Adjust handle glide timing", "where": "transition style on the ball wrapper"},
+    {"change": "Change groove depth", "where": "grooveShadow array"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Handle diameter is fixed at 32px"
+  ],
+  "mood": ["tactile", "soft", "minimal"],
+  "industries": ["smart home", "audio", "SaaS", "gaming"],
+  "sections": ["other"],
+  "dependencies": []
+}

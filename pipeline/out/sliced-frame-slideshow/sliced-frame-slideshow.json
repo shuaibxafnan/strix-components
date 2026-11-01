@@ -1,0 +1,55 @@
+{
+  "slug": "sliced-frame-slideshow",
+  "name": "Sliced Frame Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-height image slideshow where each photo sits in a sized frame and is covered and uncovered by staggered sliding slices, with arrow buttons and numbered pagination.",
+  "contents": [
+    "Image frames in wide, tall or square sizes, each with its own slice count",
+    "Previous and next arrow buttons",
+    "Numbered pagination"
+  ],
+  "behavior": [
+    "Slices slide in to cover the current image, then slide away to reveal the next",
+    "Navigation is blocked while a transition runs",
+    "Slice direction and axis are configurable",
+    "Arrows wrap around at both ends"
+  ],
+  "props": [
+    {"name": "slides", "type": "{image,frameSize,slicesTotal}[]", "default": "5 sample slides"},
+    {"name": "slicesColor", "type": "string", "default": "#ffffff"},
+    {"name": "bgColor", "type": "string", "default": "#ffffff"},
+    {"name": "accentColor", "type": "string", "default": "#333333"},
+    {"name": "orientation", "type": "\"horizontal\" | \"vertical\"", "default": "horizontal"},
+    {"name": "showFrom", "type": "\"left\" | \"right\" | \"top\" | \"bottom\"", "default": "left"},
+    {"name": "hideTo", "type": "\"left\" | \"right\" | \"top\" | \"bottom\"", "default": "right"},
+    {"name": "sliceDuration", "type": "number", "default": 600},
+    {"name": "sliceStagger", "type": "number", "default": 50},
+    {"name": "sliceEasing", "type": "string", "default": "easeInOutCirc"},
+    {"name": "frameMaxWidth", "type": "string", "default": "800px"},
+    {"name": "frameMaxHeight", "type": "string", "default": "1200px"},
+    {"name": "showArrows", "type": "boolean", "default": true},
+    {"name": "showPagination", "type": "boolean", "default": true},
+    {"name": "height", "type": "string", "default": "100vh"},
+    {"name": "prevLabel", "type": "string", "default": "Previous slide"},
+    {"name": "nextLabel", "type": "string", "default": "Next slide"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides, images, frame sizes and slice counts",
+    "Slice, background and control colors",
+    "Slice direction, orientation, duration, stagger and easing",
+    "Arrows and pagination visibility, section height, button labels"
+  ],
+  "needsCodeEdit": [
+    {"change": "Add new frame size presets", "where": "FRAME_STYLES constant"},
+    {"change": "Change arrow glyphs or button shape", "where": "Previous slide and next slide buttons in the showArrows block"}
+  ],
+  "fixed": [
+    "Frames use viewport-based sizes with a 280px minimum"
+  ],
+  "mood": ["clean", "editorial", "elegant", "dynamic"],
+  "industries": ["photography", "fashion", "travel", "agency", "portfolio"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": ["animejs"]
+}

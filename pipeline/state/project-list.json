@@ -4,11 +4,12 @@
   "sourceHash": "7e99ba6306cf45b4f50585a1570c196351a65cce97cc660722038399a78b001f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "project-list",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.517Z"
+  "note": "Gates passed, warning setTimeout without clearTimeout (timers cleared via timersRef). Mobile column widths adjusted. No frame, no variants.",
+  "updatedAt": "2026-11-01T10:57:10.432Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

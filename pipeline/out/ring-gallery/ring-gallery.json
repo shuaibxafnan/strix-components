@@ -1,0 +1,67 @@
+{
+  "slug": "ring-gallery",
+  "name": "Ring Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen WebGL gallery of concentric rotating image rings with RGB shift, grain and vignette, a circular reveal intro, and drag or wheel driven depth motion.",
+  "contents": [
+    "Concentric rings of images rendered in WebGL",
+    "Loading text screen and centered hero title with subtitle"
+  ],
+  "behavior": [
+    "Loader fades out when all images are loaded, then a circular reveal transition plays",
+    "Rings spin in opposite directions, fast at intro and slower when idle",
+    "Dragging or scrolling moves images along the depth axis and speeds up rotation",
+    "Post-processing adds RGB shift, film grain and vignette"
+  ],
+  "props": [
+    {"name":"bgColor","type":"string","default":"#0c0c0c"},
+    {"name":"circleCount","type":"number","default":3},
+    {"name":"imagesPerUnit","type":"number","default":12},
+    {"name":"ringRadius","type":"number","default":6.4},
+    {"name":"imageScale","type":"number","default":0.8},
+    {"name":"ringScaleStep","type":"number","default":0.36},
+    {"name":"cameraZ","type":"number","default":16},
+    {"name":"rgbShiftIntensity","type":"number","default":0.0025},
+    {"name":"grainIntensity","type":"number","default":0.025},
+    {"name":"vignetteIntensity","type":"number","default":0.8},
+    {"name":"ringBaseSpin","type":"number","default":0.0025},
+    {"name":"introRotateSpeed","type":"number","default":10},
+    {"name":"idleRotateSpeed","type":"number","default":1},
+    {"name":"dragSpeed","type":"number","default":2},
+    {"name":"scrollDepth","type":"number","default":100},
+    {"name":"transitionDuration","type":"number","default":1},
+    {"name":"enterDuration","type":"number","default":1.5},
+    {"name":"imageWidth","type":"number","default":320},
+    {"name":"imageHeight","type":"number","default":400},
+    {"name":"getImageUrl","type":"(index, width, height) => string","default":"picsum.photos URL builder"},
+    {"name":"loadingText","type":"string","default":"LOADING"},
+    {"name":"loaderBg","type":"string","default":"#ffffff"},
+    {"name":"heroTitle","type":"string","default":"RING"},
+    {"name":"heroSubtitle","type":"string","default":"Just drag and scroll~"},
+    {"name":"subtitleColor","type":"string","default":"#8a8a8a"},
+    {"name":"heroTitleColor","type":"string","default":"#ffffff"},
+    {"name":"loadingColor","type":"string","default":"#000000"},
+    {"name":"className","type":"string","default":""}
+  ],
+  "editableByProps": [
+    "Image source through getImageUrl, image size, ring count and images per ring",
+    "Ring radius, spacing, speeds, depth and drag sensitivity",
+    "Background, loader, title and subtitle colors, all text",
+    "Effect intensities and intro durations"
+  ],
+  "needsCodeEdit": [
+    {"change":"Change the post-processing look","where":"FRAGMENT_SHADER constant"},
+    {"change":"Change the loading text animation","where":"buildCss function"}
+  ],
+  "fixed": [
+    "Listens for wheel and drag input through kokomi WheelScroller and DragDetecter",
+    "Fills the viewport height with an overflow-hidden full-bleed root",
+    "Needs WebGL support",
+    "Images are loaded by URL, so they must allow cross-origin texture loading"
+  ],
+  "mood": ["immersive", "futuristic", "dramatic", "playful"],
+  "industries": ["photography", "creative agency", "fashion", "events", "art"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["kokomi.js", "three", "gsap"]
+}

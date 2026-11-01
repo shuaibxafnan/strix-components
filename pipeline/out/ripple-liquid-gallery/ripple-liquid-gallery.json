@@ -1,0 +1,55 @@
+{
+  "slug": "ripple-liquid-gallery",
+  "name": "Ripple Liquid Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Dark bento grid of image tiles rendered in WebGL, where hovering a tile sends a liquid ripple distortion from the cursor and reveals the title and category.",
+  "contents": [
+    "Bento grid of image tiles with mixed spans",
+    "Per-tile title and category caption over a gradient"
+  ],
+  "behavior": [
+    "Each tile renders its image on a WebGL canvas with cover-fit math",
+    "Hover eases in a ripple distortion centered on the cursor and eases it out on leave",
+    "Caption fades in and shine line sweeps across the tile on hover",
+    "Canvases resize with the window"
+  ],
+  "props": [
+    { "name": "items", "type": "{id,title,category,src,size}[]", "default": "6 sample tiles" },
+    { "name": "rippleStrength", "type": "number", "default": 0.15 },
+    { "name": "rippleSpeed", "type": "number", "default": 1.8 },
+    { "name": "rippleFrequency", "type": "number", "default": 14.0 },
+    { "name": "animationDuration", "type": "number", "default": 0.6 },
+    { "name": "backgroundColor", "type": "string", "default": "#0a0a0c" },
+    { "name": "textColor", "type": "string", "default": "#f3f4f6" },
+    { "name": "accentColor", "type": "string", "default": "#00f2fe" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Tiles, images, titles, categories and per-tile grid spans through the size class",
+    "Ripple strength, speed, frequency and hover duration",
+    "Background, text and accent colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the number of grid columns or row height",
+      "where": "md:grid-cols-3 and md:auto-rows-[170px] classes on the grid div"
+    },
+    {
+      "change": "Change the ripple shape",
+      "where": "fragmentShader ripple line"
+    },
+    {
+      "change": "Change the hover glow color",
+      "where": "hover:shadow-[0_0_50px_rgba(0,242,254,0.05)] class on the tile div"
+    }
+  ],
+  "fixed": [
+    "Needs WebGL support, one renderer per tile",
+    "Ripple reacts to mouse hover only, touch devices see static images with captions at rest"
+  ],
+  "mood": ["futuristic", "dark", "fluid", "modern"],
+  "industries": ["creative agency", "photography", "digital art", "portfolio", "fashion"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["three", "gsap"]
+}

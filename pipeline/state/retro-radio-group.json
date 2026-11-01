@@ -4,11 +4,12 @@
   "sourceHash": "60a455b2b3d8f17d66af777b39bdb09c734ccc4b5894a2e13f9d627429d931ee",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "retro-radio-group",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.523Z"
+  "note": "Gates passed. Comments stripped. Hover background now follows accentColor (was hardcoded red). Added className, max-w-full. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:06:49.311Z",
+  "gateOutput": "gates passed"
 }

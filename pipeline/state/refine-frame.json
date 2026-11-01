@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "refine-frame",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.623Z"
+  "note": "Gates passed. Needs img child (CORS-readable), @hugeicons/react, @hugeicons/core-free-icons. No frame. No variants.",
+  "updatedAt": "2026-11-01T11:06:16.335Z",
+  "gateOutput": "gates passed"
 }

@@ -4,11 +4,12 @@
   "sourceHash": "1dfe3f76622a25bc0b82a213556c362f66c8fa1d4cc0d307a4497aa48d922cb3",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-progress-car",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.516Z"
+  "note": "renamed progress-car -> scroll-progress-car; no frame; responsive: already ok",
+  "updatedAt": "2026-11-01T10:54:50.860Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,51 @@
+{
+  "slug": "retro-3d-radio",
+  "name": "Retro 3D Radio",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Isometric retro cassette radio built from CSS 3D cubes. Clicking the play button or sound icon starts audio, swings the radio, and opens the cassette cover.",
+  "contents": [
+    "Isometric 3D radio with speaker grille, buttons, tuner slider and cassette",
+    "Sound on/off icon toggle above the radio",
+    "Hidden audio element"
+  ],
+  "behavior": [
+    "Click the orange button or the sound icon to play or stop audio (stop resets to start)",
+    "While playing the radio swings, its shadow shifts, the cover lifts and the button presses",
+    "Sizes scale with viewport width"
+  ],
+  "props": [
+    {"name": "audioSrc", "type": "string", "default": "https://upload.wikimedia.org/wikipedia/commons/6/61/Happy_Happy_HardPopCoreTastic.ogg"},
+    {"name": "loop", "type": "boolean", "default": true},
+    {"name": "bgColor", "type": "string", "default": "#FCCD64"},
+    {"name": "shadowColor", "type": "string", "default": "#D1A551"},
+    {"name": "accentColor", "type": "string", "default": "#FFA460"},
+    {"name": "darkColor", "type": "string", "default": "#383832"},
+    {"name": "casePrimary", "type": "string", "default": "#E9EBDB"},
+    {"name": "caseShade2", "type": "string", "default": "#DEE0D3"},
+    {"name": "caseShade3", "type": "string", "default": "#AAAAAA"},
+    {"name": "caseShade4", "type": "string", "default": "#666666"},
+    {"name": "iconColor", "type": "string", "default": "#FFFFFF"},
+    {"name": "scale", "type": "number", "default": 1},
+    {"name": "swingDuration", "type": "number", "default": 0.6},
+    {"name": "showSoundToggle", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Audio source and looping",
+    "Background, shadow, accent, case and icon colors",
+    "Radio scale and swing speed",
+    "Sound icon visibility"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change radio proportions or parts", "where": "rules array inside useMemo"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Radio sizing is based on viewport width (vw units), so it scales down on small screens"
+  ],
+  "mood": ["retro", "playful", "nostalgic"],
+  "industries": ["music", "entertainment", "creative portfolio", "gaming"],
+  "sections": ["hero", "other"],
+  "dependencies": []
+}

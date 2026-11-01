@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "scanner",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.603Z"
+  "note": "Gates passed. Category backgrounds-3d. Variants on scanDirection. Needs WebGL2; parent needs size; window pointer listeners.",
+  "updatedAt": "2026-11-01T11:15:23.005Z",
+  "gateOutput": "gates passed"
 }

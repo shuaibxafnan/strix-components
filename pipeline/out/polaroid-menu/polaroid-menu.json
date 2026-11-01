@@ -1,0 +1,71 @@
+{
+  "slug": "polaroid-menu",
+  "name": "Polaroid Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-width list menu of titles that reveals a row of thumbnails on hover and, on click, expands into a full-screen grid preview using a GSAP Flip transition.",
+  "contents": [
+    "List of rows, each with a title and a strip of thumbnail images",
+    "Full-screen preview layer with large title and image grid per row",
+    "Close button and loading overlay"
+  ],
+  "behavior": [
+    "Hovering a row slides in its thumbnails and swaps the title font with a rotating text reveal",
+    "Clicking a row covers the screen and flips thumbnails into a grid",
+    "Close button reverses the animation",
+    "Page scrolling is locked while a preview is open",
+    "Loader shows until images and fonts are ready"
+  ],
+  "props": [
+    { "name": "items", "type": "{title,images,previewImages}[]", "default": "7 sample releases" },
+    { "name": "bgColor", "type": "string", "default": "#ffffff" },
+    { "name": "textColor", "type": "string", "default": "#131313" },
+    { "name": "borderColor", "type": "string", "default": "#f0f0f0" },
+    { "name": "hoverBgColor", "type": "string", "default": "#f0f0f0" },
+    { "name": "fontsHref", "type": "string", "default": "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Space+Mono:wght@400&family=Silkscreen:wght@400;700&display=swap" },
+    { "name": "displayFont", "type": "string", "default": "Archivo, Helvetica, Arial, sans-serif" },
+    { "name": "bodyFont", "type": "string", "default": "'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace" },
+    { "name": "switchFont", "type": "string", "default": "Silkscreen, 'Courier New', monospace" },
+    { "name": "imgSize", "type": "string", "default": "5vw" },
+    { "name": "imgSizeLarge", "type": "string", "default": "14vw" },
+    { "name": "imageGap", "type": "string", "default": "1vw" },
+    { "name": "imageGapLarge", "type": "string", "default": "2vw" },
+    { "name": "gridColumns", "type": "number", "default": 4 },
+    { "name": "gridRows", "type": "number", "default": 2 },
+    { "name": "coverDuration", "type": "number", "default": 0.9 },
+    { "name": "flipDuration", "type": "number", "default": 0.9 },
+    { "name": "flipStagger", "type": "number", "default": 0.04 },
+    { "name": "titleDuration", "type": "number", "default": 1 },
+    { "name": "hoverDuration", "type": "number", "default": 0.4 },
+    { "name": "closeDuration", "type": "number", "default": 0.5 },
+    { "name": "closeLabel", "type": "string", "default": "✕" },
+    { "name": "loaderColor", "type": "string", "default": "#000000" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Rows, titles, thumbnail and preview images",
+    "Colors, fonts, thumbnail sizes and gaps, preview grid size",
+    "Animation durations and stagger, close label"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change hover title swap animation",
+      "where": "onEnter function inside rowsArr.forEach"
+    },
+    {
+      "change": "Change the pool of sample images",
+      "where": "POOL constant"
+    }
+  ],
+  "fixed": [
+    "Locks body scrolling while a preview is open and resets it on unmount",
+    "Appends a Google Fonts stylesheet link to document head",
+    "Cover and preview layers are fixed to the viewport",
+    "Hover interaction has no touch-specific alternative; tapping a row opens the preview",
+    "Requires gsap, including the Flip plugin"
+  ],
+  "mood": ["editorial", "minimal", "playful", "dynamic"],
+  "industries": ["music", "portfolio", "photography", "fashion", "agency"],
+  "sections": ["portfolio", "gallery", "navbar"],
+  "dependencies": ["gsap"]
+}

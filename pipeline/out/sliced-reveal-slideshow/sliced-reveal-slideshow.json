@@ -1,0 +1,53 @@
+{
+  "slug": "sliced-reveal-slideshow",
+  "name": "Sliced Reveal Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-height image slideshow where colored slices wipe away in a staggered sequence to reveal each image, with a zoom-out on the photo, arrow buttons and numbered pagination.",
+  "contents": [
+    "Stacked full-bleed image slides, each covered by colored slices",
+    "Previous and next arrow buttons",
+    "Numbered pagination"
+  ],
+  "behavior": [
+    "Slices slide away with staggered anime.js timing to reveal the image while it scales down",
+    "Changing slides first covers the current image with slices, then reveals the next",
+    "Each slide sets its own slice count, orientation and entry and exit side",
+    "Navigation is locked while an animation runs and wraps around with the arrows"
+  ],
+  "props": [
+    {"name": "slides", "type": "{image,slicesTotal,orientation,showFrom,hideTo}[]", "default": "5 sample slides"},
+    {"name": "slicesColor", "type": "string", "default": "#111111"},
+    {"name": "bgColor", "type": "string", "default": "#000000"},
+    {"name": "accentColor", "type": "string", "default": "#ffffff"},
+    {"name": "sliceDuration", "type": "number", "default": 800},
+    {"name": "sliceStagger", "type": "number", "default": 80},
+    {"name": "sliceEasing", "type": "string", "default": "easeInOutQuart"},
+    {"name": "imageScaleFrom", "type": "number", "default": 1.3},
+    {"name": "imageDuration", "type": "number", "default": 800},
+    {"name": "imageDelay", "type": "number", "default": 350},
+    {"name": "imageEasing", "type": "string", "default": "easeOutCubic"},
+    {"name": "showArrows", "type": "boolean", "default": true},
+    {"name": "showPagination", "type": "boolean", "default": true},
+    {"name": "height", "type": "string", "default": "100vh"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slide images, slice count, orientation and direction per slide",
+    "Slice, background and control colors",
+    "Animation durations, stagger, delays and easings",
+    "Arrow and pagination visibility, slideshow height"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change arrow glyphs or pagination style", "where": "showArrows and showPagination blocks in the returned JSX"},
+    {"change": "Add autoplay", "where": "navigate function"}
+  ],
+  "fixed": [
+    "Requires animejs version 3 (default export function API)",
+    "Slideshow fills the width of its parent and uses the height prop, 100vh by default"
+  ],
+  "mood": ["dramatic", "cinematic", "modern", "bold"],
+  "industries": ["photography", "travel", "fashion", "architecture", "agency"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["animejs"]
+}

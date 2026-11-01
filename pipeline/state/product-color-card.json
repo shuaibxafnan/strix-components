@@ -4,11 +4,12 @@
   "sourceHash": "89a4b05e17bd4f760c5855be14fef97d0c79add9e2303a4ee3cd504ef8c68a73",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "product-color-card",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.515Z"
+  "note": "Gates passed. Removed next/font imports (uses font-sans/font-serif) and backgroundColor prop. Frame min-h-screen kept (mobile stack taller than viewport). No variants.",
+  "updatedAt": "2026-11-01T10:53:41.799Z",
+  "gateOutput": "gates passed"
 }

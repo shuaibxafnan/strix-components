@@ -4,11 +4,12 @@
   "sourceHash": "b80488db40043bb26f048ee147ac6887d1dd070655e737cf37b331fee74ac680",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "reveal-boxes",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.523Z"
+  "note": "Gates passed. Renamed AnimatedRevealBoxes to RevealBoxes. Frame min-h-screen sm:h-screen (mobile cards stack). Added backgroundColor, className props. No variants.",
+  "updatedAt": "2026-11-01T11:08:17.554Z",
+  "gateOutput": "gates passed"
 }

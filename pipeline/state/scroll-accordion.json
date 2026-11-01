@@ -4,11 +4,12 @@
   "sourceHash": "69bda7a63c9895674c37072e57acfffb6322f50b11a991950b1550cd3b5b8fd8",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-accordion",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.526Z"
+  "note": "Gates passed. Removed two h-screen demo spacers (ambiguous). Added label, tagBackground, tagBorder props. Font @import kept. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:17:44.421Z",
+  "gateOutput": "gates passed"
 }

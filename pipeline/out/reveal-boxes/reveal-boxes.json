@@ -1,0 +1,50 @@
+{
+  "slug": "reveal-boxes",
+  "name": "Reveal Boxes",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Grid of dark glass step cards where a colored gradient circle grows from the corner to flood each card on load, staggered one after another, with a hover lift and glow.",
+  "contents": [
+    "Grid of cards, each with a step badge, title, description and status dot",
+    "Gradient fill layer per card",
+    "Two blurred decorative backdrop glows"
+  ],
+  "behavior": [
+    "On mount each card fill scales up from the bottom right corner with an overshoot ease, staggered by index",
+    "Hovering lifts the card, brightens the fill, reveals a faint grid pattern and turns text white"
+  ],
+  "props": [
+    { "name": "data", "type": "{step,title,desc}[]", "default": "4 sample steps" },
+    { "name": "boxColors", "type": "string[]", "default": ["linear-gradient(135deg, #ff007f 0%, #7928ca 100%)", "linear-gradient(135deg, #f59e0b 0%, #e11d48 100%)", "linear-gradient(135deg, #10b981 0%, #059669 100%)", "linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)"] },
+    { "name": "staggerDelay", "type": "number", "default": 500 },
+    { "name": "animDuration", "type": "number", "default": 0.85 },
+    { "name": "gridLayout", "type": "string", "default": "grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6" },
+    { "name": "showBackdrops", "type": "boolean", "default": true },
+    { "name": "hoverTransform", "type": "string", "default": "hover:-translate-y-1" },
+    { "name": "backgroundColor", "type": "string", "default": "#09090b" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of cards, step labels, titles and descriptions",
+    "Fill gradients or colors, stagger and duration of the reveal",
+    "Grid columns and gaps, hover transform, backdrop glows, background color"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the corner the fill grows from",
+      "where": "transform values using translate(100%, 100%) scale(0) in the fill div style"
+    },
+    {
+      "change": "Change card height or card surface colors",
+      "where": "className of the card div containing h-52"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Reveal animation plays once after mount, a placeholder is rendered before mount"
+  ],
+  "mood": ["dark", "modern", "vibrant", "techy"],
+  "industries": ["saas", "technology", "agency", "education"],
+  "sections": ["features", "services"],
+  "dependencies": []
+}

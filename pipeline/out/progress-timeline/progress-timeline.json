@@ -1,0 +1,48 @@
+{
+  "slug": "progress-timeline",
+  "name": "Progress Timeline",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Step progress tracker with icon and caption markers on a horizontal line that fills as the user moves through steps with Prev and Next buttons.",
+  "contents": [
+    "Horizontal track with one circle marker per step, an icon above and a caption below",
+    "Prev and Next buttons"
+  ],
+  "behavior": [
+    "Accent fill line and markers animate to the active step",
+    "Prev disables on the first step and Next on the last",
+    "onChange callback fires with the new step number"
+  ],
+  "props": [
+    {"name": "steps", "type": "{icon,caption}[]", "default": "4 sample steps (ghost, cat, spider, skull)"},
+    {"name": "initialStep", "type": "number", "default": 1},
+    {"name": "accentColor", "type": "string", "default": "#b036e0"},
+    {"name": "trackColor", "type": "string", "default": "#c4c1c1"},
+    {"name": "bgColor", "type": "string", "default": "#eeeeee"},
+    {"name": "width", "type": "number", "default": 350},
+    {"name": "circleSize", "type": "number", "default": 10},
+    {"name": "borderWidth", "type": "number", "default": 3},
+    {"name": "lineThickness", "type": "number", "default": 4},
+    {"name": "iconSize", "type": "number", "default": 25},
+    {"name": "prevLabel", "type": "string", "default": "Prev"},
+    {"name": "nextLabel", "type": "string", "default": "Next"},
+    {"name": "loadFontAwesome", "type": "boolean", "default": true},
+    {"name": "onChange", "type": "function", "default": null},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Steps, icons (Font Awesome class or React node), captions and button labels",
+    "Colors, track width, marker, line and icon sizes, starting step"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the Font Awesome stylesheet version", "where": "FA_HREF constant"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Loads the Font Awesome stylesheet from a CDN on mount and removes it on unmount when loadFontAwesome is true"
+  ],
+  "mood": ["playful", "clean", "minimal"],
+  "industries": ["saas", "e-commerce", "education", "onboarding"],
+  "sections": ["other"],
+  "dependencies": []
+}

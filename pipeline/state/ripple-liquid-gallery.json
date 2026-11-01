@@ -4,11 +4,12 @@
   "sourceHash": "9e9233f000fc358a01e22c20dd2fcbb6a4793911f3327e124bae1f9764a51392",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "ripple-liquid-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.525Z"
+  "note": "Gates passed. Removed demo header (ambiguous). three/gsap CDN replaced by dynamic imports, listed in dependencies (untested; source used three r128). Added backgroundColor, textColor, accentColor, className. Hover glow color hardcoded. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:12:51.592Z",
+  "gateOutput": "gates passed"
 }

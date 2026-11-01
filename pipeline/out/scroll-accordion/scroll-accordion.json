@@ -1,0 +1,55 @@
+{
+  "slug": "scroll-accordion",
+  "name": "Scroll Accordion",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Pinned section of stacked feature cards that collapse one by one as you scroll, hiding each card's body text and tightening the stack.",
+  "contents": [
+    "Large outlined count number with a label and progress dots",
+    "Stack of cards, each with tag pill, optional stat, divider, title and body text"
+  ],
+  "behavior": [
+    "Section pins to the viewport while scrolling",
+    "Scrubbed GSAP timeline collapses each card's body text and overlaps the cards in sequence"
+  ],
+  "props": [
+    {"name": "items", "type": "{title,text,tag,stat,statLabel}[]", "default": "4 sample items"},
+    {"name": "cardWidth", "type": "string", "default": "min(680px, 88vw)"},
+    {"name": "cardBorderRadius", "type": "string", "default": "20px"},
+    {"name": "cardGap", "type": "number", "default": 14},
+    {"name": "scrubSpeed", "type": "number", "default": 1},
+    {"name": "scrollPerCard", "type": "number", "default": 350},
+    {"name": "backgroundColor", "type": "string", "default": "#0c0c0c"},
+    {"name": "cardBackground", "type": "string", "default": "#111111"},
+    {"name": "cardBorder", "type": "string", "default": "rgba(255,255,255,0.07)"},
+    {"name": "accentColor", "type": "string", "default": "#c9a96e"},
+    {"name": "titleColor", "type": "string", "default": "#f0ece4"},
+    {"name": "bodyColor", "type": "string", "default": "rgba(240,236,228,0.42)"},
+    {"name": "titleFont", "type": "string", "default": "'Cormorant Garamond', Georgia, serif"},
+    {"name": "bodyFont", "type": "string", "default": "'DM Sans', system-ui, sans-serif"},
+    {"name": "titleSize", "type": "string", "default": "clamp(28px, 3.6vw, 48px)"},
+    {"name": "bodySize", "type": "string", "default": "clamp(13px, 1.2vw, 15px)"},
+    {"name": "titleWeight", "type": "number", "default": 300},
+    {"name": "label", "type": "string", "default": "features"},
+    {"name": "tagBackground", "type": "string", "default": "rgba(201,169,110,0.07)"},
+    {"name": "tagBorder", "type": "string", "default": "rgba(201,169,110,0.18)"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Number of cards and all card text, tags and stats",
+    "Colors, fonts, sizes, card width, radius and gap",
+    "Scroll distance per card and scrub smoothness"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the card shadow", "where": "boxShadow in the sa-card style"},
+    {"change": "Change the collapse animation", "where": "texts.forEach block inside the useEffect"}
+  ],
+  "fixed": [
+    "Pins the section while scrolling, adding scroll range of items times scrollPerCard pixels",
+    "Count number and outline strokes use fixed translucent white"
+  ],
+  "mood": ["elegant", "dark", "editorial", "premium"],
+  "industries": ["technology", "product launches", "luxury", "saas"],
+  "sections": ["features"],
+  "dependencies": ["gsap"]
+}

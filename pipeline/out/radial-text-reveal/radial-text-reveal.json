@@ -1,0 +1,42 @@
+{
+  "slug": "radial-text-reveal",
+  "name": "Radial Text Reveal",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Paragraph that materializes upward through a radial gradient mask, with a blurred glowing color bleed layer that fades out as the real text settles in.",
+  "contents": ["Centered paragraph block rendered in three stacked layers (spacer, glow, reveal)"],
+  "behavior": [
+    "Plays once on mount after the delay",
+    "A radial mask sweeps upward to reveal the text while a blurred colored duplicate glows behind it",
+    "Line height compresses briefly during the reveal then settles"
+  ],
+  "props": [
+    {"name": "content", "type": "string | ReactNode", "default": "Sample paragraph with line breaks"},
+    {"name": "duration", "type": "number", "default": 1.8},
+    {"name": "delay", "type": "number", "default": 0.5},
+    {"name": "color", "type": "string", "default": "hsla(280, 80%, 50%, 0.5)"},
+    {"name": "theme", "type": "\"light\" | \"dark\" | \"system\"", "default": "system"},
+    {"name": "fontFamily", "type": "string", "default": "'Inter', sans-serif"},
+    {"name": "fontSize", "type": "string", "default": "1.25rem"},
+    {"name": "textColor", "type": "string", "default": null},
+    {"name": "width", "type": "string", "default": "50ch"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Text content, timing, glow color, color scheme, font, size, text color and block width"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the reveal sweep distance or glow start position", "where": "cssVars object (--start-mask, --start-bg, --end-bg)"},
+    {"change": "Change the mask edge softness", "where": ".tr-reveal-layer .tr-content mask-image gradient stops"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Font is not loaded by the component, the host must provide it",
+    "Needs a browser with @property and container query units support",
+    "Animation plays once on mount, remount to replay"
+  ],
+  "mood": ["elegant", "minimal", "modern", "glowing"],
+  "industries": ["portfolio", "agency", "technology", "creative studio"],
+  "sections": ["hero", "about"],
+  "dependencies": []
+}
