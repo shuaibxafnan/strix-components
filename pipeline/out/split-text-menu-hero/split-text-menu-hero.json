@@ -1,0 +1,88 @@
+{
+    "slug": "split-text-menu-hero",
+    "name": "Split Text Menu Hero",
+    "category": "navigation-menus",
+    "isReactBits": false,
+    "description": "Full-screen image hero with a top bar and a Menu button that opens a full-screen overlay of large italic links with split-text hover rolls and image pairs revealed beside each link.",
+    "contents": [
+        "Top bar with brand link and Menu/Close pill toggle",
+        "Full-screen menu overlay with numbered links, dividers and two images per link",
+        "Hero image with gradient fade and a two-line headline with highlighted words"
+    ],
+    "behavior": [
+        "Menu opens with a clip-path wipe from top, dividers draw in, link text slides up, hero headline fades out",
+        "Closing reverses the wipe and fades the headline back",
+        "Hovering the brand or a link rolls the characters upward with an alternating stagger",
+        "Hovering a menu link wipes in two grayscale images that settle to color",
+        "Images beside links are hidden below the sm breakpoint"
+    ],
+    "props": [
+        { "name": "brandName", "type": "string", "default": "Studio" },
+        { "name": "brandHref", "type": "string", "default": "#" },
+        { "name": "menuItems", "type": "{number,label,href,images:string[]}[]", "default": "5 sample items (Home, About, Projects, Journal, Contact)" },
+        { "name": "heroImage", "type": "string", "default": "https://images.unsplash.com/photo-1752150127767-77bccbed07e2?auto=format&fit=crop&w=1920&h=1080&q=80" },
+        { "name": "heroAlt", "type": "string", "default": "Hero image" },
+        { "name": "heroLine1Prefix", "type": "string", "default": "" },
+        { "name": "heroLine1Highlight", "type": "string", "default": "Open" },
+        { "name": "heroLine1Suffix", "type": "string", "default": " it already," },
+        { "name": "heroLine2Prefix", "type": "string", "default": "it's just a " },
+        { "name": "heroLine2Highlight", "type": "string", "default": "menu" },
+        { "name": "heroLine2Suffix", "type": "string", "default": "." },
+        { "name": "menuLabel", "type": "string", "default": "Menu" },
+        { "name": "closeLabel", "type": "string", "default": "Close" },
+        { "name": "toggleLabel", "type": "string", "default": "Toggle menu" },
+        { "name": "bgColor", "type": "string", "default": "#000000" },
+        { "name": "inkColor", "type": "string", "default": "#ffffff" },
+        { "name": "accentColor", "type": "string", "default": "#a3a3a3" },
+        { "name": "mutedColor", "type": "string", "default": "#737373" },
+        { "name": "openDuration", "type": "number", "default": 1.25 },
+        { "name": "closeDuration", "type": "number", "default": 1.5 },
+        { "name": "charStagger", "type": "number", "default": 0.02 },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Brand, menu links, link numbers and two images per link",
+        "Hero image, alt text and both headline lines with highlighted words",
+        "Button labels, colors, open and close durations, character stagger"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the image reveal direction",
+            "where": "HIDDEN_CLIP function"
+        },
+        {
+            "change": "Change fonts",
+            "where": "display and mono font definitions at the top of the file"
+        },
+        {
+            "change": "Change menu link and image sizes",
+            "where": "navBottomRef container and the imageWrapperRefs blocks"
+        }
+    ],
+    "fixed": [
+        "Uses next/font/google for Fraunces and IBM Plex Mono, so it requires Next.js",
+        "Hero section and menu overlay are each full viewport height (h-screen)",
+        "Menu overlay is sized in vh units and the side images are hidden below the sm breakpoint"
+    ],
+    "mood": [
+        "editorial",
+        "elegant",
+        "cinematic",
+        "minimal"
+    ],
+    "industries": [
+        "creative studio",
+        "architecture",
+        "fashion",
+        "photography",
+        "agency"
+    ],
+    "sections": [
+        "hero",
+        "navbar"
+    ],
+    "dependencies": [
+        "gsap",
+        "split-type"
+    ]
+}
