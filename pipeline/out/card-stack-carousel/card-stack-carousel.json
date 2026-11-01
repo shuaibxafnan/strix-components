@@ -1,0 +1,47 @@
+{
+  "slug": "card-stack-carousel",
+  "name": "Card Stack Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Draggable 3D stack of image cards. Swiping the top card past a threshold flings it aside and sends it to the back of the stack with a perspective flip.",
+  "contents": [
+    "Stack of cards, each with tag pill, accent dot, image, title and subtitle"
+  ],
+  "behavior": [
+    "Pointer drag moves and tilts the top card and fades it slightly",
+    "Releasing past the threshold flings the card out, then returns it to the back of the stack",
+    "Releasing below the threshold snaps the card back",
+    "Cards behind are offset in depth and vertical position"
+  ],
+  "props": [
+    {"name": "width", "type": "string", "default": "22rem"},
+    {"name": "height", "type": "string", "default": "28rem"},
+    {"name": "perspective", "type": "string", "default": "1000px"},
+    {"name": "zOffset", "type": "number", "default": 16},
+    {"name": "yOffset", "type": "number", "default": 10},
+    {"name": "maxZIndex", "type": "number", "default": 100},
+    {"name": "swapDuration", "type": "number", "default": 400},
+    {"name": "threshold", "type": "number", "default": 60},
+    {"name": "bodyBg", "type": "string", "default": "#0b0f19"},
+    {"name": "cardBg", "type": "string", "default": "rgba(19, 25, 38, 0.9)"},
+    {"name": "cardsData", "type": "{id,tag,title,subtitle,image,accent}[]", "default": "4 sample cards"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Number of cards and all text, images and accent colors",
+    "Card size, stack depth and offsets, swipe threshold and speed",
+    "Background and card background colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change card text colors or border", "where": "className of the article element in the cards map"},
+    {"change": "Change fling distance and rotation", "where": "isAnimating branch inside the cards map"}
+  ],
+  "fixed": [
+    "Root fills the viewport height, centers the stack and paints bodyBg. Override with className using an important modifier such as !h-auto.",
+    "Listens for pointerup on window while mounted and removes it on unmount"
+  ],
+  "mood": ["modern", "futuristic", "dark", "playful"],
+  "industries": ["fashion", "ecommerce", "art", "gaming", "portfolio"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
