@@ -4,11 +4,12 @@
   "sourceHash": "e4b78995aba52b0d7bd552532d1d32a52a888f1b2c217365f1af1f135f16962c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "gooey-audio-player",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.452Z"
+  "note": "No rename. Removed empty comment placeholders. Frame kept. Added playLabel, pauseLabel, className props. Audio pauses on unmount. style jsx global -> plain style. Variants: none.",
+  "updatedAt": "2026-11-01T07:48:51.798Z",
+  "gateOutput": "gates passed"
 }

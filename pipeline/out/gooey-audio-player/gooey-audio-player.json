@@ -1,0 +1,49 @@
+{
+  "slug": "gooey-audio-player",
+  "name": "Gooey Audio Player",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Centered play/pause button over a background image. Blobby gooey particles orbit the button while audio plays, and the icon morphs between play and pause.",
+  "contents": [
+    "Full-screen background image with dark overlay",
+    "Round gooey play/pause button with four corner particles and morphing icon",
+    "Hidden audio element"
+  ],
+  "behavior": [
+    "Click toggles audio playback",
+    "While playing the button spins, particles drift and the color switches to the active color",
+    "Icon path animates between play and pause shapes",
+    "Audio is paused on unmount"
+  ],
+  "props": [
+    {"name": "audioSrc", "type": "string", "default": "https://upload.wikimedia.org/wikipedia/commons/6/61/Happy_Happy_HardPopCoreTastic.ogg"},
+    {"name": "particleColor", "type": "string", "default": "#0037a3"},
+    {"name": "activeColor", "type": "string", "default": "#00aaff"},
+    {"name": "iconColor", "type": "string", "default": "#ffffff"},
+    {"name": "bgImage", "type": "string", "default": "https://images.pexels.com/photos/1150988/pexels-photo-1150988.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"},
+    {"name": "bgOverlay", "type": "string", "default": "bg-black/60"},
+    {"name": "buttonSize", "type": "number", "default": 50},
+    {"name": "particleSize", "type": "number", "default": 20},
+    {"name": "playLabel", "type": "string", "default": "Play Audio"},
+    {"name": "pauseLabel", "type": "string", "default": "Pause Audio"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Audio source, background image and overlay class",
+    "Idle, active and icon colors",
+    "Button and particle sizes",
+    "Accessible labels"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change goo blur strength", "where": "feGaussianBlur stdDeviation in the fancy-goo filter"},
+    {"change": "Change particle motion paths", "where": "particle-1 to particle-4 keyframes in the style block"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Component renders only after mount to avoid hydration mismatch"
+  ],
+  "mood": ["playful", "modern", "organic"],
+  "industries": ["music", "podcast", "entertainment", "portfolio"],
+  "sections": ["hero", "other"],
+  "dependencies": []
+}
