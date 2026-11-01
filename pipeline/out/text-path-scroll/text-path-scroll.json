@@ -1,0 +1,70 @@
+{
+  "slug": "text-path-scroll",
+  "name": "Text Path Scroll",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Long dark scroll page where quotes run along curved SVG paths and slide with scroll, with blur, glow and distortion filters reacting to scroll speed, between image grids and big photos.",
+  "contents": [
+    "Fixed-looking header overlay with heading, counter, nav links and eyebrow line",
+    "Intro title with hint",
+    "Image grids with numbered items",
+    "Curved text lines on SVG paths",
+    "Two large images and a footer link row"
+  ],
+  "behavior": [
+    "Text slides along its curve as the page scrolls, with eased interpolation",
+    "Blur, glow or displacement filter strength follows scroll velocity",
+    "Animation runs only while a curve is in view",
+    "Header overlay is hidden below the md breakpoint"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#0a0104"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "mutedColor", "type": "string", "default": "#504f4f"},
+    {"name": "linkColor", "type": "string", "default": "#5c5c5c"},
+    {"name": "linkHoverColor", "type": "string", "default": "#ffffff"},
+    {"name": "serifFont", "type": "string", "default": "Georgia, \"Times New Roman\", serif"},
+    {"name": "sansFont", "type": "string", "default": "Inter, \"Helvetica Neue\", Arial, sans-serif"},
+    {"name": "eyebrow", "type": "string", "default": "Animating Text on a Path"},
+    {"name": "heading", "type": "string", "default": "A Nova space project"},
+    {"name": "navLinks", "type": "string[]", "default": ["Updates", "About", "Careers"]},
+    {"name": "counter", "type": "{value,label}[]", "default": "2 sample counters"},
+    {"name": "introTitle", "type": "string", "default": "Terraforming"},
+    {"name": "introHint", "type": "string", "default": "Discover our mission"},
+    {"name": "gridItems", "type": "{number,img,title,description}[]", "default": "8 sample items"},
+    {"name": "curves", "type": "{text,path,viewBox,filter,fontSize,color,minBlur,maxBlur,minScale,maxScale,absolute}[]", "default": "8 sample curves"},
+    {"name": "bigImages", "type": "string[]", "default": "2 sample images"},
+    {"name": "heroHeight", "type": "string", "default": "100vh"},
+    {"name": "gridGap", "type": "string", "default": "10vw"},
+    {"name": "gridMargin", "type": "string", "default": "15rem"},
+    {"name": "offsetLerp", "type": "number", "default": 0.22},
+    {"name": "scrollLerp", "type": "number", "default": 0.17},
+    {"name": "blurMaxDistance", "type": "number", "default": 400},
+    {"name": "distortMaxDistance", "type": "number", "default": 200},
+    {"name": "enableFilters", "type": "boolean", "default": true},
+    {"name": "disableOnFirefox", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All text, curves, paths, filter types and font sizes",
+    "Grid items, images and spacing",
+    "Colors and fonts",
+    "Animation easing and filter strength"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change where curves and grids are placed in the page order", "where": "renderCurve calls in the TextBasedScroll return block"},
+    {"change": "Add a new filter type", "where": "renderFilter function in CurvedText"},
+    {"change": "Make nav links point to real URLs", "where": "navLinks map with href=\"#\""}
+  ],
+  "fixed": [
+    "Curves are placed by index: 0-1, 2-3, 4-6 and 7 at fixed spots between grids and images",
+    "Grid items are split 2, 2, 2, 2 across the page",
+    "Large vertical spacing and margins give the scroll effect room",
+    "Relies on window scroll position, so it should be used in the main page scroll",
+    "Header overlay is hidden on screens below 768px"
+  ],
+  "mood": ["cosmic", "dark", "editorial", "poetic"],
+  "industries": ["space", "science", "art", "storytelling", "nonprofit"],
+  "sections": ["hero", "other"],
+  "dependencies": []
+}

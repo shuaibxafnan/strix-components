@@ -4,11 +4,12 @@
   "sourceHash": "80078510dd6d32b655d215a0d4f656d8512dd08528918a5102f41540467db7ad",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "text-path-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.568Z"
+  "note": "Renamed TextBasedScroll to TextPathScroll; only function name changed. Header overlay and footer links kept as props; hardcoded href=# noted in needsCodeEdit. Category text-effects.",
+  "updatedAt": "2026-11-01T14:11:45.323Z",
+  "gateOutput": "gates passed"
 }
