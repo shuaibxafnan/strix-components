@@ -4,11 +4,12 @@
   "sourceHash": "cddfa09bae3e5312e051d61d8f1e0d4637899e4a02f5c998590fa29c17b4a7df",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "circle-clip-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.537Z"
+  "note": "renamed shape-slideshow-circle -> circle-clip-slideshow; removed Mooz title (brand) and showTitle; gsap CDN script loader replaced by dynamic import of gsap; frame: none (full-width slider); variants: none; responsive: nav wraps and tighter spacing on small screens",
+  "updatedAt": "2026-11-01T11:48:10.155Z",
+  "gateOutput": "WARN  style tag without template literal\nWARN  setTimeout without clearTimeout\ngates passed"
 }
