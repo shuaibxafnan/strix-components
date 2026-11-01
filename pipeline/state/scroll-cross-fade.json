@@ -4,11 +4,12 @@
   "sourceHash": "e2d76e7f7926968be57173bfe013711473d49eb377114653085e71f148917328",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-cross-fade",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.528Z"
+  "note": "No rename. Gates passed. Removed header, closing section, footer, accentColor prop. Four sections now items prop. CDN gsap replaced with npm dynamic imports. Added className. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:24:01.419Z",
+  "gateOutput": "gates passed"
 }
