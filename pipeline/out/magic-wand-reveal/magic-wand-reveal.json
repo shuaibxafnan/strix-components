@@ -1,0 +1,57 @@
+{
+  "slug": "magic-wand-reveal",
+  "name": "Magic Wand Reveal",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "A row of overlapping tilted tiles hides blurred images that sharpen and fade in as a magic wand follows the cursor across them, with the wand tilting by pointer position.",
+  "contents": [
+    "Row of overlapping rotated square tiles with placeholder image icon",
+    "Image inside each tile revealed by pointer position",
+    "Wand shape that follows the pointer"
+  ],
+  "behavior": [
+    "Wand follows the mouse with a smoothed animation and tilts left to right",
+    "Each tile image goes from blurred and transparent to sharp and opaque as the wand passes over it",
+    "Touch dragging drives the same effect",
+    "All sizes use vmin units so it scales with the viewport"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#11151c" },
+    { "name": "tileBgColor", "type": "string", "default": "#212d40" },
+    { "name": "iconColor", "type": "string", "default": "#364156" },
+    { "name": "wandWidth", "type": "string", "default": "10vmin" },
+    { "name": "tileWidth", "type": "string", "default": "40vmin" },
+    { "name": "wandAnimationDuration", "type": "number", "default": 500 },
+    { "name": "images", "type": "string[]", "default": "4 sample image URLs" },
+    { "name": "imageAlt", "type": "string", "default": "Revealable scene" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images and their alt text",
+    "Background, tile and icon colors",
+    "Wand and tile sizes, wand follow speed"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change tile tilt angles or overlap",
+      "where": "rotations array and marginClass inside images.map"
+    },
+    {
+      "change": "Change wand colors or shape",
+      "where": "wandRef div with its linear-gradient backgrounds"
+    },
+    {
+      "change": "Change reveal blur strength",
+      "where": "blur(calc(var(--blur, 1) * 10px)) filter on the img"
+    }
+  ],
+  "fixed": [
+    "Fills the full viewport height with its own background",
+    "Listens to window mouse and touch movement while mounted and removes the listeners on unmount",
+    "Tiles are laid out with vmin units and are designed for 4 images"
+  ],
+  "mood": ["playful", "magical", "dark", "interactive"],
+  "industries": ["photography", "creative agency", "entertainment", "gaming", "portfolio"],
+  "sections": ["hero", "gallery"],
+  "dependencies": []
+}
