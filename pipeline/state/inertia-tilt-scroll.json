@@ -4,11 +4,12 @@
   "sourceHash": "52e0ae66149b827f884445c2da846c395b048ac36d62e78a1be3e0242967332f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "inertia-tilt-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.470Z"
+  "note": "Slug kept. Gates passed. Default export renamed InertialTiltScroll -> InertiaTiltScroll. Removed comments and header doc block. Added srg-container class to grid so mobile single-column media query now applies; desktop unchanged. className added. Animation props read at mount only, noted in fixed.",
+  "updatedAt": "2026-11-01T08:44:09.394Z",
+  "gateOutput": "gates passed"
 }
