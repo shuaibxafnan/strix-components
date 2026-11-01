@@ -1,0 +1,78 @@
+{
+  "slug": "diagonal-thumbnails",
+  "name": "Diagonal Thumbnails",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen slider with a tilted cluster of four thumbnails behind large split-character headlines. Slides change with arrow buttons or keys, with images flying diagonally and characters sliding in.",
+  "contents": [
+    "Slides, each with three title lines and four images",
+    "Previous and next arrow buttons",
+    "Custom circle cursor that follows the mouse"
+  ],
+  "behavior": [
+    "Left and right arrow keys or buttons change slides with a looping order",
+    "Outgoing images slide away diagonally while incoming images slide in with a stagger",
+    "Title characters slide and rotate in and out per character",
+    "Custom cursor follows the pointer with easing and grows over arrows, shown only on fine pointers"
+  ],
+  "props": [
+    { "name": "slides", "type": "{top,middle,bottom,images:string[]}[]", "default": "5 sample slides" },
+    { "name": "bgColor", "type": "string", "default": "#0f0e0e" },
+    { "name": "textColor", "type": "string", "default": "#f6f1f1" },
+    { "name": "accentColor", "type": "string", "default": "#e94b31" },
+    { "name": "rotation", "type": "number", "default": -22.5 },
+    { "name": "imageGap", "type": "number", "default": 1.5 },
+    { "name": "imageOpacity", "type": "number", "default": 0.4 },
+    { "name": "clusterWidth", "type": "number", "default": 790 },
+    { "name": "titleSize", "type": "string", "default": "clamp(2rem,15vw,14rem)" },
+    { "name": "middleSize", "type": "string", "default": "2.5rem" },
+    { "name": "slideDuration", "type": "number", "default": 0.8 },
+    { "name": "charDuration", "type": "number", "default": 0.4 },
+    { "name": "charStagger", "type": "number", "default": 0.01 },
+    { "name": "charRotation", "type": "number", "default": 6 },
+    { "name": "travel", "type": "number", "default": 150 },
+    { "name": "cursorSize", "type": "number", "default": 60 },
+    { "name": "cursorRadius", "type": "number", "default": 15 },
+    { "name": "cursorEase", "type": "number", "default": 0.2 },
+    { "name": "showCursor", "type": "boolean", "default": true },
+    { "name": "fontUrl", "type": "string", "default": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" },
+    { "name": "titleFont", "type": "string", "default": "\"Bodoni Moda\", serif" },
+    { "name": "middleFont", "type": "string", "default": "\"Cormorant Garamond\", serif" },
+    { "name": "titleWeight", "type": "number", "default": 400 },
+    { "name": "middleWeight", "type": "number", "default": 300 },
+    { "name": "titleTracking", "type": "string", "default": "-0.02em" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Slide titles and the four images of each slide, number of slides",
+    "Background, text and cursor accent colors",
+    "Cluster rotation, gap, width, image opacity, travel distance",
+    "Title and middle line sizes, fonts, weights and tracking",
+    "Animation durations and stagger, cursor size and easing, cursor on or off"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the diagonal directions images travel in",
+      "where": "POSITIONS constant"
+    },
+    {
+      "change": "Change arrow button position or artwork",
+      "where": "Previous slide and Next slide button elements"
+    },
+    {
+      "change": "Change the image sizes and stagger layout of the four thumbnails",
+      "where": "slide.images.slice(0, 4).map block"
+    }
+  ],
+  "fixed": [
+    "Listens to ArrowLeft and ArrowRight on window and removes the listeners on unmount",
+    "Adds a Google Fonts stylesheet link to the document head from fontUrl",
+    "Root is full viewport height with a 700px minimum and clips overflow",
+    "Cursor circle is fixed to the viewport and only appears on fine pointer devices",
+    "Each slide uses exactly four images"
+  ],
+  "mood": ["editorial", "dramatic", "elegant", "bold"],
+  "industries": ["fashion", "art", "photography", "film", "agency"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}
