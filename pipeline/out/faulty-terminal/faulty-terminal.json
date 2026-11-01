@@ -1,0 +1,95 @@
+{
+  "slug": "faulty-terminal",
+  "name": "Faulty Terminal",
+  "category": "backgrounds-3d",
+  "isReactBits": true,
+  "description": "Full-size WebGL2 background of a glitching CRT terminal grid with scanlines, flicker, glow, curvature, mouse reactive light and click glitch or degauss effects.",
+  "contents": [
+    "Container div filling its parent with an absolutely positioned WebGL canvas"
+  ],
+  "behavior": [
+    "Renders a grid of blocks, dots or characters (digits and letters) with animated noise, scanlines, flicker and glitch",
+    "Intro animation plays on load for about 2 seconds unless disabled",
+    "Pointer position adds a glow and displacement across the whole window, and clicks trigger a glitch or degauss effect (up to 4 at once)",
+    "Rendering pauses when offscreen or the tab is hidden, and reduced motion preference is respected",
+    "Resizes with its container, pixel ratio capped at 2"
+  ],
+  "props": [
+    {"name": "scale", "type": "number", "default": 1},
+    {"name": "gridMul", "type": "[number, number]", "default": [2, 1]},
+    {"name": "digitSize", "type": "number", "default": 1.5},
+    {"name": "timeScale", "type": "number", "default": 0.3},
+    {"name": "pause", "type": "boolean", "default": false},
+    {"name": "scanlineIntensity", "type": "number", "default": 0.3},
+    {"name": "glitchAmount", "type": "number", "default": 1},
+    {"name": "flickerAmount", "type": "number", "default": 1},
+    {"name": "noiseAmp", "type": "number", "default": 1},
+    {"name": "chromaticAberration", "type": "number", "default": 0},
+    {"name": "dither", "type": "number | boolean", "default": 0},
+    {"name": "curvature", "type": "number", "default": 0.2},
+    {"name": "tint", "type": "string", "default": "#ffffff"},
+    {"name": "mouseReact", "type": "boolean", "default": true},
+    {"name": "mouseStrength", "type": "number", "default": 0.2},
+    {"name": "pageLoadAnimation", "type": "boolean", "default": true},
+    {"name": "brightness", "type": "number", "default": 1},
+    {"name": "glyphs", "type": "'blocks' | 'dots' | 'characters'", "default": "blocks"},
+    {"name": "glow", "type": "number (0-3)", "default": 0.5},
+    {"name": "persistence", "type": "number (0-1)", "default": 0.5},
+    {"name": "scramble", "type": "number (0-1)", "default": 0.5},
+    {"name": "mouseGlow", "type": "number (0-1)", "default": 0.6},
+    {"name": "vignette", "type": "number (0-1)", "default": 0.25},
+    {"name": "clickEffect", "type": "'none' | 'glitch' | 'degauss'", "default": "glitch"},
+    {"name": "variation", "type": "number", "default": "undefined"},
+    {"name": "lightMode", "type": "boolean", "default": false},
+    {"name": "dpr", "type": "number", "default": "undefined (device pixel ratio)"},
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "style", "type": "object", "default": "undefined"}
+  ],
+  "editableByProps": [
+    "Tint color, brightness, glow, vignette and light mode",
+    "Glyph style, grid density, digit size and scale",
+    "Animation speed, pause, glitch, flicker, noise, scramble and persistence",
+    "Scanlines, curvature, chromatic aberration and dither",
+    "Mouse reaction, mouse glow and click effect",
+    "Intro animation, pixel ratio, random seed via variation, container class and style"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the character set shown in characters mode",
+      "where": "FONT constant at the top of the file"
+    },
+    {
+      "change": "Change intro length or max simultaneous clicks",
+      "where": "INTRO_SECONDS and MAX_CLICKS constants"
+    },
+    {
+      "change": "Change click effect durations",
+      "where": "CLICK_SECONDS constant"
+    },
+    {
+      "change": "Limit pointer tracking to the component instead of the window",
+      "where": "pointermove and pointerdown listeners in the main useEffect"
+    }
+  ],
+  "fixed": [
+    "Requires WebGL2, renders nothing if unavailable or shader compile fails",
+    "Fills its parent, so the parent needs a defined height and position",
+    "Listens to pointermove and pointerdown on window and pointerleave on the document element while mounted, so pointer effects work even outside the container",
+    "Canvas is aria-hidden and purely decorative",
+    "Pixel ratio capped at 2",
+    "Should be placed behind content with its own z-index since it has no content slot"
+  ],
+  "mood": ["cyber", "retro", "techy", "dark", "glitchy"],
+  "industries": ["technology", "gaming", "cybersecurity", "developer tools", "music"],
+  "sections": ["hero", "background", "cta"],
+  "dependencies": [],
+  "variants": {
+    "prop": "glyphs",
+    "default": "blocks",
+    "options": [
+      {"value": "blocks", "look": "Grid of solid glowing blocks", "useWhen": "Abstract pixel-grid backdrop"},
+      {"value": "dots", "look": "Grid of round dots", "useWhen": "Softer, LED matrix feel"},
+      {"value": "characters", "look": "Digits and letters like terminal output", "useWhen": "Hacker or code themed pages"}
+    ]
+  }
+}
