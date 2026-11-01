@@ -1,0 +1,69 @@
+{
+  "slug": "ember-scroll-gallery",
+  "name": "Ember Scroll Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Dark scroll gallery where framed photos tumble through 3D rotation as you scroll, glowing when centered, over a giant blended name marquee with vignette, film grain and a frame counter.",
+  "contents": [
+    "Vertical zigzag stack of image frames with captions and index labels",
+    "Large horizontal name marquee behind the images",
+    "Fixed frame counter, vignette, grain overlay and loading line"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Each frame rotates in 3D and moves in depth, scrubbed by scroll",
+    "Frame in the center gets a color glow and updates the counter",
+    "Marquee slides horizontally with scroll using a blend mode",
+    "Loader line shows until images have loaded"
+  ],
+  "props": [
+    {"name":"images","type":"{src,alt,caption}[]","default":"14 sample mountain photos"},
+    {"name":"names","type":"string[]","default":"14 sample names"},
+    {"name":"bgColor","type":"string","default":"#120705"},
+    {"name":"textColor","type":"string","default":"#F5ECE7"},
+    {"name":"accentColor","type":"string","default":"#E2472B"},
+    {"name":"mutedColor","type":"string","default":"#8C6156"},
+    {"name":"itemAspectRatio","type":"string","default":"4 / 5"},
+    {"name":"itemWidthPx","type":"number","default":340},
+    {"name":"itemBorderRadius","type":"number","default":2},
+    {"name":"itemGapRem","type":"number","default":3},
+    {"name":"focusGlow","type":"boolean","default":true},
+    {"name":"marqueeColor","type":"string","default":"#F5ECE7"},
+    {"name":"marqueeFontSize","type":"string","default":"clamp(2rem, 15vw, 7.5rem)"},
+    {"name":"blendMode","type":"string","default":"difference"},
+    {"name":"shadowInColor","type":"string","default":"rgba(20,4,2,0.1)"},
+    {"name":"shadowOutColor","type":"string","default":"rgba(0,0,0,0.85)"},
+    {"name":"amplitudeFactor","type":"number","default":0.2},
+    {"name":"angleStep","type":"number","default":0.45},
+    {"name":"rotationXRange","type":"number[]","default":[240,290]},
+    {"name":"rotationZRange","type":"number[]","default":[-50,50]},
+    {"name":"zAmplitude","type":"number","default":300},
+    {"name":"zSnapPower","type":"number","default":4},
+    {"name":"marginTopVh","type":"number","default":28},
+    {"name":"marginBottomVh","type":"number","default":38},
+    {"name":"showIndexRail","type":"boolean","default":true},
+    {"name":"showFrameCounter","type":"boolean","default":true},
+    {"name":"className","type":"string","default":""}
+  ],
+  "editableByProps": [
+    "Images, captions, alt text and marquee names",
+    "All colors, blend mode, vignette and marquee size",
+    "Frame size, ratio, radius, spacing and zigzag spread",
+    "3D rotation and depth intensity, toggles for glow, index labels and counter"
+  ],
+  "needsCodeEdit": [
+    {"change":"Change the glow color of the focused frame","where":"STYLE_RULES constant, .esr-frame.is-focused rule"},
+    {"change":"Disable smooth scrolling","where":"new Lenis() call inside the init function"},
+    {"change":"Change grain texture strength","where":"opacity-[0.06] noise overlay div"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Vignette, grain, marquee, counter and loader are fixed to the viewport and cover the whole screen while mounted",
+    "Includes top and bottom margins (marginTopVh, marginBottomVh) that give the scroll range",
+    "Root draws its own background color and uses a system font stack"
+  ],
+  "mood": ["dark", "cinematic", "dramatic", "editorial"],
+  "industries": ["photography", "travel", "outdoor", "portfolio", "film"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap", "lenis", "imagesloaded"]
+}
