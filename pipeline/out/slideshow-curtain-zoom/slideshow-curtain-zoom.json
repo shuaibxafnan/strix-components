@@ -1,0 +1,58 @@
+{
+  "slug": "slideshow-curtain-zoom",
+  "name": "Slideshow Curtain Zoom",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen image slideshow driven by wheel, touch, drag or arrow buttons. Each change zooms and tilts the current slide while two curtain panels slide across, then the next slide zooms in.",
+  "contents": [
+    "Full-screen stack of background images",
+    "Two curtain panels that sweep during transitions",
+    "Hint text with previous and next round buttons"
+  ],
+  "behavior": [
+    "Wheel, touch and pointer gestures move to the next or previous slide, looping at the ends",
+    "Two-phase GSAP transition: current slide zooms and rotates under the curtains, then the next slide settles from zoomed to normal",
+    "Input is locked while a transition runs",
+    "Images are preloaded before the slideshow becomes visible"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "5 sample image urls"},
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "textColor", "type": "string", "default": "#fff"},
+    {"name": "decoColor", "type": "string", "default": "#000"},
+    {"name": "phase1Duration", "type": "number", "default": 0.8},
+    {"name": "phase1Ease", "type": "string", "default": "power3.inOut"},
+    {"name": "zoomScale", "type": "number", "default": 1.1},
+    {"name": "zoomRotation", "type": "number", "default": 2},
+    {"name": "phase2Duration", "type": "number", "default": 1.1},
+    {"name": "phase2Ease", "type": "string", "default": "expo"},
+    {"name": "wheelSpeed", "type": "number", "default": -1},
+    {"name": "wheelTolerance", "type": "number", "default": 10},
+    {"name": "showNavButtons", "type": "boolean", "default": true},
+    {"name": "scrollHintText", "type": "string", "default": "scroll / drag"},
+    {"name": "navButtonBg", "type": "string", "default": "#fff"},
+    {"name": "navButtonColor", "type": "string", "default": "#000"},
+    {"name": "navButtonSize", "type": "number", "default": 60},
+    {"name": "navButtonHoverBg", "type": "string", "default": "#ccc"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, any number of slides",
+    "Background, curtain, text and button colors",
+    "Transition durations, easing, zoom and rotation",
+    "Wheel sensitivity, nav button visibility, size and hint text"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the curtain direction or number of curtain panels", "where": "decoPanels fromTo call inside navigate"},
+    {"change": "Add captions or content over slides", "where": "slidesRef map in the returned JSX"}
+  ],
+  "fixed": [
+    "Fills the viewport height and captures wheel, touch and pointer gestures on its own area",
+    "Fixed two-panel curtain transition",
+    "Hidden until images are preloaded"
+  ],
+  "mood": ["cinematic", "bold", "immersive"],
+  "industries": ["photography", "fashion", "travel", "film", "architecture"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}
