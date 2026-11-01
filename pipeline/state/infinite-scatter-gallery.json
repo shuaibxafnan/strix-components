@@ -4,11 +4,12 @@
   "sourceHash": "11606827fd928fcefd5a738ec7608a19e62647fd5ceb3405ff842fb5ba499223",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-scatter-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.475Z"
+  "note": "Slug kept. Gates passed. Category cards-galleries. Demo header removed with props frameTitle, frameLinks, frameTags, linkColor, linkHoverColor, plus link style tag and uid. gsap and Observer CDN scripts replaced by dynamic imports; gsap in dependencies. Mobile: preview 45vh below md with text beneath; desktop unchanged. Wheel/touch preventDefault and Escape listener noted in fixed.",
+  "updatedAt": "2026-11-01T08:51:44.736Z",
+  "gateOutput": "gates passed"
 }
