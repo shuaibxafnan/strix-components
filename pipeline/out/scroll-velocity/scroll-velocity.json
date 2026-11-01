@@ -1,0 +1,81 @@
+{
+    "slug": "scroll-velocity",
+    "name": "Scroll Velocity",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Rows of large marquee text that drift horizontally and speed up or reverse with page scroll velocity. Alternate rows run in opposite directions, with optional drag, skew, outline and edge fade.",
+    "contents": [
+        "One horizontally scrolling row per entry in texts",
+        "Each row repeats the text numCopies times with optional separator"
+    ],
+    "behavior": [
+        "Rows drift at a constant base speed and accelerate with scroll speed, flipping direction when scrolling up",
+        "Odd-indexed rows move in the opposite direction",
+        "Content loops seamlessly by wrapping at one copy width",
+        "Optional pause on hover, drag with fling inertia, skew and vertical scale surge on velocity, outlined alternate rows, faded left and right edges",
+        "Motion stops when the user prefers reduced motion"
+    ],
+    "props": [
+        { "name": "scrollContainerRef", "type": "React.RefObject<HTMLElement>", "default": "undefined" },
+        { "name": "texts", "type": "string[]", "default": [] },
+        { "name": "velocity", "type": "number", "default": 100 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "damping", "type": "number", "default": 50 },
+        { "name": "stiffness", "type": "number", "default": 400 },
+        { "name": "numCopies", "type": "number", "default": 6 },
+        { "name": "velocityMapping", "type": "{input:number[],output:number[]}", "default": { "input": [0, 1000], "output": [0, 5] } },
+        { "name": "parallaxClassName", "type": "string", "default": "parallax" },
+        { "name": "scrollerClassName", "type": "string", "default": "scroller" },
+        { "name": "parallaxStyle", "type": "React.CSSProperties", "default": "undefined" },
+        { "name": "scrollerStyle", "type": "React.CSSProperties", "default": "undefined" },
+        { "name": "separator", "type": "React.ReactNode", "default": "" },
+        { "name": "pauseOnHover", "type": "boolean", "default": false },
+        { "name": "fadeEdges", "type": "boolean", "default": false },
+        { "name": "skewWithVelocity", "type": "number", "default": 0 },
+        { "name": "scaleWithVelocity", "type": "number", "default": 0 },
+        { "name": "outlineAlternate", "type": "boolean", "default": false },
+        { "name": "gap", "type": "number", "default": 0 },
+        { "name": "fontSize", "type": "number | string", "default": "undefined" },
+        { "name": "fontWeight", "type": "number | string", "default": "undefined" },
+        { "name": "color", "type": "string", "default": "undefined" },
+        { "name": "draggable", "type": "boolean", "default": false }
+    ],
+    "editableByProps": [
+        "Row texts and number of rows, separator, gap, copies count",
+        "Base speed, scroll response and spring feel",
+        "Font size, weight, color, extra classes and inline styles",
+        "Pause on hover, drag, skew and scale reaction, outlined alternate rows, edge fade",
+        "Custom scroll container"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the default font family, size or tracking",
+            "where": "className string on the motion.div in VelocityText"
+        },
+        {
+            "change": "Make all rows move the same direction",
+            "where": "baseVelocity ternary in ScrollVelocity"
+        },
+        {
+            "change": "Change edge fade width or curve",
+            "where": "FADE_MASK constant"
+        },
+        {
+            "change": "Change outline thickness",
+            "where": "OUTLINE_STYLE constant"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package (motion/react)",
+        "Default parallaxClassName and scrollerClassName are 'parallax' and 'scroller', which need no matching CSS",
+        "Tracks window scroll unless scrollContainerRef is given",
+        "Default text is bold sans, 4xl on mobile and 5rem from md, with a drop shadow",
+        "Pause on hover applies to the whole section, not a single row",
+        "Draggable rows allow only vertical touch panning and suppress clicks after dragging more than 6px",
+        "Renders nothing when texts is empty"
+    ],
+    "mood": ["bold", "energetic", "modern", "playful"],
+    "industries": ["agency", "fashion", "music", "startup", "events"],
+    "sections": ["hero", "logos", "cta", "other"],
+    "dependencies": ["motion"]
+}

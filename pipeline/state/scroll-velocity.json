@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "scroll-velocity",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.632Z"
+  "note": "React Bits, JSON only. Gates passed. Category text-effects. Dependency motion. No variants.",
+  "updatedAt": "2026-11-01T11:36:51.672Z",
+  "gateOutput": "gates passed"
 }
