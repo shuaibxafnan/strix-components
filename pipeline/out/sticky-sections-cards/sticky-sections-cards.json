@@ -1,0 +1,74 @@
+{
+    "slug": "sticky-sections-cards",
+    "name": "Sticky Sections Cards",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Full page scroll section with a big hero title, a stack of sticky cards that shrink and fade as the next card arrives, and a closing statement. Card images animate from high to normal contrast.",
+    "contents": [
+        "Hero header with title and description",
+        "Stack of sticky cards, each with counter, image, title and text",
+        "Closing outro paragraph",
+        "Optional full screen pulse loader until images load"
+    ],
+    "behavior": [
+        "Each card sticks near the top and scales down and fades while scrolling",
+        "The last card slides down as it leaves",
+        "Card images animate contrast on scroll",
+        "Smooth scrolling through Lenis, skipped for reduced motion",
+        "Loader hides once all images have loaded"
+    ],
+    "props": [
+        { "name": "sections", "type": "{image,titleLead,title,text,cardColor}[]", "default": "6 sample sections" },
+        { "name": "heroTitleLead", "type": "string", "default": "The" },
+        { "name": "heroTitle", "type": "string", "default": "Narrative" },
+        { "name": "heroDescription", "type": "string", "default": "As data conglomerates reveled in the opulence of cognitive wealth, a silent underclass manifested, condemned to the digital periphery." },
+        { "name": "outro", "type": "string", "default": "Lost in perpetual dependency, inhabitants of the Synthetic Era found solace in cryptic simulations, where pain ebbed and cognitive loads momentarily lightened." },
+        { "name": "fontFamily", "type": "string", "default": "DM Sans" },
+        { "name": "fontFaces", "type": "{weight,url}[]", "default": "DM Sans 300, 500, 700" },
+        { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+        { "name": "textColor", "type": "string", "default": "text-white" },
+        { "name": "loaderColor", "type": "string", "default": "bg-white/60" },
+        { "name": "cardTop", "type": "string", "default": "top-[10vh]" },
+        { "name": "cardRadius", "type": "string", "default": "rounded-md" },
+        { "name": "imageSize", "type": "string", "default": "h-[50%]" },
+        { "name": "scrollStart", "type": "string", "default": "center center" },
+        { "name": "scrollLength", "type": "string", "default": "+=100%" },
+        { "name": "scaleTo", "type": "number", "default": 0.6 },
+        { "name": "opacityTo", "type": "number", "default": 0 },
+        { "name": "lastYPercent", "type": "number", "default": 125 },
+        { "name": "keepLastSection", "type": "boolean", "default": true },
+        { "name": "imageFromContrast", "type": "number", "default": 400 },
+        { "name": "imageToContrast", "type": "number", "default": 100 },
+        { "name": "imageScrollStart", "type": "string", "default": "top bottom" },
+        { "name": "imageScrollEnd", "type": "string", "default": "max" },
+        { "name": "smoothScroll", "type": "boolean", "default": true },
+        { "name": "lerp", "type": "number", "default": 0.2 },
+        { "name": "smoothWheel", "type": "boolean", "default": true },
+        { "name": "showLoader", "type": "boolean", "default": true },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Hero text, outro text, card titles, texts, images and card background classes",
+        "Page, text and loader colors, card radius, top offset and image size",
+        "Scroll scale, fade, contrast and trigger settings, smooth scroll and loader toggles"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the card counter format",
+            "where": "pad function and the counter span in the sections map"
+        },
+        {
+            "change": "Change card layout size",
+            "where": "data-panel div className in the sections map"
+        }
+    ],
+    "fixed": [
+        "Lenis takes over page scrolling and is destroyed on unmount",
+        "Fixed full screen loader overlay while images load",
+        "Cards use sticky positioning and the hero and outro spacing provides the scroll range"
+    ],
+    "mood": ["dark", "editorial", "cinematic", "minimal"],
+    "industries": ["agency", "portfolio", "editorial", "storytelling", "product"],
+    "sections": ["features", "portfolio", "other"],
+    "dependencies": ["gsap", "lenis"]
+}
