@@ -4,11 +4,12 @@
   "sourceHash": "70c5db49197e4ad481e60ec50cfeb2697d9a22e17e7a47be993bbbe6cb79d30e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "dinosaur-park",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.420Z"
+  "note": "Rewritten. Gates passed. Removed fixed header nav and Book now button with navItems, ctaLabel, ctaHref, ctaColor props (ambiguous, demo chrome); retry can restore. Added className. Google Fonts links kept. Fixed dot indicator in fixed. No frame; no variants.",
+  "updatedAt": "2026-11-01T06:15:04.862Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,54 @@
+{
+  "slug": "dinosaur-park",
+  "name": "Dinosaur Park",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen snap-scrolling zones, each with a colored background, staggered text reveal, accent link button, large dinosaur illustration, ghost counter number and a dot progress indicator.",
+  "contents": [
+    "Full-height sections with eyebrow, two-line title, intro, accent link button and illustration",
+    "Large faded count number and section counter per section",
+    "Fixed dot indicator on the right edge"
+  ],
+  "behavior": [
+    "Inner container scrolls with vertical snap, one section per screen, scrollbar hidden",
+    "Section content slides in from the sides with staggered delays when a section is mostly visible and resets when it leaves",
+    "Dot indicator highlights the active section",
+    "Image side alternates per section through imgSide; sections stack into one column below 860px"
+  ],
+  "props": [
+    { "name": "sections", "type": "{eyebrow,count,title,intro,linkLabel,linkHref,imgSrc,imgAlt,imgSide,bgColor,accentColor}[]", "default": "3 sample sections" },
+    { "name": "displayFont", "type": "string", "default": "Anton" },
+    { "name": "bodyFont", "type": "string", "default": "DM Sans" },
+    { "name": "monoFont", "type": "string", "default": "Overpass Mono" },
+    { "name": "intersectionThreshold", "type": "number", "default": 0.6 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of sections, all text, links, images, image side, background and accent colors",
+    "Visibility threshold that triggers the reveal"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the reveal slide distance or timing",
+      "where": "ENTER constant and ENTER_LEFT and ENTER_RIGHT"
+    },
+    {
+      "change": "Change the image tint or glow",
+      "where": "filter style on the img element"
+    },
+    {
+      "change": "Change the font files loaded",
+      "where": "link stylesheet element with the Google Fonts href"
+    }
+  ],
+  "fixed": [
+    "Loads Google Fonts Anton, DM Sans and Overpass Mono through link tags",
+    "Component is a full-viewport scroll container (h-screen) with its own snap scrolling",
+    "Dot indicator is fixed to the right edge of the viewport",
+    "Illustrations are inverted white silhouettes via CSS filter"
+  ],
+  "mood": ["bold", "dramatic", "adventurous", "dark"],
+  "industries": ["tourism", "entertainment", "museums", "education", "events"],
+  "sections": ["features", "portfolio"],
+  "dependencies": []
+}
