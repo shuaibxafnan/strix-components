@@ -4,11 +4,12 @@
   "sourceHash": "743cac19333a2d9a28c41034823d50097192dcc1b5f50866ce783f4def09a9d1",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "grid-to-full-preview",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.457Z"
+  "note": "No rename. cdnjs loader and gsapVersion prop replaced with import('gsap'); dep gsap. Added ctaLabel, currencySymbol, placeholderTitle, className. Removed emoji from breakpointMessage, unused rootRef. w-screen -> w-full. Frame: none. Variants: none. Desktop-only below 900px; hover-only. Expects 8 products.",
+  "updatedAt": "2026-11-01T08:00:03.973Z",
+  "gateOutput": "gates passed"
 }
