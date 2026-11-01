@@ -4,11 +4,12 @@
   "sourceHash": "3fd2393de138660b7da60b6c57deda86f1e2fb7b988b91267442e82eef5bb3ba",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "warp-shader-background",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.447Z"
+  "note": "Renamed to warp-shader-background. Three.js CDN replaced with import, dependency three (untested vs r128). Removed isClient placeholder, width/heightClass replaced by className. Resize reads container. Dispose on unmount. No frame, no variants.",
+  "updatedAt": "2026-11-01T07:25:54.838Z",
+  "gateOutput": "gates passed"
 }

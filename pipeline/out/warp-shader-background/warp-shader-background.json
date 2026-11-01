@@ -1,0 +1,35 @@
+{
+  "slug": "warp-shader-background",
+  "name": "Warp Shader Background",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen WebGL fragment shader background that renders a flowing black and white cosine-warped pattern, animated continuously with adjustable speed and warp strength.",
+  "contents": [
+    "Full-width WebGL canvas filling the container with a generative warped pattern"
+  ],
+  "behavior": [
+    "Shader animates continuously using elapsed time",
+    "Canvas resizes with the container on window resize",
+    "Pointer events are disabled so content above stays interactive"
+  ],
+  "props": [
+    { "name": "timeMultiplier", "type": "number", "default": 0.2 },
+    { "name": "warpIntensity", "type": "number", "default": 3.0 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Animation speed and warp intensity",
+    "Size and placement through className"
+  ],
+  "needsCodeEdit": [
+    { "change": "Pattern colors or palette", "where": "fragmentShaderSource" }
+  ],
+  "fixed": [
+    "Output is monochrome, colors are defined inside the shader",
+    "Root defaults to full width and screen height. Override with className using an important modifier such as !h-96."
+  ],
+  "mood": ["futuristic", "hypnotic", "minimal", "abstract"],
+  "industries": ["technology", "creative agency", "music", "gaming", "art"],
+  "sections": ["background", "hero"],
+  "dependencies": ["three"]
+}
