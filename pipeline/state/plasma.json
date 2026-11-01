@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "plasma",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.602Z"
+  "note": "Bits describe-only. Needs WebGL2 and sized parent. Heavy 60-step raymarch per pixel; lower quality on mobile. Pointer listener on window. No variants, no deps.",
+  "updatedAt": "2026-11-01T10:37:53.121Z",
+  "gateOutput": "gates passed"
 }

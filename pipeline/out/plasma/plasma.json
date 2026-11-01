@@ -1,0 +1,94 @@
+{
+    "slug": "plasma",
+    "name": "Plasma",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "Full-container WebGL2 raymarched plasma volume with twisting, waving glowing ribbons in a single tint, soft film grain and an optional pointer-driven orbit and glow.",
+    "contents": [
+        "Container div with a single absolutely positioned WebGL canvas filling it"
+    ],
+    "behavior": [
+        "Raymarches a twisting plasma volume in a low-resolution pass, then composites it to the canvas with tone mapping and grain",
+        "Fades in over about 1.6 seconds on mount when intro is on",
+        "Pointer position over the window orbits the view slightly and adds a soft glow near the cursor",
+        "Time can run forward, reverse or ping-pong",
+        "Pauses rendering when offscreen or the tab is hidden, and idles when nothing is moving",
+        "Light mode draws dark ink on transparent for light backgrounds",
+        "Respects prefers-reduced-motion by freezing motion, intro and pointer reaction"
+    ],
+    "props": [
+        { "name": "color", "type": "string (CSS color)", "default": "#a6a3b8" },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "direction", "type": "'forward' | 'reverse' | 'pingpong'", "default": "forward" },
+        { "name": "scale", "type": "number (min 0.1)", "default": 1 },
+        { "name": "twist", "type": "number", "default": 1 },
+        { "name": "wave", "type": "number (min 0)", "default": 1 },
+        { "name": "softness", "type": "number (0 to 1)", "default": 0.5 },
+        { "name": "shine", "type": "number (min 0)", "default": 1 },
+        { "name": "brightness", "type": "number (min 0)", "default": 1 },
+        { "name": "grain", "type": "number (min 0)", "default": 0.04 },
+        { "name": "quality", "type": "number (0.25 to 1)", "default": 0.75 },
+        { "name": "mouseInteractive", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "fade", "type": "number (0 to 1)", "default": 0 },
+        { "name": "opacity", "type": "number (0 to 1)", "default": 1 },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number | undefined", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Plasma color, brightness, shine, softness and grain",
+        "Animation speed, direction, twist, wave amount, zoom scale and paused state",
+        "Render quality and device pixel ratio",
+        "Mouse interaction and intro on or off",
+        "Edge fade, overall opacity and light mode for light backgrounds",
+        "Container size and extra classes through className, other attributes through rest props"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the plasma shape or ribbon structure",
+            "where": "VOLUME shader string, the raymarch loop in main"
+        },
+        {
+            "change": "Change the intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change mouse orbit strength",
+            "where": "goalYaw and goalPitch lines in the frame function"
+        },
+        {
+            "change": "Change the pixel budget for large containers",
+            "where": "MAX_VOLUME_PIXELS constant"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable or shaders fail to compile",
+        "Fills its parent: needs a parent with a defined height since the root is h-full w-full",
+        "Listens to pointer movement on the whole window, not only the container",
+        "Heavy GPU raymarching (60 steps per pixel), may be slow on low-end mobile; lower quality for small screens",
+        "Device pixel ratio is capped at 2",
+        "Color is set at the tint level only, the highlight is derived automatically",
+        "Uses 'use client' and a canvas with aria-hidden, purely decorative"
+    ],
+    "mood": [
+        "futuristic",
+        "atmospheric",
+        "ethereal",
+        "moody"
+    ],
+    "industries": [
+        "technology",
+        "AI",
+        "music",
+        "gaming",
+        "creative agency"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "cta"
+    ],
+    "dependencies": []
+}
