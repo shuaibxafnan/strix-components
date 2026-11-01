@@ -4,11 +4,12 @@
   "sourceHash": "6deac1c4ecb72c72a121098e0a6a986c4094513fdb727b439c896b11371d9aca",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "hover-reveal-name-list",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.462Z"
+  "note": "Renamed image-column-show-set -> hover-reveal-name-list (HoverRevealNameList; class prefix rihm- -> hrnl-). gsap CDN loader replaced with import('gsap'); dep gsap. Google Fonts link effect kept. Frame: none. Variants: none. Reveal hover-only.",
+  "updatedAt": "2026-11-01T08:12:35.677Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

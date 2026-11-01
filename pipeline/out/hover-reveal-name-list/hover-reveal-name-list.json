@@ -1,0 +1,71 @@
+{
+    "slug": "hover-reveal-name-list",
+    "name": "Hover Reveal Name List",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Large uppercase name list where hovering a row reveals a tilting, mouse-following image with a slide mask, plus an index number, subtitle and a lagging custom cursor.",
+    "contents": [
+        "Vertical list of large serif titles with optional subtitle and index number",
+        "Hidden image per row revealed on hover",
+        "Custom circle cursor"
+    ],
+    "behavior": [
+        "Titles slide up on load with a stagger",
+        "Hovering a row reveals its image with a horizontal slide mask that follows the mouse with lerp smoothing",
+        "Image rotation and brightness react to mouse speed and direction",
+        "Custom cursor follows the mouse with lag on fine pointers only"
+    ],
+    "props": [
+        {"name": "items", "type": "{title,sub,image}[]", "default": "18 sample items"},
+        {"name": "bgColor", "type": "string", "default": "#edeee9"},
+        {"name": "textColor", "type": "string", "default": "#111"},
+        {"name": "menuColor", "type": "string", "default": "#000"},
+        {"name": "menuHoverColor", "type": "string", "default": "#f32015"},
+        {"name": "fontHref", "type": "string", "default": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@500;600&display=swap"},
+        {"name": "titleFontFamily", "type": "string", "default": "\"Bodoni Moda\", \"Didot\", \"Times New Roman\", serif"},
+        {"name": "bodyFontFamily", "type": "string", "default": "\"Archivo\", \"Helvetica Neue\", Arial, sans-serif"},
+        {"name": "titleLetterSpacing", "type": "string", "default": "-0.02em"},
+        {"name": "subLetterSpacing", "type": "string", "default": "0.12em"},
+        {"name": "titleFontSize", "type": "string", "default": "4vw"},
+        {"name": "titleFontSizeSm", "type": "string", "default": "6vw"},
+        {"name": "imageWidth", "type": "number", "default": 220},
+        {"name": "imageHeight", "type": "number", "default": 320},
+        {"name": "revealDuration", "type": "number", "default": 0.2},
+        {"name": "lerpAmount", "type": "number", "default": 0.08},
+        {"name": "maxRotation", "type": "number", "default": 60},
+        {"name": "maxBrightness", "type": "number", "default": 4},
+        {"name": "mouseSpeedClamp", "type": "number", "default": 100},
+        {"name": "introDuration", "type": "number", "default": 1.2},
+        {"name": "introStagger", "type": "number", "default": 0.06},
+        {"name": "showCursor", "type": "boolean", "default": true},
+        {"name": "cursorSize", "type": "number", "default": 80},
+        {"name": "cursorRadius", "type": "number", "default": 20},
+        {"name": "cursorFill", "type": "string", "default": "#000"},
+        {"name": "cursorStroke", "type": "string", "default": "#000"},
+        {"name": "cursorStrokeWidth", "type": "number", "default": 1},
+        {"name": "cursorOpacity", "type": "number", "default": 0.3},
+        {"name": "cursorLerp", "type": "number", "default": 0.2},
+        {"name": "showIndex", "type": "boolean", "default": true},
+        {"name": "showSub", "type": "boolean", "default": true},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Items, titles, subtitles and images",
+        "Colors, fonts, title sizes, image size",
+        "Motion timing, tilt and brightness strength",
+        "Cursor visibility and look, index and subtitle visibility"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the left offset of rows on desktop", "where": "padding-left: 25vw rule inside the min-width 53em media query in the css string"},
+        {"change": "Change the reveal slide easing", "where": "sine.out ease in the onEnter timeline"}
+    ],
+    "fixed": [
+        "Mouse listeners are attached to window and removed on unmount",
+        "Font stylesheet link is appended to document head",
+        "Hover reveal needs a mouse; on touch devices the images do not show"
+    ],
+    "mood": ["editorial", "elegant", "playful", "bold"],
+    "industries": ["fashion", "portfolio", "agency", "events", "media"],
+    "sections": ["portfolio", "gallery", "about"],
+    "dependencies": ["gsap"]
+}
