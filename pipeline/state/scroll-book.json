@@ -4,11 +4,12 @@
   "sourceHash": "a2009826e7826b8c47665ac40b99f1679327f61d29203ea5c916e604e71c3281",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-book",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.526Z"
+  "note": "No rename. Gates passed. next/font/google kept (Playfair Display, Lora), needs Next.js. No frame, no variants. Layout unchanged; vmin text very small on 360px phones, noted in fixed.",
+  "updatedAt": "2026-11-01T11:20:22.061Z",
+  "gateOutput": "gates passed"
 }

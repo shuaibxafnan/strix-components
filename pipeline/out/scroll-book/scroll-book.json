@@ -1,0 +1,63 @@
+{
+    "slug": "scroll-book",
+    "name": "Scroll Book",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Fixed 3D book that scales in and opens page by page as the user scrolls, flipping through chapters, text, figures, quotes and galleries until the back cover.",
+    "contents": [
+        "Front cover with title, subtitle and emblem",
+        "Pages array rendered as two-sided leaves: chapter, text, figure, quote, split, gallery and ornament layouts",
+        "Back cover with closing text and emblem",
+        "Scroll hint label"
+    ],
+    "behavior": [
+        "Book scales up from half size at the start of scroll",
+        "Each leaf rotates open in 3D, scrubbed to scroll position",
+        "Back cover emblem fades in at the end",
+        "Book size is based on vmin units with a pixel minimum"
+    ],
+    "props": [
+        {"name": "pages", "type": "{type,number,title,text,image,alt,caption,heading,paragraphs,attribution,images,small}[]", "default": "20 sample pages"},
+        {"name": "pageCount", "type": "number", "default": 10},
+        {"name": "pageScroll", "type": "number", "default": 25},
+        {"name": "runningTitle", "type": "string", "default": "Field Notes"},
+        {"name": "chapterLabel", "type": "string", "default": "Chapter"},
+        {"name": "coverTitle", "type": "string", "default": "Field Notes"},
+        {"name": "coverSubtitle", "type": "string", "default": "Scroll to open"},
+        {"name": "backCoverText", "type": "string", "default": "The End"},
+        {"name": "scrollHint", "type": "string", "default": "Scroll"},
+        {"name": "showHint", "type": "boolean", "default": true},
+        {"name": "backgroundColor", "type": "string", "default": "hsl(0, 0%, 8%)"},
+        {"name": "spineColor", "type": "string", "default": "hsl(0, 0%, 0%)"},
+        {"name": "coverColor", "type": "string", "default": "hsl(0, 0%, 14%)"},
+        {"name": "insertColor", "type": "string", "default": "hsl(0, 0%, 85%)"},
+        {"name": "pageColor", "type": "string", "default": "hsl(0, 0%, 96%)"},
+        {"name": "coverTextColor", "type": "string", "default": "hsl(0, 0%, 92%)"},
+        {"name": "bookWidthVmin", "type": "number", "default": 30},
+        {"name": "bookHeightVmin", "type": "number", "default": 40},
+        {"name": "minBookWidth", "type": "number", "default": 150},
+        {"name": "minBookHeight", "type": "number", "default": 200},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "All page content, covers, labels and images",
+        "Number of leaves and scroll distance per page turn",
+        "Book, cover, spine, page and background colors",
+        "Book size"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the page flip angle or easing", "where": "rotateY tween inside the elements.forEach in the useEffect"},
+        {"change": "Change page layouts or add a new page type", "where": "PageBody switch statement"},
+        {"change": "Change the start scale of the book", "where": "gsap.fromTo on bookRef with scale 0.5"}
+    ],
+    "fixed": [
+        "Adds a tall scroll spacer and pins the book and background in fixed layers, so it should be the main content of the page",
+        "Background layer is fixed full screen behind the page",
+        "Fonts load through next/font/google (Playfair Display and Lora), which needs Next.js",
+        "Page text is sized in vmin, so it is small on narrow phones where the book hits its minimum size"
+    ],
+    "mood": ["editorial", "elegant", "immersive", "storytelling"],
+    "industries": ["publishing", "education", "portfolio", "travel", "art"],
+    "sections": ["hero", "portfolio"],
+    "dependencies": ["gsap"]
+}
