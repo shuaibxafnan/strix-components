@@ -1,0 +1,101 @@
+{
+    "slug": "components-profile-card",
+    "name": "Profile Card",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Interactive holographic profile card with a photo tile, name and title overlay, and a footer with handle, status and contact button. Tilts in 3D and shows foil and glare effects that follow the pointer.",
+    "contents": [
+        "Photo tile with name and title overlay on a bottom scrim",
+        "Holographic foil, glow and glare layers",
+        "Footer with optional mini avatar, @handle, colored status dot and contact button with mail icon"
+    ],
+    "behavior": [
+        "Spring-driven 3D tilt and photo parallax follow the mouse pointer over the card",
+        "Holographic foil, light glare and shade follow the pointer and fade out on leave",
+        "Touch drags aim the effect while a finger is down and release on lift",
+        "Intro animation sweeps the light across the card on mount",
+        "Optional device orientation tilt on mobile, enabled on first tap with iOS permission prompt",
+        "Tilt and parallax are disabled when the user prefers reduced motion",
+        "Contact button has hover, press and focus states"
+    ],
+    "props": [
+        { "name": "avatarUrl", "type": "string", "default": "" },
+        { "name": "iconUrl", "type": "string", "default": "undefined" },
+        { "name": "miniAvatarUrl", "type": "string", "default": "undefined" },
+        { "name": "name", "type": "string", "default": "Javi A. Torres" },
+        { "name": "title", "type": "string", "default": "Software Engineer" },
+        { "name": "handle", "type": "string", "default": "javicodes" },
+        { "name": "status", "type": "string", "default": "Online" },
+        { "name": "statusColor", "type": "string", "default": "#22c55e" },
+        { "name": "contactText", "type": "string", "default": "Contact" },
+        { "name": "showUserInfo", "type": "boolean", "default": true },
+        { "name": "onContactClick", "type": "function", "default": "undefined" },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "backdropColor", "type": "string", "default": "undefined" },
+        { "name": "radius", "type": "number", "default": 16 },
+        { "name": "holo", "type": "number (0-1)", "default": 0.8 },
+        { "name": "glare", "type": "number (0-1)", "default": 0.5 },
+        { "name": "enableTilt", "type": "boolean", "default": true },
+        { "name": "tiltStrength", "type": "number", "default": 12 },
+        { "name": "parallax", "type": "number", "default": 8 },
+        { "name": "enableMobileTilt", "type": "boolean", "default": false },
+        { "name": "mobileTiltSensitivity", "type": "number", "default": 5 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Photo, mini avatar, name, title, handle, status text and color, contact label and click handler",
+        "Dark or light theme, tile backdrop color, corner radius",
+        "Holographic and glare intensity, optional icon pattern for the foil mask",
+        "Tilt on or off, tilt strength, parallax depth, mobile tilt and its sensitivity, intro animation",
+        "Show or hide the footer"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change card width or photo aspect ratio",
+            "where": "ROOT constant (w-[340px]) and TILE constant (aspect-[4/5])"
+        },
+        {
+            "change": "Change the contact button icon",
+            "where": "HugeiconsIcon with Mail01Icon in the FOOTER block"
+        },
+        {
+            "change": "Change theme colors or foil colors",
+            "where": "THEMES, FOILS, SPECTRUM and BARS constants"
+        },
+        {
+            "change": "Change tilt spring feel",
+            "where": "stiffness and damping values in the frame function"
+        }
+    ],
+    "fixed": [
+        "Card is a fixed 340px wide (max 100% of parent) with no viewport-centering frame",
+        "Needs the @hugeicons/react and @hugeicons/core-free-icons packages for the contact button icon",
+        "Without avatarUrl the photo area is empty and only the foil backdrop shows",
+        "Holographic detail layers only appear in dark foil mode and when iconUrl is set",
+        "Name and title overlay show only when provided; footer pieces hide when their value is empty",
+        "Mouse, touch and pointer listeners plus a ResizeObserver are attached to the card and removed on unmount",
+        "Mobile tilt adds a window deviceorientation listener and may trigger an iOS motion permission prompt on tap",
+        "Component is exported wrapped in React memo"
+    ],
+    "mood": ["futuristic", "playful", "premium", "modern"],
+    "industries": ["tech", "gaming", "creative agencies", "social platforms", "events"],
+    "sections": ["about", "testimonials", "other"],
+    "dependencies": ["react", "@hugeicons/react", "@hugeicons/core-free-icons"],
+    "variants": {
+        "prop": "theme",
+        "default": "dark",
+        "options": [
+            {
+                "value": "dark",
+                "look": "Dark translucent frame with color-dodge holographic foil and bright sheen",
+                "useWhen": "Card sits on a dark or gradient page such as a developer portfolio or gaming community"
+            },
+            {
+                "value": "light",
+                "look": "Light frosted frame with multiply-blended inverted foil and soft shadows",
+                "useWhen": "Card sits on a white or pastel page such as a team page of a clean SaaS site"
+            }
+        ]
+    }
+}

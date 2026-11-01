@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "components-profile-card",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.616Z"
+  "note": "Bits describe-only. Category cards-galleries. Variants: theme (judgment call). Fixed 340px width, no centering frame. Needs @hugeicons packages. Mobile tilt adds deviceorientation listener and may prompt iOS motion permission. Gates passed.",
+  "updatedAt": "2026-11-01T05:13:25.493Z",
+  "gateOutput": "gates passed"
 }
