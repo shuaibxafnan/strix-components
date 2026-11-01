@@ -1,0 +1,31 @@
+{
+ "slug":"glowing-blob-text",
+ "name":"Glowing Blob Text",
+ "category":"text-effects",
+ "isReactBits":false,
+ "description":"Large centered headline over a blurred, spinning gradient blob that lazily follows the pointer, with a letter scramble effect when hovering the text.",
+ "contents":["Large headline text","Spinning gradient blob behind a blur layer"],
+ "behavior":["Blob drifts toward the pointer with a slow eased animation","Blob rotates continuously","Hovering the headline scrambles letters and resolves them left to right"],
+ "props":[
+  {"name":"text","type":"string","default":"MOUSEMOVE"},
+  {"name":"blobGradient","type":"string","default":"from-[aquamarine] to-[mediumpurple]"},
+  {"name":"blobSize","type":"string","default":"25vmax"},
+  {"name":"blurAmount","type":"string","default":"10vmax"},
+  {"name":"animationDuration","type":"string","default":"20s"},
+  {"name":"transitionSpeed","type":"number","default":3000},
+  {"name":"textFont","type":"string","default":"font-mono"},
+  {"name":"textColor","type":"string","default":"text-white"},
+  {"name":"backgroundColor","type":"string","default":"bg-black"},
+  {"name":"className","type":"string","default":""}
+ ],
+ "editableByProps":["Headline text, font and color","Blob gradient, size, blur and follow speed","Background color"],
+ "needsCodeEdit":[
+  {"change":"Change scramble letter set or speed","where":"handleMouseOver function"},
+  {"change":"Change blob spin speed","where":"animate-[spin_20s_linear_infinite] class on the blob div"}
+ ],
+ "fixed":["Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.","Listens to pointer movement on the window while mounted and removes it on unmount"],
+ "mood":["futuristic","playful","bold","dreamy"],
+ "industries":["creative agency","music","gaming","tech","fashion"],
+ "sections":["hero"],
+ "dependencies":[]
+}
