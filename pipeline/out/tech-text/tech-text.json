@@ -1,0 +1,90 @@
+{
+    "slug": "tech-text",
+    "name": "Tech Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Large canvas-drawn word with a technical blueprint feel. Hovering letters reveals dashed outlines, selection frames, metric labels and moving specks, and letters can be dragged and flicked with spring physics.",
+    "contents": [
+        "Single canvas that draws the text as glyph sprites",
+        "Typographic metric lines (baseline, x-height, cap height, ascender, descender) with labels",
+        "Per-letter selection frame and orbiting specks"
+    ],
+    "behavior": [
+        "Letters outline with dashes near the pointer, either per hovered letter or across an area of reach",
+        "Idle sweep moves the highlight along the text automatically when the pointer is away",
+        "Letters can be dragged and spring back with adjustable bounce",
+        "Clicking a letter gives it a kick impulse",
+        "Optional intro animation: type, assemble or metrics",
+        "Renders only while visible and adapts to resize, font loading and light or dark theme changes",
+        "Intro and idle sweep are skipped when reduced motion is preferred"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "React Bits" },
+        { "name": "fontFamily", "type": "string", "default": "" },
+        { "name": "fontWeight", "type": "number", "default": 600 },
+        { "name": "fontSize", "type": "number", "default": 150 },
+        { "name": "letterSpacing", "type": "number", "default": -0.05 },
+        { "name": "color", "type": "string", "default": "currentColor" },
+        { "name": "accentColor", "type": "string", "default": "currentColor" },
+        { "name": "align", "type": "'left' | 'center' | 'right'", "default": "center" },
+        { "name": "reach", "type": "number", "default": 200 },
+        { "name": "softness", "type": "number", "default": 0.7 },
+        { "name": "dashLength", "type": "number", "default": 4 },
+        { "name": "dashGap", "type": "number", "default": 2 },
+        { "name": "strokeWidth", "type": "number", "default": 1.5 },
+        { "name": "lineStyle", "type": "'dashed' | 'solid'", "default": "dashed" },
+        { "name": "reveal", "type": "'letter' | 'area'", "default": "letter" },
+        { "name": "specks", "type": "number", "default": 15 },
+        { "name": "selection", "type": "boolean", "default": true },
+        { "name": "labels", "type": "boolean", "default": true },
+        { "name": "draggable", "type": "boolean", "default": true },
+        { "name": "bounce", "type": "number", "default": 0.4 },
+        { "name": "sweep", "type": "boolean", "default": true },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "clickKick", "type": "boolean", "default": true },
+        { "name": "intro", "type": "'none' | 'type' | 'assemble' | 'metrics'", "default": "none" },
+        { "name": "introDuration", "type": "number", "default": 2 },
+        { "name": "guides", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Text, font family, weight, size, letter spacing and alignment",
+        "Ink and accent colors",
+        "Outline dash look, stroke width, reveal mode and reach",
+        "Toggles for specks, selection frame, labels, guides, dragging, click kick and idle sweep",
+        "Bounce, speed and intro animation type and duration"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the metric label font",
+            "where": "LABEL_FONT constant"
+        },
+        {
+            "change": "Change the drag spring stiffness",
+            "where": "SPRING constant"
+        },
+        {
+            "change": "Change the intro start delay",
+            "where": "INTRO_DELAY constant"
+        },
+        {
+            "change": "Change how much of the container the word may fill",
+            "where": "fit calculation (0.9 and 0.66 factors) in ensureLayout"
+        }
+    ],
+    "fixed": [
+        "Must be placed in a parent with a defined height, since the root is w-full h-full",
+        "Word is auto-shrunk to fit 90% of width and 66% of height, fontSize acts as a maximum",
+        "Text is a single line, no wrapping",
+        "Settings changes are applied through a ref, not by recreating the canvas",
+        "Root uses touch-pan-y and select-none, with role img and aria-label from text",
+        "Sets the container cursor style (grab, grabbing, pointer) while interacting",
+        "Observes document theme attributes and color scheme changes to repaint",
+        "Pointer driven, so hover reveal has no equivalent on touch screens, only tap and drag"
+    ],
+    "mood": ["technical", "playful", "futuristic", "precise"],
+    "industries": ["tech", "design", "software", "education", "creative agency"],
+    "sections": ["hero", "about"],
+    "dependencies": []
+}

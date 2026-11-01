@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "tech-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.634Z"
+  "note": "JSON written; component unchanged. Category text-effects, no variants. Needs sized parent; single line; pointer-driven. Gates passed.",
+  "updatedAt": "2026-11-01T14:09:55.359Z",
+  "gateOutput": "gates passed"
 }
