@@ -1,0 +1,110 @@
+{
+    "slug": "dither-veil",
+    "name": "Dither Veil",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL dithered image panel where the picture shows as a retro dithered duotone and a pointer-following brush reveals the original photo through a dithered edge, with click shockwaves.",
+    "contents": [
+        "Single container div filled by a WebGL canvas rendering one image",
+        "Dithered version of the image with the original photo revealed under the pointer"
+    ],
+    "behavior": [
+        "Intro wipe dissolves the dithered image in from the center on load",
+        "Pointer brush with smooth lag reveals the original photo, and the reveal fades out after the pointer leaves",
+        "Click or tap emits a ring shockwave reveal, up to 4 at once, lasting 1.2 seconds",
+        "Optional autonomous wandering reveal when the pointer is outside",
+        "Rendering pauses when offscreen or idle and resumes on interaction or prop change",
+        "Wander is disabled when the user prefers reduced motion"
+    ],
+    "props": [
+        { "name": "src", "type": "string", "default": "Unsplash sample image URL" },
+        { "name": "fit", "type": "string", "default": "contain" },
+        { "name": "pattern", "type": "'floyd' | 'atkinson' | 'bayer' | 'noise' | 'lines'", "default": "floyd" },
+        { "name": "pixelSize", "type": "number", "default": 2 },
+        { "name": "levels", "type": "number", "default": 2 },
+        { "name": "palette", "type": "'duotone' | 'rgb'", "default": "duotone" },
+        { "name": "inkColor", "type": "string", "default": "#120f17" },
+        { "name": "paperColor", "type": "string", "default": "#f4f1ea" },
+        { "name": "contrast", "type": "number", "default": 1.15 },
+        { "name": "brightness", "type": "number", "default": 0 },
+        { "name": "revealRadius", "type": "number", "default": 200 },
+        { "name": "softness", "type": "number", "default": 0.6 },
+        { "name": "linger", "type": "number", "default": 1 },
+        { "name": "rimColor", "type": "string", "default": "#a78bfa" },
+        { "name": "rim", "type": "number", "default": 0 },
+        { "name": "reverse", "type": "boolean", "default": false },
+        { "name": "wander", "type": "boolean", "default": false },
+        { "name": "clickBurst", "type": "boolean", "default": true },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Image source and fit mode (contain or cover)",
+        "Dither pattern, pixel size, tone levels and duotone or rgb palette",
+        "Ink, paper and rim colors, contrast and brightness",
+        "Reveal radius, edge softness, trail linger time, rim width and reverse mode",
+        "Autonomous wander and click shockwave toggles",
+        "Size and placement through className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change shockwave duration or maximum simultaneous shockwaves",
+            "where": "BURST_SECONDS and MAX_BURSTS constants"
+        },
+        {
+            "change": "Change how long the reveal holds its strength or the intro duration",
+            "where": "HOLD and INTRO_MS constants"
+        },
+        {
+            "change": "Add another Floyd-style error diffusion kernel",
+            "where": "KERNELS object"
+        },
+        {
+            "change": "Change the shockwave ring width",
+            "where": "uBurstWidth uniform in viewUniforms"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2 and the ogl package",
+        "Needs a parent with a defined height since the container is w-full h-full",
+        "Image is loaded with crossOrigin anonymous, so the host must allow CORS",
+        "Image change restarts the whole WebGL setup, other props update live",
+        "Pixel ratio is capped at 2",
+        "Error diffusion patterns (floyd, atkinson) are computed on the CPU per resize or setting change, which is heavy on very large panels with small pixelSize",
+        "Reveal depends on pointer events, touch devices only get tap shockwaves and the touch-pan-y class keeps vertical scrolling",
+        "Unknown pattern values fall back to bayer"
+    ],
+    "mood": [
+        "retro",
+        "playful",
+        "edgy",
+        "artistic",
+        "interactive"
+    ],
+    "industries": [
+        "creative agency",
+        "photography",
+        "music",
+        "gaming",
+        "fashion"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "gallery"
+    ],
+    "dependencies": [
+        "ogl"
+    ],
+    "variants": {
+        "prop": "pattern",
+        "default": "floyd",
+        "options": [
+            { "value": "floyd", "look": "Floyd-Steinberg error diffusion with smooth, fine grain", "useWhen": "A natural-looking photographic dither is wanted" },
+            { "value": "atkinson", "look": "Atkinson diffusion with high contrast, crisp classic Mac look", "useWhen": "A retro bitmap feel with clean highlights is wanted" },
+            { "value": "bayer", "look": "Ordered 8x8 Bayer matrix with a regular crosshatch grid", "useWhen": "A structured, pixel-art grid texture is wanted" },
+            { "value": "noise", "look": "Blue noise threshold with an even organic grain", "useWhen": "A film-grain style without visible grid is wanted" },
+            { "value": "lines", "look": "Diagonal engraving lines modulated by tone", "useWhen": "A print or engraving look is wanted" }
+        ]
+    }
+}
