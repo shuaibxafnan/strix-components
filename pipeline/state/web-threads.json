@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "web-threads",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.607Z"
+  "note": "Bits describe-only. Category backgrounds-3d. WebGL2 only, renders nothing without. Parent needs height. No variants. Window pointer listeners; heavy on weak mobile; no touch focus.",
+  "updatedAt": "2026-11-01T15:36:40.564Z",
+  "gateOutput": "gates passed"
 }

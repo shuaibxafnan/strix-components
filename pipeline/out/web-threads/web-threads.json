@@ -1,0 +1,93 @@
+{
+    "slug": "web-threads",
+    "name": "Web Threads",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 shader background of glowing sine-wave threads that weave and pinch together, with a draw-in intro, cursor focus on the nearest thread, and click-triggered light surges.",
+    "contents": [
+        "Single container div filling its parent with a WebGL2 canvas inside",
+        "Up to 24 glowing threads colored from a gradient palette of up to 6 colors"
+    ],
+    "behavior": [
+        "Threads animate continuously by phase drift at the given speed",
+        "Intro draws each thread in with a staggered head and bead",
+        "Hovering near a thread highlights it and dims the others",
+        "Clicking sends a light surge along the threads, up to 3 at once",
+        "Rendering pauses when off screen or the tab is hidden",
+        "Under prefers-reduced-motion the animation, shimmer, intro and click surges are disabled",
+        "Canvas resizes with the container and respects the dpr cap"
+    ],
+    "props": [
+        {"name": "colors", "type": "string[]", "default": ["#5227FF", "#FF9FFC"]},
+        {"name": "coreColor", "type": "string", "default": "#FFFFFF"},
+        {"name": "backgroundColor", "type": "string", "default": "transparent"},
+        {"name": "lightMode", "type": "boolean", "default": false},
+        {"name": "threadCount", "type": "number", "default": 6},
+        {"name": "speed", "type": "number", "default": 0.2},
+        {"name": "frequency", "type": "number", "default": 5},
+        {"name": "spread", "type": "number", "default": 0.18},
+        {"name": "taper", "type": "number", "default": 1},
+        {"name": "position", "type": "number", "default": 0.5},
+        {"name": "pinch", "type": "number", "default": 0.5},
+        {"name": "nodes", "type": "number", "default": 1},
+        {"name": "angle", "type": "number", "default": 0},
+        {"name": "glow", "type": "number", "default": 0.02},
+        {"name": "falloff", "type": "number", "default": 0.6},
+        {"name": "thickness", "type": "number", "default": 1.1},
+        {"name": "brightness", "type": "number", "default": 0.6},
+        {"name": "opacity", "type": "number", "default": 1},
+        {"name": "depth", "type": "number", "default": 0},
+        {"name": "pulses", "type": "number", "default": 0},
+        {"name": "mirror", "type": "boolean", "default": true},
+        {"name": "shimmer", "type": "boolean", "default": false},
+        {"name": "fade", "type": "number", "default": 0},
+        {"name": "grain", "type": "number | boolean", "default": 0.05},
+        {"name": "intro", "type": "boolean", "default": true},
+        {"name": "mouseInteraction", "type": "boolean", "default": true},
+        {"name": "mouseStrength", "type": "number", "default": 0.5},
+        {"name": "pulseOnClick", "type": "boolean", "default": true},
+        {"name": "paused", "type": "boolean", "default": false},
+        {"name": "dpr", "type": "number", "default": 2},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "style", "type": "object", "default": null}
+    ],
+    "editableByProps": [
+        "Thread colors, core color, opaque background color, and dark or light rendering mode",
+        "Thread count, speed, frequency, spread, taper, position, pinch, node count, angle and mirroring",
+        "Glow, falloff, thickness, brightness, opacity, depth twist, traveling pulses, shimmer, edge fade and grain",
+        "Intro, hover focus, click surges and pausing",
+        "Render resolution cap and container sizing through className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Raise the thread, color or simultaneous surge limits",
+            "where": "MAX_THREADS, MAX_COLORS and MAX_SURGES constants"
+        },
+        {
+            "change": "Change surge or intro timing",
+            "where": "SURGE_SECONDS, SURGE_STAGGER, STROKE_SECONDS constants and staggerFor function"
+        },
+        {
+            "change": "Change hover reach for picking a thread",
+            "where": "reach values inside the updateFocus function"
+        },
+        {
+            "change": "Show a fallback when WebGL2 is unavailable",
+            "where": "The !gl early return in the useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable or shader compile fails",
+        "Fills its parent (h-full w-full), so the parent needs a defined height",
+        "Listens to pointermove and pointerdown on window for the whole page, not only the component",
+        "Click surges ignore clicks on links, buttons, inputs and other interactive elements",
+        "Effect runs once on mount; settings are read live from a ref, but canvas and GL setup is not recreated",
+        "Thread count capped at 24, colors at 6, nodes at 6, surges at 3",
+        "Heavy full-screen fragment shader with a per-thread loop; use lower dpr or threadCount on weak mobile devices",
+        "Hover focus has no touch equivalent; on touch only the tap surge and animation apply"
+    ],
+    "mood": ["futuristic", "ethereal", "elegant", "energetic"],
+    "industries": ["technology", "AI", "SaaS", "music", "creative agency"],
+    "sections": ["hero", "background"],
+    "dependencies": []
+}
