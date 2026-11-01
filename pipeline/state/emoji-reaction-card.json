@@ -4,11 +4,12 @@
   "sourceHash": "932232317a33b628cce69ddeafc3d2941fd65b3990a84090c3b3d510c805a75d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "emoji-rating-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.434Z"
+  "note": "renamed emoji-reaction-card -> emoji-rating-slider; frame kept; no variants; responsive: already ok; CSS comments removed, timeouts cleaned on unmount, added ratings/className props",
+  "updatedAt": "2026-11-01T06:45:03.210Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }
