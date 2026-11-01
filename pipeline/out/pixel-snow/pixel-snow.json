@@ -1,0 +1,193 @@
+{
+    "slug": "pixel-snow",
+    "name": "Pixel Snow",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 pixel-art snowfall background with sprite flakes in three styles, depth layers, wind, sway, glow, twinkle, optional snow accumulation, and pointer repel.",
+    "contents": [
+        "Container div filling its parent with an absolutely positioned WebGL canvas"
+    ],
+    "behavior": [
+        "Flakes fall in five depth levels with different size, speed and brightness",
+        "Wind and sway push flakes sideways, flakes twinkle and glow",
+        "Flakes are pushed away by the pointer while it is over the container",
+        "Optional accumulation builds a snow pile at the bottom",
+        "Intro sweep reveals flakes on mount",
+        "Pauses when offscreen or tab hidden, honors prefers-reduced-motion by stopping motion and intro"
+    ],
+    "props": [
+        {
+            "name": "color",
+            "type": "string",
+            "default": "#ffffff"
+        },
+        {
+            "name": "variant",
+            "type": "'snowflake' | 'square' | 'round'",
+            "default": "snowflake"
+        },
+        {
+            "name": "density",
+            "type": "number (0-1)",
+            "default": 0.5
+        },
+        {
+            "name": "speed",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "wind",
+            "type": "number (-2 to 2)",
+            "default": 0.25
+        },
+        {
+            "name": "sway",
+            "type": "number",
+            "default": 0.5
+        },
+        {
+            "name": "flakeSize",
+            "type": "number (0-2)",
+            "default": 1
+        },
+        {
+            "name": "pixelSize",
+            "type": "number (1-12)",
+            "default": 3
+        },
+        {
+            "name": "depth",
+            "type": "number (0-1)",
+            "default": 0.6
+        },
+        {
+            "name": "brightness",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "glow",
+            "type": "number",
+            "default": 0.8
+        },
+        {
+            "name": "twinkle",
+            "type": "number (0-1)",
+            "default": 0.35
+        },
+        {
+            "name": "accumulate",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "mouseInteraction",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "intro",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "fade",
+            "type": "number (0-1)",
+            "default": 0
+        },
+        {
+            "name": "opacity",
+            "type": "number (0-1)",
+            "default": 1
+        },
+        {
+            "name": "lightMode",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "paused",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "dpr",
+            "type": "number",
+            "default": "undefined"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Flake color, style, density, size, pixel size, depth and brightness",
+        "Fall speed, wind, sway, glow, twinkle, fade and opacity",
+        "Snow accumulation, pointer interaction, intro, light mode, pause and pixel ratio"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change flake sprite shapes",
+            "where": "SPRITES constant"
+        },
+        {
+            "change": "Change depth level weights, fall speeds or lighting",
+            "where": "LEVEL_WEIGHTS, LEVEL_FALL and LEVEL_LIGHT constants"
+        },
+        {
+            "change": "Change intro duration or flake cap",
+            "where": "INTRO_SECONDS and MAX_FLAKES constants"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if unavailable",
+        "Fills its parent (h-full w-full), the parent needs a size",
+        "Listens to window pointermove and document pointerleave for the whole page",
+        "Pixel ratio capped at 2",
+        "Maximum 4000 flakes",
+        "Reduced-motion users get no motion and no intro",
+        "Canvas is aria-hidden and decorative"
+    ],
+    "mood": [
+        "wintery",
+        "calm",
+        "dreamy",
+        "playful",
+        "retro"
+    ],
+    "industries": [
+        "holiday campaigns",
+        "gaming",
+        "travel",
+        "ecommerce",
+        "entertainment"
+    ],
+    "sections": [
+        "hero",
+        "background"
+    ],
+    "dependencies": [],
+    "variants": {
+        "prop": "variant",
+        "default": "snowflake",
+        "options": [
+            {
+                "value": "snowflake",
+                "look": "Detailed crystalline snowflake sprites",
+                "useWhen": "Classic winter or holiday look"
+            },
+            {
+                "value": "square",
+                "look": "Blocky square pixel flakes",
+                "useWhen": "Retro or game-style pixel art"
+            },
+            {
+                "value": "round",
+                "look": "Soft round pixel flakes",
+                "useWhen": "Gentle, bubbly snow feel"
+            }
+        ]
+    }
+}
