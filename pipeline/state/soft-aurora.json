@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "soft-aurora",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.606Z"
+  "note": "Gates passed. Source copied unchanged. Category backgrounds-3d. Needs WebGL2, parent height, dark backdrop or lightMode. Window pointer listeners. Decorative only. Continuous GPU loop.",
+  "updatedAt": "2026-11-01T13:04:24.994Z",
+  "gateOutput": "gates passed"
 }
