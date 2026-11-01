@@ -1,0 +1,63 @@
+{
+  "slug": "drag-trail-scatter",
+  "name": "Drag Trail Scatter",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Draggable image that, while held, scatters a ring of trail images around it that chase the pointer with lag, blur and rotation, then collapse back into the main image on release.",
+  "contents": [
+    "Full-section colored background with large centered title",
+    "One or more draggable image stacks, each with a main image and trail images",
+    "Caption hint in the bottom right corner"
+  ],
+  "behavior": [
+    "Pressing the main image scales it down and fans the trail images out in a circle around it",
+    "Dragging moves the image; trails follow with randomized easing, scale, rotation and motion blur based on drag speed",
+    "Releasing collapses the trails back into the image and scales it back up",
+    "Stacks raise to the front when grabbed, works with touch and mouse via pointer events"
+  ],
+  "props": [
+    { "name": "items", "type": "{main,trails[]}[]", "default": "1 sample stack with 6 trail images" },
+    { "name": "bgColor", "type": "string", "default": "#bc3d3d" },
+    { "name": "title", "type": "string", "default": "Marlow Vance" },
+    { "name": "showTitle", "type": "boolean", "default": true },
+    { "name": "titleColor", "type": "string", "default": "#ffffff" },
+    { "name": "titleSize", "type": "string", "default": "10vw" },
+    { "name": "titleClassName", "type": "string", "default": "" },
+    { "name": "caption", "type": "string", "default": "Drag the images" },
+    { "name": "showCaption", "type": "boolean", "default": true },
+    { "name": "captionColor", "type": "string", "default": "#000000" },
+    { "name": "imageWidth", "type": "number", "default": 180 },
+    { "name": "imageHeight", "type": "number", "default": 250 },
+    { "name": "trailOpacity", "type": "number", "default": 0.8 },
+    { "name": "dragLagAmt", "type": "number", "default": 0.13 },
+    { "name": "pressScale", "type": "number", "default": 0.8 },
+    { "name": "scaleAmt", "type": "number", "default": 0.1 },
+    { "name": "trailScale", "type": "number", "default": 0.5 },
+    { "name": "trailScaleAmt", "type": "number", "default": 0.1 },
+    { "name": "trailRotation", "type": "number", "default": 10 },
+    { "name": "trailRotationAmt", "type": "number", "default": 0.1 },
+    { "name": "trailAmtMin", "type": "number", "default": 0.07 },
+    { "name": "trailAmtMax", "type": "number", "default": 0.11 },
+    { "name": "radiusDivisor", "type": "number", "default": 2.5 },
+    { "name": "maxBlur", "type": "number", "default": 20 },
+    { "name": "blurDistance", "type": "number", "default": 400 },
+    { "name": "gap", "type": "string", "default": "3rem" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, number of stacks and trail images per stack",
+    "Title and caption text, visibility and colors, background color",
+    "Image size, trail spread, easing, scale, rotation and blur strength"
+  ],
+  "needsCodeEdit": [
+    { "change": "Title typeface", "where": "font-serif" },
+    { "change": "Caption position", "where": "bottom-8 right-8" }
+  ],
+  "fixed": [
+    "Sets the body cursor to grabbing while dragging and resets it on release and unmount"
+  ],
+  "mood": ["playful", "bold", "editorial", "interactive"],
+  "industries": ["portfolio", "photography", "fashion", "creative agency", "art"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": []
+}
