@@ -1,0 +1,112 @@
+{
+  "slug": "liquid-moji-slider",
+  "name": "Liquid Moji Slider",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Draggable emoji mood slider where a row of gooey dots swells into a face icon under the handle, and a speech bubble pops with the label when it settles.",
+  "contents": [
+    "Row of clickable gooey dots, one per icon",
+    "Face icon that grows from the active dot",
+    "Speech bubble with the icon label and burst lines"
+  ],
+  "behavior": [
+    "Drag or click dots to move between icons, snapping to the nearest",
+    "Dots morph with a gooey blur filter and elastic easing",
+    "Speech bubble rotates in with elastic ease and a burst of lines on change",
+    "Slider scales to fit the container through an SVG viewBox"
+  ],
+  "props": [
+    {
+      "name": "icons",
+      "type": "{id,label,d}[]",
+      "default": "14 emoji faces with 32x32 SVG path data"
+    },
+    {
+      "name": "uiColor",
+      "type": "string",
+      "default": "#FF5EAE"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#FF5EAE"
+    },
+    {
+      "name": "iconColor",
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    {
+      "name": "bubbleBgColor",
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "default": "#1d1d1d"
+    },
+    {
+      "name": "initialIconIndex",
+      "type": "number",
+      "default": 5
+    },
+    {
+      "name": "spacing",
+      "type": "number",
+      "default": 60
+    },
+    {
+      "name": "scaleMultiplier",
+      "type": "number",
+      "default": 4.8
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Icons and their labels and SVG paths",
+    "All colors including background",
+    "Starting icon, dot spacing and swell size"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change dot size",
+      "where": "DOT_SIZE constant"
+    },
+    {
+      "change": "Change gooey strength",
+      "where": "filter with id goo"
+    },
+    {
+      "change": "Change burst line shape",
+      "where": "popLinesTemplate group"
+    }
+  ],
+  "fixed": [
+    "Icon paths are designed on a 32x32 grid",
+    "Fills the viewport height with a background color; override with className",
+    "Initial index must be within the icons array"
+  ],
+  "mood": [
+    "playful",
+    "friendly",
+    "bold"
+  ],
+  "industries": [
+    "surveys",
+    "customer feedback",
+    "apps",
+    "education",
+    "entertainment"
+  ],
+  "sections": [
+    "other"
+  ],
+  "dependencies": [
+    "gsap"
+  ]
+}

@@ -4,11 +4,12 @@
   "sourceHash": "687e686edb2da1a74b394a81369ad3190bc9fce64293a747f92a9060bb2e1aff",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "liquid-moji-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.489Z"
+  "note": "CDN gsap/Draggable replaced with dynamic imports (dep gsap); gsap.context, dragger kill, cancel flag added. Props added: icons, backgroundColor, className. Removed unused circle, console.error catch, stateRef wrapper. Dropped inertia:true (needs paid plugin, was a no-op). Font class removed (no font import in source). No frame, no variants, responsive ok.",
+  "updatedAt": "2026-11-01T09:26:08.443Z",
+  "gateOutput": "gates passed"
 }
