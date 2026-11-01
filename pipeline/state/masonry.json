@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "masonry",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.615Z"
+  "note": "gates passed. cards-galleries. No variants block. Needs items prop and hugeicons deps; lightbox portal sets overflow hidden on html; drag reorder off for touch.",
+  "updatedAt": "2026-11-01T09:42:26.193Z",
+  "gateOutput": "gates passed"
 }
