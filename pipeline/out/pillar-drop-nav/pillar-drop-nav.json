@@ -1,0 +1,62 @@
+{
+    "slug": "pillar-drop-nav",
+    "name": "Pillar Drop Nav",
+    "category": "navigation-menus",
+    "isReactBits": false,
+    "description": "Sticky top navbar whose links drop down like pillars on hover, with neighbouring links following in a wave. Collapses to a plus-icon button and slide-down menu on mobile.",
+    "contents": [
+        "Logo link with blinking eyes face icon",
+        "Row of nav links that fill the bar, each with an arrow icon",
+        "Mobile plus toggle with slide-down link list"
+    ],
+    "behavior": [
+        "Bar sticks to the top of the viewport while scrolling",
+        "Hovered link drops down and the next two links drop by smaller amounts",
+        "Arrow icons fade in and rotate on hover",
+        "Below 768px links move into a slide-down panel opened by a rotating plus button",
+        "Featured links are hidden below 1280px on desktop"
+    ],
+    "props": [
+        { "name": "logoHref", "type": "string", "default": "#" },
+        { "name": "logoLabel", "type": "string", "default": "Home" },
+        {
+            "name": "links",
+            "type": "{label,href,featured?}[]",
+            "default": "5 sample links"
+        },
+        { "name": "backgroundColor", "type": "string", "default": "#ffffff" },
+        { "name": "pillarColor", "type": "string", "default": "#ffffff" },
+        { "name": "dividerColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "textColor", "type": "string", "default": "#404040" },
+        { "name": "accentColor", "type": "string", "default": "#ff1e1e" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Link labels, URLs, count and which links are featured",
+        "Logo link target and label",
+        "Bar, pillar, divider, text and logo accent colors"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Replace the logo artwork",
+            "where": "svg with viewBox 0 0 969 955 inside the logo anchor"
+        },
+        {
+            "change": "Change the eye blink timing",
+            "where": "pdn-blink keyframes in the css constant"
+        },
+        {
+            "change": "Change how far neighbouring links drop",
+            "where": "[&:hover+a]:translate-y-[40%] classes on the desktop link anchor"
+        }
+    ],
+    "fixed": [
+        "Nav is sticky at the top of its scroll container with z-50 and needs content below it to scroll",
+        "Logo is a fixed SVG, links open in the same tab",
+        "Uses font-mono uppercase text"
+    ],
+    "mood": ["playful", "modern", "minimal", "tactile"],
+    "industries": ["creative studios", "portfolios", "agencies", "saas", "blogs"],
+    "sections": ["navbar", "global"],
+    "dependencies": []
+}
