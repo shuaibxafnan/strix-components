@@ -1,0 +1,91 @@
+{
+    "slug": "light-pillar",
+    "name": "Light Pillar",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "Full-area WebGL2 background of a glowing, twisting vertical light pillar with a two-color gradient, bloom, grain, intro reveal, pointer parallax and click pulses.",
+    "contents": [
+        "Container div with a single WebGL2 canvas rendering a raymarched pillar of light"
+    ],
+    "behavior": [
+        "Pillar rotates and flows continuously, speed set by rotationSpeed and flow",
+        "Intro animation grows and reveals the pillar over about 2 seconds",
+        "Pointer movement leans, spins and shifts the pillar when interactive",
+        "Clicking spawns a light pulse travelling along the pillar axis, up to 3 at once",
+        "Resolution adapts automatically when frame rate drops and recovers later",
+        "Rendering stops when offscreen, tab hidden, paused, or idle",
+        "Reduced motion preference disables animation, intro, pointer and pulses",
+        "Light mode renders the glow as ink on a white background"
+    ],
+    "props": [
+        { "name": "topColor", "type": "string", "default": "#5227FF" },
+        { "name": "bottomColor", "type": "string", "default": "#FF9FFC" },
+        { "name": "intensity", "type": "number", "default": 1.0 },
+        { "name": "rotationSpeed", "type": "number", "default": 0.3 },
+        { "name": "flow", "type": "number", "default": 1 },
+        { "name": "interactive", "type": "boolean", "default": true },
+        { "name": "clickPulse", "type": "boolean", "default": true },
+        { "name": "glowAmount", "type": "number", "default": 0.002 },
+        { "name": "bloom", "type": "number", "default": 0.5 },
+        { "name": "pillarWidth", "type": "number", "default": 3.0 },
+        { "name": "pillarHeight", "type": "number", "default": 0.4 },
+        { "name": "pillarRotation", "type": "number", "default": 25 },
+        { "name": "twist", "type": "number", "default": 0.4 },
+        { "name": "detail", "type": "number", "default": 4 },
+        { "name": "noiseIntensity", "type": "number", "default": 0.5 },
+        { "name": "fade", "type": "number", "default": 0 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "mixBlendMode", "type": "string", "default": "screen" },
+        { "name": "quality", "type": "'low' | 'medium' | 'high'", "default": "high" },
+        { "name": "resolution", "type": "number", "default": "undefined" },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Top and bottom gradient colors",
+        "Brightness, glow amount, bloom, grain and edge fade",
+        "Pillar width, height scale, tilt, twist and detail level",
+        "Rotation speed, flow speed, pause, intro on or off",
+        "Pointer interaction and click pulses on or off",
+        "Render quality or explicit resolution scale",
+        "Blend mode, light mode, extra className and inline style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change click pulse lifetime",
+            "where": "PULSE_LIFE constant"
+        },
+        {
+            "change": "Change quality scale presets",
+            "where": "QUALITY constant"
+        },
+        {
+            "change": "Change pointer response strength",
+            "where": "aim multipliers for state.spin, state.lean and state.shift in the frame function"
+        },
+        {
+            "change": "Change pillar shape or glow math",
+            "where": "MARCH fragment shader string"
+        }
+    ],
+    "fixed": [
+        "Root is absolutely positioned and fills its nearest positioned parent, which must have a size",
+        "Requires WebGL2; renders nothing if unavailable or shaders fail",
+        "Listens to pointermove and pointerdown on window, so pointer effects work even over content above it",
+        "Uses a screen blend by default, which suits dark backgrounds",
+        "Reads colors through a canvas, so colors must be valid CSS color strings",
+        "Rotation does not run when rotationSpeed is 0",
+        "Heavy GPU raymarching; pixel ratio capped at 2 and adaptive resolution floor is 0.25 scale",
+        "Intro, pointer and pulses are disabled under prefers-reduced-motion"
+    ],
+    "mood": ["futuristic", "dramatic", "ethereal", "dark", "vibrant"],
+    "industries": ["technology", "saas", "gaming", "music", "ai", "crypto"],
+    "sections": ["hero", "background"],
+    "dependencies": []
+}
