@@ -1,0 +1,65 @@
+{
+  "slug": "fiery-tier-card",
+  "name": "Fiery Tier Card",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Glass pricing card with a tilt-and-glare hover effect, surrounded by an animated WebGL fire ring that follows the card's rounded outline.",
+  "contents": [
+    "Tier title, price with currency, decimals and period",
+    "Description paragraph",
+    "Feature list with spinning dashed circle icons",
+    "Call to action button"
+  ],
+  "behavior": [
+    "Card tilts in 3D toward the pointer with a glare highlight",
+    "Animated shader fire ring with slowly shifting hue wraps the card",
+    "Ring geometry is rebuilt on window resize",
+    "Button lifts on hover and presses on click"
+  ],
+  "props": [
+    {"name": "title", "type": "string", "default": "Nova Tier Access"},
+    {"name": "currency", "type": "string", "default": "$"},
+    {"name": "price", "type": "string", "default": "39"},
+    {"name": "priceDecimal", "type": "string", "default": "99"},
+    {"name": "period", "type": "string", "default": "/cycle"},
+    {"name": "description", "type": "string", "default": "Ignite your potential with the Nova Tier. Experience unparalleled access and cosmic-grade features."},
+    {"name": "features", "type": "string[]", "default": ["Hyper-Dimensional Storage", "Quantum Entangled Support", "Nebula Streaming (4K)", "Celestial Analytics Suite", "Zero-G Feature Previews"]},
+    {"name": "buttonText", "type": "string", "default": "Ascend to Nova"},
+    {"name": "cardBg", "type": "string", "default": "rgba(100, 50, 20, 0.70)"},
+    {"name": "accentColor", "type": "string", "default": "#FDBA74"},
+    {"name": "textColor", "type": "string", "default": "#E5E7EB"},
+    {"name": "titleColor", "type": "string", "default": "#F9FAFB"},
+    {"name": "descColor", "type": "string", "default": "#B0B6BF"},
+    {"name": "featureColor", "type": "string", "default": "#D1D5DB"},
+    {"name": "buttonBg", "type": "string", "default": "rgba(255, 150, 80, 0.25)"},
+    {"name": "buttonBorder", "type": "string", "default": "rgba(255, 190, 120, 0.3)"},
+    {"name": "fireHue", "type": "number", "default": 0.07},
+    {"name": "tiltMax", "type": "number", "default": 10},
+    {"name": "tiltSpeed", "type": "number", "default": 400},
+    {"name": "tiltGlare", "type": "boolean", "default": true},
+    {"name": "tiltMaxGlare", "type": "number", "default": 0.2},
+    {"name": "ringGap", "type": "number", "default": 10},
+    {"name": "ringThickness", "type": "number", "default": 20},
+    {"name": "cornerRadius", "type": "number", "default": 24},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All text, price parts and the feature list",
+    "Card, text, accent and button colors",
+    "Fire hue, ring gap, thickness and corner radius",
+    "Tilt strength, speed and glare"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change fire color palette", "where": "fieryBandFragmentShader"},
+    {"change": "Change button shadow glow", "where": "button element boxShadow style"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Card width is fixed at 360px (max 90%)",
+    "Runs a continuous WebGL animation while mounted"
+  ],
+  "mood": ["fiery", "dramatic", "futuristic", "glassy"],
+  "industries": ["saas", "gaming", "streaming", "fintech"],
+  "sections": ["pricing"],
+  "dependencies": ["three", "vanilla-tilt"]
+}
