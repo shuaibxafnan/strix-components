@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "pixel-swap",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.589Z"
+  "note": "Bits describe-only. Needs exactly two content layers. trigger other than hover/click needs active prop. Grid capped at 600 cells; pixelSize min 8, pixelDuration min 60ms. Redraws clip-path every frame. Reduced motion swaps instantly. Touch uses click toggle. No variants, no deps.",
+  "updatedAt": "2026-11-01T10:36:16.551Z",
+  "gateOutput": "gates passed"
 }
