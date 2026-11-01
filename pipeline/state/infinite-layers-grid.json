@@ -4,11 +4,12 @@
   "sourceHash": "8c419f7440a8c53c09de7ad862fd8ad42d65e096f1bd0f733caba33f1dd8f7a8",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-layers-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.472Z"
+  "note": "Slug kept. Gates passed. GSAP CDN loader replaced by import(gsap), added to dependencies. Removed unused showHeader prop, added className. Added touch drag and parallax listeners with cleanup, touch-none on container. Roboto Mono Google Fonts loader kept; check against font rule. Wheel preventDefault on window noted in fixed.",
+  "updatedAt": "2026-11-01T08:48:38.555Z",
+  "gateOutput": "gates passed"
 }

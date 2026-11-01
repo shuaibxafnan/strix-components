@@ -1,0 +1,72 @@
+{
+  "slug": "impact-freeze-scroll-gallery",
+  "name": "Impact Freeze Scroll Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Vertical image gallery where each photo tumbles in 3D with blur and scale distortion, freezes sharp at screen center, then tumbles away, over a scrolling name marquee.",
+  "contents": [
+    "Vertical column of images with captions-free background-image tiles",
+    "Fixed horizontal marquee of uppercase names behind the gallery",
+    "Vignette overlay and short loading bar"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Each image rotates, scales, blurs and flashes brightness through scroll, holding still at mid progress",
+    "Marquee slides horizontally scrubbed by scroll",
+    "Images are offset sideways in a sine wave and repositioned on resize"
+  ],
+  "props": [
+    {"name": "images", "type": "{src,alt,caption}[]", "default": "19 sample mountain photos"},
+    {"name": "names", "type": "string[]", "default": "15 sample names"},
+    {"name": "bgColor", "type": "string", "default": "#141414"},
+    {"name": "textColor", "type": "string", "default": "#797979"},
+    {"name": "bodyFont", "type": "string", "default": "'Inter', system-ui, sans-serif"},
+    {"name": "marqueeFont", "type": "string", "default": "'Space Grotesk', system-ui, sans-serif"},
+    {"name": "itemAspectRatio", "type": "string", "default": "4 / 5"},
+    {"name": "itemWidthPx", "type": "number", "default": 300},
+    {"name": "itemBorderRadius", "type": "number", "default": 0},
+    {"name": "itemGapRem", "type": "number", "default": -5},
+    {"name": "marqueeColor", "type": "string", "default": "rgb(56, 56, 56)"},
+    {"name": "marqueeFontSize", "type": "string", "default": "clamp(2rem, 16vw, 3rem)"},
+    {"name": "blendMode", "type": "string", "default": "plus-lighter"},
+    {"name": "shadowInColor", "type": "string", "default": "rgba(0,0,0,0.2)"},
+    {"name": "shadowOutColor", "type": "string", "default": "rgba(0,0,0,0.8)"},
+    {"name": "amplitudeFactor", "type": "number", "default": 0.05},
+    {"name": "angleStep", "type": "number", "default": 0.9},
+    {"name": "rotationXRange", "type": "[number, number]", "default": [130, 220]},
+    {"name": "rotationZ", "type": "number", "default": -50},
+    {"name": "holdFraction", "type": "number", "default": 0.25},
+    {"name": "zAmplitude", "type": "number", "default": 750},
+    {"name": "blurMax", "type": "number", "default": 12},
+    {"name": "scaleXExtra", "type": "number", "default": 0.6},
+    {"name": "scaleYBase", "type": "number", "default": 0.5},
+    {"name": "scaleYExtra", "type": "number", "default": 0.5},
+    {"name": "brightnessPower", "type": "number", "default": 6},
+    {"name": "marginTopVh", "type": "number", "default": 25},
+    {"name": "marginBottomVh", "type": "number", "default": 35},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, alt text and marquee names",
+    "Colors, fonts, blend mode and vignette",
+    "Tile size, aspect ratio, radius, overlap and sideways wave",
+    "3D rotation, depth, blur, scale, brightness and hold amount",
+    "Spacing above and below the column"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change loading bar animation", "where": "STYLE_RULES constant"},
+    {"change": "Disable smooth scrolling", "where": "new Lenis() setup inside init in the useEffect"},
+    {"change": "Change the easing of the freeze", "where": "holdAtMiddle function"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Changes the html and body background color while mounted and resets it on unmount",
+    "Injects a Google Fonts link for Space Grotesk and Inter and a keyframes style tag into the document head",
+    "Marquee, vignette and loader overlays are fixed to the viewport",
+    "Includes top and bottom margins in vh to give the effect scroll range"
+  ],
+  "mood": ["cinematic", "dramatic", "dark", "immersive"],
+  "industries": ["photography", "travel", "outdoor", "film", "art"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap", "lenis", "imagesloaded"]
+}

@@ -1,0 +1,61 @@
+{
+  "slug": "inertia-tilt-scroll",
+  "name": "Inertia Tilt Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-height scroll gallery where full-viewport images tilt in 3D and slide sideways as they cross the screen, following the scroll with eased inertia over a patterned background.",
+  "contents": [
+    "Two-column grid of full-height image panels (single column on screens 760px and below)",
+    "Patterned background image with a base color"
+  ],
+  "behavior": [
+    "Internal scroll container drives a fixed image grid through an eased translateY",
+    "Each image gets random per-image rotateX and rotateY that flatten to zero as it reaches the viewport center",
+    "On desktop, left column images slide in from the left and right column images from the right",
+    "Smoothing runs on requestAnimationFrame and stops once the position settles"
+  ],
+  "props": [
+    { "name": "imageSrc", "type": "string[]", "default": "10 sample image URLs" },
+    { "name": "columnGap", "type": "string", "default": "10%" },
+    { "name": "imageWidth", "type": "number", "default": 300 },
+    { "name": "ease", "type": "number", "default": 0.075 },
+    { "name": "translateXMax", "type": "number", "default": -200 },
+    { "name": "rotateXMin", "type": "number", "default": 20 },
+    { "name": "rotateXMax", "type": "number", "default": 40 },
+    { "name": "rotateYMin", "type": "number", "default": 20 },
+    { "name": "rotateYMax", "type": "number", "default": 60 },
+    { "name": "bgColor", "type": "string", "default": "#9f9eac" },
+    { "name": "bgImage", "type": "string", "default": "wave SVG data URL" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Image list and image width",
+    "Column gap, scroll smoothing and tilt ranges",
+    "Slide distance, background color and background image"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the breakpoint where the layout collapses to one column",
+      "where": "760 comparisons in setupAnimation and updateAnimationImages and the media query in the style block"
+    },
+    {
+      "change": "Change the perspective depth of the tilt",
+      "where": "perspective(500px) in the setTransform call inside updateAnimationImages"
+    },
+    {
+      "change": "Change image cover sizing",
+      "where": "srg-image div style block"
+    }
+  ],
+  "fixed": [
+    "Component is a 100vh internal scroll container, not the page scroll",
+    "Image grid is fixed-position and moved by JS to fake scrolling",
+    "Animation props are read at mount, remount with a key to apply changes",
+    "Tilt angles are randomized per image on mount",
+    "Total scroll length equals one viewport height per row of images"
+  ],
+  "mood": ["dynamic", "immersive", "playful", "modern"],
+  "industries": ["photography", "travel", "art", "fashion", "portfolio"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

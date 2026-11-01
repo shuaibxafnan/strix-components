@@ -4,11 +4,12 @@
   "sourceHash": "7d0a04bd37d4219a2d186bad76022078440021f72eed80c586aef7116290acab",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-inertial-skew-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.472Z"
+  "note": "Slug kept (inertial-skew-carousel already exists). Gates passed. className added to root and placeholder. altPrefix prop and optional item.alt added. Empty JSX comments removed. Playball import and window wheel listener kept, latter in fixed.",
+  "updatedAt": "2026-11-01T08:48:00.850Z",
+  "gateOutput": "gates passed"
 }

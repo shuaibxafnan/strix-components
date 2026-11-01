@@ -4,11 +4,12 @@
   "sourceHash": "d56e8f77526d39111975d981abc233602da37f98e3ac7d5a255463c9825d89de",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "curved-marquee-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.475Z"
+  "note": "Renamed infinite-scroll-showcase -> curved-marquee-scroll. CDN loader replaced by dynamic imports of gsap, ScrollTrigger, lenis, lenis/snap; gsap and lenis in dependencies. Cleanup uses gsap ref. className added, empty JSX comments removed. ensureLenisStyles (unpkg CSS injection) removed, may matter in some setups. Google Fonts injection and Lenis scroll takeover kept, in fixed. lenis/snap Snap export shape assumed (default or named). Slug uniqueness vs published index unchecked.",
+  "updatedAt": "2026-11-01T08:52:27.348Z",
+  "gateOutput": "gates passed"
 }

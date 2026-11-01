@@ -1,0 +1,72 @@
+{
+    "slug": "grain-distortion-gallery",
+    "name": "Grain Distortion Gallery",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Editorial image gallery rendered in WebGL where images ripple with a grainy noise distortion around the cursor on hover and bend with scroll velocity, with captions beside each image.",
+    "contents": [
+        "Staggered grid of figures, each with an image, a code and a name caption",
+        "Fixed full-screen WebGL canvas that draws the images"
+    ],
+    "behavior": [
+        "Smooth scrolling through Lenis",
+        "Hovering an image eases in a noise-based circular distortion that follows the pointer",
+        "Images bend vertically in proportion to scroll velocity and gain noise while scrolling",
+        "Source images are hidden in the DOM and drawn as textured meshes synced to scroll position",
+        "Resize is debounced and re-measures every image"
+    ],
+    "props": [
+        { "name": "bgColor", "type": "string", "default": "#fff" },
+        { "name": "textColor", "type": "string", "default": "#232222" },
+        { "name": "images", "type": "{src,alt,code,name}[]", "default": "5 sample ceramic images" },
+        { "name": "imageRadiusClassName", "type": "string", "default": "rounded-none" },
+        { "name": "canvasOpacity", "type": "number", "default": 1 },
+        { "name": "cameraDistance", "type": "number", "default": 500 },
+        { "name": "cursorLerp", "type": "number", "default": 0.05 },
+        { "name": "hoverLerp", "type": "number", "default": 0.05 },
+        { "name": "hoverDuration", "type": "number", "default": 0.6 },
+        { "name": "hoverEase", "type": "string", "default": "0.4, 0, 0.2, 1" },
+        { "name": "circleRadius", "type": "number", "default": 15 },
+        { "name": "noiseStrength", "type": "number", "default": 0.01 },
+        { "name": "scrollInfluence", "type": "number", "default": 0.1 },
+        { "name": "maxScrollDeform", "type": "number", "default": 5 },
+        { "name": "deformStrength", "type": "number", "default": 0.01 },
+        { "name": "lerp", "type": "number", "default": 1 },
+        { "name": "containerMaxWidth", "type": "string", "default": "120rem" },
+        { "name": "gridColumns", "type": "number", "default": 6 },
+        { "name": "gridGutter", "type": "string", "default": "clamp(0.625rem, -0.2463rem + 3.7175vw, 3.75rem)" },
+        { "name": "figureSpans", "type": "{col,row}[]", "default": "5 staggered column and row spans" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Images, alt text, captions and number of figures",
+        "Background and text colors, image corner radius",
+        "Distortion size, noise strength, scroll bend, hover timing and easing",
+        "Grid columns, gutter, max width and per-figure placement"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the distortion look",
+            "where": "EFFECT_FRAGMENT constant"
+        },
+        {
+            "change": "Change how images bend while scrolling",
+            "where": "deformationCurve function in EFFECT_VERTEX"
+        },
+        {
+            "change": "Change caption layout",
+            "where": "figcaption element inside the figure"
+        }
+    ],
+    "fixed": [
+        "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+        "Hides the page scrollbar on html and body while mounted",
+        "Draws on one fixed full-screen canvas layered above the page, so it suits a full-page gallery",
+        "Hover distortion needs a mouse, on touch only the scroll distortion is active",
+        "Requires WebGL"
+    ],
+    "mood": ["editorial", "artistic", "minimal", "tactile"],
+    "industries": ["art", "photography", "ceramics", "fashion", "architecture"],
+    "sections": ["gallery", "portfolio"],
+    "dependencies": ["three", "gsap", "lenis"]
+}

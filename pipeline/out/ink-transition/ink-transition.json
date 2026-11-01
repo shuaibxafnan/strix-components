@@ -1,0 +1,58 @@
+{
+  "slug": "ink-transition",
+  "name": "Ink Transition",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Vertical storytelling page with a liquid-warp title that settles in and images that bloom open through an ink-edged mask, each followed by fading bilingual captions on scroll.",
+  "contents": [
+    "Large display title with subtitle",
+    "List of sections, each with an image, a Korean caption, a divider and an English caption"
+  ],
+  "behavior": [
+    "Title fades in and its SVG liquify distortion relaxes to zero after an initial delay once visible",
+    "Each image reveals through a growing radial mask with a rough ink edge when it enters the viewport",
+    "Captions slide up and fade in with per-section delays on entering the viewport",
+    "Fonts load through injected @font-face rules"
+  ],
+  "props": [
+    {"name": "sections", "type": "{img,alt,isPortrait,sizeClass,ko,en,delayKo,delayEn}[]", "default": "4 sample sections"},
+    {"name": "titleKo", "type": "string", "default": "신윤복"},
+    {"name": "titleEn", "type": "string", "default": "Shin Yun-bok"},
+    {"name": "fontDisplayFamily", "type": "string", "default": "Nanum Pen Script"},
+    {"name": "fontDisplayUrl", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/nanum-pen-script@latest/korean-400-normal.woff2"},
+    {"name": "fontBodyFamily", "type": "string", "default": "Nanum Gothic"},
+    {"name": "fontBodyUrl", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/nanum-gothic@latest/korean-400-normal.woff2"},
+    {"name": "backgroundColor", "type": "string", "default": "bg-white"},
+    {"name": "maxContainerWidth", "type": "string", "default": "max-w-[640px]"},
+    {"name": "titleColor", "type": "string", "default": "text-black"},
+    {"name": "subtitleColor", "type": "string", "default": "text-black/40"},
+    {"name": "textColorKorean", "type": "string", "default": "text-black"},
+    {"name": "textColorEnglish", "type": "string", "default": "text-black/60"},
+    {"name": "dividerColor", "type": "string", "default": "bg-black/20"},
+    {"name": "liquifyBaseFrequency", "type": "number", "default": 0.012},
+    {"name": "liquifyScale", "type": "number", "default": 250},
+    {"name": "inkEdgeFrequency", "type": "number", "default": 0.035},
+    {"name": "inkEdgeScale", "type": "number", "default": 40},
+    {"name": "revealDuration", "type": "number", "default": 1.8},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Title, all captions, images, alt text and number of sections",
+    "Image sizes per section through sizeClass, reveal delays per caption",
+    "Fonts, Tailwind color classes, container width",
+    "Liquify and ink edge strength, reveal duration"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the mask shape or final reveal size", "where": "MASK_GRADIENT constant"},
+    {"change": "Change title intro timing", "where": "duration and delay constants in the second useEffect"}
+  ],
+  "fixed": [
+    "Renders a placeholder until mounted, then the full page",
+    "Title intro delay (800ms) and duration (2200ms) are hardcoded",
+    "Sections are stacked vertically in a single centered column"
+  ],
+  "mood": ["artistic", "calm", "editorial", "traditional"],
+  "industries": ["art", "museums", "publishing", "culture", "education"],
+  "sections": ["about", "gallery", "portfolio"],
+  "dependencies": []
+}

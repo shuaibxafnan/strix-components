@@ -1,0 +1,84 @@
+{
+  "slug": "image-stack-intro",
+  "name": "Image Stack Intro",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Editorial intro where a stack of images starts piled in the screen center, then fans out into a captioned grid with animated letters, parallax, hover zoom and a custom cursor.",
+  "contents": [
+    "Title and paragraph text",
+    "Responsive grid of images, each with a per-letter caption",
+    "Custom circular cursor"
+  ],
+  "behavior": [
+    "Images start stacked and rotated at the viewport center, then spread to their grid positions",
+    "Captions reveal letter by letter after the intro",
+    "Hovering an image scales it, zooms the picture inside and slides the caption across",
+    "Rows shift with eased scroll parallax at different speeds",
+    "Cursor follows the mouse with smoothing and grows over images and links, shown on fine pointers only",
+    "Reduced motion skips the intro and parallax"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "9 sample image URLs"},
+    {"name": "captions", "type": "string[]", "default": "9 sample captions"},
+    {"name": "title", "type": "string", "default": "Pleasure City"},
+    {"name": "text", "type": "string", "default": "Sample quote paragraph"},
+    {"name": "bgColor", "type": "string", "default": "#eee7e0"},
+    {"name": "textColor", "type": "string", "default": "#131212"},
+    {"name": "cursorColor", "type": "string", "default": "#c5681c"},
+    {"name": "cursorSize", "type": "number", "default": 30},
+    {"name": "cursorHoverScale", "type": "number", "default": 2.5},
+    {"name": "showCursor", "type": "boolean", "default": true},
+    {"name": "columns", "type": "number", "default": 3},
+    {"name": "columnMaxWidth", "type": "number", "default": 320},
+    {"name": "columnGap", "type": "number", "default": 2},
+    {"name": "rowGap", "type": "number", "default": 25},
+    {"name": "titleGap", "type": "number", "default": 1.5},
+    {"name": "imageRatio", "type": "number", "default": 140},
+    {"name": "captionOnTop", "type": "boolean", "default": true},
+    {"name": "introDuration", "type": "number", "default": 1.2},
+    {"name": "introEase", "type": "string", "default": "expo"},
+    {"name": "stackScale", "type": "number", "default": 0.6},
+    {"name": "stackZoom", "type": "number", "default": 1.8},
+    {"name": "stackRotation", "type": "number", "default": 10},
+    {"name": "stackStagger", "type": "number", "default": 0.1},
+    {"name": "restScale", "type": "number", "default": 0.8},
+    {"name": "captionStagger", "type": "number", "default": 0.03},
+    {"name": "hoverImageScale", "type": "number", "default": 0.95},
+    {"name": "hoverZoomScale", "type": "number", "default": 1.2},
+    {"name": "hoverDuration", "type": "number", "default": 1},
+    {"name": "parallax", "type": "boolean", "default": true},
+    {"name": "parallaxSpeeds", "type": "number[]", "default": [1, 2.5, 4]},
+    {"name": "parallaxStrength", "type": "number", "default": 26},
+    {"name": "parallaxEase", "type": "number", "default": 0.12},
+    {"name": "titleFont", "type": "string", "default": "Playfair Display"},
+    {"name": "bodyFont", "type": "string", "default": "Jost"},
+    {"name": "loadFonts", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Title, paragraph, images and captions",
+    "Colors, grid columns, gaps and image ratio",
+    "Intro, hover and parallax timing and strength",
+    "Cursor visibility, size and color, fonts"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change how many images fly to the grid first",
+      "where": "topThree constant in the start function"
+    },
+    {
+      "change": "Change the grid breakpoint",
+      "where": "min-width:53em rules in scopedCss"
+    }
+  ],
+  "fixed": [
+    "Locks page scroll with body overflow hidden while mounted and scrolls the window to the top on mount, reset on unmount",
+    "Loads Google Fonts for the title and body fonts when loadFonts is true",
+    "Grid collapses to one column below 53em",
+    "Custom cursor appears only on fine pointer devices"
+  ],
+  "mood": ["editorial", "elegant", "playful", "cinematic"],
+  "industries": ["photography", "fashion", "architecture", "travel", "art"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

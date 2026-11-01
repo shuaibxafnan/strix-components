@@ -1,0 +1,45 @@
+{
+  "slug": "infinite-inertial-skew-carousel",
+  "name": "Infinite Inertial Skew Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen infinite image carousel driven by wheel and drag with inertia. Cards skew, rotate and shrink with speed, and turn from grayscale to color with a number on hover.",
+  "contents": [
+    "Row of image cards with a two-digit index shown on hover",
+    "Full-height background panel"
+  ],
+  "behavior": [
+    "Infinite looping horizontal track with lerped inertia",
+    "Mouse wheel and mouse or touch drag move the track",
+    "Cards skew, rotate and scale according to scroll speed",
+    "Hover turns the image from grayscale to color, zooms it and reveals the index number"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#000000" },
+    { "name": "accentColor", "type": "string", "default": "#ffffff" },
+    { "name": "lerpFactor", "type": "number", "default": 0.1 },
+    { "name": "touchSpeedFactor", "type": "number", "default": 2.5 },
+    { "name": "sliderItems", "type": "{id,src,alt?}[]", "default": "6 sample images" },
+    { "name": "altPrefix", "type": "string", "default": "Slider Graphic" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, number of cards and alt text",
+    "Background and index number colors",
+    "Inertia smoothness and drag speed"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change skew, rotation or scale response", "where": "skewValue, rotateValue and scaleValue constants in renderLoop" },
+    { "change": "Change wheel sensitivity or direction", "where": "handleWheelTrack function" },
+    { "change": "Change card size", "where": "item div className with w-[70vw] sm:w-[45vw] md:w-[30vw]" }
+  ],
+  "fixed": [
+    "Listens to window wheel events and uses them to move the track, without blocking page scroll",
+    "Root is full viewport height",
+    "Index numbers use the Playball Google font imported inside the component"
+  ],
+  "mood": ["dramatic", "editorial", "dynamic", "modern"],
+  "industries": ["fashion", "photography", "portfolio", "art", "agency"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": []
+}

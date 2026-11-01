@@ -1,0 +1,86 @@
+{
+    "slug": "infinite-spiral",
+    "name": "Infinite Spiral",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Image gallery where square cards wind around a vertical spiral, endlessly looping with depth scaling, edge fade and blur. Motion can be automatic, scroll-driven, drag-driven, or all combined.",
+    "contents": [
+        "Spiral of image cards, optionally wrapped in links",
+        "Per-card alt text and aria label"
+    ],
+    "behavior": [
+        "Cards loop endlessly around a helix with the center card scaled up",
+        "Cards fade and blur toward the top and bottom edges",
+        "Auto mode drifts up or down and pauses on hover",
+        "Scroll mode advances the spiral as the page scrolls",
+        "Drag mode lets the user drag vertically to spin",
+        "Animation is paused when off screen and stopped for prefers-reduced-motion",
+        "Spiral radius and card scale shrink to fit the container"
+    ],
+    "props": [
+        { "name": "items", "type": "(string | {src,alt,href,target,label,id})[]", "default": [] },
+        { "name": "speed", "type": "number", "default": 0.55 },
+        { "name": "direction", "type": "'up' | 'down'", "default": "up" },
+        { "name": "animationMode", "type": "'auto' | 'scroll' | 'drag' | 'all'", "default": "auto" },
+        { "name": "radius", "type": "number", "default": 170 },
+        { "name": "cardWidth", "type": "number", "default": 100 },
+        { "name": "cardHeight", "type": "number", "default": 100 },
+        { "name": "verticalSpacing", "type": "number", "default": 60 },
+        { "name": "perspective", "type": "number", "default": 1000 },
+        { "name": "cardsPerTurn", "type": "number", "default": 7 },
+        { "name": "rotation", "type": "number", "default": 0 },
+        { "name": "cardTilt", "type": "number", "default": 0 },
+        { "name": "cardRadius", "type": "number", "default": 10 },
+        { "name": "centerScale", "type": "number", "default": 1.2 },
+        { "name": "edgeFade", "type": "number", "default": 0.3 },
+        { "name": "edgeBlur", "type": "number", "default": 6 },
+        { "name": "pauseOnHover", "type": "boolean", "default": true },
+        { "name": "imageFit", "type": "string", "default": "cover" },
+        { "name": "grayscale", "type": "number", "default": 0 },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Images, links, alt text and number of cards",
+        "Motion mode, speed and direction",
+        "Spiral shape: radius, spacing, cards per turn, rotation, perspective",
+        "Card size, corner radius, tilt, center scale, image fit and grayscale",
+        "Edge fade and blur strength, hover pause, container sizing via className"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Spin horizontally instead of vertically",
+            "where": "translate3d line inside the render function in the useEffect, and onPointerMove handler"
+        },
+        {
+            "change": "Change card border, shadow or background",
+            "where": "className of the Card element in the items map"
+        },
+        {
+            "change": "Add captions or overlays on cards",
+            "where": "Card element children next to the img in the items map"
+        }
+    ],
+    "fixed": [
+        "Needs a non-empty items array, otherwise nothing renders",
+        "Fills its parent: h-full with min-h-80 and overflow hidden, so the parent needs a defined height",
+        "Listens to window scroll for scroll and all modes",
+        "Drag mode sets touch-action pan-x and disables text selection, and drag blocks clicks on links",
+        "Runs a continuous requestAnimationFrame loop while mounted",
+        "Cards are fixed small by default (100px) and the spiral scales down to fit narrow containers, so very small containers show tiny cards",
+        "Needs an item count well above cardsPerTurn for a continuous loop"
+    ],
+    "mood": ["playful", "modern", "dynamic", "immersive"],
+    "industries": ["photography", "creative agency", "fashion", "portfolio", "events"],
+    "sections": ["hero", "gallery", "portfolio"],
+    "dependencies": [],
+    "variants": {
+        "prop": "animationMode",
+        "default": "auto",
+        "options": [
+            { "value": "auto", "look": "Spiral drifts continuously on its own and pauses on hover", "useWhen": "Hero or decorative band where the gallery should move without any input" },
+            { "value": "scroll", "look": "Spiral stays still and turns as the visitor scrolls the page", "useWhen": "Long landing page where the gallery should react to page scrolling" },
+            { "value": "drag", "look": "Spiral is static until the user drags it vertically", "useWhen": "Interactive portfolio section where visitors browse by grabbing the gallery" },
+            { "value": "all", "look": "Auto drift, scroll response and drag combined", "useWhen": "Showpiece section that should feel alive and respond to every input" }
+        ]
+    }
+}

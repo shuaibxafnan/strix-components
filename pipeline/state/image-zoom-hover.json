@@ -4,11 +4,12 @@
   "sourceHash": "aa307f9a5b87beafb994089a34fc483dc2bb7dd381f65ca6b8ac188872a0f390",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-zoom-hover",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.469Z"
+  "note": "Slug kept. Gates passed, warnings: rAF without cancelAnimationFrame, setTimeout without clearTimeout. Removed empty noise overlay, noise keyframes, noiseOpacity prop; styled-jsx replaced by plain style tag. Added backgroundColor, textColor, className. Stagger timeouts cleared on unmount, hover rAFs not cancelled. Touch tap-hover claim in fixed is untested.",
+  "updatedAt": "2026-11-01T08:42:18.979Z",
+  "gateOutput": "WARN  requestAnimationFrame without cancelAnimationFrame\nWARN  setTimeout without clearTimeout\ngates passed"
 }

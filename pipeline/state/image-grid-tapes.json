@@ -4,11 +4,12 @@
   "sourceHash": "7b06434eb1d826923006614748e014d1cb3fe569415cae0dd83d3476fe2cedf0",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-grid-tapes",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.465Z"
+  "note": "Slug kept. Gates passed, warning: style tag without template literal. GSAP CDN loader replaced by import(gsap), added to dependencies. Removed unused rootRef and console.error. className added. Font loader kept. Touch: tiles static, noted in fixed.",
+  "updatedAt": "2026-11-01T08:35:04.201Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

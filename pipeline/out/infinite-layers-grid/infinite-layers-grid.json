@@ -1,0 +1,58 @@
+{
+  "slug": "infinite-layers-grid",
+  "name": "Infinite Layers Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen endlessly tiling image grid with captions, dragged or wheel-scrolled in any direction, with mouse parallax, press zoom and an animated intro.",
+  "contents": [
+    "Scattered image tiles with multi-line captions that repeat infinitely in both axes"
+  ],
+  "behavior": [
+    "Wheel and drag (mouse or touch) pan the grid in all directions with eased smoothing",
+    "Mouse position shifts tiles and images for parallax, pressing zooms images",
+    "Tiles fly in from the center with a staggered intro on mount",
+    "Caption lines slide up when tiles enter the viewport"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#ffffff" },
+    { "name": "textColor", "type": "string", "default": "#000000" },
+    { "name": "fontFamily", "type": "string", "default": "'Roboto Mono', monospace" },
+    { "name": "images", "type": "{src,caption:string[]}[]", "default": "9 sample images with captions" },
+    { "name": "layoutData", "type": "{x,y,w,h}[]", "default": "9 tile positions" },
+    { "name": "originalSize", "type": "{w,h}", "default": { "w": 1522, "h": 1238 } },
+    { "name": "scrollEase", "type": "number", "default": 0.06 },
+    { "name": "wheelFactor", "type": "number", "default": 0.4 },
+    { "name": "introDuration", "type": "number", "default": 2 },
+    { "name": "introStagger", "type": "number", "default": 0.05 },
+    { "name": "mouseParallaxStrength", "type": "number", "default": 0.6 },
+    { "name": "baseImageScale", "type": "number", "default": 1.2 },
+    { "name": "pressImageScaleBoost", "type": "number", "default": 0.2 },
+    { "name": "captionFontSize", "type": "string", "default": "0.7rem" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, caption lines and tile layout",
+    "Background and text colors, font family and caption size",
+    "Scroll smoothing, wheel speed, parallax, zoom and intro timing"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change caption reveal animation",
+      "where": "The style block with the line-mask and line transitions"
+    },
+    {
+      "change": "Change how many times tiles repeat",
+      "where": "repsX and repsY arrays in the build function"
+    }
+  ],
+  "fixed": [
+    "Takes over page wheel scrolling with preventDefault while mounted, listeners removed on unmount",
+    "Loads the Roboto Mono stylesheet from Google Fonts",
+    "Root is a full-viewport 100vh section, grid is rebuilt on window resize",
+    "Tile positions scale with window width"
+  ],
+  "mood": ["editorial", "playful", "immersive", "minimal"],
+  "industries": ["photography", "art gallery", "fashion", "design studio", "portfolio"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["gsap"]
+}

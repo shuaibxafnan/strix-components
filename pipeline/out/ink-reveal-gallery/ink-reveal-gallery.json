@@ -1,0 +1,63 @@
+{
+  "slug": "ink-reveal-gallery",
+  "name": "Ink Reveal Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Editorial image gallery on a 12-column grid where hovering an image reveals an animated ink-marbling mask that switches the picture to a color effect, rendered with a WebGL shader.",
+  "contents": [
+    "Grid of image tiles placed by column and row, each with date, title and subtitle",
+    "Fixed overlay of vertical grid guide lines"
+  ],
+  "behavior": [
+    "Hovering an image opens a turbulent ink-shaped mask that follows the cursor",
+    "Inside or outside the mask the image shows grayscale, sepia, duotone, pixelate or blur depending on effectType",
+    "Grid guide lines animate in on load with a stagger",
+    "Only images in view are rendered",
+    "On screens below 768px tiles stack in a single column"
+  ],
+  "props": [
+    {"name": "items", "type": "{image,date,title,subtitle,colStart,colSpan,rowStart,rowSpan,height,extraSpacing}[]", "default": "4 sample items"},
+    {"name": "bgColor", "type": "string", "default": "#0a0a0a"},
+    {"name": "textColor", "type": "string", "default": "#e0e0e0"},
+    {"name": "gridColor", "type": "string", "default": "rgba(255,255,255,0.15)"},
+    {"name": "columns", "type": "number", "default": 12},
+    {"name": "gutter", "type": "string", "default": "0.75rem"},
+    {"name": "rowSpacing", "type": "string", "default": "4rem"},
+    {"name": "padding", "type": "string", "default": "2rem"},
+    {"name": "maskRadius", "type": "number", "default": 0.35},
+    {"name": "maskSpeed", "type": "number", "default": 0.75},
+    {"name": "animationSpeed", "type": "number", "default": 1},
+    {"name": "appearDuration", "type": "number", "default": 0.4},
+    {"name": "disappearDuration", "type": "number", "default": 0.3},
+    {"name": "turbulenceIntensity", "type": "number", "default": 0.225},
+    {"name": "effectType", "type": "number", "default": 0},
+    {"name": "effectIntensity", "type": "number", "default": 0.5},
+    {"name": "invertMask", "type": "boolean", "default": false},
+    {"name": "effectColor1", "type": "string", "default": "#3366cc"},
+    {"name": "effectColor2", "type": "string", "default": "#e63333"},
+    {"name": "frameSkip", "type": "number", "default": 0},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, dates, titles, subtitles, grid placement and heights of every tile",
+    "Colors, grid columns, gutter, spacing and padding",
+    "Mask size, speed, turbulence and durations",
+    "Effect type 0 to 5 (0 inverted gray, 1 gray, 2 sepia, 3 duotone, 4 pixelate, 5 blur) and its colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the ink mask shape or noise pattern", "where": "inkMarbling function in FRAGMENT_SHADER"},
+    {"change": "Add another color effect", "where": "u_effectType branches in main of FRAGMENT_SHADER"},
+    {"change": "Hide the grid guide overlay", "where": "pointer-events-none fixed inset-0 z-[1000] block"}
+  ],
+  "fixed": [
+    "Grid guide overlay is position fixed over the whole viewport",
+    "Listens to document mousemove, so the reveal is hover only and has no touch equivalent",
+    "One WebGL renderer per image tile",
+    "Images load as WebGL textures and must allow cross-origin access",
+    "Tiles stack in one column below 768px"
+  ],
+  "mood": ["editorial", "dark", "artistic", "experimental"],
+  "industries": ["art", "photography", "fashion", "magazine", "design agency"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["three", "gsap"]
+}

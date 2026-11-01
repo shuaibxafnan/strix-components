@@ -4,11 +4,12 @@
   "sourceHash": "ea215922effa39604840f1e5d878a2b30c2d0c4e716b4aa9fb0a5500c0e63eb5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-web-gl-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.478Z"
+  "note": "Slug kept. Component renamed InfiniteWebGLGallery -> InfiniteWebGlGallery for gate. ogl CDN import via new Function replaced by import(ogl), oglUrl prop removed, ogl in dependencies. Removed unused useId/uid. Default title Voltage kept as prop. Empty img alt kept (textures only). touch-none captures touch drag, noted in fixed.",
+  "updatedAt": "2026-11-01T08:54:44.877Z",
+  "gateOutput": "gates passed"
 }

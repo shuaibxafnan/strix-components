@@ -1,0 +1,48 @@
+{
+  "slug": "image-filter-gallery",
+  "name": "Image Filter Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Dark photo gallery grid with a live search input that filters cards by title or caption, animated card transitions, and a lightbox that opens on click.",
+  "contents": [
+    "Header with eyebrow label, title and rounded search input with status dot",
+    "Responsive grid of image cards with category badge, index label and title",
+    "Empty state message when nothing matches"
+  ],
+  "behavior": [
+    "Typing filters cards by title and caption after a short fade and blur transition",
+    "Cards zoom and lose grayscale on hover and show a view label",
+    "Clicking a card opens a lightbox with captions through baguetteBox, destroyed on unmount"
+  ],
+  "props": [
+    {"name": "initialItems", "type": "{src,caption,title,category}[]", "default": "6 sample landscape photos"},
+    {"name": "title", "type": "string", "default": "DESIGN COLLECTIONS"},
+    {"name": "placeholderText", "type": "string", "default": "Type to filter: mountain, lake, ocean, tree..."},
+    {"name": "bgColor", "type": "string", "default": "#08080a"},
+    {"name": "highlightColor", "type": "string", "default": "#00ff66"},
+    {"name": "eyebrow", "type": "string", "default": "// INDEX DISCOVERY"},
+    {"name": "itemLabel", "type": "string", "default": "TITLE //"},
+    {"name": "viewLabel", "type": "string", "default": "VIEW →"},
+    {"name": "emptyText", "type": "string", "default": "No matching collections indexed"},
+    {"name": "defaultCategory", "type": "string", "default": "VISUAL"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Gallery items, images, captions, titles and categories",
+    "All labels, placeholder and empty text",
+    "Background and highlight colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change lightbox options", "where": "baguette.run call inside the first useEffect"},
+    {"change": "Change grid columns", "where": "nextgen-gallery-grid article"},
+    {"change": "Change filter delay", "where": "setTimeout in the second useEffect"}
+  ],
+  "fixed": [
+    "Filters only by title and caption",
+    "Lightbox styles are imported from the baguettebox.js package css"
+  ],
+  "mood": ["dark", "modern", "sleek", "techy"],
+  "industries": ["photography", "design agency", "travel", "portfolio", "media"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["baguettebox.js"]
+}

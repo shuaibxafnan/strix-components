@@ -4,11 +4,12 @@
   "sourceHash": "9c7b37e4c949238c8edb1f0b48774d11c0b0346dd9f5a07353eea3eb0ae2e72f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "hover-image-preview",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.466Z"
+  "note": "Renamed image-preview-matrix -> hover-image-preview. Category cursor-effects (judgement call). Hardcoded text now intro and links props; added backgroundColor, dotColor, className. Removed dead isLogoActive state and overlay, empty comment placeholders. Lens capped with min() against viewport; touch start/move and tap toggle added. Root min-h-screen kept.",
+  "updatedAt": "2026-11-01T08:37:36.830Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,63 @@
+{
+  "slug": "infinite-web-gl-gallery",
+  "name": "Infinite WebGL Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen WebGL strip of images that drifts endlessly and loops, with drag and wheel control, bent planes and an RGB shift that reacts to scroll speed, plus a large centered title.",
+  "contents": [
+    "Horizontal strip of staggered image planes rendered in WebGL",
+    "Large centered title over the gallery"
+  ],
+  "behavior": [
+    "Strip auto-scrolls and wraps infinitely",
+    "Wheel and drag (mouse or touch) push the scroll with eased inertia",
+    "Planes bend and the image channels split in proportion to scroll velocity",
+    "Canvas fades in after load and resizes with the container"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "12 sample image URLs"},
+    {"name": "layout", "type": "{width,height,left,top?,bottom?}[]", "default": "12 sample positions"},
+    {"name": "unitBase", "type": "number", "default": 1920},
+    {"name": "unitSize", "type": "number", "default": 10},
+    {"name": "galleryUnits", "type": "number", "default": 880},
+    {"name": "bgColor", "type": "string", "default": "#0c0c0c"},
+    {"name": "title", "type": "string", "default": "Voltage"},
+    {"name": "showTitle", "type": "boolean", "default": true},
+    {"name": "titleColor", "type": "string", "default": "#ffffff"},
+    {"name": "titleClassName", "type": "string", "default": ""},
+    {"name": "autoSpeed", "type": "number", "default": 2},
+    {"name": "scrollEase", "type": "number", "default": 0.05},
+    {"name": "wheelMultiplier", "type": "number", "default": 0.5},
+    {"name": "dragMultiplier", "type": "number", "default": 2},
+    {"name": "enableDrag", "type": "boolean", "default": true},
+    {"name": "enableWheel", "type": "boolean", "default": true},
+    {"name": "cameraFov", "type": "number", "default": 45},
+    {"name": "cameraZ", "type": "number", "default": 5},
+    {"name": "planeSegments", "type": "number", "default": 20},
+    {"name": "bendStrength", "type": "number", "default": 5},
+    {"name": "rgbShiftStrength", "type": "number", "default": 0.5},
+    {"name": "fadeInDuration", "type": "number", "default": 1},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, their layout positions and strip width",
+    "Title text, visibility and color, background color",
+    "Auto speed, easing, wheel and drag sensitivity and toggles",
+    "Bend and RGB shift strength, camera field of view and distance"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the RGB shift effect", "where": "POST_FRAGMENT constant"},
+    {"change": "Change how planes bend or how images are cropped", "where": "MEDIA_VERTEX and MEDIA_FRAGMENT constants"},
+    {"change": "Change title typography", "where": "h1 element in the showTitle block"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and is full width and clipped",
+    "Listens for wheel, mouse and touch on the root and window, and removes them on unmount",
+    "Drag and touch are captured by the gallery (touch-none), so vertical page scroll by touch starts outside it",
+    "Image textures load with crossOrigin anonymous, so image hosts must allow CORS"
+  ],
+  "mood": ["bold", "immersive", "dark", "experimental"],
+  "industries": ["photography", "fashion", "creative agency", "music", "art"],
+  "sections": ["gallery", "hero", "portfolio"],
+  "dependencies": ["ogl"]
+}

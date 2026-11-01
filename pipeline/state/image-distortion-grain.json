@@ -4,11 +4,12 @@
   "sourceHash": "b69e2e0434ee0f6810a33b63f54bf2139a21ce534f5f24280d5f6b8cc2ba7e0a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "grain-distortion-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.463Z"
+  "note": "renamed: Image Distortion Grain -> Grain Distortion Gallery. CDN scripts (gsap, CustomEase, lenis) replaced by dynamic npm imports; added className, hover listener and tween cleanup; removed empty JSX comment and idg-loading class. No frame (full-page gallery). No variants. responsive: already ok (resize handled, grid fluid).",
+  "updatedAt": "2026-11-01T08:30:11.407Z",
+  "gateOutput": "gates passed"
 }

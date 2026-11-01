@@ -1,0 +1,96 @@
+{
+    "slug": "infinite-slider",
+    "name": "Infinite Slider",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Full-width draggable image slider that loops endlessly, with a large animated slide counter, previous and next buttons with corner-bracket hover, and captions on the active slide.",
+    "contents": [
+        "Row of image slides with caption tags",
+        "Animated step counter with total",
+        "Previous and next arrow buttons"
+    ],
+    "behavior": [
+        "Slides loop infinitely and can be dragged with inertia, snapping to the closest slide",
+        "Clicking a slide or the arrow buttons glides to it with easing",
+        "Active slide is fully opaque with its caption sliding in, others are dimmed",
+        "Counter digits scroll vertically to the current step",
+        "Below 768px the counter and buttons move to the bottom of the slider"
+    ],
+    "props": [
+        {
+            "name": "slidesData",
+            "type": "{img,caption}[]",
+            "default": "4 sample slides"
+        },
+        {
+            "name": "speed",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "backgroundColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#f5f5f5"
+        },
+        {
+            "name": "buttonTransition",
+            "type": "string",
+            "default": "transition-all duration-[475ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Number of slides, images and captions",
+        "Background and text colors",
+        "Loop speed and button transition classes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change slide size or aspect ratio",
+            "where": "data-slider=\"slide\" element classes w-[42.5em] h-[28em]"
+        },
+        {
+            "change": "Change the dimmed look of inactive slides",
+            "where": "opacity-20 and [&.active]:opacity-100 classes on the slide element"
+        },
+        {
+            "change": "Disable dragging",
+            "where": "draggable: true option in the horizontalLoop call"
+        }
+    ],
+    "fixed": [
+        "Slide counter and buttons are overlaid on the left with a dark gradient on desktop",
+        "Sizes scale with the viewport width through the root font size, with a 9px minimum",
+        "Includes an Archivo Black @font-face rule from the source",
+        "Requires gsap with the Draggable and InertiaPlugin modules"
+    ],
+    "mood": [
+        "cinematic",
+        "bold",
+        "editorial",
+        "dark"
+    ],
+    "industries": [
+        "photography",
+        "architecture",
+        "fashion",
+        "design agency"
+    ],
+    "sections": [
+        "gallery",
+        "portfolio",
+        "hero"
+    ],
+    "dependencies": [
+        "gsap"
+    ]
+}

@@ -4,11 +4,12 @@
   "sourceHash": "393b999398c58dbfceb7b55c8fe61a3a7e651890e9539abf9c4db804a17edf99",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-horizontal-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.471Z"
+  "note": "Renamed infinite-cinematic-horizon -> infinite-horizontal-scroll. Footer brand LAB_STUDIOS replaced by footerRight prop. Text, images, words, sectionLabels, backgroundColor, accentColor now props. Padding p-6 md:p-20, panel 3 grid single-column below md. Animation frames now cancelled on unmount. Wheel/touchmove preventDefault takes over scroll, noted in fixed. Fonts used by name, no import.",
+  "updatedAt": "2026-11-01T08:46:04.986Z",
+  "gateOutput": "gates passed"
 }

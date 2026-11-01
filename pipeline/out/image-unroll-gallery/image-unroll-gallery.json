@@ -1,0 +1,389 @@
+{
+  "slug": "image-unroll-gallery",
+  "name": "Image Unroll Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Editorial scrolling gallery where images unroll like paper scrolls in WebGL as they enter the viewport, with overlapping photo layouts, captions and replay buttons for different unroll angles.",
+  "contents": [
+    "Intro section with a back image and an unrolling front image plus caption",
+    "Two titled overlapping image sections with captions",
+    "Grid of unrolling images",
+    "Replay angle buttons and a closing unrolling image"
+  ],
+  "behavior": [
+    "Images with unroll behavior are drawn on a fixed WebGL canvas and unroll when half visible",
+    "Images roll back when scrolling back above them",
+    "Replay buttons re-run the unroll at a chosen angle",
+    "Full-screen loader shows until images are decoded",
+    "Below 750px layouts simplify and stack"
+  ],
+  "props": [
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#dde8eb"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#000000"
+    },
+    {
+      "name": "serifFontFamily",
+      "type": "string",
+      "default": "Georgia, \"Times New Roman\", serif"
+    },
+    {
+      "name": "sansFontFamily",
+      "type": "string",
+      "default": "Inter, \"Helvetica Neue\", Arial, sans-serif"
+    },
+    {
+      "name": "showLoader",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "loaderDotColor",
+      "type": "string",
+      "default": "#4b4b4b"
+    },
+    {
+      "name": "introCaption",
+      "type": "string",
+      "default": "Watson Building, Dubai, 2020"
+    },
+    {
+      "name": "dosSubtitle",
+      "type": "string",
+      "default": "– architecture"
+    },
+    {
+      "name": "dosTitle",
+      "type": "string",
+      "default": "Megalith"
+    },
+    {
+      "name": "dosCaption",
+      "type": "string",
+      "default": "Carlon Arc, Chicago, 2019"
+    },
+    {
+      "name": "tresSubtitle",
+      "type": "string",
+      "default": "– innovator"
+    },
+    {
+      "name": "tresTitle",
+      "type": "string",
+      "default": "Neon Plex"
+    },
+    {
+      "name": "tresCaption",
+      "type": "string",
+      "default": "Plex Construct, Sydney, 2018"
+    },
+    {
+      "name": "gridImages",
+      "type": "string[]",
+      "default": "4 sample images"
+    },
+    {
+      "name": "gridAlts",
+      "type": "string[]",
+      "default": [
+        "Gallery image 1",
+        "Gallery image 2",
+        "Gallery image 3",
+        "Gallery image 4"
+      ]
+    },
+    {
+      "name": "showControls",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "controls",
+      "type": "{label,angle}[]",
+      "default": "Vertical 90, Angled 17, Horizontal 0"
+    },
+    {
+      "name": "angle",
+      "type": "number",
+      "default": 17
+    },
+    {
+      "name": "rolls",
+      "type": "number",
+      "default": 8
+    },
+    {
+      "name": "radius",
+      "type": "number",
+      "default": 0.1
+    },
+    {
+      "name": "unrollDuration",
+      "type": "number",
+      "default": 1.7
+    },
+    {
+      "name": "rollBackOnExit",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "unrollThreshold",
+      "type": "number",
+      "default": 0.5
+    },
+    {
+      "name": "shadowStrength",
+      "type": "number",
+      "default": 0.3
+    },
+    {
+      "name": "introBackImage",
+      "type": "string",
+      "default": "sample image"
+    },
+    {
+      "name": "introFrontImage",
+      "type": "string",
+      "default": "sample image"
+    },
+    {
+      "name": "introFrontWidth",
+      "type": "string",
+      "default": "60%"
+    },
+    {
+      "name": "introBackInset",
+      "type": "string",
+      "default": "20%"
+    },
+    {
+      "name": "introBackAspect",
+      "type": "string",
+      "default": "3/2"
+    },
+    {
+      "name": "introFrontAspect",
+      "type": "string",
+      "default": "3/4"
+    },
+    {
+      "name": "dosFrontImage",
+      "type": "string",
+      "default": "sample image"
+    },
+    {
+      "name": "dosBackImage",
+      "type": "string",
+      "default": "sample image"
+    },
+    {
+      "name": "dosBackIndent",
+      "type": "string",
+      "default": "30%"
+    },
+    {
+      "name": "dosOverlap",
+      "type": "string",
+      "default": "-14vh"
+    },
+    {
+      "name": "dosFrontAspect",
+      "type": "string",
+      "default": "3/4"
+    },
+    {
+      "name": "dosBackAspect",
+      "type": "string",
+      "default": "3/2"
+    },
+    {
+      "name": "tresFrontImage",
+      "type": "string",
+      "default": "sample image"
+    },
+    {
+      "name": "tresBackImage",
+      "type": "string",
+      "default": "sample image"
+    },
+    {
+      "name": "tresBackWidth",
+      "type": "string",
+      "default": "55%"
+    },
+    {
+      "name": "tresOverlap",
+      "type": "string",
+      "default": "-40%"
+    },
+    {
+      "name": "tresFrontAspect",
+      "type": "string",
+      "default": "1/1"
+    },
+    {
+      "name": "tresBackAspect",
+      "type": "string",
+      "default": "3/4"
+    },
+    {
+      "name": "gridItemWidthClass",
+      "type": "string",
+      "default": "w-1/2"
+    },
+    {
+      "name": "gridMaxWidth",
+      "type": "string",
+      "default": "800px"
+    },
+    {
+      "name": "gridAspect",
+      "type": "string",
+      "default": "1/1"
+    },
+    {
+      "name": "gridGap",
+      "type": "string",
+      "default": "2em"
+    },
+    {
+      "name": "lastImage",
+      "type": "string",
+      "default": "sample image"
+    },
+    {
+      "name": "lastMaxWidth",
+      "type": "string",
+      "default": "400px"
+    },
+    {
+      "name": "lastAspect",
+      "type": "string",
+      "default": "1/1"
+    },
+    {
+      "name": "buttonClass",
+      "type": "string",
+      "default": "inline-block bg-transparent rounded-none border border-[#94a6ab] cursor-pointer px-[1.3em] py-[0.7em] text-[1em] mx-[0.5em] focus:outline-none max-[750px]:text-[0.8em]"
+    },
+    {
+      "name": "rollBackDuration",
+      "type": "number",
+      "default": 1.7
+    },
+    {
+      "name": "unrollEase",
+      "type": "string",
+      "default": "power2.out"
+    },
+    {
+      "name": "rollBackEase",
+      "type": "string",
+      "default": "power2.inOut"
+    },
+    {
+      "name": "replayDuration",
+      "type": "number",
+      "default": 2
+    },
+    {
+      "name": "segments",
+      "type": "number",
+      "default": 80
+    },
+    {
+      "name": "cameraDistance",
+      "type": "number",
+      "default": 400
+    },
+    {
+      "name": "introBackAlt",
+      "type": "string",
+      "default": "Building facade"
+    },
+    {
+      "name": "introFrontAlt",
+      "type": "string",
+      "default": "Building detail"
+    },
+    {
+      "name": "dosFrontAlt",
+      "type": "string",
+      "default": "Architecture photo"
+    },
+    {
+      "name": "dosBackAlt",
+      "type": "string",
+      "default": "Architecture photo detail"
+    },
+    {
+      "name": "tresFrontAlt",
+      "type": "string",
+      "default": "Modern structure"
+    },
+    {
+      "name": "tresBackAlt",
+      "type": "string",
+      "default": "Modern structure detail"
+    },
+    {
+      "name": "lastAlt",
+      "type": "string",
+      "default": "Closing image"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "All images, alt texts, titles and captions",
+    "Background, text and loader colors, fonts",
+    "Unroll angle, number of rolls, radius, durations, easing, threshold and shadow",
+    "Image aspect ratios and layout offsets for each section"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Add or reorder sections",
+      "where": "The section elements inside the main element"
+    },
+    {
+      "change": "Change the unroll shader look",
+      "where": "VERTEX_SHADER constant"
+    }
+  ],
+  "fixed": [
+    "Appends a fixed full-viewport WebGL canvas (z-index 100, no pointer events) while mounted and removes it on unmount",
+    "Fixed full-screen loader overlay until images are decoded",
+    "Only images marked data-unroll are drawn in WebGL",
+    "Layout switches to a simplified stack at 750px and below"
+  ],
+  "mood": [
+    "editorial",
+    "elegant",
+    "playful",
+    "modern"
+  ],
+  "industries": [
+    "architecture",
+    "photography",
+    "real estate",
+    "design studios"
+  ],
+  "sections": [
+    "gallery",
+    "portfolio"
+  ],
+  "dependencies": [
+    "three",
+    "gsap"
+  ]
+}

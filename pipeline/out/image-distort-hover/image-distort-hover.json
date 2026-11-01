@@ -1,0 +1,78 @@
+{
+  "slug": "image-distort-hover",
+  "name": "Image Distort Hover",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Staggered grid of portrait thumbnails that warp with an SVG turbulence or displacement filter on hover, revealing a caption panel, with an optional custom dot cursor.",
+  "contents": [
+    "Optional header with kicker, title and note",
+    "Wrapping grid of image thumbnails with index numbers",
+    "Caption panel with text and link per thumbnail",
+    "Custom circular cursor"
+  ],
+  "behavior": [
+    "Hover plays a GSAP timeline that animates the SVG filter from distorted to clean, zooms the image and removes grayscale",
+    "Caption slides up from the bottom with staggered text",
+    "Custom cursor follows the mouse with easing and scales over targets, only on fine pointer devices",
+    "Even items shift down on screens 64em and wider when staggered"
+  ],
+  "props": [
+    { "name": "items", "type": "{image,filterType,noiseType,baseFrequency,caption,link}[]", "default": "5 sample items" },
+    { "name": "kicker", "type": "string", "default": "Selected Work" },
+    { "name": "title", "type": "string", "default": "Index" },
+    { "name": "note", "type": "string", "default": "2019 — 2023" },
+    { "name": "showHeader", "type": "boolean", "default": true },
+    { "name": "bgColor", "type": "string", "default": "#0b0b0c" },
+    { "name": "textColor", "type": "string", "default": "#e8e4dd" },
+    { "name": "mutedColor", "type": "string", "default": "#6f6a63" },
+    { "name": "accentColor", "type": "string", "default": "#c8452f" },
+    { "name": "captionBgColor", "type": "string", "default": "#0b0b0c" },
+    { "name": "captionTextColor", "type": "string", "default": "#e8e4dd" },
+    { "name": "serifFontFamily", "type": "string", "default": "'Instrument Serif', Georgia, serif" },
+    { "name": "sansFontFamily", "type": "string", "default": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" },
+    { "name": "loadGoogleFonts", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "staggerLayout", "type": "boolean", "default": true },
+    { "name": "staggerAmount", "type": "number", "default": 8 },
+    { "name": "gapX", "type": "number", "default": 2 },
+    { "name": "gapY", "type": "number", "default": 4 },
+    { "name": "thumbWidth", "type": "number", "default": 220 },
+    { "name": "thumbHeight", "type": "number", "default": 300 },
+    { "name": "svgWidth", "type": "number", "default": 380 },
+    { "name": "svgHeight", "type": "number", "default": 500 },
+    { "name": "imageWidth", "type": "number", "default": 280 },
+    { "name": "imageHeight", "type": "number", "default": 400 },
+    { "name": "turbulenceStart", "type": "number", "default": 0.09 },
+    { "name": "displacementScale", "type": "number", "default": 150 },
+    { "name": "imageZoom", "type": "number", "default": 1.15 },
+    { "name": "grayscale", "type": "boolean", "default": true },
+    { "name": "hoverDuration", "type": "number", "default": 0.7 },
+    { "name": "hoverEase", "type": "string", "default": "power2" },
+    { "name": "showIndex", "type": "boolean", "default": true },
+    { "name": "showCaption", "type": "boolean", "default": true },
+    { "name": "showCursor", "type": "boolean", "default": true },
+    { "name": "cursorSize", "type": "number", "default": 40 },
+    { "name": "cursorRadius", "type": "number", "default": 9 },
+    { "name": "cursorEase", "type": "number", "default": 0.15 },
+    { "name": "cursorHoverScale", "type": "number", "default": 2 }
+  ],
+  "editableByProps": [
+    "Items, images, captions, links, header text and the distortion type per item",
+    "Colors, fonts, thumbnail sizes, spacing and stagger",
+    "Hover duration, easing, distortion strength, zoom and grayscale",
+    "Cursor visibility, size and easing"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change the cursor shape", "where": "circle element inside the showCursor svg" },
+    { "change": "Change the filter noise settings", "where": "feTurbulence elements inside the filter" }
+  ],
+  "fixed": [
+    "Native cursor is hidden on fine-pointer devices while the custom cursor is shown",
+    "Loads Instrument Serif and Inter from Google Fonts when loadGoogleFonts is true",
+    "Firefox skips the image zoom"
+  ],
+  "mood": ["editorial", "dark", "experimental", "artistic"],
+  "industries": ["photography", "design studio", "portfolio", "art gallery", "fashion"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": ["gsap"]
+}

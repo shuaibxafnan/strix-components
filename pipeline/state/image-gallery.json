@@ -4,11 +4,12 @@
   "sourceHash": "b06ef06ace6542ece10cf0a41365e681f6a20a53b00e088b2b2b09c43cd7f53c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "zoom-pan-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.464Z"
+  "note": "image-gallery -> zoom-pan-gallery; removed empty comment placeholders; added className, altPrefix, expandLabel, zoomLabel props; no frame (full-screen gallery); no variants; responsive: already ok (viewport-sized)",
+  "updatedAt": "2026-11-01T08:32:29.088Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

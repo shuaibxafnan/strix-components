@@ -1,0 +1,54 @@
+{
+  "slug": "image-follow-cursor",
+  "name": "Image Follow Cursor",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Large typographic link list where hovering a row reveals an image that follows the cursor with smooth easing, scaling in while the row text brightens and shifts.",
+  "contents": [
+    "Stacked list of large text rows with optional small subtitle",
+    "Hover image preview per row"
+  ],
+  "behavior": [
+    "Image follows the mouse with eased tracking inside the hovered row",
+    "Image fades and scales in on hover, inner image settles from a zoomed state",
+    "Row text color brightens and slides slightly right on hover",
+    "Subtitle appears on hover on screens 768px and wider"
+  ],
+  "props": [
+    { "name": "items", "type": "{text,subtitle,href,img}[]", "default": "4 big cat items" },
+    { "name": "imageWidth", "type": "number", "default": 800 },
+    { "name": "fontClass", "type": "string", "default": "text-[clamp(2.5rem,7vw,12rem)] font-light tracking-[-0.03em]" },
+    { "name": "trackingSpeed", "type": "number", "default": 0.08 },
+    { "name": "scaleRatio", "type": "string", "default": "w-[40vw] md:w-[24vw] aspect-[3/4]" },
+    { "name": "backgroundColor", "type": "string", "default": "#0a0a0a" },
+    { "name": "textColor", "type": "string", "default": "rgba(255,255,255,0.4)" },
+    { "name": "hoverTextColor", "type": "string", "default": "#ffffff" },
+    { "name": "subtitleColor", "type": "string", "default": "rgba(255,255,255,0.3)" },
+    { "name": "borderColor", "type": "string", "default": "rgba(255,255,255,0.05)" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Row text, subtitles, links and images, number of rows",
+    "Background, text, hover, subtitle and divider colors",
+    "Typography classes, image size and aspect ratio, follow smoothness"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the image reveal transition or easing",
+      "where": "transition-[opacity,scale] class on the preview image div"
+    },
+    {
+      "change": "Change the row text slide on hover",
+      "where": "group-hover:translate-x-2 class on the h2"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Listens to window mousemove while mounted and removes it on unmount",
+    "Image follow relies on mouse hover, on touch devices a tap shows the image at the row without following"
+  ],
+  "mood": ["editorial", "bold", "minimal", "dark"],
+  "industries": ["portfolio", "agency", "photography", "media", "wildlife"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": []
+}

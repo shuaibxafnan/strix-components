@@ -1,0 +1,78 @@
+{
+  "slug": "infinite-scatter-gallery",
+  "name": "Infinite Scatter Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen infinitely looping vertical gallery of staggered images with parallax scrolling. Clicking an image morphs it into a large preview with a character-by-character title and description.",
+  "contents": [
+    "Vertical column of images with captions, each offset horizontally and sized individually",
+    "Detail overlay with enlarged image, back button, title and description"
+  ],
+  "behavior": [
+    "Wheel and touch input drives a seamless infinite vertical loop with eased scrubbing",
+    "Each slide moves at its own parallax speed",
+    "Slides and caption characters fade in as they enter the viewport",
+    "Click or Enter opens an image into a full-height preview with a morph transition and staggered text reveal",
+    "Escape or the back button reverses the morph",
+    "Loop is rebuilt on window resize",
+    "On screens below 768px the preview shrinks to the top and text sits below it"
+  ],
+  "props": [
+    { "name": "items", "type": "{image,caption,title,description,stagger,width}[]", "default": "20 sample items" },
+    { "name": "bgColor", "type": "string", "default": "#eaeeed" },
+    { "name": "textColor", "type": "string", "default": "#9b9b9b" },
+    { "name": "titleColor", "type": "string", "default": "#141414" },
+    { "name": "backColor", "type": "string", "default": "#111111" },
+    { "name": "headingFont", "type": "string", "default": "Georgia, \"Times New Roman\", serif" },
+    { "name": "bodyFont", "type": "string", "default": "Inter, \"Helvetica Neue\", Arial, sans-serif" },
+    { "name": "backLabel", "type": "string", "default": "← back [ESC]" },
+    { "name": "gallerySpacing", "type": "string", "default": "12vh" },
+    { "name": "galleryPaddingTop", "type": "string", "default": "14vh" },
+    { "name": "slideAspect", "type": "number", "default": 0.8 },
+    { "name": "imgScale", "type": "number", "default": 1.2 },
+    { "name": "parallaxSpeeds", "type": "number[]", "default": [1.3, 0.8, 1.15, 0.7, 1.25, 0.85] },
+    { "name": "scrubDuration", "type": "number", "default": 0.75 },
+    { "name": "scrubEase", "type": "string", "default": "power3.out" },
+    { "name": "scrollSpeed", "type": "number", "default": 100 },
+    { "name": "revealStagger", "type": "number", "default": 0.12 },
+    { "name": "revealDuration", "type": "number", "default": 1 },
+    { "name": "charStagger", "type": "number", "default": 0.025 },
+    { "name": "openDuration", "type": "number", "default": 1.2 },
+    { "name": "openEase", "type": "string", "default": "power4.inOut" },
+    { "name": "closeDuration", "type": "number", "default": 1 },
+    { "name": "closeEase", "type": "string", "default": "power3.inOut" },
+    { "name": "textStagger", "type": "number", "default": 0.012 },
+    { "name": "enableKeyboard", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, captions, titles, descriptions, horizontal offsets and widths",
+    "Colors, fonts and back label",
+    "Spacing, aspect ratio, parallax speeds, scroll sensitivity and all transition timings and eases"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the detail overlay layout",
+      "where": "The fixed contentRef div containing the previewRef figure and text groups"
+    },
+    {
+      "change": "Change the fade-in of slides entering the viewport",
+      "where": "showSlide function"
+    },
+    {
+      "change": "Change the fade of other slides during the open transition",
+      "where": "open function timeline"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling: wheel and touch input is captured on the window with preventDefault, so the page itself does not scroll",
+    "Adds a document keydown listener for Escape and a window resize listener, both removed on unmount",
+    "Root is a full-screen overflow-hidden section",
+    "Detail overlay is fixed over the whole viewport",
+    "Items need at least a few entries for the infinite loop to look right"
+  ],
+  "mood": ["editorial", "elegant", "immersive", "artistic"],
+  "industries": ["fashion", "photography", "art", "portfolio", "editorial"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

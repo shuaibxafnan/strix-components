@@ -1,0 +1,53 @@
+{
+  "slug": "thumbnail-crossfade-gallery",
+  "name": "Thumbnail Crossfade Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Compact gallery with one large square preview and a vertical column of four thumbnails. Selecting a thumbnail crossfades and slightly scales the preview, with a glass caption chip.",
+  "contents": [
+    "Heading and small caption label",
+    "Large square preview with gradient and glass name chip",
+    "Vertical column of four clickable thumbnails",
+    "Optional film grain overlay and soft accent glow"
+  ],
+  "behavior": [
+    "Clicking a thumbnail crossfades the preview image with a subtle scale settle",
+    "Active thumbnail is fully opaque with an accent outline, others are dimmed and brighten on hover",
+    "Layout shrinks thumbnails on small screens"
+  ],
+  "props": [
+    { "name": "images", "type": "{src,alt}[]", "default": "4 sample images" },
+    { "name": "heading", "type": "string", "default": "Fluffy Philharmonic" },
+    { "name": "description", "type": "string", "default": "Select a performer" },
+    { "name": "bgColor", "type": "string", "default": "#000000" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "accentColor", "type": "string", "default": "#ffffff" },
+    { "name": "showNoise", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, names, heading and caption text",
+    "Background, text and accent colors",
+    "Grain overlay on or off"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Show more or fewer than four images",
+      "where": "images.slice(0, 4) in the items constant"
+    },
+    {
+      "change": "Change the crossfade duration or easing",
+      "where": "transition-[opacity,transform] classes on the preview img"
+    }
+  ],
+  "fixed": [
+    "Only the first four images are used",
+    "Grain overlay is a fixed full-viewport layer above the page when enabled",
+    "Uses Cormorant Garamond and Josefin Sans through next/font/google",
+    "Fills at least the viewport height and centers the gallery"
+  ],
+  "mood": ["elegant", "dark", "minimal", "cinematic"],
+  "industries": ["music", "fashion", "photography", "events", "art"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["next"]
+}

@@ -4,11 +4,12 @@
   "sourceHash": "5e5643082357cc8bb1c674c4e1bf290590f4e1d7503434b2d727e7f45f64b837",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-mouse-trail",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.466Z"
+  "note": "Slug kept. Gates passed. Category cursor-effects. GSAP CDN loader and gsapCdnUrl prop removed, gsap now import(gsap) and in dependencies. Empty JSX placeholders removed. className added. Hidden gallery moved inside fixed trail layer for single root; cleanup removes tracked clones only. Mouse-only, no trail on touch, noted in fixed.",
+  "updatedAt": "2026-11-01T08:36:39.765Z",
+  "gateOutput": "gates passed"
 }

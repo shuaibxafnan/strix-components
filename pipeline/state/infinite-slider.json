@@ -4,11 +4,12 @@
   "sourceHash": "c507681d581f4abeb5f82d803244b9c17d00bd6eb27157b7d8a465db86f33651",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.475Z"
+  "note": "Slug kept. Gates run by finish. gsap, Draggable, InertiaPlugin CDN scripts replaced by dynamic imports from gsap; no fallback for missing InertiaPlugin now. Cleanup of listeners, Draggable, timeline, tweens; cancel flag added. Added backgroundColor, textColor, className; style jsx global -> plain style. Root font max(1.1vw,9px); below md counter and buttons in bottom strip. Archivo Black font-face kept though counter uses PP Neue Corp. Corner borders stay white.",
+  "updatedAt": "2026-11-01T08:53:31.779Z",
+  "gateOutput": "gates passed"
 }

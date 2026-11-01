@@ -4,11 +4,12 @@
   "sourceHash": "560e653c998b616f69cdf9002044ca12430d2c6e1412a4b776abf7fdaec3c974",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-web-gl-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.479Z"
+  "note": "Slug kept. Component renamed InfiniteWebGLGrid -> InfiniteWebGlGrid for gate. three and gsap CDN scripts replaced by dynamic imports, in dependencies; PlaneBufferGeometry -> PlaneGeometry. Cleanup now returned from effect with disposed flag, disposes renderer, materials, textures (was never running). Touch listeners and touch-none added. className and backgroundColor props. Removed comments, .catch console error, duplicate fixed class.",
+  "updatedAt": "2026-11-01T08:55:27.672Z",
+  "gateOutput": "gates passed"
 }

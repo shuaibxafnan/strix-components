@@ -4,11 +4,12 @@
   "sourceHash": "32e81dd2d10d0be619ca60b27d071ad2f64cd8927169f41ca0826426eae3a45b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "interactive-cat",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.481Z"
+  "note": "Slug kept. Gates passed, warning: style tag without template literal (CSS from joined array for per-instance scope). Frame already on root, className merged. fontSize default now min(16px,3.3vw) so cat fits 360px; desktop same. Document mousemove listener removed on unmount.",
+  "updatedAt": "2026-11-01T08:59:28.643Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

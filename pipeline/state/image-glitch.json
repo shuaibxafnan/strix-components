@@ -4,11 +4,12 @@
   "sourceHash": "73cd93404700a07aa9d63961af98ec9d2b71bde0c1bac8a760d3423aaa7fc4ca",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-glitch",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.464Z"
+  "note": "Slug kept. Gates passed. Removed unused containerRef and blank lines. className added to root and placeholder. Frame already present, kept. Hardcoded black canvas fill left (needsCodeEdit). Oversized images cropped, noted in fixed. Category ui-elements.",
+  "updatedAt": "2026-11-01T08:33:45.224Z",
+  "gateOutput": "gates passed"
 }

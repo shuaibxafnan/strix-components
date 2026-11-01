@@ -4,11 +4,12 @@
   "sourceHash": "bbce8dcbf5aa456ab2a0685f17b9b1eabe137da2096793d5bb47ee522ec53c05",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "inertial-skew-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.470Z"
+  "note": "Slug kept. Gates passed. Removed blank lines and empty JSX comment placeholders. Added className and color props titleColor, frameBgColor, frameBorderColor, barTrackColor, barColor replacing zinc classes. Frame unchanged. Responsive not checked in browser; 28vw default slide width small on phones. Space Grotesk import kept.",
+  "updatedAt": "2026-11-01T08:44:47.124Z",
+  "gateOutput": "gates passed"
 }

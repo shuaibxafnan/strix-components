@@ -1,0 +1,46 @@
+{
+  "slug": "image-mouse-trail",
+  "name": "Image Mouse Trail",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Cursor trail that spawns a rotated image at the pointer as the mouse moves, cycling through a list of images that pop in with a springy scale and then shrink away.",
+  "contents": ["Fixed pointer-transparent layer that holds the spawned trail images", "Hidden source images used as clone templates"],
+  "behavior": [
+    "Spawns the next image at the cursor once it moved past a distance threshold and a minimum delay",
+    "Each image scales in with a random rotation, then scales out after a delay and is removed",
+    "Optional fade on entrance and exit"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "4 sample image URLs"},
+    {"name": "imageWidth", "type": "number", "default": 200},
+    {"name": "imageHeight", "type": "number", "default": 300},
+    {"name": "objectFit", "type": "string", "default": "cover"},
+    {"name": "borderRadius", "type": "number", "default": 3},
+    {"name": "movementThreshold", "type": "number", "default": 100},
+    {"name": "spawnDelay", "type": "number", "default": 70},
+    {"name": "maxRotation", "type": "number", "default": 20},
+    {"name": "entranceDuration", "type": "number", "default": 0.6},
+    {"name": "entranceEase", "type": "string", "default": "back.out(2)"},
+    {"name": "exitDelay", "type": "number", "default": 0.6},
+    {"name": "exitDuration", "type": "number", "default": 0.6},
+    {"name": "exitEase", "type": "string", "default": "power2.in"},
+    {"name": "fadeIn", "type": "boolean", "default": false},
+    {"name": "fadeOut", "type": "boolean", "default": false},
+    {"name": "zIndex", "type": "number", "default": 9999},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Images, size, radius and fit", "Spacing, spawn rate and rotation", "Entrance and exit timing, easing and fades", "Layer stacking order"],
+  "needsCodeEdit": [
+    {"change": "Track touch instead of mouse", "where": "mouseMoveHandler and the document mousemove listener"},
+    {"change": "Change the pop-in animation", "where": "entranceTween gsap.fromTo call"}
+  ],
+  "fixed": [
+    "Listens to mousemove on document while mounted and removes it on unmount",
+    "Layer is fixed over the whole viewport and ignores pointer events",
+    "Mouse only, there is no trail on touch devices"
+  ],
+  "mood": ["playful", "editorial", "dynamic"],
+  "industries": ["portfolio", "fashion", "photography", "agency", "art"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}

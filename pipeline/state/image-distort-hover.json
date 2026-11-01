@@ -4,11 +4,12 @@
   "sourceHash": "18301cc087abc0d9dee25354b76fbdebd7939e761dce98d41057031b7c323f11",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-distort-hover",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.462Z"
+  "note": "Slug kept. Gates passed, warning: style tag without template literal. GSAP CDN script replaced by import(gsap), added to dependencies. className added to root. Google Fonts loader, custom cursor, Firefox zoom skip kept. No frame or variants added.",
+  "updatedAt": "2026-11-01T08:29:21.945Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

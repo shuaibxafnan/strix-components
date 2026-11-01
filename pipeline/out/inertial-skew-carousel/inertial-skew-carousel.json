@@ -1,0 +1,51 @@
+{
+  "slug": "inertial-skew-carousel",
+  "name": "Inertial Skew Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen horizontal image carousel driven by wheel and drag with inertia. Slides squash and images stretch with scroll speed, and a progress bar tracks position.",
+  "contents": [
+    "Row of captioned image slides in grayscale frames",
+    "Progress bar in the bottom left corner"
+  ],
+  "behavior": [
+    "Mouse wheel and drag or touch move the track with eased inertia",
+    "Slides shrink and images stretch horizontally in proportion to speed",
+    "Images turn to color on hover",
+    "Progress bar scales with scroll position"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#09090b" },
+    { "name": "lerpFactor", "type": "number", "default": 0.1 },
+    { "name": "touchSpeedFactor", "type": "number", "default": 2.5 },
+    { "name": "itemWidthVw", "type": "number", "default": 28 },
+    { "name": "itemPaddingVw", "type": "number", "default": 2.5 },
+    { "name": "initialBarWidth", "type": "number", "default": 0.15 },
+    { "name": "carouselData", "type": "{id,title,imgUrl}[]", "default": "7 sample slides" },
+    { "name": "titleColor", "type": "string", "default": "#a1a1aa" },
+    { "name": "frameBgColor", "type": "string", "default": "#18181b" },
+    { "name": "frameBorderColor", "type": "string", "default": "#27272a" },
+    { "name": "barTrackColor", "type": "string", "default": "#27272a" },
+    { "name": "barColor", "type": "string", "default": "#f4f4f5" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Slides, captions and images",
+    "Colors of background, captions, frames and progress bar",
+    "Inertia, drag speed, slide size and spacing"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change how strongly speed distorts slides and images", "where": "renderLoop function, the scale transforms inside carouselData.forEach" },
+    { "change": "Keep images in color", "where": "grayscale class on the img element" }
+  ],
+  "fixed": [
+    "Listens to the window wheel event and moves the carousel with it, without blocking page scroll",
+    "Loads the Space Grotesk font through an @import in a style tag",
+    "Fills the viewport height",
+    "Progress bar is fixed to the bottom left of the viewport"
+  ],
+  "mood": ["dark", "editorial", "futuristic", "minimal"],
+  "industries": ["fashion", "photography", "portfolio", "design studio", "e-commerce"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

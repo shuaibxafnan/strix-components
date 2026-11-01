@@ -1,0 +1,36 @@
+{
+  "slug": "interactive-cat",
+  "name": "Interactive Cat",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Black cartoon cat with a swinging, bobbing body whose eyes follow the mouse cursor, drawn entirely in CSS on a solid colored background.",
+  "contents": ["Cat figure with ears, eyes, pupils, whiskers, collar, tag and tail"],
+  "behavior": ["Body swings and bobs with a soft blur in an endless alternating animation", "Pupils follow the mouse cursor across the document"],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#f5b400"},
+    {"name": "catColor", "type": "string", "default": "#000"},
+    {"name": "collarColor", "type": "string", "default": "#f00"},
+    {"name": "tagColor", "type": "string", "default": "#fb0"},
+    {"name": "earColor", "type": "string", "default": "#f30"},
+    {"name": "eyeColor", "type": "string", "default": "#fff"},
+    {"name": "pupilColor", "type": "string", "default": "#000"},
+    {"name": "fontSize", "type": "string", "default": "min(16px, 3.3vw)"},
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "swingDuration", "type": "number", "default": 2},
+    {"name": "swingAngle", "type": "number", "default": 3},
+    {"name": "bobAmount", "type": "number", "default": 6},
+    {"name": "blurAmount", "type": "number", "default": 1},
+    {"name": "trackMouse", "type": "boolean", "default": true},
+    {"name": "pupilMaxTravel", "type": "number", "default": 0}
+  ],
+  "editableByProps": ["Background, body, collar, tag, ear, eye and pupil colors", "Overall size through fontSize", "Swing speed, angle, bob height and blur", "Mouse tracking on or off and pupil travel distance"],
+  "needsCodeEdit": [
+    {"change": "Change the cat shape or add features", "where": "css array of style rules"},
+    {"change": "Change the tail curve", "where": "svg with className tail"}
+  ],
+  "fixed": ["Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.", "Listens to mousemove on the document and removes it on unmount"],
+  "mood": ["playful", "cute", "friendly"],
+  "industries": ["kids", "pets", "entertainment", "gaming"],
+  "sections": ["hero", "other"],
+  "dependencies": []
+}
