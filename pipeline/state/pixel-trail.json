@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "pixel-trail",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.590Z"
+  "note": "Bits describe-only. Needs WebGL2 and sized parent. Pointer events on window. No touch hover. Image colors need CORS. shape prop documented as variants (square, circle, diamond); decay in editableByProps. Container class absolute z-1 but inline style forces relative.",
+  "updatedAt": "2026-11-01T10:36:48.885Z",
+  "gateOutput": "gates passed"
 }
