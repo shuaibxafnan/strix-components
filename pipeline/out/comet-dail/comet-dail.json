@@ -1,0 +1,87 @@
+{
+    "slug": "comet-dail",
+    "name": "Comet Dial",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Circular rotary dial slider drawn in SVG. Dragging or flicking the arc moves the value with spring physics, and a fading comet tail stretches behind the handle in proportion to speed.",
+    "contents": [
+        "SVG slider with background arc, lit progress arc, round head handle",
+        "12-segment comet tail that grows with drag velocity",
+        "Centered numeric readout with unit"
+    ],
+    "behavior": [
+        "Drag or tap on the arc to set the value, with spring settling and optional bounce",
+        "Flick on release carries momentum before snapping to the step",
+        "Comet tail length, width and opacity scale with value velocity",
+        "Keyboard control with arrows, PageUp/PageDown, Home and End (Shift for x10)",
+        "Works controlled via value or uncontrolled via defaultValue",
+        "Reduced motion preference makes value changes jump with no tail"
+    ],
+    "props": [
+        {"name": "value", "type": "number", "default": null},
+        {"name": "defaultValue", "type": "number", "default": 62},
+        {"name": "min", "type": "number", "default": 0},
+        {"name": "max", "type": "number", "default": 100},
+        {"name": "step", "type": "number", "default": 1},
+        {"name": "unit", "type": "string", "default": "%"},
+        {"name": "label", "type": "string", "default": "Level"},
+        {"name": "accent", "type": "string", "default": "#f5f5f5"},
+        {"name": "ink", "type": "string", "default": "#fdfdfd"},
+        {"name": "size", "type": "number", "default": 250},
+        {"name": "sweep", "type": "number", "default": 320},
+        {"name": "thickness", "type": "number", "default": 5},
+        {"name": "speed", "type": "number", "default": 25},
+        {"name": "tapBounce", "type": "number", "default": 0.2},
+        {"name": "flickBounce", "type": "number", "default": 0.1},
+        {"name": "momentum", "type": "number", "default": 1},
+        {"name": "cometReach", "type": "number", "default": 180},
+        {"name": "cometWidth", "type": "number", "default": 12},
+        {"name": "disabled", "type": "boolean", "default": false},
+        {"name": "onChange", "type": "(value:number) => void", "default": null},
+        {"name": "onChangeEnd", "type": "(value:number, detail:{velocity,bounce}) => void", "default": null},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Value range, step, unit and accessible label",
+        "Accent and ink colors, dial size, arc sweep angle and stroke thickness",
+        "Spring speed, tap and flick bounce, momentum",
+        "Comet tail reach and width",
+        "Disabled state, change callbacks, extra class name"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the number of comet tail segments",
+            "where": "K constant"
+        },
+        {
+            "change": "Change the size of the dead zone in the center that ignores input",
+            "where": "DEAD constant"
+        },
+        {
+            "change": "Change how far a pointer must move before a tap becomes a drag",
+            "where": "DRAG_PX constant"
+        },
+        {
+            "change": "Change the arc radius within the viewBox",
+            "where": "R constant and pointAt function"
+        },
+        {
+            "change": "Change readout font size or style",
+            "where": "--cd-figure style and the span with ref figure in the returned JSX"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package (motion/react)",
+        "Marked use client, needs a client-rendered React environment",
+        "Adds window pointermove, pointerup and pointercancel listeners during a drag and removes them after",
+        "Runs its own requestAnimationFrame loop while moving",
+        "Ignores synthetic events (only trusted pointer events count) and clicks within the central dead zone",
+        "Arc starts at the bottom and the gap is centered at the bottom",
+        "Square layout using the size prop, text color comes from ink",
+        "Dark-friendly default colors are near white, so it needs a dark background"
+    ],
+    "mood": ["techy", "sleek", "minimal", "playful"],
+    "industries": ["audio", "smart home", "gaming", "fintech", "saas"],
+    "sections": ["other"],
+    "dependencies": ["motion"]
+}
