@@ -1,0 +1,59 @@
+{
+  "slug": "image-scale-scroller",
+  "name": "Image Scale Scroller",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Pinned split section where a counter counts up and the heading shifts color while a full-bleed image slides to the right and scales down, revealing bordered boxes. Stacks on mobile.",
+  "contents": [
+    "Topline label, counting number with unit, heading second line and body paragraph",
+    "Full-bleed image that slides and scales during the pin",
+    "Divider line and bordered reveal boxes on desktop"
+  ],
+  "behavior": [
+    "Smooth scrolling through GSAP ScrollSmoother",
+    "Section pins while a scrubbed timeline counts the number up and changes the heading color",
+    "Desktop image slides to the right half and scales down while boxes scale in",
+    "Below the mobile breakpoint the text stacks above the image, boxes are hidden and the image only scales"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#ffffff"},
+    {"name": "dividerColor", "type": "string", "default": "#ebebeb"},
+    {"name": "topline", "type": "string", "default": "Our solutions use"},
+    {"name": "targetNumber", "type": "number", "default": 97},
+    {"name": "unit", "type": "string", "default": "%"},
+    {"name": "headingLine2", "type": "string", "default": "less water"},
+    {"name": "headingColor", "type": "string", "default": "#000000"},
+    {"name": "headingColorEnd", "type": "string", "default": "#91a052"},
+    {"name": "bodyText", "type": "string", "default": "Over 600 gallons of water is wasted every minute by using outdated methods. Our improved technology reduces both water waste and land needed to grow."},
+    {"name": "imageSrc", "type": "string", "default": "https://images.unsplash.com/photo-1782806007529-90a2ab4b98d9?auto=format&fit=crop&w=1600&q=80"},
+    {"name": "imageAlt", "type": "string", "default": "Scale image"},
+    {"name": "scrollDistance", "type": "number", "default": 1500},
+    {"name": "mobileScrollDist", "type": "number", "default": 800},
+    {"name": "smoothness", "type": "number", "default": 2},
+    {"name": "fontFamily", "type": "string", "default": "sans-serif"},
+    {"name": "toplineFontSize", "type": "string", "default": "1.5rem"},
+    {"name": "headingFontSize", "type": "string", "default": "clamp(2.5rem, 6vw, 12rem)"},
+    {"name": "bodyColor", "type": "string", "default": "#82837f"},
+    {"name": "mobileBreakpoint", "type": "number", "default": 768},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All text, the counter target and unit, image and alt text",
+    "Colors, font sizes and font family",
+    "Pin scroll distances, smoothness and mobile breakpoint"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change how far the image slides or how much it scales", "where": "The xPercent and scale tweens in the else branch of the useEffect"},
+    {"change": "Change the reveal box layout", "where": "is-box--one to is-box--four divs"},
+    {"change": "Swap text and image sides", "where": "is-text-panel and is-image-wrap classes"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with GSAP ScrollSmoother, so it should be the only smooth scroll on the page",
+    "Wrapper is position fixed and fills the viewport, content scrolls inside it",
+    "Kills all ScrollTrigger instances on unmount"
+  ],
+  "mood": ["clean", "editorial", "modern", "eco"],
+  "industries": ["sustainability", "agriculture", "technology", "energy"],
+  "sections": ["stats", "features"],
+  "dependencies": ["gsap"]
+}
