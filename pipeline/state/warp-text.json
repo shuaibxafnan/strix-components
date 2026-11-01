@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "warp-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.635Z"
+  "note": "Bits describe-only. Category text-effects. Variants bulge, pinch, swirl on lens prop. Needs ogl and WebGL2, plain text fallback. Canvas text not selectable. Pointer lens ignored on touch.",
+  "updatedAt": "2026-11-01T15:28:09.946Z",
+  "gateOutput": "gates passed"
 }

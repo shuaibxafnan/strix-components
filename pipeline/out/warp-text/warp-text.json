@@ -1,0 +1,89 @@
+{
+    "slug": "warp-text",
+    "name": "Warp Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "WebGL text that continuously ripples and refracts, with a lens that follows the pointer, click shockwaves, optional chromatic split and an animated intro reveal.",
+    "contents": [
+        "Single block of multi-line text rendered to a canvas texture and drawn by a shader",
+        "Accessible role img wrapper with aria-label and a plain text fallback if WebGL fails"
+    ],
+    "behavior": [
+        "Ambient noise warp drifts the text constantly",
+        "Pointer lens distorts text near the cursor, and idles in a gentle drift path when the pointer is away",
+        "Optional ripple rings around the pointer and click shockwaves (up to 4 at once)",
+        "Intro animation settles from a strong blur-warp into the final text",
+        "Pauses rendering when offscreen or tab hidden, honors prefers-reduced-motion by freezing time and reducing effects",
+        "Text auto-shrinks to fit 86% width and 78% height of the container, and re-rasterizes on resize and color change"
+    ],
+    "props": [
+        {"name": "text", "type": "string", "default": "Bend the moment"},
+        {"name": "color", "type": "string", "default": "currentColor"},
+        {"name": "warpStrength", "type": "number", "default": 0.08},
+        {"name": "warpScale", "type": "number", "default": 1.7},
+        {"name": "speed", "type": "number", "default": 0.55},
+        {"name": "pointerInfluence", "type": "number", "default": 0.42},
+        {"name": "pointerStrength", "type": "number", "default": 0.38},
+        {"name": "refraction", "type": "number", "default": 0.018},
+        {"name": "chromatic", "type": "number", "default": 0},
+        {"name": "ripple", "type": "boolean", "default": true},
+        {"name": "clickRipple", "type": "boolean", "default": true},
+        {"name": "idleDrift", "type": "number", "default": 0.2},
+        {"name": "lens", "type": "'bulge' | 'pinch' | 'swirl'", "default": "bulge"},
+        {"name": "intro", "type": "boolean", "default": true},
+        {"name": "fontSize", "type": "string | number", "default": "clamp(3rem, 10vw, 9rem)"},
+        {"name": "fontWeight", "type": "string | number", "default": 800},
+        {"name": "fontFamily", "type": "string", "default": "inherit"},
+        {"name": "letterSpacing", "type": "string | number", "default": "-0.06em"},
+        {"name": "lineHeight", "type": "string | number", "default": 0.9},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "style", "type": "object", "default": null}
+    ],
+    "editableByProps": [
+        "Text content (use newlines for multiple lines), color, font size, weight, family, letter spacing and line height",
+        "Warp strength, scale and speed, refraction, chromatic split, idle drift",
+        "Pointer lens size, strength and style, ripple rings, click ripples, intro on or off",
+        "Container size and extra styling through className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add a new lens distortion style",
+            "where": "LENS_MODES constant and the uLens branch in the fragment shader"
+        },
+        {
+            "change": "Change intro duration or click ripple lifetime and count",
+            "where": "INTRO_MS, RIPPLE_LIFE and MAX_CLICKS constants"
+        },
+        {
+            "change": "Change minimum height of the effect",
+            "where": "min-h-[220px] class on the root div"
+        },
+        {
+            "change": "Change how much of the container the text may fill",
+            "where": "maxWidth and maxHeight in buildTextCanvas"
+        }
+    ],
+    "fixed": [
+        "Requires the ogl package and a WebGL2 browser, otherwise a plain text fallback is shown",
+        "Text is drawn on a canvas, so it is not selectable and only the aria-label exposes it",
+        "Size comes from the container: root is w-full with a 220px minimum height, so give it a height through className or a parent",
+        "Root clips overflow and inherits border radius",
+        "Pointer lens is ignored for touch input, touch devices only see ambient warp and click ripples",
+        "Device pixel ratio capped at 2",
+        "Text is set as a prop so changing color via CSS is detected by polling about every 15 frames",
+        "Works on small screens because the font size is fluid and the text auto-fits"
+    ],
+    "mood": ["futuristic", "playful", "bold", "fluid"],
+    "industries": ["creative agency", "technology", "music", "gaming", "fashion"],
+    "sections": ["hero", "cta"],
+    "dependencies": ["ogl"],
+    "variants": {
+        "prop": "lens",
+        "default": "bulge",
+        "options": [
+            {"value": "bulge", "look": "Text swells outward around the pointer like a magnifying lens", "useWhen": "Hero headline that should feel like it reacts and magnifies under the cursor"},
+            {"value": "pinch", "look": "Text is pulled inward toward the pointer", "useWhen": "Dark or moody landing section where the headline should feel sucked into the cursor"},
+            {"value": "swirl", "look": "Text twists in a vortex around the pointer", "useWhen": "Playful event or music page headline that should feel energetic and spinning"}
+        ]
+    }
+}
