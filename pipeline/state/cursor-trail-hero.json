@@ -4,11 +4,12 @@
   "sourceHash": "fca04895bd43da4ed1ae7237c4b9f0dc8c6b15d91052c9236f32e8ca6269fb4d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "cursor-trail-hero",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.416Z"
+  "note": "Rewritten. Gates passed. Removed header logo and nav (ambiguous, treated as demo branding); nav became variant prop (flame, venetian, curtain, hexagon, liquid, zoomsplit). w-screen to w-full. Added unmount cleanup of trail elements. Noise overlay z-9999 and JetBrains Mono links kept (fixed). No frame.",
+  "updatedAt": "2026-11-01T06:05:51.960Z",
+  "gateOutput": "gates passed"
 }
