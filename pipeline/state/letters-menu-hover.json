@@ -4,11 +4,12 @@
   "sourceHash": "1657eae9df5f2dd631477c8533cb86db314343b4324fb37ff54055c6d33c4398",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "letters-menu-hover",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.486Z"
+  "note": "CDN gsap replaced with dynamic import (dep gsap). Added className. No frame change, no variants, responsive ok. Category navigation-menus. Kept Google Fonts link injection and bodyText default. Fixed: touch hover relies on emulated mouse events. Gate warning: style tag without template literal, left as is.",
+  "updatedAt": "2026-11-01T09:18:21.766Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }
