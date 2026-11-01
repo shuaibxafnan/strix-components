@@ -1,0 +1,84 @@
+{
+    "slug": "voice-pill",
+    "name": "Voice Pill",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Compact microphone button that expands leftward into a recording pill with a live timer, scrolling waveform and slide-to-cancel, driven by a simulated voice signal or the real microphone.",
+    "contents": [
+        "Round microphone button that swaps to a stop square while listening",
+        "Background pill that expands to the left on start",
+        "Elapsed time clock and canvas waveform bars",
+        "Cancel hint with arrow shown while sliding left"
+    ],
+    "behavior": [
+        "Tap toggles recording, press and hold records until release (mode auto, hold or tap)",
+        "Slide left while holding to cancel, with the timer and wave following the finger",
+        "Waveform and level follow a looping simulated speech pattern or the real microphone via Web Audio",
+        "Space and Enter toggle, Escape stops, losing window focus or hiding the tab stops recording",
+        "Press scale feedback and hover tint on fine pointers, reduced motion removes transforms and blur"
+    ],
+    "props": [
+        { "name": "accentColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "iconColor", "type": "string", "default": "#a1a1aa" },
+        { "name": "background", "type": "string", "default": "#27272a" },
+        { "name": "size", "type": "number", "default": 28 },
+        { "name": "shape", "type": "'pill' | 'rounded'", "default": "pill" },
+        { "name": "reach", "type": "number", "default": 8 },
+        { "name": "showTime", "type": "boolean", "default": true },
+        { "name": "waveform", "type": "boolean", "default": true },
+        { "name": "slideToCancel", "type": "boolean", "default": true },
+        { "name": "cancelDistance", "type": "number", "default": 64 },
+        { "name": "attack", "type": "number", "default": 40 },
+        { "name": "release", "type": "number", "default": 240 },
+        { "name": "sensitivity", "type": "number", "default": 1 },
+        { "name": "floor", "type": "number", "default": 0.1 },
+        { "name": "openDuration", "type": "number", "default": 200 },
+        { "name": "pressScale", "type": "number", "default": 0.95 },
+        { "name": "mode", "type": "'auto' | 'hold' | 'tap'", "default": "auto" },
+        { "name": "holdAfter", "type": "number", "default": 300 },
+        { "name": "reactive", "type": "'simulated' | 'mic'", "default": "simulated" },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "ariaLabel", "type": "string", "default": "Dictate" },
+        { "name": "onStart", "type": "function", "default": null },
+        { "name": "onStop", "type": "function", "default": null },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Colors for accent, icon and pill background",
+        "Button size, shape, expansion reach and open duration",
+        "Show or hide timer, waveform and slide-to-cancel, and the cancel distance",
+        "Interaction mode, hold threshold, and simulated or real microphone input",
+        "Level response (attack, release, sensitivity, wave floor), press scale, disabled state and aria label",
+        "onStart and onStop callbacks"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the simulated speech rhythm",
+            "where": "SYLLABLES and LOOP constants"
+        },
+        {
+            "change": "Change the 'Cancel' label text or the mic icon",
+            "where": "Cancel span and Mic01Icon in the returned JSX"
+        },
+        {
+            "change": "Change waveform bar width, spacing or length of history",
+            "where": "drawWave function and WAVE_MAX constant"
+        },
+        {
+            "change": "Make the pill expand to the right",
+            "where": "Background span inset and clip-path classes in the returned JSX"
+        }
+    ],
+    "fixed": [
+        "Requires @hugeicons/react and @hugeicons/core-free-icons",
+        "Pill always expands to the left, so it needs free space on its left side",
+        "Real microphone mode asks for browser permission, needs HTTPS and stops with a mic-denied reason if refused",
+        "Creates an AudioContext when mic mode is used and closes it on unmount",
+        "Cancel label text is hardcoded in English",
+        "Expanded width scales only with size, so very small containers on narrow screens may clip the expanded pill"
+    ],
+    "mood": ["minimal", "modern", "tactile"],
+    "industries": ["saas", "productivity", "messaging", "ai tools"],
+    "sections": ["other"],
+    "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"]
+}

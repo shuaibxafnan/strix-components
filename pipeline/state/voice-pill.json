@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "voice-pill",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.627Z"
+  "note": "Bits describe-only. No variants block. Expands left only; mic mode needs HTTPS and permission; Cancel label hardcoded; needs @hugeicons.",
+  "updatedAt": "2026-11-01T15:22:53.652Z",
+  "gateOutput": "gates passed"
 }
