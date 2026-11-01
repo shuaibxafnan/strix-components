@@ -4,11 +4,12 @@
   "sourceHash": "2a6818eece798edf8ff85dbc1282e45db04a482749bdca6ae977a747d6d58b1f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "fruity-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.445Z"
+  "note": "Removed brand header and brandName prop. Root w-screen to w-full. next/font kept. No frame, no variants.",
+  "updatedAt": "2026-11-01T07:19:50.527Z",
+  "gateOutput": "gates passed"
 }

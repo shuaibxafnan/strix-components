@@ -1,0 +1,108 @@
+{
+    "slug": "fruity-slider",
+    "name": "Fruity Slider",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Full-screen flavor slider with colored slides, a giant fitted flavor name, a floating drink can and scattered fruit that drops in on each change. Circular pulsing arrows and arrow keys navigate.",
+    "contents": [
+        "Slides, each with flavor name, background color, accent color, can image and fruit image",
+        "Scattered floating fruit images per slide at configurable spots",
+        "Previous and next round buttons with pulsing wave"
+    ],
+    "behavior": [
+        "Slide strip translates horizontally between flavors",
+        "Name, can and fruit animate in with GSAP on each change, fruit drops from above",
+        "Fruit drifts randomly and the can bobs in a loop",
+        "Flavor name font size is fitted to the container width and height on resize",
+        "Arrow keys left and right change slide",
+        "On screens under 640px the buttons move to the bottom and shrink"
+    ],
+    "props": [
+        {
+            "name": "slides",
+            "type": "{name,logoColor,bgColor,canImage,canAlt,fruitImage,fruitAlt}[]",
+            "default": "3 sample slides (Watermelon, Orange, Pineapple)"
+        },
+        {
+            "name": "fruitSpots",
+            "type": "{className,rotate,scale}[]",
+            "default": "6 sample spots"
+        },
+        {
+            "name": "prevLabel",
+            "type": "string",
+            "default": "Previous flavor"
+        },
+        {
+            "name": "nextLabel",
+            "type": "string",
+            "default": "Next flavor"
+        },
+        {
+            "name": "transitionDuration",
+            "type": "number",
+            "default": 900
+        },
+        {
+            "name": "waveDuration",
+            "type": "string",
+            "default": "3s"
+        },
+        {
+            "name": "buttonSize",
+            "type": "string",
+            "default": "80px"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Number of slides, names, images, alt text and slide colors",
+        "Fruit placement, rotation and scale",
+        "Slide transition speed, button size and pulse speed, button labels"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the name text color",
+            "where": "text-white class on the h1 with data-name"
+        },
+        {
+            "change": "Change can size",
+            "where": "h-[58vh] class on the img with data-can-img"
+        },
+        {
+            "change": "Change the fruit drop-in animation",
+            "where": "q(\"[data-fruit]\") fromTo call in enterSlide"
+        }
+    ],
+    "fixed": [
+        "Listens to arrow keys on window while mounted and removes the listener on unmount",
+        "Root is full viewport height",
+        "Navigation buttons use fixed positioning relative to the viewport",
+        "Uses the Lexend font through next/font/google",
+        "Slide count must stay at least 1"
+    ],
+    "mood": [
+        "playful",
+        "vibrant",
+        "fresh",
+        "bold"
+    ],
+    "industries": [
+        "food and beverage",
+        "e-commerce",
+        "packaging",
+        "retail"
+    ],
+    "sections": [
+        "hero",
+        "portfolio"
+    ],
+    "dependencies": [
+        "gsap",
+        "next"
+    ]
+}
