@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "carousel",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.609Z"
+  "note": "Bits describe-only. Category sliders-carousels. Variants: effect (tilt, slide, scale, fade, cube). Needs @hugeicons packages and Tailwind. Gates passed.",
+  "updatedAt": "2026-11-01T04:59:08.813Z",
+  "gateOutput": "gates passed"
 }
