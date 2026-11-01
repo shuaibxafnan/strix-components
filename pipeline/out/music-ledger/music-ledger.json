@@ -1,0 +1,56 @@
+{
+  "slug": "music-ledger",
+  "name": "Music Ledger",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen monospace ledger of releases where hovering a row scrambles its text, highlights the cells and fades in a cover image behind the list, with a pulsing idle animation.",
+  "contents": [
+    "Row list with index, artist, album, category, label and year",
+    "Background cover image per row",
+    "Optional noise and scanline overlays"
+  ],
+  "behavior": [
+    "Hover or focus on a row scrambles its text and reveals a zoom-in background image while other rows dim",
+    "After an idle delay a GSAP timeline pulses the rows in a looping wave",
+    "Category, label and year columns are hidden below 768px"
+  ],
+  "props": [
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "projects", "type": "{artist,album,category,label,year,image}[]", "default": "20 sample releases" },
+    { "name": "srTitle", "type": "string", "default": "Music Portfolio" },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "textColor", "type": "string", "default": "text-white" },
+    { "name": "accentColor", "type": "string", "default": "bg-white" },
+    { "name": "accentTextColor", "type": "string", "default": "group-data-[active=true]/row:text-black" },
+    { "name": "borderColor", "type": "string", "default": "border-white/10" },
+    { "name": "activeRowClass", "type": "string", "default": "shadow-[inset_0_1px_0_rgba(255,255,255,0.25),inset_0_-1px_0_rgba(255,255,255,0.25)]" },
+    { "name": "fontFamily", "type": "string", "default": "JetBrains Mono" },
+    { "name": "fontUrl", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono@latest/latin-400-normal.woff2" },
+    { "name": "scrambleChars", "type": "string", "default": "qwerty1337h@ck3r" },
+    { "name": "scrambleDuration", "type": "number", "default": 800 },
+    { "name": "scrambleSpeed", "type": "number", "default": 40 },
+    { "name": "bgImageSize", "type": "string", "default": "h-[600px] w-[800px] max-w-full" },
+    { "name": "idleDelay", "type": "number", "default": 3000 },
+    { "name": "idleRepeatDelay", "type": "number", "default": 2 },
+    { "name": "showNoise", "type": "boolean", "default": true },
+    { "name": "showScanlines", "type": "boolean", "default": true }
+  ],
+  "editableByProps": [
+    "All row text and background images, number of rows",
+    "Background, text, accent and border colors as Tailwind classes",
+    "Font, scramble characters and timing, idle animation timing, noise and scanlines"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change which columns are shown", "where": "COLUMNS constant and the ScrambleCell elements in the list" },
+    { "change": "Change grid column widths", "where": "grid-cols classes on the li element" }
+  ],
+  "fixed": [
+    "Noise and scanline overlays and the background image layer are position fixed to the viewport",
+    "Root is at least one viewport tall and centers the list",
+    "Hover reveal is triggered by focus on touch devices through tap"
+  ],
+  "mood": ["techy", "dark", "editorial", "glitchy"],
+  "industries": ["music", "record labels", "creative agency", "events", "portfolio"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": ["gsap"]
+}

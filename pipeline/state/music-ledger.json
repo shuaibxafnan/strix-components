@@ -4,11 +4,12 @@
   "sourceHash": "866b8c220155f27ee3c8229bb182268d0a6e6f31b18fffd154d8d169abbe0f5a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "music-ledger",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.501Z"
+  "note": "gates passed. cards-galleries. gsap via dynamic import; trialWarn and console.error removed; className added; max-w-full on bgImageSize default. Font-face injection kept; fixed noise, scanline and bg layers in fixed. No variants.",
+  "updatedAt": "2026-11-01T09:59:51.413Z",
+  "gateOutput": "gates passed"
 }
