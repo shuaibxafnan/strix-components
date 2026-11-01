@@ -4,11 +4,12 @@
   "sourceHash": "62364400e4c06a9bf16f6d39e5497c003a37ac68f36e99c7199af27ba4e93c40",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "baked-room-viewer",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.494Z"
+  "note": "Renamed modern-baked-room-viewer -> baked-room-viewer. CDN script tags replaced by npm three with dynamic imports. Removed placeholder title header. Loader/button/hint text and loader bg made props. Frame: none (fixed full-bleed). Variants: none. Responsive: already ok (padding and hint width tweaks).",
+  "updatedAt": "2026-11-01T09:47:37.702Z",
+  "gateOutput": "gates passed"
 }

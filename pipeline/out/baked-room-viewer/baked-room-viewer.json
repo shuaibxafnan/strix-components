@@ -1,0 +1,51 @@
+{
+  "slug": "baked-room-viewer",
+  "name": "Baked Room Viewer",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen interactive 3D isometric room with baked lighting that visitors orbit and zoom by dragging, with a loading progress screen and a reset view button.",
+  "contents": [
+    "Full-screen WebGL canvas showing a baked-texture room model",
+    "Loading overlay with title and progress bar",
+    "Reset viewport button and drag/zoom hint pill"
+  ],
+  "behavior": [
+    "Loads a GLB model and baked texture with Three.js",
+    "Orbit, zoom and pan with damping, zoom limited by min and max distance",
+    "Reset button returns the camera to its start position",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    {"name": "modelUrl", "type": "string", "default": "https://rawcdn.githack.com/ricardoolivaalonso/ThreeJS-Room09/2515f48ad0b678bb7e16821ffb1960e01d35c65d/dist/model.glb"},
+    {"name": "textureUrl", "type": "string", "default": "https://rawcdn.githack.com/ricardoolivaalonso/ThreeJS-Room09/63b22b78b58af29d8b0d2ca196e241e1e8490fe7/dist/baked.jpg"},
+    {"name": "pageBgColor", "type": "string", "default": "bg-[#AFA698]"},
+    {"name": "loaderBgColor", "type": "string", "default": "rgba(175,166,152,0.9)"},
+    {"name": "grassColor", "type": "number", "default": 3946550},
+    {"name": "minCamDistance", "type": "number", "default": 50},
+    {"name": "maxCamDistance", "type": "number", "default": 80},
+    {"name": "loaderTextColor", "type": "string", "default": "text-neutral-800"},
+    {"name": "loaderTitle", "type": "string", "default": "Assembling Room Assets"},
+    {"name": "loaderProgressLabel", "type": "string", "default": "% Complete"},
+    {"name": "resetLabel", "type": "string", "default": "Reset Viewport"},
+    {"name": "hintText", "type": "string", "default": "Drag to Orbit • Scroll to Zoom"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Model and texture files, background and loader colors",
+    "Grass mesh color and camera zoom limits",
+    "Loader, button and hint text"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the starting camera position or field of view", "where": "PerspectiveCamera and camera.position.set calls in init"},
+    {"change": "Use a different mesh name for the recolored part", "where": "child.name === \"Pasto\" check in model.traverse"}
+  ],
+  "fixed": [
+    "Root is fixed to the full viewport and covers the page",
+    "Recolored mesh is named Pasto in the model",
+    "Camera and canvas sized from the window, not the container"
+  ],
+  "mood": ["immersive", "cozy", "interactive", "modern"],
+  "industries": ["real estate", "interior design", "architecture", "furniture", "gaming"],
+  "sections": ["hero", "background"],
+  "dependencies": ["three"]
+}
