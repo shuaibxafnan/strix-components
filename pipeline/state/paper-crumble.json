@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "paper-crumble",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.622Z"
+  "note": "Bits describe-only. Three.js client-only; needs src image, CORS for cross-origin. Fixed sceneHeight 560px. touch-none blocks scroll over paper. releaseBehavior (restore, creased, stay) documented as variants; creased and stay descriptions not fully verified.",
+  "updatedAt": "2026-11-01T10:21:18.354Z",
+  "gateOutput": "gates passed"
 }
