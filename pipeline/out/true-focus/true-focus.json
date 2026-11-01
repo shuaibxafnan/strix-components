@@ -1,0 +1,81 @@
+{
+    "slug": "true-focus",
+    "name": "True Focus",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Sentence where one word at a time is in sharp focus while the others blur, with an animated frame (corner brackets, box, underline or highlight) that glides between words.",
+    "contents": [
+        "Sentence split into words, each in its own span",
+        "Animated focus frame that moves and resizes to the active word"
+    ],
+    "behavior": [
+        "Auto-cycles through words on an interval of animationDuration plus pauseBetweenAnimations, sequentially or randomly",
+        "In manual mode the focus follows mouse hover over words",
+        "Unfocused words blur and can fade; the active word can scale up",
+        "Frame position is measured with ResizeObserver and follows layout changes",
+        "Easing is smooth cubic bezier or a springy overshoot",
+        "Reduced motion preference sets duration to 0 and disables spring"
+    ],
+    "props": [
+        {"name": "sentence", "type": "string", "default": "True Focus"},
+        {"name": "separator", "type": "string", "default": " "},
+        {"name": "manualMode", "type": "boolean", "default": false},
+        {"name": "focusStyle", "type": "'brackets' | 'box' | 'underline' | 'highlight'", "default": "brackets"},
+        {"name": "order", "type": "'sequential' | 'random'", "default": "sequential"},
+        {"name": "easing", "type": "'smooth' | 'spring'", "default": "smooth"},
+        {"name": "blurAmount", "type": "number", "default": 5},
+        {"name": "focusScale", "type": "number", "default": 1},
+        {"name": "borderColor", "type": "string", "default": "green"},
+        {"name": "highlightColor", "type": "string", "default": "undefined (falls back to borderColor)"},
+        {"name": "glowColor", "type": "string", "default": "transparent"},
+        {"name": "animationDuration", "type": "number", "default": 0.5},
+        {"name": "pauseBetweenAnimations", "type": "number", "default": 1},
+        {"name": "cornerSize", "type": "number", "default": 16},
+        {"name": "borderWidth", "type": "number", "default": 3},
+        {"name": "unfocusedOpacity", "type": "number", "default": 1}
+    ],
+    "editableByProps": [
+        "Sentence text and word separator",
+        "Frame style, color, glow, border width and corner size",
+        "Auto or hover-driven mode, sequential or random order",
+        "Timing, easing, blur, unfocused opacity and focus scale"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change font size or weight of the words",
+            "where": "className on the word span inside words.map (text-[3rem] font-black)"
+        },
+        {
+            "change": "Change distance between frame and word",
+            "where": "FRAME_GAP constant"
+        },
+        {
+            "change": "Change spacing between words",
+            "where": "gap-[1em] in the container div className"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package (motion/react)",
+        "Word font size is hardcoded to 3rem, bold black weight",
+        "Words are laid out centered and wrapped in a flex row",
+        "Frame gap of 10px around the word is fixed",
+        "Text is not selectable and words show a pointer cursor",
+        "Needs at least 2 words for auto cycling",
+        "Unknown focusStyle values render corner brackets",
+        "Wide sentences wrap on small screens; frame follows via ResizeObserver"
+    ],
+    "mood": ["focused", "modern", "playful", "bold"],
+    "industries": ["technology", "creative agency", "education", "marketing"],
+    "sections": ["hero", "about", "cta"],
+    "dependencies": ["motion"],
+    "variants": {
+        "prop": "focusStyle",
+        "default": "brackets",
+        "options": [
+            {"value": "brackets", "look": "Four corner brackets around the active word", "useWhen": "Hero headline needing a camera viewfinder feel"},
+            {"value": "box", "look": "Full rounded outline box around the active word", "useWhen": "Highlighting key terms in a feature statement with a clear border"},
+            {"value": "underline", "look": "Single bar sliding under the active word", "useWhen": "Minimal editorial tagline where a light accent is enough"},
+            {"value": "highlight", "look": "Translucent filled marker behind the active word", "useWhen": "Playful about or CTA line that should look highlighted with a marker"}
+        ]
+    }
+}
