@@ -1,0 +1,49 @@
+{
+  "slug": "parallax-gallery",
+  "name": "Parallax Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen vertical gallery where each rounded image sits in its own section and drifts with scroll-scrubbed parallax inside its frame, over smooth Lenis scrolling.",
+  "contents": [
+    "One full-height section per image",
+    "Rounded image frame with an oversized image inside"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Each image shifts vertically inside its frame as it scrolls through the viewport"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "3 sample image URLs" },
+    { "name": "imgAlt", "type": "string", "default": "" },
+    { "name": "bgColor", "type": "string", "default": "#171717" },
+    { "name": "lenisLerp", "type": "number", "default": 0.07 },
+    { "name": "yPercentFrom", "type": "number", "default": -20 },
+    { "name": "yPercentTo", "type": "number", "default": 20 },
+    { "name": "imgScale", "type": "number", "default": 1.4 },
+    { "name": "borderRadius", "type": "string", "default": "32px" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of images, image sources and alt text",
+    "Background color, frame corner radius",
+    "Parallax range, image scale and scroll smoothness"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change frame aspect ratio",
+      "where": "paddingTop style on the container div"
+    },
+    {
+      "change": "Disable smooth scrolling",
+      "where": "new Lenis call inside the useEffect"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Each section is at least one screen tall"
+  ],
+  "mood": ["immersive", "dark", "elegant", "minimal"],
+  "industries": ["photography", "travel", "art", "fashion", "architecture"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap", "lenis"]
+}
