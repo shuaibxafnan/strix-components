@@ -1,0 +1,89 @@
+{
+  "slug": "mirror-slideshow",
+  "name": "Mirror Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen slideshow where each image is mirrored down its center to form a symmetrical figure, with a large colored title behind and a text navigation. Images slide in and out with GSAP.",
+  "contents": [
+    "Full-screen slides, each with a mirrored image pair and a large colored title",
+    "Small uppercase heading above the titles",
+    "Text navigation buttons, one per slide"
+  ],
+  "behavior": [
+    "Images slide in from the side or bottom with a tilt and ease out, previous slide slides away first",
+    "Titles slide and fade in with a delay",
+    "Arrow keys switch slides, optional autoplay",
+    "Optional mouse tilt that shifts and rotates the image based on cursor position",
+    "Screens 800px and below move the nav to the top and shrink titles"
+  ],
+  "props": [
+    { "name": "slides", "type": "{image,alt,title,color,visibleArea}[]", "default": "4 sample slides" },
+    { "name": "variant", "type": "\"horizontal\" | \"vertical\"", "default": "horizontal" },
+    { "name": "bgColor", "type": "string", "default": "#111111" },
+    { "name": "mirrorWidth", "type": "string", "default": "60vw" },
+    { "name": "mirrorMaxWidth", "type": "string", "default": "1100px" },
+    { "name": "mirrorOpacity", "type": "number", "default": 1 },
+    { "name": "mirrorBlendMode", "type": "string", "default": "normal" },
+    { "name": "imgMaxHeight", "type": "string", "default": "none" },
+    { "name": "sideRotation", "type": "number", "default": -15 },
+    { "name": "showDuration", "type": "number", "default": 1.5 },
+    { "name": "hideDuration", "type": "number", "default": 1 },
+    { "name": "showEase", "type": "string", "default": "expo.out" },
+    { "name": "hideEase", "type": "string", "default": "quint.out" },
+    { "name": "titleShowDuration", "type": "number", "default": 1.5 },
+    { "name": "titleHideDuration", "type": "number", "default": 0.5 },
+    { "name": "titleShowDelay", "type": "number", "default": 0.25 },
+    { "name": "titleHideDelay", "type": "number", "default": 0 },
+    { "name": "titleAnimation", "type": "\"vertical\" | \"horizontal\"", "default": "vertical" },
+    { "name": "titleOffset", "type": "number", "default": 50 },
+    { "name": "titleSize", "type": "string", "default": "6vw" },
+    { "name": "titleFont", "type": "string", "default": "ui-serif, serif" },
+    { "name": "enableTilt", "type": "boolean", "default": false },
+    { "name": "tiltFactor", "type": "number", "default": 0.6 },
+    { "name": "tiltRotation", "type": "number", "default": 10 },
+    { "name": "heading", "type": "string", "default": "Maitri Animal Sanctuary" },
+    { "name": "headingColor", "type": "string", "default": "#ffffff" },
+    { "name": "showHeading", "type": "boolean", "default": true },
+    { "name": "navPosition", "type": "\"bottom-right\" | \"bottom-left\" | \"top\"", "default": "bottom-right" },
+    { "name": "navColor", "type": "string", "default": "#909090" },
+    { "name": "navActiveColor", "type": "string", "default": "inherit" },
+    { "name": "showNav", "type": "boolean", "default": true },
+    { "name": "enableKeyboard", "type": "boolean", "default": true },
+    { "name": "autoplay", "type": "boolean", "default": false },
+    { "name": "autoplayDelay", "type": "number", "default": 5000 },
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "onChange", "type": "function | null", "default": null }
+  ],
+  "editableByProps": [
+    "Slides, images, titles, title colors and visible image area",
+    "Background, heading, nav colors and position, fonts and title size",
+    "Animation durations, eases, tilt, autoplay and keyboard control"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the heading position",
+      "where": "top-[38vh] class on the heading h2"
+    },
+    {
+      "change": "Change the mobile breakpoint",
+      "where": "max-[50em] classes in the render"
+    }
+  ],
+  "fixed": [
+    "Root is a full-screen h-screen section with hidden overflow",
+    "Listens to window mousemove when tilt is on and window keydown when keyboard is on, removed on unmount",
+    "Mirrored half is the same image flipped, so images should be roughly symmetric subjects"
+  ],
+  "mood": ["elegant", "bold", "artistic", "editorial"],
+  "industries": ["photography", "wildlife", "art gallery", "fashion", "travel"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"],
+  "variants": {
+    "prop": "variant",
+    "default": "horizontal",
+    "options": [
+      { "value": "horizontal", "look": "Image and its mirror sit side by side and slide in from the side", "useWhen": "A wide landing hero showcasing portrait subjects with a title across the middle" },
+      { "value": "vertical", "look": "Image and its mirror stack top to bottom and slide in from below", "useWhen": "A hero for tall subjects or reflection-style imagery where a stacked symmetry fits" }
+    ]
+  }
+}
