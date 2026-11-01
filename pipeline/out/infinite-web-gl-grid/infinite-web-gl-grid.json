@@ -1,0 +1,46 @@
+{
+  "slug": "infinite-web-gl-grid",
+  "name": "Infinite WebGL Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen WebGL image grid that wraps infinitely in every direction. Drag, touch or scroll to pan it with eased motion, and the tiles stretch slightly while moving.",
+  "contents": [
+    "Full-viewport WebGL canvas rendering a grid of cover-fit image planes",
+    "Hidden DOM grid used to measure plane positions"
+  ],
+  "behavior": [
+    "Drag with mouse or finger, or use the wheel or trackpad, to pan the grid endlessly with lerped easing",
+    "Each column moves at a slightly different speed for a parallax feel",
+    "Tiles shrink briefly in proportion to pan velocity",
+    "Canvas and plane sizes update on window resize"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "15 sample image URLs" },
+    { "name": "columns", "type": "number", "default": 5 },
+    { "name": "gridWidth", "type": "string", "default": "w-[150%]" },
+    { "name": "gridHeight", "type": "string", "default": "h-[150%]" },
+    { "name": "lerpFactor", "type": "number", "default": 0.085 },
+    { "name": "distortionStrength", "type": "number", "default": 0.0001 },
+    { "name": "mouseDragMultiplier", "type": "number", "default": 2.5 },
+    { "name": "wheelMultiplier", "type": "number", "default": 0.6 },
+    { "name": "backgroundColor", "type": "string", "default": "#0a0a0a" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images and number of columns",
+    "Grid size, easing, distortion, drag and wheel speed",
+    "Background color"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change the tile gap or inset", "where": "js-plane figure class absolute inset-2" },
+    { "change": "Change the per-column speed offset", "where": "this.my assignment in Plane init" }
+  ],
+  "fixed": [
+    "Window-level mouse, touch and wheel listeners are added and removed on unmount",
+    "The WebGL canvas is fixed to the viewport"
+  ],
+  "mood": ["immersive", "playful", "modern", "dynamic"],
+  "industries": ["photography", "fashion", "agency", "portfolio", "art"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["three", "gsap"]
+}
