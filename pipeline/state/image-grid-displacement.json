@@ -4,11 +4,12 @@
   "sourceHash": "05541f0454374c64363ab58cfe27013ef1c63c9330074b943fd317ededbede23",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-grid-displacement",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.465Z"
+  "note": "Slug kept. Gates passed. Removed stray Lorax label, unused containerRef, isClient state and SSR placeholder. Frame added: w-full h-screen flex root, className merged. Canvas max-w-full with aspect ratio, mouse coords scaled, touch handlers added with cleanup. One fixed entry badly worded.",
+  "updatedAt": "2026-11-01T08:34:24.799Z",
+  "gateOutput": "gates passed"
 }

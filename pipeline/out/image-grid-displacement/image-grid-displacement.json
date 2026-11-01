@@ -1,0 +1,41 @@
+{
+  "slug": "image-grid-displacement",
+  "name": "Image Grid Displacement",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Portrait image drawn on a canvas as a fine grid of cells that get pushed around by the cursor and ease back into place, creating a liquid displacement effect.",
+  "contents": ["One canvas image framed by a border"],
+  "behavior": [
+    "Cursor movement over the canvas displaces nearby grid cells of the image",
+    "Cells ease back to their original position when the cursor stops or leaves",
+    "Touch dragging triggers the same displacement",
+    "Canvas shrinks to fit narrow screens"
+  ],
+  "props": [
+    {"name": "imageUrl", "type": "string", "default": "https://images.unsplash.com/photo-1595598034023-ca08624ce05d?auto=format&fit=crop&w=1200&q=80"},
+    {"name": "canvasWidth", "type": "number", "default": 384},
+    {"name": "canvasHeight", "type": "number", "default": 512},
+    {"name": "columns", "type": "number", "default": 35},
+    {"name": "rows", "type": "number", "default": 55},
+    {"name": "mouseRadius", "type": "number", "default": 70},
+    {"name": "easeFactor", "type": "number", "default": 12},
+    {"name": "borderColor", "type": "string", "default": "border-black"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Image source, canvas size, grid density",
+    "Displacement radius and return speed",
+    "Border color class"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change how cells are displaced", "where": "update method of the Cell class"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Image must allow cross-origin canvas drawing is not required since pixels are never read"
+  ],
+  "mood": ["playful", "fluid", "modern", "interactive"],
+  "industries": ["fashion", "photography", "art", "portfolio"],
+  "sections": ["gallery", "hero"],
+  "dependencies": []
+}
