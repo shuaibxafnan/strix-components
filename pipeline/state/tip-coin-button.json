@@ -4,11 +4,12 @@
   "sourceHash": "f6aacdaee5bfad583ba2c0aa2a76d1dffcad58c3e1a45d778a03714e94cee13e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "tip-coin-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.572Z"
+  "note": "Rewritten to template. bgColor prop and demo background removed; head style injection moved into root style tag; frame h-screen; className merged. Gates passed; warning setTimeout without clearTimeout, timers cleared on unmount.",
+  "updatedAt": "2026-11-01T14:22:40.717Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }
