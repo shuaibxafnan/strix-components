@@ -4,11 +4,12 @@
   "sourceHash": "e4c9a7e9088933f42e764fcd6172d956361f404dc67500aeae96308b9fe1f9a0",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "focus-showcase-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.443Z"
+  "note": "Added className prop and unmount cleanup for transition-lock timeout. Category sliders-carousels. No frame change, no variants.",
+  "updatedAt": "2026-11-01T07:15:29.225Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,44 @@
+{
+  "slug": "focus-showcase-slider",
+  "name": "Focus Showcase Slider",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen image slider with a blurred, tinted backdrop of the current image and a circular focus frame in the center, with arrow buttons and pill dot indicators below.",
+  "contents": [
+    "Blurred full-bleed backdrop of the active image",
+    "Circular image frame that crossfades with scale and rotate",
+    "Control bar with previous and next buttons and dot indicators"
+  ],
+  "behavior": [
+    "Slides crossfade with scale and slight rotation",
+    "Backdrop image changes with the active slide",
+    "Controls are locked for 800ms during a transition",
+    "Navigation wraps around at both ends"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "4 sample image URLs"},
+    {"name": "frameSize", "type": "string", "default": "h-[50vh] w-[50vh] max-w-[90vw] max-h-[90vw]"},
+    {"name": "backdropBlur", "type": "string", "default": "backdrop-blur-md"},
+    {"name": "overlayTint", "type": "string", "default": "bg-slate-950/65"},
+    {"name": "animationConfig", "type": "string", "default": "duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"},
+    {"name": "shadowProfile", "type": "string", "default": "shadow-[0_30px_70px_-10px_rgba(0,0,0,0.7),0_0_50px_rgba(255,255,255,0.05)]"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images and number of slides",
+    "Frame size, backdrop blur, overlay tint, transition timing and shadow through Tailwind classes"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the transition lock time", "where": "setTimeout call inside changeSlide"},
+    {"change": "Change the slide transition effect", "where": "idx === activeSlide class branch inside the images map"},
+    {"change": "Make the frame rectangular", "where": "rounded-full class on the frame div"}
+  ],
+  "fixed": [
+    "Fills the viewport height as a full-width section",
+    "Transition lock of 800ms is hardcoded and should match the duration in animationConfig"
+  ],
+  "mood": ["cinematic", "immersive", "elegant", "modern"],
+  "industries": ["photography", "travel", "portfolio", "entertainment", "real estate"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": []
+}
