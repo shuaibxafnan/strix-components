@@ -1,0 +1,55 @@
+{
+  "slug": "mouse-trail-drop",
+  "name": "Mouse Trail Drop",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Full-screen dark section where moving the mouse or finger spawns images that pop in, fall with a bounce and drop off screen, over a centered two-line title.",
+  "contents": [
+    "Centered two-line title with separate colors",
+    "Pool of images spawned along the pointer path"
+  ],
+  "behavior": [
+    "Spawns an image after the pointer travels a set distance",
+    "Each image pops with elastic scale, falls, bounces sideways and exits, then is removed",
+    "Images cycle in order through the list",
+    "Works with touch via touchstart and touchmove",
+    "Image size switches to the mobile size at 768px and below"
+  ],
+  "props": [
+    {"name": "images", "type": "{src,alt}[]", "default": "8 sample mountain images"},
+    {"name": "bgColor", "type": "string", "default": "#121212"},
+    {"name": "titleLine1", "type": "string", "default": "Move your mouse to make"},
+    {"name": "titleLine2", "type": "string", "default": "images fall and bounce"},
+    {"name": "titleColor", "type": "string", "default": "#F1F1F1"},
+    {"name": "subTitleColor", "type": "string", "default": "#999999"},
+    {"name": "imageSizeDesktop", "type": "string", "default": "15vw"},
+    {"name": "imageSizeMobile", "type": "string", "default": "35vw"},
+    {"name": "imageRadius", "type": "string", "default": "4%"},
+    {"name": "resetDivisorDesktop", "type": "number", "default": 8},
+    {"name": "resetDivisorTouch", "type": "number", "default": 6},
+    {"name": "bottomExclusion", "type": "number", "default": 200},
+    {"name": "spawnEase", "type": "string", "default": "elastic.out(2, 0.6)"},
+    {"name": "fallEase", "type": "string", "default": "back.in(1.1)"},
+    {"name": "bounceEase", "type": "string", "default": "power1.in"},
+    {"name": "popDuration", "type": "number", "default": 0.4},
+    {"name": "bounceDuration", "type": "number", "default": 0.3},
+    {"name": "zIndexImage", "type": "number", "default": 5},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Title text and colors, background color",
+    "Image list, size, radius and spawn distance",
+    "Easing and durations of the drop animation"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the exit fall and sideways travel multipliers", "where": "createMedia"}
+  ],
+  "fixed": [
+    "Section is full viewport height (h-dvh) and clips overflow",
+    "Spawn distance is based on window width at mount"
+  ],
+  "mood": ["playful", "dynamic", "modern", "dark"],
+  "industries": ["travel", "photography", "portfolio", "creative agency", "events"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}

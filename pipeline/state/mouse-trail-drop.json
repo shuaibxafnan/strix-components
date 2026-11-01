@@ -4,11 +4,12 @@
   "sourceHash": "861598c532d1dfd6b3317f4b4973c156e22cea70dd0d344cf0c025a9daeef3f7",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "mouse-trail-drop",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.500Z"
+  "note": "gates passed. gsap via dynamic import with cancel flag; className added; console.error catch and [&:has(&)] class removed. Per-instance style block kept. No variants, no frame change.",
+  "updatedAt": "2026-11-01T09:58:30.042Z",
+  "gateOutput": "gates passed"
 }
