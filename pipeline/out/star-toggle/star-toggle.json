@@ -1,0 +1,50 @@
+{
+    "slug": "star-toggle",
+    "name": "Star Toggle",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Favorite toggle where a cartoon star jumps out of a portal hole, morphs round, flips its face from sad to happy and lands back, with a spin and squash.",
+    "contents": [
+        "Small star with eyes and a mouth on a centered stage",
+        "Portal hole at the base of the star"
+    ],
+    "behavior": [
+        "Click runs a GSAP keyframe jump, squash, spin and face change, then flips the checked state",
+        "Clicks are ignored while the animation is running",
+        "Calls onChange with the new boolean state",
+        "Press scales the icon down slightly"
+    ],
+    "props": [
+        { "name": "defaultChecked", "type": "boolean", "default": false },
+        { "name": "onChange", "type": "(checked: boolean) => void", "default": null },
+        { "name": "size", "type": "number", "default": 40 },
+        { "name": "containerBg", "type": "string", "default": "#1A1A20" },
+        { "name": "colorDefault", "type": "string", "default": "#7E7E86" },
+        { "name": "faceColorDefault", "type": "string", "default": "#1A1A20" },
+        { "name": "colorActive", "type": "string", "default": "#F6C206" },
+        { "name": "faceColorActive", "type": "string", "default": "#845901" },
+        { "name": "holeBg", "type": "string", "default": "#09090C" },
+        { "name": "holeInnerShadow", "type": "string", "default": "#121218" },
+        { "name": "ariaLabel", "type": "string", "default": "Favorite Star Toggle" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Initial state, change callback and accessible label",
+        "Stage, star, face, active and portal hole colors",
+        "Overall size"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Animation timing and jump heights",
+            "where": "handleToggleClick"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Star, hole and face internal dimensions are fixed pixel values and only scale through the size prop wrapper"
+    ],
+    "mood": ["playful", "cute", "dark", "tactile"],
+    "industries": ["saas", "ecommerce", "media", "education", "gaming"],
+    "sections": ["other"],
+    "dependencies": ["gsap"]
+}
