@@ -4,11 +4,12 @@
   "sourceHash": "546081e3222d5ed306067989fd36e174398c06a46934991c0be3143c11e50035",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-fade-collapse",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.545Z"
+  "note": "CDN loader replaced by gsap imports. Timeline killed on unmount, className added, console.error replaced by silent catch. No variants.",
+  "updatedAt": "2026-11-01T12:44:11.152Z",
+  "gateOutput": "gates passed"
 }
