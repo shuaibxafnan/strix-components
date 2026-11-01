@@ -1,0 +1,74 @@
+{
+    "slug": "refine-frame",
+    "name": "Refine Frame",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Image placeholder frame that visualizes AI image generation: a pixelated mosaic of the child image sharpens in steps as status moves from queued to complete, with a status chip and retry button.",
+    "contents": [
+        "Aspect-ratio frame that holds a child image (children)",
+        "Canvas mosaic that progressively refines from coarse blocks to the full image with a top-down wipe edge and glint",
+        "Shimmer sweep overlay while active",
+        "Status chip with icon and label, plus a centered retry button on error",
+        "Screen reader status text"
+    ],
+    "behavior": [
+        "Status drives blur, saturation, scale and opacity per stage, queued pulses gently",
+        "Once the child img loads, a canvas replaces it and steps through 9 pixelation levels toward the target for the status",
+        "Complete shows the sharp image, error dims and blurs it and shows the retry button when onRetry is set",
+        "Chip fades out after hideAfter ms once complete",
+        "Respects prefers-reduced-motion by jumping to the target and disabling sweeps and spinners"
+    ],
+    "props": [
+        { "name": "status", "type": "'queued' | 'generating' | 'refining' | 'complete' | 'error'", "default": "generating" },
+        { "name": "children", "type": "ReactNode (an img element)", "default": "undefined" },
+        { "name": "aspectRatio", "type": "string", "default": "4 / 3" },
+        { "name": "width", "type": "number", "default": 320 },
+        { "name": "radius", "type": "number", "default": 16 },
+        { "name": "background", "type": "string", "default": "#27272a" },
+        { "name": "color", "type": "string", "default": "#f5f5f5" },
+        { "name": "stageDuration", "type": "number", "default": 400 },
+        { "name": "sweep", "type": "boolean", "default": true },
+        { "name": "showStatus", "type": "boolean", "default": true },
+        { "name": "hideAfter", "type": "number", "default": 1200 },
+        { "name": "labels", "type": "{queued,generating,refining,complete,error}", "default": { "queued": "Queued", "generating": "Generating", "refining": "Refining", "complete": "Ready", "error": "Failed" } },
+        { "name": "retryLabel", "type": "string", "default": "Retry" },
+        { "name": "onRetry", "type": "function", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Current status, size (width capped to container), aspect ratio, corner radius",
+        "Background and text colors",
+        "Refine speed per stage, sweep on or off, chip visibility and auto-hide delay",
+        "Status labels and retry label, retry handler, the image itself via children"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the pixelation steps",
+            "where": "LEVELS constant"
+        },
+        {
+            "change": "Change per-stage look or progress targets",
+            "where": "STAGES and TARGET constants"
+        },
+        {
+            "change": "Change the wipe edge softness",
+            "where": "EDGE and STRIPS constants"
+        },
+        {
+            "change": "Change the error chip color or icons",
+            "where": "Status chip block, data-kind=error class and HugeiconsIcon usages"
+        }
+    ],
+    "fixed": [
+        "Needs a child img element, the mosaic is built from the first img found inside children; without it only the blur and status chip show",
+        "Image should be CORS-readable (same origin or crossOrigin set) so the canvas can draw it",
+        "Injects a style tag with refine-frame keyframes inside the component",
+        "Width is a fixed pixel value capped at 100% of the parent, the frame is not centered by itself",
+        "Component is a client component and uses canvas and requestAnimationFrame",
+        "Status chip is fixed at the bottom left and the retry button is centered, with 12px text"
+    ],
+    "mood": ["techy", "minimal", "modern", "playful"],
+    "industries": ["AI tools", "SaaS", "design", "creative software", "e-commerce"],
+    "sections": ["features", "gallery", "other"],
+    "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"]
+}
