@@ -4,11 +4,12 @@
   "sourceHash": "ff177c20e3d02f9e5b48e15fb21348bf55b10c0a421c76d647a94121cb881a2a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "mood-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.496Z"
+  "note": "gates passed. gsap via dynamic import; bgColors and className props added; unmount cleanup added; ref replaces getElementById. Global SVG ids and fixed bottom slider in fixed; single instance per page. No variants, no frame change.",
+  "updatedAt": "2026-11-01T09:52:12.023Z",
+  "gateOutput": "gates passed"
 }

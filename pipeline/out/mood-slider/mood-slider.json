@@ -1,0 +1,37 @@
+{
+  "slug": "mood-slider",
+  "name": "Mood Slider",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Full-screen mood selector where dragging a three-step range slider slides between animated negative, neutral and positive characters while the background color changes.",
+  "contents": [
+    "Three animated SVG characters (negative, neutral, positive) in a horizontal runner",
+    "Three-step range slider fixed at the bottom of the screen"
+  ],
+  "behavior": [
+    "Slider input slides the runner horizontally by viewport width and fades the background color",
+    "Each character plays its own looping GSAP timeline while active",
+    "GSAP is loaded as an npm dynamic import"
+  ],
+  "props": [
+    { "name": "initialValue", "type": "-1 | 0 | 1", "default": 0 },
+    { "name": "bgColors", "type": "string[]", "default": ["#f27996", "#bdc5ff", "#a2f9d4"] },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Starting mood and the three background colors",
+    "Root classes through className"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change character colors", "where": "style block rules for .negative, .neutral and .positive" },
+    { "change": "Change slider track and thumb look", "where": "#ms-range rules in the style block" }
+  ],
+  "fixed": [
+    "Root is full-bleed at full viewport height and the slider is fixed to the bottom of the screen",
+    "Element ids in the SVGs are global, so only one instance should be on a page"
+  ],
+  "mood": ["playful", "friendly", "colorful", "interactive"],
+  "industries": ["wellness", "healthcare", "education", "surveys", "apps"],
+  "sections": ["other"],
+  "dependencies": ["gsap"]
+}
