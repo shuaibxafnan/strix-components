@@ -1,0 +1,90 @@
+{
+    "slug": "folder-float",
+    "name": "Folder Float",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Small 3D folder that opens its flap and floats a cloud of pill-shaped notes above it. Pills drift with Matter.js physics, can be dragged and tapped to select.",
+    "contents": [
+        "Folder graphic with back panel, tab, paper sheet and tilting front flap showing a label and sublabel",
+        "Pill buttons for each item that fan out above the folder",
+        "Invisible toggle button over the folder front"
+    ],
+    "behavior": [
+        "Opens on hover or on click depending on trigger, Escape closes",
+        "Flap tilts open and pills spring out with staggered timing on a row layout with slight jitter and tilt",
+        "After the open animation, Matter.js physics starts: pills drift gently, collide with each other and bounds, and can be dragged",
+        "Click or tap on a pill fires onSelect and plays a pop animation, optionally closing the folder",
+        "Respects prefers-reduced-motion by skipping physics and using fades"
+    ],
+    "props": [
+        { "name": "items", "type": "(string | {label,value})[]", "default": ["Try a warmer palette", "Tighten the spacing", "Logo feels small", "Love the new hero"] },
+        { "name": "label", "type": "string", "default": "Design feedback" },
+        { "name": "sublabel", "type": "string", "default": "" },
+        { "name": "trigger", "type": "'hover' | 'click'", "default": "hover" },
+        { "name": "defaultOpen", "type": "boolean", "default": false },
+        { "name": "closeOnSelect", "type": "boolean", "default": true },
+        { "name": "physics", "type": "boolean", "default": true },
+        { "name": "drift", "type": "number", "default": 0.5 },
+        { "name": "onSelect", "type": "(value, index) => void", "default": null },
+        { "name": "onOpenChange", "type": "(open: boolean) => void", "default": null },
+        { "name": "folderColor", "type": "string", "default": "#3f3f46" },
+        { "name": "frontColor", "type": "string", "default": "#52525b" },
+        { "name": "paperColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "itemColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "itemTextColor", "type": "string", "default": "#18181b" },
+        { "name": "labelColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "width", "type": "number", "default": 200 },
+        { "name": "height", "type": "number", "default": 148 },
+        { "name": "radius", "type": "number", "default": 14 },
+        { "name": "spread", "type": "number", "default": 180 },
+        { "name": "lift", "type": "number", "default": 26 },
+        { "name": "tilt", "type": "number", "default": 8 },
+        { "name": "flapAngle", "type": "number", "default": 34 },
+        { "name": "restAngle", "type": "number", "default": 16 },
+        { "name": "openDuration", "type": "number", "default": 520 },
+        { "name": "stagger", "type": "number", "default": 45 },
+        { "name": "bounce", "type": "number", "default": 0.3 },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Folder label, sublabel and the list of pill items (strings or label/value objects)",
+        "All folder, flap, paper, pill and text colors",
+        "Folder size, corner radius, pill spread, lift and tilt, flap angles",
+        "Open trigger (hover or click), default open state, close on select",
+        "Physics on or off, drift strength, open duration, stagger and spring bounce",
+        "Selection and open state callbacks"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change pill height, font size or shadow",
+            "where": "className of the pill button inside list.map (h-[34px], rounded-[17px], shadow)"
+        },
+        {
+            "change": "Change pill collision feel (bounciness, air friction)",
+            "where": "Bodies.rectangle options inside startPhysics"
+        },
+        {
+            "change": "Change pill row spacing and wrapping",
+            "where": "PAD, CHAR, GAP, ROW constants and the layout function"
+        },
+        {
+            "change": "Change folder tab size",
+            "where": "'--ff-tab' value in the root style object"
+        }
+    ],
+    "fixed": [
+        "Requires the matter-js package",
+        "Pills are laid out above the folder, so leave free vertical space above it, since content there is overlapped",
+        "Pill width is estimated from characters until measured, then measured from the DOM",
+        "Root is an inline-block of the given width with no viewport frame, so it must be centered by the host",
+        "Pill text is single line with nowrap, long labels create wide pills",
+        "Hover trigger has no hover on touch, use trigger click for touch devices",
+        "Spread default of 180px gives a 360px wide pill area, which can overflow narrow phone screens unless spread is reduced",
+        "Injects a style tag with two keyframes",
+        "Window matchMedia listener for reduced motion is cleaned up on unmount, physics engine and animation frame are cleaned up on unmount"
+    ],
+    "mood": ["playful", "tactile", "modern", "minimal"],
+    "industries": ["saas", "design tools", "productivity", "creative agencies"],
+    "sections": ["features", "other"],
+    "dependencies": ["matter-js"]
+}
