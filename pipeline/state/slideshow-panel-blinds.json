@@ -4,11 +4,12 @@
   "sourceHash": "2bf571d7ce97d259aa124f097462b977ba292b7dc461bdaeda7b6e9f22450765",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-panel-blinds",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.546Z"
+  "note": "CDN loader replaced by gsap imports. Timeline and tweens killed on unmount, className added, console.error and trialWarn removed. No variants.",
+  "updatedAt": "2026-11-01T12:46:53.501Z",
+  "gateOutput": "gates passed"
 }
