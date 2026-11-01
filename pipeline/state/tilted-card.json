@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "tilted-card",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.618Z"
+  "note": "JSON written; component unchanged. Category cards-galleries, no variants, no deps. Needs Tailwind; flip needs backContent. Gates passed.",
+  "updatedAt": "2026-11-01T14:19:16.100Z",
+  "gateOutput": "gates passed"
 }
