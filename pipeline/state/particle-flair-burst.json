@@ -4,11 +4,12 @@
   "sourceHash": "c4d658611c72fc47b826907d1e708359ca2fdd6e522519f62a852de83aa990f9",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "particle-flair-burst",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.510Z"
+  "note": "CDN GSAP replaced by npm import (gsap); dropped gsap.config trialWarn; cancelled flag on unmount. Added className, overflow-hidden, block canvas. Canvas sizes to window, recorded in fixed. imageUrlPattern function prop kept.",
+  "updatedAt": "2026-11-01T10:26:20.418Z",
+  "gateOutput": "gates passed"
 }

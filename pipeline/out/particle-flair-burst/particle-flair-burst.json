@@ -1,0 +1,46 @@
+{
+  "slug": "particle-flair-burst",
+  "name": "Particle Flair Burst",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen canvas where a swirling spiral of image particles converges to the center while shrinking and rotating in an endless staggered loop. Click to pause or resume.",
+  "contents": ["Full-viewport canvas with image particles on a solid background"],
+  "behavior": [
+    "GSAP timeline loops particles from a spiral ring to the center, scaling down and rotating",
+    "Particles are re-sorted by scale each frame so larger ones draw on top",
+    "Click or tap on the canvas pauses or resumes the motion",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "rgb(14,16,15)"},
+    {"name": "particleCount", "type": "number", "default": 99},
+    {"name": "imageUrlPattern", "type": "(index: number) => string", "default": "flair image URL function cycling 21 sample images"},
+    {"name": "duration", "type": "number", "default": 5},
+    {"name": "ease", "type": "string", "default": "sine"},
+    {"name": "staggerEach", "type": "number", "default": -0.05},
+    {"name": "staggerRepeat", "type": "number", "default": -1},
+    {"name": "startScale", "type": "number", "default": 1.1},
+    {"name": "endScale", "type": "number", "default": 0},
+    {"name": "startRotate", "type": "number", "default": 0},
+    {"name": "endRotate", "type": "number", "default": -3},
+    {"name": "radiusMultiplier", "type": "number", "default": 1},
+    {"name": "pauseOnClick", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Background color, particle images and count",
+    "Duration, easing, stagger, scale and rotation range, spiral radius",
+    "Click to pause on or off"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the spiral shape of the particle start positions", "where": "fromTo x and y functions using angle * 10"}
+  ],
+  "fixed": [
+    "Canvas is sized to the window, not the container, so it is meant to fill the viewport",
+    "Particle images load from the URLs given by imageUrlPattern"
+  ],
+  "mood": ["energetic", "playful", "dynamic", "hypnotic"],
+  "industries": ["entertainment", "gaming", "creative agency", "events", "music"],
+  "sections": ["hero", "background"],
+  "dependencies": ["gsap"]
+}
