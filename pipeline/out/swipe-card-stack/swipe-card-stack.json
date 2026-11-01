@@ -1,0 +1,53 @@
+{
+  "slug": "swipe-card-stack",
+  "name": "Swipe Card Stack",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen dark stage with a stacked deck of image cards that you drag upward to cycle, while the title and tag beside it update to the top card.",
+  "contents": [
+    "Left text block with tag, large title and a meta footer line",
+    "Stack of image cards with depth scaling and fading"
+  ],
+  "behavior": [
+    "Drag the top card upward past a threshold to throw it and send it to the back of the deck",
+    "Cards behind scale down, shift up and fade by position",
+    "Title and tag update to the current top card",
+    "Below the threshold the card springs back",
+    "Layout stacks vertically on mobile and goes side by side from md"
+  ],
+  "props": [
+    { "name": "maxCards", "type": "number", "default": 4 },
+    { "name": "dragThreshold", "type": "number", "default": 120 },
+    { "name": "baseBg", "type": "string", "default": "#090a0f" },
+    { "name": "collection", "type": "{id,title,tag,src}[]", "default": "4 sample architecture images" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "metaLabel", "type": "string", "default": "Guest Preview" },
+    { "name": "hintLabel", "type": "string", "default": "Swipe card up to cycle" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Cards: image, title, tag, count",
+    "Background and text color",
+    "Number of visible cards and drag distance needed to cycle",
+    "Footer labels"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Swipe in another direction",
+      "where": "handlePointerMove and handlePointerUp functions"
+    },
+    {
+      "change": "Change the depth look of the stack",
+      "where": "calculateCardStyle function"
+    }
+  ],
+  "fixed": [
+    "Fills the viewport height as a full-bleed section",
+    "Card size is fixed at 280x380 on mobile and 320x440 from sm",
+    "Dark card border and shadow styling is built in"
+  ],
+  "mood": ["dark", "minimal", "editorial", "tactile"],
+  "industries": ["architecture", "art", "portfolio", "real estate"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

@@ -4,11 +4,12 @@
   "sourceHash": "d5eb1ef3d4b022897364fec4f0d53952e5905a3389ccc48acb4427afbfe0ed53",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "swipe-card-stack",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.488Z"
+  "note": "Renamed from liquid-kinetic-stack; component SwipeCardStack. Removed empty comment placeholders. Added textColor, metaLabel, hintLabel, className props; Guest Preview label kept as metaLabel prop (possibly demo-only). Card-cycle timeout cleared on unmount. No frame, no variants, responsive ok. No deps.",
+  "updatedAt": "2026-11-01T09:25:04.037Z",
+  "gateOutput": "gates passed"
 }
