@@ -1,0 +1,61 @@
+{
+  "slug": "curved-marquee-scroll",
+  "name": "Curved Marquee Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen infinite snap-scrolling image slides with curved, endlessly moving two-line marquee text over each photo and a parallax image shift.",
+  "contents": [
+    "Full-viewport slides, each with a background image",
+    "Two curved marquee text rows per slide (bold main word and script sub word)"
+  ],
+  "behavior": [
+    "Infinite looping scroll through Lenis inside the component container",
+    "Mandatory snap to each slide",
+    "Images shift with parallax and marquees scale while scrolling",
+    "Marquee text runs along a curved path at two speeds",
+    "Curve depth adapts to container aspect ratio on resize"
+  ],
+  "props": [
+    {"name": "images", "type": "{src,alt,marqueeMain,marqueeSub}[]", "default": "3 sample mountain slides"},
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "imageParallaxBefore", "type": "number", "default": -50},
+    {"name": "imageParallaxAfter", "type": "number", "default": 50},
+    {"name": "marqueeMainColor", "type": "string", "default": "#fff"},
+    {"name": "marqueeSubColor", "type": "string", "default": "#EE2625"},
+    {"name": "marqueeMainFont", "type": "string", "default": "'Archivo Black', sans-serif"},
+    {"name": "marqueeSubFont", "type": "string", "default": "'Ms Madi', cursive"},
+    {"name": "marqueeMainFontSize", "type": "number", "default": 220},
+    {"name": "marqueeSubFontSize", "type": "number", "default": 110},
+    {"name": "marqueeCurveDepth", "type": "number", "default": 320},
+    {"name": "marqueeMainGap", "type": "number", "default": 1},
+    {"name": "marqueeSubGap", "type": "number", "default": 5},
+    {"name": "marqueeRepeat", "type": "number", "default": 100},
+    {"name": "marqueeSpeedMain", "type": "number", "default": 5},
+    {"name": "marqueeSpeedSub", "type": "number", "default": 2.5},
+    {"name": "marqueeScaleBefore", "type": "number", "default": 1.4},
+    {"name": "marqueeScaleAfter", "type": "number", "default": 0.7},
+    {"name": "snapDuration", "type": "number", "default": 0.5},
+    {"name": "snapDebounce", "type": "number", "default": 500},
+    {"name": "marqueeCurveMinScale", "type": "number", "default": 0.4},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Number of slides, images, alt text and marquee words",
+    "Marquee colors, fonts, sizes, curve depth, gaps, repeat and speeds",
+    "Parallax range, marquee scale range, snap timing and background color"
+  ],
+  "needsCodeEdit": [
+    {"change": "Make scrolling finite instead of looping", "where": "infinite: true in the new Lenis options and the duplicate first image in loopedImages"},
+    {"change": "Disable snapping", "where": "new Snap block inside init"},
+    {"change": "Change marquee direction", "where": "offset calculations in startLoop"}
+  ],
+  "fixed": [
+    "Component is a 100svh scroll container and takes over scrolling inside itself with Lenis",
+    "Loads Archivo Black and Ms Madi from Google Fonts by adding a link tag to document head",
+    "First slide is repeated at the end to create the infinite loop"
+  ],
+  "mood": ["bold", "cinematic", "dynamic", "editorial"],
+  "industries": ["travel", "outdoor", "photography", "fashion", "events"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap", "lenis"]
+}
