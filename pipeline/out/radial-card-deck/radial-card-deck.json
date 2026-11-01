@@ -1,0 +1,37 @@
+{
+ "slug":"radial-card-deck","name":"Radial Card Deck","category":"cards-galleries","isReactBits":false,
+ "description":"Full-screen fan of image cards arranged around a far-off pivot. Cards fly in from the sides, settle into a radial deck, and the deck can be dragged to rotate.",
+ "contents":["Ring of framed image cards arranged radially on a background"],
+ "behavior":["Cards fly in from both sides with staggered rotation and scale, then settle into radial positions","Draggable rotation snaps by one card step on release","Card size steps down on short viewports and is capped to 80vw"],
+ "props":[
+  {"name":"images","type":"string[]","default":"18 sample image urls"},
+  {"name":"bgColor","type":"string","default":"#fff"},
+  {"name":"cardBorderColor","type":"string","default":"#000"},
+  {"name":"cardBorderWidth","type":"number","default":10},
+  {"name":"cardRadius","type":"number","default":17},
+  {"name":"grayscale","type":"boolean","default":true},
+  {"name":"cardWidth","type":"number","default":430},
+  {"name":"cardHeight","type":"number","default":610},
+  {"name":"cardWidthMd","type":"number","default":350},
+  {"name":"cardHeightMd","type":"number","default":497},
+  {"name":"cardWidthSm","type":"number","default":300},
+  {"name":"cardHeightSm","type":"number","default":400},
+  {"name":"originDistanceVh","type":"number","default":200},
+  {"name":"entranceDuration","type":"number","default":1},
+  {"name":"entranceEase","type":"string","default":"power4.out"},
+  {"name":"settleEase","type":"string","default":"power1.out"},
+  {"name":"staggerStep","type":"number","default":0.15},
+  {"name":"draggable","type":"boolean","default":true},
+  {"name":"className","type":"string","default":""}
+ ],
+ "editableByProps":["Images, colors, card border and radius, grayscale","Card sizes per viewport height, deck radius, animation timing and easing, dragging on or off"],
+ "needsCodeEdit":[
+  {"change":"Change the card entrance direction or spin","where":"timeline.from block inside the useEffect"},
+  {"change":"Change the height breakpoints for card sizes","where":"cardCss constant media queries"}
+ ],
+ "fixed":["Fills the viewport height as a full-bleed section","Cards are clipped by the container, so the deck is shown as an arc in the lower area","Entrance animation plays once on mount"],
+ "mood":["bold","editorial","playful"],
+ "industries":["photography","film","fashion","events"],
+ "sections":["gallery","portfolio"],
+ "dependencies":["gsap"]
+}

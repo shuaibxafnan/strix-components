@@ -4,11 +4,12 @@
   "sourceHash": "8dbbc834ead62d396877d6ff4a3aaddbaf5665a812f5dc009fe1d9136878ccac",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "radial-card-deck",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.519Z"
+  "note": "Gates passed. GSAP/Draggable CDN replaced by dynamic imports, gsap added to dependencies (untested). Card width capped at 80vw. Added className, w-screen to w-full. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:00:28.960Z",
+  "gateOutput": "gates passed"
 }
