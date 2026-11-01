@@ -4,11 +4,12 @@
   "sourceHash": "ac822c4b5f03c1a9592016682bb92b3502e7ca13c33964719fdd5d1a55b28438",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "interactive-fluid-mask",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.481Z"
+  "note": "Added className and shapeColor props; removed unused ref and comments; fixed cleanup (resize listener, async cancel, WebGL context release). No frame added, root already full-bleed. No variants. Fixed: SVG lettering mask, 2048x1638 image size, window pointer listeners, full-window canvas. Category cursor-effects; dep ogl.",
+  "updatedAt": "2026-11-01T09:03:45.248Z",
+  "gateOutput": "gates passed"
 }
