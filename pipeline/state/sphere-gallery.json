@@ -4,11 +4,12 @@
   "sourceHash": "8844cb81de39280365bec3f8f89931fd217ac6c0373160a394110baf25dd7bd1",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sphere-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.553Z"
+  "note": "Hammer.js CDN loader replaced by dynamic import of hammerjs npm. No frame, no variants. Kept touch-none, DOM-built enlarged image, uncleaned click timeouts.",
+  "updatedAt": "2026-11-01T13:08:19.683Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

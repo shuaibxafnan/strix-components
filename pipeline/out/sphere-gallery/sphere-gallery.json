@@ -1,0 +1,71 @@
+{
+  "slug": "sphere-gallery",
+  "name": "Sphere Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen draggable 3D sphere of image tiles with inertia. Clicking a tile rotates it to the front and enlarges it into a centered viewer with a blurred scrim.",
+  "contents": [
+    "Staggered grid of image tiles wrapped around a 3D sphere",
+    "Soft edge gradient and blur overlay",
+    "Enlarged image viewer with scrim"
+  ],
+  "behavior": [
+    "Drag or swipe to rotate the sphere through Hammer.js, with inertia after release",
+    "Vertical rotation is clamped to a small polar angle",
+    "Click a tile to rotate it to the front and scale it into the viewer, then swap to a high resolution image",
+    "Click the scrim to close the viewer"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "9 sample image URLs" },
+    { "name": "columns", "type": "number", "default": 37 },
+    { "name": "rows", "type": "number", "default": 5 },
+    { "name": "radius", "type": "string", "default": "max(1300px, 100vw)" },
+    { "name": "segmentsX", "type": "number", "default": 37 },
+    { "name": "segmentsY", "type": "number", "default": 37 },
+    { "name": "bgColor", "type": "string", "default": "rgb(235, 235, 235)" },
+    { "name": "itemBg", "type": "string", "default": "rgb(225, 225, 225)" },
+    { "name": "gradientCenter", "type": "string", "default": "rgba(235, 235, 235, 0)" },
+    { "name": "gradientEdge", "type": "string", "default": "rgba(235, 235, 235, 0.5)" },
+    { "name": "scrimColor", "type": "string", "default": "rgba(0, 0, 0, 0.4)" },
+    { "name": "maxPolarRotDeg", "type": "number", "default": 3 },
+    { "name": "panSensitivity", "type": "number", "default": 18 },
+    { "name": "transitionMs", "type": "number", "default": 300 },
+    { "name": "enableInertia", "type": "boolean", "default": true },
+    { "name": "friction", "type": "number", "default": 0.92 },
+    { "name": "itemGap", "type": "number", "default": 10 },
+    { "name": "itemRadius", "type": "number", "default": 12 },
+    { "name": "frameRadius", "type": "number", "default": 32 },
+    { "name": "viewerPadding", "type": "number", "default": 100 },
+    { "name": "blurAmount", "type": "number", "default": 3 },
+    { "name": "grayscale", "type": "boolean", "default": false },
+    { "name": "enableHighRes", "type": "boolean", "default": true },
+    { "name": "getHighResSrc", "type": "(src: string) => string", "default": "Unsplash width 1600 rewriter" },
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "style", "type": "object", "default": {} }
+  ],
+  "editableByProps": [
+    "Images, grid size, sphere radius and segment density",
+    "Background, tile, gradient and scrim colors",
+    "Drag sensitivity, inertia, friction and transition speed",
+    "Tile gap and corner radii, blur amount, grayscale, high resolution swap"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Add captions to tiles or the enlarged viewer",
+      "where": "handleClick function inside the useEffect"
+    },
+    {
+      "change": "Change viewer frame shape from square",
+      "where": "data-frame div at the end of the JSX"
+    }
+  ],
+  "fixed": [
+    "Root is a full-screen section with height 100svh and takes over touch gestures on it (touch-none), so page scroll does not start on the gallery on touch devices",
+    "Tile placement uses a fixed 2x2 cell size with staggered columns",
+    "Enlarged image is created and removed directly in the DOM"
+  ],
+  "mood": ["immersive", "playful", "modern", "minimal"],
+  "industries": ["photography", "art", "fashion", "travel", "agency"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["hammerjs"]
+}
