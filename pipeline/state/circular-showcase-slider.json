@@ -4,11 +4,12 @@
   "sourceHash": "37aef910cffb6c5958d287e32d9c1c0477d0469dfe34eba3ce390a1505056889",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "circular-showcase-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.407Z"
+  "note": "CDN gsap -> import('gsap'); unmount cleanup of tweens/rAF/timeouts; new hintText/modalEyebrow/modalTags/modalCtaLabel/textColor/className props; CSS in one STYLES constant, classes renamed css-modal-*; unused .entered rules and modalVisible dropped. strip-comments failed (AST changed), comments removed by hand. Gates passed.",
+  "updatedAt": "2026-11-01T05:04:44.163Z",
+  "gateOutput": "gates passed"
 }
