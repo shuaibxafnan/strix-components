@@ -1,0 +1,54 @@
+{
+  "slug": "swipe-image-deck",
+  "name": "Swipe Image Deck",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen board with a stack of draggable image cards. Drag a card left, right or up to throw it away and reveal the next one, with tilt and scale feedback.",
+  "contents": [
+    "Stack of two visible image cards centered on a full-height board"
+  ],
+  "behavior": [
+    "Drag the top card with mouse or touch, it rotates based on grab point and drag distance",
+    "The card underneath scales up as the top card moves",
+    "Releasing past the threshold flings the card off screen left, right or up and calls the matching callback",
+    "Releasing before the threshold snaps the card back",
+    "Tapping the card gives a small tilt bounce",
+    "With no images given, random sample images are generated and new ones are appended endlessly"
+  ],
+  "props": [
+    { "name": "boardBg", "type": "string", "default": "bg-[#f5f7fa]" },
+    { "name": "cardWidth", "type": "string", "default": "320px" },
+    { "name": "cardHeight", "type": "string", "default": "320px" },
+    { "name": "swipeThreshold", "type": "number", "default": 0.25 },
+    { "name": "transitionDuration", "type": "number", "default": 200 },
+    { "name": "initialImages", "type": "string[]", "default": [] },
+    { "name": "onSwipeRight", "type": "function", "default": null },
+    { "name": "onSwipeLeft", "type": "function", "default": null },
+    { "name": "onSwipeUp", "type": "function", "default": null },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Image list, card size, board background class",
+    "Swipe distance threshold and fling duration",
+    "Swipe callbacks"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the card look (radius, shadow)",
+      "where": "card-item class on the card div"
+    },
+    {
+      "change": "Change the sample image source used when no images are passed",
+      "where": "picsum.photos URLs in the useState initializer and setImagePool"
+    }
+  ],
+  "fixed": [
+    "Board fills the viewport height and blocks touch scrolling inside it",
+    "Without images prop, cards use random picsum.photos images and require network access",
+    "With a provided image list, the deck ends after the last image"
+  ],
+  "mood": ["playful", "tactile", "modern"],
+  "industries": ["dating", "e-commerce", "social", "photography"],
+  "sections": ["gallery", "other"],
+  "dependencies": ["hammerjs"]
+}
