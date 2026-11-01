@@ -1,0 +1,94 @@
+{
+    "slug": "falling-text",
+    "name": "Falling Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Text block whose words or letters drop under physics, pile up on the container floor, bounce, and can be dragged or pushed by the cursor, then optionally spring back into place.",
+    "contents": [
+        "Single text block split into words or letters, each a physics piece",
+        "Optional highlighted words with accent color",
+        "Plain text or rounded tile look for each piece"
+    ],
+    "behavior": [
+        "Pieces fall with Matter.js gravity and collide with the container walls and each other",
+        "Fall starts automatically, on hover, on click, or when scrolled into view, depending on trigger",
+        "Pieces are released one by one in random, center-out, or reading order, or all together",
+        "Pieces can be grabbed and thrown with the pointer, and moving the cursor fast pushes nearby pieces",
+        "After restoreDelay seconds of calm, pieces spring back to their original positions and the effect re-arms",
+        "Simulation pauses while off screen and does nothing with reduced motion enabled"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "" },
+        { "name": "highlightWords", "type": "string[]", "default": [] },
+        { "name": "highlightClass", "type": "string", "default": "highlighted" },
+        { "name": "trigger", "type": "'auto' | 'scroll' | 'click' | 'hover'", "default": "auto" },
+        { "name": "variant", "type": "'text' | 'tiles'", "default": "text" },
+        { "name": "split", "type": "'words' | 'letters'", "default": "words" },
+        { "name": "gravity", "type": "number", "default": 1 },
+        { "name": "bounciness", "type": "number", "default": 0.2 },
+        { "name": "scatter", "type": "number", "default": 0.5 },
+        { "name": "stagger", "type": "number", "default": 0.03 },
+        { "name": "order", "type": "'random' | 'center' | 'together' | 'sequence'", "default": "random" },
+        { "name": "draggable", "type": "boolean", "default": true },
+        { "name": "mouseConstraintStiffness", "type": "number", "default": 0.2 },
+        { "name": "cursorPush", "type": "number", "default": 0.5 },
+        { "name": "restoreDelay", "type": "number", "default": 0 },
+        { "name": "fontSize", "type": "string", "default": "1rem" },
+        { "name": "accentColor", "type": "string", "default": "#5b8cff" },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "backgroundColor", "type": "string", "default": "transparent" },
+        { "name": "wireframes", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Text, highlighted words, highlight class and accent color",
+        "Split into words or letters, text or tile look, dark or light tile theme",
+        "Trigger, fall order, stagger, gravity, bounciness, scatter",
+        "Dragging, drag stiffness, cursor push strength, auto restore delay",
+        "Font size, background color, wireframe outlines, className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change tile colors or add another theme",
+            "where": "THEMES constant"
+        },
+        {
+            "change": "Change the spring-back duration or delay",
+            "where": "restore function (duration 760, delay capped at 360)"
+        },
+        {
+            "change": "Change piece friction, density or air drag",
+            "where": "Matter.Bodies.rectangle options inside the fall function"
+        }
+    ],
+    "fixed": [
+        "Container fills its parent (h-full w-full) with overflow hidden, so the parent must have a set height",
+        "Pieces stay inside the container, which acts as a closed box with floor, walls and ceiling",
+        "Text is centered and uses balanced wrapping",
+        "Trigger changes remount the effect; with auto, it runs once on mount after fonts load, other triggers re-arm after restore",
+        "Without restoreDelay the pieces stay fallen until the component remounts",
+        "Reduced motion users see the static text and no effect",
+        "Click trigger and dragging use pointer events, touch drag disables scrolling on pieces while falling"
+    ],
+    "mood": ["playful", "energetic", "interactive", "bold"],
+    "industries": ["creative agency", "gaming", "entertainment", "education", "tech"],
+    "sections": ["hero", "cta", "other"],
+    "dependencies": ["matter-js"],
+    "variants": {
+        "prop": "variant",
+        "default": "text",
+        "options": [
+            {
+                "value": "text",
+                "look": "Plain text pieces with only highlighted words colored in the accent color",
+                "useWhen": "A headline or 404 message that should read as normal typography until it collapses"
+            },
+            {
+                "value": "tiles",
+                "look": "Each word or letter is a rounded keycap-like tile with soft shadow, highlighted ones filled with accent color",
+                "useWhen": "A playful hero or error page where the falling pieces should feel like physical blocks"
+            }
+        ]
+    }
+}
