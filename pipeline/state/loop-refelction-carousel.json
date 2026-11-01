@@ -4,11 +4,12 @@
   "sourceHash": "c98db4affa0e561206dcec709ec99e55cd1fc1f1982063d0414e15bf1f66496b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "loop-reflection-carousel",
+  "nameLocked": true,
+  "status": "gate_failed",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.491Z"
+  "note": "Renamed to fix typo (loop-refelction). CDN GSAP/ScrollTrigger replaced with dynamic imports (dep gsap); cancel flag, kill(true), listener cleanup; pin target is galleryRef. Removed empty placeholders and console.error catch. Root w-full h-screen overflow-hidden with className, fragment removed. No frame, no variants, responsive ok. Fixed: card type stride of 3, page-scroll pin.",
+  "updatedAt": "2026-11-01T09:30:03.970Z",
+  "gateOutput": "ERROR parse error: Expected corresponding JSX closing tag for <>. (371:4)"
 }
