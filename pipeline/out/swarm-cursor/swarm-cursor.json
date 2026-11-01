@@ -1,0 +1,115 @@
+{
+    "slug": "swarm-cursor",
+    "name": "Swarm Cursor",
+    "category": "cursor-effects",
+    "isReactBits": true,
+    "description": "WebGL2 particle swarm that follows the pointer inside a container, flowing like a fluid, circling hovered buttons and links, and reacting to clicks with a burst or pulse.",
+    "contents": [
+        "Wrapper div with a full-size WebGL canvas drawn behind optional children",
+        "Up to 2000 instanced particles drawn as dots, rounded squares or streaks"
+    ],
+    "behavior": [
+        "Particles follow the pointer through a grid fluid simulation with swirl, wander noise and pressure solving",
+        "Particles circle the outline of hovered elements matching the targets selector",
+        "Click triggers a burst with a twist or a pulse ring, or nothing",
+        "Without the pointer inside, the swarm roams, gathers at center, or fades out depending on idle",
+        "Fades in over an intro of 1.4 seconds",
+        "Pauses when offscreen or the tab is hidden",
+        "With reduced motion or enabled false it draws a static frame"
+    ],
+    "props": [
+        {"name": "count", "type": "number", "default": 800},
+        {"name": "size", "type": "number", "default": 2.6},
+        {"name": "shape", "type": "'dot' | 'square' | 'streak'", "default": "dot"},
+        {"name": "color", "type": "string", "default": "undefined"},
+        {"name": "accentColor", "type": "string", "default": "undefined"},
+        {"name": "spread", "type": "number", "default": 90},
+        {"name": "speed", "type": "number", "default": 1},
+        {"name": "swirl", "type": "number", "default": 0.6},
+        {"name": "tail", "type": "number", "default": 0.5},
+        {"name": "trail", "type": "number", "default": 0.6},
+        {"name": "wander", "type": "number", "default": 0.5},
+        {"name": "depth", "type": "number", "default": 0.7},
+        {"name": "targets", "type": "string", "default": "a, button, [data-swarm-target]"},
+        {"name": "idle", "type": "'roam' | 'gather' | 'hide'", "default": "roam"},
+        {"name": "clickEffect", "type": "'burst' | 'pulse' | 'none'", "default": "burst"},
+        {"name": "hideCursor", "type": "boolean", "default": false},
+        {"name": "intro", "type": "boolean", "default": true},
+        {"name": "enabled", "type": "boolean", "default": true},
+        {"name": "lightMode", "type": "boolean", "default": false},
+        {"name": "dpr", "type": "number", "default": "undefined"},
+        {"name": "children", "type": "ReactNode", "default": "undefined"},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "style", "type": "object", "default": "undefined"}
+    ],
+    "editableByProps": [
+        "Particle count, size, shape, color and accent color for fast particles",
+        "Swarm radius, speed, swirl, tail, trail, wander and depth",
+        "Hover target selector, idle behavior, click effect, intro, enabled state",
+        "Light mode ink, hiding the native cursor, pixel ratio, container class and style, children content"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Raise the particle limit above 2000",
+            "where": "MAX_PARTICLES constant"
+        },
+        {
+            "change": "Change the intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change fluid grid resolution",
+            "where": "CELL, MAX_COLS, MAX_ROWS and PRESSURE_STEPS constants"
+        },
+        {
+            "change": "Change the hidden cursor dot or particle rendering style",
+            "where": "VERTEX and FRAGMENT shader strings and the draw function"
+        },
+        {
+            "change": "Change click burst or pulse strength",
+            "where": "onPointerDown handler (kick and twist values)"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if unavailable",
+        "Fills its parent: wrapper uses h-full w-full, so the parent needs a defined size",
+        "Listens to pointer events on window and uses document-wide pointer position relative to the container",
+        "Canvas is pointer-events none and aria-hidden",
+        "Injects a style tag and toggles the swarm-cursor-hidden class to hide the native cursor when hideCursor is true",
+        "Targets only match elements inside the container",
+        "Values are clamped: count 1 to 2000, size 0.5 to 16, spread 20 to 400, speed 0 to 4, trail 0 to 3, wander 0 to 2",
+        "Canvas pixel ratio capped at 2",
+        "Respects prefers-reduced-motion by freezing the swarm",
+        "Touch has no hover so the swarm only follows during touch and releases on pointer up; best on mouse devices",
+        "Default color is white, or near black with lightMode, so it needs a contrasting background",
+        "Props are read live except the WebGL setup, which runs once on mount"
+    ],
+    "mood": [
+        "futuristic",
+        "playful",
+        "dynamic",
+        "techy"
+    ],
+    "industries": [
+        "technology",
+        "creative agency",
+        "gaming",
+        "entertainment",
+        "portfolio"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "global"
+    ],
+    "dependencies": [],
+    "variants": {
+        "prop": "shape",
+        "default": "dot",
+        "options": [
+            {"value": "dot", "look": "Round soft particles that stretch slightly along motion", "useWhen": "Default look for a fluid, dust-like swarm"},
+            {"value": "square", "look": "Rounded square particles", "useWhen": "Geometric or pixel-like brands"},
+            {"value": "streak", "look": "Longer tapered streaks that follow velocity", "useWhen": "Speed and motion emphasis"}
+        ]
+    }
+}
