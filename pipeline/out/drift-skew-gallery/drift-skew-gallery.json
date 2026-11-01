@@ -1,0 +1,80 @@
+{
+  "slug": "drift-skew-gallery",
+  "name": "Drift Skew Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen horizontal gallery on a tilted stage where wheel, drag or keys glide the track, images skew with scroll velocity, and titles and outlined words drift with parallax.",
+  "contents": [
+    "Image items with large number, title, round link button and hashtag tags",
+    "Outlined giant word blocks placed between items",
+    "Custom circle cursor"
+  ],
+  "behavior": [
+    "Wheel, drag and keyboard arrows move a horizontal track with eased smoothing",
+    "Images skew based on scroll velocity",
+    "Images, numbers, titles and words shift with parallax relative to viewport center",
+    "Custom cursor follows the mouse and scales over interactive targets on fine pointers",
+    "Reduced motion disables skew and parallax"
+  ],
+  "props": [
+    {"name": "items", "type": "{image,title,number,tags,link}[]", "default": "12 sample items"},
+    {"name": "textBlocks", "type": "{after,words,speeds}[]", "default": "3 sample word blocks"},
+    {"name": "stageRotation", "type": "number", "default": -4},
+    {"name": "bgColor", "type": "string", "default": "#0e0e0d"},
+    {"name": "textColor", "type": "string", "default": "#66665d"},
+    {"name": "titleColor", "type": "string", "default": "#d9d0be"},
+    {"name": "numberColor", "type": "string", "default": "#181817"},
+    {"name": "tagColor", "type": "string", "default": "#cc0000"},
+    {"name": "strokeColor", "type": "string", "default": "#645c5b"},
+    {"name": "strokeWidth", "type": "string", "default": "1px"},
+    {"name": "linkColor", "type": "string", "default": "#ffffff"},
+    {"name": "linkBgColor", "type": "string", "default": "#cc0000"},
+    {"name": "linkHoverColor", "type": "string", "default": "#0e0e0d"},
+    {"name": "linkBgHoverColor", "type": "string", "default": "#d9d0be"},
+    {"name": "cursorFill", "type": "string", "default": "#cc0000"},
+    {"name": "cursorStroke", "type": "string", "default": "none"},
+    {"name": "cursorStrokeWidth", "type": "string", "default": "1px"},
+    {"name": "cursorSize", "type": "number", "default": 20},
+    {"name": "cursorHoverScale", "type": "number", "default": 2.5},
+    {"name": "scrollEase", "type": "number", "default": 0.085},
+    {"name": "cursorEase", "type": "number", "default": 0.2},
+    {"name": "scrollSpeed", "type": "number", "default": 1},
+    {"name": "dragSpeed", "type": "number", "default": 1.6},
+    {"name": "maxSkew", "type": "number", "default": 15},
+    {"name": "skewRange", "type": "number", "default": 50},
+    {"name": "parallaxStrength", "type": "number", "default": 0.12},
+    {"name": "imageSpeed", "type": "number", "default": -0.8},
+    {"name": "titleSpeed", "type": "number", "default": 1},
+    {"name": "numberSpeed", "type": "number", "default": 1.5},
+    {"name": "imageWidth", "type": "string", "default": "21vmax"},
+    {"name": "imageHeight", "type": "string", "default": "28vmax"},
+    {"name": "itemGap", "type": "string", "default": "3vw"},
+    {"name": "linkSize", "type": "number", "default": 120},
+    {"name": "linkOverlap", "type": "string", "default": "3.25rem"},
+    {"name": "displayFont", "type": "string", "default": "'Instrument Serif', Georgia, 'Times New Roman', serif"},
+    {"name": "bodyFont", "type": "string", "default": "'Hanken Grotesk', system-ui, -apple-system, sans-serif"},
+    {"name": "loadFonts", "type": "boolean", "default": true},
+    {"name": "ariaLabel", "type": "string", "default": "Horizontal image gallery"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Items, tags, link labels, images and giant word blocks",
+    "All colors, fonts, sizes and gaps",
+    "Scroll, drag, skew, parallax and cursor feel"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change what the link button does", "where": "button element with the pill class inside the figcaption"},
+    {"change": "Change the item grid layout", "where": "gridTemplateAreas in the figure element"},
+    {"change": "Change the outlined word block style", "where": "renderTextBlock function"}
+  ],
+  "fixed": [
+    "Loads Instrument Serif and Hanken Grotesk from Google Fonts unless loadFonts is false",
+    "Hides the system cursor over the gallery on fine pointers and shows a custom circle cursor",
+    "Wheel scrolling over the gallery is captured to move the track horizontally until its ends",
+    "Root fills the viewport height at full width"
+  ],
+  "mood": ["editorial", "dark", "bold", "artistic"],
+  "industries": ["photography", "art gallery", "fashion", "agency", "portfolio"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
