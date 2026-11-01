@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "card-nav",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.608Z"
+  "note": "Bits describe-only. Category navigation-menus. Variants: theme only (surface, cardEffect, openOn under editableByProps). Needs @hugeicons packages. Gates passed.",
+  "updatedAt": "2026-11-01T04:56:41.209Z",
+  "gateOutput": "gates passed"
 }
