@@ -1,0 +1,58 @@
+{
+  "slug": "infinite-column-gallery",
+  "name": "Infinite Column Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-viewport gallery of vertical image columns that loop endlessly in alternating directions, speeding up with page scroll velocity, with a blended headline over the top.",
+  "contents": [
+    "Columns of images, each looping vertically",
+    "Centered overlay headline with difference blend"
+  ],
+  "behavior": [
+    "Even columns drift up, odd columns drift down, in seamless loops",
+    "Page scroll speed boosts the drift, then eases back to normal",
+    "Images are grayscale at rest and turn to color on hover"
+  ],
+  "props": [
+    { "name": "baseDuration", "type": "number", "default": 20 },
+    { "name": "oddDuration", "type": "number", "default": 26 },
+    { "name": "scrollIntensity", "type": "number", "default": 300 },
+    { "name": "boostDecay", "type": "number", "default": 1.5 },
+    { "name": "gapX", "type": "string", "default": "16px" },
+    { "name": "gapY", "type": "string", "default": "16px" },
+    { "name": "bgColor", "type": "string", "default": "#EEE" },
+    { "name": "headlineText", "type": "string", "default": "Gallery" },
+    { "name": "headlineColor", "type": "string", "default": "#ffffff" },
+    { "name": "headlineFontSize", "type": "string", "default": "10vw" },
+    { "name": "headlineFont", "type": "string", "default": "Bebas Neue" },
+    { "name": "grayscale", "type": "boolean", "default": true },
+    { "name": "imageRadius", "type": "string", "default": "0px" },
+    { "name": "columns", "type": "string[][]", "default": "3 columns of 3 sample images" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of columns, images per column, and image sources",
+    "Loop speeds, scroll boost strength and decay",
+    "Gaps, corner radius, grayscale, background and headline text, color, size and font"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Make odd columns drift the same direction as even columns",
+      "where": "isOdd handling inside the fromTo call"
+    },
+    {
+      "change": "Use a different hover effect on images",
+      "where": "imgClass constant"
+    }
+  ],
+  "fixed": [
+    "Includes a 500vh scroll surface so the page has room to scroll and drive the speed boost",
+    "Gallery and headline are position fixed over the whole viewport while mounted",
+    "Loads the headline Google Font by adding a link tag to the document head and removes it on unmount",
+    "Renders nothing until mounted on the client"
+  ],
+  "mood": ["bold", "editorial", "dynamic", "minimal"],
+  "industries": ["photography", "fashion", "art", "agency", "architecture"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["gsap"]
+}

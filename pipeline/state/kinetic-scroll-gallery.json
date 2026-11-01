@@ -4,11 +4,12 @@
   "sourceHash": "96c6c9f66e56e78799f790dcb6329000e0e18c0c593a290501548d395e855869",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-column-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.485Z"
+  "note": "Renamed from kinetic-scroll-gallery; component InfiniteColumnGallery. Comments stripped by hand. Added className; merged image class. CDN GSAP replaced by dynamic import with full cleanup. Font link kept, removed on unmount. No frame, no variants, responsive ok. Fixed: 500vh scroll surface, fixed inset-0 layout, renders nothing until mounted.",
+  "updatedAt": "2026-11-01T09:12:29.454Z",
+  "gateOutput": "gates passed"
 }
