@@ -4,11 +4,12 @@
   "sourceHash": "9c6fe092e33871601dc0d6ae83ceb2f27b3c782baa7a8a68ed2a3d31e161ffba",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "shine-foil-card",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.538Z"
+  "note": "No rename. Gates passed. Removed isMounted gate, demo dot background, #E0E0E0 bg. Root now frame w-full h-screen centered. Added className, per-item alt. Pointer handlers replace mouse. Untested on device. No variants.",
+  "updatedAt": "2026-11-01T11:50:49.699Z",
+  "gateOutput": "gates passed"
 }
