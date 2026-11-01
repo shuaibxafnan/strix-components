@@ -1,0 +1,88 @@
+{
+    "slug": "fade-content",
+    "name": "Fade Content",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Wrapper that reveals its children with a fade, focus, develop, or noise-mask dissolve effect when scrolled into view, on mount, or scrubbed with scroll, with optional stagger and exit.",
+    "contents": [
+        "A single wrapper div around any children, hidden until revealed",
+        "Optional per-child stagger when stagger is above 0"
+    ],
+    "behavior": [
+        "Reveals on scroll entry through GSAP ScrollTrigger, or immediately when trigger is mount",
+        "Scrub mode ties reveal progress to scroll position, with optional smoothing and exit fade",
+        "Can reverse when leaving, replay when scrolling back, or disappear after a set time",
+        "Noise effects use an SVG turbulence filter mask that is removed after the reveal",
+        "Skips animation and shows content when reduced motion is preferred"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": "undefined" },
+        { "name": "container", "type": "string | HTMLElement", "default": "undefined" },
+        { "name": "effect", "type": "'fade' | 'focus' | 'develop' | 'dissolve' | 'mist' | 'pixel'", "default": "fade" },
+        { "name": "blur", "type": "boolean | number", "default": false },
+        { "name": "duration", "type": "number", "default": 1 },
+        { "name": "ease", "type": "string", "default": "power2.out" },
+        { "name": "delay", "type": "number", "default": 0 },
+        { "name": "threshold", "type": "number", "default": 0.1 },
+        { "name": "initialOpacity", "type": "number", "default": 0 },
+        { "name": "stagger", "type": "number", "default": 0 },
+        { "name": "staggerFrom", "type": "string", "default": "start" },
+        { "name": "trigger", "type": "'scroll' | 'mount'", "default": "scroll" },
+        { "name": "once", "type": "boolean", "default": true },
+        { "name": "exit", "type": "boolean", "default": false },
+        { "name": "scrub", "type": "boolean | number", "default": false },
+        { "name": "disappearAfter", "type": "number", "default": 0 },
+        { "name": "disappearDuration", "type": "number", "default": 0.5 },
+        { "name": "disappearEase", "type": "string", "default": "power2.in" },
+        { "name": "onStart", "type": "() => void", "default": "undefined" },
+        { "name": "onComplete", "type": "() => void", "default": "undefined" },
+        { "name": "onDisappearanceComplete", "type": "() => void", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Reveal style, blur amount, duration, ease, delay, and start opacity",
+        "Trigger mode, scroll threshold, scroll container, once, exit, and scrub",
+        "Stagger timing and direction, auto disappear timing",
+        "Lifecycle callbacks, className, style, and extra div attributes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add a new reveal effect",
+            "where": "getLooks function and NOISE_EFFECTS constant"
+        },
+        {
+            "change": "Change the default scroll container id",
+            "where": "snap-main-container lookup at the start of the layout effect"
+        },
+        {
+            "change": "Change the noise mask softness or pixel size",
+            "where": "noiseFor function"
+        }
+    ],
+    "fixed": [
+        "Wrapper starts with the invisible class and is made visible by the effect, so Tailwind must be present",
+        "Without a container prop it uses the element with id snap-main-container as scroller if present, otherwise the window",
+        "Noise effects (dissolve, mist, pixel) append a hidden SVG to document.body while active",
+        "Durations and delays above 10 are treated as milliseconds",
+        "Disappear only works when once is true, exit is false, and scrub is off",
+        "Scrub is ignored when trigger is mount",
+        "Works at all screen sizes since it only wraps content, layout is up to the children"
+    ],
+    "mood": ["subtle", "smooth", "modern", "elegant"],
+    "industries": ["saas", "portfolio", "agency", "ecommerce", "editorial"],
+    "sections": ["global", "hero", "features", "about"],
+    "dependencies": ["gsap", "react"],
+    "variants": {
+        "prop": "effect",
+        "default": "fade",
+        "options": [
+            { "value": "fade", "look": "Plain opacity fade, with optional blur", "useWhen": "Generic section or card reveals on a scrolling landing page" },
+            { "value": "focus", "look": "Fades in while sharpening from heavy blur with a slight scale up", "useWhen": "Hero headline or product image that should snap into focus" },
+            { "value": "develop", "look": "Grayscale, low contrast image gradually develops into full color", "useWhen": "Photo galleries or portfolio images with a photographic feel" },
+            { "value": "dissolve", "look": "Fine grain noise mask dissolves content in", "useWhen": "Editorial or cinematic blocks needing a textured reveal" },
+            { "value": "mist", "look": "Soft cloudy noise mask with blur lifts like fog", "useWhen": "Calm wellness or travel sections with atmospheric imagery" },
+            { "value": "pixel", "look": "Blocky pixel grid reveals content cell by cell", "useWhen": "Tech, gaming, or retro-styled sections" }
+        ]
+    }
+}
