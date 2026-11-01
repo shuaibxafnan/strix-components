@@ -68,6 +68,7 @@ Each run writes a short note into the state file with:
 3. Anything kept that looks unusual but was needed
 4. Frame added or removed (section 8)
 5. Variants created, as "variants: a, b, c" (section 9)
+6. Responsive result (section 10)
 
 The review app shows the note next to the diff.
 
@@ -100,3 +101,14 @@ Components must render correctly when placed alone in an empty page, with no wra
 6. Add the `variants` block to the JSON with `prop`, `default`, and for each option `value`, `look`, and `useWhen`. `useWhen` names a concrete page scenario the site builder can match, never a restatement of the look.
 7. If there is more than one independent style axis, put the main axis in `variants` and describe the others under `editableByProps`.
 8. Components without variants omit the `variants` field entirely.
+
+## 10. Responsive
+
+1. Every component must work on mobile (360px and up), tablet, and desktop, with no horizontal page overflow and no overlapping or clipped content.
+2. Most components already do. Check the source first. If it already handles all sizes, change nothing.
+3. If it does not, fix it surgically with Tailwind breakpoint prefixes, fluid sizing (w-full, max-w, clamp, vw and vh units, aspect ratio), wrapping flex and grid, and scaled typography. Keep the desktop appearance unchanged.
+4. For canvas, WebGL, or JS-measured layouts: size from the container or window, handle resize, and clean up the listener on unmount.
+5. Hover-only interactions need a touch equivalent (tap, or a no-hover fallback) when the component would be unusable on touch. Keep the desktop behavior.
+6. If a component cannot reasonably work at small sizes, say so in the JSON `fixed` list.
+7. Report it in the run note: "responsive: already ok" or what was changed.
+8. React Bits components are never changed. If their JSON analysis shows a responsiveness limit, record it in `fixed`.

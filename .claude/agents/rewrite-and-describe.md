@@ -12,7 +12,7 @@ You process one component. You receive: `sourceSlug`, and for retries the `comme
 2. Run `node pipeline/scripts/strip-comments.mjs <sourcePath> <tmpPath>` and read `<tmpPath>`. If it fails, read the source directly.
 3. Decide the final slug using the naming rules. On retries, keep the existing `slug` from state unless the latest comment asks for a rename.
 4. Write `pipeline/out/<slug>/<slug>.jsx`:
-   - First run: rewrite to the template and apply the cleanup checklist, the frame rule, and the variants rule.
+   - First run: rewrite to the template and apply the cleanup checklist, the frame rule, the variants rule, and the responsive rule.
    - Retry: start from the previous output and apply only what the latest comment asks, plus any gate errors.
 5. Write `pipeline/out/<slug>/<slug>.json`:
    - Build it from the final code, never from the name.
@@ -20,7 +20,7 @@ You process one component. You receive: `sourceSlug`, and for retries the `comme
    - Set `isReactBits` to the value in state.
    - If the source shows more than one style of the component, follow section 9 of the template: add the `variant` prop and the `variants` block. Otherwise omit `variants`.
 6. Run `node pipeline/scripts/gates.mjs <slug>` and fix errors, at most 2 times.
-7. Report back in one short message: final slug, renames as `old -> new`, ambiguous removals, frame added or removed, variants created, anything unusual that was kept. This text becomes the run note.
+7. Report back in one short message: final slug, renames as `old -> new`, ambiguous removals, frame added or removed, variants created, responsive result, anything unusual that was kept. This text becomes the run note.
 
 ## Hard rules
 - Do not change animation or layout logic unless a template rule requires it.

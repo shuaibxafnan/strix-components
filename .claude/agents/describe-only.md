@@ -18,6 +18,7 @@ You process one React Bits component. You receive: `sourceSlug`. Read the state 
    - Document props exactly as they exist in the code, with real defaults.
    - Build `contents`, `behavior`, `editableByProps`, `needsCodeEdit`, `fixed` from the code. Include required setup, global effects, and hardcoded behavior in `fixed`.
    - If the component already exposes several styles through a prop, document them in `variants` following section 9. Never add variants that are not in the code.
+   - If the component is clearly not usable on small screens, record that in `fixed`.
 5. Run `node pipeline/scripts/gates.mjs <sourceSlug>` and fix JSON errors, at most 2 times.
 6. Report back in one short message with any notable limits of the component. This becomes the run note.
 
