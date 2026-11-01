@@ -4,11 +4,12 @@
   "sourceHash": "4db37002bdf486d7479ac50274ff61862e324df000733af8dab28e8ad98d3ead",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "neon-horizon-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.502Z"
+  "note": "gates passed. className added; dead [data-desc] tween removed; maskColor added to useMemo deps. next/font Tomorrow and fixed loader overlay kept (fixed). No frame, no variants.",
+  "updatedAt": "2026-11-01T10:03:43.745Z",
+  "gateOutput": "gates passed"
 }
