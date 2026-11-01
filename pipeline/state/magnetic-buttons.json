@@ -4,11 +4,12 @@
   "sourceHash": "20ebca700faec72dd97870608134d1fb4fd0ec1c2f441d28779f888f267096fc",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "magnetic-buttons",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.492Z"
+  "note": "gates passed. Author credit links and bgColor removed; fillLabel, hollowLabel, className added; flex-wrap added. Cursor uses pageX/pageY with fixed position, drifts on scroll. Varela Round font must be loaded by host. No variants.",
+  "updatedAt": "2026-11-01T09:39:15.299Z",
+  "gateOutput": "gates passed"
 }

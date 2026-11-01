@@ -1,0 +1,46 @@
+{
+  "slug": "magnetic-buttons",
+  "name": "Magnetic Buttons",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Pair of filled and outlined buttons that tilt and pull toward the cursor, with the label shifting slightly, plus a custom ring cursor that grows and inverts over the buttons.",
+  "contents": ["Filled button with label", "Outlined button with label", "Custom ring cursor following the mouse"],
+  "behavior": [
+    "Buttons translate and rotate in 3D toward the pointer while hovered and reset on leave",
+    "Button label moves slightly with its own pull strength",
+    "Ring cursor follows the mouse, scales up and turns white with difference blend over buttons",
+    "Native cursor is hidden over the buttons"
+  ],
+  "props": [
+    {"name": "buttonBgColor", "type": "string", "default": "#4F29F0"},
+    {"name": "buttonTextColor", "type": "string", "default": "#414856"},
+    {"name": "buttonLightColor", "type": "string", "default": "#ffffff"},
+    {"name": "buttonBorderColor", "type": "string", "default": "#C3C8DE"},
+    {"name": "cursorColor", "type": "string", "default": "#C3C8DE"},
+    {"name": "magneticPullBtn", "type": "number", "default": 0.15},
+    {"name": "magneticPullRot", "type": "number", "default": -0.1},
+    {"name": "magneticPullTxt", "type": "number", "default": 0.025},
+    {"name": "fillLabel", "type": "string", "default": "Contact me"},
+    {"name": "hollowLabel", "type": "string", "default": "Contact me"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Both button labels",
+    "Button fill, text, border and cursor colors",
+    "Magnetic pull strength for position, rotation and label"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change button size or shape", "where": "className of the two button elements (h-[60px], px-[30px], rounded-[2px])"},
+    {"change": "Add more buttons", "where": "second button block and handleButtonMouseMove handler"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Document mousemove listener drives the custom cursor ring, removed on unmount",
+    "Custom cursor ring is position fixed and hides the native cursor over the buttons; it is not shown on touch devices without a mouse",
+    "Font family Varela Round is set by class and must be loaded by the host page"
+  ],
+  "mood": ["playful", "modern", "interactive", "minimal"],
+  "industries": ["portfolio", "agency", "saas", "creative studio"],
+  "sections": ["cta", "hero", "contact"],
+  "dependencies": []
+}
