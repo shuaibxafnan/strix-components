@@ -4,11 +4,12 @@
   "sourceHash": "9b2a9012d6acbf6d534141058fb4733343be46b7e5b0bd1349d9f002b27684dd",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "monolith-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.496Z"
+  "note": "gates passed with warning: style tag without template literal (scoped CSS string kept). CDN loading replaced by npm dynamic imports (gsap, ScrollTrigger, Flip, lenis); Lenis fallback removed; className added. frameLabel and frameNote defaults changed. Body lock and loader overlay in fixed. No variants.",
+  "updatedAt": "2026-11-01T09:51:27.888Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

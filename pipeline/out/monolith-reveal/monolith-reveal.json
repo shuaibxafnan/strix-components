@@ -1,0 +1,64 @@
+{
+  "slug": "monolith-reveal",
+  "name": "Monolith Reveal",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Scrolling list of large parallax image previews with titles. Clicking one flips the image into a detail page with title, meta, line-revealed text and thumbnails, then flips back on return.",
+  "contents": [
+    "Sticky side frame with a vertical label and note",
+    "Full-width image previews with title, subtitle and description",
+    "Detail view per item with title, meta, text and four thumbnails",
+    "Back button and loading dot"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Preview image zooms and title shifts with scroll scrub",
+    "Click flips the image into the detail view while other previews slide away",
+    "Detail text is split into lines that reveal on open",
+    "Page scroll is locked while a detail view is open",
+    "Text lines are re-split on window resize; sidebar frame becomes a top bar on mobile"
+  ],
+  "props": [
+    {"name": "items", "type": "{image,title,subtitle,desc,meta,text,thumbs}[]", "default": "8 sample mineral specimens"},
+    {"name": "bgColor", "type": "string", "default": "#0b0a0a"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "mutedColor", "type": "string", "default": "#767474"},
+    {"name": "displayFont", "type": "string", "default": "Georgia, 'Times New Roman', serif"},
+    {"name": "bodyFont", "type": "string", "default": "ui-monospace, SFMono-Regular, Menlo, monospace"},
+    {"name": "frameLabel", "type": "string", "default": "Mineral index"},
+    {"name": "frameNote", "type": "string", "default": "Select a specimen"},
+    {"name": "backLabel", "type": "string", "default": "Go back"},
+    {"name": "duration", "type": "number", "default": 1.5},
+    {"name": "ease", "type": "string", "default": "power4.inOut"},
+    {"name": "contentDelay", "type": "number", "default": 0.15},
+    {"name": "previewMinHeight", "type": "string", "default": "90vh"},
+    {"name": "imageZoom", "type": "number", "default": 1.8},
+    {"name": "titleParallax", "type": "number", "default": -100},
+    {"name": "backgroundSize", "type": "string", "default": "150%"},
+    {"name": "thumbSize", "type": "number", "default": 100},
+    {"name": "smoothScroll", "type": "boolean", "default": true},
+    {"name": "lerp", "type": "number", "default": 0.1},
+    {"name": "showFrame", "type": "boolean", "default": true},
+    {"name": "loaderColor", "type": "string", "default": "#aaaaaa"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All items, images, titles, texts, meta and thumbnails",
+    "Colors, fonts, labels, animation duration, easing and zoom",
+    "Smooth scroll on or off and the side frame on or off"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change how many thumbnails or the detail layout", "where": "content__thumbs grid inside the items.map in the content-wrap section"},
+    {"change": "Change the loading indicator", "where": "loader-dot block rendered while ready is false"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+    "Adds a locked class to document body while a detail view is open and removes it on close and unmount",
+    "Full-screen loader overlay shows until images are preloaded",
+    "Detail view is sticky and fills the viewport height"
+  ],
+  "mood": ["editorial", "dramatic", "dark", "cinematic"],
+  "industries": ["editorial", "photography", "museums", "architecture", "education"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap", "lenis"]
+}
