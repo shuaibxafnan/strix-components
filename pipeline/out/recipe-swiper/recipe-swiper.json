@@ -1,0 +1,52 @@
+{
+  "slug": "recipe-swiper",
+  "name": "Recipe Swiper",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Tinder-style stack of four recipe cards (cover, story, ingredients, steps) swiped by drag or buttons, with a side-recipe modal and an idle swipe prompt.",
+  "contents": [
+    "Header with eyebrow, title and page dots",
+    "Four stacked cards: cover, about, ingredients list, process steps",
+    "Skip back, info and next buttons",
+    "Side recipe modal with numbered steps",
+    "Idle swipe hint"
+  ],
+  "behavior": [
+    "Top card drags with rotation and flies off when distance or velocity passes a threshold, then cycles to the back",
+    "Buttons throw the top card off screen",
+    "Swipe hint appears after idle time and resets on interaction",
+    "Info button and the How? chip open the side recipe modal"
+  ],
+  "props": [
+    { "name": "recipe", "type": "{title,coverImage,coverImageAlt,servings,cookTime,about:{intro,image,imageAlt,outro},ingredients:string[],process:{text}[],pesto:{text}[]}", "default": "Pasta with pesto sample recipe" },
+    { "name": "bgColor", "type": "string", "default": "#0c0b0a" },
+    { "name": "accentColor", "type": "string", "default": "#f0e6d0" },
+    { "name": "highlightColor", "type": "string", "default": "#c8975a" },
+    { "name": "swipeThreshold", "type": "number", "default": 72 },
+    { "name": "velocityThreshold", "type": "number", "default": 0.45 },
+    { "name": "idlePromptDelay", "type": "number", "default": 10000 },
+    { "name": "labels", "type": "object of UI label strings", "default": "DEFAULT_LABELS" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Recipe title, images, servings, time, story, ingredients, steps and side recipe steps",
+    "Background, text and highlight colors",
+    "Swipe distance and velocity thresholds, idle prompt delay",
+    "All interface labels and aria labels"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change number or type of cards", "where": "CARD_TYPES constant" },
+    { "change": "Change per-card background colors", "where": "CARD_BG constant" },
+    { "change": "Change which process step shows the How? chip", "where": "i === 1 check in ProcessCard" }
+  ],
+  "fixed": [
+    "Fixed set of four cards in a stack",
+    "Root is full width and viewport height",
+    "Imports Playfair Display and DM Sans from Google Fonts",
+    "Idle timer listens to document mouse, click and touch events and removes them on unmount"
+  ],
+  "mood": ["elegant", "warm", "editorial", "playful"],
+  "industries": ["food", "restaurants", "lifestyle", "e-commerce"],
+  "sections": ["features", "other"],
+  "dependencies": ["hammerjs"]
+}

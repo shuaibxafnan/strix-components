@@ -4,11 +4,12 @@
   "sourceHash": "b73dffce98a837473920d404aa3b78415c79e6b4a8c55f8b632ebb3d9c28a937",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "recipe-swiper",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.521Z"
+  "note": "Gates passed, warning rAF without cancelAnimationFrame (original one-shot, kept). Hammer.js now dynamic import, hammerjs added to dependencies (untested). UI text moved to labels prop. Renamed RecipeSwipeCards to RecipeSwiper. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:05:05.941Z",
+  "gateOutput": "WARN  requestAnimationFrame without cancelAnimationFrame\ngates passed"
 }
