@@ -4,11 +4,12 @@
   "sourceHash": "d60afb0ceab94f62d2740501ffe51155818d0046e4952b9b6d30147b1cec238c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-wave-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.533Z"
+  "note": "No rename. Gates passed. items prop of label, href, imgSrc, imgAlt. Added className. Real hrefs now navigate. Needs scroll-driven animations support. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:37:27.395Z",
+  "gateOutput": "gates passed"
 }
