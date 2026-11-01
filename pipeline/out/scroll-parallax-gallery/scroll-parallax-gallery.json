@@ -1,0 +1,39 @@
+{
+  "slug": "scroll-parallax-gallery",
+  "name": "Scroll Parallax Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Smooth-scrolling editorial gallery where each image drifts and tilts in 3D as it passes through the viewport, with large overlapping titles, short descriptions and a scroll-to-top button.",
+  "contents": ["Large page title with animated scroll arrows", "Alternating image blocks with title and description", "Scroll to top button"],
+  "behavior": ["Page scroll is smoothed with a lerped transform on the content", "Images shift vertically and rotate in 3D based on scroll position", "Scroll to top button appears after 40 percent of scroll", "Reduced motion preference disables easing and rotation"],
+  "props": [
+    {"name": "items", "type": "{id:number,title:string,description:string,image:string,aspectRatio:string}[]", "default": "8 big cat items"},
+    {"name": "title", "type": "string", "default": "#scroll"},
+    {"name": "scrollTopLabel", "type": "string", "default": "Scroll to top"},
+    {"name": "backgroundColor", "type": "string", "default": "bg-black"},
+    {"name": "textColor", "type": "string", "default": "text-white"},
+    {"name": "descriptionColor", "type": "string", "default": "text-white/60"},
+    {"name": "fontTitleFamily", "type": "string", "default": "Righteous"},
+    {"name": "fontTitleUrl", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/righteous@latest/latin-400-normal.woff2"},
+    {"name": "fontItemFamily", "type": "string", "default": "Dancing Script"},
+    {"name": "fontItemUrl", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/dancing-script@latest/latin-400-normal.woff2"},
+    {"name": "scrollEase", "type": "number", "default": 0.1},
+    {"name": "rotationRange", "type": "number[]", "default": [50, 70]},
+    {"name": "imageWidthMax", "type": "number", "default": 600},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Items, titles, descriptions, images and aspect ratios", "Page title and scroll-to-top label", "Background, text and description colors as Tailwind classes", "Title and item fonts", "Scroll easing, rotation range and image width"],
+  "needsCodeEdit": [
+    {"change": "Parallax shift distance of images", "where": "OVERFLOW"},
+    {"change": "Scroll arrow animation", "where": "gallery-arrow"}
+  ],
+  "fixed": [
+    "Takes over page scrolling: the content is fixed and moved by transform while body height is set to match, reset on unmount",
+    "Component renders fixed inset-0 and covers the whole viewport",
+    "Mobile layout stacks text over the image below 40em"
+  ],
+  "mood": ["editorial", "immersive", "elegant", "dramatic"],
+  "industries": ["photography", "travel", "magazine", "portfolio", "wildlife"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
