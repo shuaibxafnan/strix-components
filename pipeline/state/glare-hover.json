@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "glare-hover",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.586Z"
+  "note": "Category ui-elements. Variants: streak, twin, sheen. No deps. JSX unchanged.",
+  "updatedAt": "2026-11-01T07:30:33.198Z",
+  "gateOutput": "gates passed"
 }
