@@ -1,0 +1,80 @@
+{
+    "slug": "rubber-segment",
+    "name": "Rubber Segment",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Segmented radio control with a draggable thumb that stretches like rubber between options, squashes on landing, resists at the edges and flicks with momentum. Keyboard accessible.",
+    "contents": [
+        "Track with one button per item (optional icon plus label)",
+        "Thumb layer clipped to the active segment that shows the inverted text color"
+    ],
+    "behavior": [
+        "Clicking a segment stretches the thumb across both slots then settles into the target with a small squash",
+        "Thumb can be dragged, with rubber-band resistance past the ends and velocity-based flick to the next segment",
+        "Arrow keys, Home and End change the selection and move focus",
+        "Works controlled (value) or uncontrolled (defaultValue) and calls onChange with value and index",
+        "Respects reduced motion by jumping without animation",
+        "Re-measures on resize and when fonts finish loading"
+    ],
+    "props": [
+        { "name": "items", "type": "(string | {value,label,icon})[]", "default": "required" },
+        { "name": "value", "type": "string", "default": "undefined" },
+        { "name": "defaultValue", "type": "string", "default": "first item value" },
+        { "name": "onChange", "type": "(value, index) => void", "default": "undefined" },
+        { "name": "trackColor", "type": "string", "default": "#27272a" },
+        { "name": "thumbColor", "type": "string", "default": "#fafafa" },
+        { "name": "textColor", "type": "string", "default": "#fafafa" },
+        { "name": "activeTextColor", "type": "string", "default": "#18181b" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "md" },
+        { "name": "radius", "type": "number", "default": 10 },
+        { "name": "inset", "type": "number", "default": 3 },
+        { "name": "equalSlots", "type": "boolean", "default": true },
+        { "name": "stretch", "type": "number", "default": 100 },
+        { "name": "squash", "type": "number", "default": 3 },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "glide", "type": "number", "default": 75 },
+        { "name": "draggable", "type": "boolean", "default": true },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "aria-label", "type": "string", "default": "Segmented control" }
+    ],
+    "editableByProps": [
+        "Options, labels and icons, selected value",
+        "Track, thumb, text and active text colors",
+        "Size preset, corner radius, inner padding",
+        "Equal or content-based slot widths",
+        "Stretch, squash, speed and glide feel",
+        "Dragging and disabled state, extra classes, aria label"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change size presets",
+            "where": "SIZES constant"
+        },
+        {
+            "change": "Change easing and spring timings",
+            "where": "EASE_OUT, SPRING_UI, SPRING_MOMENTUM, SPRING_RELAX constants"
+        },
+        {
+            "change": "Tune edge resistance, flick threshold and drag deadzone",
+            "where": "RUBBER, FLICK, DEADZONE, SLOP constants"
+        },
+        {
+            "change": "Make the control vertical",
+            "where": "grid-flow-col classes on the track and thumb div, and the clipPath inset in useTransform"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package and Tailwind CSS with arbitrary value support",
+        "Horizontal layout only, vertical arrow keys also move selection",
+        "Each item value must be unique, it is used as the React key",
+        "Not a form field, no hidden input",
+        "Inline-grid sized by content, fixed heights from the size preset",
+        "Disabled state is set to 50% opacity",
+        "Works on small screens with touch drag, vertical page panning stays enabled"
+    ],
+    "mood": ["minimal", "playful", "tactile", "modern"],
+    "industries": ["saas", "productivity", "developer tools", "fintech"],
+    "sections": ["other"],
+    "dependencies": ["motion"]
+}

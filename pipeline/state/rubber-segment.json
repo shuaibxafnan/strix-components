@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "rubber-segment",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.624Z"
+  "note": "Gates passed. Category ui-elements. Dependency motion. Horizontal control only, no hidden input; item values must be unique. No variants.",
+  "updatedAt": "2026-11-01T11:14:44.600Z",
+  "gateOutput": "gates passed"
 }
