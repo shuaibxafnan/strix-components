@@ -1,0 +1,54 @@
+{
+  "slug": "grid-list-toggle",
+  "name": "Grid List Toggle",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Pair of toggle buttons whose icon morphs between a four-dot grid and a list of lines on click, one icon-only and one with a sliding Grid/List label.",
+  "contents": [
+    "Icon-only blue toggle button",
+    "Dark toggle button with icon and Grid/List text label"
+  ],
+  "behavior": [
+    "Click toggles each button independently",
+    "Four dots shrink and shift while lines scale in to form a list icon, and reverse on second click",
+    "Label slides up and fades between the two words",
+    "Button background changes to a hover shade while active and scales down on press"
+  ],
+  "props": [
+    { "name": "darkBtnBg", "type": "string", "default": "#2B3044" },
+    { "name": "darkBtnHover", "type": "string", "default": "#1E2235" },
+    { "name": "lightBtnBg", "type": "string", "default": "#275EFE" },
+    { "name": "lightBtnHover", "type": "string", "default": "#1548DB" },
+    { "name": "activeTextColor", "type": "string", "default": "#F6F8FF" },
+    { "name": "iconColorDefault", "type": "string", "default": "#BBC1E1" },
+    { "name": "iconColorAlt", "type": "string", "default": "#FFFFFF" },
+    { "name": "dotsDuration", "type": "string", "default": "0.5s" },
+    { "name": "linesDuration", "type": "string", "default": "0.15s" },
+    { "name": "gridLabel", "type": "string", "default": "Grid" },
+    { "name": "listLabel", "type": "string", "default": "List" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Button, hover, icon and label colors",
+    "Dot and line animation durations",
+    "Grid and list label text"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Notify the page of the toggle state, for example to switch a real grid/list layout",
+      "where": "triggerToggle function"
+    },
+    {
+      "change": "Change dot positions or number of lines",
+      "where": "DOTS constant and the [3, 8, 13, 18] array in ToggleIcon"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Both buttons keep their own internal state and are not connected to any external layout"
+  ],
+  "mood": ["playful", "minimal", "modern"],
+  "industries": ["saas", "e-commerce", "dashboards", "portfolio"],
+  "sections": ["other"],
+  "dependencies": []
+}
