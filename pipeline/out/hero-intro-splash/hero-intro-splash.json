@@ -1,0 +1,59 @@
+{
+  "slug": "hero-intro-splash",
+  "name": "Hero Intro Splash",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen video hero with a font-cycling loading splash that wipes away, a giant outlined headline whose letters rise in, a video cutout figure, and a custom label cursor.",
+  "contents": [
+    "Loading splash with cycling fonts and a colored band of repeated text",
+    "Giant headline in filled and outlined layers over a background video",
+    "Video cutout figure shaped by an SVG clip path",
+    "Cursor label bubble and film grain overlay"
+  ],
+  "behavior": [
+    "Splash text cycles through fonts, then scales away with an expo ease",
+    "Headline letters animate up with a stagger after the splash",
+    "Cursor label scales in on hover and follows the mouse, hidden when the pointer leaves",
+    "GSAP context is reverted on unmount"
+  ],
+  "props": [
+    {"name": "headlineText", "type": "string", "default": "Build your board"},
+    {"name": "introLoadingText", "type": "string", "default": "Loading"},
+    {"name": "introRedText", "type": "string", "default": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},
+    {"name": "cursorLabel", "type": "string", "default": "Hello"},
+    {"name": "videoSrc", "type": "string", "default": "https://www.pexels.com/download/video/12426854/"},
+    {"name": "videoPoster", "type": "string", "default": "https://images.unsplash.com/photo-1743309411498-a0f4f4b96b65?auto=format&fit=crop&w=1740&q=80"},
+    {"name": "figureClipPath", "type": "string", "default": "M0.648438 0.00390625 L0.296875 0.00390625 L0.0976562 0.15625 L-0.00390625 1.003906 L0.644531 1.003906 L0.820312 0.882812 ZM0.648438 0.00390625"},
+    {"name": "backgroundColor", "type": "string", "default": "#000000"},
+    {"name": "accentColor", "type": "string", "default": "#ffffff"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "headlineFontSize", "type": "string", "default": "19vw"},
+    {"name": "introFontSize", "type": "string", "default": "3vw"},
+    {"name": "cursorFontSize", "type": "string", "default": "1.5vw"},
+    {"name": "introFontCycleDuration", "type": "number", "default": 0.1},
+    {"name": "introScaleDuration", "type": "number", "default": 1},
+    {"name": "titleAnimDuration", "type": "number", "default": 1.5},
+    {"name": "titleAnimDelay", "type": "number", "default": 0.6},
+    {"name": "titleStagger", "type": "number", "default": 0.025},
+    {"name": "cursorMoveDuration", "type": "number", "default": 0.5},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Headline, splash and cursor text, video and poster, figure clip path",
+    "Background, accent and text colors, font sizes",
+    "Animation durations, delay and stagger"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the fonts cycled in the splash", "where": "INTRO_FONT_SEQUENCE constant and the font loader consts"},
+    {"change": "Change grain strength", "where": "hero-grain svg with opacity-[0.07]"}
+  ],
+  "fixed": [
+    "Fonts are loaded through next/font/google and require Next.js",
+    "Splash overlay and cursor label are fixed-position and cover the viewport",
+    "Hero is full viewport height; vw-based type scales with width"
+  ],
+  "mood": ["bold", "cinematic", "playful", "editorial"],
+  "industries": ["creative agency", "sports", "fashion", "entertainment", "portfolio"],
+  "sections": ["hero"],
+  "dependencies": ["gsap"]
+}
