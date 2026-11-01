@@ -1,0 +1,92 @@
+{
+    "slug": "pixel-card",
+    "name": "Pixel Card",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "300x400 card with a canvas of twinkling pixels that reveal outward from the center or pointer on hover, click or always, with spotlight, glow and click pulse. Holds custom children.",
+    "contents": [
+        "Card container with gradient surface, rim highlight and rounded corners",
+        "Canvas pixel field behind the children",
+        "Children slot rendered above the canvas"
+    ],
+    "behavior": [
+        "Pixels grow in with an overshoot and twinkle, starting at the origin and spreading outward",
+        "Trigger hover, click (toggle, closes on outside click) or always",
+        "Pointer spotlight follows the cursor with spring motion and enlarges nearby pixels",
+        "Click or tap emits a ripple pulse",
+        "Intro reveals once when scrolled into view, then releases unless trigger is always",
+        "Animation pauses when offscreen and respects prefers-reduced-motion",
+        "Keyboard focus activates in hover mode, Enter or Space toggles in click mode"
+    ],
+    "props": [
+        { "name": "variant", "type": "'default' | 'blue' | 'yellow' | 'pink'", "default": "default" },
+        { "name": "colors", "type": "string[] | string (comma separated)", "default": "undefined (from variant and theme)" },
+        { "name": "gap", "type": "number", "default": "undefined (from variant)" },
+        { "name": "speed", "type": "number", "default": "undefined (from variant)" },
+        { "name": "pixelSize", "type": "number", "default": 2 },
+        { "name": "shape", "type": "'square' | 'circle' | 'diamond'", "default": "square" },
+        { "name": "origin", "type": "'center' | 'pointer'", "default": "center" },
+        { "name": "revealDuration", "type": "number", "default": 600 },
+        { "name": "spotlight", "type": "number", "default": 0.5 },
+        { "name": "glow", "type": "number", "default": 0.5 },
+        { "name": "glowColor", "type": "string", "default": "undefined (from variant and theme)" },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "fade", "type": "number", "default": 0 },
+        { "name": "trigger", "type": "'hover' | 'click' | 'always'", "default": "hover" },
+        { "name": "clickPulse", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "introDelay", "type": "number", "default": 0 },
+        { "name": "noFocus", "type": "boolean", "default": "undefined (true for pink variant)" },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "radius", "type": "number", "default": 24 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" },
+        { "name": "children", "type": "ReactNode", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Color preset, custom pixel colors, glow color, dark or light theme",
+        "Pixel gap, size, shape, speed, opacity and edge fade",
+        "Trigger mode, reveal origin and duration, intro and delay, click pulse",
+        "Spotlight and glow strength, corner radius, card content via children"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change card size",
+            "where": "w-[300px] h-[400px] in the CARD constant (or override via className)"
+        },
+        {
+            "change": "Add a new color preset",
+            "where": "VARIANTS constant"
+        },
+        {
+            "change": "Change reveal and exit speed of each pixel",
+            "where": "APPEAR and EXIT constants"
+        },
+        {
+            "change": "Change surface gradient and shadow",
+            "where": "SURFACE constant"
+        }
+    ],
+    "fixed": [
+        "Fixed 300x400 card size unless overridden with className",
+        "Content layout inside is a centered grid, children get relative z-index above the canvas",
+        "Adds a document-level pointerdown listener while mounted for click-outside close",
+        "Client-only, needs canvas, ResizeObserver and IntersectionObserver",
+        "Pink variant disables focus and tab stop by default",
+        "Changing prop values after mount other than trigger is read live, no remount needed"
+    ],
+    "mood": ["techy", "playful", "futuristic", "sleek"],
+    "industries": ["saas", "gaming", "creative agency", "fintech"],
+    "sections": ["features", "services", "portfolio"],
+    "dependencies": [],
+    "variants": {
+        "prop": "variant",
+        "default": "default",
+        "options": [
+            { "value": "default", "look": "Fine neutral white or dark gray pixels, gap 5, medium speed", "useWhen": "Neutral feature cards on a dark or minimal page" },
+            { "value": "blue", "look": "Sky blue pixels with wider gap 10 and blue glow", "useWhen": "Tech or trust-focused product cards" },
+            { "value": "yellow", "look": "Dense yellow pixels, gap 3, warm glow", "useWhen": "Highlighting a promo or pricing card" },
+            { "value": "pink", "look": "Rose pixels, gap 6, fast twinkle, not focusable by default", "useWhen": "Decorative creative or lifestyle cards that are not interactive" }
+        ]
+    }
+}
