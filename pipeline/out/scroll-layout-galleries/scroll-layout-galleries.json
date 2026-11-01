@@ -1,0 +1,70 @@
+{
+  "slug": "scroll-layout-galleries",
+  "name": "Scroll Layout Galleries",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Long dark page of nine pinned image galleries that morph between layouts as you scroll (row, grid, dense grid, stacks, tiny grid, bento, single frame), separated by short text sections.",
+  "contents": [
+    "Intro block with project label, name, date, large title and mission paragraphs",
+    "Nine pinned galleries with captions built from the images array",
+    "Six text sections between galleries",
+    "Optional row of related study cards"
+  ],
+  "behavior": [
+    "Each gallery pins and morphs from one layout to another with GSAP Flip scrubbed by scroll",
+    "Smooth scrolling through Lenis, switchable by prop",
+    "Images inside some tiles scale down during the transition",
+    "Captions fade and move in as the layout resolves"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "25 sample image URLs"},
+    {"name": "bgColor", "type": "string", "default": "#131417"},
+    {"name": "textColor", "type": "string", "default": "#fff"},
+    {"name": "altTextColor", "type": "string", "default": "#575757"},
+    {"name": "labelColor", "type": "string", "default": "#adadad"},
+    {"name": "captionColor", "type": "string", "default": "#fff"},
+    {"name": "intro", "type": "{label,name,dateLabel,date,titleLines,missionLabel,mission}", "default": "sample intro"},
+    {"name": "sections", "type": "{s1..s6:{label,text,align}}", "default": "6 sample sections"},
+    {"name": "captions", "type": "{g1..g9:string}", "default": "9 sample captions"},
+    {"name": "scrollStart", "type": "string", "default": "center center"},
+    {"name": "scrollEnd", "type": "string", "default": "+=300%"},
+    {"name": "longScrollEnd", "type": "string", "default": "+=900%"},
+    {"name": "stagger", "type": "number", "default": 0.05},
+    {"name": "innerScaleFrom", "type": "number", "default": 2},
+    {"name": "rowItemHeight", "type": "string", "default": "20vh"},
+    {"name": "rowSizeFactor", "type": "number", "default": 1.25},
+    {"name": "stackOffset", "type": "string", "default": "1rem"},
+    {"name": "tinyColumns", "type": "number", "default": 10},
+    {"name": "tinyWidth", "type": "string", "default": "300%"},
+    {"name": "gridRadius", "type": "string", "default": "6px"},
+    {"name": "stackRadius", "type": "string", "default": "1.5vw"},
+    {"name": "cardsTitle", "type": "string", "default": "Related studies"},
+    {"name": "cards", "type": "{title,src}[]", "default": "3 sample cards"},
+    {"name": "cardColumns", "type": "number", "default": 3},
+    {"name": "cardRadius", "type": "string", "default": "7px"},
+    {"name": "cardBrightness", "type": "number", "default": 0.8},
+    {"name": "showCards", "type": "boolean", "default": true},
+    {"name": "lerp", "type": "number", "default": 0.1},
+    {"name": "smoothScroll", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, all intro, section and caption text, cards",
+    "Colors, radii, scroll distances, stagger and smooth scroll"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change which layout each gallery uses or their order", "where": "config array inside the useEffect and the gallery blocks in the returned JSX"},
+    {"change": "Change gallery layouts", "where": "css string built before the return"},
+    {"change": "Change number of images per gallery", "where": "pick function calls in the JSX"}
+  ],
+  "fixed": [
+    "Nine galleries with fixed layouts and order",
+    "Galleries pin the page during scroll and Lenis smooth scrolling takes over page scroll when enabled, destroyed on unmount",
+    "Large vertical spacers between galleries are needed for the pinned scroll range",
+    "Layouts use viewport units and are designed for full-width placement"
+  ],
+  "mood": ["editorial", "dark", "cinematic", "minimal", "dynamic"],
+  "industries": ["portfolio", "design studio", "photography", "architecture", "fashion", "agency"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": ["gsap", "lenis"]
+}
