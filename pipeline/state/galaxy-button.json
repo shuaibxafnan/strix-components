@@ -4,11 +4,12 @@
   "sourceHash": "afa1c99b9fc54f9579ff4a5a4f304b4c64a3c92262e56289dd0ecc519389393c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "galaxy-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.446Z"
+  "note": "Frame added (w-full h-screen flex center). Removed CSS and JSX comment remnants. Category ui-elements. darkBg layer kept as prop. No variants.",
+  "updatedAt": "2026-11-01T07:23:55.645Z",
+  "gateOutput": "gates passed"
 }
