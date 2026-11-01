@@ -1,0 +1,237 @@
+{
+    "slug": "stratum-drift",
+    "name": "Stratum Drift",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Long-form parallax page of rotated image grids, drifting columns and large italic breakout words between text paragraphs, with smooth scrolling and a preloader.",
+    "contents": [
+        "Large title, two paragraphs, two breakout phrases and a back-to-top button",
+        "Three image grids: rotated rows, straight rows and vertical columns",
+        "Numbered circle counters beside paragraphs",
+        "Full-screen loader dot shown while images preload"
+    ],
+    "behavior": [
+        "Elements drift along x or y based on scroll position with eased smoothing",
+        "Smooth scrolling through Lenis",
+        "Back button scrolls smoothly to the top section",
+        "Parallax is disabled when reduced motion is preferred"
+    ],
+    "props": [
+        {
+            "name": "images",
+            "type": "string[]",
+            "default": "25 sample images"
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#111"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#fff"
+        },
+        {
+            "name": "altColor",
+            "type": "string",
+            "default": "#7f6a57"
+        },
+        {
+            "name": "breakoutColor",
+            "type": "string",
+            "default": "#211f1b"
+        },
+        {
+            "name": "loaderColor",
+            "type": "string",
+            "default": "#aaa"
+        },
+        {
+            "name": "title",
+            "type": "string",
+            "default": "decondition yourself"
+        },
+        {
+            "name": "titleSize",
+            "type": "string",
+            "default": "clamp(2.5rem, 6vw, 5.5rem)"
+        },
+        {
+            "name": "bodySize",
+            "type": "string",
+            "default": "clamp(1rem, 2vw, 1.5rem)"
+        },
+        {
+            "name": "breakoutBigSize",
+            "type": "string",
+            "default": "clamp(2rem, 8vw, 7rem)"
+        },
+        {
+            "name": "breakoutMedSize",
+            "type": "string",
+            "default": "clamp(1rem, 3.2vw, 2.75rem)"
+        },
+        {
+            "name": "backTopSize",
+            "type": "string",
+            "default": "clamp(1.5rem, 3.5vw, 3rem)"
+        },
+        {
+            "name": "paragraphOne",
+            "type": "string",
+            "default": "The human world is exploding at the seams. Human creativity and the implementation of human inventions and technology is now at an accelerated fever pitch like nothing ever before seen in the history of the world. Well, where is it leading, and how does one integrate this stuff into one's own life? What does it mean about the experience of being human? I have proposed the existence of an invisible, permeating Something that is throughout all being, all time, all space, all bodies, all thought, which I call Novelty; and the interesting thing about novelty is that it is increasing constantly."
+        },
+        {
+            "name": "paragraphTwo",
+            "type": "string",
+            "default": "The conservation of novelty is simply that, over time, the universe has become more complicated. New levels of complexity become the foundations for yet deeper levels of complexity. And this phenomenon of the production and conservation of what I call novelty is not something which goes on only in the biological domain or only in the cultural domain or only in the domain of physics. It is a trans-categorical impulse in reality, meaning: it is everywhere."
+        },
+        {
+            "name": "breakoutBig",
+            "type": "string",
+            "default": "endless acceleration toward infinity"
+        },
+        {
+            "name": "breakoutMedium",
+            "type": "string",
+            "default": "the greatest barrier to your enlightenment"
+        },
+        {
+            "name": "backTopLabel",
+            "type": "string",
+            "default": "Back to the top"
+        },
+        {
+            "name": "displayFont",
+            "type": "string",
+            "default": "'Bodoni Moda', serif"
+        },
+        {
+            "name": "bodyFont",
+            "type": "string",
+            "default": "'Hanken Grotesk', sans-serif"
+        },
+        {
+            "name": "googleFontsHref",
+            "type": "string",
+            "default": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,200;1,6..96,400&family=Hanken+Grotesk:wght@300;400;500&display=swap"
+        },
+        {
+            "name": "smoothScroll",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "smoothLerp",
+            "type": "number",
+            "default": 0.09
+        },
+        {
+            "name": "tileParallax",
+            "type": "number",
+            "default": 110
+        },
+        {
+            "name": "columnParallax",
+            "type": "number",
+            "default": 90
+        },
+        {
+            "name": "textParallax",
+            "type": "number",
+            "default": 34
+        },
+        {
+            "name": "wordParallax",
+            "type": "number",
+            "default": 130
+        },
+        {
+            "name": "parallaxEase",
+            "type": "number",
+            "default": 0.075
+        },
+        {
+            "name": "sectionGap",
+            "type": "string",
+            "default": "clamp(4rem, 12vh, 10rem)"
+        },
+        {
+            "name": "rotationAngle",
+            "type": "number",
+            "default": 22.5
+        },
+        {
+            "name": "tileMargin",
+            "type": "string",
+            "default": "1vw"
+        },
+        {
+            "name": "showLoader",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "showCounters",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "tileBrightness",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "All text, sizes, colors, fonts and the image list",
+        "Parallax strengths and easing, grid rotation, tile spacing and brightness",
+        "Toggle loader, counters and smooth scroll"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the number or arrangement of tile rows",
+            "where": "GRID_ONE, GRID_TWO and GRID_THREE constants"
+        },
+        {
+            "change": "Add or reorder page sections",
+            "where": "The sections inside the main element"
+        },
+        {
+            "change": "Change counter appearance",
+            "where": "sd-counted rule in styleBlock"
+        }
+    ],
+    "fixed": [
+        "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+        "Loads Google Fonts through a link tag added to document head",
+        "Loader overlay is fixed over the whole viewport until images load",
+        "Sections use vw based heights for the image grids"
+    ],
+    "mood": [
+        "editorial",
+        "immersive",
+        "moody",
+        "artistic"
+    ],
+    "industries": [
+        "photography",
+        "art",
+        "fashion",
+        "architecture",
+        "agency"
+    ],
+    "sections": [
+        "gallery",
+        "portfolio",
+        "hero"
+    ],
+    "dependencies": [
+        "lenis"
+    ]
+}
