@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "threads",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.606Z"
+  "note": "JSON written; component unchanged. Category backgrounds-3d. Needs WebGL2 and sized parent. Gates passed.",
+  "updatedAt": "2026-11-01T14:17:51.322Z",
+  "gateOutput": "gates passed"
 }

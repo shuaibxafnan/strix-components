@@ -1,0 +1,80 @@
+{
+    "slug": "threads",
+    "name": "Threads",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 background of many thin flowing lines that wave like threads across the container, with optional mouse-driven motion and a pointer parting effect.",
+    "contents": [
+        "Container div filling its parent with an absolutely positioned canvas",
+        "Instanced line rendering with Perlin noise waves, color gradient from color to accentColor, and an edge fade"
+    ],
+    "behavior": [
+        "Lines wave continuously, driven by noise over time",
+        "With enableMouseInteraction, pointer position eases the wave phase and amplitude",
+        "With parting above 0, lines push away from the pointer while it is over the container",
+        "Rendering pauses when offscreen, tab hidden, paused is true, or reduced motion is preferred",
+        "Render resolution is capped at 1920px on the longest side and device pixel ratio at 2",
+        "Transparent canvas so the page behind shows through"
+    ],
+    "props": [
+        { "name": "color", "type": "number[] | string", "default": [1, 1, 1] },
+        { "name": "accentColor", "type": "number[] | string", "default": "undefined (same as color)" },
+        { "name": "amplitude", "type": "number", "default": 1.7 },
+        { "name": "distance", "type": "number", "default": 0.4 },
+        { "name": "enableMouseInteraction", "type": "boolean", "default": false },
+        { "name": "lineCount", "type": "number", "default": 90 },
+        { "name": "thickness", "type": "number", "default": 0.6 },
+        { "name": "softness", "type": "number", "default": 1.3 },
+        { "name": "speed", "type": "number", "default": 0.6 },
+        { "name": "waves", "type": "number", "default": 1.05 },
+        { "name": "split", "type": "number", "default": 0.04 },
+        { "name": "fray", "type": "number", "default": 0.5 },
+        { "name": "angle", "type": "number", "default": 25 },
+        { "name": "seed", "type": "number", "default": 0 },
+        { "name": "parting", "type": "number", "default": 0 },
+        { "name": "taper", "type": "number", "default": 0.85 },
+        { "name": "brightness", "type": "number", "default": 1.4 },
+        { "name": "fade", "type": "number", "default": 0 },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Line color and accent gradient color (RGB array 0-1 or any CSS color string)",
+        "Line count (1-400), thickness, softness, taper, brightness, opacity",
+        "Wave amplitude, wave frequency, speed, seed, line spacing, fray, split point, rotation angle",
+        "Mouse interaction, pointer parting strength, edge fade, pause",
+        "className and extra attributes on the container"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the wave noise shape",
+            "where": "main function in the LINE_VERTEX shader string"
+        },
+        {
+            "change": "Raise or lower the render resolution cap",
+            "where": "MAX_RENDER_DIM constant"
+        },
+        {
+            "change": "Listen to pointer on the container only instead of the whole window",
+            "where": "onPointerMove listener registration in the main useEffect"
+        },
+        {
+            "change": "Keep animating when reduced motion is preferred",
+            "where": "reduce constant and moving flag in the frame function"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable or shaders fail to compile",
+        "Fills its parent (h-full w-full), so the parent must have a size and the component is placed behind content by the page",
+        "Registers a window pointermove listener and tracks the pointer even outside the container",
+        "Respects prefers-reduced-motion by freezing the animation",
+        "Uses Tailwind classes relative, absolute, inset-0, h-full, w-full",
+        "Client component, uses browser APIs in an effect",
+        "Heavy GPU load with high lineCount on large screens; render scale is capped but mobile performance varies"
+    ],
+    "mood": ["futuristic", "elegant", "flowing", "calm", "tech"],
+    "industries": ["technology", "saas", "ai", "creative agency", "fintech"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": []
+}
