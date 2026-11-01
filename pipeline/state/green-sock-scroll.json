@@ -4,11 +4,12 @@
   "sourceHash": "d885e1f0d2cd0ed1c843a4ffe5418cf6687ce891e6ca4c558ec9571f137614fe",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "fullscreen-section-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.452Z"
+  "note": "Renamed green-sock-scroll -> fullscreen-section-scroll. gsap CDN loader replaced with dynamic import (gsap, gsap/Observer). Cleanup on unmount. Added textColor, backgroundColor, className, per-slide position. Default slide texts changed. Fixed invalid Tailwind class. Variants: none. Takes over page scroll.",
+  "updatedAt": "2026-11-01T07:52:15.107Z",
+  "gateOutput": "gates passed"
 }

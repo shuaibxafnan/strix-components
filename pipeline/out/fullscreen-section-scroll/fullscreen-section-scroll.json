@@ -1,0 +1,52 @@
+{
+  "slug": "fullscreen-section-scroll",
+  "name": "Fullscreen Section Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen image sections that slide over each other on wheel, touch or drag, with a parallax image shift and a per-letter random stagger heading reveal on each section.",
+  "contents": [
+    "Full-viewport slides, each with a background image and a large centered heading",
+    "Small fixed header title at the top"
+  ],
+  "behavior": [
+    "Wheel, touch and pointer input advances to the next or previous section, looping at both ends",
+    "Sections wipe in with outer and inner wrapper offsets and a parallax image shift",
+    "Heading letters animate in with a random stagger",
+    "Input is ignored while a transition is running"
+  ],
+  "props": [
+    { "name": "slides", "type": "{text,img,position?}[]", "default": "5 sample slides" },
+    { "name": "headerTitle", "type": "string", "default": "Animated Sections" },
+    { "name": "animDuration", "type": "number", "default": 1.25 },
+    { "name": "animEase", "type": "string", "default": "power1.inOut" },
+    { "name": "textAnimEase", "type": "string", "default": "power2.out" },
+    { "name": "bgGradient", "type": "string", "default": "linear-gradient(180deg, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.1) 100%)" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "backgroundColor", "type": "string", "default": "#000000" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of slides, heading text, images and per-slide image position",
+    "Header title, overlay gradient, text and background colors",
+    "Transition duration and easing"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the character stagger style or delay",
+      "where": "stagger option in the targetHeadingChars fromTo call"
+    },
+    {
+      "change": "Change the parallax distance of the images",
+      "where": "yPercent values 15 * dFactor in gotoSection"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling: wheel, touch and pointer input are captured with preventDefault, so the page itself does not scroll",
+    "Sections are fixed to the viewport and the root fills the viewport height",
+    "Section navigation loops endlessly"
+  ],
+  "mood": ["immersive", "cinematic", "bold"],
+  "industries": ["travel", "photography", "creative agency", "events"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": ["gsap"]
+}
