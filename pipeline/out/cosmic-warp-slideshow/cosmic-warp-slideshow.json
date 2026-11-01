@@ -1,0 +1,54 @@
+{
+    "slug": "cosmic-warp-slideshow",
+    "name": "Cosmic Warp Slideshow",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Full-screen image slideshow where each new slide warps in from below or above with a stretched zoom, with a thumbnail strip, wave-style drag lines, counter and animated slide titles.",
+    "contents": [
+        "Full-screen slides with background images",
+        "Series title, slide counter with previous and next arrows, animated slide title",
+        "Wave of vertical lines that rises under the active thumbnail",
+        "Thumbnail strip for jumping to a slide",
+        "Hint text in the top right corner"
+    ],
+    "behavior": [
+        "Next slide scales and slides in from below or above while the image stretches vertically into place",
+        "Navigation by mouse wheel, touch swipe, arrow keys, arrows, or thumbnail click",
+        "Navigation is queued while a transition is running",
+        "Drag lines form a wave around the hovered or active thumbnail",
+        "Slide title fades and slides vertically on change"
+    ],
+    "props": [
+        {"name": "slidesData", "type": "{img}[]", "default": "6 sample space images"},
+        {"name": "slideTitles", "type": "string[]", "default": ["Cosmic Harmony", "Astral Journey", "Ethereal Vision", "Quantum Field", "Celestial Path", "Cosmic Whisper"]},
+        {"name": "seriesTitle", "type": "string", "default": "COSMIC SERIES"},
+        {"name": "lineBaseHeight", "type": "number", "default": 15},
+        {"name": "lineMaxHeight", "type": "number", "default": 50},
+        {"name": "totalDragLines", "type": "number", "default": 60},
+        {"name": "thumbWidth", "type": "string", "default": "120px"},
+        {"name": "hintText", "type": "string", "default": "scroll or drag"},
+        {"name": "backgroundColor", "type": "string", "default": "#000000"},
+        {"name": "textColor", "type": "string", "default": "#ffffff"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Slide images, titles, series title and hint text",
+        "Drag line count and heights, thumbnail width",
+        "Background and text colors"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change transition easing or duration", "where": "performTransition method of the Slideshow class"},
+        {"change": "Change drag line color", "where": "updateDragLines function"},
+        {"change": "Disable wheel navigation", "where": "handleWheel function"}
+    ],
+    "fixed": [
+        "Listens for wheel, touch and arrow key events on the whole document while mounted and removes them on unmount",
+        "Series title, counter and thumbnails are pinned to the bottom of the viewport and the hint to the top right",
+        "Drag line wave assumes a 720px wide control area",
+        "Slide count and title count should match"
+    ],
+    "mood": ["cinematic", "futuristic", "immersive", "dark"],
+    "industries": ["photography", "space", "art", "film", "travel"],
+    "sections": ["hero", "gallery", "portfolio"],
+    "dependencies": ["gsap"]
+}
