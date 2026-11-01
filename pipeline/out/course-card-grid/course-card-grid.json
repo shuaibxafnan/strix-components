@@ -1,0 +1,53 @@
+{
+  "slug": "course-card-grid",
+  "name": "Course Card Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Row of image cards where the hovered or tapped card expands to reveal icon, title, description and link while the others collapse into narrow vertical labels, with dot pagination below.",
+  "contents": [
+    "Row of image cards, each with icon, title, description and link button",
+    "Dot pagination under the row"
+  ],
+  "behavior": [
+    "Pointer move or click expands a card by animating grid column sizes",
+    "Collapsed cards are grayscale with a vertical title label and index number",
+    "Active card fades in content with staggered delays and grows an accent line",
+    "Dots switch the active card"
+  ],
+  "props": [
+    {"name": "cards", "type": "{id,title,desc,href,cta,image,icon}[]", "default": "7 sample course cards"},
+    {"name": "initialActive", "type": "number", "default": 0},
+    {"name": "height", "type": "string", "default": "clamp(300px, 42vh, 480px)"},
+    {"name": "maxWidth", "type": "string", "default": "860px"},
+    {"name": "gap", "type": "number", "default": 8},
+    {"name": "collapsedFlex", "type": "number", "default": 1},
+    {"name": "activeFlex", "type": "number", "default": 10},
+    {"name": "backgroundColor", "type": "string", "default": "#0a0a0a"},
+    {"name": "cardBg", "type": "string", "default": "#0f0f0f"},
+    {"name": "cardBorder", "type": "string", "default": "rgba(255,255,255,0.08)"},
+    {"name": "accentColor", "type": "string", "default": "#c9a96e"},
+    {"name": "textPrimary", "type": "string", "default": "#f0ece4"},
+    {"name": "textMuted", "type": "string", "default": "rgba(240,236,228,0.45)"},
+    {"name": "titleFont", "type": "string", "default": "'Cormorant Garamond', Georgia, serif"},
+    {"name": "bodyFont", "type": "string", "default": "'DM Sans', system-ui, sans-serif"},
+    {"name": "headingSize", "type": "string", "default": "clamp(1.6rem, 3vw, 2.2rem)"},
+    {"name": "transitionSpeed", "type": "string", "default": "0.55s"},
+    {"name": "transitionEasing", "type": "string", "default": "cubic-bezier(0.4, 0, 0.2, 1)"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Cards, their text, links, images and icons",
+    "Colors, fonts, heading size, row height, max width, gap, expansion ratio and transition timing"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the image fade mask direction", "where": ".cg-img rule in the style block"},
+    {"change": "Change the arrow in the link", "where": ".cg-cta::after rule in the style block"}
+  ],
+  "fixed": [
+    "Google Fonts import for Cormorant Garamond and DM Sans inside the style block"
+  ],
+  "mood": ["elegant", "dark", "editorial", "interactive"],
+  "industries": ["education", "creative agencies", "portfolios", "media", "courses"],
+  "sections": ["features", "portfolio", "gallery"],
+  "dependencies": []
+}
