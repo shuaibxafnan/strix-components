@@ -1,0 +1,47 @@
+{
+  "slug": "blob-photo-grid",
+  "name": "Blob Photo Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Mosaic of up to 25 photos cut into organic blob shapes in a tight grid, with a hand-drawn blob-framed lightbox opened by click and navigated by arrows, keys or side buttons.",
+  "contents": [
+    "Grid of up to 25 blob-masked image tiles",
+    "Fullscreen overlay lightbox with blob-shaped white frame and previous/next buttons"
+  ],
+  "behavior": [
+    "Tiles lift slightly on hover or focus",
+    "Click or Enter/Space on a tile opens the lightbox on that image",
+    "Arrow keys and Space step through images, Escape or backdrop click closes",
+    "Frame mask switches between portrait and landscape based on the loaded image",
+    "More tiles appear as the viewport widens, with 5 shown on small screens"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "25 sample Unsplash image URLs" },
+    { "name": "openLabel", "type": "string", "default": "Open image" },
+    { "name": "prevLabel", "type": "string", "default": "Previous image" },
+    { "name": "nextLabel", "type": "string", "default": "Next image" },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "overlayColor", "type": "string", "default": "bg-black/75" },
+    { "name": "frameColor", "type": "string", "default": "bg-white" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images (up to 25 used)",
+    "Accessibility labels",
+    "Background, overlay and frame colors as Tailwind classes"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change the blob shapes assigned to tiles", "where": "TILE_MASKS constant" },
+    { "change": "Change the mosaic layout", "where": "GRID_AREAS constant" },
+    { "change": "Change breakpoints where tiles appear", "where": "visibleFrom function" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Grid layout is fixed at 25 slots; extra images beyond 25 are ignored",
+    "Lightbox adds a window keydown listener while open and removes it on close"
+  ],
+  "mood": ["playful", "organic", "editorial", "dark"],
+  "industries": ["photography", "creative agency", "travel", "fashion", "art"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

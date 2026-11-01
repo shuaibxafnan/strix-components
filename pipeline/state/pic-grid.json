@@ -4,11 +4,12 @@
   "sourceHash": "6e4b01494d92e3163dca8be69879423c6512ca2812c10f8ee14849f5ac26974b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "blob-photo-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.513Z"
+  "note": "renamed pic-grid -> blob-photo-grid; frame added (root h-screen centered, className merged); variants: none; responsive: already ok; no ambiguous removals",
+  "updatedAt": "2026-11-01T10:33:43.207Z",
+  "gateOutput": "gates passed"
 }
