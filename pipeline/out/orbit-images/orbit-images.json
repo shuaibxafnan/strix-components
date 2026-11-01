@@ -1,0 +1,98 @@
+{
+    "slug": "orbit-images",
+    "name": "Orbit Images",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Row of images orbiting along a chosen path shape (ellipse, circle, star, heart, wave, custom SVG path) with depth scaling, drag to spin, click to bring to front and an intro spread.",
+    "contents": [
+        "Rounded image tiles placed evenly along an SVG-style path",
+        "Optional visible path line, solid or dashed",
+        "Optional center content layered between back and front images"
+    ],
+    "behavior": [
+        "Images loop continuously along the path, slowing on hover",
+        "Items near the front grow and stay bright, items at the back shrink and dim",
+        "Drag horizontally to spin with inertia, click an image to rotate it to the front",
+        "Intro spreads the images out from the front position and fades them in",
+        "Animation pauses when offscreen or when the user prefers reduced motion",
+        "Enter or Space activates focused images, focus-visible brings the image to the front"
+    ],
+    "props": [
+        {"name": "images", "type": "(string | {src,alt})[]", "default": []},
+        {"name": "altPrefix", "type": "string", "default": "Orbiting image"},
+        {"name": "shape", "type": "'ellipse' | 'circle' | 'square' | 'rectangle' | 'triangle' | 'star' | 'heart' | 'infinity' | 'wave' | 'custom'", "default": "ellipse"},
+        {"name": "customPath", "type": "string", "default": null},
+        {"name": "baseWidth", "type": "number", "default": 1400},
+        {"name": "radiusX", "type": "number", "default": 700},
+        {"name": "radiusY", "type": "number", "default": 170},
+        {"name": "radius", "type": "number", "default": 300},
+        {"name": "starPoints", "type": "number", "default": 5},
+        {"name": "starInnerRatio", "type": "number", "default": 0.5},
+        {"name": "rotation", "type": "number", "default": -8},
+        {"name": "duration", "type": "number", "default": 40},
+        {"name": "itemSize", "type": "number", "default": 64},
+        {"name": "direction", "type": "'normal' | 'reverse'", "default": "normal"},
+        {"name": "fill", "type": "boolean", "default": true},
+        {"name": "width", "type": "number | string", "default": "100%"},
+        {"name": "height", "type": "number | string", "default": "auto"},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "showPath", "type": "boolean", "default": false},
+        {"name": "pathColor", "type": "string", "default": "rgba(128,128,128,0.35)"},
+        {"name": "pathWidth", "type": "number", "default": 2},
+        {"name": "pathDash", "type": "number", "default": 0},
+        {"name": "easing", "type": "'linear' | 'easeIn' | 'easeOut' | 'easeInOut'", "default": "linear"},
+        {"name": "paused", "type": "boolean", "default": false},
+        {"name": "depth", "type": "number", "default": 0.5},
+        {"name": "itemRadius", "type": "number | string", "default": 12},
+        {"name": "shadow", "type": "number", "default": 0.3},
+        {"name": "hoverScale", "type": "number", "default": 1.08},
+        {"name": "hoverSpeed", "type": "number", "default": 0.3},
+        {"name": "draggable", "type": "boolean", "default": true},
+        {"name": "clickToFront", "type": "boolean", "default": true},
+        {"name": "onItemClick", "type": "(index, src) => void", "default": null},
+        {"name": "alignToPath", "type": "boolean", "default": false},
+        {"name": "intro", "type": "boolean", "default": true},
+        {"name": "centerContent", "type": "ReactNode", "default": null}
+    ],
+    "editableByProps": [
+        "Images and alt text",
+        "Path shape and its size, rotation, star points and custom SVG path",
+        "Speed, direction, easing, pause, hover slowdown",
+        "Item size, corner radius, shadow, depth effect and hover scale",
+        "Path line visibility, color, width and dash",
+        "Drag, click to front, click callback, align to path, intro toggle",
+        "Content placed in the center"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change how strongly front images grow or back images shrink and dim",
+            "where": "FRONT_GROW, BACK_SHRINK and BACK_DIM constants"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SPREAD and INTRO_FADE constants"
+        },
+        {
+            "change": "Add a new built-in shape",
+            "where": "generate*Path functions and the switch inside the path useMemo"
+        },
+        {
+            "change": "Change wave count (fixed at 3)",
+            "where": "generateWavePath call in the path useMemo"
+        }
+    ],
+    "fixed": [
+        "Parent must give the component a width, height is derived from the path aspect ratio when height is auto",
+        "Needs Tailwind CSS: layout and cursor classes are Tailwind utilities, item and center markup uses data attributes for styling",
+        "Component is aria-hidden unless onItemClick is provided",
+        "Items are positioned with JS transforms every frame, so outer sizes come from the container, not itemSize alone",
+        "Sample count, drag threshold and hover z-order boost are hardcoded",
+        "Honors prefers-reduced-motion by stopping the orbit and skipping the intro",
+        "Horizontal drag only, vertical touch scroll is left to the page",
+        "Works on small screens since it scales to the container width, but item size shrinks with it"
+    ],
+    "mood": ["playful", "dynamic", "modern", "showcase"],
+    "industries": ["creative agency", "portfolio", "saas", "events", "e-commerce"],
+    "sections": ["hero", "gallery", "logos"],
+    "dependencies": []
+}

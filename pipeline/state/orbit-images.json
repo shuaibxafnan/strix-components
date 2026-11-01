@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "orbit-images",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.589Z"
+  "note": "Bits describe-only. Parent must give width; height from path aspect ratio. aria-hidden unless onItemClick. Respects reduced motion. Horizontal drag only. Hardcoded 3 waves and timings. Tile styling not fully checked.",
+  "updatedAt": "2026-11-01T10:18:39.759Z",
+  "gateOutput": "gates passed"
 }
