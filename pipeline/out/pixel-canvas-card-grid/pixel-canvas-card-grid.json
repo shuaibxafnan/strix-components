@@ -1,0 +1,46 @@
+{
+  "slug": "pixel-canvas-card-grid",
+  "name": "Pixel Canvas Card Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Grid of dark icon cards that fill with a shimmering pixel canvas radiating from the center on hover or focus, with a tinted border and icon.",
+  "contents": [
+    "Grid of cards, each with an icon and an accessible hidden label button",
+    "Canvas layer per card with colored pixels"
+  ],
+  "behavior": [
+    "Pixels appear outward from the card center on hover or focus and shimmer, then shrink away on leave",
+    "Border and icon tint to the card active color on hover",
+    "Radial vignette fades and a center glow appears on hover",
+    "Canvas resizes with the card via ResizeObserver; reduced motion removes the delay and shimmer",
+    "Grid is 2 columns on mobile and tablet, 4 on large screens"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#09090b" },
+    { "name": "cards", "type": "{label,icon,activeColor,pixelColors,pixelGap,pixelSpeed,noFocus}[]", "default": "4 sample cards (Layout, Code, Command, Dropper)" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of cards, labels, icon choice (layout, code, command, dropper)",
+    "Per card hover tint, pixel colors, pixel gap (4 to 50), pixel speed (0 to 100) and focus behavior",
+    "Background color"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Add more icons",
+      "where": "ICONS constant"
+    },
+    {
+      "change": "Change card border color, aspect ratio or vignette colors",
+      "where": "className and style of the pc-card div inside Card"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Cards use a dark styling with fixed vignette and glow colors"
+  ],
+  "mood": ["techy", "dark", "playful", "modern"],
+  "industries": ["saas", "developer tools", "design tools", "agency"],
+  "sections": ["features", "services"],
+  "dependencies": []
+}
