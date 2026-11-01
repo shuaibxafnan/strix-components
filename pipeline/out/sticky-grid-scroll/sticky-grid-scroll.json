@@ -1,0 +1,78 @@
+{
+    "slug": "sticky-grid-scroll",
+    "name": "Sticky Grid Scroll",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Full-screen intro image followed by a sticky section where a title sits over an image grid. Scrolling slides columns in, then zooms and spreads the grid apart while a description and link appear.",
+    "contents": [
+        "Full-height intro image with caption",
+        "Sticky section with title, description and link",
+        "Square image grid with configurable columns"
+    ],
+    "behavior": [
+        "Sticky section slides up over the intro with a parallax effect",
+        "Grid columns enter from alternating top and bottom with stagger, scrubbed by scroll",
+        "Grid zooms while outer columns shift sideways and middle columns shift vertically",
+        "Description and link fade in as the zoom completes and fade out when scrolling back",
+        "Smooth scrolling through Lenis, with a line loader until images are preloaded"
+    ],
+    "props": [
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "bgColor", "type": "string", "default": "#ffffff" },
+        { "name": "textColor", "type": "string", "default": "#000000" },
+        { "name": "introImage", "type": "string", "default": "Unsplash image URL" },
+        { "name": "introCaption", "type": "string", "default": "Scroll-driven layout experiment" },
+        { "name": "introCaptionColor", "type": "string", "default": "#ffffff" },
+        { "name": "introAlt", "type": "string", "default": "" },
+        { "name": "introHeight", "type": "string", "default": "100vh" },
+        { "name": "title", "type": "string", "default": "Sticky Grid Scroll" },
+        { "name": "titleFontFamily", "type": "string", "default": "'Fraunces', serif" },
+        { "name": "titleFontSize", "type": "string", "default": "clamp(2.5rem, 6vw, 6.5rem)" },
+        { "name": "description", "type": "string", "default": "A structured scroll-driven image grid where movement unfolds progressively within a sticky layout." },
+        { "name": "buttonLabel", "type": "string", "default": "Learn more" },
+        { "name": "buttonHref", "type": "string", "default": "#" },
+        { "name": "images", "type": "string[]", "default": "12 Unsplash image URLs" },
+        { "name": "numColumns", "type": "number", "default": 3 },
+        { "name": "gridMaxWidth", "type": "string", "default": "46rem" },
+        { "name": "columnGap", "type": "string", "default": "2rem" },
+        { "name": "rowGap", "type": "string", "default": "2.5rem" },
+        { "name": "scrollLength", "type": "string", "default": "425vh" },
+        { "name": "zoomScale", "type": "number", "default": 2.05 },
+        { "name": "lateralShiftPercent", "type": "number", "default": 40 },
+        { "name": "revealStagger", "type": "number", "default": 0.06 },
+        { "name": "enableSmoothScroll", "type": "boolean", "default": true },
+        { "name": "lerp", "type": "number", "default": 0.08 },
+        { "name": "wheelMultiplier", "type": "number", "default": 1.4 }
+    ],
+    "editableByProps": [
+        "All text, link, intro image and grid images",
+        "Background, text and caption colors",
+        "Column count, grid width, gaps, zoom and shift amounts, stagger",
+        "Scroll length, intro height, smooth scroll on or off and its feel"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change which columns enter from the top versus the bottom",
+            "where": "fromTop constant inside gridRevealTimeline"
+        },
+        {
+            "change": "Change the timing between reveal, zoom and content toggle",
+            "where": "gridScrollTimeline chain of add calls"
+        },
+        {
+            "change": "Remove the line loader",
+            "where": "isLoading block at the top of the returned JSX and the loader keyframes in the style tag"
+        }
+    ],
+    "fixed": [
+        "Takes over page scrolling with Lenis unless enableSmoothScroll is false, so it should be the only smooth scroll on the page",
+        "Registers a gsap ticker and ScrollTrigger instances, all removed on unmount",
+        "Title font defaults to Fraunces but the font is not loaded by the component, the host page must provide it or it falls back to serif",
+        "Shows a fixed full-screen loader overlay until images are preloaded",
+        "Includes the intro section and a tall scroll section that the effect needs for its scroll range"
+    ],
+    "mood": ["editorial", "minimal", "modern", "playful"],
+    "industries": ["photography", "fashion", "portfolio", "architecture", "design agency"],
+    "sections": ["hero", "gallery", "portfolio"],
+    "dependencies": ["gsap", "lenis"]
+}
