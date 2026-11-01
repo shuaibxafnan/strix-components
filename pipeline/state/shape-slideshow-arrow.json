@@ -4,11 +4,12 @@
   "sourceHash": "794e78183d8cfb1aa0e64689e712fd63eaedc7218642f34df1473595b2b315ed",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "arrow-clip-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.537Z"
+  "note": "shape-slideshow-arrow -> arrow-clip-slideshow; replaced CDN gsap script with dynamic import of gsap; title default Mooz -> Stories; frame: none (full-width slider); variants: none; responsive: tightened nav spacing and counter pill on mobile",
+  "updatedAt": "2026-11-01T11:47:06.660Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

@@ -4,11 +4,12 @@
   "sourceHash": "f22d9049c63a76813add60ea9fe1802cf2e2638c5928b3047421be26b8cea3da",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "shoe-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.539Z"
+  "note": "No rename. Gates passed. Only change: added className prop on both roots. Category cards-galleries. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:52:09.534Z",
+  "gateOutput": "gates passed"
 }

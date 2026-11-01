@@ -4,11 +4,12 @@
   "sourceHash": "22dcafce628763f295425960d4baf5dac3b379a9d5ce86bdb143ce6e4df9dde9",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-progress-magazine",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.531Z"
+  "note": "No rename. Gates passed. Content moved to props (label, readSuffix, meta, blocks, colors, className). Responsive fixes: wrap, truncate, overflow-x-hidden, resize listener. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:32:18.595Z",
+  "gateOutput": "gates passed"
 }

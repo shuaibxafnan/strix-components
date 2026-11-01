@@ -4,11 +4,12 @@
   "sourceHash": "582c0d107a91964db8c2cc10458c3a7a842091d06ffe40bb207f5abc156ff701",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "shape-slideshow-diamond",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.538Z"
+  "note": "No rename. Gates passed, warning: style tag without template literal. CDN gsap replaced with npm dynamic import. Title default Mooz to Featured. Wheel timer cleared on unmount. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:49:09.717Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

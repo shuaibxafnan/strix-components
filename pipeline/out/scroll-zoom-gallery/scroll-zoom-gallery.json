@@ -1,0 +1,83 @@
+{
+    "slug": "scroll-zoom-gallery",
+    "name": "Scroll Zoom Gallery",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Vertical column of square image cards that zoom in and brighten as they pass through the viewport center, then ease back out, driven by CSS scroll timelines.",
+    "contents": [
+        "Vertical list of square image cards with rounded frame and gradient overlay",
+        "Eyebrow label and title on each card"
+    ],
+    "behavior": [
+        "Each image scales up and goes from dim grayscale to bright color as it scrolls into view, then back out",
+        "Uses native CSS view timelines, so browsers without support show static images",
+        "Hover lifts the caption and softens the overlay"
+    ],
+    "props": [
+        {
+            "name": "items",
+            "type": "{src,alt,eyebrow,title}[]",
+            "default": "6 sample images"
+        },
+        {
+            "name": "scaleAmount",
+            "type": "number",
+            "default": 1.35
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#09090b"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#f5f5f5"
+        },
+        {
+            "name": "eyebrowColor",
+            "type": "string",
+            "default": "#a3a3a3"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Number of cards, images, alt text, labels and titles",
+        "Peak zoom amount",
+        "Background, text and label colors"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the dim and bright filter levels during the zoom",
+            "where": "modernZoom keyframes inside the style tag"
+        },
+        {
+            "change": "Change card size or shape",
+            "where": "aspect-square and max-w classes on the zoom-track element"
+        }
+    ],
+    "fixed": [
+        "Zoom relies on CSS animation-timeline, supported in modern Chromium and Safari, other browsers show static images",
+        "Card ring and shadow use fixed white and black tones"
+    ],
+    "mood": [
+        "minimal",
+        "dark",
+        "cinematic"
+    ],
+    "industries": [
+        "photography",
+        "art",
+        "fashion",
+        "architecture"
+    ],
+    "sections": [
+        "gallery",
+        "portfolio"
+    ],
+    "dependencies": []
+}

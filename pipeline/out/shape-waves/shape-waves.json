@@ -1,0 +1,121 @@
+{
+    "slug": "shape-waves",
+    "name": "Shape Waves",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGPU grid of tiny squares, circles and triangles that ripple with drifting noise, light up and splash under the pointer, with optional text cut-out, glow and a radial intro.",
+    "contents": [
+        "Root div filling its parent with a background color",
+        "Single canvas rendered with WebGPU through vgpu: shape grid, blurred glow pass and composite"
+    ],
+    "behavior": [
+        "Noise field drifts over time and picks the shape and size of each grid cell",
+        "Pointer movement anywhere on the window sends ripples through nearby cells and tints them with the hover color",
+        "Optional text is cut out of the grid as an empty mask in the center",
+        "Radial intro reveals cells from the center outward, replayed when introKey changes",
+        "Edges fade toward the background color",
+        "Bright cells emit a glow",
+        "Animation stops when offscreen, tab hidden, paused, speed is 0 or reduced motion is on",
+        "Canvas fades in once ready; on GPU failure it stays hidden and onError is called"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "" },
+        { "name": "fontFamily", "type": "string", "default": "Geist, \"Geist Sans\", system-ui, sans-serif" },
+        { "name": "fontWeight", "type": "number", "default": 500 },
+        { "name": "textSize", "type": "number", "default": 0.6 },
+        { "name": "shapes", "type": "'mixed' | 'squares' | 'circles' | 'triangles'", "default": "mixed" },
+        { "name": "cellSize", "type": "number", "default": 10 },
+        { "name": "dotSize", "type": "number", "default": 0.75 },
+        { "name": "color", "type": "string", "default": "#929292" },
+        { "name": "hoverColor", "type": "string", "default": "#ffffff" },
+        { "name": "backgroundColor", "type": "string", "default": "#000000" },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "scale", "type": "number", "default": 1 },
+        { "name": "contrast", "type": "number", "default": 1 },
+        { "name": "brightness", "type": "number", "default": 0.4 },
+        { "name": "flow", "type": "number", "default": 0 },
+        { "name": "direction", "type": "number", "default": 0 },
+        { "name": "fade", "type": "number", "default": 0.25 },
+        { "name": "interactive", "type": "boolean", "default": true },
+        { "name": "splashRadius", "type": "number", "default": 40 },
+        { "name": "splashStrength", "type": "number", "default": 0.4 },
+        { "name": "glow", "type": "number", "default": 0.35 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "introDuration", "type": "number", "default": 1.6 },
+        { "name": "introKey", "type": "number", "default": 0 },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "onError", "type": "(error: Error) => void", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Shape style, cell size, dot size and shape colors",
+        "Hover color, background color and glow strength",
+        "Noise scale, speed, contrast, brightness, flow and direction",
+        "Edge fade, pointer interaction, splash radius and strength",
+        "Intro on/off, duration and replay through introKey",
+        "Optional centered text with font family, weight and size",
+        "Pause and error callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change ripple physics (wave speed, friction, decay)",
+            "where": "WAVE_SPEED, WAVE_FRICTION and WAVE_DECAY constants at the top of the file"
+        },
+        {
+            "change": "Change intro look (band width, warp, jitter)",
+            "where": "INTRO_BAND, INTRO_WARP and INTRO_JITTER constants"
+        },
+        {
+            "change": "Change the glow brightness cutoff",
+            "where": "GLOW_THRESHOLD constant in SCENE_SHADER"
+        },
+        {
+            "change": "Change pixel ratio cap",
+            "where": "MAX_DPR constant"
+        }
+    ],
+    "fixed": [
+        "Requires the vgpu package and a browser with WebGPU; without it the canvas stays invisible and only the background color shows",
+        "Client component, rendered only in the browser",
+        "Fills its parent, so the parent needs a defined width and height",
+        "Root is pointer-events-none and aria-hidden, so it is purely decorative and cannot receive clicks",
+        "Listens to pointermove and scroll on the window while mounted, so hover works even when content sits above it",
+        "Colors accept only hex strings (3 or 6 digits), others fall back to defaults",
+        "cellSize minimum is 2, scale minimum is 0.05, introDuration minimum is 0.1",
+        "Pixel ratio capped at 2 and text mask capped at 1024px",
+        "Noise detail uses only 2 octaves and three size levels, fixed in the shader",
+        "Respects prefers-reduced-motion by stopping animation",
+        "Default font is Geist, which must be loaded by the page for text to use it"
+    ],
+    "mood": [
+        "futuristic",
+        "technical",
+        "dark",
+        "minimal",
+        "playful"
+    ],
+    "industries": [
+        "saas",
+        "developer tools",
+        "ai",
+        "design agency",
+        "technology"
+    ],
+    "sections": [
+        "hero",
+        "background"
+    ],
+    "dependencies": [
+        "vgpu"
+    ],
+    "variants": {
+        "prop": "shapes",
+        "default": "mixed",
+        "options": [
+            { "value": "mixed", "look": "Squares, circles and triangles mixed across the field by noise level, all at the same size", "useWhen": "You want the full varied tech look" },
+            { "value": "squares", "look": "Only squares whose size varies with noise level", "useWhen": "You want a pixel or grid feel" },
+            { "value": "circles", "look": "Only circles whose size varies with noise level", "useWhen": "You want a soft halftone dot look" },
+            { "value": "triangles", "look": "Only triangles whose size varies with noise level", "useWhen": "You want a sharp, directional look" }
+        ]
+    }
+}

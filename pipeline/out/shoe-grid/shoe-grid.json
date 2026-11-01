@@ -1,0 +1,64 @@
+{
+  "slug": "shoe-grid",
+  "name": "Shoe Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen 3D product grid of shoe images on a topographic shader background. Drag to pan, zoom between overview and close-up, switch collections through a floating control island, and buy the focused item.",
+  "contents": [
+    "Grid of product tiles with image, title, price and color",
+    "Header with brand name and tagline",
+    "Floating control island with collection tabs, zoom and buy buttons",
+    "Mini map of the grid and a loading screen"
+  ],
+  "behavior": [
+    "WebGL scene with drag-to-pan camera rig and animated zoom between overview and focus",
+    "Tiles with holographic card shader and animated topography background",
+    "Collection switch animates the old grid out and the new grid in",
+    "Collections are built from item brands unless a collections prop is given"
+  ],
+  "props": [
+    {"name": "items", "type": "{title,price,image_url,brand,primary_color,primary_color_hex}[]", "default": "80 sample shoes across 4 brands"},
+    {"name": "collections", "type": "{label,filterFn}[] | null", "default": null},
+    {"name": "brandName", "type": "string", "default": "ARCHIVE"},
+    {"name": "brandTagline", "type": "string", "default": "Field Index"},
+    {"name": "allLabel", "type": "string", "default": "All"},
+    {"name": "countLabel", "type": "string", "default": "in view"},
+    {"name": "mapLabel", "type": "string", "default": "Map"},
+    {"name": "buyLabel", "type": "string", "default": "Buy now"},
+    {"name": "zoomInLabel", "type": "string", "default": "Zoom in"},
+    {"name": "zoomOutLabel", "type": "string", "default": "Zoom out"},
+    {"name": "loadingLabel", "type": "string", "default": "Loading"},
+    {"name": "bgColor", "type": "string", "default": "#ffffff"},
+    {"name": "inkColor", "type": "string", "default": "#000000"},
+    {"name": "accentColor", "type": "string", "default": "#000000"},
+    {"name": "mutedColor", "type": "string", "default": "#737373"},
+    {"name": "gridCols", "type": "number", "default": 8},
+    {"name": "itemSize", "type": "number", "default": 2.5},
+    {"name": "gap", "type": "number", "default": 0.4},
+    {"name": "zoomOutLevel", "type": "number", "default": 31},
+    {"name": "zoomInLevel", "type": "number", "default": 12},
+    {"name": "onBuyNow", "type": "function | null", "default": null},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Products, images, prices, collections and all labels",
+    "Brand name and tagline",
+    "Colors, grid columns, tile size, gap and zoom levels",
+    "Buy button callback"
+  ],
+  "needsCodeEdit": [
+    {"change": "Tune camera, damping and transition timing", "where": "BASE_CONFIG constant"},
+    {"change": "Change the background pattern", "where": "TOPOGRAPHY_FRAG shader"},
+    {"change": "Change the tile card look", "where": "HOLO_FRAG shader"}
+  ],
+  "fixed": [
+    "Root is fixed and covers the whole viewport, so it should be the only content on the page",
+    "Blocks touch scrolling on the page area (touch-none) because dragging pans the grid",
+    "Runs a WebGL canvas and a requestAnimationFrame sync loop, cleaned up on unmount",
+    "Default product images load from a remote GitHub URL"
+  ],
+  "mood": ["editorial", "minimal", "immersive", "modern"],
+  "industries": ["fashion", "e-commerce", "sportswear", "retail"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": ["three", "@react-three/fiber", "@react-three/drei", "maath", "framer-motion"]
+}

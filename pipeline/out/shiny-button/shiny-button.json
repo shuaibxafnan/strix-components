@@ -1,0 +1,46 @@
+{
+  "slug": "shiny-button",
+  "name": "Shiny Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Dark rounded button with an inner inset panel and a soft glossy shine and glow that follow the pointer across its surface on hover.",
+  "contents": ["Single button with a text label"],
+  "behavior": [
+    "On hover, radial glows and a diagonal shine streak fade in and track the pointer position",
+    "Label color changes on hover",
+    "Button scales down slightly when pressed"
+  ],
+  "props": [
+    {"name": "label", "type": "string", "default": "Shiny Button"},
+    {"name": "baseBgColor", "type": "string", "default": "bg-zinc-800"},
+    {"name": "innerBgColor", "type": "string", "default": "bg-zinc-900/75"},
+    {"name": "textColor", "type": "string", "default": "text-zinc-300"},
+    {"name": "hoverTextColor", "type": "string", "default": "text-zinc-50"},
+    {"name": "borderRadius", "type": "string", "default": "rounded-[20px]"},
+    {"name": "innerRadius", "type": "string", "default": "rounded-[18px]"},
+    {"name": "py", "type": "string", "default": "py-3.5"},
+    {"name": "px", "type": "string", "default": "px-7"},
+    {"name": "glowColor", "type": "string", "default": "rgba(255, 255, 255, 0.27)"},
+    {"name": "shineColor", "type": "string", "default": "rgba(255, 255, 255, 0.27)"},
+    {"name": "glowSize", "type": "string", "default": "100% 50%"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Label text",
+    "Background, inner panel and text colors as Tailwind classes",
+    "Glow and shine colors and glow size",
+    "Corner radii and padding"
+  ],
+  "needsCodeEdit": [
+    {"change": "Add a click handler or link behavior", "where": "button element with ref buttonRef"},
+    {"change": "Change the shine streak angle or spread", "where": "repeating-linear-gradient in dynamicStyles"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Shine effect follows the pointer and only appears on hover, touch devices show no shine"
+  ],
+  "mood": ["sleek", "modern", "dark", "premium"],
+  "industries": ["saas", "technology", "fintech", "agency"],
+  "sections": ["hero", "cta"],
+  "dependencies": []
+}

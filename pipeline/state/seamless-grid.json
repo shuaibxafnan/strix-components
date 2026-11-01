@@ -4,11 +4,12 @@
   "sourceHash": "fa0d4df22c19133bfdc38286353f0d521d6e35fb6b773dfa0198444001ecb77e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "seamless-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.535Z"
+  "note": "No rename. Gates passed. CDN gsap, Flip, CustomEase replaced with npm dynamic imports. Responsive fixes. Cleanup fixes for timeouts, listeners, tweens. Added gridLabel, sliderLabel, className. cdnfonts link kept, not removed on unmount. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:42:06.534Z",
+  "gateOutput": "gates passed"
 }

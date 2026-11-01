@@ -4,11 +4,12 @@
   "sourceHash": "c9ea4ec31fcf8b8c464c6d904b54207f95dd5d9b578bd159e5a8eecd5b475beb",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-layout-galleries",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.530Z"
+  "note": "No rename. Gates passed, warning: style tag without template literal. Removed credits, showCredits. CDN replaced with npm gsap, lenis dynamic imports; lenis options untested. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:29:10.806Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

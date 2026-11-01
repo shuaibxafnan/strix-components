@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "scroll-reveal",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.631Z"
+  "note": "React Bits, JSON only. Gates passed. Category text-effects. Variants from effect prop: fade, rise, flip, scale.",
+  "updatedAt": "2026-11-01T11:32:55.860Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,79 @@
+{
+  "slug": "circle-clip-slideshow",
+  "name": "Circle Clip Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-height slideshow where each photo sits inside a circular clip that shrinks and slides away vertically while big uppercase serif-accent headlines and an Explore link animate in, with arrow navigation and a slide counter.",
+  "contents": [
+    "Full-screen slides with background image, two-row headline with italic and bold accent words, and a link",
+    "Previous and next arrow buttons with a padded slide counter pill"
+  ],
+  "behavior": [
+    "Image is revealed through a circular clip-path that shrinks, slides out vertically and re-expands for the next slide",
+    "Headline rows slide in with stagger and the link fades in",
+    "Hovering the link grows and moves the circle clip",
+    "Arrow keys and arrow buttons navigate, optional wheel navigation and autoplay",
+    "Image parallax shifts during slide transitions"
+  ],
+  "props": [
+    { "name": "slides", "type": "{image,rows,linkLabel,linkHref}[]", "default": "6 sample slides" },
+    { "name": "bgColor", "type": "string", "default": "#000" },
+    { "name": "textColor", "type": "string", "default": "#fff" },
+    { "name": "frameColor", "type": "string", "default": "#ff5ba4" },
+    { "name": "showNav", "type": "boolean", "default": true },
+    { "name": "showIndex", "type": "boolean", "default": true },
+    { "name": "clipInitial", "type": "string", "default": "circle(55% at 70% 50%)" },
+    { "name": "clipFinal", "type": "string", "default": "circle(15% at 70% 50%)" },
+    { "name": "clipHover", "type": "string", "default": "circle(20% at 30% 50%)" },
+    { "name": "hoverDuration", "type": "number", "default": 1 },
+    { "name": "hoverEase", "type": "string", "default": "expo" },
+    { "name": "clipOutDuration", "type": "number", "default": 1 },
+    { "name": "clipOutEase", "type": "string", "default": "power3" },
+    { "name": "clipInDuration", "type": "number", "default": 1.5 },
+    { "name": "clipInEase", "type": "string", "default": "expo.inOut" },
+    { "name": "slideDuration", "type": "number", "default": 1 },
+    { "name": "slideEase", "type": "string", "default": "power2.inOut" },
+    { "name": "slideDelay", "type": "number", "default": 0.6 },
+    { "name": "textOutDuration", "type": "number", "default": 1 },
+    { "name": "textInDuration", "type": "number", "default": 1.5 },
+    { "name": "textInDelay", "type": "number", "default": 1.1 },
+    { "name": "textStagger", "type": "number", "default": 0.1 },
+    { "name": "linkFadeDuration", "type": "number", "default": 1 },
+    { "name": "linkFadeDelay", "type": "number", "default": 1.4 },
+    { "name": "imgParallax", "type": "number", "default": 50 },
+    { "name": "autoplay", "type": "boolean", "default": false },
+    { "name": "autoplayDelay", "type": "number", "default": 5000 },
+    { "name": "enableKeyboard", "type": "boolean", "default": true },
+    { "name": "enableWheel", "type": "boolean", "default": false },
+    { "name": "headlineSize", "type": "string", "default": "clamp(2rem,6.5vw,6rem)" },
+    { "name": "accentSize", "type": "string", "default": "clamp(2rem,7vw,6rem)" },
+    { "name": "serifFamily", "type": "string", "default": "Georgia, serif" },
+    { "name": "height", "type": "string", "default": "100vh" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Slides, images, headline rows with emphasis styles, link labels and hrefs",
+    "Background, text and navigation colors",
+    "Clip shapes, durations, easings, parallax and stagger",
+    "Autoplay, keyboard, wheel, navigation and counter visibility",
+    "Headline sizes, accent font family and section height"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the arrow icon artwork",
+      "where": "svg elements inside the Previous slide and Next slide buttons"
+    },
+    {
+      "change": "Change the link underline animation",
+      "where": "-link::after rule in the css string"
+    }
+  ],
+  "fixed": [
+    "Arrow key listener on window is active while mounted and removed on unmount",
+    "Slide transitions block new navigation until the timeline completes"
+  ],
+  "mood": ["editorial", "cinematic", "elegant", "bold"],
+  "industries": ["fashion", "travel", "photography", "art", "luxury", "agency"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}

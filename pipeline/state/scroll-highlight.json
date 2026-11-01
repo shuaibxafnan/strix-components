@@ -4,11 +4,12 @@
   "sourceHash": "50bddd016756f88deea44b3278ac617453e9a41962c0f7034465663e93b6bb53",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-highlight",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.529Z"
+  "note": "No rename. Gates passed. Removed theme toggle, view-transition style, Vercel hero, docs link, demo wrapper; copy is default sections prop. Added backgroundColor, textColor props. Mark no longer exported. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:27:38.432Z",
+  "gateOutput": "gates passed"
 }

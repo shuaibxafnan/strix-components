@@ -1,0 +1,58 @@
+{
+    "slug": "scroll-highlight-reader",
+    "name": "Scroll Highlight Reader",
+    "category": "text-effects",
+    "isReactBits": false,
+    "description": "Long-form article layout where key phrases get highlighted as they scroll into view, with three highlight styles: full background, marker pen and minimal underline.",
+    "contents": [
+        "Article title",
+        "List of paragraphs with highlighted phrases"
+    ],
+    "behavior": [
+        "Highlighted phrases activate once when they scroll into the viewport and stay active",
+        "Marker pen variant grows a colored bar behind the phrase",
+        "Text color and highlight transitions animate over 500ms"
+    ],
+    "props": [
+        { "name": "articleTitle", "type": "string", "default": "The Carbon in Our Apple Pies" },
+        { "name": "paragraphs", "type": "{id,text:{content,highlight?}[]}[]", "default": "7 sample paragraphs" },
+        { "name": "variant", "type": "\"background\" | \"half\" | \"underline\"", "default": "background" },
+        { "name": "highlightColor", "type": "string", "default": "rgba(252, 211, 77, 0.8)" },
+        { "name": "highlightTextColor", "type": "string", "default": "#09090b" },
+        { "name": "backgroundColor", "type": "string", "default": "#fafafa" },
+        { "name": "textColor", "type": "string", "default": "#27272a" },
+        { "name": "titleColor", "type": "string", "default": "#18181b" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Title, paragraphs and which phrases are highlighted",
+        "Highlight style, highlight color, and all text and background colors"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the trigger point or sensitivity of the highlight",
+            "where": "rootMargin and threshold in the IntersectionObserver options"
+        },
+        {
+            "change": "Change article font or width",
+            "where": "font-serif and max-w-2xl classes on the root and main elements"
+        }
+    ],
+    "fixed": [
+        "Renders nothing until mounted on the client",
+        "Highlights stay active once triggered and do not reset when scrolling back up"
+    ],
+    "mood": ["editorial", "clean", "minimal"],
+    "industries": ["publishing", "media", "education", "blogging"],
+    "sections": ["blog", "about"],
+    "dependencies": [],
+    "variants": {
+        "prop": "variant",
+        "default": "background",
+        "options": [
+            { "value": "background", "look": "Phrase gets a filled highlight background with padding and rounded corners", "useWhen": "Article pages where key quotes must stand out strongly" },
+            { "value": "half", "look": "Marker pen bar sweeps under the lower half of the phrase", "useWhen": "Playful blog posts or case studies with a handwritten feel" },
+            { "value": "underline", "look": "Thin solid underline appears under the phrase", "useWhen": "Minimal editorial or documentation pages" }
+        ]
+    }
+}

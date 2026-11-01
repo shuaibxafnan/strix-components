@@ -4,11 +4,12 @@
   "sourceHash": "f9561a166b5e832371af2863f1faaaa579a8cc1764883e8de9520c51461e48d5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-parallax-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.531Z"
+  "note": "No rename. Gates passed. Root now single main with className. Kept font-face rules, title prop. Category cards-galleries. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:31:22.497Z",
+  "gateOutput": "gates passed"
 }

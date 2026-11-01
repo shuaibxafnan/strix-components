@@ -4,11 +4,12 @@
   "sourceHash": "5296e2de1db718dc2c2bc9dfe6b9e8743884417c122857fe10ba41a377a8c55f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-reveal-list",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.532Z"
+  "note": "No rename. Gates passed. CDN gsap replaced with npm dynamic imports in gsap.context with cleanup. Added eyebrow, scrollHint, backgroundColor, textColor, className props. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:33:40.393Z",
+  "gateOutput": "gates passed"
 }

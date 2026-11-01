@@ -1,0 +1,54 @@
+{
+  "slug": "glitch-scroll-gallery",
+  "name": "Glitch Scroll Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Vertical image gallery rendered in WebGL where images glitch and smear horizontally in proportion to scroll speed, laid out as alternating single images and rows of three.",
+  "contents": [
+    "Alternating solo image and three-image row blocks with colored borders",
+    "Fixed full-viewport WebGL canvas drawing the images over a solid background"
+  ],
+  "behavior": [
+    "Images are drawn as textures on a canvas synced to their DOM positions on every frame",
+    "Scroll velocity drives a glitch strength that decays over time",
+    "Meshes outside the viewport are hidden",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "24 sample image URLs"},
+    {"name": "bgColor", "type": "string", "default": "#490700"},
+    {"name": "borderColor", "type": "string", "default": "#82e7c2"},
+    {"name": "borderWidth", "type": "number", "default": 8},
+    {"name": "borderRadius", "type": "number", "default": 0},
+    {"name": "imageAspectRatio", "type": "string", "default": "1024 / 1536"},
+    {"name": "gap", "type": "number", "default": 20},
+    {"name": "sectionGap", "type": "number", "default": 250},
+    {"name": "soloWidthPercent", "type": "number", "default": 30},
+    {"name": "rowWidthPercent", "type": "number", "default": 60},
+    {"name": "sideImageWidthPercent", "type": "number", "default": 70},
+    {"name": "glitchSamples", "type": "number", "default": 5},
+    {"name": "glitchStrength", "type": "number", "default": 10},
+    {"name": "glitchMaxStrength", "type": "number", "default": 5},
+    {"name": "glitchDecay", "type": "number", "default": 10},
+    {"name": "resolutionScale", "type": "number", "default": 1},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Image list, background and border colors, border width and radius",
+    "Aspect ratio, spacing, and block widths",
+    "Glitch intensity, sample count, decay and render resolution"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the glitch look", "where": "FRAGMENT_SHADER_TEMPLATE constant"},
+    {"change": "Change the solo and row pattern", "where": "blocks loop before the return"}
+  ],
+  "fixed": [
+    "Canvas is fixed to the viewport and covers the whole screen behind the images",
+    "Image positions are read from the page scroll of the window, so the component expects to scroll with the page",
+    "Background color is applied both to the root and the WebGL clear color"
+  ],
+  "mood": ["glitchy", "bold", "experimental", "dark"],
+  "industries": ["art", "fashion", "photography", "music", "creative agency"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["three"]
+}

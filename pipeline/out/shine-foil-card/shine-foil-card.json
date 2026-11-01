@@ -1,0 +1,41 @@
+{
+    "slug": "shine-foil-card",
+    "name": "Shine Foil Card",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Grid of image cards that tilt in 3D toward the pointer while a holographic foil layer shines through a conic mask that rotates with the cursor position.",
+    "contents": [
+        "Grid of image cards with a holographic overlay on each",
+        "Hidden SVG edge-detection filter used by the shine layer"
+    ],
+    "behavior": [
+        "Active card tilts in 3D following the pointer and eases back on leave",
+        "Holographic overlay fades in on hover and is revealed by a conic mask rotated by pointer angle",
+        "Grid is one column on mobile and two columns from 768px, pointer events also respond to touch"
+    ],
+    "props": [
+        {"name": "items", "type": "{id,src,alt}[]", "default": "2 sample cards"},
+        {"name": "holographicOverlay", "type": "string", "default": "unsplash holographic image url"},
+        {"name": "gridWidth", "type": "string", "default": "max-w-[700px]"},
+        {"name": "sensitivityX", "type": "number", "default": 0.1},
+        {"name": "sensitivityY", "type": "number", "default": 0.1},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Number of cards, image sources and alt text",
+        "Holographic overlay image",
+        "Grid max width and tilt sensitivity"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the shine mask colors or stops", "where": "conic-gradient maskImage in the overlay div style"},
+        {"change": "Change card size or corner radius", "where": "aspect-[9/12] card div and rounded-[1em] figure"}
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "SVG filter with id filterEdges is injected into the page"
+    ],
+    "mood": ["futuristic", "premium", "playful", "shiny"],
+    "industries": ["nft", "gaming", "art", "ecommerce", "collectibles"],
+    "sections": ["gallery", "portfolio", "features"],
+    "dependencies": []
+}

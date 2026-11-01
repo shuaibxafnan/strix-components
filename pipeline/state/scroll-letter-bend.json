@@ -4,11 +4,12 @@
   "sourceHash": "22c707fc041324e86cc084291d182c70bab55365d115122a47957a20c813459d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-letter-bend",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.530Z"
+  "note": "No rename. Gates passed, warning: style tag without template literal. Lenis now npm dynamic import. Added per-section alt. Kept Google Fonts link injection. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:29:50.229Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

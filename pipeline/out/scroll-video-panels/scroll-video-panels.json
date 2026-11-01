@@ -1,0 +1,72 @@
+{
+  "slug": "scroll-video-panels",
+  "name": "Scroll Video Panels",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen scroll story where each chapter wipes up over a hero, with a background photo, sliding video tiles, and big masked title lines, ending in a footer title section.",
+  "contents": [
+    "Hero section with background image and large two-line title",
+    "Chapter panels, each with background image, three video tiles, big title with accent word and subtitle lines",
+    "Footer section with background image and large title"
+  ],
+  "behavior": [
+    "Each chapter is fixed and revealed by a scroll-scrubbed clip-path wipe from the bottom",
+    "Background image scales down and fades while video tiles slide in from alternating sides",
+    "Videos play only while the chapter is mostly in view and pause otherwise",
+    "Title and subtitle lines rise in with a staggered mask reveal and reverse when scrolling back",
+    "Reveal animation is skipped and videos stay paused with reduced motion preference"
+  ],
+  "props": [
+    { "name": "items", "type": "{image,videos:{sources:string[]}[],titleLines:string[],titleAccentWord:string,subtitleLines:string[]}[]", "default": "3 sample chapters" },
+    { "name": "heroImage", "type": "string", "default": "Unsplash landscape image URL" },
+    { "name": "heroTitleTop", "type": "string", "default": "Three" },
+    { "name": "heroTitleBottom", "type": "string", "default": "terrains" },
+    { "name": "heroTitleSuffix", "type": "string", "default": "" },
+    { "name": "footerImage", "type": "string", "default": "Pexels beach image URL" },
+    { "name": "footerTitleTop", "type": "string", "default": "Scroll" },
+    { "name": "footerTitleBottom", "type": "string", "default": "back" },
+    { "name": "footerTitleSuffix", "type": "string", "default": "up." },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "textColor", "type": "string", "default": "text-white" },
+    { "name": "accentColor", "type": "string", "default": "text-white/50" },
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "displayFontFamily", "type": "string", "default": "Space Grotesk" },
+    { "name": "displayFontUrl", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/space-grotesk@latest/latin-500-normal.woff2" },
+    { "name": "bodyFontFamily", "type": "string", "default": "Sora" },
+    { "name": "bodyFontUrl", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/sora@latest/latin-400-normal.woff2" },
+    { "name": "revealDuration", "type": "number", "default": 1.25 },
+    { "name": "slideDistance", "type": "string", "default": "100vw" },
+    { "name": "imageScaleStart", "type": "number", "default": 1.4 },
+    { "name": "imageScaleEnd", "type": "number", "default": 1.2 }
+  ],
+  "editableByProps": [
+    "Number of chapters, images, video sources, title lines, accent word and subtitle lines",
+    "Hero and footer images and titles",
+    "Background, text and accent color classes",
+    "Display and body fonts, reveal duration, tile slide distance and image scale"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the scroll length of each chapter",
+      "where": "data-ghost div with h-[300vh]"
+    },
+    {
+      "change": "Change the timing of the wipe, tile slide and fade stages",
+      "where": "The gsap timeline with scrollTrigger inside the useEffect"
+    },
+    {
+      "change": "Change the video tile count or layout",
+      "where": "item.videos.map block with data-tile"
+    }
+  ],
+  "fixed": [
+    "Chapter panels are position fixed and driven by invisible 300vh ghost spacers that give the scroll range",
+    "Uses GSAP ScrollTrigger scrub on the page scroll, so the component should span the full page width",
+    "Videos are muted and only play inside the active scroll range",
+    "Accent word styling applies only to the first matching word per chapter"
+  ],
+  "mood": ["cinematic", "immersive", "bold", "editorial"],
+  "industries": ["travel", "film", "photography", "tourism", "outdoor brands"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": ["gsap"]
+}

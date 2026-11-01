@@ -1,0 +1,60 @@
+{
+  "slug": "seamless-grid",
+  "name": "Seamless Grid",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen image grid that expands a tile into a full-bleed slider with title, paragraph and thumbnails, switched by a Grid/Slider toggle, with a counting preloader on load.",
+  "contents": [
+    "Counting preloader overlay",
+    "Grid of image tiles",
+    "Full-screen slider with title and paragraph overlay",
+    "Thumbnail strip and Grid/Slider toggle"
+  ],
+  "behavior": [
+    "Preloader counts to 100 then fades out",
+    "Active tile expands with GSAP Flip into a full-screen slide",
+    "Slides change with a parallax sideways transition via thumbnails, arrow keys or swipe",
+    "Toggle returns the slide to its grid tile"
+  ],
+  "props": [
+    { "name": "slides", "type": "{image,title,paragraph}[]", "default": "6 sample slides" },
+    { "name": "bgColor", "type": "string", "default": "#111" },
+    { "name": "textColor", "type": "string", "default": "#f0f0f0" },
+    { "name": "accentColor", "type": "string", "default": "#ffffff" },
+    { "name": "fontDisplay", "type": "string", "default": "'PP Neue Montreal', 'Helvetica Neue', sans-serif" },
+    { "name": "fontMono", "type": "string", "default": "'TheGoodMonolith', 'Courier New', monospace" },
+    { "name": "preloaderDuration", "type": "number", "default": 2048 },
+    { "name": "defaultActiveIndex", "type": "number", "default": 4 },
+    { "name": "thumbnailWidth", "type": "string", "default": "60px" },
+    { "name": "thumbnailHeight", "type": "string", "default": "40px" },
+    { "name": "gridCols", "type": "number", "default": 3 },
+    { "name": "gridRows", "type": "number", "default": 2 },
+    { "name": "gridLabel", "type": "string", "default": "GRID" },
+    { "name": "sliderLabel", "type": "string", "default": "SLIDER" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Slides: images, titles and paragraphs",
+    "Colors, fonts, preloader duration, grid size, thumbnail size and toggle labels"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change animation timings",
+      "where": "T constant inside the init function"
+    },
+    {
+      "change": "Change easing curves",
+      "where": "CustomEase.create calls for mainEase and sideEase"
+    }
+  ],
+  "fixed": [
+    "Loads a font stylesheet link into document.head for the mono font",
+    "Listens for arrow keys and touch swipes on the document while mounted",
+    "Preloader, slider layers, thumbnails and toggle use fixed positioning over the viewport",
+    "Root is a full-screen section that clips its content"
+  ],
+  "mood": ["cinematic", "editorial", "minimal", "dark"],
+  "industries": ["photography", "portfolio", "art", "fashion", "architecture"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

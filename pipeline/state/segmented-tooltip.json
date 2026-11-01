@@ -4,11 +4,12 @@
   "sourceHash": "b555aed338c25fbe88ed661085916408c6449768835f45fb423ec8823b5d7314",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "segmented-tooltip",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.536Z"
+  "note": "No rename. Gates passed, warning: style tag without template literal. CDN gsap replaced with npm dynamic import. Touch relies on mouse emulation. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:43:56.723Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

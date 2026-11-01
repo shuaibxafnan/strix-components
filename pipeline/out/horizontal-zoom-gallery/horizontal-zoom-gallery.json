@@ -1,0 +1,48 @@
+{
+  "slug": "horizontal-zoom-gallery",
+  "name": "Horizontal Zoom Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-height horizontal snap gallery of portrait image cards where each image zooms and brightens as it passes the center of the viewport, driven by CSS scroll timelines.",
+  "contents": [
+    "Row of portrait image cards with label and title overlay",
+    "Fixed scroll hint text in the bottom left on large screens"
+  ],
+  "behavior": [
+    "Horizontal scroll with snap-to-center",
+    "Each image scales up and brightens at the center using a CSS view timeline, falling back to static images where unsupported",
+    "Card ring and overlay react on hover"
+  ],
+  "props": [
+    { "name": "items", "type": "{src,alt,label,title}[]", "default": "6 sample items" },
+    { "name": "scaleAmount", "type": "number", "default": 1.35 },
+    { "name": "hintText", "type": "string", "default": "[ Scroll Sideways to Explore ]" },
+    { "name": "backgroundColor", "type": "string", "default": "#09090b" },
+    { "name": "textColor", "type": "string", "default": "#f5f5f5" },
+    { "name": "accentColor", "type": "string", "default": "#E2E8F0" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of cards, images, alt text, labels and titles",
+    "Zoom strength, hint text, background, text and hint colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change card width or aspect ratio",
+      "where": "aspect-[3/4] and w-[75vw] classes on the zoom-track div"
+    },
+    {
+      "change": "Change the brightness and grayscale of the zoom effect",
+      "where": "modernZoom keyframes in the style block"
+    }
+  ],
+  "fixed": [
+    "Zoom animation needs browser support for CSS scroll-driven animations, otherwise images stay static",
+    "Scroll hint is positioned fixed to the viewport and hidden below the lg breakpoint",
+    "Gallery section fills the viewport height"
+  ],
+  "mood": ["minimal", "dark", "editorial", "modern"],
+  "industries": ["photography", "art", "architecture", "fashion", "portfolio"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

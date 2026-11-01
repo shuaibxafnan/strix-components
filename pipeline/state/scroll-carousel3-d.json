@@ -4,11 +4,12 @@
   "sourceHash": "a60c35603efaa21c4252d1cf3d01641348eb667bd255fc612de332cc17f03a7e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-carousel-3d",
+  "nameLocked": true,
+  "status": "gate_failed",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.527Z"
+  "note": "Renamed to scroll-carousel-3d. CDN gsap loaders replaced with npm gsap dynamic imports. Added className, closeLabel props. Fixed preview grid overflow at 360px. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:21:30.710Z",
+  "gateOutput": "ERROR default export is ScrollCarousel3D, expected ScrollCarousel3d"
 }

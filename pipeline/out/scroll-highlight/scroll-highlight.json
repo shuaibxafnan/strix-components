@@ -1,0 +1,49 @@
+{
+  "slug": "scroll-highlight",
+  "name": "Scroll Highlight",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Article-style page where selected phrases get a marker-style highlight that sweeps in as they scroll into view, each with its own hue, over a faded grid backdrop.",
+  "contents": [
+    "Sections list with a title and paragraphs or bullet lists",
+    "Inline highlighted phrases with individual hues",
+    "Fixed grid overlay behind the content"
+  ],
+  "behavior": [
+    "Highlight sweeps across a phrase when 80% of it is visible and retracts when it leaves",
+    "Grid overlay stays fixed and fades toward the top left"
+  ],
+  "props": [
+    { "name": "sections", "type": "{title,blocks:({parts:(string|{mark,hue})[]}|{list:(string|{mark,hue})[][]})[]}[]", "default": "5 sample sections" },
+    { "name": "backgroundColor", "type": "string", "default": "hsl(0 0% 98%)" },
+    { "name": "textColor", "type": "string", "default": "hsl(0 0% 6%)" },
+    { "name": "showGrid", "type": "boolean", "default": true },
+    { "name": "gridSize", "type": "number", "default": 80 },
+    { "name": "gridOpacity", "type": "number", "default": 0.25 },
+    { "name": "contentWidth", "type": "string", "default": "72ch" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All section titles, paragraphs, lists and highlighted phrases with their hues",
+    "Background and text colors, grid visibility, size and opacity, content width"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change highlight saturation, lightness or trigger point",
+      "where": "color constant and threshold option inside the Mark function"
+    },
+    {
+      "change": "Change highlight sweep speed",
+      "where": "transition style inside the Mark function"
+    }
+  ],
+  "fixed": [
+    "Grid overlay is position fixed over the whole viewport behind the content",
+    "First section title renders as the h1, the rest as h2",
+    "Includes bottom padding of 30vmin below the content"
+  ],
+  "mood": ["editorial", "minimal", "clean", "playful"],
+  "industries": ["documentation", "publishing", "saas", "education", "blog"],
+  "sections": ["blog", "about"],
+  "dependencies": []
+}

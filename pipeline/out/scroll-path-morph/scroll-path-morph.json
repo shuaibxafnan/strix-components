@@ -1,0 +1,82 @@
+{
+  "slug": "scroll-path-morph",
+  "name": "Scroll Path Morph",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Long editorial scroll page where SVG wave separators, clipped images and line waves morph their paths as they scroll through the viewport, with full-screen photo sections and serif headings.",
+  "contents": [
+    "Hero title block",
+    "Full-screen photo sections with wavy top and bottom edges",
+    "Text block beside a clipped tall image",
+    "Staggered grid of four clipped images",
+    "Wave line illustrations around a heading",
+    "Vertical interlude text and stacked wide clipped images",
+    "Dark footer with blob-clipped image, heading and wave lines"
+  ],
+  "behavior": [
+    "SVG path shapes morph from start to end shape scrubbed to scroll position",
+    "Optional Lenis smooth scrolling",
+    "Grid columns offset vertically from 768px up and stack on mobile"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#e3e0d8" },
+    { "name": "textColor", "type": "string", "default": "#211c19" },
+    { "name": "footerBg", "type": "string", "default": "#000000" },
+    { "name": "footerTextColor", "type": "string", "default": "#ffffff" },
+    { "name": "displayFont", "type": "string", "default": "Georgia, 'Times New Roman', serif" },
+    { "name": "bodyFont", "type": "string", "default": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" },
+    { "name": "images", "type": "string[]", "default": "14 sample image URLs" },
+    { "name": "heroPre", "type": "string", "default": "Crafting" },
+    { "name": "heroTitle", "type": "string", "default": "Transcendence" },
+    { "name": "sectionOneHeading", "type": "string", "default": "Mastering the Now" },
+    { "name": "sectionOneBody", "type": "string", "default": "Sit down, and I shall tell thee. The thirst for love, without love of learning, sinks into simpleness. Love of knowledge, without love of learning, sinks into vanity. Love of truth, without love of learning, sinks into cruelty. Love of straightness, without love of learning, sinks into rudeness. Love of daring, without love of learning, sinks into turbulence. Love of strength, without love of learning, sinks into oddity." },
+    { "name": "sectionTwoPre", "type": "string", "default": "Studies of" },
+    { "name": "sectionTwoTitle", "type": "string", "default": "Discipline" },
+    { "name": "sectionThreePre", "type": "string", "default": "Virtues of" },
+    { "name": "sectionThreeTitle", "type": "string", "default": "Excellence" },
+    { "name": "sectionFourPre", "type": "string", "default": "Language of" },
+    { "name": "sectionFourTitle", "type": "string", "default": "Awakening" },
+    { "name": "interludeText", "type": "string", "default": "柿くへば\n鐘が鳴るなり\n法隆寺" },
+    { "name": "footerHeading", "type": "string", "default": "Without Longing" },
+    { "name": "lineStroke", "type": "string", "default": "#000000" },
+    { "name": "lineStrokeLight", "type": "string", "default": "#e3e0d8" },
+    { "name": "scrub", "type": "boolean | number", "default": true },
+    { "name": "smoothScroll", "type": "boolean", "default": true },
+    { "name": "lerp", "type": "number", "default": 0.1 },
+    { "name": "gridMaxWidth", "type": "number", "default": 1200 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All headings, body text, interlude text and footer heading",
+    "Images, background, text, footer and line colors, fonts",
+    "Scrub, smooth scroll, lerp and grid width"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the morph shapes of the separators",
+      "where": "SEP constant"
+    },
+    {
+      "change": "Change the wave line shapes",
+      "where": "WAVE_LINES constant"
+    },
+    {
+      "change": "Change clipped image shapes",
+      "where": "CLIP_TALL, CLIP_GRID, CLIP_WIDE and CLIP_BLOB constants"
+    },
+    {
+      "change": "Reorder or add sections",
+      "where": "JSX returned by the ScrollPathMorph component"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+    "Lenis and the scroll triggers are destroyed on unmount",
+    "Section layout, image slots and count are fixed in code",
+    "Includes tall padding blocks between sections to give the morphs scroll room"
+  ],
+  "mood": ["editorial", "elegant", "fluid", "artistic"],
+  "industries": ["art", "architecture", "fashion", "photography", "hospitality"],
+  "sections": ["hero", "portfolio", "about"],
+  "dependencies": ["gsap", "lenis"]
+}

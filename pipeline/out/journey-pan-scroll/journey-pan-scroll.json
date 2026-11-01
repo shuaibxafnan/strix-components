@@ -1,0 +1,67 @@
+{
+  "slug": "journey-pan-scroll",
+  "name": "Journey Pan Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen scroll story where a fixed photo panel pans, zooms and rotates along SVG motion paths as chapter captions snap past on scroll.",
+  "contents": [
+    "Fixed rounded image panel with vignette",
+    "Snap-scrolling chapters, each with a mono eyebrow and a serif title",
+    "Optional visible route paths"
+  ],
+  "behavior": [
+    "Scrolling scrubs a GSAP timeline that moves a focal point along each path segment",
+    "Camera follows the focal point with eased pan while scale and rotation change per segment",
+    "Chapters scroll inside their own snapping container"
+  ],
+  "props": [
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "imageUrl", "type": "string", "default": "https://images.unsplash.com/photo-1771681617105-745758eae89b?q=80&w=3000"},
+    {"name": "imageWidth", "type": "number", "default": 1000},
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "panelRadius", "type": "string", "default": "2.5vh"},
+    {"name": "vignetteColor", "type": "string", "default": "#0A0A08"},
+    {"name": "vignetteOpacity", "type": "number", "default": 0.35},
+    {"name": "accentColor", "type": "string", "default": "#6FA39A"},
+    {"name": "textColor", "type": "string", "default": "#F4EFE6"},
+    {"name": "fontDisplay", "type": "string", "default": "Instrument Serif"},
+    {"name": "fontMono", "type": "string", "default": "Space Mono"},
+    {"name": "showRoutePaths", "type": "boolean", "default": false},
+    {"name": "chapters", "type": "{eyebrow,title}[]", "default": "6 sample chapters"},
+    {"name": "pathSegments", "type": "{d,rotate,scale}[]", "default": "5 sample segments"},
+    {"name": "initialX", "type": "number", "default": 500},
+    {"name": "initialY", "type": "number", "default": 500},
+    {"name": "initialScale", "type": "number", "default": 3.2},
+    {"name": "initialRotate", "type": "number", "default": 20},
+    {"name": "followDuration", "type": "number", "default": 1.3},
+    {"name": "followEase", "type": "string", "default": "expo"},
+    {"name": "segmentEase", "type": "string", "default": "sine.inOut"},
+    {"name": "segmentDuration", "type": "number", "default": 1},
+    {"name": "scrubAmount", "type": "number", "default": 1}
+  ],
+  "editableByProps": [
+    "Image, chapter text and number of chapters",
+    "Camera path, zoom and rotation per segment",
+    "Colors, panel radius, vignette, fonts and follow easing"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the panel size or position",
+      "where": "The svg element className with left-[25%] and w-1/2"
+    },
+    {
+      "change": "Change snapping behavior",
+      "where": "The main element className with scroll-snap-type"
+    }
+  ],
+  "fixed": [
+    "Pathsegments count should match chapters minus one for even pacing",
+    "Hides the page scrollbar through an html scrollbar-width rule while mounted",
+    "Image panel is fixed to the viewport and the component fills the viewport, so it should be the only full-screen section",
+    "Loads Instrument Serif and Space Mono from Google Fonts"
+  ],
+  "mood": ["cinematic", "editorial", "adventurous"],
+  "industries": ["travel", "outdoor", "storytelling", "photography"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": ["gsap"]
+}

@@ -4,11 +4,12 @@
   "sourceHash": "2e2040705ec50dea86d823df5dda06995861d0c91166fa2d9004d739db49cd37",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-graph",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.529Z"
+  "note": "No rename. Gates passed, warning: style tag without template literal. CDN replaced with npm gsap dynamic imports. Added className, cancelled flag. svg w-screen to w-full. Hardcoded start dot in needsCodeEdit. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:26:52.665Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

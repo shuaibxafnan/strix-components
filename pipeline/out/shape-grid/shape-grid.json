@@ -1,0 +1,100 @@
+{
+    "slug": "shape-grid",
+    "name": "Shape Grid",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "Canvas background of a drifting grid of outlined shapes that light up under the cursor with a soft trail, ripple on click, and can be tilted in 3D with optional rainbow glow.",
+    "contents": [
+        "Full-size container div with a single canvas drawing the shape grid",
+        "Optional edge fade mask and background color"
+    ],
+    "behavior": [
+        "Grid drifts continuously in a chosen direction at a set speed",
+        "Cells near the cursor light up with a spring-smoothed spotlight and fading trail",
+        "Clicking launches a ripple cascade of lit cells (up to 6 at once)",
+        "Intro wave reveals the grid outward from the center on mount",
+        "Optional random twinkle, rainbow hues, glow, and 3D perspective tilt with distance mist",
+        "Pauses drawing when off screen or paused, and stops drifting under reduced motion"
+    ],
+    "props": [
+        { "name": "shape", "type": "'square' | 'tile' | 'hexagon' | 'triangle' | 'diamond' | 'circle' | 'cross' | 'dot'", "default": "square" },
+        { "name": "cellSize", "type": "number", "default": 40 },
+        { "name": "lineWidth", "type": "number", "default": 1 },
+        { "name": "direction", "type": "'right' | 'left' | 'up' | 'down' | 'diagonal' | 'none'", "default": "diagonal" },
+        { "name": "speed", "type": "number", "default": 0.5 },
+        { "name": "lineColor", "type": "string", "default": "#2a2734" },
+        { "name": "hoverColor", "type": "string", "default": "#ffffff" },
+        { "name": "hoverFillColor", "type": "string", "default": "hoverColor" },
+        { "name": "fillOpacity", "type": "number", "default": 0.15 },
+        { "name": "rainbow", "type": "boolean", "default": false },
+        { "name": "tiltX", "type": "number", "default": 0 },
+        { "name": "tiltY", "type": "number", "default": 0 },
+        { "name": "radius", "type": "number", "default": 1.5 },
+        { "name": "trail", "type": "number", "default": 0.6 },
+        { "name": "glow", "type": "number", "default": 0.35 },
+        { "name": "twinkle", "type": "number", "default": 0 },
+        { "name": "fade", "type": "number", "default": 1 },
+        { "name": "clickCascade", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "backgroundColor", "type": "string", "default": "transparent" },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number | undefined", "default": "undefined (min(devicePixelRatio, 2))" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object | undefined", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Shape, cell size, line width, and line color",
+        "Drift direction and speed, or no movement",
+        "Hover color, fill color, fill opacity, rainbow mode, glow, and spotlight radius and trail length",
+        "3D tilt on both axes, edge fade amount, twinkle, intro and click ripple toggles",
+        "Overall opacity, background color, pause, pixel ratio, and extra class or style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change ripple speed, hit strength, or max simultaneous ripples",
+            "where": "cascadeAt function and the onDown handler"
+        },
+        {
+            "change": "Change cursor spring feel",
+            "where": "stiffness and damping constants inside the frame function"
+        },
+        {
+            "change": "Add a new shape",
+            "where": "SHAPES array, layoutFor, centerOf, and traceCell functions"
+        },
+        {
+            "change": "Change rainbow color saturation",
+            "where": "tint function"
+        }
+    ],
+    "fixed": [
+        "Fills its parent (h-full w-full), so the parent needs a defined height and position",
+        "Listens for pointer events on window, so the cursor lights cells even when other content sits above it",
+        "Cursor effect and click ripple need a pointer; on touch only taps trigger ripples and there is no hover light",
+        "Values are clamped: cellSize min 8, tilt within 70 degrees, trail min 0.05",
+        "Canvas pixel count is capped at 8 million by lowering resolution",
+        "Honors prefers-reduced-motion by disabling drift, twinkle, and intro",
+        "Uses ctx.roundRect for the tile shape, which needs a modern browser",
+        "Uses a CSS mask for edge fade, so fade 0 disables it",
+        "Works at all sizes since it sizes from its container with a ResizeObserver"
+    ],
+    "mood": ["techy", "futuristic", "dark", "playful"],
+    "industries": ["saas", "developer tools", "gaming", "ai", "creative agencies"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": [],
+    "variants": {
+        "prop": "shape",
+        "default": "square",
+        "options": [
+            { "value": "square", "look": "Classic thin-line square grid", "useWhen": "Clean technical hero or dashboard-style landing background" },
+            { "value": "tile", "look": "Separate rounded tiles with gaps", "useWhen": "Friendly product hero where a soft app-like look is wanted" },
+            { "value": "hexagon", "look": "Honeycomb of hexagon outlines", "useWhen": "Network, blockchain, or science themed sections" },
+            { "value": "triangle", "look": "Tessellated triangle outlines", "useWhen": "Geometric, bold agency or gaming headers" },
+            { "value": "diamond", "look": "Rotated square lattice", "useWhen": "Luxury or jewelry style sections needing an angular pattern" },
+            { "value": "circle", "look": "Grid of circle outlines", "useWhen": "Playful or bubbly brand backgrounds" },
+            { "value": "cross", "look": "Small plus markers at grid points", "useWhen": "Blueprint or engineering style hero with minimal ink" },
+            { "value": "dot", "look": "Dot matrix of small points", "useWhen": "Subtle backdrop behind dense text or a pricing section" }
+        ]
+    }
+}

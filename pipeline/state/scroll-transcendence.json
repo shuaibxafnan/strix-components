@@ -4,11 +4,12 @@
   "sourceHash": "72b8934c568b3a3b8db90f41a84901c596be3554334c04898c2937449bbd4539",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-path-morph",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.532Z"
+  "note": "Renamed to scroll-path-morph. Removed credits prop and paragraph. CDN gsap, lenis replaced with npm dynamic imports. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:35:16.346Z",
+  "gateOutput": "gates passed"
 }

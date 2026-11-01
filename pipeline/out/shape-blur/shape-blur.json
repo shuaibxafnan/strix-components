@@ -1,0 +1,91 @@
+{
+    "slug": "shape-blur",
+    "name": "Shape Blur",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 canvas drawing a glowing outlined or filled shape (rect, circle, polygon, star or image silhouette) that blurs everywhere except under a lens that follows the pointer.",
+    "contents": [
+        "Full-size WebGL2 canvas rendering a shape outline or fill with optional echo rings",
+        "Optional children layer centered above the canvas"
+    ],
+    "behavior": [
+        "A circular lens follows the pointer and sharpens the shape there, or blurs it when focus is on",
+        "When the pointer is away, the lens drifts on its own (idle) unless idle is false or reduced motion is set",
+        "Chromatic split of the edges grows with the blur amount",
+        "Shape can rotate continuously through spin",
+        "Image src is turned into a distance field so its transparent silhouette becomes the shape",
+        "Rendering pauses when offscreen and stops when everything has settled"
+    ],
+    "props": [
+        { "name": "shape", "type": "'rect' | 'circle' | 'polygon' | 'star'", "default": "rect" },
+        { "name": "src", "type": "string", "default": null },
+        { "name": "sides", "type": "number", "default": 6 },
+        { "name": "size", "type": "number", "default": 0.8 },
+        { "name": "roundness", "type": "number", "default": 0.2 },
+        { "name": "thickness", "type": "number", "default": 2 },
+        { "name": "fill", "type": "boolean", "default": false },
+        { "name": "echoes", "type": "number", "default": 1 },
+        { "name": "spacing", "type": "number", "default": 12 },
+        { "name": "color", "type": "string", "default": "#ffffff" },
+        { "name": "blur", "type": "number", "default": 16 },
+        { "name": "lensSize", "type": "number", "default": 0.3 },
+        { "name": "lensSoftness", "type": "number", "default": 0.7 },
+        { "name": "focus", "type": "boolean", "default": false },
+        { "name": "chroma", "type": "number", "default": 0.3 },
+        { "name": "rotation", "type": "number", "default": 0 },
+        { "name": "spin", "type": "number", "default": 0 },
+        { "name": "idle", "type": "boolean", "default": true },
+        { "name": "children", "type": "ReactNode", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "CSSProperties", "default": null }
+    ],
+    "editableByProps": [
+        "Shape type, polygon/star sides, size, corner roundness and rotation or spin speed",
+        "Outline thickness, fill mode, number and spacing of echo rings",
+        "Color (any CSS color), blur amount, chroma split",
+        "Lens size, softness, inverted focus mode and idle drift",
+        "Image silhouette through src and content through children"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change lens falloff or pointer follow speed",
+            "where": "frame function (follow and lens.power easing) and the lens line in COMPOSITE shader main"
+        },
+        {
+            "change": "Add another shape type",
+            "where": "SHAPES constant and shapeDistance function in the SHAPE shader"
+        },
+        {
+            "change": "Change the idle drift path",
+            "where": "wander function"
+        },
+        {
+            "change": "Change the content layer alignment",
+            "where": "CONTENT constant"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable",
+        "Fills its parent (h-full w-full), so the parent needs a defined height",
+        "Listens to pointermove on window, so the lens reacts to the pointer even outside the box (within a lensSize margin)",
+        "Canvas is pointer-events-none and aria-hidden",
+        "Device pixel ratio capped at 2, echoes capped at 24, sides clamped 3 to 12",
+        "Image src must be CORS-accessible and uses its alpha channel as the silhouette; failed images fall back to the chosen shape",
+        "Reduced motion disables idle drift and spin",
+        "Uses a float texture format when supported, otherwise 8-bit with more banding"
+    ],
+    "mood": ["futuristic", "dreamy", "minimal", "interactive"],
+    "industries": ["technology", "design agency", "creative studio", "gaming", "music"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": [],
+    "variants": {
+        "prop": "shape",
+        "default": "rect",
+        "options": [
+            { "value": "rect", "look": "Rounded rectangle fitted to the container", "useWhen": "A framed, card-like or full-bleed outline is wanted" },
+            { "value": "circle", "look": "Circle outline or disc", "useWhen": "A soft orb or ring focal point is wanted" },
+            { "value": "polygon", "look": "Regular polygon with 3 to 12 sides", "useWhen": "A geometric badge or hexagon style mark is wanted" },
+            { "value": "star", "look": "Star with 3 to 12 points", "useWhen": "A playful or highlight accent is wanted" }
+        ]
+    }
+}

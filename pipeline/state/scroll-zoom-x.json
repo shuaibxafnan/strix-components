@@ -4,11 +4,12 @@
   "sourceHash": "dd0982b0b5e8cf6457f25b0882d91062f74412d8dc6b7dabf89567ad99512fa2",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "horizontal-zoom-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.533Z"
+  "note": "Renamed to horizontal-zoom-gallery. Removed credit line. Fixed 0$1 label bug. items replaces images; added hintText, backgroundColor, textColor, className. Needs CSS scroll-timeline support. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:38:19.913Z",
+  "gateOutput": "gates passed"
 }

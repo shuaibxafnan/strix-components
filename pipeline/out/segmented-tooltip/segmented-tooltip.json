@@ -1,0 +1,80 @@
+{
+    "slug": "segmented-tooltip",
+    "name": "Segmented Tooltip",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Sci-fi terminal page where highlighted terms in the text open tooltips built from a grid of cells that animate in with distance, sweep, scatter, center or gooey effects, with glitch text and decorative HUD panels.",
+    "contents": [
+        "Scrollable text column with hoverable highlighted terms",
+        "Segmented grid tooltips with title and description",
+        "Decorative HUD side panels, heading, version label and spinning dotted globe"
+    ],
+    "behavior": [
+        "Hovering a term opens a tooltip at the cursor that follows the pointer",
+        "Tooltip cells animate in and out with a per-term effect through GSAP",
+        "Title and description fade in and can glitch",
+        "Below the breakpoint the side panels hide and tooltips shrink"
+    ],
+    "props": [
+        {"name": "paragraphs", "type": "string[]", "default": "10 sample paragraphs"},
+        {"name": "terms", "type": "{name,title,desc,rows,cols,effect,variant}[]", "default": "6 sample terms"},
+        {"name": "panels", "type": "{area,small,glitchDelay,lines}[]", "default": "2 sample panels"},
+        {"name": "heading", "type": "string", "default": "Codex Terminus"},
+        {"name": "version", "type": "string", "default": "Version 14.85-19X"},
+        {"name": "bgColor", "type": "string", "default": "#0f0026"},
+        {"name": "textColor", "type": "string", "default": "#8572b2"},
+        {"name": "triggerColor", "type": "string", "default": "#d2d2d2"},
+        {"name": "borderColor", "type": "string", "default": "#4d25b0"},
+        {"name": "cornerColor", "type": "string", "default": "#abcb1a"},
+        {"name": "tooltipBg", "type": "string", "default": "#4d25b0"},
+        {"name": "tooltipText", "type": "string", "default": "#abcb19"},
+        {"name": "tooltipBgAlt", "type": "string", "default": "#94ad24"},
+        {"name": "tooltipTextAlt", "type": "string", "default": "#2e3023"},
+        {"name": "ringColor", "type": "string", "default": "#abcb1a"},
+        {"name": "fontFamily", "type": "string", "default": "'lores-12', ui-monospace, SFMono-Regular, Menlo, monospace"},
+        {"name": "uppercase", "type": "boolean", "default": true},
+        {"name": "tooltipWidth", "type": "string", "default": "290px"},
+        {"name": "tooltipHeight", "type": "string", "default": "330px"},
+        {"name": "tooltipWidthSmall", "type": "string", "default": "200px"},
+        {"name": "tooltipHeightSmall", "type": "string", "default": "250px"},
+        {"name": "breakpoint", "type": "string", "default": "53em"},
+        {"name": "showScanlines", "type": "boolean", "default": true},
+        {"name": "showGlobe", "type": "boolean", "default": true},
+        {"name": "globeSpinDuration", "type": "number", "default": 25},
+        {"name": "duration", "type": "number", "default": 0.1},
+        {"name": "ease", "type": "string", "default": "expo"},
+        {"name": "gooeyDuration", "type": "number", "default": 0.9},
+        {"name": "openDelay", "type": "number", "default": 40},
+        {"name": "closeDelay", "type": "number", "default": 40},
+        {"name": "maxDistanceDelay", "type": "number", "default": 1.8},
+        {"name": "staggerEach", "type": "number", "default": 0.02},
+        {"name": "gooeyBlur", "type": "number", "default": 10.2},
+        {"name": "enableGlitch", "type": "boolean", "default": true},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "All paragraph text, term names, titles, descriptions, grid size and effect per term",
+        "HUD panel lines, heading and version",
+        "All colors, font, tooltip sizes, breakpoint, timings and glitch, scanline and globe toggles"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change tooltip animation effects",
+            "where": "animate function, the term.effect branches"
+        },
+        {
+            "change": "Change the page grid layout of panels",
+            "where": "scopedCss grid-template-areas rules and data-main"
+        }
+    ],
+    "fixed": [
+        "Tooltip triggers are hover based, touch relies on browser emulated mouse events",
+        "Fills the viewport height with the text column scrolling inside",
+        "Terms must appear in paragraphs exactly as their name to become triggers",
+        "Panel areas must be meta-1 to meta-4"
+    ],
+    "mood": ["futuristic", "dystopian", "techy", "dark"],
+    "industries": ["gaming", "sci-fi", "technology", "entertainment", "publishing"],
+    "sections": ["other"],
+    "dependencies": ["gsap"]
+}

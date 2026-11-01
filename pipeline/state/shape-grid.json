@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "shape-grid",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.604Z"
+  "note": "React Bits, JSON only. Gates passed. Category backgrounds-3d. Variants from shape prop (8). Parent needs defined height.",
+  "updatedAt": "2026-11-01T11:45:10.868Z",
+  "gateOutput": "gates passed"
 }

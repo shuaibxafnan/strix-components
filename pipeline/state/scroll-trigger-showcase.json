@@ -4,11 +4,12 @@
   "sourceHash": "25217dd7d3923687961431c30ad774ec71ee368a66e9cd4b7c4067c827332b6b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-video-panels",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.533Z"
+  "note": "pending",
+  "updatedAt": "2026-11-01T11:35:58.212Z",
+  "gateOutput": "gates passed"
 }

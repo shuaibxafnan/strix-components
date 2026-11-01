@@ -4,11 +4,12 @@
   "sourceHash": "b954b79446f18f6e63a1ef5ad4914ab4541f79da0b0c53f90eeced078067ad4c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "journey-pan-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.534Z"
+  "note": "Renamed scrollaroids -> journey-pan-scroll. CDN script loading replaced by npm gsap dynamic imports; fragment root replaced by single div with className. No frame (fixed full-bleed). No variants. Responsive: already ok. Kept fixed bg layer and html scrollbar-width rule, Google Fonts import.",
+  "updatedAt": "2026-11-01T11:39:56.076Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

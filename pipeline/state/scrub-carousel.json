@@ -4,11 +4,12 @@
   "sourceHash": "1f4877c3dc9f8a0533ec1611b8bc815d35e7b9a805d552cd046bbc1c2e96d225",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-scrub-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.535Z"
+  "note": "Renamed scrub-carousel -> scroll-scrub-carousel. Removed ambiguous: 'Archive of Collapse' header block with set count and scroll hint (demo hero); codepen source link replaced by ctaHref/slide.href prop, ctaLabel default SOURCE -> VIEW. CDN script/style loading replaced by npm imports of swiper and gsap (dynamic). Kept: scroll pin takeover, link pointer-events-none, font props without imports. Frame: none (section-like). Variants: none. Responsive: already ok.",
+  "updatedAt": "2026-11-01T11:41:02.641Z",
+  "gateOutput": "gates passed"
 }

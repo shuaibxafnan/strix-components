@@ -4,11 +4,12 @@
   "sourceHash": "71abf5618aae4d8c0a2c789aa5dee9670f132177f1280dbd4d52da19dfcd3526",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-filter-effect",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.528Z"
+  "note": "No rename. Gates passed, warning: style tag without template literal. Removed intro screen (showIntro, introTitle, introSub, introInfo, bgAltColor, titleColor), cards block, credits; reviewer may want intro back. CDN replaced with npm gsap, lenis dynamic imports. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:26:10.049Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

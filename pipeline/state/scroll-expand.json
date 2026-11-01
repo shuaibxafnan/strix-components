@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "scroll-expand",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.590Z"
+  "note": "React Bits, JSON only. Gates passed. Category scroll-section-layouts. Parent needs defined height in default mode. No variants.",
+  "updatedAt": "2026-11-01T11:25:16.517Z",
+  "gateOutput": "gates passed"
 }

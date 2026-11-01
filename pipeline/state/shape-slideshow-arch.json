@@ -4,11 +4,12 @@
   "sourceHash": "f4bf024e81f1f46a1f6495691bd527c063f17e38236f0093d17e6f4694f94b99",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "shape-slideshow-arch",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.536Z"
+  "note": "No rename. Gates passed, warning: style tag without template literal. CDN gsap replaced with npm dynamic import. Removed Mooz title, title, showTitle props. Wheel timer cleared on unmount. Runtime untested. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:45:59.757Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

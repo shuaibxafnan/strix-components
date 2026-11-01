@@ -1,0 +1,57 @@
+{
+  "slug": "scroll-cross-fade",
+  "name": "Scroll Cross Fade",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Scroll-driven gallery where a small image box drifts down beside a tall image while its two photos cross fade, with a caption and a progress indicator, alternating sides per section.",
+  "contents": [
+    "List of sections, each with a caption title and description",
+    "Per section a small box with two cross fading images and a tall side image",
+    "Two-part progress indicator on each small box"
+  ],
+  "behavior": [
+    "Two images in each small box cross fade with scroll using GSAP ScrollTrigger scrub",
+    "On screens 768px and wider the small box travels along the tall image while scrolling",
+    "Progress indicator fills and grows as the section passes the viewport center",
+    "Sections alternate left and right and swap column widths every two sections",
+    "Below 768px the layout stacks and each box fades on its own scroll position"
+  ],
+  "props": [
+    {
+      "name": "items",
+      "type": "{title,desc,imgA,imgAAlt,imgB,imgBAlt,sideImg,sideAlt}[]",
+      "default": "4 sample sections"
+    },
+    { "name": "textFillColor", "type": "string", "default": "text-neutral-100" },
+    { "name": "descFillColor", "type": "string", "default": "text-neutral-400" },
+    { "name": "wrapperBgColor", "type": "string", "default": "bg-black" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of sections, captions, and all three images per section with alt text",
+    "Background, text and caption colors as Tailwind classes"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the breakpoint between stacked and side-by-side behavior",
+      "where": "mm.add calls with max-width 767px and min-width 768px"
+    },
+    {
+      "change": "Change the fade range of the images",
+      "where": "handleCrossFade function"
+    },
+    {
+      "change": "Change progress indicator color or size",
+      "where": "progress-indicator div and progress-fill-node classes"
+    }
+  ],
+  "fixed": [
+    "Image boxes use mix-blend-plus-lighter, which looks best on a dark background",
+    "Alternating layout pattern is derived from the section index",
+    "Each section is at least one screen tall to give the scroll range"
+  ],
+  "mood": ["editorial", "dark", "cinematic", "modern"],
+  "industries": ["photography", "design agency", "portfolio", "fashion", "architecture"],
+  "sections": ["gallery", "portfolio", "features"],
+  "dependencies": ["gsap"]
+}

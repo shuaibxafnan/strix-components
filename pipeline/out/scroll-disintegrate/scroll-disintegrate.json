@@ -1,0 +1,40 @@
+{
+  "slug": "scroll-disintegrate",
+  "name": "Scroll Disintegrate",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "A centered image that breaks into many randomly scattered pixel fragments as the page scrolls, fragments rotating, drifting and fading out like a Thanos-style dissolve.",
+  "contents": ["Fixed centered image captured into canvas fragments", "Scroll spacer that provides the scroll range"],
+  "behavior": [
+    "Image is rasterized with html2canvas and split into particleCount random pixel layers",
+    "Each layer rotates, drifts and fades out, scrubbed to scroll with staggered delays",
+    "Original image is hidden once fragments are created and restored on unmount"
+  ],
+  "props": [
+    {"name": "imageSrc", "type": "string", "default": "https://images.unsplash.com/photo-1780580940878-248a6ad4b626?auto=format&fit=crop&w=1600&q=80"},
+    {"name": "imageAlt", "type": "string", "default": "Disintegration target"},
+    {"name": "particleCount", "type": "number", "default": 75},
+    {"name": "fragmentOverlap", "type": "number", "default": 3},
+    {"name": "scrubSpeed", "type": "number", "default": 1},
+    {"name": "scrollDistance", "type": "string", "default": "300vh"},
+    {"name": "containerWidth", "type": "string", "default": "w-[600px]"},
+    {"name": "containerHeight", "type": "string", "default": "h-[400px]"},
+    {"name": "maxRotation", "type": "number", "default": 30},
+    {"name": "maxDisplacement", "type": "number", "default": 40},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Image and alt text", "Fragment count, overlap, rotation and displacement", "Scrub smoothness", "Scroll length", "Image size via Tailwind classes"],
+  "needsCodeEdit": [
+    {"change": "Change the scroll range over which the fragments animate", "where": "end: () => `+=${window.innerHeight * 2}`"}
+  ],
+  "fixed": [
+    "Image and fragments are position fixed at viewport center, so the effect is tied to the viewport while the component is mounted",
+    "Spacer height (scrollDistance) is needed for the scroll range",
+    "Image must be CORS-enabled for html2canvas capture",
+    "Fragment generation is pixel-based and can be heavy on very large images"
+  ],
+  "mood": ["dramatic", "cinematic", "playful", "futuristic"],
+  "industries": ["entertainment", "film", "gaming", "creative agency", "photography"],
+  "sections": ["hero", "other"],
+  "dependencies": ["gsap", "html2canvas", "imagesloaded"]
+}

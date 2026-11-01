@@ -1,0 +1,55 @@
+{
+  "slug": "scroll-wave-slider",
+  "name": "Scroll Wave Slider",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Draggable horizontal strip of tall image cards pinned to the bottom of the screen. Cards grow in a smooth wave as they pass the center, with inertia after release.",
+  "contents": [
+    "Row of numbered image cards with uppercase labels"
+  ],
+  "behavior": [
+    "Drag with the pointer to scroll horizontally, with momentum and friction on release",
+    "Cards widen as they cross the center using a CSS view-timeline scroll animation",
+    "Images are shown with grayscale and contrast filters",
+    "Scrollbar is hidden and cursor switches to grabbing while dragging"
+  ],
+  "props": [
+    { "name": "items", "type": "{label,href,imgSrc,imgAlt}[]", "default": "22 sample items with placeholder photos" },
+    { "name": "cardAspectRatio", "type": "string", "default": "2/3" },
+    { "name": "cardWidthClamp", "type": "string", "default": "clamp(80px, 10vw, 160px)" },
+    { "name": "expandedWidthClamp", "type": "string", "default": "clamp(150px, 30vw, 300px)" },
+    { "name": "gap", "type": "string", "default": "0.5rem" },
+    { "name": "imageGrayscale", "type": "number", "default": 0.85 },
+    { "name": "imageContrast", "type": "number", "default": 1.6 },
+    { "name": "bgColor", "type": "string", "default": "transparent" },
+    { "name": "labelFontSize", "type": "string", "default": "0.625rem" },
+    { "name": "labelFontWeight", "type": "string", "default": "300" },
+    { "name": "paddingBlock", "type": "string", "default": "0.75rem" },
+    { "name": "friction", "type": "number", "default": 0.92 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Cards, labels, links, images and alt text",
+    "Card sizes, expanded size, gap, aspect ratio and padding",
+    "Image filter strength, background color, label size and weight, drag friction"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the wave easing curve of the card expansion",
+      "where": "linear( ) easing inside dynamicCSS"
+    },
+    {
+      "change": "Place the strip in the page flow instead of the bottom of the screen",
+      "where": "fixed bottom-0 left-0 right-0 classes on the root div"
+    }
+  ],
+  "fixed": [
+    "Strip is pinned to the bottom of the viewport with fixed positioning",
+    "Card expansion uses CSS animation-timeline view(), which needs a browser that supports scroll-driven animations",
+    "Text color is inherited from the page"
+  ],
+  "mood": ["playful", "modern", "minimal", "editorial"],
+  "industries": ["creative agency", "portfolio", "photography", "education", "media"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
