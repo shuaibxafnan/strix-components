@@ -1,0 +1,263 @@
+{
+  "slug": "spectral-ghost",
+  "name": "Spectral Ghost",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen WebGL scene where a glowing 3D ghost follows the cursor, leaving a particle trail, with drifting fireflies, bloom, analog VHS post-processing and a centered quote over a loading screen.",
+  "contents": [
+    "Animated 3D ghost with glowing eyes",
+    "Particle trail and fireflies",
+    "Preloader with ghost icon and progress bar",
+    "Centered multi-line quote and author line"
+  ],
+  "behavior": [
+    "Ghost eases toward the cursor or touch point with wobble and floating",
+    "Eyes glow while the ghost moves",
+    "Particles spawn while moving and fade out",
+    "Preloader fades out after setup, then canvas and text fade in",
+    "Bloom and analog VHS shader post-processing"
+  ],
+  "props": [
+    {
+      "name": "bodyColor",
+      "type": "number",
+      "default": 991271
+    },
+    {
+      "name": "glowColor",
+      "type": "string",
+      "default": "orange"
+    },
+    {
+      "name": "eyeGlowColor",
+      "type": "string",
+      "default": "green"
+    },
+    {
+      "name": "ghostOpacity",
+      "type": "number",
+      "default": 0.88
+    },
+    {
+      "name": "emissiveIntensity",
+      "type": "number",
+      "default": 5.8
+    },
+    {
+      "name": "pulseSpeed",
+      "type": "number",
+      "default": 1.6
+    },
+    {
+      "name": "pulseIntensity",
+      "type": "number",
+      "default": 0.6
+    },
+    {
+      "name": "eyeGlowDecay",
+      "type": "number",
+      "default": 0.95
+    },
+    {
+      "name": "eyeGlowResponse",
+      "type": "number",
+      "default": 0.31
+    },
+    {
+      "name": "movementThreshold",
+      "type": "number",
+      "default": 0.07
+    },
+    {
+      "name": "rimLightIntensity",
+      "type": "number",
+      "default": 1.8
+    },
+    {
+      "name": "followSpeed",
+      "type": "number",
+      "default": 0.075
+    },
+    {
+      "name": "wobbleAmount",
+      "type": "number",
+      "default": 0.35
+    },
+    {
+      "name": "floatSpeed",
+      "type": "number",
+      "default": 1.6
+    },
+    {
+      "name": "particleCount",
+      "type": "number",
+      "default": 250
+    },
+    {
+      "name": "particleDecayRate",
+      "type": "number",
+      "default": 0.005
+    },
+    {
+      "name": "particleColor",
+      "type": "string",
+      "default": "orange"
+    },
+    {
+      "name": "createParticlesOnlyWhenMoving",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "particleCreationRate",
+      "type": "number",
+      "default": 5
+    },
+    {
+      "name": "revealRadius",
+      "type": "number",
+      "default": 43
+    },
+    {
+      "name": "fadeStrength",
+      "type": "number",
+      "default": 2.2
+    },
+    {
+      "name": "baseOpacity",
+      "type": "number",
+      "default": 0.35
+    },
+    {
+      "name": "revealOpacity",
+      "type": "number",
+      "default": 0.0
+    },
+    {
+      "name": "fireflyGlowIntensity",
+      "type": "number",
+      "default": 2.6
+    },
+    {
+      "name": "fireflySpeed",
+      "type": "number",
+      "default": 0.04
+    },
+    {
+      "name": "analogIntensity",
+      "type": "number",
+      "default": 0.6
+    },
+    {
+      "name": "analogGrain",
+      "type": "number",
+      "default": 0.4
+    },
+    {
+      "name": "analogBleeding",
+      "type": "number",
+      "default": 1.0
+    },
+    {
+      "name": "analogVSync",
+      "type": "number",
+      "default": 1.0
+    },
+    {
+      "name": "analogScanlines",
+      "type": "number",
+      "default": 1.0
+    },
+    {
+      "name": "analogVignette",
+      "type": "number",
+      "default": 1.0
+    },
+    {
+      "name": "analogJitter",
+      "type": "number",
+      "default": 0.4
+    },
+    {
+      "name": "limboMode",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "quote",
+      "type": "string",
+      "default": "Veil of Dust\nTrail of Ash\nHeart of Ice"
+    },
+    {
+      "name": "author",
+      "type": "string",
+      "default": "Whispers through memory"
+    },
+    {
+      "name": "loadingText",
+      "type": "string",
+      "default": "Summoning spirits"
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "default": "#111111"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#e0e0e0"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Ghost body, glow, eye and particle colors",
+    "Motion speeds, wobble and pulse",
+    "Analog and bloom intensity, limbo grayscale mode",
+    "Quote, author and loading text",
+    "Background and text colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Number of fireflies",
+      "where": "for (let i = 0; i < 20; i++)"
+    },
+    {
+      "change": "Display and mono fonts",
+      "where": "@import url(\"https://fonts.googleapis.com/css2"
+    }
+  ],
+  "fixed": [
+    "Requires WebGL and the three npm package, loaded by dynamic import",
+    "Canvas is sized to the window, so the component is meant to fill the viewport",
+    "Listens to window mousemove and touchmove, removed on unmount",
+    "Loads Cinzel Decorative and JetBrains Mono through a Google Fonts import",
+    "Fixed preloader delay of about 1.6 seconds"
+  ],
+  "mood": [
+    "dark",
+    "mystical",
+    "eerie",
+    "cinematic",
+    "retro"
+  ],
+  "industries": [
+    "gaming",
+    "entertainment",
+    "portfolio",
+    "events",
+    "film",
+    "creative agency"
+  ],
+  "sections": [
+    "hero",
+    "background"
+  ],
+  "dependencies": [
+    "three"
+  ]
+}

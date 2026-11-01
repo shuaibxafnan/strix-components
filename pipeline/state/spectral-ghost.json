@@ -4,11 +4,12 @@
   "sourceHash": "0c303d0966ea229eac4fcf4f0a8ad80d387c7fa4d7c4b3a7cd737713e36d80fb",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "spectral-ghost",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.553Z"
+  "note": "Esm.sh imports replaced with dynamic three npm imports. Props added: backgroundColor, textColor. Added touchmove listener and timer cleanup. Kept font import, preloader delay, 20 fireflies.",
+  "updatedAt": "2026-11-01T13:07:05.760Z",
+  "gateOutput": "gates passed"
 }
