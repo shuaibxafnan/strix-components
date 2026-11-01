@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "bubble-menu",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.608Z"
+  "note": "Bits describe-only. Category navigation-menus. No variants. Needs Tailwind and gsap; 900px breakpoint hardcoded; injects global style tag. Gates passed.",
+  "updatedAt": "2026-11-01T04:53:40.614Z",
+  "gateOutput": "gates passed"
 }
