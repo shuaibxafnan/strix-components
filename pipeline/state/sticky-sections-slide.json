@@ -4,11 +4,12 @@
   "sourceHash": "cd567780a44085a4d05533e70d1b1dcda9a85c91ddb29788d9e29f0cd4479de8",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sticky-sections-slide",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.562Z"
+  "note": "Rewritten to template. CDN loader replaced with dynamic imports of gsap, ScrollTrigger, lenis; lenisUrl prop and fallback removed; className prop added. Gates passed; warning: image-preload once listeners have no removeEventListener, left as source.",
+  "updatedAt": "2026-11-01T13:55:14.704Z",
+  "gateOutput": "WARN  addEventListener with once and no removeEventListener\ngates passed"
 }
