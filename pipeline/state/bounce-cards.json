@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "bounce-cards",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T20:07:38.095Z"
+  "note": "Bits describe-only. Category cards-galleries. No variants. transformStyles parses only rotate/translate strings; spring values and PATTERN hardcoded. Gates passed.",
+  "updatedAt": "2026-11-01T04:52:42.103Z",
+  "gateOutput": "gates passed"
 }

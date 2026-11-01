@@ -1,0 +1,80 @@
+{
+    "slug": "bounce-cards",
+    "name": "Bounce Cards",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Fanned row of overlapping image cards that pop in with a springy bounce, then push neighbors aside and lift the hovered card forward. Supports click and keyboard activation.",
+    "contents": [
+        "Fixed-size container holding one square image card per entry in images",
+        "Cards with white border, rounded corners and soft shadow"
+    ],
+    "behavior": [
+        "Cards scale in from zero with a spring bounce, staggered after an initial delay",
+        "Cards settle into a fanned layout with alternating rotations and optional arc",
+        "Hovering or focusing a card straightens, lifts and enlarges it, brings it to front and pushes other cards sideways",
+        "Click or Enter/Space triggers onCardClick(index) with a small squash bounce",
+        "Honors prefers-reduced-motion by skipping pop-in and using stiffer movement",
+        "Animation loop sleeps when everything is at rest"
+    ],
+    "props": [
+        {"name": "images", "type": "(string | {src,alt})[]", "default": []},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "style", "type": "object", "default": null},
+        {"name": "containerWidth", "type": "number", "default": 400},
+        {"name": "containerHeight", "type": "number", "default": 400},
+        {"name": "cardSize", "type": "number", "default": 200},
+        {"name": "spread", "type": "number", "default": 85},
+        {"name": "rotation", "type": "number", "default": 10},
+        {"name": "arc", "type": "number", "default": 0},
+        {"name": "animationDelay", "type": "number", "default": 0.5},
+        {"name": "animationStagger", "type": "number", "default": 0.06},
+        {"name": "bounciness", "type": "number", "default": 0.6},
+        {"name": "enableHover", "type": "boolean", "default": true},
+        {"name": "pushDistance", "type": "number", "default": 160},
+        {"name": "hoverScale", "type": "number", "default": 1.06},
+        {"name": "borderWidth", "type": "number", "default": 5},
+        {"name": "borderColor", "type": "string", "default": "#ffffff"},
+        {"name": "radius", "type": "number", "default": 25},
+        {"name": "shadow", "type": "boolean", "default": true},
+        {"name": "transformStyles", "type": "string[]", "default": null},
+        {"name": "onCardClick", "type": "(index:number) => void", "default": null}
+    ],
+    "editableByProps": [
+        "Images, alt text and number of cards",
+        "Container and card size, spread, rotation, arc and per-card transforms",
+        "Intro delay, stagger and bounciness",
+        "Hover enable, push distance and hover scale",
+        "Border width and color, corner radius, shadow on or off",
+        "Click handler, className and inline style overrides"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the rotation sequence of the fan",
+            "where": "PATTERN constant"
+        },
+        {
+            "change": "Change spring feel of movement",
+            "where": "popStiffness and moveStiffness values inside the frame function"
+        },
+        {
+            "change": "Change shadow strengths",
+            "where": "--bounce-cards-shadow values in the root style object"
+        },
+        {
+            "change": "Lay cards out vertically",
+            "where": "slots computation and pick function"
+        }
+    ],
+    "fixed": [
+        "Requires client rendering ('use client') and Tailwind CSS classes",
+        "Layout is horizontal and centered, cards positioned absolutely around the container center",
+        "Hover detection is by horizontal distance to nearest card slot, not per-element events",
+        "Cards are square with object-cover images",
+        "Custom transformStyles only parse rotate(Ndeg) and translate(Npx, Npx) strings",
+        "Intro animation runs once on mount; hover and click tilt are not configurable beyond props"
+    ],
+    "mood": ["playful", "energetic", "modern"],
+    "industries": ["photography", "travel", "creative agency", "events", "portfolio"],
+    "sections": ["gallery", "portfolio", "hero"],
+    "dependencies": []
+}
