@@ -4,11 +4,12 @@
   "sourceHash": "783755a56c4b781c0f78749ecda081348df724efbd91548b2c6f88eabb0e570a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "fluid-image-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.442Z"
+  "note": "Renamed component to FluidImageGrid. Removed demo header label, canvas id, Poppins class. CDN imports replaced with three and @fancyapps/ui packages. accentColor now hex. Added backgroundColor, hintText, className. No frame change, no variants.",
+  "updatedAt": "2026-11-01T07:12:54.246Z",
+  "gateOutput": "gates passed"
 }

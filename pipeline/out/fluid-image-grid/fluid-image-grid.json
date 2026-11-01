@@ -1,0 +1,57 @@
+{
+  "slug": "fluid-image-grid",
+  "name": "Fluid Image Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "WebGL image grid where each photo ripples like liquid on hover and opens in a lightbox on click. Switches from multiple columns to a single column on narrow screens.",
+  "contents": [
+    "Grid of image planes rendered in a full-height canvas",
+    "Thin inset frame with an accent line and a hint caption"
+  ],
+  "behavior": [
+    "Images continuously drift with a subtle liquid motion",
+    "Hovering an image raises a wave distortion that eases back on leave",
+    "Clicking an image opens it in a Fancybox lightbox",
+    "Layout switches between desktop and mobile column counts below 600px container width and re-lays out on resize"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "6 sample image URLs" },
+    { "name": "columnsDesktop", "type": "number", "default": 3 },
+    { "name": "columnsMobile", "type": "number", "default": 1 },
+    { "name": "spacingX", "type": "number", "default": 2.0 },
+    { "name": "spacingY", "type": "number", "default": 2.0 },
+    { "name": "planeSizeDesktop", "type": "number", "default": 1.4 },
+    { "name": "planeSizeMobile", "type": "number", "default": 2.2 },
+    { "name": "liquidSpeed", "type": "number", "default": 0.01 },
+    { "name": "waveStrength", "type": "number", "default": 1.5 },
+    { "name": "lerpFactor", "type": "number", "default": 0.06 },
+    { "name": "accentColor", "type": "string", "default": "#3b82f6" },
+    { "name": "backgroundColor", "type": "string", "default": "#070709" },
+    { "name": "hintText", "type": "string", "default": "[ Hover to distort / Click to expand ]" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, column counts, spacing and plane sizes",
+    "Wave strength, liquid speed and easing",
+    "Accent and background colors, hint caption"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the mobile breakpoint",
+      "where": "width < 600 check in layoutGrid"
+    },
+    {
+      "change": "Change the distortion look",
+      "where": "vertexShader and fragmentShader strings in initWebGL"
+    }
+  ],
+  "fixed": [
+    "Root is a full-viewport-height section with the canvas centered",
+    "Planes are square and the grid must fit the camera view, so many images need larger spacing or smaller plane sizes",
+    "Opening the lightbox loads Fancybox styles through a CSS import"
+  ],
+  "mood": ["fluid", "modern", "immersive", "dark"],
+  "industries": ["photography", "art", "fashion", "agency", "travel"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["three", "@fancyapps/ui"]
+}
