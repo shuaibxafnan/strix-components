@@ -1,0 +1,197 @@
+{
+  "slug": "parallax-intro",
+  "name": "Parallax Intro",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen WebGL intro where floating image planes fly in with a rounded reveal, tilt with the pointer, and drift away on scroll, above a title and a highlighted statement paragraph.",
+  "contents": [
+    "Title, subtitle and gradient replay button",
+    "Eight WebGL image planes, some blurred, in a fixed full-screen canvas",
+    "Statement paragraph with gradient highlighted phrases"
+  ],
+  "behavior": [
+    "Planes reveal with a rounded mask and rotate in on load, staggered by delay",
+    "Camera orbits slightly following the pointer on screens 480px and wider",
+    "Planes fly outward as the page scrolls",
+    "Replay button restarts the intro animation"
+  ],
+  "props": [
+    {
+      "name": "images",
+      "type": "string[]",
+      "default": "8 sample Unsplash images"
+    },
+    {
+      "name": "planeLayout",
+      "type": "{x,y,z,width,height,blurred,delay}[]",
+      "default": "8 plane positions"
+    },
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#202124"
+    },
+    {
+      "name": "accentFrom",
+      "type": "string",
+      "default": "#4285F4"
+    },
+    {
+      "name": "accentTo",
+      "type": "string",
+      "default": "#2DAEB8"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "default": "Studio"
+    },
+    {
+      "name": "subtitle",
+      "type": "string",
+      "default": "A creative team crafting digital experiences"
+    },
+    {
+      "name": "replayLabel",
+      "type": "string",
+      "default": "Replay Intro"
+    },
+    {
+      "name": "paragraphText",
+      "type": "string",
+      "default": "We build {{highlight}}considered digital products{{/highlight}} for teams who care about the details, blending {{highlight}}design{{/highlight}} and {{highlight}}engineering{{/highlight}} into one seamless process."
+    },
+    {
+      "name": "cameraDistance",
+      "type": "number",
+      "default": 6
+    },
+    {
+      "name": "cameraFov",
+      "type": "number",
+      "default": 70
+    },
+    {
+      "name": "pointerMaxAzimuthDeg",
+      "type": "number",
+      "default": 9
+    },
+    {
+      "name": "pointerMinPolarDeg",
+      "type": "number",
+      "default": 80
+    },
+    {
+      "name": "pointerMaxPolarDeg",
+      "type": "number",
+      "default": 100
+    },
+    {
+      "name": "pointerLerpSpeed",
+      "type": "number",
+      "default": 4
+    },
+    {
+      "name": "pointerMinWidth",
+      "type": "number",
+      "default": 480
+    },
+    {
+      "name": "revealDuration",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "enterDuration",
+      "type": "number",
+      "default": 1.8
+    },
+    {
+      "name": "enterDelayOffset",
+      "type": "number",
+      "default": 0.2
+    },
+    {
+      "name": "exitTranslateY",
+      "type": "number",
+      "default": 10
+    },
+    {
+      "name": "exitTranslateX",
+      "type": "number",
+      "default": 1.5
+    },
+    {
+      "name": "exitTranslateZ",
+      "type": "number",
+      "default": 2
+    },
+    {
+      "name": "blurStrength",
+      "type": "number",
+      "default": 0.0025
+    },
+    {
+      "name": "borderRadiusAmount",
+      "type": "number",
+      "default": 0.08
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Images, plane positions, sizes, blur and delays",
+    "Title, subtitle, button label and paragraph text with highlight markers",
+    "Background, text and gradient accent colors",
+    "Camera, pointer tilt and animation timing and exit distances"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the reveal shape or blur quality",
+      "where": "FRAGMENT_SHADER constant"
+    },
+    {
+      "change": "Change the fly-in motion",
+      "where": "VERTEX_SHADER constant"
+    },
+    {
+      "change": "Change the layout of the text blocks",
+      "where": "header and section elements in the returned JSX"
+    }
+  ],
+  "fixed": [
+    "Uses page scroll position to drive the exit animation, so the page must be taller than the viewport",
+    "Canvas is fixed to the viewport behind the content",
+    "Needs one image per plane in planeLayout",
+    "Adds window pointermove and resize listeners while mounted and removes them on unmount"
+  ],
+  "mood": [
+    "immersive",
+    "modern",
+    "clean",
+    "playful"
+  ],
+  "industries": [
+    "creative agency",
+    "design studio",
+    "portfolio",
+    "photography",
+    "technology"
+  ],
+  "sections": [
+    "hero",
+    "about"
+  ],
+  "dependencies": [
+    "three",
+    "gsap"
+  ]
+}
