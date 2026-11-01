@@ -4,11 +4,12 @@
   "sourceHash": "00182bb14c78c072af83d9c2eee084726cd027dcd7af9cdf52cb5c85bb1e8b25",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "time-progress-bar",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.571Z"
+  "note": "Rewritten to template. Theme toggle and dark-mode logic removed; backgroundColor, textColor, labels, className props added; period percentages computed from timestamps (display precision changed slightly); frame added. Gates passed.",
+  "updatedAt": "2026-11-01T14:19:50.883Z",
+  "gateOutput": "gates passed"
 }

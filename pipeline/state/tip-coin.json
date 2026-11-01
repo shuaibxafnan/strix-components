@@ -4,11 +4,12 @@
   "sourceHash": "255c807d93744fe024b1f9557b9591c13da7f0d1ac6db49b1734629b070324b6",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "tip-coin",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.572Z"
+  "note": "Rewritten to template. Root min-h-screen changed to h-screen. Kept next/font Gloria Hallelujah. Category ui-elements; dep gsap.",
+  "updatedAt": "2026-11-01T14:21:56.763Z",
+  "gateOutput": "gates passed"
 }

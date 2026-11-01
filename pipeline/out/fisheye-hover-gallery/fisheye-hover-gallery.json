@@ -1,0 +1,65 @@
+{
+  "slug": "fisheye-hover-gallery",
+  "name": "Fisheye Hover Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Staggered grid of grayscale photos with numbered labels. Hovering a photo swaps it for a WebGL fisheye render with chromatic aberration, noise and vignette that follows the cursor.",
+  "contents": [
+    "Serif heading",
+    "Grid of numbered images, each with a small title below",
+    "One WebGL canvas per image for the hover effect"
+  ],
+  "behavior": [
+    "On hover the image fades out and a shader canvas fades in, with fisheye distortion easing in",
+    "Cursor position bends the distortion locally",
+    "Title shifts right, greys out and shows a bullet marker on hover",
+    "Canvases resize with their image box",
+    "Below 768px the grid becomes two columns"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#fafafa" },
+    { "name": "textColor", "type": "string", "default": "#1a1a1a" },
+    { "name": "title", "type": "string", "default": "Sessions" },
+    { "name": "images", "type": "{number,src,alt,title,className}[]", "default": "9 sample images" },
+    { "name": "fisheyeStrength", "type": "number", "default": 1.0 },
+    { "name": "vignetteStart", "type": "number", "default": 0.3 },
+    { "name": "vignetteEnd", "type": "number", "default": 0.8 },
+    { "name": "fisheyeRadius", "type": "number", "default": 0.8 },
+    { "name": "chromaticAberration", "type": "number", "default": 0.015 },
+    { "name": "noiseIntensity", "type": "number", "default": 0.08 },
+    { "name": "vignetteIntensity", "type": "number", "default": 0.32 },
+    { "name": "mouseEffect", "type": "number", "default": 0.02 },
+    { "name": "mouseRadius", "type": "number", "default": 0.3 },
+    { "name": "animationDuration", "type": "number", "default": 0.64 },
+    { "name": "canvasOpacity", "type": "number", "default": 1.0 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Heading, images, labels, numbers and grid placement through each item className",
+    "Background and text colors",
+    "Strength, radius, aberration, noise, vignette and mouse response of the fisheye effect"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the grayscale resting look of the images",
+      "where": "grayscale contrast-[1.2] classes on the img element"
+    },
+    {
+      "change": "Change the shader effect",
+      "where": "FRAGMENT_SHADER constant"
+    },
+    {
+      "change": "Change the heading font",
+      "where": "titleFont constant"
+    }
+  ],
+  "fixed": [
+    "Effect is hover driven and uses one WebGL context per image, so keep the image count moderate",
+    "Images must allow cross-origin loading for the WebGL textures",
+    "Grid placement classes in the default images use md: prefixes, below that the grid is two columns"
+  ],
+  "mood": ["editorial", "minimal", "experimental", "monochrome"],
+  "industries": ["photography", "music", "creative agency", "portfolio"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap", "three"]
+}

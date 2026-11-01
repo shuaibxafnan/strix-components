@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "swarm-cursor",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.592Z"
+  "note": "JSON written; component unchanged. Category cursor-effects. Needs WebGL2 and sized parent; mouse-oriented. Gates passed.",
+  "updatedAt": "2026-11-01T14:04:02.239Z",
+  "gateOutput": "gates passed"
 }

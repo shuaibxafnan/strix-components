@@ -1,0 +1,42 @@
+{
+  "slug": "svg-lighting",
+  "name": "SVG Lighting",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Draggable glass card with a lit border. Four colored point lights, attached to draggable app icons, sweep specular highlights across the card edge through an SVG filter, over a faded grid.",
+  "contents": [
+    "Glass card with window dots and a lit border",
+    "Four draggable icon tiles acting as colored lights",
+    "Faded grid background"
+  ],
+  "behavior": [
+    "Dragging an icon moves its light and updates the border highlight live",
+    "Dragging the card moves it and re-syncs all lights",
+    "Theme prop switches dark, light or system colors"
+  ],
+  "props": [
+    {"name": "theme", "type": "\"dark\" | \"light\" | \"system\"", "default": "dark"},
+    {"name": "borderWidth", "type": "number", "default": 2},
+    {"name": "cardWidth", "type": "number", "default": 220},
+    {"name": "gridSize", "type": "number", "default": 45},
+    {"name": "lights", "type": "{label,img,color,constant,exponent,surface,z,initX,initY}[]", "default": "4 sample lights"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Icon images, light colors, intensity, spread and starting positions",
+    "Card width, border width, grid size and theme"
+  ],
+  "needsCodeEdit": [
+    {"change": "Support a different number of lights", "where": "feBlend elements inside the lc-lighting filter"},
+    {"change": "Change card contents or corner radius", "where": "window dots block inside cardRef"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Filter blends exactly four lights",
+    "Card and icon sizes are fixed pixels, so very narrow screens may clip outer icons"
+  ],
+  "mood": ["futuristic", "sleek", "playful", "dark"],
+  "industries": ["saas", "developer tools", "tech", "design"],
+  "sections": ["hero", "background"],
+  "dependencies": []
+}

@@ -1,0 +1,87 @@
+{
+    "slug": "text-type",
+    "name": "Text Type",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Typewriter text that types, pauses and deletes one or more strings in a loop, with a gliding blinking cursor, optional typos, per-character reveal effects and select-style deleting.",
+    "contents": [
+        "Wrapper element (configurable tag) with the typed text, optional colored prefix, and a screen-reader-only full text",
+        "Animated cursor element (character or bar, block, underscore shape) that glides to the caret"
+    ],
+    "behavior": [
+        "Types characters one by one at a speed, optionally randomized between min and max",
+        "After a pause, deletes by backspacing or by selecting then clearing, then moves to the next string",
+        "Cursor blinks with GSAP and glides smoothly to the caret position, following line wraps",
+        "Optional human-like typos that are typed then corrected",
+        "Optional per-character fade, blur or rise effect",
+        "Can start only when scrolled into view, and can type right to left",
+        "Respects prefers-reduced-motion by showing text without typing animation"
+    ],
+    "props": [
+        {"name": "text", "type": "string | string[]", "default": null},
+        {"name": "as", "type": "elementType", "default": "div"},
+        {"name": "typingSpeed", "type": "number", "default": 50},
+        {"name": "initialDelay", "type": "number", "default": 0},
+        {"name": "pauseDuration", "type": "number", "default": 2000},
+        {"name": "deletingSpeed", "type": "number", "default": 30},
+        {"name": "deleteMode", "type": "'backspace' | 'select'", "default": "backspace"},
+        {"name": "loop", "type": "boolean", "default": true},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "showCursor", "type": "boolean", "default": true},
+        {"name": "hideCursorWhileTyping", "type": "boolean", "default": false},
+        {"name": "cursorStyle", "type": "'character' | 'bar' | 'block' | 'underscore'", "default": "character"},
+        {"name": "cursorCharacter", "type": "string", "default": "|"},
+        {"name": "cursorColor", "type": "string", "default": "currentColor"},
+        {"name": "cursorClassName", "type": "string", "default": ""},
+        {"name": "cursorBlinkDuration", "type": "number", "default": 0.5},
+        {"name": "cursorGlide", "type": "boolean", "default": true},
+        {"name": "typeEffect", "type": "'none' | 'fade' | 'blur' | 'rise'", "default": "none"},
+        {"name": "mistakes", "type": "number", "default": 0},
+        {"name": "prefix", "type": "string", "default": ""},
+        {"name": "prefixColor", "type": "string", "default": "currentColor"},
+        {"name": "textColors", "type": "string[]", "default": []},
+        {"name": "variableSpeed", "type": "{min:number,max:number}", "default": null},
+        {"name": "onSentenceComplete", "type": "(sentence:string, index:number) => void", "default": null},
+        {"name": "startOnVisible", "type": "boolean", "default": false},
+        {"name": "reverseMode", "type": "boolean", "default": false}
+    ],
+    "editableByProps": [
+        "Text strings, prefix and wrapper tag",
+        "Typing, deleting, pause and initial delay timing, variable speed, loop",
+        "Delete mode, type effect, typo frequency, reverse typing",
+        "Cursor visibility, shape, character, color, blink speed, glide, extra classes",
+        "Text colors per string and prefix color",
+        "Start on scroll into view, completion callback, extra props passed to the wrapper"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change type effect animations",
+            "where": "EFFECTS constant"
+        },
+        {
+            "change": "Change cursor shapes or sizes",
+            "where": "SHAPES constant"
+        },
+        {
+            "change": "Change which keys produce typos",
+            "where": "NEIGHBORS constant and typoFor function"
+        },
+        {
+            "change": "Change typo probability or pause before correction",
+            "where": "typo branch in the typing useEffect"
+        }
+    ],
+    "fixed": [
+        "Typo mistakes only apply to letters and digits listed in the keyboard neighbor map",
+        "Wrapper is inline-block with whitespace-pre-wrap, text wraps inside its parent width",
+        "Selection highlight in select delete mode uses a fixed 25% currentColor background",
+        "Unknown cursorStyle values fall back to the bar shape, unknown typeEffect means no effect",
+        "Requires the gsap package",
+        "Text prop is required, an empty value renders nothing typed",
+        "Works at all screen sizes, no fixed widths or hover dependence"
+    ],
+    "mood": ["techy", "playful", "minimal", "dynamic"],
+    "industries": ["saas", "developer tools", "startups", "agencies", "portfolio"],
+    "sections": ["hero", "about", "cta"],
+    "dependencies": ["gsap"]
+}

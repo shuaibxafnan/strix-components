@@ -4,11 +4,12 @@
   "sourceHash": "97b7a34455c80c03ae71742028b607eda1677fc353eefb897ab9e3dd048bc40b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "team-member-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.567Z"
+  "note": "Renamed Team3DCarousel to TeamMemberCarousel. Props eyebrow, headingLead, headingEmphasis, className added; caption timeouts cleared on unmount. Category sliders-carousels.",
+  "updatedAt": "2026-11-01T14:08:21.303Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

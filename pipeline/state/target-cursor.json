@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "target-cursor",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.593Z"
+  "note": "JSON written; component unchanged. Category cursor-effects. Fine-pointer only; global listeners and style tag. Gates passed.",
+  "updatedAt": "2026-11-01T14:07:21.411Z",
+  "gateOutput": "gates passed"
 }

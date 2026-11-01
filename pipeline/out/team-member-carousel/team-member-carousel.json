@@ -1,0 +1,30 @@
+{
+"slug":"team-member-carousel",
+"name":"Team Member Carousel",
+"category":"sliders-carousels",
+"isReactBits":false,
+"description":"Dark 3D coverflow carousel of team portraits with a glowing accent backdrop, animated name and role caption, arrow buttons, counter and progress pills.",
+"contents":["Eyebrow and heading above the carousel","Prev/next buttons with a counter","Perspective card stack of member photos","Name and role caption","Pill indicator row"],
+"behavior":["Active card centered, neighbors tilt back in 3D and fade","Navigate by buttons, clicking a card or pill, arrow keys, or swipe","Caption fades out and in on change","Card size and offsets switch at 768px and below"],
+"props":[
+{"name":"accentColor","type":"string","default":"#6366f1"},
+{"name":"bgPrimary","type":"string","default":"#030712"},
+{"name":"cardWidth","type":"string","default":"300px"},
+{"name":"cardHeight","type":"string","default":"350px"},
+{"name":"cardMobileWidth","type":"string","default":"230px"},
+{"name":"cardMobileHeight","type":"string","default":"270px"},
+{"name":"items","type":"{name,role,img}[]","default":"6 sample members"},
+{"name":"eyebrow","type":"string","default":"Core Team"},
+{"name":"headingLead","type":"string","default":"Meet the"},
+{"name":"headingEmphasis","type":"string","default":"Visionaries"},
+{"name":"className","type":"string","default":""}],
+"editableByProps":["Members, names, roles and photos","Heading and eyebrow text","Accent and background colors","Card sizes on desktop and mobile"],
+"needsCodeEdit":[
+{"change":"Adjust 3D spacing and tilt of side cards","where":"transformStyles assignments in the items.map callback"},
+{"change":"Change mobile breakpoint","where":"checkMobile function"}],
+"fixed":["Adds window keydown listener for arrow keys while mounted and removes it on unmount","Root is at least full viewport height"],
+"mood":["modern","dark","premium","elegant"],
+"industries":["agency","startup","architecture","consulting","technology"],
+"sections":["about"],
+"dependencies":[]
+}

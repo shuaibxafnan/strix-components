@@ -1,0 +1,26 @@
+{
+ "slug":"coin-tip-button","name":"Coin Tip Button","category":"ui-elements","isReactBits":false,
+ "description":"Tip button that on click squashes into a slot while a 3D-looking coin flips in an arc into it, then reveals a thank-you message before resetting.",
+ "contents":["Button with label text","Animated flipping coin","Success message revealed after the coin lands"],
+ "behavior":["Click shakes the button and collapses it into a slot","Coin flips in a randomized parabolic arc with shine, driven by requestAnimationFrame","Success text appears with particle dots, then everything resets after about 1.5 seconds","Clicks are ignored while the animation runs"],
+ "props":[
+  {"name":"buttonText","type":"string","default":"Send me a tip"},
+  {"name":"successText","type":"string","default":"Thank you!"},
+  {"name":"coinSize","type":"string","default":"3.5rem"},
+  {"name":"maxMoveLoopCount","type":"number","default":90},
+  {"name":"btnBgColor","type":"string","default":"#031032"},
+  {"name":"fontColor","type":"string","default":"#fff"},
+  {"name":"coinLight","type":"string","default":"#fcfaf9"},
+  {"name":"coinMedium","type":"string","default":"#c2cadf"},
+  {"name":"coinDark","type":"string","default":"#8590b3"},
+  {"name":"coinSide","type":"string","default":"#737c99"},
+  {"name":"coinShine","type":"string","default":"#e9f4ff"},
+  {"name":"className","type":"string","default":""}],
+ "editableByProps":["Button and success text","Button, text and coin colors","Coin size and flip duration in frames"],
+ "needsCodeEdit":[{"change":"Change button width or height","where":"w-[9.5rem] class on the button element"},{"change":"Change the coin face artwork","where":"backgroundImage gradients inside coinThickness block"}],
+ "fixed":["Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.","Button uses the Quicksand font family name but does not import it"],
+ "mood":["playful","delightful","minimal"],
+ "industries":["creators","nonprofit","education","saas","media"],
+ "sections":["cta","other"],
+ "dependencies":[]
+}

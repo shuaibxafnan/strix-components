@@ -1,0 +1,64 @@
+{
+  "slug": "telescope-zoom-scroll",
+  "name": "Telescope Zoom Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Pinned full-screen scroll scene where a heading splits apart, small images fly toward the viewer in 3D, and a blurred background image zooms in and sharpens as you scroll.",
+  "contents": [
+    "Pinned full-screen section with back image and masked front image",
+    "Two-part heading that splits left and right",
+    "Ten small floating images positioned around the screen"
+  ],
+  "behavior": [
+    "Section pins and scrubs with scroll through GSAP ScrollTrigger",
+    "Small images travel forward in 3D perspective with a center-out stagger",
+    "Front image scales up and unblurs while the background layer scales in",
+    "Heading halves slide apart as progress increases"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#fff"},
+    {"name": "textColor", "type": "string", "default": "#1a1a1a"},
+    {"name": "fontFamily", "type": "string", "default": "'Playfair Display', Georgia, serif"},
+    {"name": "backImage", "type": "string", "default": "unsplash photo URL"},
+    {"name": "frontImage", "type": "string", "default": "unsplash photo URL"},
+    {"name": "smallImages", "type": "string[]", "default": "10 sample image URLs"},
+    {"name": "smallImagePositions", "type": "{top,left,right,bottom,width}[]", "default": "10 sample positions"},
+    {"name": "leftText", "type": "string", "default": "for the"},
+    {"name": "rightText", "type": "string", "default": "planet"},
+    {"name": "headingFontSize", "type": "string", "default": "clamp(1.5rem, 3vw, 4rem)"},
+    {"name": "pinStart", "type": "string", "default": "top top"},
+    {"name": "pinEnd", "type": "string", "default": "bottom top"},
+    {"name": "scrub", "type": "boolean | number", "default": true},
+    {"name": "frontImageScale", "type": "number", "default": 0.15},
+    {"name": "frontBlurAmount", "type": "number", "default": 2},
+    {"name": "frontScaleDuration", "type": "number", "default": 1},
+    {"name": "frontScaleDelay", "type": "number", "default": 0.1},
+    {"name": "frontBlurDuration", "type": "number", "default": 1},
+    {"name": "frontBlurDelay", "type": "number", "default": 0.4},
+    {"name": "frontAnimStart", "type": "number", "default": 0.6},
+    {"name": "smallImageTravel", "type": "string", "default": "100vh"},
+    {"name": "smallImageDuration", "type": "number", "default": 1},
+    {"name": "smallImageStagger", "type": "number", "default": 0.2},
+    {"name": "ease", "type": "string", "default": "power1.inOut"},
+    {"name": "maskImage", "type": "string", "default": "radial-gradient(circle, black 55%, transparent 100%)"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Both background images, small images and their positions",
+    "Heading text, size, color and font family",
+    "Scroll range, easing, durations, stagger, blur and scale values",
+    "Background color and front image mask"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the heading split distance", "where": "translate3d calc expressions on the two heading spans"},
+    {"change": "Change the 3D depth of small images", "where": "perspective style on the small images container"}
+  ],
+  "fixed": [
+    "Pins the section and ties it to page scroll via ScrollTrigger, so scroll length equals the section height after the pin",
+    "Heading is a single line with two halves and the split distance is fixed at 66vw"
+  ],
+  "mood": ["cinematic", "immersive", "editorial", "dreamy"],
+  "industries": ["travel", "sustainability", "photography", "brand storytelling", "nonprofit"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}

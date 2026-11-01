@@ -1,0 +1,41 @@
+{
+  "slug": "text-sparks",
+  "name": "Text Sparks",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Canvas effect that forms large letters out of glowing, twinkling particles with sparks drifting off them, fading in and out in per-letter colors on a dark background.",
+  "contents": ["Full-viewport canvas rendering colored letters made of particles"],
+  "behavior": [
+    "Letters are sampled into points that pulse and twinkle with additive blending",
+    "Sparks spawn from the letter points and fade as they drift",
+    "Text fades in, holds for the display time, then fades out and repeats",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    {"name": "canvasBg", "type": "string", "default": "#111111"},
+    {"name": "displayTime", "type": "number", "default": 3000},
+    {"name": "fadeInDuration", "type": "number", "default": 50},
+    {"name": "fadeOutDuration", "type": "number", "default": 50},
+    {"name": "particlesPerFrame", "type": "number", "default": 50},
+    {"name": "baseSize", "type": "number", "default": 200},
+    {"name": "textItems", "type": "{text,hue,saturation,lightness}[]", "default": "D, E, V, I, L letters with blue, red and amber hues"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Letters and the color of each letter",
+    "Background color",
+    "Timing of fade and display",
+    "Spark density and mask resolution"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the font used to draw the letters", "where": "getFontDescriptor"}
+  ],
+  "fixed": [
+    "Canvas is sized from the window dimensions, so the component is meant to fill the viewport",
+    "Letter mask is built once and is not rebuilt on resize"
+  ],
+  "mood": ["energetic", "futuristic", "dramatic", "playful"],
+  "industries": ["gaming", "entertainment", "technology", "events", "creative agency"],
+  "sections": ["hero"],
+  "dependencies": []
+}

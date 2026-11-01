@@ -1,0 +1,77 @@
+{
+    "slug": "stratum-veil",
+    "name": "Stratum Veil",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Dark editorial scroll page with a rotated grid of drifting image columns behind a large title, followed by parallax text, sliding breakout words, an image strip and a back-to-top link.",
+    "contents": [
+        "Rotated five-column image grid with large overlay title",
+        "Centered body paragraph",
+        "Two large horizontally drifting breakout phrases",
+        "Strip of eight parallax image tiles",
+        "Back to top button",
+        "Loading dot overlay until images are preloaded"
+    ],
+    "behavior": [
+        "Smooth scrolling through Lenis",
+        "Columns, tiles, text and words drift with scroll position using eased transforms",
+        "Images are preloaded and a pulsing loader covers the page until ready or 6 seconds pass",
+        "Parallax is disabled when reduced motion is preferred",
+        "Back to top scrolls smoothly to the first section"
+    ],
+    "props": [
+        {"name": "images", "type": "string[]", "default": "25 sample image URLs"},
+        {"name": "bgColor", "type": "string", "default": "#111"},
+        {"name": "textColor", "type": "string", "default": "#fff"},
+        {"name": "breakoutColor", "type": "string", "default": "#211f1b"},
+        {"name": "loaderColor", "type": "string", "default": "#aaa"},
+        {"name": "overlayTitle", "type": "string", "default": "Contrasts"},
+        {"name": "overlayTitleSize", "type": "string", "default": "clamp(3rem, 9vw, 8rem)"},
+        {"name": "bodyText", "type": "string", "default": "Psychedelics are illegal not because a loving government is concerned that you may jump out of a third story window. Psychedelics are illegal because they dissolve opinion structures and culturally laid down models of behaviour and information processing. They open you up to the possibility that everything you know is wrong."},
+        {"name": "bodySize", "type": "string", "default": "clamp(1rem, 2vw, 1.5rem)"},
+        {"name": "breakoutBig", "type": "string", "default": "pursuit of happiness"},
+        {"name": "breakoutBigSize", "type": "string", "default": "clamp(2rem, 8vw, 7rem)"},
+        {"name": "breakoutMedium", "type": "string", "default": "the right to experiment with your own consciousness"},
+        {"name": "breakoutMedSize", "type": "string", "default": "clamp(1rem, 3.2vw, 2.75rem)"},
+        {"name": "backTopLabel", "type": "string", "default": "Back to the top"},
+        {"name": "backTopSize", "type": "string", "default": "clamp(1.5rem, 3.5vw, 3rem)"},
+        {"name": "displayFont", "type": "string", "default": "'Bodoni Moda', serif"},
+        {"name": "bodyFont", "type": "string", "default": "'Hanken Grotesk', sans-serif"},
+        {"name": "googleFontsHref", "type": "string", "default": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;1,6..96,200;1,6..96,400&family=Hanken+Grotesk:wght@300;400;500&display=swap"},
+        {"name": "smoothScroll", "type": "boolean", "default": true},
+        {"name": "smoothLerp", "type": "number", "default": 0.09},
+        {"name": "columnParallax", "type": "number", "default": 110},
+        {"name": "stripParallax", "type": "number", "default": 40},
+        {"name": "textParallax", "type": "number", "default": 34},
+        {"name": "wordParallax", "type": "number", "default": 130},
+        {"name": "parallaxEase", "type": "number", "default": 0.075},
+        {"name": "sectionGap", "type": "string", "default": "clamp(4rem, 12vh, 10rem)"},
+        {"name": "rotationAngle", "type": "number", "default": -22.5},
+        {"name": "columnWidth", "type": "string", "default": "33vmax"},
+        {"name": "columnTileHeight", "type": "string", "default": "40vmax"},
+        {"name": "stripHeight", "type": "string", "default": "240px"},
+        {"name": "tileOpacity", "type": "number", "default": 0.7},
+        {"name": "showLoader", "type": "boolean", "default": true},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "All text, sizes, fonts and colors",
+        "Image list, grid rotation, tile size and opacity",
+        "Parallax strengths, easing and smooth scroll on or off",
+        "Spacing between sections and loader on or off"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the number of grid columns or strip tiles", "where": "COLUMNS and STRIP constants"},
+        {"change": "Reorder or remove page sections", "where": "section elements inside the main element"}
+    ],
+    "fixed": [
+        "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+        "Injects a Google Fonts stylesheet link into document head and leaves it after unmount",
+        "Loader overlay is fixed to the full viewport until images load",
+        "Includes a 160vmax tall grid section needed for the scroll range"
+    ],
+    "mood": ["editorial", "dark", "dreamy", "bold"],
+    "industries": ["art", "fashion", "photography", "publishing", "music"],
+    "sections": ["hero", "gallery"],
+    "dependencies": ["lenis"]
+}

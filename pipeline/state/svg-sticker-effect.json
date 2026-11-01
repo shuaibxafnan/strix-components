@@ -4,11 +4,12 @@
   "sourceHash": "cee76044d57c80d1675a55f49a5a0b9cfe5b58fd322b34c96540ad4322f44884",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "svg-sticker-effect",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.565Z"
+  "note": "Rewritten to template. Demo background and padding removed; frame w-full h-screen flex centered; className added. Fixed filter id shared across instances. Gates passed.",
+  "updatedAt": "2026-11-01T14:02:27.440Z",
+  "gateOutput": "gates passed"
 }

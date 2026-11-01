@@ -1,0 +1,141 @@
+{
+    "slug": "tear-ticket",
+    "name": "Tear Ticket",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Perforated ticket card with a draggable stub. Grab the stub and pull to tear it off along the perforation with stretching fibres, physics drop and fade, plus a pointer-driven 3D tilt on the ticket.",
+    "contents": [
+        "Ticket body with optional cover image, scrim and children slot",
+        "Tear-off stub with its own children slot",
+        "Perforation line of holes with stretching paper fibres",
+        "Optional outline border on body and stub",
+        "Hidden status text announcing 'Used'"
+    ],
+    "behavior": [
+        "Dragging the stub pivots it around a hinge at the nearest end of the perforation, bridges stretch and snap one by one",
+        "Once fully torn, releasing drops the stub with gravity, spin and fade, then calls onTear and marks the ticket used",
+        "Releasing early springs the stub back",
+        "Used ticket greys the image, dims content and optionally recenters the body",
+        "Ticket tilts in 3D toward the pointer with image and content parallax, paused while dragging",
+        "Keyboard Enter or Space tears instantly; with reduced motion a drag over 28px tears instantly and tilt is off",
+        "Scales down to fit narrower containers",
+        "Can be controlled via torn or uncontrolled via defaultTorn"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": null },
+        { "name": "stub", "type": "ReactNode", "default": null },
+        { "name": "image", "type": "string", "default": "" },
+        { "name": "imageAlt", "type": "string", "default": "" },
+        { "name": "scrim", "type": "boolean", "default": true },
+        { "name": "imageRadius", "type": "number", "default": 8 },
+        { "name": "orientation", "type": "'horizontal' | 'vertical'", "default": "horizontal" },
+        { "name": "torn", "type": "boolean", "default": "undefined" },
+        { "name": "defaultTorn", "type": "boolean", "default": false },
+        { "name": "onTear", "type": "() => void", "default": "undefined" },
+        { "name": "width", "type": "number", "default": 460 },
+        { "name": "height", "type": "number", "default": 250 },
+        { "name": "stubSize", "type": "number", "default": 150 },
+        { "name": "radius", "type": "number", "default": 16 },
+        { "name": "holes", "type": "number", "default": 12 },
+        { "name": "holeSize", "type": "number", "default": 6 },
+        { "name": "notch", "type": "number", "default": 3 },
+        { "name": "roughness", "type": "number", "default": 0 },
+        { "name": "tearAngle", "type": "number", "default": 30 },
+        { "name": "stretch", "type": "number", "default": 30 },
+        { "name": "resistance", "type": "number", "default": 0.45 },
+        { "name": "rotate", "type": "number", "default": 4 },
+        { "name": "tilt", "type": "boolean", "default": true },
+        { "name": "tiltMax", "type": "number", "default": 9 },
+        { "name": "tiltReach", "type": "number", "default": 260 },
+        { "name": "parallax", "type": "number", "default": 6 },
+        { "name": "perspective", "type": "number", "default": 1000 },
+        { "name": "background", "type": "string", "default": "#27272a" },
+        { "name": "color", "type": "string", "default": "#f5f5f5" },
+        { "name": "border", "type": "boolean", "default": true },
+        { "name": "borderColor", "type": "string", "default": "" },
+        { "name": "borderWidth", "type": "number", "default": 1 },
+        { "name": "stubBackground", "type": "string", "default": "" },
+        { "name": "recenter", "type": "boolean", "default": true },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "ariaLabel", "type": "string", "default": "Tear off the stub" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Body and stub content, cover image, scrim and image radius",
+        "Horizontal or vertical layout, size, stub size and corner radius",
+        "Perforation hole count, size, notch and roughness",
+        "Tear feel: angle, stretch distance, resistance",
+        "Tilt, parallax, perspective and resting rotation",
+        "Colors, border and stub background",
+        "Controlled or uncontrolled torn state, onTear callback, disabled state, aria label"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change fall speed of the torn stub",
+            "where": "GRAVITY constant"
+        },
+        {
+            "change": "Change tilt spring stiffness",
+            "where": "TILT_SPRING constant"
+        },
+        {
+            "change": "Change image area height relative to the body",
+            "where": "ART_SPAN and ART_INSET constants"
+        },
+        {
+            "change": "Change how fast snapped fibres retract",
+            "where": "RETRACT constant"
+        },
+        {
+            "change": "Change 'Used' status text",
+            "where": "role=\"status\" span at the end of the JSX"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package (motion/react) and Tailwind CSS",
+        "Adds a window pointermove listener for tilt while mounted",
+        "Uses a ResizeObserver and scales the ticket down to fit narrower parents, never up",
+        "Stub is pinned with touch-none and only primary button drags",
+        "Perforation and tear fibres are drawn with clip-path path() shapes, tear fibre color follows background",
+        "Torn stub is hidden after tearing, no built-in reset control, reset by changing torn or defaultTorn state",
+        "Tilt ignores touch pointers"
+    ],
+    "mood": [
+        "playful",
+        "tactile",
+        "modern",
+        "interactive"
+    ],
+    "industries": [
+        "events",
+        "entertainment",
+        "travel",
+        "e-commerce",
+        "hospitality"
+    ],
+    "sections": [
+        "cta",
+        "pricing",
+        "other"
+    ],
+    "dependencies": [
+        "react",
+        "motion"
+    ],
+    "variants": {
+        "prop": "orientation",
+        "default": "horizontal",
+        "options": [
+            {
+                "value": "horizontal",
+                "look": "Stub on the right, torn sideways along a vertical perforation",
+                "useWhen": "Classic wide event or cinema ticket"
+            },
+            {
+                "value": "vertical",
+                "look": "Stub at the bottom, torn downward along a horizontal perforation",
+                "useWhen": "Tall coupon or boarding pass style card"
+            }
+        ]
+    }
+}

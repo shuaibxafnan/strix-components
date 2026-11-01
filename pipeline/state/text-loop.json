@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "text-loop",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.634Z"
+  "note": "JSON written; component unchanged. Category text-effects; dep gsap. Variants from shape prop. Gates passed.",
+  "updatedAt": "2026-11-01T14:13:02.510Z",
+  "gateOutput": "gates passed"
 }

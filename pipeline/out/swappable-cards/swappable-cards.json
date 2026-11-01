@@ -1,0 +1,56 @@
+{
+  "slug": "swappable-cards",
+  "name": "Swappable Cards",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Row of profile cards with photo background, status badge, rating, followers and a contact button. Cards can be reordered by dragging their handle, with a slow zoom on each photo.",
+  "contents": [
+    "Optional header with title and subtitle",
+    "Profile cards with image, online status, name, verified tick, rating stars, follower count, description and action button"
+  ],
+  "behavior": [
+    "Cards fade in from blur with staggered delay",
+    "Card photo slowly zooms in and out",
+    "Hover on a card brightens the bottom fade and tints the button",
+    "Dragging the handle reorders cards, dropped card springs into place",
+    "Button presses scale with a spring release"
+  ],
+  "props": [
+    { "name": "cards", "type": "{name,description,image,alt,status,rating,followers,verified,buttonLabel,onButtonClick}[]", "default": "3 sample profiles" },
+    { "name": "bgColor", "type": "string", "default": "black" },
+    { "name": "cardGap", "type": "string", "default": "1rem" },
+    { "name": "buttonHoverColor", "type": "string", "default": "#FF004D" },
+    { "name": "glowOnHover", "type": "boolean", "default": true },
+    { "name": "draggable", "type": "boolean", "default": true },
+    { "name": "showHeader", "type": "boolean", "default": true },
+    { "name": "title", "type": "string", "default": "Selected Works" },
+    { "name": "description", "type": "string", "default": "Curated visual studies" },
+    { "name": "onlineLabel", "type": "string", "default": "Online" },
+    { "name": "offlineLabel", "type": "string", "default": "Offline" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of cards and all card text, images, ratings, status and button handlers",
+    "Background color, spacing, button hover color",
+    "Toggle drag reordering, hover glow and header"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change card size",
+      "where": "SwappableCard root div style with width 18rem and height 19rem"
+    },
+    {
+      "change": "Change star color",
+      "where": "StarRating function"
+    }
+  ],
+  "fixed": [
+    "Root fills at least the viewport height and centers its content. Override with className using an important modifier such as !min-h-0.",
+    "Adds a temporary style tag to the document head for drag mirrors and sets body cursor while dragging, both removed on unmount",
+    "Card text is white over a dark gradient"
+  ],
+  "mood": ["modern", "dark", "playful", "sleek"],
+  "industries": ["design agencies", "freelance marketplaces", "recruiting", "social apps", "education"],
+  "sections": ["portfolio", "about"],
+  "dependencies": ["motion", "@shopify/draggable"]
+}

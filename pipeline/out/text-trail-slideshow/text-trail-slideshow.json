@@ -1,0 +1,71 @@
+{
+  "slug": "text-trail-slideshow",
+  "name": "Text Trail Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen image slideshow where a giant slide title repeats in stroked and filled rows that trail in and out between slides while the image wipes sideways.",
+  "contents": [
+    "Stack of full-screen slides, each with a background image panel and a repeated large uppercase title",
+    "Prev and next buttons with a numeric counter"
+  ],
+  "behavior": [
+    "Title rows reveal from the middle outward, then hide, on each slide change",
+    "Image slides out and in horizontally with an inner counter-shift",
+    "Arrow left and right keys navigate",
+    "Navigation wraps around and is locked while a transition runs"
+  ],
+  "props": [
+    {"name":"slides","type":"{text,image}[]","default":"10 sample slides"},
+    {"name":"trailRows","type":"number","default":11},
+    {"name":"rowStyles","type":"string[]","default":["stroke","fill","stroke","stroke","fill","fill","fillLow","fill","stroke","strokeLow","fill"]},
+    {"name":"fullRows","type":"number[]","default":[2,5,8]},
+    {"name":"trailOffset","type":"string","default":"0px"},
+    {"name":"showInterval","type":"number","default":80},
+    {"name":"hideInterval","type":"number","default":80},
+    {"name":"endIdleTime","type":"number","default":80},
+    {"name":"rowFade","type":"number","default":0},
+    {"name":"imageInMs","type":"number","default":700},
+    {"name":"imageOutMs","type":"number","default":300},
+    {"name":"imageEaseIn","type":"string","default":"cubic-bezier(0.23, 1, 0.32, 1)"},
+    {"name":"imageEaseOut","type":"string","default":"cubic-bezier(0.23, 1, 0.32, 1)"},
+    {"name":"bgColor","type":"string","default":"#1c1423"},
+    {"name":"textColor","type":"string","default":"#ffffff"},
+    {"name":"accentColor","type":"string","default":"#ff00c4"},
+    {"name":"navColor","type":"string","default":"#ffffff"},
+    {"name":"strokeWidth","type":"string","default":"2px"},
+    {"name":"fontFamily","type":"string","default":"ui-sans-serif, system-ui, sans-serif"},
+    {"name":"fontWeight","type":"number","default":900},
+    {"name":"fontSize","type":"string","default":"17vh"},
+    {"name":"fontSizeSmall","type":"string","default":"3.5rem"},
+    {"name":"lineHeight","type":"number","default":0.85},
+    {"name":"letterSpacing","type":"string","default":"normal"},
+    {"name":"blendMode","type":"string","default":"normal"},
+    {"name":"imageWidth","type":"string","default":"calc(90% - 11rem)"},
+    {"name":"imageHeight","type":"string","default":"60vh"},
+    {"name":"imageMaxWidth","type":"string","default":"889px"},
+    {"name":"scrim","type":"number","default":0},
+    {"name":"navLabels","type":"string[]","default":["prev","next"]},
+    {"name":"navInset","type":"string","default":"3rem"},
+    {"name":"showCounter","type":"boolean","default":true},
+    {"name":"title","type":"string","default":""},
+    {"name":"showTitle","type":"boolean","default":false},
+    {"name":"className","type":"string","default":""}
+  ],
+  "editableByProps": [
+    "Slides, images and titles",
+    "Number of trail rows, row styles and timing",
+    "Colors, typography, image size, scrim and nav labels"
+  ],
+  "needsCodeEdit": [
+    {"change":"Move the nav buttons","where":"nav element with bottom-8 right-8 classes"},
+    {"change":"Change the image slide direction or effect","where":"toggleImage function"}
+  ],
+  "fixed": [
+    "Arrow key navigation is bound on window and removed on unmount",
+    "Root fills the viewport height and clips overflow; override with className using an important modifier such as !h-auto"
+  ],
+  "mood": ["bold","editorial","dynamic","cinematic"],
+  "industries": ["music","fashion","creative agency","film","events"],
+  "sections": ["hero","portfolio","gallery"],
+  "dependencies": []
+}

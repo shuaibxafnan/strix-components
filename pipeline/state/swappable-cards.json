@@ -4,11 +4,12 @@
   "sourceHash": "b40df94d710ce1365b5142d0d6fa25537d966261e2c8bd999b6d6f711b74c02a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "swappable-cards",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.566Z"
+  "note": "Rewritten to template. CDN loaders replaced with npm dynamic imports of motion and @shopify/draggable; props onlineLabel, offlineLabel, className, card.alt added; broken image URL fixed; frame w-full min-h-screen. Gates passed; warning: rAF without cancelAnimationFrame, left as source.",
+  "updatedAt": "2026-11-01T14:03:13.345Z",
+  "gateOutput": "WARN  requestAnimationFrame without cancelAnimationFrame\ngates passed"
 }

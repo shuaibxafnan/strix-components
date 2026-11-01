@@ -4,11 +4,12 @@
   "sourceHash": "d789a8920dac8346c80f88be3375837b4405bdef8a7b22fdb5bb91d89dfae429",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "telescope-zoom-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.568Z"
+  "note": "Rewritten to template. CDN loader replaced with dynamic imports of gsap and ScrollTrigger; Google Fonts link removed (fontFamily prop kept); trialWarn removed; className added; headingFontSize default now clamp. Gates passed.",
+  "updatedAt": "2026-11-01T14:10:46.010Z",
+  "gateOutput": "gates passed"
 }

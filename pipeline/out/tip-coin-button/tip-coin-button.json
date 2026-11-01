@@ -1,0 +1,36 @@
+{
+  "slug": "tip-coin-button",
+  "name": "Tip Coin Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Tip button that, on click, tilts and tosses a shaded 3D coin in an arc, then lands it and reveals a thank you message before resetting.",
+  "contents": ["Button with label text", "Animated coin with front, back and edge faces and a shine", "Thank you message shown after the coin lands"],
+  "behavior": ["Click shakes the button and the label fades while the button shrinks into a slot", "Coin flips with a random spin count and rotation along a parabolic arc", "Thank you text pops in after landing, then the button resets after about 1.5s"],
+  "props": [
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "bgButton", "type": "string", "default": "#031032"},
+    {"name": "fontColor", "type": "string", "default": "#ffffff"},
+    {"name": "buttonText", "type": "string", "default": "Send me a tip"},
+    {"name": "thankYouText", "type": "string", "default": "Thank you!"},
+    {"name": "coinSizeRem", "type": "number", "default": 3.5},
+    {"name": "colorLight", "type": "string", "default": "#fcfaf9"},
+    {"name": "colorMid", "type": "string", "default": "#c2cadf"},
+    {"name": "colorDark", "type": "string", "default": "#8590b3"},
+    {"name": "colorSide", "type": "string", "default": "#737c99"},
+    {"name": "colorShine", "type": "string", "default": "#e9f4ff"},
+    {"name": "maxMoveLoopCount", "type": "number", "default": 90},
+    {"name": "buttonWidth", "type": "string", "default": "9.5rem"},
+    {"name": "buttonHeight", "type": "string", "default": "2.6rem"},
+    {"name": "fontFamily", "type": "string", "default": "'Quicksand', sans-serif"}
+  ],
+  "editableByProps": ["Button and thank you text", "Button, text and coin colors", "Coin size, button size and flip duration", "Font family"],
+  "needsCodeEdit": [
+    {"change": "Change the coin face artwork", "where": "tb-coin__front and tb-coin__back rules in the CSS constant"},
+    {"change": "Change the arc height of the toss", "where": "flipCoinLoop function"}
+  ],
+  "fixed": ["Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.", "Font is not loaded by the component, the host page must load Quicksand or pass another fontFamily"],
+  "mood": ["playful", "friendly", "modern"],
+  "industries": ["creators", "nonprofit", "blogs", "fintech"],
+  "sections": ["cta", "other"],
+  "dependencies": []
+}

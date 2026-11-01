@@ -4,11 +4,12 @@
   "sourceHash": "bdbe5dfd72a4717e78166777544f4573a920028adacfb734fc931c3419bb3416",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "stratum-drift",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.563Z"
+  "note": "Rewritten to template. CDN Lenis loader replaced with dynamic import of lenis; smoothScrollSources prop and fallback chain removed; duplicate clearTimeout removed; disposed guard added. Gates passed; warning: style tag without template literal, left as source.",
+  "updatedAt": "2026-11-01T13:57:17.622Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

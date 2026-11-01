@@ -4,11 +4,12 @@
   "sourceHash": "b5c0a9994f6ed2abe167120e6bec657230c7d198ac798dd5a0b66e68f1549a0f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sweet-parallax-card",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.566Z"
+  "note": "Rewritten to template. Demo p-2 removed; root changed to h-screen frame. Kept next/font Bebas Neue and Rubik; open question: conflict between hard rule and template 1.5 on font imports. Gates passed.",
+  "updatedAt": "2026-11-01T14:04:46.314Z",
+  "gateOutput": "gates passed"
 }

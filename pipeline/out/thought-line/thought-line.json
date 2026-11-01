@@ -1,0 +1,100 @@
+{
+    "slug": "thought-line",
+    "name": "Thought Line",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "AI-style thinking indicator: a shimmering, breathing label with a glyph and live timer that settles into a 'Thought for 4.2s' line, with an optional collapsible list of steps.",
+    "contents": [
+        "Inline status label with optional glyph (sparkle, dot, none or custom node)",
+        "Live elapsed timer",
+        "Chevron and collapsible step list with check marks and a pulsing current step",
+        "Screen reader live status announcement"
+    ],
+    "behavior": [
+        "While working, the label shimmers and the glyph breathes in opacity",
+        "On settle, the label crossfades with blur to the done label and the timer glides next to it",
+        "Timer counts up in 0.1s ticks, or follows the elapsed prop",
+        "Can auto settle after a set number of seconds",
+        "Steps list expands while working and collapses on settle, toggled by clicking the header",
+        "Reduced motion lowers breath depth, slows the breath and disables shimmer and blur",
+        "Calls onSettle with elapsed seconds when work finishes"
+    ],
+    "props": [
+        { "name": "label", "type": "string", "default": "Thinking…" },
+        { "name": "doneLabel", "type": "string", "default": "" },
+        { "name": "renderLabel", "type": "(text: string, working: boolean) => ReactNode", "default": null },
+        { "name": "glyph", "type": "'sparkle' | 'dot' | 'none' | ReactNode", "default": "sparkle" },
+        { "name": "steps", "type": "string[]", "default": [] },
+        { "name": "collapsible", "type": "boolean", "default": true },
+        { "name": "collapseOnSettle", "type": "boolean", "default": true },
+        { "name": "color", "type": "string", "default": "currentColor" },
+        { "name": "glyphColor", "type": "string", "default": "" },
+        { "name": "fontSize", "type": "number", "default": 16 },
+        { "name": "breathPeriod", "type": "number", "default": 1.6 },
+        { "name": "breathDepth", "type": "number", "default": 0.45 },
+        { "name": "shimmer", "type": "boolean", "default": true },
+        { "name": "shimmerDuration", "type": "number", "default": 1.8 },
+        { "name": "settleDuration", "type": "number", "default": 350 },
+        { "name": "settleBlur", "type": "number", "default": 2 },
+        { "name": "working", "type": "boolean", "default": true },
+        { "name": "settleAfter", "type": "number", "default": 0 },
+        { "name": "elapsed", "type": "number | undefined", "default": null },
+        { "name": "showTimer", "type": "boolean", "default": true },
+        { "name": "onSettle", "type": "(seconds: number) => void", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Working and done labels, custom label rendering, glyph type and colors",
+        "Step list text, collapsing behavior, timer visibility and manual elapsed time",
+        "Text color, font size, breath, shimmer and settle timings",
+        "Auto settle delay and settle callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Replace the sparkle or tick icons",
+            "where": "Hugeicons imports (SparklesIcon, Tick02Icon, ArrowDown01Icon) at the top of the file"
+        },
+        {
+            "change": "Change easing curves",
+            "where": "EASE_OUT and EASE_IN_OUT constants"
+        },
+        {
+            "change": "Change shimmer gradient look",
+            "where": "linear-gradient class on the breathRef span"
+        },
+        {
+            "change": "Change the dimmed opacity of the settled glyph",
+            "where": "GLYPH_DONE constant"
+        }
+    ],
+    "fixed": [
+        "Does not control a done state by itself: the host sets working to false, or uses settleAfter, or elapsed",
+        "Component has no frame, it is an inline element that sits in the flow of the page",
+        "Uses CSS variables --tl-done and --tl-timer that are not defined in the component, so the done label and timer opacity depend on the host defining them or fall back to the browser default (fully opaque)",
+        "Injects keyframes through an inline style tag",
+        "Label and steps are single line (nowrap), long text can overflow on 360px screens",
+        "Uses the Tailwind starting: variant for step entry animation"
+    ],
+    "mood": [
+        "futuristic",
+        "minimal",
+        "calm",
+        "techy"
+    ],
+    "industries": [
+        "AI",
+        "SaaS",
+        "developer tools",
+        "chat apps"
+    ],
+    "sections": [
+        "other",
+        "hero"
+    ],
+    "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+    ]
+}

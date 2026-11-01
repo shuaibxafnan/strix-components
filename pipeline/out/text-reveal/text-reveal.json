@@ -1,0 +1,43 @@
+{
+  "slug": "text-reveal",
+  "name": "Text Reveal",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Full-screen sections of large centered text where each line slides up from behind a mask in a staggered reveal as it scrolls into view, and resets when it leaves.",
+  "contents": ["Full-height sections, each with one centered paragraph of large text"],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Text is split into lines, each wrapped in an overflow mask and slid up with a stagger when the paragraph reaches the viewport bottom",
+    "Animation resets when scrolling out and replays on re-entry",
+    "Lines are re-split and animations rebuilt after the layout resizes, debounced"
+  ],
+  "props": [
+    { "name": "sections", "type": "string[]", "default": "2 sample paragraphs" },
+    { "name": "backgroundColor", "type": "string", "default": "#ffffff" },
+    { "name": "textColor", "type": "string", "default": "#000000" },
+    { "name": "lenisLerp", "type": "number", "default": 0.07 },
+    { "name": "stagger", "type": "number", "default": 0.15 },
+    { "name": "ease", "type": "string", "default": "power1.inOut" },
+    { "name": "debounceMs", "type": "number", "default": 500 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of sections and all paragraph text",
+    "Background and text colors",
+    "Smoothness of scrolling, stagger, easing and resize debounce"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change the font", "where": "@import url line and .text-reveal-root rule in the style block" },
+    { "change": "Change text size or line height", "where": "style prop fontSize and lineHeight on the root div" },
+    { "change": "Change when the reveal triggers", "where": "scrollTrigger start value in setTextRevealAnimations" }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Each section is at least one full viewport tall",
+    "Loads the Poppins font through a Google Fonts import"
+  ],
+  "mood": ["elegant", "minimal", "editorial", "cinematic"],
+  "industries": ["agency", "portfolio", "storytelling", "luxury", "media"],
+  "sections": ["hero", "about"],
+  "dependencies": ["gsap", "lenis", "split-type"]
+}

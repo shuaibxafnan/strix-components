@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "thought-line",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.626Z"
+  "note": "JSON written; component unchanged. Category text-effects. Not self-completing; --tl-done and --tl-timer undefined; nowrap may overflow at 360px. Gates passed.",
+  "updatedAt": "2026-11-01T14:17:19.601Z",
+  "gateOutput": "gates passed"
 }

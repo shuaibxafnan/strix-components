@@ -1,0 +1,222 @@
+{
+  "slug": "sticky-sections-slide",
+  "name": "Sticky Sections Slide",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-width scroll layout with a big hero title, stacked sticky half-width cards that alternate sides and slide up, images that rotate and scale in, and a closing statement.",
+  "contents": [
+    "Hero with title and description",
+    "Sticky numbered cards each with image, title and text",
+    "Closing outro paragraph",
+    "Loading pulse shown until images load"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Cards stick and slide up in sequence as the page scrolls",
+    "Images rise, rotate, scale and lose contrast with scroll scrub",
+    "Cards alternate left and right on large screens and fill the width on small screens",
+    "Smooth scroll is skipped when reduced motion is preferred"
+  ],
+  "props": [
+    {
+      "name": "sections",
+      "type": "{image,titleLead,title,text,cardColor}[]",
+      "default": "6 sample sections"
+    },
+    {
+      "name": "heroTitleLead",
+      "type": "string",
+      "default": "The"
+    },
+    {
+      "name": "heroTitle",
+      "type": "string",
+      "default": "Escape"
+    },
+    {
+      "name": "heroDescription",
+      "type": "string",
+      "default": "As data conglomerates reveled in the opulence of cognitive wealth, a silent underclass manifested, condemned to the digital periphery."
+    },
+    {
+      "name": "outro",
+      "type": "string",
+      "default": "Lost in perpetual dependency, inhabitants of the Synthetic Era found solace in cryptic simulations, where pain ebbed and cognitive loads momentarily lightened."
+    },
+    {
+      "name": "fontFamily",
+      "type": "string",
+      "default": "DM Sans"
+    },
+    {
+      "name": "fontFaces",
+      "type": "{weight,url}[]",
+      "default": "DM Sans 300, 500, 700 woff2"
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "default": "bg-black"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "text-white"
+    },
+    {
+      "name": "loaderColor",
+      "type": "string",
+      "default": "bg-white/60"
+    },
+    {
+      "name": "cardRadius",
+      "type": "string",
+      "default": "rounded-md"
+    },
+    {
+      "name": "imageSize",
+      "type": "string",
+      "default": "h-[50%]"
+    },
+    {
+      "name": "textMaxWidth",
+      "type": "string",
+      "default": "max-w-[300px]"
+    },
+    {
+      "name": "alternateSides",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "stickyOffset",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "scrollLength",
+      "type": "string",
+      "default": "+=100%"
+    },
+    {
+      "name": "panelYPercent",
+      "type": "number",
+      "default": -100
+    },
+    {
+      "name": "imageFromYPercent",
+      "type": "number",
+      "default": 20
+    },
+    {
+      "name": "imageToYPercent",
+      "type": "number",
+      "default": -100
+    },
+    {
+      "name": "imageFromRotation",
+      "type": "number",
+      "default": 40
+    },
+    {
+      "name": "imageToRotation",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "imageFromScale",
+      "type": "number",
+      "default": 0.8
+    },
+    {
+      "name": "imageToScale",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "imageFromContrast",
+      "type": "number",
+      "default": 400
+    },
+    {
+      "name": "imageToContrast",
+      "type": "number",
+      "default": 100
+    },
+    {
+      "name": "imageScrollStart",
+      "type": "string",
+      "default": "top bottom"
+    },
+    {
+      "name": "imageScrollEnd",
+      "type": "string",
+      "default": "max"
+    },
+    {
+      "name": "smoothScroll",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "lerp",
+      "type": "number",
+      "default": 0.2
+    },
+    {
+      "name": "smoothWheel",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showLoader",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Hero text, outro, card images, titles, text and card colors",
+    "Background, text and loader colors, card radius, image size",
+    "Animation start and end values, scroll length, sticky offset, smoothing",
+    "Font family and font files"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change which cards use the earlier slide-out start",
+      "where": "start function with isLast and isPreLast inside the gsap.context block"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Full-screen loader overlay covers the page until images load",
+    "Cards are one viewport tall, with a 50vh spacer above the outro for scroll range",
+    "Loads DM Sans through @font-face rules built from fontFaces"
+  ],
+  "mood": [
+    "bold",
+    "dark",
+    "editorial",
+    "cinematic"
+  ],
+  "industries": [
+    "fashion",
+    "art",
+    "agency",
+    "technology",
+    "e-commerce"
+  ],
+  "sections": [
+    "features",
+    "portfolio",
+    "about"
+  ],
+  "dependencies": [
+    "gsap",
+    "lenis"
+  ]
+}

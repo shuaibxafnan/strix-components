@@ -1,0 +1,74 @@
+{
+  "slug": "toast-playground",
+  "name": "Toast Playground",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Trigger panel with a button that spawns stacked toast notifications in the bottom right corner, in five visual themes and five entrance animations.",
+  "contents": [
+    "Panel with title, description and a trigger button",
+    "Stack of toast notifications with label, message and underline"
+  ],
+  "behavior": [
+    "Each click adds a toast with a random id number that auto-dismisses after the duration",
+    "Toasts enter with the chosen keyframe animation",
+    "Optional synthesized click sound on press"
+  ],
+  "props": [
+    { "name": "variant", "type": "\"cyber\" | \"stealth\" | \"neo-brutal\" | \"liquid-glass\" | \"toxic\"", "default": "cyber" },
+    { "name": "animation", "type": "\"glitch-slide\" | \"elastic-pop\" | \"dissolve\" | \"axis-flip\" | \"warp\"", "default": "glitch-slide" },
+    { "name": "title", "type": "string", "default": "Runtime Output Simulator" },
+    { "name": "description", "type": "string", "default": "Compile selected attributes into memory stack arrays to observe immediate structural frame behavior layout instantly inside sandbox environment workspace." },
+    { "name": "buttonLabel", "type": "string", "default": "Execute Sequence" },
+    { "name": "toastLabel", "type": "string", "default": "" },
+    { "name": "toastIdPrefix", "type": "string", "default": "TRANS_ID//" },
+    { "name": "toastMessage", "type": "string", "default": "Loaded via engineering state logic successfully." },
+    { "name": "maxToastWidth", "type": "string", "default": "w-[340px]" },
+    { "name": "toastDuration", "type": "number", "default": 5500 },
+    { "name": "interactionSounds", "type": "boolean", "default": false },
+    { "name": "panelBg", "type": "string", "default": "#0c0e11" },
+    { "name": "panelBorderColor", "type": "string", "default": "#1c1f24" },
+    { "name": "titleColor", "type": "string", "default": "#8690a0" },
+    { "name": "descriptionColor", "type": "string", "default": "#4b525d" },
+    { "name": "buttonTextColor", "type": "string", "default": "#000000" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Toast theme and entrance animation",
+    "Panel text, button label, toast label and message, toast width and duration",
+    "Panel and text colors, click sound"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change toast theme colors or add a theme",
+      "where": "THEMES constant"
+    },
+    {
+      "change": "Change entrance animation timing or add an animation",
+      "where": "ANIMATIONS constant and the keyframes in the style block"
+    },
+    {
+      "change": "Move the toast stack to another corner",
+      "where": "fixed bottom-4 right-4 container"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Toast stack is fixed to the bottom right of the viewport",
+    "Toast animation keyframes are injected globally by name through a style tag"
+  ],
+  "mood": ["techy", "playful", "bold"],
+  "industries": ["saas", "developer tools", "gaming", "fintech"],
+  "sections": ["other"],
+  "dependencies": [],
+  "variants": {
+    "prop": "variant",
+    "default": "cyber",
+    "options": [
+      { "value": "cyber", "look": "Dark navy toast with cyan border and gradient underline", "useWhen": "Developer dashboards or gaming sites needing retro terminal style alerts" },
+      { "value": "stealth", "look": "Matte carbon toast with muted gray text", "useWhen": "Premium minimalist apps where notifications should stay quiet" },
+      { "value": "neo-brutal", "look": "White toast with thick black border and hard offset shadow", "useWhen": "Bold brutalist or creative studio sites" },
+      { "value": "liquid-glass", "look": "Translucent blurred glass toast", "useWhen": "Over photographic or gradient backgrounds in modern product pages" },
+      { "value": "toxic", "look": "Black toast with neon green glowing text", "useWhen": "Cyberpunk, hacker or nightlife themed pages" }
+    ]
+  }
+}

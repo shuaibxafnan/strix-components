@@ -4,11 +4,12 @@
   "sourceHash": "7da32fe5d6a595d4dc932702e928f79798553cd8c919d6285d0569b6ccea4e7d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "text-sparks",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.569Z"
+  "note": "Rewritten to template. Unused containerRef and fontStyle prop removed; background from canvasBg inline; className added. Letter mask not rebuilt on resize. Gates passed.",
+  "updatedAt": "2026-11-01T14:14:54.061Z",
+  "gateOutput": "gates passed"
 }

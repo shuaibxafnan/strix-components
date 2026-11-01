@@ -1,0 +1,83 @@
+{
+    "slug": "swipe-toast",
+    "name": "Swipe Toast",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Toast notification card that slides in, burns down a fuse line timer, and can be dismissed by swiping down, with optional action and close buttons. Fixed to the corner or placed inline.",
+    "contents": [
+        "Toast card with title, optional description and optional icon",
+        "Optional action button and optional close button",
+        "Fuse line progress bar along the bottom or top edge"
+    ],
+    "behavior": [
+        "Slides up and fades in on mount, slides down and fades out on close",
+        "Fuse line shrinks over duration, then closes the toast with reason timeout",
+        "Drag down to dismiss by distance or flick velocity, upward drag rubber-bands and drag release springs back",
+        "Timer pauses on mouse hover, focus, active drag and hidden tab",
+        "Escape key dismisses instantly, Enter or Space then action or close skips the exit animation",
+        "Inline mode collapses its height with a grid-rows transition",
+        "Reduced motion removes slide and uses opacity only",
+        "Calls onClose with reason: timeout, action, close, escape, programmatic or swipe"
+    ],
+    "props": [
+        { "name": "title", "type": "string", "default": "File archived" },
+        { "name": "description", "type": "string", "default": "" },
+        { "name": "icon", "type": "ReactNode", "default": "undefined" },
+        { "name": "actionLabel", "type": "string", "default": "" },
+        { "name": "onAction", "type": "() => void", "default": "undefined" },
+        { "name": "open", "type": "boolean", "default": true },
+        { "name": "onClose", "type": "(reason: string) => void", "default": "undefined" },
+        { "name": "background", "type": "string", "default": "#27272a" },
+        { "name": "color", "type": "string", "default": "#f5f5f5" },
+        { "name": "fuseColor", "type": "string", "default": "#f5a524" },
+        { "name": "width", "type": "number", "default": 356 },
+        { "name": "radius", "type": "number", "default": 12 },
+        { "name": "slideMs", "type": "number", "default": 400 },
+        { "name": "settleBounce", "type": "number", "default": 0.2 },
+        { "name": "swipeDistance", "type": "number", "default": 40 },
+        { "name": "duration", "type": "number", "default": 4000 },
+        { "name": "fuse", "type": "'bottom' | 'top'", "default": "bottom" },
+        { "name": "pauseOnHover", "type": "boolean", "default": true },
+        { "name": "closeButton", "type": "boolean", "default": false },
+        { "name": "inline", "type": "boolean", "default": false },
+        { "name": "dismissible", "type": "boolean", "default": true },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Title, description, icon, action label and action handler",
+        "Colors for background, text and fuse line, width, corner radius",
+        "Slide speed, spring bounce, swipe distance, auto-close duration (0 disables the timer)",
+        "Fuse position, hover pause, close button, inline vs fixed, swipe dismissal, open state"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change swipe direction or flick sensitivity",
+            "where": "FLICK, DEAD_ZONE and RESIST_PX constants and the onPointerMove handler"
+        },
+        {
+            "change": "Move the fixed toast to another corner",
+            "where": "data-[inline=false]:right-8 and bottom classes on the root div"
+        },
+        {
+            "change": "Change the easing curve",
+            "where": "EASE_OUT constant and the cubic-bezier values in the root classes"
+        },
+        {
+            "change": "Change the close icon",
+            "where": "HugeiconsIcon with Cancel01Icon in the close button"
+        }
+    ],
+    "fixed": [
+        "Not a toast manager: renders a single toast and the host must handle stacking, queueing and unmounting",
+        "Requires 'use client' and the motion and @hugeicons packages",
+        "Non-inline mode is position fixed at the bottom right of the viewport with very high z-index, 32px offset (16px under 600px) and width capped to the viewport",
+        "Only downward swipe dismisses, upward drag is resisted",
+        "Uses Web Animations API and CSS starting-style, with a requestAnimationFrame fallback",
+        "Adds document visibilitychange listener while mounted",
+        "Works on small screens, card width shrinks to fit the viewport"
+    ],
+    "mood": ["minimal", "polished", "tactile", "modern"],
+    "industries": ["saas", "productivity", "e-commerce", "fintech"],
+    "sections": ["global", "other"],
+    "dependencies": ["motion", "@hugeicons/react", "@hugeicons/core-free-icons"]
+}

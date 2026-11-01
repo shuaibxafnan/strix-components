@@ -4,11 +4,12 @@
   "sourceHash": "1c46df746d4e79cef137932d322b4cca6b85967f20fd4b850c7b159e38c75d64",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "swing-light",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.567Z"
+  "note": "Rewritten to template. CDN loader replaced with dynamic import of gsap; trialWarn config removed; gsap context cleanup added; className added. Fixed element ids limit to one instance. Gates passed.",
+  "updatedAt": "2026-11-01T14:05:26.062Z",
+  "gateOutput": "gates passed"
 }

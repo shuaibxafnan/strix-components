@@ -4,11 +4,12 @@
   "sourceHash": "1c144e225a845ea684e8dc7807380cf4fac36f52b86ff7af7ec0123c3c00f03d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "swipe-image-deck",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.571Z"
+  "note": "renamed tinder-carousel -> swipe-image-deck. Frame: none (full-width h-screen board). Variants: none. Responsive: cards capped at 85% of board. Changed: CDN hammer script replaced by dynamic import of hammerjs; className prop added; stable default for initialImages.",
+  "updatedAt": "2026-11-01T14:20:23.442Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

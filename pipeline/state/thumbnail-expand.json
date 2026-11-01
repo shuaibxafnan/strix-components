@@ -4,11 +4,12 @@
   "sourceHash": "507e14ae0df332bdb2a73f972c6376d61b904a9e590329032749b22b4f900994",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "thumbnail-expand",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.570Z"
+  "note": "Rewritten to template. CDN gsap loader replaced with dynamic import; comments removed; className added; killTweensOf cleanup. Kept Google Fonts link; open question: conflict with no-font-imports rule. Gates passed; warning: style tag without template literal.",
+  "updatedAt": "2026-11-01T14:18:43.162Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

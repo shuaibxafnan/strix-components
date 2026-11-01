@@ -1,0 +1,47 @@
+{
+  "slug": "swing-light",
+  "name": "Swing Light",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "A lamp shape swings back and forth over dark SVG letters, lighting them up with a soft glowing beam as it passes, on a solid background.",
+  "contents": [
+    "Dark SVG lettering spelling a word",
+    "Swinging lamp mask revealing a lit copy of the letters with a glow"
+  ],
+  "behavior": [
+    "Lamp mask swings between two angles in an endless yoyo loop",
+    "Lit letters are visible only under the lamp and clipped to the letter shapes",
+    "Animation is stopped and reverted on unmount"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#111" },
+    { "name": "swingDuration", "type": "number", "default": 1 },
+    { "name": "swingAngle", "type": "number", "default": 26 },
+    { "name": "swingOriginX", "type": "number", "default": 400 },
+    { "name": "swingOriginY", "type": "number", "default": 130 },
+    { "name": "glowColor", "type": "string", "default": "#FEFFD9" },
+    { "name": "glowOpacity", "type": "number", "default": 0.5 },
+    { "name": "glowBlur", "type": "number", "default": 19 },
+    { "name": "darkFill", "type": "string", "default": "#454545" },
+    { "name": "litFill", "type": "string", "default": "#F5F5F5" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Background, unlit and lit letter colors",
+    "Swing speed, angle and pivot point",
+    "Glow color, opacity and blur"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change the displayed word", "where": "LETTER_PATHS and CLIP_PATHS constants" },
+    { "change": "Change the lamp shape", "where": "path with id lamp inside the lightMask mask" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Lettering is fixed SVG path data, not text",
+    "Uses fixed element ids (mainSVG, lamp, glow, lightMask, lightTextMask), so only one instance per page"
+  ],
+  "mood": ["dramatic", "moody", "playful", "cinematic"],
+  "industries": ["entertainment", "agency", "gaming", "nightlife"],
+  "sections": ["hero", "other"],
+  "dependencies": ["gsap"]
+}

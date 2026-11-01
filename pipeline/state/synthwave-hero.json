@@ -4,11 +4,12 @@
   "sourceHash": "9927ba4b5740339a8fc6d23bd68e74257c02a143aa62851614121e3d5bfc0646",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "synthwave-hero",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.567Z"
+  "note": "Rewritten to template. CDN loader replaced with dynamic import of gsap; default centerText changed from INDI to SYNTHWAVE; className added. Gates passed; warning: style tag without template literal, left as source.",
+  "updatedAt": "2026-11-01T14:06:40.141Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

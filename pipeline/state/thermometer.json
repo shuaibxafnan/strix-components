@@ -4,11 +4,12 @@
   "sourceHash": "e76e4bc6e7cae1303b9df4f5230d33f1de1f1bcf221f0db3bd1939592f9818f3",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-line-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.570Z"
+  "note": "Renamed Thermometer to ScrollLineReveal. CDN loader replaced with npm dynamic imports of gsap, ScrollTrigger, lenis, split-type; props bgColor, textColor, className added; full cleanup on unmount.",
+  "updatedAt": "2026-11-01T14:16:45.276Z",
+  "gateOutput": "gates passed"
 }

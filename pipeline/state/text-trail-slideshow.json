@@ -4,11 +4,12 @@
   "sourceHash": "876be188853d206814af43d7dca8da149fd14922a86681a6c55b13a267f21f16",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "text-trail-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.569Z"
+  "note": "Rewritten to template. Unused navPosition prop, navOuter and navStyle maps removed. Category sliders-carousels. Gates passed; warning setTimeout without clearTimeout, timers cleared via clearTimers.",
+  "updatedAt": "2026-11-01T14:15:31.554Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }
