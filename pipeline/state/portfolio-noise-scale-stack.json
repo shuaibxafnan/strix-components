@@ -4,11 +4,12 @@
   "sourceHash": "7297688ad4249ec7e82e8182f8228a03703283a24c31b6aba5ee0925ed5dd5d6",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "noise-distortion-slide-stack",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.515Z"
+  "note": "renamed portfolio-noise-scale-stack -> noise-distortion-slide-stack; three CDN loader replaced by dynamic import of npm three; no frame (already full-bleed h-screen); no variants; responsive: already ok",
+  "updatedAt": "2026-11-01T10:51:19.379Z",
+  "gateOutput": "gates passed"
 }
