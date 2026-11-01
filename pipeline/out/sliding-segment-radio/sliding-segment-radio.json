@@ -1,0 +1,60 @@
+{
+  "slug": "sliding-segment-radio",
+  "name": "Sliding Segment Radio",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Segmented pill radio group where the selected state slides between options, either as a hopping fill inside each pill or as a single anchor pill that glides across the row.",
+  "contents": [
+    "Legend label above a wrapping row of pill-shaped radio options",
+    "Sliding highlight pill with inverted text"
+  ],
+  "behavior": [
+    "Selecting an option animates the highlight to it",
+    "Hop variant slides fills in and out of each pill, optionally wrapping around from first to last",
+    "Anchor variant moves one absolutely positioned pill and inverts text under it with a filter or SVG mask",
+    "Pill positions are remeasured on selection and window resize"
+  ],
+  "props": [
+    { "name": "variant", "type": "\"hop\" | \"anchor\"", "default": "hop" },
+    { "name": "duration", "type": "number", "default": 0.2 },
+    { "name": "count", "type": "number", "default": 5 },
+    { "name": "match", "type": "boolean", "default": true },
+    { "name": "wrap", "type": "boolean", "default": true },
+    { "name": "knockout", "type": "\"filter\" | \"mask\" | \"none\"", "default": "filter" },
+    { "name": "initialIndex", "type": "number", "default": 0 },
+    { "name": "legend", "type": "string", "default": "Capacity" },
+    { "name": "options", "type": "string[]", "default": ["128GB", "256GB", "512GB", "1TB", "2TB", "4TB", "8TB"] },
+    { "name": "backgroundColor", "type": "string", "default": "#000000" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "accentColor", "type": "string", "default": "#ffffff" },
+    { "name": "accentTextColor", "type": "string", "default": "#000000" },
+    { "name": "borderColor", "type": "string", "default": "rgba(255,255,255,0.2)" },
+    { "name": "hoverColor", "type": "string", "default": "rgba(255,255,255,0.1)" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Option labels, legend text, number of visible options and initial selection",
+    "Animation duration, pill width matching and wrap-around in hop variant",
+    "Background, text, accent, border and hover colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the maximum width of the option area",
+      "where": "max-w-[296px] class on the fields-wrapper div"
+    },
+    {
+      "change": "Change the easing of the slide",
+      "where": "ease-out classes on the hop span and anchor pill"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Root paints the background color itself, so the component fills its area with backgroundColor",
+    "Anchor variant needs accentColor and backgroundColor to contrast for the knockout filter to read well",
+    "Registers a window resize listener to remeasure pills, removed on unmount"
+  ],
+  "mood": ["minimal", "sleek", "technical", "playful"],
+  "industries": ["e-commerce", "saas", "consumer electronics", "fintech"],
+  "sections": ["pricing", "features", "other"],
+  "dependencies": []
+}

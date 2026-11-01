@@ -4,11 +4,12 @@
   "sourceHash": "10dfbd390dd2b32581ea102b9b87c1003305ce525e670e5b9d6ddb0df7e54d5f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sliding-segment-radio",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.549Z"
+  "note": "Variants hop and anchor. Theme prop removed for color props. Frame added, bordered card dropped. Anchor filter color from accentColor luminance. Resize remeasure, useId for radio ids.",
+  "updatedAt": "2026-11-01T12:54:27.272Z",
+  "gateOutput": "gates passed"
 }
