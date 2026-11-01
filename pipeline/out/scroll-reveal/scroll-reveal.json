@@ -1,0 +1,94 @@
+{
+    "slug": "scroll-reveal",
+    "name": "Scroll Reveal",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Heading text that reveals word by word, character by character or line by line as it scrolls into view, with optional blur, rotation, highlight glow and several entrance effects.",
+    "contents": [
+        "A single h2 heading whose text is split into words, characters or lines",
+        "Accessible aria-label carrying the full text when children are plain text"
+    ],
+    "behavior": [
+        "In scrub mode the reveal progress is tied to scroll position through GSAP ScrollTrigger",
+        "In enter mode the reveal plays once on a timed duration when the heading nears the viewport",
+        "Pieces stagger in with opacity, optional blur, vertical offset and an effect-specific motion",
+        "Heading starts slightly rotated and straightens to 0 while revealing",
+        "Optional highlight color glows across each piece as it appears",
+        "Can listen to a custom scroll container instead of the window",
+        "Skipped entirely when the user prefers reduced motion, showing the plain text",
+        "Line splitting is re-measured on resize through ResizeObserver"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": "required" },
+        { "name": "scrollContainerRef", "type": "RefObject<HTMLElement>", "default": "undefined" },
+        { "name": "enableBlur", "type": "boolean", "default": true },
+        { "name": "baseOpacity", "type": "number", "default": 0.1 },
+        { "name": "baseRotation", "type": "number", "default": 3 },
+        { "name": "blurStrength", "type": "number", "default": 4 },
+        { "name": "baseOffset", "type": "number", "default": 0 },
+        { "name": "stagger", "type": "number", "default": 0.05 },
+        { "name": "smoothing", "type": "number", "default": 0 },
+        { "name": "splitBy", "type": "'words' | 'chars' | 'lines'", "default": "words" },
+        { "name": "effect", "type": "'fade' | 'rise' | 'flip' | 'scale'", "default": "fade" },
+        { "name": "mode", "type": "'scrub' | 'enter'", "default": "scrub" },
+        { "name": "duration", "type": "number", "default": 0.8 },
+        { "name": "highlightColor", "type": "string", "default": "" },
+        { "name": "containerClassName", "type": "string", "default": "" },
+        { "name": "textClassName", "type": "string", "default": "" },
+        { "name": "rotationEnd", "type": "string", "default": "bottom bottom" },
+        { "name": "wordAnimationEnd", "type": "string", "default": "bottom bottom" }
+    ],
+    "editableByProps": [
+        "Text content through children",
+        "Split unit, entrance effect, scrub or one-shot mode, duration and stagger",
+        "Blur, starting opacity, rotation, vertical offset and scrub smoothing",
+        "Highlight glow color and scroll end positions",
+        "Heading and text classes, custom scroll container"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the font size or line height defaults",
+            "where": "The className of the inner span with textRef (text-[clamp(1.6rem,4vw,3rem)] leading-[1.5])"
+        },
+        {
+            "change": "Change the start position of the scroll trigger",
+            "where": "The start function in the scrollTrigger of the gsap.to(state) call and the startAt function"
+        },
+        {
+            "change": "Change the share of the scroll used per piece reveal",
+            "where": "SCRUB_SPAN constant"
+        },
+        {
+            "change": "Change the rise mask size",
+            "where": "RISE_MASK constant"
+        },
+        {
+            "change": "Add a new entrance effect",
+            "where": "paintPiece function"
+        }
+    ],
+    "fixed": [
+        "Requires gsap with the ScrollTrigger plugin, registered at module load",
+        "Renders an h2 with my-5 margin, so it carries heading semantics",
+        "Children must be plain strings or numbers to be split, otherwise the nodes render unsplit and animate as one block",
+        "Needs enough page scroll room below the heading for scrub progress to complete",
+        "Line splitting is measured from word positions and needs the text to be laid out",
+        "Respects prefers-reduced-motion by disabling all animation",
+        "Text size is fixed by a clamp between 1.6rem and 3rem, fluid across screen sizes",
+        "Unknown effect values behave like fade"
+    ],
+    "mood": ["editorial", "elegant", "dynamic", "modern"],
+    "industries": ["agency", "portfolio", "saas", "editorial", "startup"],
+    "sections": ["hero", "about", "features", "other"],
+    "dependencies": ["gsap", "react"],
+    "variants": {
+        "prop": "effect",
+        "default": "fade",
+        "options": [
+            { "value": "fade", "look": "Pieces fade in from low opacity, with optional blur and offset", "useWhen": "Long manifesto or about paragraph that should read calmly as the visitor scrolls" },
+            { "value": "rise", "look": "Words slide up from behind a mask as they fade in", "useWhen": "Hero headline or section title that should feel crisp and editorial" },
+            { "value": "flip", "look": "Pieces rotate in on the X axis with a slight overshoot", "useWhen": "Short punchy statement between sections that needs a playful flourish" },
+            { "value": "scale", "look": "Pieces grow from small with a bouncy overshoot", "useWhen": "Stats callout or slogan where a lively pop-in fits a bold brand" }
+        ]
+    }
+}
