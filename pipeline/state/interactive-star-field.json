@@ -4,11 +4,12 @@
   "sourceHash": "eb9b4da3bf09d667225a0333c7a7ddda132e164709bee1d27ff60641c6768440",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "interactive-star-field",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.482Z"
+  "note": "Renamed function to InteractiveStarField. Added className and backgroundColor props (bg-black to inline style). No frame, no variants. Kept mounted state, touch preventDefault, glow gradients (fixed).",
+  "updatedAt": "2026-11-01T09:06:07.588Z",
+  "gateOutput": "gates passed"
 }
