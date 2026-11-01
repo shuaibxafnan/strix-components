@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "lightning",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.599Z"
+  "note": "React Bits, JSX copied unchanged. Category backgrounds-3d, no variants, no deps. Fixed: needs WebGL2; parent needs defined height; window pointer listeners; heavy shader on low-end phones, pixel ratio capped at 2; bolts and click strikes capped at 4.",
+  "updatedAt": "2026-11-01T09:20:45.104Z",
+  "gateOutput": "gates passed"
 }

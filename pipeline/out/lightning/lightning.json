@@ -1,0 +1,91 @@
+{
+    "slug": "lightning",
+    "name": "Lightning",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 shader background that renders animated lightning bolts with branches, glow and flicker. Bolts lean toward the pointer, and clicking fires a strike from the click point down to the top.",
+    "contents": [
+        "Single full-size canvas rendering 1 to 4 procedural lightning bolts with side branches"
+    ],
+    "behavior": [
+        "Bolts drift and flicker continuously, with an intro reveal that sweeps in from the top",
+        "Pointer inside the page bends nearby bolts and heats them with extra brightness and branches",
+        "Click or tap fires a temporary strike with a flash, up to 4 at once",
+        "Rendering pauses when the canvas is off screen or the tab is hidden",
+        "Reduced motion preference disables animation, flicker, pointer and click effects",
+        "Light mode draws dark ink-like bolts for light backgrounds"
+    ],
+    "props": [
+        { "name": "color", "type": "string", "default": "#4d6bff" },
+        { "name": "bolts", "type": "number", "default": 1 },
+        { "name": "spread", "type": "number", "default": 0.6 },
+        { "name": "branches", "type": "number", "default": 0.5 },
+        { "name": "xOffset", "type": "number", "default": 0 },
+        { "name": "angle", "type": "number", "default": 0 },
+        { "name": "size", "type": "number", "default": 1 },
+        { "name": "thickness", "type": "number", "default": 1 },
+        { "name": "glow", "type": "number", "default": 1 },
+        { "name": "intensity", "type": "number", "default": 1 },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "flicker", "type": "number", "default": 0.6 },
+        { "name": "mouseInteraction", "type": "boolean", "default": true },
+        { "name": "mouseStrength", "type": "number", "default": 1 },
+        { "name": "clickStrike", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "fade", "type": "number", "default": 0 },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Bolt color, count (1 to 4), spacing, horizontal offset and rotation angle",
+        "Bolt size, thickness, glow, intensity, branch amount and flicker",
+        "Animation speed, pause, intro reveal and edge fade",
+        "Pointer interaction, its strength, and click strikes",
+        "Overall opacity, light mode for light backgrounds, pixel ratio cap, className and inline style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Allow more than 4 simultaneous bolts or click strikes",
+            "where": "MAX_BOLTS and MAX_STRIKES constants"
+        },
+        {
+            "change": "Change how long click strikes last",
+            "where": "LEADER and LIFE constants"
+        },
+        {
+            "change": "Change bolt shape or branch logic",
+            "where": "bolt function in the FRAGMENT shader"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing when unavailable",
+        "Canvas fills its parent (h-full w-full), so the parent needs a defined height and should be positioned as a background layer",
+        "Pointer and click listeners are on window, so interaction works even when content sits above the canvas",
+        "Pixel ratio is capped at 2",
+        "Strike count is limited to 4 and bolt count to 4",
+        "Responsive through ResizeObserver, works on mobile, but the heavy shader may be slow on low-end phones"
+    ],
+    "mood": [
+        "dramatic",
+        "electric",
+        "dark",
+        "energetic",
+        "futuristic"
+    ],
+    "industries": [
+        "gaming",
+        "technology",
+        "energy",
+        "music",
+        "entertainment"
+    ],
+    "sections": [
+        "hero",
+        "background"
+    ],
+    "dependencies": []
+}
