@@ -1,0 +1,73 @@
+{
+    "slug": "jelly-radio",
+    "name": "Jelly Radio",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Pill-style radio group where the selected chip swells and neighbors get pushed aside and squish with a springy, staggered jelly motion. Supports keyboard navigation and controlled use.",
+    "contents": [
+        "Radiogroup of pill chips, each with a label and optional icon",
+        "Default items: Off, Low, Medium, High, Max"
+    ],
+    "behavior": [
+        "Selected chip scales up while other chips shrink slightly and shift away from it",
+        "Spring animation with stagger by distance from the selection and a squash-and-stretch jelly feel",
+        "Arrow keys, Home, End, Space and Enter change the selection, keyboard changes apply instantly without animation",
+        "Hover tint on inactive chips on pointer devices, press scale on click",
+        "Supports controlled (value) and uncontrolled (defaultValue) use, and RTL direction",
+        "Respects reduced motion by jumping to the final state"
+    ],
+    "props": [
+        { "name": "items", "type": "(string | {value,label,icon?,disabled?})[]", "default": ["Off", "Low", "Medium", "High", "Max"] },
+        { "name": "value", "type": "string", "default": null },
+        { "name": "defaultValue", "type": "string", "default": null },
+        { "name": "onChange", "type": "(value, index) => void", "default": null },
+        { "name": "chipColor", "type": "string", "default": "#27272a" },
+        { "name": "activeColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "textColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "activeTextColor", "type": "string", "default": "#18181b" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "md" },
+        { "name": "gap", "type": "number", "default": 8 },
+        { "name": "radius", "type": "number", "default": 18 },
+        { "name": "swell", "type": "number", "default": 0.2 },
+        { "name": "barge", "type": "number", "default": 6 },
+        { "name": "shrink", "type": "number", "default": 0.05 },
+        { "name": "jelly", "type": "number", "default": 1 },
+        { "name": "bounce", "type": "number", "default": 0.25 },
+        { "name": "stagger", "type": "number", "default": 22 },
+        { "name": "stiffness", "type": "number", "default": 580 },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "ariaLabel", "type": "string", "default": "Options" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Options, labels, icons, per-item disabled state and selected value",
+        "Chip, active, text and active text colors, corner radius, gap and size (sm, md, lg)",
+        "Motion feel: swell, barge, shrink, jelly, bounce, stagger, stiffness",
+        "Disabled state, aria label and extra class names"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change the size presets",
+            "where": "SIZES constant"
+        },
+        {
+            "change": "Change the hover tint strength on inactive chips",
+            "where": "before:opacity-[0.11] class on the inner span in the Chip render"
+        },
+        {
+            "change": "Change the press scale or color transition timing",
+            "where": "className of the inner span (group-active/chip:scale-[0.97] and transform/background transitions)"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package and Tailwind CSS, styling is done through Tailwind utility classes and CSS variables",
+        "Layout is a single horizontal inline row that does not wrap, so many or long items can overflow narrow screens",
+        "Group padding is measured at runtime and set as CSS variables on the group element",
+        "Keyboard selection is always instant, mouse clicks animate",
+        "Listens to ResizeObserver and document fonts ready to re-measure"
+    ],
+    "mood": ["playful", "tactile", "modern", "minimal"],
+    "industries": ["saas", "gaming", "consumer apps", "smart home"],
+    "sections": ["features", "other"],
+    "dependencies": ["motion", "react"]
+}
