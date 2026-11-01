@@ -4,11 +4,12 @@
   "sourceHash": "ca81dafb6d4c3610861cc246d0411bbab806cd8ac3b5b75256cf5dc5738f9603",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "impact-freeze-scroll-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.469Z"
+  "note": "Slug kept. Gates passed. Category cards-galleries. CDN loader replaced by dynamic imports of gsap, ScrollTrigger, lenis, imagesloaded. className added, unused rootRef and empty placeholders removed. Google Fonts injection kept. Lenis scroll takeover, body background sync, fixed overlays noted in fixed.",
+  "updatedAt": "2026-11-01T08:43:04.872Z",
+  "gateOutput": "gates passed"
 }
