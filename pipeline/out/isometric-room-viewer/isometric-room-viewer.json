@@ -1,0 +1,51 @@
+{
+  "slug": "isometric-room-viewer",
+  "name": "Isometric Room Viewer",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen Three.js viewer for a baked isometric 3D room model with constrained orbit controls, a loading progress overlay, a reset camera button and a hint pill.",
+  "contents": [
+    "Full-screen WebGL canvas showing a baked GLB room model",
+    "Title pill and reset camera button in a top bar",
+    "Loading overlay with progress bar and percentage",
+    "Bottom hint pill"
+  ],
+  "behavior": [
+    "Loads the model and baked texture, then renders with damped orbit controls",
+    "Orbit angles, panning and zoom distance are constrained",
+    "Reset button returns the camera to the start position",
+    "Canvas resizes with the window and everything is disposed on unmount"
+  ],
+  "props": [
+    { "name": "modelUrl", "type": "string", "default": "https://rawcdn.githack.com/ricardoolivaalonso/ThreeJS-Room01/98fd8d7909308ec03a596928a394bb25ed9239f1/THREEJS2.glb" },
+    { "name": "textureUrl", "type": "string", "default": "https://rawcdn.githack.com/ricardoolivaalonso/ThreeJS-Room01/98fd8d7909308ec03a596928a394bb25ed9239f1/baked.jpg" },
+    { "name": "bgColor", "type": "string", "default": "#383B50" },
+    { "name": "cameraFov", "type": "number", "default": 30 },
+    { "name": "minCamDistance", "type": "number", "default": 10 },
+    { "name": "maxCamDistance", "type": "number", "default": 20 },
+    { "name": "title", "type": "string", "default": "Isometric Studio Canvas" },
+    { "name": "resetLabel", "type": "string", "default": "Reset Camera" },
+    { "name": "loadingLabel", "type": "string", "default": "Parsing Volumetrics" },
+    { "name": "loadedLabel", "type": "string", "default": "% Loaded" },
+    { "name": "hint", "type": "string", "default": "Orbit Constrained By Scene Matrix Boundaries" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Model and baked texture URLs",
+    "Background color",
+    "Camera field of view and zoom distance limits",
+    "Title, button, loading and hint text"
+  ],
+  "needsCodeEdit": [
+    { "change": "Orbit angle limits", "where": "controls.minPolarAngle" },
+    { "change": "Start camera position", "where": "camera.position.set(18, 10, 20)" }
+  ],
+  "fixed": [
+    "Root is fixed to the full viewport and the canvas takes over pointer drag and wheel for orbit and zoom",
+    "Model scene offset and material replacement with the baked texture are hardcoded"
+  ],
+  "mood": ["immersive", "calm", "modern", "playful"],
+  "industries": ["real estate", "interior design", "architecture", "furniture", "portfolio"],
+  "sections": ["hero", "background"],
+  "dependencies": ["three"]
+}
