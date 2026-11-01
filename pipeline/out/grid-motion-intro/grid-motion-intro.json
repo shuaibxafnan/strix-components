@@ -1,0 +1,254 @@
+{
+    "slug": "grid-motion-intro",
+    "name": "Grid Motion Intro",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Full-screen tilted image grid whose rows slide with the pointer; an Explore button flips the center image to fullscreen and reveals a text section below.",
+    "contents": [
+        "Tilted grid of image rows with a glow overlay and centered Explore button",
+        "Fixed title header shown after reveal",
+        "Content section with large heading and paragraphs"
+    ],
+    "behavior": [
+        "Rows follow the pointer with eased offsets, contrast and brightness shifts",
+        "Click or tap on the button flips the center image to fullscreen with GSAP Flip, zooms and dims it",
+        "Content section slides up over the image after reveal",
+        "Page scroll is locked until the button is pressed, then optional Lenis smooth scroll starts"
+    ],
+    "props": [
+        {
+            "name": "images",
+            "type": "string[]",
+            "default": "25 sample images"
+        },
+        {
+            "name": "rows",
+            "type": "number",
+            "default": 5
+        },
+        {
+            "name": "columns",
+            "type": "number",
+            "default": 7
+        },
+        {
+            "name": "gap",
+            "type": "string",
+            "default": "1rem"
+        },
+        {
+            "name": "angle",
+            "type": "number",
+            "default": -15
+        },
+        {
+            "name": "itemRadius",
+            "type": "number",
+            "default": 10
+        },
+        {
+            "name": "gridWidth",
+            "type": "string",
+            "default": "200vw"
+        },
+        {
+            "name": "gridHeight",
+            "type": "string",
+            "default": "200vh"
+        },
+        {
+            "name": "introBg",
+            "type": "string",
+            "default": "#000"
+        },
+        {
+            "name": "glowColor",
+            "type": "string",
+            "default": "#f9a13275"
+        },
+        {
+            "name": "enableTranslateX",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "enableSkewX",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "enableContrast",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "enableBrightness",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "enableScale",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "translateRange",
+            "type": "number",
+            "default": 40
+        },
+        {
+            "name": "skewRange",
+            "type": "number",
+            "default": 3
+        },
+        {
+            "name": "contrastEdge",
+            "type": "number",
+            "default": 330
+        },
+        {
+            "name": "brightnessEdge",
+            "type": "number",
+            "default": 15
+        },
+        {
+            "name": "scaleEdge",
+            "type": "number",
+            "default": 0.95
+        },
+        {
+            "name": "baseAmt",
+            "type": "number",
+            "default": 0.1
+        },
+        {
+            "name": "amtFalloff",
+            "type": "number",
+            "default": 0.03
+        },
+        {
+            "name": "minAmt",
+            "type": "number",
+            "default": 0.05
+        },
+        {
+            "name": "revealDuration",
+            "type": "number",
+            "default": 0.9
+        },
+        {
+            "name": "revealEase",
+            "type": "string",
+            "default": "power4"
+        },
+        {
+            "name": "zoomScale",
+            "type": "number",
+            "default": 1.2
+        },
+        {
+            "name": "settleScale",
+            "type": "number",
+            "default": 1.1
+        },
+        {
+            "name": "settleBrightness",
+            "type": "number",
+            "default": 50
+        },
+        {
+            "name": "heroShiftY",
+            "type": "string",
+            "default": "-5vh"
+        },
+        {
+            "name": "contentShift",
+            "type": "string",
+            "default": "-30vh"
+        },
+        {
+            "name": "buttonLabel",
+            "type": "string",
+            "default": "Explore"
+        },
+        {
+            "name": "title",
+            "type": "string",
+            "default": "NOVAMOTION"
+        },
+        {
+            "name": "heading",
+            "type": "string",
+            "default": "Nova Motion"
+        },
+        {
+            "name": "paragraphs",
+            "type": "string[]",
+            "default": "4 sample paragraphs"
+        },
+        {
+            "name": "highlightIndex",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "smoothScroll",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "lenisLerp",
+            "type": "number",
+            "default": 0.15
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Images, grid rows, columns, gap, tilt angle and radius",
+        "Pointer effect toggles and strengths",
+        "Reveal timing, easing, zoom and shift values",
+        "Button label, title, heading, paragraphs, highlighted paragraph",
+        "Intro background and glow colors"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change content section background gradient and text color",
+            "where": "-content::before rule in the css template literal"
+        },
+        {
+            "change": "Change button size or shape",
+            "where": "button element with buttonRef"
+        }
+    ],
+    "fixed": [
+        "Locks page scroll by fixing the body while the intro is shown and resets it on unmount",
+        "Starts Lenis smooth scrolling after reveal, taking over page scroll",
+        "Hero image is always the center cell of the grid",
+        "Content section colors and uppercase 12px text are hardcoded"
+    ],
+    "mood": [
+        "bold",
+        "cinematic",
+        "immersive",
+        "modern"
+    ],
+    "industries": [
+        "creative agency",
+        "film",
+        "fashion",
+        "photography",
+        "portfolio"
+    ],
+    "sections": [
+        "hero",
+        "portfolio"
+    ],
+    "dependencies": [
+        "gsap",
+        "lenis"
+    ]
+}

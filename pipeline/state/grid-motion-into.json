@@ -4,11 +4,12 @@
   "sourceHash": "04e6ced9b2211b9fe752bfce73f5e189b0be8a10de2d340cac104de90f5d153c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "grid-motion-intro",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.454Z"
+  "note": "Renamed grid-motion-into -> grid-motion-intro (typo). CDN gsap, Flip, Lenis replaced with dynamic imports; deps gsap, lenis. Cleanup kills timeline, ticker, Lenis. Added className. Frame: none. Variants: none. Body scroll lock until button pressed.",
+  "updatedAt": "2026-11-01T07:55:16.334Z",
+  "gateOutput": "gates passed"
 }
