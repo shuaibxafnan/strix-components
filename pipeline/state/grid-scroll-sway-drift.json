@@ -4,11 +4,12 @@
   "sourceHash": "dd16894ce50b88e673f833aaf9c80a3d304dd277d3a3a912ff0107780f953770",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-drift-image-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.455Z"
+  "note": "Renamed grid-scroll-sway-drift -> scroll-drift-image-grid. CDN and new Function loading replaced with dynamic imports; deps gsap, lenis. Cleanup on unmount. Removed unused rootRef. Added className. Frame: none. Variants: none. Lenis takes over scroll.",
+  "updatedAt": "2026-11-01T07:57:24.158Z",
+  "gateOutput": "gates passed"
 }

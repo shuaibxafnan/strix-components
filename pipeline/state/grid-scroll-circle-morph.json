@@ -4,11 +4,12 @@
   "sourceHash": "5962b1edecb5a8226b940cd27967d50147d0430e0bf3b1a66baf1cae4ca79312",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "grid-scroll-circle-morph",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.454Z"
+  "note": "No rename. CDN scripts and runtime Lenis import replaced with dynamic imports; deps gsap, lenis. Added className, item alt (role img). Dropped smooth:true. Removed console.error catch. Frame: none. Variants: none. Lenis takes over scroll.",
+  "updatedAt": "2026-11-01T07:55:59.611Z",
+  "gateOutput": "gates passed"
 }

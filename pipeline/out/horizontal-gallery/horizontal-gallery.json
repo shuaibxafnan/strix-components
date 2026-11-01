@@ -1,0 +1,35 @@
+{
+  "slug": "horizontal-gallery",
+  "name": "Horizontal Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen horizontal scroll gallery of image cards with caption labels, where the background color shifts to match the card most in view and a counter tracks position.",
+  "contents": ["Row of image cards with title and description captions", "Slide counter and drag cue"],
+  "behavior": [
+    "Native horizontal scrolling with smooth scroll, scrollbar hidden",
+    "IntersectionObserver picks the most visible card and fades the background to its color",
+    "Cards scale slightly on hover"
+  ],
+  "props": [
+    {"name": "items", "type": "{id,color,title,desc,src}[]", "default": "7 sample items"},
+    {"name": "defaultBg", "type": "string", "default": "#f1bace"},
+    {"name": "imageWidthClass", "type": "string", "default": "w-[75vw] sm:w-[50vw] md:w-[38vw]"},
+    {"name": "imageHeightClass", "type": "string", "default": "h-[50vh] md:h-[65vh]"},
+    {"name": "gapClass", "type": "string", "default": "mr-6 md:mr-10"},
+    {"name": "showCounter", "type": "boolean", "default": true},
+    {"name": "showSwipeCue", "type": "boolean", "default": true},
+    {"name": "speedClass", "type": "string", "default": "duration-[600ms]"},
+    {"name": "dragLabel", "type": "string", "default": "Drag"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Cards, images, captions and per-card background colors", "Card size, gap, color fade speed", "Counter and drag cue visibility and label"],
+  "needsCodeEdit": [
+    {"change": "Change caption card style", "where": "The absolute bottom-4 left-4 caption div"},
+    {"change": "Change how the active card is chosen", "where": "IntersectionObserver options threshold and rootMargin"}
+  ],
+  "fixed": ["Root fills the viewport height. Override with className using an important modifier such as !h-auto.", "Counter text colors are fixed dark tones"],
+  "mood": ["colorful", "editorial", "playful"],
+  "industries": ["photography", "fashion", "design", "interior design"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

@@ -1,0 +1,82 @@
+{
+    "slug": "gooey-nav",
+    "name": "Gooey Nav",
+    "category": "navigation-menus",
+    "isReactBits": true,
+    "description": "Pill navigation bar whose active highlight is a WebGL liquid blob that stretches, merges and sheds droplets as it travels between items, inside an optional frosted glass frame.",
+    "contents": [
+        "Nav with a list of link or button items, each with optional icon and label",
+        "Optional frosted rounded frame with rim highlight",
+        "WebGL2 canvas drawing the gooey active pill, droplets, hover pill and soft shadow",
+        "Hidden overlay list that shows the active item text in contrast color through the pill"
+    ],
+    "behavior": [
+        "Active pill morphs into the clicked item, spawning droplets that trail and merge with a metaball blend",
+        "Hover shows a soft pill behind the hovered item when hoverEffect is on",
+        "Supports uncontrolled (initialActiveIndex) or controlled (activeIndex with onChange) selection",
+        "Items with href render as anchors, others as buttons; href '#' or missing is prevented from navigating",
+        "Sets aria-current page on the active item",
+        "Remeasures on resize and after fonts load",
+        "Falls back to a plain CSS pill when WebGL2 is unavailable",
+        "Respects prefers-reduced-motion"
+    ],
+    "props": [
+        { "name": "items", "type": "{label,href,icon}[]", "default": "Home, Work, About, Contact with href '#'" },
+        { "name": "initialActiveIndex", "type": "number", "default": 0 },
+        { "name": "activeIndex", "type": "number", "default": "undefined" },
+        { "name": "onChange", "type": "(index, item) => void", "default": "undefined" },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "color", "type": "string", "default": "undefined (theme pill color)" },
+        { "name": "activeTextColor", "type": "string", "default": "undefined (auto contrast)" },
+        { "name": "colors", "type": "string[]", "default": [] },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "md" },
+        { "name": "frame", "type": "boolean", "default": true },
+        { "name": "animationTime", "type": "number", "default": 600 },
+        { "name": "particleCount", "type": "number", "default": 15 },
+        { "name": "timeVariance", "type": "number", "default": 300 },
+        { "name": "spread", "type": "number", "default": 56 },
+        { "name": "gooeyness", "type": "number", "default": 0.5 },
+        { "name": "wobble", "type": "number", "default": 0.5 },
+        { "name": "hoverEffect", "type": "boolean", "default": true },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Menu items, labels, links and icons",
+        "Active item, controlled or uncontrolled, and change callback",
+        "Dark or light theme, pill color, active text color, droplet tint colors",
+        "Size sm, md or lg and frame on or off",
+        "Animation duration, variance, droplet count, spread, gooeyness, wobble and hover effect",
+        "Extra className and inline style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change theme palette values such as frame glass or text colors",
+            "where": "THEMES and PILLS constants"
+        },
+        {
+            "change": "Change size dimensions or add new sizes",
+            "where": "SIZES constant"
+        },
+        {
+            "change": "Change default menu items",
+            "where": "DEFAULT_ITEMS constant"
+        },
+        {
+            "change": "Change blob rendering, shading or rim light",
+            "where": "FRAGMENT shader string"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2 for the gooey effect, otherwise a simple flat pill is shown",
+        "Maximum 32 droplets and 4 simultaneous pills, higher particleCount is capped",
+        "Canvas extends 72px beyond the nav on all sides, so parent overflow hidden will clip the droplets",
+        "Colors accept only hex or rgb/rgba strings, other formats fall back to white",
+        "Marked as a client component and uses window, ResizeObserver and document.fonts",
+        "Wraps items when narrow, but the blob animation is designed for a single-row desktop-style bar"
+    ],
+    "mood": ["playful", "fluid", "modern", "glassy"],
+    "industries": ["creative agency", "portfolio", "saas", "startup", "gaming"],
+    "sections": ["navbar"],
+    "dependencies": []
+}

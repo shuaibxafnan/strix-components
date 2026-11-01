@@ -1,0 +1,50 @@
+{
+  "slug": "glitch-image-effect",
+  "name": "Glitch Image Effect",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen hero image with periodic RGB-split glitch bursts made of clipped, offset and tinted image layers, plus a large title that glitches in sync.",
+  "contents": ["Full-viewport background image stacked in five layers", "Large centered glitching title"],
+  "behavior": [
+    "Three clipped layers jump sideways and flipped with stepped clip-path slices on a looping timer",
+    "A tinted flash layer pulses at the start of each glitch",
+    "Title glitches shortly after the image layers",
+    "Animation starts once the image has loaded and stops with reduced motion"
+  ],
+  "props": [
+    {"name": "image", "type": "string", "default": "https://images.unsplash.com/photo-1780269579991-79bc18ee6f56?auto=format&fit=crop&w=1920&q=80"},
+    {"name": "title", "type": "string", "default": "ETHEREAL"},
+    {"name": "bgColor", "type": "string", "default": "#000000"},
+    {"name": "titleColor", "type": "string", "default": "#ffffff"},
+    {"name": "titleSize", "type": "string", "default": "11vw"},
+    {"name": "titleOffset", "type": "string", "default": "35vh"},
+    {"name": "titleFont", "type": "string", "default": "'Bungee', Impact, 'Arial Black', sans-serif"},
+    {"name": "width", "type": "string", "default": "100vw"},
+    {"name": "height", "type": "string", "default": "100vh"},
+    {"name": "gapHorizontal", "type": "number", "default": 10},
+    {"name": "gapVertical", "type": "number", "default": 5},
+    {"name": "animTime", "type": "number", "default": 4},
+    {"name": "animDelay", "type": "number", "default": 2},
+    {"name": "glitchTitle", "type": "boolean", "default": true},
+    {"name": "backgroundPosition", "type": "string", "default": "50% 0"},
+    {"name": "layerColors", "type": "string[]", "default": ["transparent", "transparent", "transparent", "#fb909a", "#1c1cc9"]},
+    {"name": "layerBlendModes", "type": "string[]", "default": ["none", "none", "none", "overlay", "overlay"]},
+    {"name": "flashOpacity", "type": "number", "default": 0.2},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Image, title text, background and title colors, title size, position and font",
+    "Glitch offset distances, loop duration and delay, tint colors and blend modes, flash strength"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the glitch slice shapes", "where": "@keyframes ${uid}-a1 block in the css template literal"}
+  ],
+  "fixed": [
+    "Bungee font is referenced by default but not imported; host must load it or pass titleFont",
+    "Root is full-bleed and sized by height and width props, no extra frame"
+  ],
+  "mood": ["edgy", "cyber", "dramatic", "bold"],
+  "industries": ["music", "gaming", "fashion", "entertainment", "art"],
+  "sections": ["hero", "background"],
+  "dependencies": []
+}

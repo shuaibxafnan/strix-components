@@ -1,0 +1,27 @@
+{
+ "slug":"hover-image-nav",
+ "name":"Hover Image Nav",
+ "category":"navigation-menus",
+ "isReactBits":false,
+ "description":"Full-screen editorial menu of large numbered text links. Hovering a link shows a floating preview image that follows the cursor while the list drifts vertically with the mouse.",
+ "contents":["Eyebrow label","List of large numbered links separated by hairline dividers","Floating preview image per link"],
+ "behavior":["Preview image fades and scales in on link hover and follows the cursor","Link list slides vertically in response to the mouse Y position","Hovered link brightens, turns italic and shows a vertical accent line","Preview is hover only, links remain tappable on touch"],
+ "props":[
+  {"name":"items","type":"{label,img,href}[]","default":"8 sample items"},
+  {"name":"animDuration","type":"number","default":4000},
+  {"name":"eyebrow","type":"string","default":"Selected works"},
+  {"name":"bgColor","type":"string","default":"#0a0a0a"},
+  {"name":"textColor","type":"string","default":"#ffffff"},
+  {"name":"className","type":"string","default":""}
+ ],
+ "editableByProps":["Link labels, hrefs and preview images","Eyebrow text","Background and text colors","List drift speed"],
+ "needsCodeEdit":[
+  {"change":"Change fonts","where":"@import line and .nav-root, .nav-index, .nav-eyebrow rules in the style block"},
+  {"change":"Change preview image size or shape","where":"style object on the img element"}
+ ],
+ "fixed":["Loads Cormorant Garamond and DM Mono from Google Fonts","Listens to window mousemove for the list drift, removed on unmount","Section fills the viewport height"],
+ "mood":["editorial","elegant","minimal","dark","bold"],
+ "industries":["portfolio","agency","photography","fashion","architecture"],
+ "sections":["navbar","portfolio"],
+ "dependencies":[]
+}

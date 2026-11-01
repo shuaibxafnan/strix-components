@@ -1,0 +1,61 @@
+{
+  "slug": "horizontal-blinds-transition",
+  "name": "Horizontal Blinds Transition",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Pinned full-screen scroll sequence where each image is revealed through rows of horizontal blinds that open in sequence, with animated captions and a segmented progress bar.",
+  "contents": [
+    "Full-screen image slides with index counter, kicker pill, title and description",
+    "Segmented progress bar at the bottom"
+  ],
+  "behavior": [
+    "Section is pinned with a sticky stage and its height is 100vh per slide",
+    "SVG mask strips open in a staggered sequence driven by scroll scrub",
+    "Captions wipe in with clip-path and out upward between slides",
+    "Blinds rebuild on window resize",
+    "Smooth scrolling through Lenis"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#000000" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "slides", "type": "{image,kicker,title,description}[]", "default": "3 sample slides" },
+    { "name": "blindCount", "type": "number", "default": 30 },
+    { "name": "scrubAmount", "type": "number", "default": 2.5 },
+    { "name": "lerp", "type": "number", "default": 0.15 },
+    { "name": "showProgressBar", "type": "boolean", "default": true },
+    { "name": "titleFontFamily", "type": "string", "default": "'Playfair Display', serif" },
+    { "name": "bodyFontFamily", "type": "string", "default": "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" },
+    { "name": "labelFontFamily", "type": "string", "default": "'Space Mono', monospace" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of slides, images, kickers, titles and descriptions",
+    "Background and text colors, fonts",
+    "Number of blinds, scroll smoothing and scrub amount",
+    "Progress bar visibility"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the blind opening easing or stagger",
+      "where": "openBlinds function"
+    },
+    {
+      "change": "Adjust image dimming",
+      "where": "filter brightness(0.75) style on the image element"
+    },
+    {
+      "change": "Change caption animation",
+      "where": "textIn and textOut functions"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Registers a GSAP ScrollTrigger and ticker callback, removed on unmount",
+    "Loads Playfair Display and Space Mono from Google Fonts through a link added to document head",
+    "Stage height is 100vh per slide to give the pin scroll room"
+  ],
+  "mood": ["cinematic", "editorial", "elegant"],
+  "industries": ["photography", "film", "fashion", "travel", "art"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": ["gsap", "lenis"]
+}

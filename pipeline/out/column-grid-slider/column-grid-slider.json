@@ -1,0 +1,71 @@
+{
+    "slug": "column-grid-slider",
+    "name": "Column Grid Slider",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Image slider that opens with a counter preloader and a zoomed-out grid of moving columns. Entering the flow expands one image full-screen with split-character titles, captions and a thumbnail strip, then scrolls on with Lenis.",
+    "contents": [
+        "Percentage counter preloader",
+        "Grid of four image columns",
+        "Enter button",
+        "Full-screen expanded image with caption, category, two-part title and paragraph",
+        "Thumbnail strip to switch slides",
+        "Scroll spacer and footer with contact prompt and email link"
+    ],
+    "behavior": [
+        "Counter runs to 100 then reveals the column grid with a stagger",
+        "Clicking enter slides columns up and down, expands the leftmost image to full width",
+        "Title and paragraph animate in character by character on each slide change",
+        "After entering, page scrolls smoothly with Lenis while the hero image scales and fades",
+        "Thumbnails swap the active slide with a crossfade"
+    ],
+    "props": [
+        {"name": "bgColor", "type": "string", "default": "#111111"},
+        {"name": "textColor", "type": "string", "default": "rgba(255,255,255,0.9)"},
+        {"name": "titleColor", "type": "string", "default": "rgba(255,255,255,0.95)"},
+        {"name": "fontFamily", "type": "string", "default": "'TheGoodMonolith', monospace"},
+        {"name": "titleSize", "type": "string", "default": "clamp(2rem, 10vw, 10rem)"},
+        {"name": "gridItemWidth", "type": "string", "default": "50vw"},
+        {"name": "gridItemHeight", "type": "string", "default": "100vh"},
+        {"name": "enterLabel", "type": "string", "default": "ENTER THE FLOW"},
+        {"name": "enterBg", "type": "string", "default": "rgba(34,34,34,0.8)"},
+        {"name": "slides", "type": "{image,title1,title2,caption,category,paragraph}[]", "default": "7 sample slides"},
+        {"name": "columnImages", "type": "number[][]", "default": "4 columns of slide indexes"},
+        {"name": "preloaderDuration", "type": "number", "default": 2000},
+        {"name": "footerPrompt", "type": "string", "default": "{{ GET IN TOUCH }}"},
+        {"name": "footerEmail", "type": "string", "default": "HI@STUDIO.COM"},
+        {"name": "footerEmailHref", "type": "string", "default": "mailto:hi@studio.com"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Slides: images, titles, captions, categories, paragraphs",
+        "Which slides appear in each grid column",
+        "Colors, font family, title size, grid item size",
+        "Enter button label and background, preloader duration, footer text and email"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the number of grid columns animating up or down",
+            "where": "columnImages.map block with the isUp check"
+        },
+        {
+            "change": "Change smooth scroll feel",
+            "where": "new Lenis options inside enterTheFlow"
+        },
+        {
+            "change": "Change the scroll length after entering",
+            "where": "spacer div with minHeight 200vh"
+        }
+    ],
+    "fixed": [
+        "Takes over page scrolling with Lenis after entering, so it should be the only smooth scroll on the page",
+        "Sets body overflow to auto after entering and restores it on unmount",
+        "Uses fixed positioned layers that cover the viewport, so it should be the main content of the page",
+        "Includes a 200vh scroll spacer and a 50vh footer needed for the scroll range",
+        "Title and paragraph are split into characters through DOM writes at each slide change"
+    ],
+    "mood": ["editorial", "cinematic", "dark", "modern"],
+    "industries": ["photography", "art", "fashion", "agency", "architecture"],
+    "sections": ["hero", "gallery", "portfolio"],
+    "dependencies": ["gsap", "lenis"]
+}

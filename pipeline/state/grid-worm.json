@@ -4,11 +4,12 @@
   "sourceHash": "e91836ffd34d63cd6e4cb192c569adf0b0634a9fa655f50fb60c02145eb96c14",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "grid-worm",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.457Z"
+  "note": "No rename. Root now relative w-full h-full min-h-screen, canvas absolute inset-0. Frame: none (background). Variants: none. arrowOpacity and lineWidth props unused by drawing code; kept.",
+  "updatedAt": "2026-11-01T08:01:38.129Z",
+  "gateOutput": "gates passed"
 }

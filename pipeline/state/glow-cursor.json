@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "glow-cursor",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.587Z"
+  "note": "React Bits describe-only. Category cursor-effects. No dependencies. Variants: documented theme prop (dark, light). Needs WebGL2 and EXT_color_buffer_float; parent needs defined height.",
+  "updatedAt": "2026-11-01T07:46:22.984Z",
+  "gateOutput": "gates passed"
 }

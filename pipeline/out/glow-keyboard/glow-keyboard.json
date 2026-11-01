@@ -1,0 +1,42 @@
+{
+  "slug": "glow-keyboard",
+  "name": "Glow Keyboard",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Dark illustrated keyboard whose keys glow in random colors from a seasonal palette, with keys that press down on hover.",
+  "contents": ["Five-row keyboard layout with glowing key labels"],
+  "behavior": ["Each key gets a random color from the chosen palette on mount", "Keys sink slightly on hover", "Everything scales with the container width"],
+  "props": [
+    {"name": "variant", "type": "\"spring\" | \"summer\" | \"autumn\" | \"winter\" | \"custom\"", "default": "winter"},
+    {"name": "maxContainerWidth", "type": "string", "default": "max-w-5xl"},
+    {"name": "textGlowOpacity", "type": "number", "default": 0.25},
+    {"name": "boxGlowOpacity", "type": "number", "default": 0.5},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Color palette through variant", "Glow strength of text and key boxes", "Maximum width of the keyboard"],
+  "needsCodeEdit": [
+    {"change": "Change palette colors", "where": "THEMES constant"},
+    {"change": "Change key labels or layout", "where": "KEYBOARD_LAYOUT constant"},
+    {"change": "Change row background shades", "where": "ROW_BG_COLORS constant"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Key colors are picked randomly on the client after mount, so the root renders empty first",
+    "Key text is tiny on 360px screens because everything scales with the keyboard width"
+  ],
+  "mood": ["futuristic", "dark", "neon", "playful"],
+  "industries": ["gaming", "technology", "e-commerce", "software"],
+  "sections": ["other"],
+  "dependencies": [],
+  "variants": {
+    "prop": "variant",
+    "default": "winter",
+    "options": [
+      {"value": "spring", "look": "Soft pastel blues, greens and purple glow", "useWhen": "Fresh product page for a light, gentle brand"},
+      {"value": "summer", "look": "Vivid blue, amber and magenta glow", "useWhen": "Energetic launch page for gaming gear"},
+      {"value": "autumn", "look": "Olive, cream and orange glow", "useWhen": "Warm, earthy brand page for craft keyboards"},
+      {"value": "winter", "look": "Icy cyan and light blue glow", "useWhen": "Clean tech hero showing a premium keyboard"},
+      {"value": "custom", "look": "Electric blue, cyan and green glow", "useWhen": "Cyber or developer tool landing page"}
+    ]
+  }
+}

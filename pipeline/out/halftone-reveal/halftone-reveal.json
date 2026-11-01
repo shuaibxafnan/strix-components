@@ -1,0 +1,111 @@
+{
+    "slug": "halftone-reveal",
+    "name": "Halftone Reveal",
+    "category": "cursor-effects",
+    "isReactBits": true,
+    "description": "WebGL image rendered as a halftone print that the cursor wipes away to reveal the sharp photo underneath, with a fading trail, click bursts and an intro dot-growth animation.",
+    "contents": [
+        "Single container with a full-size WebGL2 canvas showing one image as halftone",
+        "Cursor trail mask that reveals the original image through the dots"
+    ],
+    "behavior": [
+        "Image appears as a halftone print in mono, duotone or CMYK-style color, with dots growing in on load",
+        "Pointer movement paints a soft trail that reveals the sharp photo and fades after a delay",
+        "Click or tap creates an expanding reveal burst, up to 4 at once",
+        "Optional wander mode moves an automatic reveal point when the pointer is outside",
+        "Rendering pauses when offscreen, hidden, or idle"
+    ],
+    "props": [
+        { "name": "src", "type": "string", "default": "Unsplash sample image URL" },
+        { "name": "fit", "type": "'cover' | 'contain'", "default": "cover" },
+        { "name": "mode", "type": "'mono' | 'duotone' | 'color'", "default": "mono" },
+        { "name": "shape", "type": "'dot' | 'ellipse' | 'square' | 'diamond' | 'line' | 'cross'", "default": "dot" },
+        { "name": "cellSize", "type": "number", "default": 6 },
+        { "name": "angle", "type": "number", "default": 45 },
+        { "name": "dotScale", "type": "number", "default": 1 },
+        { "name": "inkColor", "type": "string", "default": "#120f17" },
+        { "name": "accentColor", "type": "string", "default": "#ff4f2a" },
+        { "name": "paperColor", "type": "string", "default": "#ffffff" },
+        { "name": "contrast", "type": "number", "default": 1.1 },
+        { "name": "brightness", "type": "number", "default": 0 },
+        { "name": "invert", "type": "boolean", "default": false },
+        { "name": "roughness", "type": "number", "default": 0 },
+        { "name": "misregistration", "type": "number", "default": 0 },
+        { "name": "revealRadius", "type": "number", "default": 160 },
+        { "name": "softness", "type": "number", "default": 0.6 },
+        { "name": "linger", "type": "number", "default": 1.2 },
+        { "name": "reverse", "type": "boolean", "default": false },
+        { "name": "wander", "type": "boolean", "default": false },
+        { "name": "clickBurst", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Image source and fit",
+        "Halftone mode, dot shape, cell size, angle and dot scale",
+        "Ink, accent and paper colors, contrast, brightness, invert, roughness and misregistration",
+        "Reveal radius, softness, trail linger time, reverse reveal",
+        "Wander, click burst and intro toggles"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the maximum number of simultaneous click bursts",
+            "where": "MAX_BURSTS constant"
+        },
+        {
+            "change": "Change burst or intro duration",
+            "where": "BURST_SECONDS and INTRO_SECONDS constants"
+        },
+        {
+            "change": "Add another halftone dot shape",
+            "where": "SHAPES constant and the metric and reach functions in the VIEW shader"
+        },
+        {
+            "change": "Change the wander path of the automatic reveal",
+            "where": "wanderAt function"
+        }
+    ],
+    "fixed": [
+        "Root is h-full w-full, so the parent must have a defined height or the component collapses",
+        "No frame is included, it fills whatever container it is placed in",
+        "Requires WebGL2, renders nothing if unavailable",
+        "Source image must allow CORS (crossOrigin anonymous) to load as a texture",
+        "Values are clamped internally: cellSize 2-80, dotScale 0.2-2, roughness, misregistration and softness 0-1",
+        "Wander is disabled when the user prefers reduced motion",
+        "Reveal depends on pointer events, so touch devices only reveal while touching or on tap bursts",
+        "Changing src recreates the whole WebGL setup",
+        "The canvas is hidden from assistive tech and the image has no alt text"
+    ],
+    "mood": [
+        "playful",
+        "retro",
+        "editorial",
+        "artistic",
+        "interactive"
+    ],
+    "industries": [
+        "photography",
+        "creative agency",
+        "fashion",
+        "music",
+        "publishing",
+        "art"
+    ],
+    "sections": [
+        "hero",
+        "gallery",
+        "portfolio",
+        "background"
+    ],
+    "dependencies": [],
+    "variants": {
+        "prop": "mode",
+        "default": "mono",
+        "options": [
+            { "value": "mono", "look": "Single-ink halftone dots on paper color", "useWhen": "A classic newspaper or print look in one color" },
+            { "value": "duotone", "look": "Two overlapping dot layers in ink and accent colors", "useWhen": "A brand-colored two-tone poster style" },
+            { "value": "color", "look": "Full-color halftone, CMYK on light paper or RGB on dark paper", "useWhen": "The photo should keep its colors in a print or screen-dot style" }
+        ]
+    }
+}

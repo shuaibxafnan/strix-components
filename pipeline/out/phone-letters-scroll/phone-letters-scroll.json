@@ -1,0 +1,57 @@
+{
+  "slug": "phone-letters-scroll",
+  "name": "Phone Letters Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Phone mockup with a status bar where dated letter cards stack and fold away as you scroll inside the screen, revealing a no-more-letters empty state.",
+  "contents": [
+    "Phone frame with notch and live status bar (clock, signal, wifi, battery)",
+    "Headline, stacked letter cards with date, subtitle and paragraphs",
+    "Empty state icon and message revealed at the end"
+  ],
+  "behavior": [
+    "Scrolling inside the phone screen scrubs a GSAP ScrollTrigger timeline per letter",
+    "Each letter compacts into a folded strip, tilts and stacks while the headline shifts up",
+    "Empty state is unmasked after the last letter",
+    "Inner scroll is capped at scrollLimit",
+    "Clock updates every 5 seconds"
+  ],
+  "props": [
+    { "name": "title", "type": "string", "default": "Historical letters" },
+    { "name": "emptyText", "type": "string", "default": "No more letters" },
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "frameColor", "type": "string", "default": "#18181B" },
+    { "name": "screenBg", "type": "string", "default": "#F4F4F5" },
+    { "name": "letterBg", "type": "string", "default": "#FFFFFF" },
+    { "name": "headlineColor", "type": "string", "default": "#18181B" },
+    { "name": "dateColor", "type": "string", "default": "#18181B" },
+    { "name": "sublineColor", "type": "string", "default": "#71717A" },
+    { "name": "bodyTextColor", "type": "string", "default": "#52525B" },
+    { "name": "emptyIconColor", "type": "string", "default": "#A1A1AA" },
+    { "name": "statusBarColor", "type": "string", "default": "#18181B" },
+    { "name": "showStatusBar", "type": "boolean", "default": true },
+    { "name": "showPhoneFrame", "type": "boolean", "default": true },
+    { "name": "scrollLimit", "type": "number", "default": 2550 },
+    { "name": "letters", "type": "{date,subtitle,paragraphs[]}[]", "default": "3 sample letters" }
+  ],
+  "editableByProps": [
+    "Headline, empty message, and all letter dates, subtitles and paragraphs",
+    "All colors of frame, screen, cards and text",
+    "Show or hide the status bar and the phone frame",
+    "Scroll length"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change per-letter fold tilt and offset", "where": "ARTICLE_CONFIGS constant" },
+    { "change": "Change the inner scroll height for more letters", "where": "div with style height 4000px" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Inner scroll container height is fixed at 4000px to give the scroll range; scrollLimit must fit within it",
+    "Phone is 375px wide (shrinks on narrow screens) and its height follows a fixed aspect ratio, so very short viewports may clip it",
+    "Loads Inter and Playfair Display through a Google Fonts import"
+  ],
+  "mood": ["elegant", "playful", "minimal", "editorial"],
+  "industries": ["mobile apps", "publishing", "fintech", "portfolio", "storytelling"],
+  "sections": ["hero", "features", "other"],
+  "dependencies": ["gsap"]
+}

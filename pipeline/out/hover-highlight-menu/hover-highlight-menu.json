@@ -1,0 +1,31 @@
+{
+  "slug": "hover-highlight-menu",
+  "name": "Hover Highlight Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Dark vertical menu list over a blurred image backdrop, where each row shows a soft white spotlight that follows the cursor on hover.",
+  "contents": ["Blurred background image layer", "Bordered menu list with icon and label per row"],
+  "behavior": ["A radial light glow tracks the pointer inside the hovered row", "Row background lightens on hover, rows with blue variant turn blue", "Renders after mount to avoid hydration mismatch"],
+  "props": [
+    {"name": "menuWidth", "type": "string", "default": "15rem"},
+    {"name": "bgOverlayUrl", "type": "string", "default": "https://unsplash.it/600/600?image=992"},
+    {"name": "blurAmount", "type": "string", "default": "blur-[6px]"},
+    {"name": "gradientSize", "type": "number", "default": 160},
+    {"name": "gradientHeight", "type": "number", "default": 120},
+    {"name": "menuItems", "type": "{id,label,icon,variant}[]", "default": "5 sample items"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Menu rows, labels, icons and blue accent per row", "Menu width, backdrop image and blur, glow size"],
+  "needsCodeEdit": [
+    {"change": "Change menu colors", "where": "className string of the row div using bg-[#242424]/90 and hover:bg-[#383838]/90"},
+    {"change": "Change glow color or strength", "where": "radial-gradient background in the glow div style"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Highlight follows the mouse, on touch devices rows show only the plain hover state"
+  ],
+  "mood": ["dark", "sleek", "modern", "interactive"],
+  "industries": ["saas", "software", "gaming", "creative tools"],
+  "sections": ["other"],
+  "dependencies": []
+}

@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "gradient-blinds",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.597Z"
+  "note": "React Bits describe-only. Category backgrounds-3d. Variants: none. Needs WebGL2; parent needs size. Pointer listeners on window. Max 8 colors, 4 ripples.",
+  "updatedAt": "2026-11-01T07:50:53.007Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,106 @@
+{
+    "slug": "gradient-blinds",
+    "name": "Gradient Blinds",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 background of vertical gradient slats like window blinds, lit by a soft spotlight that follows the pointer, with sway, click ripples, grain and an intro settle.",
+    "contents": [
+        "Full-size container with a single WebGL2 canvas rendering the gradient blinds shader"
+    ],
+    "behavior": [
+        "Gradient is split into blind slats, each tilting with a slow sway animation",
+        "Spotlight follows the pointer with spring damping, and drifts on its own when the pointer is outside",
+        "Clicks inside spawn ripple waves across the slats (up to 4 at once)",
+        "Intro animation settles the blinds on mount",
+        "Animated film grain over the surface",
+        "Rendering pauses when offscreen, tab hidden, or paused prop is true",
+        "Reduced-motion users get no intro, sway, drift, gradient animation, or ripples"
+    ],
+    "props": [
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" },
+        { "name": "dpr", "type": "number", "default": "undefined (device pixel ratio, capped at 2)" },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "gradientColors", "type": "string[]", "default": "undefined (uses #FF9FFC, #5227FF)" },
+        { "name": "angle", "type": "number", "default": 0 },
+        { "name": "noise", "type": "number", "default": 0.3 },
+        { "name": "blindCount", "type": "number", "default": 16 },
+        { "name": "blindMinWidth", "type": "number", "default": 60 },
+        { "name": "mouseDampening", "type": "number", "default": 0.15 },
+        { "name": "mirrorGradient", "type": "boolean", "default": false },
+        { "name": "spotlightRadius", "type": "number", "default": 0.5 },
+        { "name": "spotlightSoftness", "type": "number", "default": 1 },
+        { "name": "spotlightOpacity", "type": "number", "default": 1 },
+        { "name": "distortAmount", "type": "number", "default": 0 },
+        { "name": "shineDirection", "type": "'left' | 'right'", "default": "left" },
+        { "name": "lightColor", "type": "string", "default": "#ffffff" },
+        { "name": "perspective", "type": "number", "default": 0 },
+        { "name": "gradientSpeed", "type": "number", "default": 0 },
+        { "name": "shine", "type": "number", "default": 0.4 },
+        { "name": "relief", "type": "number", "default": 0.5 },
+        { "name": "glow", "type": "number", "default": 0.4 },
+        { "name": "sway", "type": "number", "default": 0.35 },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "hoverTilt", "type": "number", "default": 0.6 },
+        { "name": "clickEffect", "type": "'ripple' | string", "default": "ripple" },
+        { "name": "idle", "type": "'drift' | 'center' | string", "default": "drift" },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "mixBlendMode", "type": "string", "default": "lighten" },
+        { "name": "lightMode", "type": "boolean", "default": false }
+    ],
+    "editableByProps": [
+        "Gradient colors (up to 8 stops), mirroring, animated gradient shift, angle, perspective and distortion",
+        "Blind count and minimum width, shine, relief, glow, sway, hover tilt and speed",
+        "Spotlight radius, softness, opacity, color, follow damping and idle behavior (drift or center)",
+        "Grain amount, intro on or off, click ripple on or off, paused state",
+        "Dark or light (white paper) rendering via lightMode, CSS blend mode, className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the default fallback gradient colors",
+            "where": "Default arrays in prepStops and colorKey"
+        },
+        {
+            "change": "Change ripple duration or number of simultaneous ripples",
+            "where": "RIPPLE_SECONDS and MAX_WAVES constants"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change shading, slat tilt or light-mode look",
+            "where": "FRAGMENT shader string main function"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable or the shader fails to compile",
+        "Fills its parent (h-full w-full), so the parent needs a defined size and relative placement behind content",
+        "Listens to pointer events on window, so the spotlight and ripples react anywhere on the page, not only over the element",
+        "Maximum 8 gradient colors and 4 simultaneous ripples",
+        "Canvas is aria-hidden and purely decorative",
+        "Mix blend mode is ignored in lightMode",
+        "Blind count is capped by container width divided by blindMinWidth, so narrow screens show fewer slats",
+        "Pixel ratio capped at 2"
+    ],
+    "mood": [
+        "futuristic",
+        "elegant",
+        "dreamy",
+        "vibrant",
+        "modern"
+    ],
+    "industries": [
+        "technology",
+        "saas",
+        "creative agency",
+        "fashion",
+        "music"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "cta"
+    ],
+    "dependencies": []
+}

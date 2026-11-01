@@ -1,0 +1,110 @@
+{
+    "slug": "glow-cursor",
+    "name": "Glow Cursor",
+    "category": "cursor-effects",
+    "isReactBits": true,
+    "description": "WebGL2 fluid simulation that leaves a glowing, swirling light trail behind the pointer inside a container, with bloom, optional grain and a click burst. Children render on top.",
+    "contents": [
+        "Wrapper div with a full-size WebGL canvas overlay (pointer-events none) and optional children layered above"
+    ],
+    "behavior": [
+        "Pointer movement inside the container injects glowing dye and velocity into a fluid simulation",
+        "Emitter follows the pointer with a spring, so the trail lags and curves",
+        "Trail swirls, fades by the linger time and gets a multi-level bloom glow",
+        "Click or tap fires a burst of six jets at the pointer",
+        "Simulation sleeps and clears when idle, and pauses when off-screen or the tab is hidden",
+        "With prefers-reduced-motion, the emitter snaps to the pointer and the fluid motion is skipped so the trail only fades"
+    ],
+    "props": [
+        { "name": "color", "type": "string", "default": "#5f8bff" },
+        { "name": "secondaryColor", "type": "string", "default": "undefined (derived from color with a slight hue shift)" },
+        { "name": "intensity", "type": "number", "default": 1.3 },
+        { "name": "trailWidth", "type": "number", "default": 3 },
+        { "name": "linger", "type": "number", "default": 1.4 },
+        { "name": "glow", "type": "number", "default": 1.2 },
+        { "name": "hotspot", "type": "number", "default": 0.8 },
+        { "name": "followSpeed", "type": "number", "default": 0.6 },
+        { "name": "grain", "type": "number", "default": 0 },
+        { "name": "clickBurst", "type": "boolean", "default": true },
+        { "name": "quality", "type": "'low' | 'medium' | 'high'", "default": "high" },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "blendMode", "type": "string", "default": "undefined (screen for dark, normal for light)" },
+        { "name": "maxDevicePixelRatio", "type": "number", "default": 2 },
+        { "name": "enabled", "type": "boolean", "default": true },
+        { "name": "children", "type": "ReactNode", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Trail color and secondary color, brightness, width, fade time, bloom glow, hot core and grain",
+        "Pointer follow smoothness, click burst on or off, enabled toggle",
+        "Quality preset, device pixel ratio cap, dark or light theme and CSS blend mode",
+        "Wrapped children, className, style and extra div attributes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the number or shape of click burst jets",
+            "where": "burst function (jets constant and reach values)"
+        },
+        {
+            "change": "Change simulation and dye resolution of the quality presets",
+            "where": "QUALITY constant"
+        },
+        {
+            "change": "Change fluid behavior such as pressure accuracy or flow strength",
+            "where": "PRESSURE_STEPS and FLOW constants, step function"
+        },
+        {
+            "change": "Change bloom depth",
+            "where": "BLOOM_LEVELS constant and render function"
+        },
+        {
+            "change": "Listen to pointer only on the container instead of the whole window",
+            "where": "Event listener registration near the end of the useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2 and the EXT_color_buffer_float extension, otherwise nothing renders",
+        "Wrapper is relative, h-full w-full and overflow hidden, so the parent needs a defined height",
+        "Pointer, pointerdown and pointerleave listeners are attached to window and document, not only the container",
+        "Quality, theme and most settings are read live, but the WebGL setup runs once on mount",
+        "Needs a mouse or pointer hover, so touch devices only get the click burst and drag trail",
+        "Uses Tailwind utility classes for the wrapper and canvas",
+        "Marked as a client component with 'use client'"
+    ],
+    "mood": [
+        "futuristic",
+        "glowing",
+        "playful",
+        "immersive"
+    ],
+    "industries": [
+        "tech",
+        "gaming",
+        "creative agency",
+        "entertainment",
+        "music"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "global"
+    ],
+    "dependencies": [],
+    "variants": {
+        "prop": "theme",
+        "default": "dark",
+        "options": [
+            {
+                "value": "dark",
+                "look": "Additive neon light that glows on dark backgrounds, screen blend by default",
+                "useWhen": "The section has a dark or black background"
+            },
+            {
+                "value": "light",
+                "look": "Soft ink-like colored smoke with normal blending and a whitened hot core",
+                "useWhen": "The section has a light or white background"
+            }
+        ]
+    }
+}

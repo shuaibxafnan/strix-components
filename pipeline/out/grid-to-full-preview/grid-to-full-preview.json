@@ -1,0 +1,37 @@
+{
+ "slug":"grid-to-full-preview",
+ "name":"Grid To Full Preview",
+ "category":"cards-galleries",
+ "isReactBits":false,
+ "description":"Four by two product image grid where hovering a product opens a cross-shaped reveal that shows a cycling image gallery with title and price in the opposite half of the screen.",
+ "contents":["Grid of 8 product images with add to cart label on hover","Two preview panels with stacked product images, title and price captions"],
+ "behavior":["Hovering a product after a short delay shrinks the grid items away and wipes open a cross-shaped clip mask on the opposite column side","Preview cycles through the product images while hovered","Reverses on mouse leave","Recalculates sizes on window resize","Below 900px a desktop-only message is shown instead"],
+ "props":[
+  {"name":"products","type":"{name,price,images[]}[]","default":"8 sample products"},
+  {"name":"bgColor","type":"string","default":"#efefef"},
+  {"name":"textColor","type":"string","default":"#000"},
+  {"name":"ctaBgColor","type":"string","default":"rgba(0,0,0,0.8)"},
+  {"name":"ctaTextColor","type":"string","default":"#efefef"},
+  {"name":"gridGap","type":"string","default":"5vw"},
+  {"name":"pagePadding","type":"string","default":"1.5rem"},
+  {"name":"armWidthVw","type":"number","default":5},
+  {"name":"shrinkVw","type":"number","default":5},
+  {"name":"hoverDelayMs","type":"number","default":100},
+  {"name":"gallerySlideSeconds","type":"number","default":0.5},
+  {"name":"breakpointMessage","type":"string","default":"This preview is best suited for desktop."},
+  {"name":"ctaLabel","type":"string","default":"Add to cart"},
+  {"name":"currencySymbol","type":"string","default":"€"},
+  {"name":"placeholderTitle","type":"string","default":"product title"},
+  {"name":"className","type":"string","default":""}
+ ],
+ "editableByProps":["Products, names, prices and images","Background, text and label colors","Grid gap, padding, reveal arm width, shrink amount and timings","Label, currency and mobile message text"],
+ "needsCodeEdit":[
+  {"change":"Change the grid size or which products open which side","where":"getControllerFor function and the i % 4 filters"},
+  {"change":"Change the reveal mask shape","where":"clipPath polygon in buildTimeline"}
+ ],
+ "fixed":["Desktop only layout, screens below 900px show the message instead of the grid","Hover driven, no touch equivalent","Expects exactly 8 products in a 4 by 2 grid","Root is full viewport height"],
+ "mood":["minimal","editorial","modern"],
+ "industries":["e-commerce","furniture","interior design","fashion"],
+ "sections":["portfolio","gallery"],
+ "dependencies":["gsap"]
+}

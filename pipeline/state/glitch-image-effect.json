@@ -4,11 +4,12 @@
   "sourceHash": "37c3f7844082201877d81106c8c0ca3ac2d13e706f0a331fdeab09156aa96c5e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "glitch-image-effect",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.450Z"
+  "note": "No rename. Added className prop. Frame unchanged. Variants: none. Responsive ok. Default titleFont Bungee not imported; host must load or pass titleFont.",
+  "updatedAt": "2026-11-01T07:44:36.122Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,62 @@
+{
+  "slug": "grid-scroll-circle-morph",
+  "name": "Grid Scroll Circle Morph",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Scattered image grid where each photo shrinks into a circle as it scrolls up, behind a fixed centered title, ending on a full-screen text footer panel.",
+  "contents": [
+    "Sparse grid of square images placed on explicit rows and columns",
+    "Fixed centered cover title with superscript mark and subtitle",
+    "Full-screen footer panel with a paragraph"
+  ],
+  "behavior": [
+    "Each image scales down and rounds into a circle, scrubbed by scroll",
+    "Transform origin sits below each image so it swings as it shrinks",
+    "Smooth scrolling through Lenis",
+    "Cover title stays fixed over the grid while scrolling"
+  ],
+  "props": [
+    {"name": "items", "type": "{image,alt,row,col}[]", "default": "48 sample images placed on the grid"},
+    {"name": "columns", "type": "number", "default": 8},
+    {"name": "bgColor", "type": "string", "default": "#000000"},
+    {"name": "textColor", "type": "string", "default": "#b41717"},
+    {"name": "footerBg", "type": "string", "default": "#9c9191"},
+    {"name": "footerText", "type": "string", "default": "#b41717"},
+    {"name": "imageContrast", "type": "number", "default": 100},
+    {"name": "coverTitle", "type": "string", "default": "Thomas Vance"},
+    {"name": "coverMark", "type": "string", "default": "®"},
+    {"name": "coverSubtitle", "type": "string", "default": "並外れたファッション"},
+    {"name": "footerBody", "type": "string", "default": "From the dawn of civilisation onwards crowds have always undergone the influence of illusions. It is to the creators of illusions that they have raised more temples, statues, and altars than to any other class of men."},
+    {"name": "coverTitleSize", "type": "string", "default": "8vw"},
+    {"name": "scrubEase", "type": "string", "default": "none"},
+    {"name": "scaleTo", "type": "number", "default": 0.5},
+    {"name": "radiusTo", "type": "string", "default": "50%"},
+    {"name": "originX", "type": "string", "default": "50%"},
+    {"name": "originY", "type": "string", "default": "200%"},
+    {"name": "scrollStart", "type": "string", "default": "top 40%"},
+    {"name": "scrollEnd", "type": "string", "default": "top top"},
+    {"name": "smoothScroll", "type": "boolean", "default": true},
+    {"name": "lerp", "type": "number", "default": 0.1},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, alt text and their row and column positions, column count",
+    "Cover title, mark, subtitle, footer text and title size",
+    "Background, text and footer colors, image contrast",
+    "Scroll morph end scale, radius, origin, easing and scroll start and end",
+    "Smooth scroll on or off and its lerp"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the cover title position or make it scroll with the page", "where": "The fixed top-0 left-0 div containing the h2 and h3"},
+    {"change": "Animate other properties such as rotation or opacity", "where": "The .to(image, ...) call in the gridItems forEach"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis unless smoothScroll is false, so it should be the only smooth scroll on the page",
+    "Cover title is position fixed over the viewport for the whole page, so it covers the viewport while the page scrolls",
+    "Footer panel is a full-screen block that gives the end of the scroll"
+  ],
+  "mood": ["editorial", "bold", "playful", "fashion"],
+  "industries": ["fashion", "photography", "portfolio", "agency", "art"],
+  "sections": ["portfolio", "gallery", "hero"],
+  "dependencies": ["gsap", "lenis"]
+}

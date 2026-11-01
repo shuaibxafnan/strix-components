@@ -1,0 +1,43 @@
+{
+  "slug": "grid-worm",
+  "name": "Grid Worm",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-size canvas background where colorful worms crawl along an invisible grid, turning at random junctions and leaving glowing trails with arrow heads.",
+  "contents": ["Canvas filled with animated worms on a grid", "Optional grid dots"],
+  "behavior": [
+    "Worms move along grid lines and pick a new direction at junctions",
+    "Each worm keeps a short trail of recent junctions",
+    "Clicking the canvas respawns all worms",
+    "Canvas resizes with its container and worms respawn"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "white"},
+    {"name": "numWorms", "type": "number", "default": 30},
+    {"name": "interval", "type": "number", "default": 40},
+    {"name": "wormLength", "type": "number", "default": 6},
+    {"name": "speed", "type": "number", "default": 5},
+    {"name": "arrowOpacity", "type": "number", "default": 0.1},
+    {"name": "lineWidth", "type": "number", "default": 2},
+    {"name": "circleRadius", "type": "number", "default": 2},
+    {"name": "showGrid", "type": "boolean", "default": false},
+    {"name": "gridDotColor", "type": "string", "default": "#eee"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Background color, worm count, speed, trail length and grid spacing",
+    "Grid dot visibility and color, worm size"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the worm color palette", "where": "COLORS function"}
+  ],
+  "fixed": [
+    "Worm colors come from a fixed palette picked at random",
+    "arrowOpacity and lineWidth are accepted but not used by the drawing code",
+    "Root is at least the viewport height and the canvas fills it"
+  ],
+  "mood": ["playful", "techy", "colorful"],
+  "industries": ["technology", "creative agency", "gaming", "education"],
+  "sections": ["background", "hero"],
+  "dependencies": []
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "scroll-drift-image-grid",
+  "name": "Scroll Drift Image Grid",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Sparse grid of square images that sway with scroll-scrubbed rotation and drift vertically at random speeds over a fixed centered cover title, ending on a text footer panel.",
+  "contents": [
+    "Grid of square background images placed by row and column",
+    "Fixed cover title with superscript mark and subtitle",
+    "Full-height footer panel with a paragraph"
+  ],
+  "behavior": [
+    "Each image rotates around a far-off origin as it crosses the viewport",
+    "Each image cell drifts vertically by a random amount scrubbed to scroll",
+    "Optional smooth scrolling through Lenis",
+    "Footer panel slides over the fixed cover title"
+  ],
+  "props": [
+    {"name":"items","type":"{image,row,col}[]","default":"48 sample images"},
+    {"name":"columns","type":"number","default":8},
+    {"name":"bgColor","type":"string","default":"#606c62"},
+    {"name":"textColor","type":"string","default":"#000000"},
+    {"name":"footerBg","type":"string","default":"#dadada"},
+    {"name":"footerText","type":"string","default":"#111111"},
+    {"name":"imageContrast","type":"number","default":100},
+    {"name":"coverTitle","type":"string","default":"Thomas Vance"},
+    {"name":"coverMark","type":"string","default":"®"},
+    {"name":"coverSubtitle","type":"string","default":"並外れたファッション"},
+    {"name":"footerBody","type":"string","default":"From the dawn of civilisation onwards crowds have always undergone the influence of illusions. It is to the creators of illusions that they have raised more temples, statues, and altars than to any other class of men."},
+    {"name":"coverTitleSize","type":"string","default":"8vw"},
+    {"name":"scrubEase","type":"string","default":"none"},
+    {"name":"rotateFrom","type":"number","default":-30},
+    {"name":"rotateTo","type":"number","default":30},
+    {"name":"originX","type":"string","default":"300%"},
+    {"name":"originY","type":"string","default":"50%"},
+    {"name":"driftRange","type":"number","default":200},
+    {"name":"swayStart","type":"string","default":"top bottom"},
+    {"name":"swayEnd","type":"string","default":"bottom top"},
+    {"name":"driftStart","type":"string","default":"top bottom"},
+    {"name":"driftEnd","type":"string","default":"top top"},
+    {"name":"smoothScroll","type":"boolean","default":true},
+    {"name":"lerp","type":"number","default":0.1},
+    {"name":"className","type":"string","default":""}
+  ],
+  "editableByProps": [
+    "Images and their grid positions, column count",
+    "Cover title, mark, subtitle, footer text and sizes",
+    "Background, text and footer colors, image contrast",
+    "Rotation, origin, drift range, scroll trigger ranges, easing, smooth scroll"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change image aspect ratio", "where": "gssd-img class aspect-ratio"},
+    {"change": "Change footer panel height", "where": "footer div with z-[200] class"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+    "Cover title is fixed to the viewport and covered by the footer panel at the end",
+    "Needs enough rows in items to give the page scroll height"
+  ],
+  "mood": ["editorial", "playful", "bold"],
+  "industries": ["fashion", "photography", "art", "portfolio"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": ["gsap", "lenis"]
+}

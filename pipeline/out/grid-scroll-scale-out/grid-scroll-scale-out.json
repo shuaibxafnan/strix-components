@@ -1,0 +1,63 @@
+{
+  "slug": "grid-scroll-scale-out",
+  "name": "Grid Scroll Scale Out",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Sparse image grid where each tile shrinks to nothing from a bottom corner as it scrolls, revealing a fixed centered title behind it, followed by a full-screen text footer panel.",
+  "contents": [
+    "Grid of square image tiles placed on explicit rows and columns",
+    "Fixed centered cover title with superscript mark and subtitle",
+    "Full-screen footer panel with a paragraph"
+  ],
+  "behavior": [
+    "Each tile scales down on scroll scrub from a randomly chosen bottom left or bottom right origin",
+    "Cover title stays fixed behind the grid while tiles disappear",
+    "Optional smooth scrolling through Lenis"
+  ],
+  "props": [
+    { "name": "items", "type": "{image,row,col}[]", "default": "43 sample tiles" },
+    { "name": "columns", "type": "number", "default": 8 },
+    { "name": "bgColor", "type": "string", "default": "#d8d2cd" },
+    { "name": "textColor", "type": "string", "default": "#111" },
+    { "name": "footerBg", "type": "string", "default": "#c3bcbc" },
+    { "name": "footerText", "type": "string", "default": "#111" },
+    { "name": "imageContrast", "type": "number", "default": 70 },
+    { "name": "coverTitle", "type": "string", "default": "Thomas Vance" },
+    { "name": "coverMark", "type": "string", "default": "®" },
+    { "name": "coverSubtitle", "type": "string", "default": "並外れたファッション" },
+    { "name": "footerBody", "type": "string", "default": "From the dawn of civilisation onwards crowds have always undergone the influence of illusions. It is to the creators of illusions that they have raised more temples, statues, and altars than to any other class of men." },
+    { "name": "coverTitleSize", "type": "string", "default": "8vw" },
+    { "name": "scrubEase", "type": "string", "default": "none" },
+    { "name": "scaleTo", "type": "number", "default": 0 },
+    { "name": "scrollStart", "type": "string", "default": "top top" },
+    { "name": "scrollEnd", "type": "string", "default": "bottom top" },
+    { "name": "smoothScroll", "type": "boolean", "default": true },
+    { "name": "lerp", "type": "number", "default": 0.1 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Tile images, rows and columns, grid column count",
+    "Cover title, mark, subtitle, size, and footer text",
+    "Background, text and footer colors, image contrast",
+    "Scroll trigger range, easing, end scale, smooth scroll toggle"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Use a fixed origin instead of a random bottom corner",
+      "where": "transformOrigin in the .set(image) call inside the useEffect"
+    },
+    {
+      "change": "Change tile aspect ratio",
+      "where": "gsso-img element aspect-ratio class"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+    "Cover title is position fixed and covers the viewport while the component is on the page",
+    "Footer panel is a full viewport height block needed for the scroll ending"
+  ],
+  "mood": ["editorial", "minimal", "bold"],
+  "industries": ["fashion", "photography", "portfolio", "art", "agency"],
+  "sections": ["hero", "portfolio", "gallery"],
+  "dependencies": ["gsap", "lenis"]
+}

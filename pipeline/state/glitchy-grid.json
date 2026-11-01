@@ -4,11 +4,12 @@
   "sourceHash": "759b2e050acaede2208de46abdbbc3cb7095510db7a62059a60c3f45017d3692",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "glitchy-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.450Z"
+  "note": "No rename. GSAP CDN script replaced with import('gsap'); dependency added. Frame unchanged. Variants: none. Responsive ok. Parallax and hover glitch mouse-only.",
+  "updatedAt": "2026-11-01T07:45:12.714Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

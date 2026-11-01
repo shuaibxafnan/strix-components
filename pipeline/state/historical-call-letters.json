@@ -4,11 +4,12 @@
   "sourceHash": "f0e4c71ccc72d9de1f7ef620a16efe6c194ffd8b46141265b37bd6f4e4c76360",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "phone-letters-scroll",
+  "nameLocked": true,
+  "status": "gate_failed",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.459Z"
+  "note": "Renamed historical-call-letters -> phone-letters-scroll (HistoricalLetters -> PhoneLettersScroll). CDN next/script loading replaced with dynamic imports (gsap, gsap/ScrollTrigger). Added title, emptyText, className; removed unused phoneRef. Listeners removed on unmount. Frame added. Variants: none. Phone max-w fits 360px.",
+  "updatedAt": "2026-11-01T08:07:05.355Z",
+  "gateOutput": "ERROR parse error: Unexpected token ','. (152:15)"
 }

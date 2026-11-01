@@ -1,0 +1,34 @@
+{
+  "slug": "glow-button",
+  "name": "Glow Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Rounded button that emits a soft glowing light streak racing around its border on hover or focus, built from two animated SVG rects.",
+  "contents": ["Single button with custom label", "SVG glow outline with blurred layer and sharp line layer"],
+  "behavior": ["On hover or focus a glow line travels around the border and fades in and out", "Corner radius is read from the computed style and applied to the SVG rects"],
+  "props": [
+    {"name": "children", "type": "ReactNode", "default": "Hi there 👋"},
+    {"name": "glowLineColor", "type": "string", "default": "#fff"},
+    {"name": "glowLineThick", "type": "string", "default": "2px"},
+    {"name": "glowLineLength", "type": "number", "default": 20},
+    {"name": "glowBlurColor", "type": "string", "default": "#fff"},
+    {"name": "glowBlurSize", "type": "string", "default": "10px"},
+    {"name": "animationSpeed", "type": "string", "default": "1200ms"},
+    {"name": "borderRadius", "type": "string", "default": "1.25rem"},
+    {"name": "bgColor", "type": "string", "default": "#E1EAFF"},
+    {"name": "borderColor", "type": "string", "default": "#ccd2e6"},
+    {"name": "textColor", "type": "string", "default": "#050908"},
+    {"name": "onClick", "type": "function", "default": null},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Label, colors, glow thickness, length, blur and speed, corner radius, click handler"],
+  "needsCodeEdit": [
+    {"change": "Change the button font size", "where": "text-[clamp(1.25rem,5vw,2rem)] class on the glow-btn button"},
+    {"change": "Change the glow path animation", "where": "glow-rect rule in the style block"}
+  ],
+  "fixed": ["Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.", "Button uses the system-ui font"],
+  "mood": ["modern", "playful", "clean", "glowing"],
+  "industries": ["saas", "startup", "agency", "ecommerce"],
+  "sections": ["hero", "cta"],
+  "dependencies": []
+}

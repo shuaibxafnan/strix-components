@@ -1,0 +1,93 @@
+{
+    "slug": "grid-zoom",
+    "name": "Grid Zoom",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Image grid where clicking a cell zooms it into a detail view with animated text, a back arrow, a mini grid and top and bottom neighbor previews, while other cells fade out.",
+    "contents": [
+        "Grid of image cells placed by column and row",
+        "Detail panel per item with number, heading, text and link label",
+        "Back arrow, mini grid switcher and previous and next image previews"
+    ],
+    "behavior": [
+        "Hover scales the cell down while the image inside scales up",
+        "Click zooms the cell to the right side of the viewport and fades the other cells with a staggered wave",
+        "Detail text reveals line by line with a sliding mask",
+        "Mini grid switches between items without returning to the grid",
+        "Back arrow returns to the grid, window resize keeps the zoomed cell aligned",
+        "Side previews and mini grid are hidden below 768px"
+    ],
+    "props": [
+        { "name": "items", "type": "{image,number,heading,text,prevImage,nextImage,col,row}[]", "default": "10 sample items" },
+        { "name": "fontUrl", "type": "string", "default": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" },
+        { "name": "fontFamily", "type": "string", "default": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" },
+        { "name": "headingTracking", "type": "string", "default": "-0.03em" },
+        { "name": "bgColor", "type": "string", "default": "#f7f5ee" },
+        { "name": "textColor", "type": "string", "default": "#000" },
+        { "name": "accentColor", "type": "string", "default": "#823725" },
+        { "name": "rowHeight", "type": "string", "default": "32vmin" },
+        { "name": "gridPadding", "type": "string", "default": "0.5vw" },
+        { "name": "borderRadius", "type": "string", "default": "8px" },
+        { "name": "hoverOuterScale", "type": "number", "default": 0.95 },
+        { "name": "hoverInnerScale", "type": "number", "default": 1.4 },
+        { "name": "hoverDuration", "type": "number", "default": 2.4 },
+        { "name": "zoomDuration", "type": "number", "default": 1.2 },
+        { "name": "closeDuration", "type": "number", "default": 1 },
+        { "name": "zoomWidthRatio", "type": "number", "default": 0.54 },
+        { "name": "zoomCenterX", "type": "number", "default": 0.65 },
+        { "name": "zoomCenterY", "type": "number", "default": 0.5 },
+        { "name": "othersOpacity", "type": "number", "default": 0 },
+        { "name": "othersScale", "type": "number", "default": 0.8 },
+        { "name": "staggerAmount", "type": "number", "default": 0.17 },
+        { "name": "contentWidth", "type": "string", "default": "38%" },
+        { "name": "contentPadding", "type": "string", "default": "15vh 8vw 0" },
+        { "name": "headingSize", "type": "string", "default": "3vw" },
+        { "name": "miniGridWidth", "type": "string", "default": "220px" },
+        { "name": "miniGridHeight", "type": "string", "default": "190px" },
+        { "name": "showMiniGrid", "type": "boolean", "default": true },
+        { "name": "showSideNav", "type": "boolean", "default": true },
+        { "name": "linkLabel", "type": "string", "default": "View more" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "All item images, numbers, headings, texts, preview images and grid positions",
+        "Colors, font, radius, grid spacing and row height",
+        "Hover and zoom scales, durations, zoom target position and stagger",
+        "Toggle mini grid and side previews"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the text reveal animation",
+            "where": "revealIn and revealOut functions"
+        },
+        {
+            "change": "Change the number of grid columns",
+            "where": "grid grid-cols-4 class on the grid div"
+        }
+    ],
+    "fixed": [
+        "Detail panel is a fixed full-viewport overlay while mounted",
+        "Grid uses 4 columns, item col values must be 1 to 4",
+        "Loads the Inter font stylesheet link into document head",
+        "Mini grid and side previews are hidden below 768px"
+    ],
+    "mood": [
+        "editorial",
+        "elegant",
+        "minimal"
+    ],
+    "industries": [
+        "photography",
+        "portfolio",
+        "fashion",
+        "agency",
+        "art"
+    ],
+    "sections": [
+        "portfolio",
+        "gallery"
+    ],
+    "dependencies": [
+        "gsap"
+    ]
+}

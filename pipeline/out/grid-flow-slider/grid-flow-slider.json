@@ -1,0 +1,78 @@
+{
+    "slug": "grid-flow-slider",
+    "name": "Grid Flow Slider",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Full-screen image grid slider with a percentage loader intro where thumbnails fly into place, then prev and next thumbnail rails flip the whole grid to the next layout with a staggered Flip animation.",
+    "contents": [
+        "Full-screen grids of image tiles in several mosaic layouts",
+        "Loader with a percentage counter and a thumbnail strip",
+        "Previous and next rails with thumbnail previews and arrow icons"
+    ],
+    "behavior": [
+        "Loader counts up while images load, then thumbnails scale and flip into the nav rails",
+        "Clicking a rail flips the current tiles into that rail and the next grid in with a staggered spin",
+        "Tiles on the active grid scale and shift color on hover",
+        "Mobile uses a compact column grid below the breakpoint, desktop uses a positioned mosaic"
+    ],
+    "props": [
+        {"name": "images", "type": "string[]", "default": "25 sample image URLs"},
+        {"name": "galleryCount", "type": "number", "default": 4},
+        {"name": "itemsPerGallery", "type": "number", "default": 12},
+        {"name": "layouts", "type": "[row,col][][]", "default": "4 sample layouts"},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "bgColor", "type": "string", "default": "#000"},
+        {"name": "pagePadding", "type": "string", "default": "1.5rem"},
+        {"name": "gridColumns", "type": "number", "default": 10},
+        {"name": "gridRows", "type": "number", "default": 4},
+        {"name": "mobileColumns", "type": "number", "default": 3},
+        {"name": "breakpoint", "type": "string", "default": "53em"},
+        {"name": "duration", "type": "number", "default": 1.7},
+        {"name": "itemDelay", "type": "number", "default": 0.08},
+        {"name": "navDurationScale", "type": "number", "default": 0.6},
+        {"name": "innerScale", "type": "number", "default": 1.6},
+        {"name": "loaderRate", "type": "number", "default": 500},
+        {"name": "progressColor", "type": "string", "default": "#fff"},
+        {"name": "progressSize", "type": "string", "default": "clamp(2rem, 8vw, 6rem)"},
+        {"name": "showProgress", "type": "boolean", "default": true},
+        {"name": "arrowColor", "type": "string", "default": "#fff"},
+        {"name": "arrowWidth", "type": "number", "default": 1.5},
+        {"name": "arrowSlot", "type": "number", "default": 40},
+        {"name": "thumbWidth", "type": "number", "default": 75},
+        {"name": "thumbHeight", "type": "number", "default": 95},
+        {"name": "railGap", "type": "number", "default": 10},
+        {"name": "hoverEnabled", "type": "boolean", "default": true},
+        {"name": "hoverScale", "type": "number", "default": 1.2},
+        {"name": "hoverContrast", "type": "number", "default": 120},
+        {"name": "hoverBrightness", "type": "number", "default": 800},
+        {"name": "hoverHueRotate", "type": "number", "default": 180},
+        {"name": "hoverDuration", "type": "number", "default": 0.8},
+        {"name": "spinOnNavigate", "type": "boolean", "default": true}
+    ],
+    "editableByProps": [
+        "Images, number of grids, tiles per grid and tile positions",
+        "Background, loader and arrow colors, sizes and padding",
+        "Animation durations, stagger and hover effect values",
+        "Grid columns, rows and mobile breakpoint"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the arrow icon shape",
+            "where": "The two svg elements with the gf-arrow class inside the nav"
+        },
+        {
+            "change": "Change the loader percent text",
+            "where": "The progressTextRef span and the % span"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height as a full-screen section",
+        "Loader and image tiles are loaded before the intro plays, so the first reveal waits on image loading",
+        "Tile images are applied as CSS backgrounds, so there is no per-image alt text",
+        "Props are read once on mount, changing images or layouts requires a remount"
+    ],
+    "mood": ["bold", "dynamic", "cinematic", "modern"],
+    "industries": ["photography", "fashion", "portfolio", "agency", "travel"],
+    "sections": ["hero", "gallery", "portfolio"],
+    "dependencies": ["gsap", "imagesloaded"]
+}

@@ -4,11 +4,12 @@
   "sourceHash": "f3105023621bc4b0af56c00c6bdd30a0c538d5073f11455a3b1335f3edc9a7a5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "glitch-image",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.449Z"
+  "note": "Renamed glitch-effect -> glitch-image. Frame kept (already present). Variants: none. Responsive: canvas scales to container, max-w-full. Added loadingText and className props.",
+  "updatedAt": "2026-11-01T07:43:41.542Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

@@ -1,0 +1,45 @@
+{
+  "slug": "heart-fill",
+  "name": "Heart Fill",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Small clickable heart with an animated wavy liquid inside. Each click pumps the heart and raises the liquid through several levels, then drains it and starts over.",
+  "contents": ["Heart-shaped clipped container with radial gradient", "Animated three-layer liquid wave inside the heart"],
+  "behavior": [
+    "Click pumps the heart forward with a 3D perspective push",
+    "Liquid level rises on each click through preset levels and drains on the fourth",
+    "Waves slide horizontally in a continuous loop",
+    "Clicks are ignored while a pump animation runs"
+  ],
+  "props": [
+    {"name": "dimX", "type": "number", "default": 80},
+    {"name": "dimY", "type": "number", "default": 70},
+    {"name": "curveHeight", "type": "number", "default": 20},
+    {"name": "bgGradFrom", "type": "string", "default": "#c9d8f5"},
+    {"name": "bgGradTo", "type": "string", "default": "#afc4ee"},
+    {"name": "tankColor", "type": "string", "default": "rgb(103, 130, 191)"},
+    {"name": "shadowColor", "type": "string", "default": "rgba(174, 196, 238, 0.5)"},
+    {"name": "waveOpacity1", "type": "number", "default": 0.5},
+    {"name": "waveOpacity2", "type": "number", "default": 0.3},
+    {"name": "waveOpacity3", "type": "number", "default": 1},
+    {"name": "pumpLevels", "type": "number[]", "default": [15, 20, 25, 0]},
+    {"name": "tankLevels", "type": "number[]", "default": [25, 45, 70, -20]},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Heart size, gradient, liquid color and wave opacity", "Shadow color", "Pump depth and liquid levels per click"],
+  "needsCodeEdit": [
+    {"change": "Change the heart shape", "where": "path d attribute inside the clipPath element"},
+    {"change": "Change wave speed", "where": "hf-move keyframes and animation-duration rules in the style block"},
+    {"change": "Change number of click steps", "where": "counterRef update at the end of pumpHeart"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Pump and liquid levels cycle through exactly four steps, so pumpLevels and tankLevels need four values",
+    "Tank color must be rgb or rgba format for the wave opacity layers",
+    "Fixed pixel size, small enough for 360px screens"
+  ],
+  "mood": ["playful", "soft", "calm"],
+  "industries": ["healthcare", "fitness", "charity", "social media"],
+  "sections": ["other"],
+  "dependencies": ["gsap"]
+}

@@ -4,11 +4,12 @@
   "sourceHash": "a7659e642dc39447d578a484534e76fb62f8fbfbee1834a881fb73cc6aab9122",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "holographic-card",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.459Z"
+  "note": "No rename. Source already clean. Frame kept (min-h-screen flex centered); override with !min-h-0. Variants: none. Responsive ok. backgroundColor is a Tailwind class. touch-none on cards.",
+  "updatedAt": "2026-11-01T08:07:36.881Z",
+  "gateOutput": "gates passed"
 }

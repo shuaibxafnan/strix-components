@@ -1,0 +1,34 @@
+{
+  "slug": "glitch-image",
+  "name": "Glitch Image",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Square image rendered on a p5 canvas with a continuous digital glitch: scanning bright line, horizontal slice shifts, RGB channel offsets and scattered fragment blocks.",
+  "contents": ["Square cropped image canvas centered in a full-height dark frame", "Loading label shown until the image is ready"],
+  "behavior": ["Image is center-cropped to a square and drawn on a p5 canvas", "Each frame applies a moving flow line, random row shifts, RGB channel displacement and scattered rectangle copies", "Random short pauses show the clean image"],
+  "props": [
+    {"name": "imgSrc", "type": "string", "default": "https://images.pexels.com/photos/7671968/pexels-photo-7671968.jpeg"},
+    {"name": "backgroundColor", "type": "string", "default": "bg-neutral-950"},
+    {"name": "frameSize", "type": "number", "default": 500},
+    {"name": "channelLen", "type": "number", "default": 4},
+    {"name": "flowLineCount", "type": "number", "default": 1},
+    {"name": "shiftLineCount", "type": "number", "default": 6},
+    {"name": "scatImgsCount", "type": "number", "default": 3},
+    {"name": "loadingText", "type": "string", "default": "Processing Core..."},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Image source", "Background class", "Canvas size", "Intensity through line, shift and fragment counts", "Loading text"],
+  "needsCodeEdit": [
+    {"change": "Glitch ranges such as RGB offset distance", "where": "shiftRGB"},
+    {"change": "Pause frequency and duration of clean frames", "where": "show"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Image must allow cross-origin loading for pixel access",
+    "channelLen should stay 4 (RGBA)"
+  ],
+  "mood": ["cyberpunk", "edgy", "digital", "experimental"],
+  "industries": ["gaming", "music", "fashion", "creative agency", "technology"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["p5"]
+}

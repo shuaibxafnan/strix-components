@@ -4,11 +4,12 @@
   "sourceHash": "9acb6a90b8fdb70e4bd68f3a94cd83a46960bc3882c17b372dc7959196ccb9ae",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "glowing-3d-card",
+  "nameLocked": true,
+  "status": "gate_failed",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.451Z"
+  "note": "Renamed glowing3-d-card -> glowing-3d-card. Removed header and inline comments. Frame kept. Added textColor, className props; maxWidth 100%. Variants: none. Tilt mouse-only.",
+  "updatedAt": "2026-11-01T07:48:12.734Z",
+  "gateOutput": "ERROR default export is Glowing3DCard, expected Glowing3dCard"
 }

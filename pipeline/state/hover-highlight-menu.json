@@ -4,11 +4,12 @@
   "sourceHash": "23519ac0caf27792d0e5c332710a66bbfe96a3f0a5872a4582c878b471ddd650",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "hover-highlight-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.461Z"
+  "note": "No rename. Removed empty comment blocks. Added className. Frame kept. Variants: none. Menu maxWidth 90%. Mounted gate kept. Cursor glow hover-only.",
+  "updatedAt": "2026-11-01T08:10:39.271Z",
+  "gateOutput": "gates passed"
 }

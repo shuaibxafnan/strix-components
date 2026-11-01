@@ -4,11 +4,12 @@
   "sourceHash": "69b4fc86822aba600aed10ddd4475ec9c17857564210b274c2f1024580330eb4",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "hover-pattern-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.462Z"
+  "note": "Renamed hover-menu -> hover-pattern-menu. Comments removed. Root w-screen -> w-full. Added className. Items get onClick for touch. Frame: none. Variants: none. Google Fonts link kept (Ibarra Real Nova). Supports up to 4 items.",
+  "updatedAt": "2026-11-01T08:11:50.408Z",
+  "gateOutput": "gates passed"
 }

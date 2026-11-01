@@ -1,0 +1,83 @@
+{
+    "slug": "gradient-text",
+    "name": "Gradient Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Inline text filled with an animated multi-color gradient, with three gradient styles, optional glow, gradient pill border, hover pause and pointer-following highlight.",
+    "contents": [
+        "Wrapper span with gradient-clipped children text",
+        "Optional blurred glow copy of the text behind it",
+        "Optional gradient pill border around the text"
+    ],
+    "behavior": [
+        "Gradient animates continuously via requestAnimationFrame, back and forth or looping",
+        "Animation pauses when scrolled out of view",
+        "Respects prefers-reduced-motion by freezing the animation",
+        "Can pause on hover",
+        "Can pull the gradient toward the pointer with spring smoothing while hovered"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": "undefined" },
+        { "name": "colors", "type": "string[]", "default": ["#5227FF", "#FF9FFC", "#B497CF"] },
+        { "name": "animationSpeed", "type": "number", "default": 8 },
+        { "name": "variant", "type": "'linear' | 'flow' | 'conic'", "default": "linear" },
+        { "name": "angle", "type": "number", "default": 90 },
+        { "name": "direction", "type": "'horizontal' | 'vertical' | 'diagonal'", "default": "undefined" },
+        { "name": "scale", "type": "number", "default": 3 },
+        { "name": "yoyo", "type": "boolean", "default": true },
+        { "name": "glow", "type": "number", "default": 0 },
+        { "name": "showBorder", "type": "boolean", "default": false },
+        { "name": "borderWidth", "type": "number", "default": 1.5 },
+        { "name": "pauseOnHover", "type": "boolean", "default": false },
+        { "name": "followPointer", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Text content, gradient colors, speed, angle or direction, scale",
+        "Gradient style through variant, back-and-forth or looping through yoyo",
+        "Glow strength from 0 to 1, border toggle and width",
+        "Pause on hover and pointer following",
+        "Extra classes and inline style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the pill border shape or padding",
+            "where": "The showBorder class string on the root span"
+        },
+        {
+            "change": "Change glow blur amount",
+            "where": "The blur(0.3em) filter class on the glow span"
+        },
+        {
+            "change": "Change pointer spring feel",
+            "where": "The stiffness constant inside the tick function"
+        },
+        {
+            "change": "Add a new gradient style",
+            "where": "VARIANTS constant and the branches in the paint function"
+        }
+    ],
+    "fixed": [
+        "Requires Tailwind CSS with arbitrary value support",
+        "Client component, needs a browser with IntersectionObserver",
+        "Speed has a minimum of 0.2 and scale is clamped to 1 to 6",
+        "Direction, when set, overrides angle",
+        "Colors with a single entry are duplicated, so the gradient is flat",
+        "Border is always a pill shape (rounded-full) when enabled",
+        "Glow renders only when glow is above 0"
+    ],
+    "mood": ["vibrant", "modern", "playful", "futuristic"],
+    "industries": ["saas", "startups", "creative agencies", "gaming", "ai"],
+    "sections": ["hero", "cta", "features"],
+    "dependencies": [],
+    "variants": {
+        "prop": "variant",
+        "default": "linear",
+        "options": [
+            { "value": "linear", "look": "Classic repeating linear gradient sliding across the text", "useWhen": "Headline word in a hero that needs a clean color sweep" },
+            { "value": "flow", "look": "Soft radial color blobs drifting over the text like liquid", "useWhen": "Brand or AI product title that should feel organic and fluid" },
+            { "value": "conic", "look": "Repeating conic gradient swaying around a point below the text", "useWhen": "Eye-catching badge or highlight word in a CTA or feature callout" }
+        ]
+    }
+}

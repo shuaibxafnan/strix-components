@@ -4,11 +4,12 @@
   "sourceHash": "9e185757fc441fb1403f9f9c7066d662b95e4443e40c2105e220ba5664963da5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "grid-zoom",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.457Z"
+  "note": "No rename. CDN gsap loader replaced with import('gsap'); dep gsap; tweens killed on cleanup. Frame: none. Variants: none. Grid always 4 columns; detail panel full width on mobile; side previews hidden below 768px. Font link appended to head, never removed. Warning: style tag without template literal.",
+  "updatedAt": "2026-11-01T08:02:40.791Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

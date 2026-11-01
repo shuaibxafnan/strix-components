@@ -4,11 +4,12 @@
   "sourceHash": "20cf1db74b63faf318256f3d244415f586389a2344a367128d09b91a197786c2",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "grid-to-fullscreen-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.456Z"
+  "note": "Renamed grid-to-full3-d -> grid-to-fullscreen-gallery. CDN three, gsap replaced with dynamic imports; threeUrl, gsapUrl props removed. PlaneBufferGeometry -> PlaneGeometry. Cleanup disposes geometry, material, textures; kills tween. Added className. Frame: none. Variants: none. Fixed overlay expects main-content use.",
+  "updatedAt": "2026-11-01T08:01:07.115Z",
+  "gateOutput": "gates passed"
 }

@@ -4,11 +4,12 @@
   "sourceHash": "9e11dbce501392e9d350020b07b02bfd78f7f35154d5299722c5736ff05918c9",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "grid-list-toggle",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.453Z"
+  "note": "No rename. Export renamed GridListToggleButton -> GridListToggle. Removed canvasBg, demo background, isMounted guard. Frame: root w-full h-screen flex centered. Shared ToggleIcon helper. Added gridLabel, listLabel, className props. Variants: none.",
+  "updatedAt": "2026-11-01T07:54:28.804Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,103 @@
+{
+    "slug": "gradient-ascii",
+    "name": "Gradient ASCII",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 background that renders an animated color gradient as a grid of ASCII glyphs with glow, grain, an intro reveal, and pointer trail and click effects that scramble nearby characters.",
+    "contents": [
+        "Container div filling its parent with one absolutely positioned canvas",
+        "Gradient field rendered offscreen, converted to ASCII glyphs from a font atlas, with blurred glow halo and grain"
+    ],
+    "behavior": [
+        "Gradient shape drifts and warps continuously with noise, speed controlled by speed",
+        "Intro reveals glyphs over about 2.4 seconds",
+        "Pointer movement anywhere in the window leaves a trail that scrambles characters under it while over the container",
+        "Click or tap inside the container triggers a wave ring or burst of scrambled characters",
+        "Glyphs flicker and swap characters over time",
+        "Pauses rendering when offscreen or the tab is hidden",
+        "With reduced motion enabled, animation, flicker, intro and pointer effects are disabled and a static frame is drawn",
+        "Resizes with its container, pixel ratio capped at 2"
+    ],
+    "props": [
+        { "name": "colors", "type": "string[]", "default": ["#1e3fd8", "#f6f8ff", "#a5d8ff", "#38bdf8"] },
+        { "name": "shape", "type": "'horizon' | 'pinch' | 'rise' | 'eclipse'", "default": "horizon" },
+        { "name": "characters", "type": "string", "default": " =+xX0S8#@" },
+        { "name": "cellSize", "type": "number", "default": 18 },
+        { "name": "density", "type": "number", "default": 0.8 },
+        { "name": "glyphOpacity", "type": "number", "default": 0.85 },
+        { "name": "glow", "type": "number", "default": 0.2 },
+        { "name": "depthOfField", "type": "number", "default": 0 },
+        { "name": "flicker", "type": "number", "default": 0.2 },
+        { "name": "softness", "type": "number", "default": 0.5 },
+        { "name": "scale", "type": "number", "default": 1 },
+        { "name": "flow", "type": "number", "default": 0.5 },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "gradientOpacity", "type": "number", "default": 0.9 },
+        { "name": "grain", "type": "number", "default": 0.08 },
+        { "name": "variation", "type": "number", "default": 0 },
+        { "name": "mouseInteraction", "type": "boolean", "default": true },
+        { "name": "scrambleRadius", "type": "number", "default": 0.1 },
+        { "name": "clickEffect", "type": "'none' | 'wave' | 'burst'", "default": "wave" },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "fontFamily", "type": "string", "default": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" },
+        { "name": "dpr", "type": "number", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Gradient colors (up to 8), shape, softness, scale, flow, speed, and seed variation",
+        "Character set, cell size, density, glyph opacity, flicker, depth of field, and font family",
+        "Glow, gradient opacity, and grain amounts",
+        "Pointer trail on or off, scramble radius, click effect, and intro on or off",
+        "Light mode with dark glyphs on a light background, pixel ratio, className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add a new gradient shape",
+            "where": "SHAPES constant and the shape functions plus main dispatch in the FIELD shader"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change pointer trail length or lifetime",
+            "where": "MAX_TRAIL, TRAIL_LIFE and TRAIL_STEP constants"
+        },
+        {
+            "change": "Change click effect duration or number of simultaneous clicks",
+            "where": "CLICK_LIFE and MAX_CLICKS constants"
+        },
+        {
+            "change": "Limit pointer tracking to the container instead of the window",
+            "where": "pointermove and pointerdown listeners on window in the main useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unsupported or shaders fail to compile",
+        "Fills its parent (h-full w-full), so the parent must have a height",
+        "Pointer and click listeners are attached to window, and the canvas is aria-hidden",
+        "Maximum 8 colors, 4 simultaneous clicks, and 24 trail points",
+        "Values for numeric props are clamped to internal ranges",
+        "Unknown shape falls back to horizon and unknown clickEffect falls back to wave",
+        "Only the first render's effect runs setup; prop changes are read live through a ref",
+        "Defaults use the Geist Mono font, which must be loaded by the page, otherwise it falls back to the system monospace",
+        "Uses a transparent canvas background, so page content behind shows through",
+        "Sizes from its container with a resize observer and works on small screens, though a small cellSize is heavy on mobile GPUs"
+    ],
+    "mood": ["techy", "futuristic", "retro", "atmospheric", "bold"],
+    "industries": ["developer tools", "ai", "gaming", "creative agency", "crypto", "saas"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": [],
+    "variants": {
+        "prop": "shape",
+        "default": "horizon",
+        "options": [
+            { "value": "horizon", "look": "Curved glowing arch rising across the lower half like a sunrise horizon", "useWhen": "Landing page hero that needs a wide sunrise-style backdrop behind centered headline" },
+            { "value": "pinch", "look": "Horizontal luminous band that narrows toward the center", "useWhen": "Slim banner or section divider behind a centered title" },
+            { "value": "rise", "look": "Large glow rising from the bottom edge", "useWhen": "Footer or call-to-action section where light should lift from below" },
+            { "value": "eclipse", "look": "Dark disc with a glowing corona and noisy rays around it", "useWhen": "Product or launch hero with a central focal point or logo" }
+        ]
+    }
+}
