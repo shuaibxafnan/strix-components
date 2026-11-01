@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "dot-grid",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.595Z"
+  "note": "Bits describe-only. Gates passed. Needs WebGL2; parent needs height; window pointer listeners; hex colors only; intro read at mount; reduced motion disables effects; CPU physics per dot, heavy on low-end mobile.",
+  "updatedAt": "2026-11-01T06:20:25.029Z",
+  "gateOutput": "gates passed"
 }
