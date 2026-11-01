@@ -1,0 +1,68 @@
+{
+  "slug": "dot-matrix-controls",
+  "name": "Dot Matrix Controls",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Three vertical dot-matrix sliders for brightness, volume and font size, drawn on canvas with pixel icons. Dragging changes the theme, label sizes and an ambient audio tone.",
+  "contents": [
+    "Three draggable canvas dot-grid sliders with icons, labels and live values",
+    "Mode label in the corner and a faint dotted background pattern"
+  ],
+  "behavior": [
+    "Sliders animate in from zero to target values with a stagger",
+    "Drag or touch a slider to set its value",
+    "Brightness above 50 switches the scene to light mode",
+    "Font size slider scales all text",
+    "First pointer press starts a generated ambient sound or the provided audio, volume and brightness shape it"
+  ],
+  "props": [
+    {"name": "darkBg", "type": "string", "default": "#000000"},
+    {"name": "lightBg", "type": "string | null", "default": null},
+    {"name": "darkFg", "type": "string", "default": "#ffffff"},
+    {"name": "lightFg", "type": "string | null", "default": null},
+    {"name": "accentColor", "type": "string", "default": "hsl(0, 80%, 55%)"},
+    {"name": "fontFamily", "type": "string", "default": "JetBrains Mono"},
+    {"name": "dotBgDark", "type": "string", "default": "#333"},
+    {"name": "dotFgDark", "type": "string", "default": "#ffffff"},
+    {"name": "dotBgLight", "type": "string", "default": "#222"},
+    {"name": "dotFgLight", "type": "string", "default": "#ffffff"},
+    {"name": "patternColorDark", "type": "string", "default": "rgba(255,255,255,0.15)"},
+    {"name": "patternColorLight", "type": "string", "default": "rgba(0,0,0,0.07)"},
+    {"name": "gridCols", "type": "number", "default": 15},
+    {"name": "gridRows", "type": "number", "default": 30},
+    {"name": "dotRadiusFactor", "type": "number", "default": 0.3},
+    {"name": "targetBrightness", "type": "number", "default": 68},
+    {"name": "targetVolume", "type": "number", "default": 45},
+    {"name": "targetFontIndex", "type": "number", "default": 2},
+    {"name": "animDuration", "type": "number", "default": 800},
+    {"name": "animStagger", "type": "number", "default": 150},
+    {"name": "fontSizes", "type": "number[]", "default": [10, 12, 14, 16, 18, 20, 22]},
+    {"name": "lightModeLabel", "type": "string", "default": "LIGHT MODE"},
+    {"name": "darkModeLabel", "type": "string", "default": "DARK MODE"},
+    {"name": "brightnessLabel", "type": "string", "default": "Brightness"},
+    {"name": "volumeLabel", "type": "string", "default": "Volume"},
+    {"name": "fontSizeLabel", "type": "string", "default": "Font Size"},
+    {"name": "audioSrc", "type": "string", "default": ""},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Dark and light colors, accent, dot and pattern colors",
+    "Grid density, dot size, start values, animation timing",
+    "All labels, font size steps, font family, optional audio file"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the brightness threshold for light mode", "where": "const light = bv > 50 in the sync function"},
+    {"change": "Change the pixel icons", "where": "SUN_ICON, VOLUME_ICON and FONT_ICON constants"},
+    {"change": "Change the ambient chord", "where": "notes array in startAmbient"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Loads the JetBrains Mono font from Google Fonts through link tags",
+    "Adds window resize and document pointerdown listeners while mounted and removes them on unmount",
+    "Starts an Web Audio ambient tone on the first pointer press when no audioSrc is given"
+  ],
+  "mood": ["techy", "retro", "playful", "minimal"],
+  "industries": ["technology", "gaming", "audio", "creative studios"],
+  "sections": ["other"],
+  "dependencies": []
+}
