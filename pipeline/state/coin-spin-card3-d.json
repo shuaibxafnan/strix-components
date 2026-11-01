@@ -4,11 +4,12 @@
   "sourceHash": "8349688f478b4b6ac6e1b9abc944e07492d73b920831840c72817fb21f009956",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "draggable-coin-spinner",
+  "nameLocked": true,
+  "status": "gate_failed",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.410Z"
+  "note": "Renamed from coin-spin-card3-d (cryptic). Frame added; CDN gsap/Draggable/InertiaPlugin -> npm imports; CodePen inertia URL and fallback removed; className prop.",
+  "updatedAt": "2026-11-01T05:11:14.893Z",
+  "gateOutput": "ERROR missing pipeline/out/draggable-coin-spinner/draggable-coin-spinner.jsx"
 }
