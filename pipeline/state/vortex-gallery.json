@@ -4,11 +4,12 @@
   "sourceHash": "f61381062cbe8ccafc80acac213073c42c77f7fae38e9f82a949650a6c46c78c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "cylinder-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.576Z"
+  "note": "Renamed vortex-gallery -> cylinder-gallery. three.js loader replaced by import('three') (dep three). Nothing removed. No frame, no variants. Kept window wheel listener (preventPageScroll). Category backgrounds-3d.",
+  "updatedAt": "2026-11-01T15:24:20.047Z",
+  "gateOutput": "gates passed"
 }

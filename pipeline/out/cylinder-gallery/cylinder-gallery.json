@@ -1,0 +1,45 @@
+{
+  "slug": "cylinder-gallery",
+  "name": "Cylinder Gallery",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen WebGL gallery where hundreds of image cards orbit around a cylinder that scrolls with the mouse wheel, with a featured image plane in the center.",
+  "contents": ["Canvas with instanced image cards arranged in rings around a cylinder", "Center image plane that changes as you scroll"],
+  "behavior": ["Cards orbit and drift automatically", "Mouse wheel speeds up and reverses the motion with smoothing", "Center image cycles with scroll progress", "Canvas resizes with the container"],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "20 sample image URLs"},
+    {"name": "bgColor", "type": "string", "default": "#0a0a0a"},
+    {"name": "radius", "type": "number", "default": 6},
+    {"name": "cylinderHeight", "type": "number", "default": 120},
+    {"name": "instanceCount", "type": "number", "default": 600},
+    {"name": "boxWidth", "type": "number", "default": 1.5},
+    {"name": "boxHeight", "type": "number", "default": 1.5},
+    {"name": "boxDepth", "type": "number", "default": 0.075},
+    {"name": "centerPlaneWidth", "type": "number", "default": 1.7},
+    {"name": "centerPlaneHeight", "type": "number", "default": 2.3},
+    {"name": "cameraZ", "type": "number", "default": 5},
+    {"name": "cameraFov", "type": "number", "default": 50},
+    {"name": "autoScrollSpeed", "type": "number", "default": 0.015},
+    {"name": "scrollSpeedMultiplier", "type": "number", "default": 1},
+    {"name": "smoothing", "type": "number", "default": 0.1},
+    {"name": "rotationSpeedMin", "type": "number", "default": 0.8},
+    {"name": "rotationSpeedMax", "type": "number", "default": 1},
+    {"name": "pixelRatioMax", "type": "number", "default": 2},
+    {"name": "preventPageScroll", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Images, background color, cylinder size and card count", "Card and center plane dimensions, camera, speeds and smoothing", "Whether wheel events scroll the page"],
+  "needsCodeEdit": [
+    {"change": "Change how cards are placed on the cylinder", "where": "INSTANCED_VERTEX_SHADER"},
+    {"change": "Change how the center image is chosen", "where": "textureIndex calculation inside animate"}
+  ],
+  "fixed": [
+    "Listens to wheel events on window and, with preventPageScroll on, blocks page scrolling while mounted. Listeners are removed on unmount",
+    "Needs the three package",
+    "Images must allow cross-origin loading"
+  ],
+  "mood": ["immersive", "futuristic", "dark", "dynamic"],
+  "industries": ["photography", "fashion", "art", "agency", "entertainment"],
+  "sections": ["hero", "gallery", "background"],
+  "dependencies": ["three"]
+}
