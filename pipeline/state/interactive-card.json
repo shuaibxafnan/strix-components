@@ -4,11 +4,12 @@
   "sourceHash": "1317969b7d78cd4814705368ec9f572240a2c632de422f1472648ada69486ed8",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "gradient-reveal-card",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.480Z"
+  "note": "Renamed interactive-card -> gradient-reveal-card. Frame added (w-full h-screen flex root, className merged); bgColor applied to root. Removed body centering rule, unused .meta-link/.roboto-mono CSS, demo wrapper div; :root vars moved to root. Subtitle effect/ref replaced by JSX spans with same per-word delay. CSS scoped with grc- prefix, textColor prop added. Anek Latin and Font Awesome imports kept. Touch tap-while-pressed claim in fixed untested.",
+  "updatedAt": "2026-11-01T08:59:00.074Z",
+  "gateOutput": "gates passed"
 }

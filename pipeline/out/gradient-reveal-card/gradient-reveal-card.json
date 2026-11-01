@@ -1,0 +1,72 @@
+{
+    "slug": "gradient-reveal-card",
+    "name": "Gradient Reveal Card",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Bordered poster-style card with a dotted pattern. On hover a gradient sweeps across it, the card scales up, the icon brightens and the subtitle words rise in one by one.",
+    "contents": [
+        "Bordered card with title and subtitle",
+        "Dot pattern layer behind the text",
+        "Font Awesome icon in the bottom left corner"
+    ],
+    "behavior": [
+        "Hover slides a three color gradient across the card and scales it",
+        "Dot pattern shifts position on hover",
+        "Subtitle words reveal with a staggered rise",
+        "Icon color changes on hover"
+    ],
+    "props": [
+        {"name": "cardTitle", "type": "string", "default": "I know exactly what I'm doing"},
+        {"name": "cardSubtitle", "type": "string", "default": "But in a much more real sense, I have no idea what I'm doing."},
+        {"name": "cardWidth", "type": "string", "default": "45vmin"},
+        {"name": "cardAspectRatio", "type": "string", "default": "1 / 1.6"},
+        {"name": "cardBorder", "type": "string", "default": "0.5vmin"},
+        {"name": "borderColor", "type": "string", "default": "rgb(3, 169, 244)"},
+        {"name": "gradient1", "type": "string", "default": "rgb(98, 0, 234)"},
+        {"name": "gradient2", "type": "string", "default": "rgb(236, 64, 122)"},
+        {"name": "gradient3", "type": "string", "default": "rgb(253, 216, 53)"},
+        {"name": "bgColor", "type": "string", "default": "rgb(10, 10, 10)"},
+        {"name": "textColor", "type": "string", "default": "white"},
+        {"name": "iconColorDefault", "type": "string", "default": "rgba(255, 255, 255, 0.5)"},
+        {"name": "iconColorHover", "type": "string", "default": "white"},
+        {"name": "titleFont", "type": "string", "default": "Anek Latin"},
+        {"name": "titleFontSize", "type": "string", "default": "4vmin"},
+        {"name": "titleFontWeight", "type": "number", "default": 400},
+        {"name": "subtitleFontSize", "type": "string", "default": "2vmin"},
+        {"name": "subtitleMarginTop", "type": "string", "default": "2vmin"},
+        {"name": "subtitleWordDelay", "type": "number", "default": 40},
+        {"name": "hoverScaleX", "type": "number", "default": 1.08},
+        {"name": "hoverScaleY", "type": "number", "default": 1.03},
+        {"name": "transitionDuration", "type": "string", "default": "350ms"},
+        {"name": "wordRevealDuration", "type": "number", "default": 200},
+        {"name": "iconClass", "type": "string", "default": "fa-solid fa-hat-witch"},
+        {"name": "iconSize", "type": "string", "default": "7vmin"},
+        {"name": "iconMargin", "type": "string", "default": "5vmin"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Title, subtitle and icon class",
+        "Card size, aspect ratio and border",
+        "Border, gradient, background, text and icon colors",
+        "Font, sizes, hover scale and animation timings"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the gradient angle or stops",
+            "where": ".grc-card:before rule in the style block"
+        },
+        {
+            "change": "Change the dot pattern",
+            "where": ".grc-content rule in the style block"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Loads Anek Latin from Google Fonts and Font Awesome 6.4 from cdnjs through CSS imports; icon needs Font Awesome class names",
+        "Hover only effect: on touch devices the reveal triggers on tap while pressed"
+    ],
+    "mood": ["playful", "bold", "vibrant", "modern"],
+    "industries": ["gaming", "entertainment", "creative agency", "education"],
+    "sections": ["features", "portfolio", "other"],
+    "dependencies": []
+}
