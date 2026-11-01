@@ -4,11 +4,12 @@
   "sourceHash": "d45d5e969e86a54b68714f9f1add1ff9228914f460eddeef5e79900a581f4d5f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "play-pause-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.513Z"
+  "note": "Removed bgColor prop and demo root background (#ECEFFC, ambiguous) and empty comment stubs. Frame kept, className merged. hasMounted gate kept. Play/Pause letters hardcoded (needsCodeEdit). style jsx global -> plain style.",
+  "updatedAt": "2026-11-01T10:38:53.975Z",
+  "gateOutput": "gates passed"
 }
