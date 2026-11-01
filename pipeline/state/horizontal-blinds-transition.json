@@ -4,11 +4,12 @@
   "sourceHash": "0f4ba32a690f81dbf700d05ed195ecf015847211f7e8c5fcf7fd75c28d79924f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "horizontal-blinds-transition",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.460Z"
+  "note": "No rename. Removed demo intro/outro blocks, chevron keyframes, showIntro, introTitle, introHint, showOutro, outroText props (ambiguous). CDN loaders replaced with dynamic imports; deps gsap, lenis. Added className. w-screen -> w-full. loadFont helper kept (Google Fonts link): conflicts with no-font-imports rule, reviewer to decide. Lenis takes over scroll. Variants: none.",
+  "updatedAt": "2026-11-01T08:08:25.175Z",
+  "gateOutput": "gates passed"
 }
