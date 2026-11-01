@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "halftone-reveal",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.587Z"
+  "note": "React Bits describe-only. Category cursor-effects. Variants: mode (mono, duotone, color). Needs WebGL2, CORS image, parent height. Touch reveal limited.",
+  "updatedAt": "2026-11-01T08:04:12.766Z",
+  "gateOutput": "gates passed"
 }
