@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "side-rays",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.604Z"
+  "note": "Bits: JSON only. Needs WebGL2, fills parent, decorative. No variants.",
+  "updatedAt": "2026-11-01T12:32:08.620Z",
+  "gateOutput": "gates passed"
 }
