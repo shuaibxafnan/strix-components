@@ -1,0 +1,63 @@
+{
+  "slug": "menu-grid-gallery",
+  "name": "Menu Grid Gallery",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-screen editorial menu of large italic titles. Selecting a title swaps a scattered grid of tilted photo prints behind it, and Explore opens a full-page detail view with a captioned photo grid.",
+  "contents": [
+    "Menu rows with plate number, big title and Explore link",
+    "Background grid of six rotated photo prints per item",
+    "Detail page per item with eyebrow, title, intro, date, back link and captioned photo grid",
+    "Custom trailing cursor ring"
+  ],
+  "behavior": [
+    "Clicking a row slides titles and flings prints up or down to the chosen item's set via GSAP",
+    "Explore opens a fixed overlay detail page and tints the page body with the item's color",
+    "Back returns to the menu and restores the ink color",
+    "Custom cursor follows the mouse with easing and grows over rows, only on fine pointers",
+    "Layout stacks to 2 columns and hides plate numbers at 640px and below"
+  ],
+  "props": [
+    { "name": "inkColor", "type": "string", "default": "#121410" },
+    { "name": "paperColor", "type": "string", "default": "#EDE6D8" },
+    { "name": "accentColor", "type": "string", "default": "#C97A3B" },
+    { "name": "items", "type": "{title,intro,date,bgcolor,images,galleryImages,captions}[]", "default": "5 sample items" },
+    { "name": "enableCursor", "type": "boolean", "default": true },
+    { "name": "plateLabel", "type": "string", "default": "N°" },
+    { "name": "exploreLabel", "type": "string", "default": "Explore" },
+    { "name": "backLabel", "type": "string", "default": "Back to archive" },
+    { "name": "eyebrowLabel", "type": "string", "default": "Plate" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of items, titles, intros, dates, detail page colors, images and captions",
+    "Ink, paper and accent colors",
+    "Menu, Explore, back and eyebrow labels",
+    "Custom cursor on or off"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change print positions in the background grid",
+      "where": "GALLERY_LAYOUTS constant"
+    },
+    {
+      "change": "Change print tilt angles",
+      "where": "PRINT_ROTATIONS constant"
+    },
+    {
+      "change": "Change fonts",
+      "where": "mgg-fonts link effect and --mgg-display, --mgg-body, --mgg-mono in STYLE_TEXT"
+    }
+  ],
+  "fixed": [
+    "Changes the page body background while the detail page is open and resets it on unmount",
+    "Detail page is a fixed full-screen overlay",
+    "Loads Fraunces, Inter and IBM Plex Mono from Google Fonts",
+    "Each item needs 6 images and 9 gallery images, and exactly the sample structure",
+    "Root has a minimum height of 100vh"
+  ],
+  "mood": ["editorial", "artistic", "dark", "nostalgic"],
+  "industries": ["photography", "art gallery", "portfolio", "fashion", "magazine"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": ["gsap"]
+}
