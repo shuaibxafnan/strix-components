@@ -1,0 +1,120 @@
+{
+    "slug": "lattice-loader",
+    "name": "Lattice Loader",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Inline status loader with a 3x3 or 4x4 grid of pulsing cells, a label and a live timer. Morphs into a done or error pictogram with a swapped label when the status changes.",
+    "contents": [
+        "Grid of animated cells that light up in a named or custom pattern",
+        "Overlay grid that draws a done or error mark",
+        "Status label that crossfades between working, done and error text",
+        "Optional monospace elapsed timer",
+        "Screen reader only live status announcement"
+    ],
+    "behavior": [
+        "While status is working, cells pulse in sequence with staggered animation delays in a looping pattern",
+        "Switching to done or error pauses and fades out the pattern and fades in a mark grid in green or red",
+        "Label crossfades with a blur between the three labels",
+        "Timer counts up every 100ms while working and freezes on finish, or shows the elapsed prop when given",
+        "Screen reader announcement updates on status change with the spoken duration",
+        "Reduced motion setting turns the pattern into a slow synchronized fade and removes the mark and text transitions"
+    ],
+    "props": [
+        { "name": "label", "type": "string", "default": "Thinking" },
+        { "name": "doneLabel", "type": "string", "default": "Done in" },
+        { "name": "errorLabel", "type": "string", "default": "Failed after" },
+        { "name": "status", "type": "'working' | 'done' | 'error'", "default": "working" },
+        {
+            "name": "pattern",
+            "type": "'arrow' | 'dots' | 'ripple' | 'spiral' | 'orbit' | 'snake' | 'sweep' | 'spin' | 'rain' | 'pulse' | {cells,loop,scale,lit}",
+            "default": "orbit"
+        },
+        { "name": "grid", "type": "3 | 4", "default": 3 },
+        { "name": "shape", "type": "'round' | 'square'", "default": "round" },
+        { "name": "color", "type": "string", "default": "currentColor" },
+        { "name": "doneColor", "type": "string", "default": "#22c55e" },
+        { "name": "errorColor", "type": "string", "default": "#ef4444" },
+        { "name": "cellSize", "type": "number", "default": 6 },
+        { "name": "gap", "type": "number", "default": 2 },
+        { "name": "fontSize", "type": "number", "default": 14 },
+        { "name": "step", "type": "number", "default": 90 },
+        { "name": "idleOpacity", "type": "number", "default": 0.15 },
+        { "name": "glow", "type": "boolean", "default": false },
+        { "name": "glowColor", "type": "string", "default": "" },
+        { "name": "showTimer", "type": "boolean", "default": true },
+        { "name": "elapsed", "type": "number | undefined", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object | undefined", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Working, done and error label text",
+        "Status, pattern, grid size 3 or 4, and cell shape",
+        "Cell, done and error colors, glow on or off and glow color",
+        "Cell size, gap, font size, animation speed and idle opacity",
+        "Timer visibility and externally supplied elapsed seconds",
+        "Custom pattern through an object with cells, loop, scale and lit",
+        "Extra class names and inline style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the done or error mark shapes",
+            "where": "MARKS constant"
+        },
+        {
+            "change": "Add a new named pattern",
+            "where": "PATTERNS constant"
+        },
+        {
+            "change": "Change timer format",
+            "where": "fmt and spoken functions"
+        },
+        {
+            "change": "Add a fourth status such as paused",
+            "where": "status handling in the markRef logic and the three label spans"
+        }
+    ],
+    "fixed": [
+        "Only 3x3 and 4x4 grids are supported, any other grid value becomes 3",
+        "Named patterns exist only for some grid sizes, a pattern missing for the chosen grid falls back to orbit on 3 or sweep on 4",
+        "Injects a style tag with keyframes and reduced motion rules per instance",
+        "Relies on Tailwind arbitrary value and group data attribute classes",
+        "Lit duration is limited to presets 62, 45, 35 and 25 percent, other lit values fall back to 62",
+        "Timer text is written directly to the DOM and does not rerender",
+        "Mark layout is fixed per grid size for the done and error pictograms",
+        "Small inline element that works on all screen sizes"
+    ],
+    "mood": [
+        "minimal",
+        "technical",
+        "playful",
+        "modern"
+    ],
+    "industries": [
+        "AI products",
+        "SaaS",
+        "developer tools",
+        "fintech",
+        "data analytics"
+    ],
+    "sections": [
+        "other",
+        "hero"
+    ],
+    "dependencies": [],
+    "variants": {
+        "prop": "pattern",
+        "default": "orbit",
+        "options": [
+            { "value": "orbit", "look": "A light travels around the outer ring of the grid with a hollow center", "useWhen": "Default loading indicator next to an AI thinking message" },
+            { "value": "arrow", "look": "Diagonal wave sweeping in an arrow shape on a 3x3 grid", "useWhen": "Progress hint in a chat or upload row that should feel directional" },
+            { "value": "dots", "look": "Columns of cells blinking quickly in sequence", "useWhen": "Compact typing or fetching indicator inside a button or input" },
+            { "value": "ripple", "look": "Pulse expanding outward from the center cell", "useWhen": "Waiting for a search or sync result where attention is on one spot" },
+            { "value": "spiral", "look": "Single light winding around the grid into the center", "useWhen": "Longer processing step like generating a report" },
+            { "value": "snake", "look": "Light follows a back and forth path across every cell", "useWhen": "Loading status line in a developer tool or terminal style UI" },
+            { "value": "sweep", "look": "Diagonal wave across a 4x4 grid", "useWhen": "Default for 4x4 loaders in dashboards and data panels" },
+            { "value": "spin", "look": "Four quadrants light up in a rotating sequence on 4x4", "useWhen": "Generic spinner replacement in a toolbar or card" },
+            { "value": "rain", "look": "Diagonal drops falling from top left to bottom right on 4x4", "useWhen": "Streaming or data ingest status in an analytics page" },
+            { "value": "pulse", "look": "Center and corners breathe in and out on 4x4", "useWhen": "Idle or live monitoring indicator for a status bar" }
+        ]
+    }
+}
