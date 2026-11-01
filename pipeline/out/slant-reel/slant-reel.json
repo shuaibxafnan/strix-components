@@ -1,0 +1,58 @@
+{
+    "slug": "slant-reel",
+    "name": "Slant Reel",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Full-screen WebGL reel of image columns tilted diagonally and bent into curves, looping endlessly and driven by smooth scroll velocity.",
+    "contents": [
+        "Fixed full-viewport WebGL canvas with columns of looping images",
+        "Optional loading progress indicator"
+    ],
+    "behavior": [
+        "Smooth infinite scrolling through Lenis moves the image columns",
+        "Each column moves at its own speed and is curved by a vertex shader",
+        "Images wrap around endlessly",
+        "Scroll speed warps the image planes, optionally smoothed",
+        "Canvas fills the viewport and resizes with it"
+    ],
+    "props": [
+        { "name": "images", "type": "string[]", "default": "30 sample image URLs" },
+        { "name": "direction", "type": "\"vertical\" | \"horizontal\"", "default": "vertical" },
+        { "name": "columns", "type": "{position,imageSize,gap,curveStrength,curveFrequency,wheelFactor,wheelDirection}[]", "default": "5 sample columns" },
+        { "name": "cameraZ", "type": "number", "default": 3 },
+        { "name": "cameraRotation", "type": "number[]", "default": [0, 0, 0.6283185307179586] },
+        { "name": "scrollSpeedSmoothing", "type": "number", "default": 0 },
+        { "name": "bgColor", "type": "string", "default": "#f8f8f8" },
+        { "name": "includeLenis", "type": "boolean", "default": true },
+        { "name": "lenisOptions", "type": "object", "default": { "infinite": true, "syncTouch": true } },
+        { "name": "showLoader", "type": "boolean", "default": true },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Images, column count, positions, sizes, gaps, curve and speed per column",
+        "Camera distance and tilt, background color, scroll smoothing, loader visibility, Lenis options"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change image cropping or add effects to images",
+            "where": "IMAGE_FRAGMENT_SHADER constant"
+        },
+        {
+            "change": "Change how columns bend",
+            "where": "VERTICAL_VERTEX_SHADER constant"
+        },
+        {
+            "change": "Change scroll to motion sensitivity",
+            "where": "useLenis callback inside ReelColumn"
+        }
+    ],
+    "fixed": [
+        "Canvas is position fixed over the full viewport",
+        "Takes over page scrolling with Lenis (root mode), so it should be the only smooth scroll on the page; disable with includeLenis=false",
+        "Needs WebGL support"
+    ],
+    "mood": ["immersive", "playful", "modern", "dynamic"],
+    "industries": ["photography", "fashion", "art", "agency", "portfolio"],
+    "sections": ["hero", "gallery", "portfolio"],
+    "dependencies": ["three", "@react-three/fiber", "@react-three/drei", "lenis"]
+}
