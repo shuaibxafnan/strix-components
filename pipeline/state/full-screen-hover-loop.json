@@ -4,11 +4,12 @@
   "sourceHash": "bb01525bec55e88e5a1abd9ef77a28b6cc886e44602b91a93de11fe6cc2d1235",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "full-screen-hover-loop",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.446Z"
+  "note": "Export renamed to FullScreenHoverLoop. CDN gsap replaced with import, added as dependency. console.error removed, unmount cleanup added, className added. No frame, no variants.",
+  "updatedAt": "2026-11-01T07:22:00.468Z",
+  "gateOutput": "gates passed"
 }

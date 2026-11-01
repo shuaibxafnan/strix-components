@@ -1,0 +1,47 @@
+{
+  "slug": "flow-field",
+  "name": "Flow Field",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-area canvas background where hundreds of particles trace colorful trails along a Perlin noise flow field. Clicking shifts the palette and flow direction.",
+  "contents": ["Full-size canvas with animated particle trails on a solid background"],
+  "behavior": [
+    "Particles follow a 3D Perlin noise vector field that evolves over time",
+    "Trails fade through a translucent background fill each frame",
+    "Click re-randomizes the colors and rotates the flow direction",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "black"},
+    {"name": "particleCount", "type": "number", "default": 600},
+    {"name": "noiseScale", "type": "number", "default": 0.009},
+    {"name": "baseAngle", "type": "number", "default": -90},
+    {"name": "tail", "type": "number", "default": 85},
+    {"name": "strokeWeight", "type": "number", "default": 1.2},
+    {"name": "maxSpeedA", "type": "number", "default": 3},
+    {"name": "maxSpeedB", "type": "number", "default": 2},
+    {"name": "hueOffset", "type": "number", "default": 20},
+    {"name": "satMin", "type": "number", "default": 20},
+    {"name": "satMax", "type": "number", "default": 90},
+    {"name": "lightMin", "type": "number", "default": 30},
+    {"name": "lightMax", "type": "number", "default": 80},
+    {"name": "strokeAlpha", "type": "number", "default": 0.5},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Background color, particle count, trail length, stroke weight and alpha",
+    "Flow scale, base direction, particle speeds, saturation and lightness ranges, hue offset"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the click behavior", "where": "onClick function inside the useEffect"},
+    {"change": "Support named background colors other than black", "where": "hexOrNameToRgba function"}
+  ],
+  "fixed": [
+    "Fills its parent and is at least one viewport tall",
+    "Trail fade supports only hex colors or black for bgColor"
+  ],
+  "mood": ["dreamy", "generative", "colorful", "fluid", "futuristic"],
+  "industries": ["creative agency", "music", "art", "technology", "gaming"],
+  "sections": ["hero", "background"],
+  "dependencies": []
+}

@@ -4,11 +4,12 @@
   "sourceHash": "dcff14a89521d201b14b4dcfb4ada0f414e7873d300c417765654456b07ac3eb",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "glass-shatter",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.449Z"
+  "note": "Comments stripped only. Category ui-elements. Space keydown preventDefault blocks page scroll while mounted. No frame, no variants.",
+  "updatedAt": "2026-11-01T07:32:20.546Z",
+  "gateOutput": "gates passed"
 }

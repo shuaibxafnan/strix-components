@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "folder-float",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.621Z"
+  "note": "Category ui-elements. Dep matter-js. No variants. Inline-block root, no frame. JSX unchanged.",
+  "updatedAt": "2026-11-01T07:17:33.868Z",
+  "gateOutput": "gates passed"
 }

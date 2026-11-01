@@ -4,11 +4,12 @@
   "sourceHash": "d1140ec5eb59bcac65c4fac0708bc878fa6828b7b05233e9b84ed62dc228ed41",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "full-screen-clip-morph",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.445Z"
+  "note": "Export renamed to FullScreenClipMorph. CDN gsap replaced with import, added as dependency. Unmount kill, className added, console.error removed. No frame, no variants.",
+  "updatedAt": "2026-11-01T07:20:31.542Z",
+  "gateOutput": "gates passed"
 }

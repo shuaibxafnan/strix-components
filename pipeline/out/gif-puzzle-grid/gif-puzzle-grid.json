@@ -1,0 +1,52 @@
+{
+    "slug": "gif-puzzle-grid",
+    "name": "Gif Puzzle Grid",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Draggable tile grid where each tile shows a shuffled fragment of a randomly chosen image. Drag the tiles around the grid to reassemble the full picture.",
+    "contents": [
+        "Grid of draggable image tiles forming a scrambled picture",
+        "Small hint line with an info icon below the grid"
+    ],
+    "behavior": [
+        "One image is picked at random from the options on mount",
+        "Tile fragments are shuffled across the tiles",
+        "Tiles are draggable with GridStack and pulse on hover and press",
+        "Grid background changes color on hover",
+        "Grid scales down to fit narrow screens"
+    ],
+    "props": [
+        { "name": "bgColor", "type": "string", "default": "#000" },
+        { "name": "bgHoverColor", "type": "string", "default": "#111" },
+        { "name": "accentColor", "type": "string", "default": "#ffffff" },
+        { "name": "columnWidth", "type": "number", "default": 100 },
+        { "name": "cellHeight", "type": "number", "default": 75 },
+        { "name": "columns", "type": "number", "default": 8 },
+        { "name": "maxGridWidth", "type": "number", "default": 800 },
+        { "name": "gifOptions", "type": "string[]", "default": "3 sample image URLs" },
+        { "name": "gifWidth", "type": "number", "default": 400 },
+        { "name": "gifHeight", "type": "number", "default": 300 },
+        { "name": "puzzleRows", "type": "number", "default": 4 },
+        { "name": "puzzleCols", "type": "number", "default": 4 },
+        { "name": "tiles", "type": "{x,y,w?,h?}[]", "default": "16 tile positions" },
+        { "name": "hintLabel", "type": "string", "default": "Use a 4×4 grid for the full image" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Image options, image size, tile layout, grid size and cell size",
+        "Background, hover background and accent colors",
+        "Hint text"
+    ],
+    "needsCodeEdit": [
+        { "change": "Pulse effect on tile hover and press", "where": "gs-pulse" }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Requires the gridstack npm package and its CSS, loaded by dynamic import",
+        "A random image is chosen from gifOptions on every mount"
+    ],
+    "mood": ["playful", "interactive", "dark", "minimal"],
+    "industries": ["creative agency", "gaming", "entertainment", "portfolio", "education"],
+    "sections": ["gallery", "other"],
+    "dependencies": ["gridstack"]
+}

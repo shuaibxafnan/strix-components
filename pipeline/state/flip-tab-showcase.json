@@ -4,11 +4,12 @@
   "sourceHash": "f609c5f3453163e8aa71eeee54b31e314acb4e1a43bd63a8639de5dd912a069d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "flip-tab-showcase",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.441Z"
+  "note": "Already template-compliant; comments stripped only. Category ui-elements. Pill tuned for dark backgrounds. No frame, no variants.",
+  "updatedAt": "2026-11-01T07:09:17.063Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,58 @@
+{
+  "slug": "galaxy-button",
+  "name": "Galaxy Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Dark pill button that on hover or focus lights up with a glowing gradient, a rotating spark border and an orbiting galaxy of stars, optionally dimming the page background.",
+  "contents": [
+    "Single button with label",
+    "Spark border, static drifting stars and orbiting star ring",
+    "Optional fixed page background layer"
+  ],
+  "behavior": [
+    "Hover or keyboard focus activates glow, scale-up, gradient sweep and galaxy of orbiting stars",
+    "Star positions, sizes and speeds are randomized once on mount",
+    "Page background shifts to a purple tint while the button is active"
+  ],
+  "props": [
+    { "name": "label", "type": "string", "default": "Explore" },
+    { "name": "hue", "type": "number", "default": 245 },
+    { "name": "sparkDuration", "type": "number", "default": 1.8 },
+    { "name": "fontSize", "type": "string", "default": "2rem" },
+    { "name": "paddingX", "type": "string", "default": "1.3em" },
+    { "name": "paddingY", "type": "string", "default": "0.9em" },
+    { "name": "borderRadius", "type": "string", "default": "2rem" },
+    { "name": "transitionDuration", "type": "number", "default": 0.25 },
+    { "name": "staticStarCount", "type": "number", "default": 4 },
+    { "name": "orbitStarCount", "type": "number", "default": 20 },
+    { "name": "glowIntensity", "type": "string", "default": "6em" },
+    { "name": "darkBg", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "onClick", "type": "function", "default": "undefined" }
+  ],
+  "editableByProps": [
+    "Label text, click handler",
+    "Accent hue, glow size, spark speed",
+    "Font size, padding, corner radius, transition time",
+    "Number of static and orbiting stars",
+    "Page background tint on or off"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the page background tint color",
+      "where": ".galaxy-bodydrop rule in the style block"
+    },
+    {
+      "change": "Change the idle button color",
+      "where": "--bg declaration in the .galaxy-btn rule"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "darkBg renders a fixed full-screen layer behind the page (z-index -1) that tints the page background on hover"
+  ],
+  "mood": ["futuristic", "glowing", "playful", "cosmic"],
+  "industries": ["gaming", "tech", "saas", "entertainment", "creative agencies"],
+  "sections": ["hero", "cta"],
+  "dependencies": []
+}

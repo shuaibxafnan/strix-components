@@ -1,0 +1,34 @@
+{
+  "slug": "firefly-canvas",
+  "name": "Firefly Canvas",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen photo background with glowing fireflies drifting across a blurred canvas, each leaving a short fading trail. Fireflies spawn continuously and recycle when they leave the screen.",
+  "contents": ["Full-viewport background image", "Canvas layer of drifting fireflies with fading trails"],
+  "behavior": [
+    "Fireflies spawn each frame up to a maximum and wander with random heading changes",
+    "Fireflies leaving the viewport are removed and respawned",
+    "Canvas resizes to the window on resize"
+  ],
+  "props": [
+    {"name": "maxFireflies", "type": "number", "default": 100},
+    {"name": "spawnRate", "type": "number", "default": 5},
+    {"name": "fireflyColor", "type": "string", "default": "#fddba3"},
+    {"name": "blurAmount", "type": "string", "default": "blur-[1px]"},
+    {"name": "bgImage", "type": "string", "default": "https://images.unsplash.com/photo-1589848315097-ba7b903cc1cc?q=80&w=1920&auto=format&fit=crop"},
+    {"name": "trailLength", "type": "number", "default": 6},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Firefly count, spawn rate, color, trail length", "Background image and canvas blur class"],
+  "needsCodeEdit": [
+    {"change": "Firefly size and speed distribution", "where": "class Firefly"}
+  ],
+  "fixed": [
+    "Root is position fixed and covers the whole viewport, so it acts as a page background layer",
+    "Resize listener on window is removed on unmount"
+  ],
+  "mood": ["magical", "calm", "dreamy", "nocturnal"],
+  "industries": ["travel", "events", "entertainment", "wellness", "gaming"],
+  "sections": ["background", "hero"],
+  "dependencies": []
+}

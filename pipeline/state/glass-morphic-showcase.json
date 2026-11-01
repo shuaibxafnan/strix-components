@@ -4,11 +4,12 @@
   "sourceHash": "12ea42a1275f9a6375664ae20175dbe26fcb944f72604f8b261b1cc7cd363d2c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "gif-puzzle-split",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.449Z"
+  "note": "Renamed glass-morphic-showcase -> gif-puzzle-split (source is a GridStack gif puzzle; slug gif-puzzle-grid taken). Removed demo header (Gif Puzzle / Live). Kept intro column and stats. Script/link CDN loading replaced with dynamic import of gridstack npm and css; GridStack root CSS vars reset on unmount. Frame: none (section-like). Variants: none. Responsive: grid uses fixed px cell sizes, may clip below 800px, recorded in fixed.",
+  "updatedAt": "2026-11-01T07:31:32.082Z",
+  "gateOutput": "gates passed"
 }

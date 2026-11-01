@@ -1,0 +1,142 @@
+{
+    "slug": "flex-carousel",
+    "name": "Flex Carousel",
+    "category": "sliders-carousels",
+    "isReactBits": true,
+    "description": "WebGL image carousel where draggable cards pass through a bending lens that curls, twists and splits colors at the center. Includes intro animations, click-to-focus zoom, captions and a rolling counter.",
+    "contents": [
+        "Looping row of image cards drawn on a WebGL canvas",
+        "Lens distortion layer with chromatic dispersion over the cards",
+        "Caption with title, optional subtitle and a rolling 2-digit counter below the cards",
+        "Screen reader live region announcing the current item"
+    ],
+    "behavior": [
+        "Infinite loop with spring snapping to the nearest card",
+        "Drag, touch swipe with inertia, horizontal wheel, vertical wheel (optional) and keyboard arrows, Home, End",
+        "Click a side card to center it, click the centered card to open a zoomed focus view, click or Escape to close",
+        "Intro animation plays once all images load (or after 3.5s): rise, bloom, spin, deal or fade",
+        "Cards shrink slightly while moving fast, lens squashes with scroll velocity when liquid is above 0",
+        "Optional autoplay that pauses on hover, press, focus, interaction and focus view",
+        "Rendering pauses when offscreen or the tab is hidden",
+        "Reduced motion swaps the intro for a fade and disables autoplay, liquid and parallax"
+    ],
+    "props": [
+        { "name": "items", "type": "{src,alt,title,subtitle?}[]", "default": "12 sample Unsplash images" },
+        { "name": "preset", "type": "'liquid' | 'ribbon' | 'vortex' | 'arch'", "default": "liquid" },
+        { "name": "intro", "type": "'rise' | 'bloom' | 'spin' | 'deal' | 'fade' | 'none'", "default": "rise" },
+        { "name": "cardHeight", "type": "number", "default": 0.5 },
+        { "name": "gap", "type": "number", "default": 12 },
+        { "name": "radius", "type": "number", "default": 0 },
+        { "name": "fit", "type": "'natural' | 'portrait' | 'square' | 'landscape'", "default": "natural" },
+        { "name": "lensWidth", "type": "number", "default": "from preset" },
+        { "name": "lensHeight", "type": "number", "default": "from preset" },
+        { "name": "tilt", "type": "number", "default": "from preset" },
+        { "name": "roundness", "type": "number", "default": "from preset" },
+        { "name": "bend", "type": "number", "default": "from preset" },
+        { "name": "reach", "type": "number", "default": "from preset" },
+        { "name": "curl", "type": "'twist' | 'rise' | 'fall'", "default": "from preset" },
+        { "name": "dispersion", "type": "number", "default": "from preset" },
+        { "name": "liquid", "type": "number", "default": "from preset" },
+        { "name": "followCursor", "type": "boolean", "default": "from preset" },
+        { "name": "squeeze", "type": "number", "default": 0.2 },
+        { "name": "focusOnClick", "type": "boolean", "default": true },
+        { "name": "autoplay", "type": "boolean", "default": false },
+        { "name": "interval", "type": "number", "default": 4 },
+        { "name": "captions", "type": "boolean", "default": true },
+        { "name": "captureWheel", "type": "boolean", "default": true },
+        { "name": "onChange", "type": "(index, item) => void", "default": "undefined" },
+        { "name": "onSelect", "type": "(index, item) => void", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Images, alt text, titles and subtitles through items",
+        "Lens look through preset and individual overrides: size, tilt, roundness, bend, reach, curl, dispersion, liquid, followCursor",
+        "Intro style, card height, gap, corner radius and aspect fit",
+        "Autoplay, interval, captions, click-to-focus and wheel capture",
+        "Selection callbacks through onChange and onSelect",
+        "Container size and caption text color through className or style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add a new lens preset",
+            "where": "BEND_PRESETS constant"
+        },
+        {
+            "change": "Change caption typography or counter animation",
+            "where": "Digits component and the captions block in the returned JSX"
+        },
+        {
+            "change": "Change intro timings or add an intro style",
+            "where": "INTRO_DURATION constant and introEffects function"
+        },
+        {
+            "change": "Change the placeholder gray or card image zoom",
+            "where": "cardFragment shader (uPlaceholder and scale /= 1.08)"
+        },
+        {
+            "change": "Change the container aria label",
+            "where": "aria-label on the root div"
+        }
+    ],
+    "fixed": [
+        "Requires the ogl package and a WebGL2 browser, nothing renders without WebGL2",
+        "Root is h-full w-full, so the parent must have a defined height or the carousel collapses",
+        "Images load from remote URLs and need CORS headers (crossOrigin anonymous)",
+        "Wheel events over the carousel are prevented, so with captureWheel true vertical page scroll is blocked while hovering",
+        "Caption text inherits the page text color",
+        "Lens size is relative to container width, cards to container height",
+        "Canvas pixel count is capped by a 4.5 million pixel budget and dpr max 2",
+        "Touch uses vertical pan for page scroll and horizontal drag for the carousel, hover cursor and followCursor are ignored on touch",
+        "Works on small screens through container based sizing, with no breakpoint specific layout"
+    ],
+    "mood": [
+        "futuristic",
+        "fluid",
+        "editorial",
+        "immersive",
+        "premium"
+    ],
+    "industries": [
+        "fashion",
+        "photography",
+        "art",
+        "design agency",
+        "e-commerce",
+        "portfolio"
+    ],
+    "sections": [
+        "hero",
+        "gallery",
+        "portfolio"
+    ],
+    "dependencies": [
+        "ogl"
+    ],
+    "variants": {
+        "prop": "preset",
+        "default": "liquid",
+        "options": [
+            {
+                "value": "liquid",
+                "look": "Tall tilted lens that twists cards at its edges with strong color splitting and liquid squash",
+                "useWhen": "A fashion or creative studio hero needs a showy, fluid centerpiece carousel"
+            },
+            {
+                "value": "ribbon",
+                "look": "Square untilted lens that twists the row into a ribbon like curl",
+                "useWhen": "A portfolio gallery needs a gentle, symmetric curve with balanced side distortion"
+            },
+            {
+                "value": "vortex",
+                "look": "Moderately tilted lens with stronger bend, giving a swirling pull on the outer cards",
+                "useWhen": "A product launch or music page wants a dramatic, dynamic image strip"
+            },
+            {
+                "value": "arch",
+                "look": "Untilted lens that lifts both sides upward so the row forms an arch",
+                "useWhen": "A lookbook or photo series wants a clean arch shaped row with a calm focus on the center"
+            }
+        ]
+    }
+}

@@ -1,0 +1,108 @@
+{
+    "slug": "fuzzy-text",
+    "name": "Fuzzy Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Canvas-rendered text with a fuzzy, glitchy scanline distortion that intensifies on hover, click, or on a timer, with optional gradient fill, RGB color split, and intro burst.",
+    "contents": [
+        "Single canvas element drawing the children text as a distorted image",
+        "Offscreen source, scratch and per-channel canvases used for slicing and color split"
+    ],
+    "behavior": [
+        "Text is drawn to canvas and redrawn in slices shifted randomly, giving a fuzz effect at base intensity",
+        "Intensity rises to hoverIntensity while the pointer is over the text pixels, depending on trigger",
+        "Click mode fires a short decaying burst; clickEffect flashes full intensity for 150ms",
+        "Glitch mode periodically spikes intensity to full for glitchDuration every glitchInterval",
+        "Intro fades in and settles from a strong fuzz over introDuration",
+        "Optional RGB color split with additive or multiply blending depending on text brightness",
+        "Animation pauses when offscreen and rebuilds on font size or pixel ratio change",
+        "With reduced motion, base fuzz is zero, intro and glitch are skipped"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode (text)", "default": "none" },
+        { "name": "fontSize", "type": "string | number", "default": "clamp(2rem, 8vw, 8rem)" },
+        { "name": "fontWeight", "type": "number | string", "default": 900 },
+        { "name": "fontFamily", "type": "string", "default": "inherit" },
+        { "name": "color", "type": "string", "default": "currentColor" },
+        { "name": "enableHover", "type": "boolean", "default": true },
+        { "name": "baseIntensity", "type": "number", "default": 0.18 },
+        { "name": "hoverIntensity", "type": "number", "default": 0.5 },
+        { "name": "fuzzRange", "type": "number", "default": 30 },
+        { "name": "fps", "type": "number", "default": 60 },
+        { "name": "direction", "type": "'horizontal' | 'vertical' | 'both'", "default": "horizontal" },
+        { "name": "transitionDuration", "type": "number", "default": 0 },
+        { "name": "clickEffect", "type": "boolean", "default": false },
+        { "name": "glitchMode", "type": "boolean", "default": false },
+        { "name": "glitchInterval", "type": "number", "default": 2000 },
+        { "name": "glitchDuration", "type": "number", "default": 200 },
+        { "name": "gradient", "type": "string[] | null", "default": null },
+        { "name": "letterSpacing", "type": "number", "default": 0 },
+        { "name": "sliceSize", "type": "number", "default": 1 },
+        { "name": "trigger", "type": "'hover' | 'click' | 'always'", "default": "hover" },
+        { "name": "intro", "type": "boolean", "default": false },
+        { "name": "introDuration", "type": "number", "default": 1400 },
+        { "name": "colorSplit", "type": "number", "default": 0 },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Text content via children, font size, weight, family, letter spacing",
+        "Text color or multi-stop gradient",
+        "Fuzz strength, range, slice size, frame rate and easing duration",
+        "Trigger mode (hover, click, always), hover enable, click flash",
+        "Glitch mode timing, intro animation, RGB color split",
+        "Distortion direction"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change intro peak strength",
+            "where": "INTRO_PEAK constant"
+        },
+        {
+            "change": "Change click burst speed or length",
+            "where": "BURST_ATTACK and BURST_DECAY constants"
+        },
+        {
+            "change": "Change click flash duration",
+            "where": "setTimeout in handleClick (150ms)"
+        },
+        {
+            "change": "Change the canvas pixel ratio cap",
+            "where": "pixelRatio function"
+        }
+    ],
+    "fixed": [
+        "Renders to canvas with role img and aria-label of the text, so text is not selectable and children must be plain text",
+        "Canvas size is measured from the text, so it does not wrap; long text can overflow narrow screens unless fontSize is reduced",
+        "Pointer hover only registers over the drawn text pixels, not the whole canvas",
+        "Pixel ratio capped at 2",
+        "Respects prefers-reduced-motion",
+        "Inherits text color and font from CSS when color is currentColor and fontFamily is inherit",
+        "Canvas gets a pointer cursor in click trigger mode",
+        "Waits for the font to load before first draw"
+    ],
+    "mood": ["glitchy", "bold", "playful", "edgy", "retro"],
+    "industries": ["gaming", "music", "creative agency", "streetwear", "tech"],
+    "sections": ["hero", "cta", "other"],
+    "dependencies": [],
+    "variants": {
+        "prop": "direction",
+        "default": "horizontal",
+        "options": [
+            {
+                "value": "horizontal",
+                "look": "Horizontal slices of the text shift sideways like a scanline glitch",
+                "useWhen": "Hero headline or 404 page title needing a classic CRT glitch look"
+            },
+            {
+                "value": "vertical",
+                "look": "Vertical slices shift up and down, giving a wavering melt look",
+                "useWhen": "Poster-style banner or section title that should look unstable and dripping"
+            },
+            {
+                "value": "both",
+                "look": "Slices shift on both axes for a heavily scrambled look",
+                "useWhen": "Loud call-to-action or error screen where the text should look strongly corrupted"
+            }
+        ]
+    }
+}

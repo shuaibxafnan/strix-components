@@ -4,11 +4,12 @@
   "sourceHash": "575fe809ac1915cdc876c449764a6e7e5157e8a5084848dada2c46f231f814ae",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "gif-puzzle-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.448Z"
+  "note": "Removed demo header and left hero panel with its props (eyebrow, headings, stats). Frame added; bgColor applies to grid only. GridStack CDN replaced with gridstack package. ResizeObserver scales grid. console.error and global --gs vars removed. No variants.",
+  "updatedAt": "2026-11-01T07:29:54.108Z",
+  "gateOutput": "gates passed"
 }

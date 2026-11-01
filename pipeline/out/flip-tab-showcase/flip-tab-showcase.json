@@ -1,0 +1,63 @@
+{
+  "slug": "flip-tab-showcase",
+  "name": "Flip Tab Showcase",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Full-screen split showcase with a heading and pill tab switcher on one side and a matching image on the other. Switching tabs fades text lines and slides the image while a pill glides to the active tab.",
+  "contents": [
+    "Main heading and tab buttons with a sliding highlight pill",
+    "Per-tab heading and description text",
+    "Call-to-action link button",
+    "Image panel with one image per tab"
+  ],
+  "behavior": [
+    "Clicking a tab cross-fades text lines with a stagger and slides the image",
+    "Pill highlight animates to hovered, focused or active tab with a custom ease",
+    "Pill repositions on container resize",
+    "Stacks vertically below 768px"
+  ],
+  "props": [
+    { "name": "tabs", "type": "{label,heading,description,image,alt}[]", "default": "3 ceramics sample tabs" },
+    { "name": "heading", "type": "string", "default": "Explore the Layers of Handmade Ceramics" },
+    { "name": "ctaLabel", "type": "string", "default": "Visit the studio" },
+    { "name": "ctaHref", "type": "string", "default": "#" },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "textColor", "type": "string", "default": "text-white" },
+    { "name": "ctaClassName", "type": "string", "default": "bg-white text-black" },
+    { "name": "fontSize", "type": "string", "default": "clamp(13px, 1.1vw, 24px)" },
+    { "name": "easeParams", "type": "string", "default": "0.625, 0.05, 0, 1" },
+    { "name": "flipDuration", "type": "number", "default": 0.4 },
+    { "name": "contentEase", "type": "string", "default": "power3.inOut" },
+    { "name": "contentStagger", "type": "number", "default": 0.075 },
+    { "name": "visualHeightEm", "type": "number", "default": 42 },
+    { "name": "visualMaxHeightVh", "type": "number", "default": 80 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of tabs, all text, images, alt text and CTA link",
+    "Background, text and CTA colors through Tailwind classes",
+    "Base font size, image height, easing, durations and stagger"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Swap image panel to the left",
+      "where": "Order of the two w-full md:w-1/2 column divs inside the section"
+    },
+    {
+      "change": "Change the image slide direction or distance",
+      "where": "xPercent values in the switchTab timeline"
+    },
+    {
+      "change": "Change the pill and tab border tint",
+      "where": "border-white/[0.08] and bg-white/[0.06] classes on the nav and pill"
+    }
+  ],
+  "fixed": [
+    "Root is at least one screen tall and fills the width",
+    "Tab pill colors are white tints tuned for a dark background"
+  ],
+  "mood": ["editorial", "elegant", "modern", "dark"],
+  "industries": ["ceramics", "art", "portfolio", "interior design", "lifestyle"],
+  "sections": ["features", "portfolio"],
+  "dependencies": ["gsap"]
+}

@@ -1,0 +1,87 @@
+{
+    "slug": "flux-lines",
+    "name": "Flux Lines",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "Full-size WebGL2 background of flowing, glowing contour lines driven by layered noise, with palette coloring, cursor magnet distortion, click swirl and an intro fade-in.",
+    "contents": [
+        "Container div filling its parent with an absolutely positioned WebGL2 canvas",
+        "Fragment shader drawing animated noise contour lines tinted by a color palette"
+    ],
+    "behavior": [
+        "Lines flow continuously in the chosen direction with noise turbulence and shimmer",
+        "Cursor creates a smoothly following magnet that twists the lines nearby",
+        "Click or tap triggers a decaying swirl at the pointer",
+        "Intro reveal fades lines in over 1.8 seconds",
+        "Rendering pauses when offscreen or tab hidden, and motion stops with prefers-reduced-motion",
+        "Light mode draws dark ink lines for light backgrounds; transparent false paints a solid background"
+    ],
+    "props": [
+        {"name": "colors", "type": "string[]", "default": ["#ffffff", "#ffffff", "#ffffff"]},
+        {"name": "speed", "type": "number", "default": 0.5},
+        {"name": "scale", "type": "number", "default": 1.6},
+        {"name": "turbulence", "type": "number", "default": 1},
+        {"name": "fluidity", "type": "number", "default": 0.1},
+        {"name": "rimWidth", "type": "number", "default": 0.2},
+        {"name": "sharpness", "type": "number", "default": 2.5},
+        {"name": "shimmer", "type": "number", "default": 1.5},
+        {"name": "glow", "type": "number", "default": 2},
+        {"name": "lineWidth", "type": "number", "default": 1},
+        {"name": "flowDirection", "type": "'up' | 'down' | 'left' | 'right'", "default": "down"},
+        {"name": "opacity", "type": "number", "default": 1},
+        {"name": "mouseInteraction", "type": "boolean", "default": true},
+        {"name": "mouseStrength", "type": "number", "default": 1},
+        {"name": "mouseRadius", "type": "number", "default": 0.35},
+        {"name": "mouseDampening", "type": "number", "default": 0.15},
+        {"name": "clickSwirl", "type": "boolean", "default": true},
+        {"name": "intro", "type": "boolean", "default": true},
+        {"name": "lightMode", "type": "boolean", "default": false},
+        {"name": "transparent", "type": "boolean", "default": true},
+        {"name": "backgroundColor", "type": "string", "default": "undefined"},
+        {"name": "paused", "type": "boolean", "default": false},
+        {"name": "dpr", "type": "number", "default": "undefined"},
+        {"name": "mixBlendMode", "type": "string", "default": "undefined"},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "style", "type": "object", "default": "undefined"}
+    ],
+    "editableByProps": [
+        "Line colors (up to 8), opacity, glow, sharpness, line width and rim width",
+        "Flow direction, speed, scale, turbulence, fluidity and shimmer",
+        "Cursor and click interaction toggles and strength, radius, dampening",
+        "Intro, pause, light mode, transparent or solid background color",
+        "Pixel ratio cap, blend mode, className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Allow more than 8 palette colors",
+            "where": "MAX_COLORS constant"
+        },
+        {
+            "change": "Change contour level or noise pattern shape",
+            "where": "FRAGMENT shader main function and FIELD noise functions"
+        },
+        {
+            "change": "Change click swirl strength or duration",
+            "where": "twist calculation in the render function"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unsupported or shader fails to compile",
+        "Fills its parent (h-full w-full), so the parent needs a defined height",
+        "Pointer listeners are attached to window, so cursor effects respond anywhere on the page while pointer is inside the container bounds",
+        "Pixel ratio is capped at 2",
+        "Ignores the pointer swirl when prefers-reduced-motion is set, and freezes motion",
+        "Default line color is white, so on light pages set colors or lightMode",
+        "Canvas is aria-hidden and decorative; text must be layered above it",
+        "Shader is GPU heavy at full screen, which may be slow on low-end mobile devices",
+        "Only the first 8 colors are used"
+    ],
+    "mood": ["futuristic", "fluid", "dramatic", "technical", "ethereal"],
+    "industries": ["technology", "saas", "ai", "crypto", "music", "creative agency"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": []
+}

@@ -1,0 +1,57 @@
+{
+  "slug": "futuristic-gallery",
+  "name": "Futuristic Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Circular WebGL image viewer where a pixelated wave dissolve transitions between photos, switched with chamfered thumbnail buttons in the corner.",
+  "contents": [
+    "Circular framed WebGL canvas showing the active image",
+    "Row of chamfered thumbnail buttons with titles as labels"
+  ],
+  "behavior": [
+    "Clicking a thumbnail runs a pixelate and wave dissolve shader transition to that image",
+    "Clicks are ignored while a transition is running",
+    "Active thumbnail is highlighted with the accent color, others dim until hovered",
+    "Canvas shrinks to 90vw on narrow screens"
+  ],
+  "props": [
+    { "name": "backgroundColor", "type": "string", "default": "#000000" },
+    { "name": "frameColor", "type": "string", "default": "#ffffff" },
+    { "name": "fillColor", "type": "string", "default": "#000000" },
+    { "name": "accentColor", "type": "string", "default": "#ffffff" },
+    { "name": "canvasSize", "type": "number", "default": 450 },
+    { "name": "innerBorderColor", "type": "string", "default": "#000000" },
+    { "name": "innerBorderWidth", "type": "number", "default": 10 },
+    { "name": "gradientStart", "type": "string", "default": "#ffffff" },
+    { "name": "gradientEnd", "type": "string", "default": "#000000" },
+    { "name": "animationSpeed", "type": "number", "default": 0.02 },
+    { "name": "gridResolution", "type": "number", "default": 50 },
+    { "name": "mainImages", "type": "{url,title}[]", "default": "4 sample space photos" },
+    { "name": "thumbnailImages", "type": "{url,title}[]", "default": "4 sample space photos" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Main images, thumbnails and their titles",
+    "Background, frame, border, gradient, transition fill and accent colors",
+    "Canvas size, transition speed and pixel grid resolution"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the transition look",
+      "where": "buildFragmentShader function"
+    },
+    {
+      "change": "Move or restyle the thumbnail row",
+      "where": "thumbnailImages.map block at the bottom of the component"
+    }
+  ],
+  "fixed": [
+    "Fills the full viewport height with an absolutely centered circle and thumbnails pinned bottom right",
+    "mainImages and thumbnailImages must have the same length and order",
+    "Needs images that allow cross-origin texture loading"
+  ],
+  "mood": ["futuristic", "dark", "sleek", "cosmic"],
+  "industries": ["photography", "space", "technology", "gaming", "portfolio"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["three"]
+}

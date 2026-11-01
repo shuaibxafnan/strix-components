@@ -1,0 +1,97 @@
+{
+    "slug": "ghost-fibers",
+    "name": "Ghost Fibers",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 background of twisting, wavy ribbons made of glowing dots, dashes or lines, with depth of field, bloom, floating dust, mouse focus and click pulses.",
+    "contents": [
+        "Single full-size container with a WebGL2 canvas",
+        "Up to 3 ribbon layers of fiber threads, dust particles, bloom, vignette and grain post effects"
+    ],
+    "behavior": [
+        "Ribbons wave, twist and roll continuously over time",
+        "Pointer position over the window drives a hover effect (focus, part or none)",
+        "Clicking sends a pulse through the fibers when pulseOnClick is on",
+        "Fades in with a 2.6 second intro when intro is on",
+        "Rendering pauses when off screen or the tab is hidden, and reduced motion preference is respected",
+        "Canvas resolution is capped and scaled by device pixel ratio up to 2"
+    ],
+    "props": [
+        { "name": "glowColor", "type": "string", "default": "#8b5cf6" },
+        { "name": "lineColor", "type": "string", "default": "undefined" },
+        { "name": "secondaryColor", "type": "string", "default": "undefined" },
+        { "name": "gradient", "type": "'depth' | 'along' | 'across'", "default": "depth" },
+        { "name": "speed", "type": "number", "default": 0.5 },
+        { "name": "scale", "type": "number", "default": 1 },
+        { "name": "rotation", "type": "number", "default": 18 },
+        { "name": "rollSpeed", "type": "number", "default": 0.15 },
+        { "name": "layers", "type": "number", "default": 3 },
+        { "name": "waves", "type": "number", "default": 1 },
+        { "name": "twist", "type": "number", "default": 1.2 },
+        { "name": "threads", "type": "number", "default": 72 },
+        { "name": "volume", "type": "number", "default": 0.7 },
+        { "name": "spread", "type": "number", "default": 1 },
+        { "name": "density", "type": "number", "default": 1 },
+        { "name": "thickness", "type": "number", "default": 1 },
+        { "name": "flow", "type": "number", "default": 0.4 },
+        { "name": "fiberStyle", "type": "'dots' | 'dashes' | 'lines'", "default": "dots" },
+        { "name": "tips", "type": "number", "default": 0 },
+        { "name": "foldGlow", "type": "number", "default": 1 },
+        { "name": "perspective", "type": "number", "default": 0.65 },
+        { "name": "depthOfField", "type": "number", "default": 0.85 },
+        { "name": "focusDepth", "type": "number", "default": 0 },
+        { "name": "particles", "type": "number", "default": 0.5 },
+        { "name": "sparkle", "type": "number", "default": 0.5 },
+        { "name": "glow", "type": "number", "default": 0.8 },
+        { "name": "brightness", "type": "number", "default": 1 },
+        { "name": "vignette", "type": "number", "default": 0.3 },
+        { "name": "grain", "type": "number", "default": 0.06 },
+        { "name": "mouseInteraction", "type": "boolean", "default": true },
+        { "name": "hoverEffect", "type": "'focus' | 'part' | 'none'", "default": "focus" },
+        { "name": "mouseStrength", "type": "number", "default": 1 },
+        { "name": "pulseOnClick", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number", "default": "undefined" },
+        { "name": "className", "type": "string (via rest)", "default": "" }
+    ],
+    "editableByProps": [
+        "Glow, line and secondary colors, gradient direction and light mode",
+        "Motion: speed, rotation, roll, waves, twist, flow, paused",
+        "Shape: layers, threads, volume, spread, density, thickness, scale, fiber style, tips",
+        "Look: glow, brightness, depth of field, focus depth, perspective, particles, sparkle, vignette, grain",
+        "Interaction: mouse interaction, hover effect, strength, click pulse, intro, render dpr"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change ribbon length or camera distance and field of view",
+            "where": "RIBBON_LENGTH, CAMERA and FOV constants at the top of the file"
+        },
+        {
+            "change": "Change ribbon placement or relative brightness of layers",
+            "where": "PLACEMENTS and RIBBON_GAIN constants"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change bloom quality or maximum render size",
+            "where": "BLOOM_LEVELS and MAX_RENDER_DIM constants"
+        }
+    ],
+    "fixed": [
+        "Container is h-full w-full, so the parent must have a height (for example a sized or absolute positioned wrapper); content must be layered above it",
+        "Requires WebGL2; renders nothing if unavailable or shaders fail to compile",
+        "Pointer and click listeners are attached to window, so interaction responds across the whole page, not only over the component",
+        "Canvas is aria-hidden and purely decorative",
+        "Extra props are spread onto the root div",
+        "Heavy GPU shader with bloom passes, can be costly on low-end mobile devices; lower threads, layers or dpr there",
+        "Needs a dark backdrop by default; set lightMode for light pages"
+    ],
+    "mood": ["ethereal", "futuristic", "dreamy", "dark", "atmospheric"],
+    "industries": ["technology", "ai", "music", "creative agency", "gaming"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": []
+}

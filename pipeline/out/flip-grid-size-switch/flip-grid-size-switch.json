@@ -1,0 +1,54 @@
+{
+  "slug": "flip-grid-size-switch",
+  "name": "Flip Grid Size Switch",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Image gallery grid with a two-button toggle that switches between large and small thumbnails, animating every tile to its new position with a GSAP Flip transition.",
+  "contents": [
+    "Small and large view toggle buttons",
+    "Wrapping grid of image tiles with hover zoom and numbered label overlay"
+  ],
+  "behavior": [
+    "Switching view records tile positions and animates them to the new layout with staggered GSAP Flip",
+    "Active view button is disabled",
+    "Hover zooms the image and reveals a gradient with item label",
+    "Columns adapt from 1 to 4 (large) or 2 to 6 (small) across breakpoints"
+  ],
+  "props": [
+    { "name": "initialLayout", "type": "\"small\" | \"large\"", "default": "large" },
+    { "name": "duration", "type": "number", "default": 0.8 },
+    { "name": "ease", "type": "string", "default": "power2.inOut" },
+    { "name": "images", "type": "string[]", "default": "14 sample image URLs" },
+    { "name": "smallLabel", "type": "string", "default": "Small View" },
+    { "name": "largeLabel", "type": "string", "default": "Large View" },
+    { "name": "itemLabel", "type": "string", "default": "ITEM" },
+    { "name": "imageAlt", "type": "string", "default": "Gallery image" },
+    { "name": "backgroundColor", "type": "string", "default": "#0a0a0a" },
+    { "name": "textColor", "type": "string", "default": "#fafafa" },
+    { "name": "activeBtnClass", "type": "string", "default": "bg-amber-500 text-neutral-900 border-amber-500 hover:bg-amber-400 font-semibold shadow-md shadow-amber-500/10" },
+    { "name": "disabledBtnClass", "type": "string", "default": "bg-neutral-800 text-neutral-500 border-neutral-700 cursor-not-allowed opacity-50" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, button labels, item label and alt text",
+    "Initial layout, transition duration and easing",
+    "Background and text colors, button state classes"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change column counts per breakpoint",
+      "where": "basis classes in the gallery-item className"
+    },
+    {
+      "change": "Change tile height",
+      "where": "h-[300px] md:h-[400px] in the gallery-item className"
+    }
+  ],
+  "fixed": [
+    "Requires gsap and its Flip plugin, loaded by dynamic import"
+  ],
+  "mood": ["modern", "dark", "fluid", "playful"],
+  "industries": ["photography", "portfolio", "agency", "ecommerce", "creative"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

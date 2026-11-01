@@ -4,11 +4,12 @@
   "sourceHash": "44d4e65965690f899fc07896ffa68d74ec9fbfd0614173efe83dbb565283de6d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "fly-plane-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.443Z"
+  "note": "Export renamed to FlyPlaneButton. Removed unused getVar. Frame added with className. Unmount cleanup added. No variants.",
+  "updatedAt": "2026-11-01T07:14:08.439Z",
+  "gateOutput": "gates passed"
 }

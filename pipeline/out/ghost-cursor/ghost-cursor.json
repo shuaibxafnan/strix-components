@@ -1,0 +1,26 @@
+{
+ "slug":"ghost-cursor","name":"Ghost Cursor","category":"cursor-effects","isReactBits":false,
+ "description":"A cartoon ghost that follows the pointer with a lagging, skewing and stretching body, squishing eyes, a mouth that opens with speed, and a wavy gooey hem, on a full-screen colored backdrop.",
+ "contents":["Full-screen backdrop","Ghost with eyes, mouth and animated rippling bottom edge"],
+ "behavior":["Ghost eases toward the mouse or touch position each frame","Body skews and stretches with velocity, eyes squish and mouth grows with speed","Pressing the mouse button squints the eyes and flips the mouth","Ripple hem animates with a looping keyframe through a gooey SVG filter"],
+ "props":[
+  {"name":"bgColor","type":"string","default":"#161616"},
+  {"name":"ghostColor","type":"string","default":"#ffffff"},
+  {"name":"ghostSize","type":"number","default":90},
+  {"name":"followSpeed","type":"number","default":10},
+  {"name":"skewStrength","type":"number","default":50},
+  {"name":"stretchStrength","type":"number","default":2.0},
+  {"name":"eyeSquishMin","type":"number","default":0.1},
+  {"name":"ripCount","type":"number","default":5},
+  {"name":"ripDuration","type":"string","default":"1.2s"},
+  {"name":"ripSpacing","type":"number","default":31},
+  {"name":"className","type":"string","default":""}
+ ],
+ "editableByProps":["Backdrop and ghost colors","Ghost size, follow lag, skew and stretch intensity","Eye squish and hem ripple count, spacing and speed"],
+ "needsCodeEdit":[{"change":"Change eye or mouth size and shape","where":"eyesRef"},{"change":"Change gooey filter blur strength","where":"ghost-goo-filter"}],
+ "fixed":["Backdrop covers the whole viewport with fixed positioning and ignores pointer events","Window listeners for mouse and touch are added on mount and removed on unmount","Mousedown default is prevented on the window"],
+ "mood":["playful","quirky","dark","fun"],
+ "industries":["games","entertainment","creative agency","portfolio","kids"],
+ "sections":["background","global"],
+ "dependencies":[]
+}

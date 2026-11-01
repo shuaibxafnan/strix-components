@@ -1,0 +1,103 @@
+{
+    "slug": "flying-button",
+    "name": "Flying Button",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Button that lifts off like a jet craft with a WebGL2 smoke and thrust simulation, hovers for a moment, then lands. It can be dragged while flying and optionally rides a ramp.",
+    "contents": [
+        "Button with label, rounded body and thruster pods under it",
+        "WebGL2 canvas filling the container that draws smoke and thrust jets",
+        "Optional SVG ramp the button rides on",
+        "Custom cursor arrow shown when the cursor is carried by the craft"
+    ],
+    "behavior": [
+        "Takes off on hover or click, climbs to the set altitude, hovers, then descends back to rest",
+        "Fluid simulation produces smoke plumes, turbulence and ground splash under the thrusters",
+        "Craft tilts and wobbles while flying with spring physics",
+        "Can be grabbed and dragged around the area while flying",
+        "Optionally carries the mouse cursor, hiding the real cursor and drawing a custom arrow",
+        "Ramp mode makes the button ride along the ramp on click",
+        "Respects prefers-reduced-motion",
+        "Resizes with its container through a ResizeObserver"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": "Take off" },
+        { "name": "onClick", "type": "(event) => void", "default": null },
+        { "name": "theme", "type": "string", "default": "dark" },
+        { "name": "size", "type": "'small' | 'medium' | 'large' | 'extra-large'", "default": "medium" },
+        { "name": "radius", "type": "number", "default": null },
+        { "name": "altitude", "type": "number", "default": 170 },
+        { "name": "hoverTime", "type": "number", "default": 2.4 },
+        { "name": "jets", "type": "number", "default": 2 },
+        { "name": "thrusters", "type": "boolean", "default": true },
+        { "name": "trigger", "type": "string", "default": "hover" },
+        { "name": "carryCursor", "type": "boolean", "default": true },
+        { "name": "ramp", "type": "boolean", "default": false },
+        { "name": "rampColor", "type": "string", "default": null },
+        { "name": "smoke", "type": "number", "default": 1 },
+        { "name": "turbulence", "type": "number", "default": 1 },
+        { "name": "wobble", "type": "number", "default": 1 },
+        { "name": "thrustColor", "type": "string", "default": null },
+        { "name": "smokeColor", "type": "string", "default": null },
+        { "name": "buttonColor", "type": "string", "default": null },
+        { "name": "textColor", "type": "string", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Label, click handler, size, corner radius and light or dark theme",
+        "Flight altitude, hover duration, number of jets (1 to 4) and thruster pods",
+        "Hover or click trigger, cursor carrying and ramp mode",
+        "Smoke amount, turbulence and wobble strength",
+        "Thrust, smoke, button, text and ramp colors"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change gravity, spring stiffness or damping of the flight",
+            "where": "G, SPRING and DAMP constants at the top of the file"
+        },
+        {
+            "change": "Add or change button sizes",
+            "where": "SIZES constant"
+        },
+        {
+            "change": "Allow more than 4 jets",
+            "where": "MAX_JETS constant"
+        },
+        {
+            "change": "Change the custom cursor arrow",
+            "where": "The cursor svg path at the end of the FlyingButton return"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, without it the smoke canvas cannot render",
+        "Root container fills its parent (h-full, w-full, min-height 240px) with overflow hidden, so the parent needs a defined size and the flight is clipped to it",
+        "Hides the system cursor inside the container while the cursor is carried",
+        "Supports pointer events and is built for mouse hover, touch gets click trigger behavior only through the trigger prop",
+        "Theme only accepts 'light', any other value uses dark",
+        "Trigger is forced to 'click' when ramp is true",
+        "Jets count is clamped to 1 to 4",
+        "Canvas resolution is capped at device pixel ratio 2",
+        "Color values for thrust, smoke and ramp are hex strings parsed by the shader helper",
+        "Heavy shader simulation, expect GPU cost on low end mobile devices",
+        "Marked 'use client'"
+    ],
+    "mood": [
+        "playful",
+        "dynamic",
+        "high-tech",
+        "showy"
+    ],
+    "industries": [
+        "aerospace",
+        "gaming",
+        "travel",
+        "tech startups",
+        "creative agencies"
+    ],
+    "sections": [
+        "hero",
+        "cta"
+    ],
+    "dependencies": []
+}

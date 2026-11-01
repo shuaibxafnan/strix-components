@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "flux-lines",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.596Z"
+  "note": "Category backgrounds-3d. No variants, no deps. Needs WebGL2 and parent height. JSX unchanged.",
+  "updatedAt": "2026-11-01T07:13:30.429Z",
+  "gateOutput": "gates passed"
 }

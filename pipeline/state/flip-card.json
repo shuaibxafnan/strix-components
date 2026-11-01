@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "flip-card",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.620Z"
+  "note": "Category cards-galleries. 28 props documented. Variants on axis: y, x. Needs motion package and Tailwind arbitrary/group-data variants. JSX unchanged.",
+  "updatedAt": "2026-11-01T07:05:45.933Z",
+  "gateOutput": "gates passed"
 }

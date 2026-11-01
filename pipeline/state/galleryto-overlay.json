@@ -4,11 +4,12 @@
   "sourceHash": "970ec794d1e787acf6260d7d25deaaf5f6122a7f62d21eeb97029b9b691158b7",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "flip-overlay-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.447Z"
+  "note": "Renamed to flip-overlay-gallery. gsap, CustomEase, Flip now npm imports; gsap dependency. gsap.context killed on unmount, className added. Responsive: stacks below 768px, baseFontSize max(1vw,6px). No frame, no variants.",
+  "updatedAt": "2026-11-01T07:25:04.714Z",
+  "gateOutput": "gates passed"
 }

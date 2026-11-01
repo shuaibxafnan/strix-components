@@ -1,0 +1,48 @@
+{
+  "slug": "flip-disc-checklist",
+  "name": "Flip Disc Checklist",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Dark diagnostics card with a checklist whose checkboxes are 3D flip discs. Checking an item flips the disc to a glowing amber checkmark and lights up the label.",
+  "contents": [
+    "Card with a title",
+    "List of checkable rows, each with a flip disc and a label"
+  ],
+  "behavior": [
+    "Clicking a row toggles it and flips the disc around the X axis with a 3D transition",
+    "Checked labels change color and gain a soft glow",
+    "Rows highlight on hover and the disc shows a focus outline for keyboard users"
+  ],
+  "props": [
+    { "name": "title", "type": "string", "default": "System Diagnostics" },
+    { "name": "cardBg", "type": "string", "default": "bg-[#2a2827]" },
+    { "name": "discFrontBg", "type": "string", "default": "bg-[#1c1b1a]" },
+    { "name": "discBackGradient", "type": "string", "default": "from-[#ffc857] to-[#fb923c]" },
+    { "name": "textUnchecked", "type": "string", "default": "text-[#9e9a94]" },
+    { "name": "textChecked", "type": "string", "default": "text-[#ffc857]" },
+    { "name": "initialItems", "type": "{id,label,checked}[]", "default": "3 sample items" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Title, item ids, labels and initial checked state, number of items",
+    "Card, disc and label colors through Tailwind classes"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the glow color of the checked disc and label",
+      "where": "box-shadow and text-shadow classes on the back face div and the label span"
+    },
+    {
+      "change": "Change the flip speed",
+      "where": "duration-700 class on the preserve-3d div"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Card max width is 333px and max height 444px with inner scroll"
+  ],
+  "mood": ["technical", "dark", "tactile", "playful"],
+  "industries": ["saas", "developer tools", "hardware", "dashboards"],
+  "sections": ["other"],
+  "dependencies": []
+}

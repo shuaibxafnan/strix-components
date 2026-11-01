@@ -4,11 +4,12 @@
   "sourceHash": "7a3d1e95a80f4edc2d5a4f6a552c0781491dd8c69fd2517e42a64f3fa5382eb1",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "trading-card-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.448Z"
+  "note": "Renamed to trading-card-gallery. gsap CDN replaced with import, dependency gsap. Listener, ticker, tween cleanup on unmount. modalRef replaces getElementById. Added label/color props and className. Responsive wrap and sizing. No frame, no variants.",
+  "updatedAt": "2026-11-01T07:28:52.561Z",
+  "gateOutput": "WARN  requestAnimationFrame without cancelAnimationFrame\ngates passed"
 }

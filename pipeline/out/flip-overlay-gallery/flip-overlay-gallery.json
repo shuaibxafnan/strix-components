@@ -1,0 +1,81 @@
+{
+  "slug": "flip-overlay-gallery",
+  "name": "Flip Overlay Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Editorial index of titled entries with a hover preview thumbnail and metadata. Selecting an entry opens a full dossier overlay, where the title and image morph into place with GSAP Flip.",
+  "contents": [
+    "Header with eyebrow, intro and entry count",
+    "Preview thumbnail frame with corner ticks and live metadata readout",
+    "List of large entry titles with code and region labels",
+    "Full-page dossier overlay per entry with hero image, two side images and field note",
+    "Back button and footer hint"
+  ],
+  "behavior": [
+    "Hovering a title swaps the preview image and metadata and dims other titles",
+    "Click opens the dossier, Flip animates the title and image into the overlay while other titles slide away",
+    "Back button or Escape reverses the animation",
+    "Respects reduced motion",
+    "Sizes scale with viewport width through a root font size, stacking preview above the list below 768px"
+  ],
+  "props": [
+    { "name": "items", "type": "{title,region,coords,elevation,tag,thumbnail,leftImage,rightImage,description,code?}[]", "default": "5 sample entries" },
+    { "name": "bgColor", "type": "string", "default": "#0B0E14" },
+    { "name": "panelColor", "type": "string", "default": "#0F141C" },
+    { "name": "textColor", "type": "string", "default": "#AEB6C2" },
+    { "name": "brightColor", "type": "string", "default": "#F2F5F8" },
+    { "name": "accentColor", "type": "string", "default": "#E9B872" },
+    { "name": "mutedColor", "type": "string", "default": "#565F6E" },
+    { "name": "borderColor", "type": "string", "default": "rgba(255,255,255,0.10)" },
+    { "name": "displayFont", "type": "string", "default": "'Bricolage Grotesque', system-ui, sans-serif" },
+    { "name": "monoFont", "type": "string", "default": "'JetBrains Mono', ui-monospace, monospace" },
+    { "name": "baseFontSize", "type": "string", "default": "max(1vw, 6px)" },
+    { "name": "containerPadding", "type": "string", "default": "2em" },
+    { "name": "gap", "type": "string", "default": "2em" },
+    { "name": "listTitleSize", "type": "string", "default": "4.25em" },
+    { "name": "overlayTitleSize", "type": "string", "default": "9em" },
+    { "name": "thumbWidth", "type": "string", "default": "15em" },
+    { "name": "thumbHeight", "type": "string", "default": "21em" },
+    { "name": "heroWidth", "type": "string", "default": "42em" },
+    { "name": "heroHeight", "type": "string", "default": "60em" },
+    { "name": "ease", "type": "string", "default": "0.62, 0.05, 0, 1" },
+    { "name": "duration", "type": "number", "default": 0.725 },
+    { "name": "eyebrow", "type": "string", "default": "Field Index" },
+    { "name": "topRight", "type": "string", "default": "Remote Stays — 2026" },
+    { "name": "intro", "type": "string", "default": "Five quiet places, indexed by light and elevation. Hover to preview, select to open the dossier." },
+    { "name": "previewLabel", "type": "string", "default": "Now previewing" },
+    { "name": "fieldNoteLabel", "type": "string", "default": "Field note" },
+    { "name": "footerHint", "type": "string", "default": "Select an entry to open its dossier" },
+    { "name": "backText", "type": "string", "default": "Back to index" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All entries, texts, images, labels and codes",
+    "All colors, fonts and sizes",
+    "Animation duration and easing curve"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the hover dimming of other titles",
+      "where": "main-title__list:hover rule inside styleContent"
+    },
+    {
+      "change": "Change the order or stagger of the open and close animation",
+      "where": "openOverlay and closeOverlay functions inside the useEffect"
+    },
+    {
+      "change": "Change the corner tick style of the preview frame",
+      "where": "ticks array"
+    }
+  ],
+  "fixed": [
+    "Loads the Bricolage Grotesque and JetBrains Mono Google Fonts stylesheet into document head",
+    "Listens for the Escape key on document while mounted and removes it on unmount",
+    "Root is at least one viewport tall with hidden overflow",
+    "Text sizes scale with viewport width and are floored at a 6px root size, so small phones show compact text"
+  ],
+  "mood": ["editorial", "dark", "refined", "cinematic"],
+  "industries": ["travel", "hospitality", "real estate", "architecture", "photography"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

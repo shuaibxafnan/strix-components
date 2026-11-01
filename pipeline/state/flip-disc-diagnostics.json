@@ -4,11 +4,12 @@
   "sourceHash": "f45d2d79d5f41d0c8aacd614e9fd87303ad93de06869e1a5f7c1a6ff4e63d050",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "flip-disc-checklist",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.440Z"
+  "note": "Renamed to flip-disc-checklist. Removed containerBg and demo background, added className, frame kept. No variants. Invalid cubic-bezier class kept from source.",
+  "updatedAt": "2026-11-01T07:07:05.740Z",
+  "gateOutput": "gates passed"
 }

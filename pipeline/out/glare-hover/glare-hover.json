@@ -1,0 +1,103 @@
+{
+    "slug": "glare-hover",
+    "name": "Glare Hover",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Wrapper that sweeps a light glare band across its children on hover, click, focus, on a timed loop, or following the cursor, with an optional glint along the border rim.",
+    "contents": [
+        "Inline-grid wrapper box that renders any children",
+        "Overlay glare band with gradient profile and blend mode",
+        "Optional rim glint masked to the 1px border edge"
+    ],
+    "behavior": [
+        "hover mode sweeps the glare across on pointer enter and sweeps it out on leave",
+        "click mode sweeps on pointer down",
+        "loop mode sweeps automatically every interval seconds while visible",
+        "follow mode shows a spring-driven glare tracking the pointer and fades on leave",
+        "Keyboard focus-visible triggers a sweep in non-follow modes",
+        "intro sweeps once when the element is 40 percent visible",
+        "Sweep is skipped and follow glare hidden when the user prefers reduced motion"
+    ],
+    "props": [
+        { "name": "width", "type": "string | number", "default": "auto" },
+        { "name": "height", "type": "string | number", "default": "auto" },
+        { "name": "background", "type": "string", "default": "transparent" },
+        { "name": "borderRadius", "type": "string", "default": "10px" },
+        { "name": "borderColor", "type": "string", "default": "transparent" },
+        { "name": "children", "type": "ReactNode", "default": null },
+        { "name": "glareColor", "type": "string", "default": "#ffffff" },
+        { "name": "glareOpacity", "type": "number", "default": 0.5 },
+        { "name": "glareAngle", "type": "number", "default": -45 },
+        { "name": "glareSize", "type": "number", "default": 30 },
+        { "name": "softness", "type": "number", "default": 0.6 },
+        { "name": "variant", "type": "'streak' | 'twin' | 'sheen'", "default": "streak" },
+        { "name": "blendMode", "type": "string", "default": "screen" },
+        { "name": "rimGlint", "type": "boolean", "default": true },
+        { "name": "mode", "type": "'hover' | 'click' | 'loop' | 'follow'", "default": "hover" },
+        { "name": "transitionDuration", "type": "number", "default": 650 },
+        { "name": "interval", "type": "number", "default": 3 },
+        { "name": "playOnce", "type": "boolean", "default": false },
+        { "name": "intro", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": {} }
+    ],
+    "editableByProps": [
+        "Wrapped content through children",
+        "Size, background, border color and radius",
+        "Glare color, opacity, angle, band size, softness and blend mode",
+        "Trigger mode, sweep duration, loop interval, play once and intro sweep",
+        "Rim glint on or off, extra className and inline style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add a new glare shape",
+            "where": "PROFILES object"
+        },
+        {
+            "change": "Change the spring feel of follow mode",
+            "where": "The 170 and 24 constants in the frame function"
+        },
+        {
+            "change": "Change the sweep easing",
+            "where": "ease function"
+        },
+        {
+            "change": "Change how much of the element must be visible for loop and intro",
+            "where": "threshold in the IntersectionObserver options"
+        }
+    ],
+    "fixed": [
+        "Root is an inline-grid with overflow hidden and a 1px solid border, so content is clipped to the box",
+        "Glare overlay ignores pointer events and is hidden from assistive tech",
+        "Uses color-mix in gradients, which needs a modern browser",
+        "Changing mode re-creates all listeners, observers and timers",
+        "Hover and follow modes rely on pointer events, touch devices only get the sweep on tap through pointer enter or click mode",
+        "Loop and intro only run while at least 40 percent of the element is in view",
+        "Works at any size, the glare scales with the element, but width and height must fit the layout since defaults are auto"
+    ],
+    "mood": ["polished", "premium", "playful", "modern"],
+    "industries": ["saas", "e-commerce", "fintech", "gaming", "portfolio"],
+    "sections": ["features", "pricing", "cta", "portfolio"],
+    "dependencies": [],
+    "variants": {
+        "prop": "variant",
+        "default": "streak",
+        "options": [
+            {
+                "value": "streak",
+                "look": "Single focused light streak with a faint wide wash",
+                "useWhen": "Classic shine over cards or buttons on a pricing or feature grid"
+            },
+            {
+                "value": "twin",
+                "look": "Wide soft band followed by a thin sharp line, like glass reflection",
+                "useWhen": "Premium glass or metallic card, such as a credit card or product tile"
+            },
+            {
+                "value": "sheen",
+                "look": "Broad subtle sheen with no hard edge",
+                "useWhen": "Large hero image or panel needing a gentle ambient highlight"
+            }
+        ]
+    }
+}

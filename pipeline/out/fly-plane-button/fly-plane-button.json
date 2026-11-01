@@ -1,0 +1,37 @@
+{
+  "slug": "fly-plane-button",
+  "name": "Fly Plane Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Send button that folds into a paper plane on click, flies off the top, then reveals a success label before resetting. Built from clip-path polygons animated with GSAP CSS variables.",
+  "contents": ["Single button with default label", "Success label revealed after the plane takes off"],
+  "behavior": [
+    "Click folds the button into a paper plane and flies it up and out",
+    "Success label scales in, then the button fades back after 2 seconds",
+    "Clicks are ignored while the animation runs",
+    "GSAP is dynamic-imported on first click"
+  ],
+  "props": [
+    {"name": "defaultLabel", "type": "string", "default": "Send"},
+    {"name": "successLabel", "type": "string", "default": "Sent"},
+    {"name": "primaryColor", "type": "string", "default": "#275EFE"},
+    {"name": "darkColor", "type": "string", "default": "#2055EE"},
+    {"name": "darkestColor", "type": "string", "default": "#133FC0"},
+    {"name": "textColor", "type": "string", "default": "#FFFFFF"},
+    {"name": "successBgColor", "type": "string", "default": "#2B3044"},
+    {"name": "minWidth", "type": "string", "default": "100px"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Both labels", "Button, fold shade, text and success colors", "Minimum width"],
+  "needsCodeEdit": [
+    {"change": "Reset delay after success", "where": "setTimeout"},
+    {"change": "Click handler such as submitting a form", "where": "handleClick"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto."
+  ],
+  "mood": ["playful", "clean", "modern"],
+  "industries": ["saas", "email", "marketing", "agency"],
+  "sections": ["cta", "contact"],
+  "dependencies": ["gsap"]
+}

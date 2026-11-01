@@ -1,0 +1,252 @@
+{
+    "slug": "gif-puzzle-split",
+    "name": "Gif Puzzle Split",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Split section with an intro column (eyebrow, heading, text, three stats) beside a draggable puzzle tile grid showing shuffled fragments of a random image.",
+    "contents": [
+        "Intro column with eyebrow, two-weight heading, subheading and three stat blocks",
+        "Draggable image tile grid with a hint line and info icon"
+    ],
+    "behavior": [
+        "One image is picked at random on mount and its fragments are shuffled across the tiles",
+        "Tiles are draggable on the grid via GridStack",
+        "Tiles pulse on hover and on press",
+        "Grid background changes on hover"
+    ],
+    "props": [
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#000"
+        },
+        {
+            "name": "bgHoverColor",
+            "type": "string",
+            "default": "#111"
+        },
+        {
+            "name": "accentColor",
+            "type": "string",
+            "default": "#ffffff"
+        },
+        {
+            "name": "columnWidth",
+            "type": "number",
+            "default": 100
+        },
+        {
+            "name": "cellHeight",
+            "type": "number",
+            "default": 75
+        },
+        {
+            "name": "columns",
+            "type": "number",
+            "default": 8
+        },
+        {
+            "name": "maxGridWidth",
+            "type": "number",
+            "default": 800
+        },
+        {
+            "name": "gifOptions",
+            "type": "string[]",
+            "default": [
+                "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=1080&q=80",
+                "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=1080&q=80",
+                "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=1080&q=80"
+            ]
+        },
+        {
+            "name": "gifWidth",
+            "type": "number",
+            "default": 400
+        },
+        {
+            "name": "gifHeight",
+            "type": "number",
+            "default": 300
+        },
+        {
+            "name": "puzzleRows",
+            "type": "number",
+            "default": 4
+        },
+        {
+            "name": "puzzleCols",
+            "type": "number",
+            "default": 4
+        },
+        {
+            "name": "tiles",
+            "type": "{x,y,w?,h?}[]",
+            "default": [
+                {
+                    "x": 2,
+                    "y": 0
+                },
+                {
+                    "x": 3,
+                    "y": 0
+                },
+                {
+                    "x": 4,
+                    "y": 0
+                },
+                {
+                    "x": 5,
+                    "y": 0
+                },
+                {
+                    "x": 1,
+                    "y": 1
+                },
+                {
+                    "x": 2,
+                    "y": 1
+                },
+                {
+                    "x": 3,
+                    "y": 1
+                },
+                {
+                    "x": 4,
+                    "y": 1
+                },
+                {
+                    "x": 3,
+                    "y": 2
+                },
+                {
+                    "x": 4,
+                    "y": 2
+                },
+                {
+                    "x": 5,
+                    "y": 2
+                },
+                {
+                    "x": 6,
+                    "y": 2
+                },
+                {
+                    "x": 2,
+                    "y": 3
+                },
+                {
+                    "x": 3,
+                    "y": 3
+                },
+                {
+                    "x": 4,
+                    "y": 3
+                },
+                {
+                    "x": 5,
+                    "y": 3
+                }
+            ]
+        },
+        {
+            "name": "eyebrow",
+            "type": "string",
+            "default": "Interactive"
+        },
+        {
+            "name": "headingLight",
+            "type": "string",
+            "default": "Drag the"
+        },
+        {
+            "name": "headingBold",
+            "type": "string",
+            "default": "tiles."
+        },
+        {
+            "name": "subheading",
+            "type": "string",
+            "default": "Each piece is a fragment of a hidden animation. Rearrange them to reveal the full picture."
+        },
+        {
+            "name": "hintLabel",
+            "type": "string",
+            "default": "Use a 4×4 grid for the full image"
+        },
+        {
+            "name": "statLabel1",
+            "type": "string",
+            "default": "4×4"
+        },
+        {
+            "name": "statSub1",
+            "type": "string",
+            "default": "Grid"
+        },
+        {
+            "name": "statLabel2",
+            "type": "string",
+            "default": "16"
+        },
+        {
+            "name": "statSub2",
+            "type": "string",
+            "default": "Tiles"
+        },
+        {
+            "name": "statLabel3",
+            "type": "string",
+            "default": "∞"
+        },
+        {
+            "name": "statSub3",
+            "type": "string",
+            "default": "Layouts"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Background, hover and accent colors",
+        "All intro text, stats and hint",
+        "Image options, tile layout, grid size and puzzle slicing"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change text colors of the intro column",
+            "where": "text-white classes inside the main element"
+        },
+        {
+            "change": "Change tile pulse animation",
+            "where": "gs-pulse keyframes in the style block"
+        }
+    ],
+    "fixed": [
+        "Mounting sets GridStack CSS variables on the document root and removes them on unmount",
+        "Grid uses fixed pixel cell sizes and may be clipped on screens narrower than the grid width"
+    ],
+    "mood": [
+        "modern",
+        "playful",
+        "minimal",
+        "dark"
+    ],
+    "industries": [
+        "creative agencies",
+        "gaming",
+        "education",
+        "tech",
+        "marketing"
+    ],
+    "sections": [
+        "hero",
+        "features"
+    ],
+    "dependencies": [
+        "gridstack"
+    ]
+}
