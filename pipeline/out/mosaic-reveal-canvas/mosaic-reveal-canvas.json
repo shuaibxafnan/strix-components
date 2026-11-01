@@ -1,0 +1,49 @@
+{
+  "slug": "mosaic-reveal-canvas",
+  "name": "Mosaic Reveal Canvas",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Full-screen canvas image that reveals a grid of zoomed mosaic tiles around the pointer, with optional dots and fade, easing back to the plain image as the pointer slows.",
+  "contents": [
+    "Full-viewport background color layer",
+    "Square canvas drawing one image as a tile grid"
+  ],
+  "behavior": [
+    "Tiles near the pointer show a zoomed crop of the image, scaling with pointer speed",
+    "Pointer position and reveal radius are smoothed with GSAP quickTo",
+    "Optional dots drawn at tile corners sized by reveal strength",
+    "Canvas keeps a square aspect and covers the viewport, pointer coordinates remap on resize"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "imgSrc", "type": "string", "default": "https://images.unsplash.com/photo-1777059269563-51fdb397358c?q=80&w=2000"},
+    {"name": "canvasSize", "type": "number", "default": 2000},
+    {"name": "boxSize", "type": "number", "default": 123},
+    {"name": "fade", "type": "boolean", "default": false},
+    {"name": "dots", "type": "boolean", "default": true},
+    {"name": "dotColor", "type": "string", "default": "#fff"},
+    {"name": "dotScale", "type": "number", "default": 0.15},
+    {"name": "initialScale", "type": "number", "default": 1.5},
+    {"name": "moveDuration", "type": "number", "default": 1},
+    {"name": "moveEase", "type": "string", "default": "expo"},
+    {"name": "scaleDuration", "type": "number", "default": 2},
+    {"name": "scaleEase", "type": "string", "default": "power2"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Image, background color, dot color and visibility, fade",
+    "Tile size, canvas resolution, dot size, easing and durations"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the tile crop effect", "where": "drawImg function"},
+    {"change": "Change the dot shape", "where": "drawDots function"}
+  ],
+  "fixed": [
+    "Root is fixed and covers the viewport, centered on screen",
+    "Image must allow cross-origin canvas use"
+  ],
+  "mood": ["playful", "immersive", "modern", "interactive"],
+  "industries": ["photography", "fashion", "art", "agency", "portfolio"],
+  "sections": ["hero", "background"],
+  "dependencies": ["gsap"]
+}

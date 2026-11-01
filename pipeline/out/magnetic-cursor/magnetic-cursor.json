@@ -1,0 +1,47 @@
+{
+    "slug": "magnetic-cursor",
+    "name": "Magnetic Cursor",
+    "category": "cursor-effects",
+    "isReactBits": false,
+    "description": "Small dot cursor that trails the pointer with a smooth lag and grows into a large bubble with an icon when hovering image cards, which also fade and zoom slightly.",
+    "contents": [
+        "Trailing circular cursor with an icon inside",
+        "Row of image cards that act as interactive targets"
+    ],
+    "behavior": [
+        "Cursor follows the mouse with a delayed Web Animations transform",
+        "Scales up over cards and shows an icon based on the card type",
+        "Cursor fades in on first mouse move and cards brighten and zoom on hover"
+    ],
+    "props": [
+        { "name": "items", "type": "{type,backgroundImage}[]", "default": "2 sample cards" },
+        { "name": "cursorSize", "type": "number", "default": 20 },
+        { "name": "cursorScaleOnHover", "type": "number", "default": 8 },
+        { "name": "cursorAnimDuration", "type": "number", "default": 800 },
+        { "name": "cursorColor", "type": "string", "default": "white" },
+        { "name": "bgColor", "type": "string", "default": "rgb(20, 20, 20)" },
+        { "name": "iconDefaultClass", "type": "string", "default": "fa-solid fa-arrow-up-right" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Number of cards and their images and types",
+        "Cursor size, color, hover scale and follow duration",
+        "Background color and default icon class"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Map more card types to different cursor icons",
+            "where": "getIconClass function"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Loads Font Awesome icons from a CDN stylesheet link",
+        "Adds a window mousemove listener while mounted and removes it on unmount",
+        "Cursor is mouse driven and stays hidden on touch devices"
+    ],
+    "mood": ["dark", "minimal", "playful", "modern"],
+    "industries": ["portfolio", "creative agency", "photography", "film", "fashion"],
+    "sections": ["portfolio", "gallery"],
+    "dependencies": []
+}

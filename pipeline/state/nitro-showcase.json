@@ -4,11 +4,12 @@
   "sourceHash": "950b9fb1f6b2dc1795aa45bf45050f9c8715a8a0efe0474d3c1af81bab619bf0",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "split-product-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.504Z"
+  "note": "Renamed nitro-showcase -> split-product-slider. brandName default Kiln -> Collection. sliders-carousels, no deps. Google Fonts link kept; key listener and timer cleaned up. No frame change, no variants.",
+  "updatedAt": "2026-11-01T10:06:19.649Z",
+  "gateOutput": "gates passed"
 }

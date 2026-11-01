@@ -1,0 +1,99 @@
+{
+    "slug": "magnet-cursor-grid",
+    "name": "Magnet Cursor Grid",
+    "category": "cursor-effects",
+    "isReactBits": false,
+    "description": "Custom dot-and-ring cursor that snaps and morphs onto the icon button under the pointer in a centered grid, while sibling buttons dim to spotlight the hovered one.",
+    "contents": [
+        "Grid of square icon buttons with an svg icon each",
+        "Custom cursor made of a small dot and an outer ring"
+    ],
+    "behavior": [
+        "Native cursor is hidden over the component",
+        "Inner dot follows the pointer, outer ring trails it with a short tween",
+        "Ring morphs into the hovered button's rectangle and tints with a hover color",
+        "Dot scales up while the pointer is pressed",
+        "Other buttons dim while the grid is hovered"
+    ],
+    "props": [
+        {
+            "name": "items",
+            "type": "{label,iconPath}[]",
+            "default": "5 social icon buttons"
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "rgb(18, 18, 18)"
+        },
+        {
+            "name": "cursorColor",
+            "type": "string",
+            "default": "rgb(255, 60, 60)"
+        },
+        {
+            "name": "cursorOuterSize",
+            "type": "number",
+            "default": 40
+        },
+        {
+            "name": "cursorInnerSize",
+            "type": "number",
+            "default": 10
+        },
+        {
+            "name": "buttonSize",
+            "type": "string",
+            "default": "60px"
+        },
+        {
+            "name": "hoverBgColor",
+            "type": "string",
+            "default": "rgba(255, 255, 255, 0.1)"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Number of buttons, their svg icon paths and labels",
+        "Background, cursor and hover colors",
+        "Cursor and button sizes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Make buttons links or add click handlers",
+            "where": "button element inside items.map"
+        },
+        {
+            "change": "Change button colors and dimming",
+            "where": "magnet-target class string on the button"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Hides the native cursor inside the component and relies on mouse pointer, so it is not useful on touch devices",
+        "Listens for pointer events on document.body and scroll on window, removed on unmount"
+    ],
+    "mood": [
+        "sleek",
+        "playful",
+        "dark",
+        "interactive"
+    ],
+    "industries": [
+        "creative agency",
+        "portfolio",
+        "social media",
+        "tech"
+    ],
+    "sections": [
+        "hero",
+        "other"
+    ],
+    "dependencies": [
+        "gsap"
+    ]
+}

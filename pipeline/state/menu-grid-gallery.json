@@ -4,11 +4,12 @@
   "sourceHash": "bc61d998eec05d29208d996bf3eafffb2e80bdff4c2e553f67e14ac3b386a534",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "menu-grid-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.493Z"
+  "note": "gates passed. gsap via dynamic import with gsap.context cleanup; console.error removed; label props and className added. Google Fonts injection and body background tint kept (listed in fixed). No variants, no frame.",
+  "updatedAt": "2026-11-01T09:43:13.902Z",
+  "gateOutput": "gates passed"
 }

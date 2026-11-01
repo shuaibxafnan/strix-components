@@ -4,11 +4,12 @@
   "sourceHash": "f4aa523a18a58357bd65eabd27e19e439b3362d11b1498bd6bec502d9693f078",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "mouse-driven-vertical-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.499Z"
+  "note": "gates passed. Component renamed to match slug. Responsive defaults for offsets and title size; touch handlers added; className added; currentId now number. Mounted placeholder kept (fixed). No variants, no frame change.",
+  "updatedAt": "2026-11-01T09:57:12.343Z",
+  "gateOutput": "gates passed"
 }

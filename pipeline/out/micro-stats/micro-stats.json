@@ -1,0 +1,97 @@
+{
+    "slug": "micro-stats",
+    "name": "Micro Stats",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL background made of a grid of tiny rounded slats whose size and brightness follow animated wave fields, with a fluid cursor wake that disturbs them and a fade-in intro.",
+    "contents": [
+        "Single container div holding an OGL WebGL2 canvas of slats",
+        "Four wave presets: swell, tide, storm, signal"
+    ],
+    "behavior": [
+        "Slat grid rendered in a shader, driven by animated wave fields with glint highlights",
+        "Pointer movement and press inject force into a small fluid simulation that pushes the slats",
+        "Intro animation plays on mount for introDuration seconds",
+        "Render loop pauses when the tab is hidden or when paused is true",
+        "Resolution is capped by a pixel budget and device pixel ratio of 2"
+    ],
+    "props": [
+        { "name": "preset", "type": "'swell' | 'tide' | 'storm' | 'signal'", "default": "swell" },
+        { "name": "color", "type": "string", "default": "#A855F7" },
+        { "name": "glintColor", "type": "string", "default": "#ffffff" },
+        { "name": "backgroundColor", "type": "string", "default": "#000000" },
+        { "name": "slatWidth", "type": "number", "default": 10 },
+        { "name": "slatHeight", "type": "number", "default": 25 },
+        { "name": "gap", "type": "number", "default": 3 },
+        { "name": "roundness", "type": "number", "default": 0.75 },
+        { "name": "scale", "type": "number", "default": "preset value" },
+        { "name": "speed", "type": "number", "default": "preset value" },
+        { "name": "direction", "type": "number", "default": "preset value" },
+        { "name": "chop", "type": "number", "default": "preset value" },
+        { "name": "stretch", "type": "number", "default": "preset value" },
+        { "name": "glint", "type": "number", "default": "preset value" },
+        { "name": "contrast", "type": "number", "default": "preset value" },
+        { "name": "perspective", "type": "number", "default": "preset value" },
+        { "name": "fog", "type": "number", "default": "preset value" },
+        { "name": "interactive", "type": "boolean", "default": true },
+        { "name": "cursorStrength", "type": "number", "default": 1 },
+        { "name": "cursorSize", "type": "number", "default": 40 },
+        { "name": "swirl", "type": "number", "default": 0 },
+        { "name": "trail", "type": "number", "default": 1.4 },
+        { "name": "lean", "type": "number", "default": 0 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "introDuration", "type": "number", "default": 1.5 },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Wave preset and every wave parameter (scale, speed, direction, chop, stretch, glint, contrast, perspective, fog)",
+        "Slat, glint and background colors",
+        "Slat size, gap and roundness",
+        "Cursor interaction on or off, strength, size, swirl, trail and lean",
+        "Intro on or off and its duration, pause, container className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the preset values or add a new preset",
+            "where": "SWELL_PRESETS constant"
+        },
+        {
+            "change": "Change fluid simulation resolution or pressure quality",
+            "where": "FLUID_SIZE and PRESSURE_STEPS constants"
+        },
+        {
+            "change": "Raise or lower the resolution cap",
+            "where": "PIXEL_BUDGET constant"
+        },
+        {
+            "change": "Change splash strength on press",
+            "where": "SPLAT_FORCE and SPLASH_JETS constants"
+        }
+    ],
+    "fixed": [
+        "Requires the ogl npm package and WebGL2, nothing renders if WebGL2 is unavailable",
+        "Container is h-full w-full, so the parent must have a height or the canvas collapses",
+        "Pointer, blur and visibility listeners are attached to window and document while mounted and removed on unmount",
+        "Pointer effects react to the pointer anywhere on the window while it is inside the container area, the canvas itself is not interactive",
+        "Cursor effects and animation are disabled when the user prefers reduced motion",
+        "Colors are parsed through a canvas 2D context, so any CSS color string works, invalid ones fall back to defaults",
+        "Preset is read once per render, unknown preset falls back to swell",
+        "Works on small screens, the canvas resizes with the container, and the pointer wake responds to any pointer type, including touch drags"
+    ],
+    "mood": ["futuristic", "dynamic", "hypnotic", "tech"],
+    "industries": ["technology", "music", "gaming", "creative agency", "saas"],
+    "sections": ["hero", "background"],
+    "dependencies": ["ogl", "react"],
+    "variants": {
+        "prop": "preset",
+        "default": "swell",
+        "options": [
+            { "value": "swell", "look": "Rolling ocean-like waves with medium chop, perspective depth and fog", "useWhen": "A hero background for a product landing page that needs a lively but balanced motion" },
+            { "value": "tide", "look": "Slower, smoother and softer waves with slight stretch and lower glint", "useWhen": "A calm backdrop behind wellness, finance or editorial content where text must stay readable" },
+            { "value": "storm", "look": "Small, fast, highly chopped slats with strong contrast and glint", "useWhen": "An intense hero for a game, music event or high-energy launch page" },
+            { "value": "signal", "look": "Flat, stretched horizontal bars with no perspective or fog, like a data signal", "useWhen": "A tech or data dashboard landing section that needs a flat graphic equalizer look" }
+        ]
+    }
+}

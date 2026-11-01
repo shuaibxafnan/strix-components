@@ -1,0 +1,50 @@
+{
+  "slug": "mouse-flair-trail",
+  "name": "Mouse Flair Trail",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Full-screen cursor effect where icons pop in with an elastic scale and random spin at the pointer as it moves, then fall off the bottom of the screen in a rotating trail.",
+  "contents": [
+    "Centered prompt text",
+    "Pool of flair images that cycle along the cursor path"
+  ],
+  "behavior": [
+    "Each time the pointer travels past the gap distance, the next image pops in at the pointer with elastic scale and random rotation",
+    "Images then fall downward with a back-in ease and are recycled",
+    "Tracks pointer movement, so touch dragging also spawns flair",
+    "GSAP is loaded by dynamic import and ticker, listener and tweens are cleaned up on unmount"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "9 heroicons SVG URLs" },
+    { "name": "prompt", "type": "string", "default": "wiggle your mouse around." },
+    { "name": "bgColor", "type": "string", "default": "#fff" },
+    { "name": "textColor", "type": "string", "default": "#111" },
+    { "name": "flairWidth", "type": "number", "default": 50 },
+    { "name": "gap", "type": "number", "default": 100 },
+    { "name": "followLerp", "type": "number", "default": 0.1 },
+    { "name": "popDuration", "type": "number", "default": 1 },
+    { "name": "popEase", "type": "string", "default": "elastic.out(1,0.3)" },
+    { "name": "fallEase", "type": "string", "default": "back.in(.4)" },
+    { "name": "fallDistance", "type": "string", "default": "120vh" },
+    { "name": "rotationRange", "type": "[number, number]", "default": [-360, 360] },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Prompt text, background and text colors",
+    "Flair images, size, spawn spacing, pop and fall easing, fall distance and rotation range"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the fall duration",
+      "where": "duration: 1 in the playAnimation function"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Flair images use fixed positioning and a window pointermove listener, removed on unmount"
+  ],
+  "mood": ["playful", "energetic", "minimal"],
+  "industries": ["creative agency", "portfolio", "entertainment", "events"],
+  "sections": ["hero", "background"],
+  "dependencies": ["gsap"]
+}

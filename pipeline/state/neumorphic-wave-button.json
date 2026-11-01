@@ -4,11 +4,12 @@
   "sourceHash": "5e2341b88c2daed871c7284e438b54293b30b1f56d157fc1808ad408926de825",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "neumorphic-wave-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.503Z"
+  "note": "gates passed with warning: setTimeout without clearTimeout (false positive, timers cleared on unmount via ref set). className merged on existing frame root; timer cleanup added; mount gate and keyframes style kept. No variants.",
+  "updatedAt": "2026-11-01T10:04:58.890Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

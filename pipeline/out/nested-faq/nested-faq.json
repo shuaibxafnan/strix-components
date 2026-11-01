@@ -1,0 +1,57 @@
+{
+  "slug": "nested-faq",
+  "name": "Nested FAQ",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Two-level FAQ accordion where each topic section expands to reveal its own list of question and answer rows, with numbered headings, animated height transitions and an optional large title.",
+  "contents": [
+    "Optional header with eyebrow label, title and decorative question mark",
+    "Numbered topic sections, each with a list of expandable question and answer items"
+  ],
+  "behavior": [
+    "Clicking a section toggles it open and closed independently of others",
+    "Clicking a question toggles its answer with a smooth height animation",
+    "Accent color highlights open sections, icons and numbers"
+  ],
+  "props": [
+    { "name": "sections", "type": "{title,items:{q,a}[]}[]", "default": "6 sample store FAQ sections" },
+    { "name": "maxWidth", "type": "string", "default": "min(680px, 92vw)" },
+    { "name": "sectionGap", "type": "string", "default": "10px" },
+    { "name": "backgroundColor", "type": "string", "default": "#0c0c0c" },
+    { "name": "sectionBg", "type": "string", "default": "#141414" },
+    { "name": "borderColor", "type": "string", "default": "rgba(255,255,255,0.07)" },
+    { "name": "accentColor", "type": "string", "default": "#c9a96e" },
+    { "name": "questionColor", "type": "string", "default": "#f0ece4" },
+    { "name": "answerColor", "type": "string", "default": "rgba(240,236,228,0.45)" },
+    { "name": "titleFont", "type": "string", "default": "'Cormorant Garamond', Georgia, serif" },
+    { "name": "bodyFont", "type": "string", "default": "'DM Sans', system-ui, sans-serif" },
+    { "name": "showTitle", "type": "boolean", "default": true },
+    { "name": "eyebrowText", "type": "string", "default": "Help Center" },
+    { "name": "titleText", "type": "string", "default": "FAQ" },
+    { "name": "titleSize", "type": "string", "default": "clamp(2.5rem, 6vw, 4.5rem)" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All sections, questions and answers, header texts and visibility",
+    "Colors, fonts, width and spacing between sections"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Allow only one section open at a time",
+      "where": "Section component open state"
+    },
+    {
+      "change": "Change the animation speed of panels",
+      "where": "AnimatedPanel component transition classes"
+    }
+  ],
+  "fixed": [
+    "Loads Cormorant Garamond and DM Sans from Google Fonts through an @import inside the component",
+    "Root has a solid background and fills at least the viewport height",
+    "Title text colors for the heading and open sections are fixed light tones"
+  ],
+  "mood": ["elegant", "refined", "dark", "editorial"],
+  "industries": ["e-commerce", "retail", "saas", "support", "luxury"],
+  "sections": ["faq"],
+  "dependencies": []
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "news-ticker",
+  "name": "News Ticker",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Compact headline ticker that slides through news links one line at a time, with a circular progress ring and megaphone icon counting down to each change.",
+  "contents": [
+    "Vertical list of headline links with optional HTML markup",
+    "Circular progress ring with a megaphone icon"
+  ],
+  "behavior": [
+    "Ring stroke fills over the duration, then the list slides up to the next headline",
+    "Loops seamlessly by repeating the first headline at the end and resetting",
+    "Headlines clamp to the configured number of lines",
+    "Timers are cleared on unmount"
+  ],
+  "props": [
+    {"name": "items", "type": "{text,href}[]", "default": "3 sample headlines"},
+    {"name": "duration", "type": "number", "default": 2000},
+    {"name": "lineClamp", "type": "number", "default": 2},
+    {"name": "color", "type": "string", "default": "#00172F"},
+    {"name": "minWidth", "type": "string", "default": "300px"},
+    {"name": "maxWidth", "type": "string", "default": "30em"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Headlines (HTML allowed) and their links",
+    "Display time per headline, line clamp, color and widths"
+  ],
+  "needsCodeEdit": [
+    {"change": "Swap the megaphone icon", "where": "First svg with viewBox 0 0 30 30"},
+    {"change": "Change slide easing", "where": "slideItem function"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Headline text is injected as HTML, so items must be trusted content",
+    "Renders nothing until mounted on the client"
+  ],
+  "mood": ["clean", "minimal", "informative"],
+  "industries": ["media", "news", "ecommerce", "finance"],
+  "sections": ["other", "global"],
+  "dependencies": []
+}

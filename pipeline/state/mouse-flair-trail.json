@@ -4,11 +4,12 @@
   "sourceHash": "ca14c515d651d56cf08888ed8c4848a8e446897d973d1547dfd89e83b1e01bd8",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "mouse-flair-trail",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.500Z"
+  "note": "gates passed. gsap via dynamic import in gsap.context; trialWarn and console.error removed; mousemove -> pointermove for touch; className merged on root frame. No variants.",
+  "updatedAt": "2026-11-01T09:57:52.733Z",
+  "gateOutput": "gates passed"
 }

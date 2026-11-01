@@ -4,11 +4,12 @@
   "sourceHash": "d555e99b8d37d770138e057f9b3d895f1ac0998e9b73c9acbf35831ee81c5675",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "isometric-room-viewer",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.495Z"
+  "note": "Renamed modern-isometric-room-viewer -> isometric-room-viewer. three via npm dynamic imports; modern color-space API may shift colors slightly. Unmount cleanup fixed. pageBgColor -> bgColor hex. Text props and className added. Title pill and reset button kept. No frame change, no variants.",
+  "updatedAt": "2026-11-01T09:49:51.159Z",
+  "gateOutput": "gates passed"
 }

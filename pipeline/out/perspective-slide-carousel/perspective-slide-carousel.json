@@ -1,0 +1,55 @@
+{
+  "slug": "perspective-slide-carousel",
+  "name": "Perspective Slide Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen dark carousel of large editorial cards laid out in 3D perspective, with side slides rotated, scaled and blurred, autoplay progress bar, drag, keyboard and pagination controls.",
+  "contents": [
+    "Cards with background image, kicker, title, text and a call-to-action label",
+    "Prev/next buttons with counter, line pagination, top progress bar"
+  ],
+  "behavior": [
+    "Autoplay advances on an interval, pauses on hover and drag",
+    "Drag or swipe with release velocity to change slides, arrow keys navigate",
+    "Neighbor slides rotate, shrink and blur by depth, with pointer-driven parallax on card content",
+    "Reduced 3D intensity on tablet, mobile and Firefox"
+  ],
+  "props": [
+    {"name": "items", "type": "{title,kicker,text,btnText,bgUrl}[]", "default": "5 sample items"},
+    {"name": "transitionMs", "type": "number", "default": 900},
+    {"name": "interval", "type": "number", "default": 5000},
+    {"name": "gap", "type": "number", "default": 56},
+    {"name": "peek", "type": "number", "default": 0.15},
+    {"name": "rotateY", "type": "number", "default": 24},
+    {"name": "zDepth", "type": "number", "default": 250},
+    {"name": "scaleDrop", "type": "number", "default": 0.14},
+    {"name": "blurMax", "type": "number", "default": 5.0},
+    {"name": "activeLeftBias", "type": "number", "default": 0.0},
+    {"name": "keyboard", "type": "boolean", "default": true},
+    {"name": "prevLabel", "type": "string", "default": "PREV"},
+    {"name": "nextLabel", "type": "string", "default": "NEXT"},
+    {"name": "backgroundColor", "type": "string", "default": "#070708"},
+    {"name": "cardColor", "type": "string", "default": "#111112"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "mutedColor", "type": "string", "default": "#a3a3a3"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides, all text, button labels and images",
+    "Autoplay interval, transition time, 3D depth, rotation, scale, blur and spacing",
+    "Background, card and text colors, keyboard control"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change card counter number or corner marks", "where": "mza-card block"},
+    {"change": "Change responsive 3D values", "where": "renderFrame function"}
+  ],
+  "fixed": [
+    "Root is full viewport height",
+    "Arrow key listener on window is removed on unmount",
+    "Card image opacity and grayscale hover effect are fixed"
+  ],
+  "mood": ["dark", "editorial", "cinematic", "minimal", "futuristic"],
+  "industries": ["architecture", "design studio", "agency", "portfolio", "fintech", "technology"],
+  "sections": ["hero", "portfolio", "gallery"],
+  "dependencies": []
+}

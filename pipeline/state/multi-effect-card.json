@@ -4,11 +4,12 @@
   "sourceHash": "229df7dc006c70dfeb9937dba25072459b99334e5a1888cc0b7856cdcb4b87c2",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "multi-effect-card",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.500Z"
+  "note": "gates passed. Frame added (h-screen flex-col); card may exceed short viewports, override with !h-auto. next/font/google Space_Mono kept (Next.js only, in fixed). Dotted bg and backgroundColor kept. No variants.",
+  "updatedAt": "2026-11-01T09:59:12.807Z",
+  "gateOutput": "gates passed"
 }

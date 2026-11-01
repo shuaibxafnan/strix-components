@@ -4,11 +4,12 @@
   "sourceHash": "552b0eeab773241cecc008f20e92325e636bea34a57bb8d94097d799b3e20e26",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "marquee-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.493Z"
+  "note": "gates passed. Source already clean; no frame change. Default fontFamily Sofia Pro, no font import (listed in fixed). No variants.",
+  "updatedAt": "2026-11-01T09:41:04.194Z",
+  "gateOutput": "gates passed"
 }

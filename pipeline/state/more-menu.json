@@ -4,11 +4,12 @@
   "sourceHash": "157bf89b5d81bc8e54afd5a0375374b006e10c1da4ba658780b72933c3ed9ebd",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "more-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.497Z"
+  "note": "gates passed. Frame added as root with inner relative inline-block div kept for dropdown positioning (extra div vs frame rule). className and ariaLabel props added; duplicate width keys removed. No variants.",
+  "updatedAt": "2026-11-01T09:52:51.274Z",
+  "gateOutput": "gates passed"
 }

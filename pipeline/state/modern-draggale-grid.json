@@ -4,11 +4,12 @@
   "sourceHash": "9d9211ebc2768a07eead4b8c01d682a7d441a6dded8ff2a31dccafcd5cf42792",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "draggable-sort-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.495Z"
+  "note": "Renamed modern-draggale-grid -> draggable-sort-grid. Header, dotted bg, demo backdrop, padding, unused isReady removed. items prop (was initialItems), color props, className added. Frame added. Responsive fix via ResizeObserver; touchAction none. Unmount kills Draggables and tweens. Items beyond cols*rows hidden; labels must be unique. No variants.",
+  "updatedAt": "2026-11-01T09:48:46.484Z",
+  "gateOutput": "gates passed"
 }

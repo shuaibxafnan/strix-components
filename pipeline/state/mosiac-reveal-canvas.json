@@ -4,11 +4,12 @@
   "sourceHash": "873651764f6e133fd28511d72d4d3156b9dd7f0f4e3a7ace0182183a88e77265",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "mosaic-reveal-canvas",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.497Z"
+  "note": "Renamed mosiac-reveal-canvas -> mosaic-reveal-canvas (typo). gsap via dynamic import; console.error catch, unused useId and containerRef removed; className added. cursor-effects. No frame change, no variants.",
+  "updatedAt": "2026-11-01T09:54:55.321Z",
+  "gateOutput": "gates passed"
 }

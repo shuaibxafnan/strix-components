@@ -1,0 +1,59 @@
+{
+  "slug": "make-way-grid",
+  "name": "Make Way Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Dense grid of image tiles where clicking a tile scales it up while neighboring tiles are pushed away to make room. Includes an intro paragraph, a title and a view more link.",
+  "contents": [
+    "Intro paragraph and small title above the grid",
+    "Grid of image tiles built by cycling an image list",
+    "View more text button below the grid"
+  ],
+  "behavior": [
+    "Clicking a tile scales it up and pushes other tiles away by distance, clicking again restores the grid",
+    "Optional skew and random rotation on neighbors",
+    "Grid fades in after images and GSAP have loaded",
+    "Mobile uses fewer columns below 53em"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "25 sample image urls"},
+    {"name": "itemCount", "type": "number", "default": 39},
+    {"name": "columns", "type": "number", "default": 13},
+    {"name": "columnsMobile", "type": "number", "default": 4},
+    {"name": "gap", "type": "string", "default": "1rem"},
+    {"name": "width", "type": "string", "default": "92%"},
+    {"name": "aspectRatio", "type": "string", "default": "1 / 1.25"},
+    {"name": "duration", "type": "number", "default": 0.7},
+    {"name": "ease", "type": "string", "default": "expo"},
+    {"name": "scale", "type": "number", "default": 2},
+    {"name": "skew", "type": "number", "default": 0},
+    {"name": "maxRotation", "type": "number", "default": 0},
+    {"name": "spread", "type": "number", "default": 80},
+    {"name": "maxDistance", "type": "number", "default": 500},
+    {"name": "bgColor", "type": "string", "default": "#ededed"},
+    {"name": "textColor", "type": "string", "default": "#000"},
+    {"name": "title", "type": "string", "default": "Early years"},
+    {"name": "intro", "type": "string", "default": "Marlowe Chastain Verrow was a coastal-born writer, essayist and occasional printmaker whose work circled the same few streets for forty years."},
+    {"name": "showMore", "type": "boolean", "default": true},
+    {"name": "moreLabel", "type": "string", "default": "view more"},
+    {"name": "onMore", "type": "function", "default": "undefined"},
+    {"name": "showLoader", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, tile count, columns, gap, width and aspect ratio",
+    "Expand scale, spread, skew, rotation, duration and ease",
+    "Intro, title, button label and click handler, colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the breakpoint where columns switch", "where": "gridStyles string with the min-width:53em media query"},
+    {"change": "Change how neighbor z-index is ordered", "where": "zIndex calculation inside the expand function"}
+  ],
+  "fixed": [
+    "Images are not shown until all tiles preload or 4 seconds pass when showLoader is on"
+  ],
+  "mood": ["editorial", "minimal", "playful"],
+  "industries": ["photography", "publishing", "art", "portfolio", "culture"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

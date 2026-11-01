@@ -1,0 +1,41 @@
+{
+  "slug": "morphing-switch",
+  "name": "Morphing Switch",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Small toggle switch whose round knob stretches, recoils and settles with an elastic path morph when clicked, and swells slightly on hover. Track color changes with state.",
+  "contents": ["Pill-shaped track with an SVG knob and a hidden checkbox input"],
+  "behavior": [
+    "Knob path morphs through stretch, recoil and elastic settle on click using GSAP",
+    "Knob swells slightly and track color shifts on hover",
+    "Clicks are ignored while the animation runs or before GSAP has loaded",
+    "Calls onChange with the new checked state when the animation completes"
+  ],
+  "props": [
+    { "name": "defaultChecked", "type": "boolean", "default": false },
+    { "name": "onChange", "type": "(checked: boolean) => void", "default": null },
+    { "name": "colorDefault", "type": "string", "default": "#D1D6EE" },
+    { "name": "colorHover", "type": "string", "default": "#CACFE6" },
+    { "name": "colorActive", "type": "string", "default": "#275EFE" },
+    { "name": "colorDot", "type": "string", "default": "#ffffff" },
+    { "name": "scaleDuration", "type": "number", "default": 0.15 },
+    { "name": "settleDuration", "type": "number", "default": 0.5 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Track colors for idle, hover and active states and knob color",
+    "Initial checked state and change callback",
+    "Morph and settle animation durations"
+  ],
+  "needsCodeEdit": [
+    { "change": "Switch size", "where": "w-10 h-[22px] on the label element" },
+    { "change": "Knob morph shapes", "where": "paths constant" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto."
+  ],
+  "mood": ["playful", "tactile", "minimal", "smooth"],
+  "industries": ["saas", "apps", "settings panels", "ecommerce", "dashboards"],
+  "sections": ["other"],
+  "dependencies": ["gsap"]
+}

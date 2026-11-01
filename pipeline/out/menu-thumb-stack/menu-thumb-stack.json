@@ -1,0 +1,256 @@
+{
+  "slug": "menu-thumb-stack",
+  "name": "Menu Thumb Stack",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-screen menu of large staggered labels that drift with the cursor. Hovering shows a glitching stack of thumbnails, clicking fans the images across the screen with a title and text.",
+  "contents": [
+    "Staggered list of large uppercase menu labels",
+    "Hidden thumbnail stack per item revealed on hover",
+    "Detail view per item with split-character title, paragraph and close button",
+    "Animated film grain overlay"
+  ],
+  "behavior": [
+    "Menu labels and thumbnail stacks drift toward the cursor with eased motion",
+    "Hover shows the first thumbnails with a short glitch flicker",
+    "Click scatters the item's images in a row with rotation and expo easing while menu characters fly out",
+    "Title characters spread in from the center and text slides up",
+    "Hovering the close button glitches the images, click reverses the animation",
+    "GSAP is loaded on demand"
+  ],
+  "props": [
+    {
+      "name": "items",
+      "type": "{label,title,text,images:string[]}[]",
+      "default": "6 sample poems with 7 images each"
+    },
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#101010"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#6d6d6d"
+    },
+    {
+      "name": "menuColor",
+      "type": "string",
+      "default": "#e84e77"
+    },
+    {
+      "name": "menuHoverColor",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "contentColor",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "fontStyle",
+      "type": "string",
+      "default": "italic"
+    },
+    {
+      "name": "hoverImageCount",
+      "type": "number",
+      "default": 3
+    },
+    {
+      "name": "openImageScale",
+      "type": "number",
+      "default": 0.9
+    },
+    {
+      "name": "openPadding",
+      "type": "number",
+      "default": 60
+    },
+    {
+      "name": "letterSpacing",
+      "type": "string",
+      "default": "-0.01em"
+    },
+    {
+      "name": "fontFamily",
+      "type": "string",
+      "default": "Epilogue, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+    },
+    {
+      "name": "loadGoogleFonts",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "menuFontSize",
+      "type": "string",
+      "default": "clamp(2rem, 5.2vw, 5rem)"
+    },
+    {
+      "name": "menuFontWeight",
+      "type": "number",
+      "default": 300
+    },
+    {
+      "name": "titleFontWeight",
+      "type": "number",
+      "default": 300
+    },
+    {
+      "name": "menuGap",
+      "type": "string",
+      "default": "0.9rem"
+    },
+    {
+      "name": "titleFontSize",
+      "type": "string",
+      "default": "clamp(2.5rem, 7vw, 6.5rem)"
+    },
+    {
+      "name": "menuOffsets",
+      "type": "string[]",
+      "default": [
+        "0vw",
+        "-6vw",
+        "-9vw",
+        "10vw",
+        "-6vw",
+        "0vw"
+      ]
+    },
+    {
+      "name": "stackGap",
+      "type": "string",
+      "default": "5vh"
+    },
+    {
+      "name": "stackImageWidth",
+      "type": "string",
+      "default": "clamp(180px, 20vw, 300px)"
+    },
+    {
+      "name": "stackImageHeight",
+      "type": "string",
+      "default": "clamp(240px, 26vw, 400px)"
+    },
+    {
+      "name": "stackOpacity",
+      "type": "number",
+      "default": 0.5
+    },
+    {
+      "name": "imageGap",
+      "type": "number",
+      "default": 40
+    },
+    {
+      "name": "imageRise",
+      "type": "number",
+      "default": 35
+    },
+    {
+      "name": "openDuration",
+      "type": "number",
+      "default": 1.6
+    },
+    {
+      "name": "closeDuration",
+      "type": "number",
+      "default": 1.4
+    },
+    {
+      "name": "charSpread",
+      "type": "number",
+      "default": 17
+    },
+    {
+      "name": "itemDrift",
+      "type": "number",
+      "default": 10
+    },
+    {
+      "name": "stackDriftX",
+      "type": "number",
+      "default": 50
+    },
+    {
+      "name": "stackDriftY",
+      "type": "number",
+      "default": 100
+    },
+    {
+      "name": "driftEase",
+      "type": "number",
+      "default": 0.07
+    },
+    {
+      "name": "hoverDelay",
+      "type": "number",
+      "default": 125
+    },
+    {
+      "name": "showGrain",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "grainOpacity",
+      "type": "number",
+      "default": 0.35
+    },
+    {
+      "name": "closeLabel",
+      "type": "string",
+      "default": "Close"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Menu items, labels, titles, text and image lists",
+    "Background, text, menu, hover and title colors",
+    "Font family, sizes, weights, offsets and spacing",
+    "Animation durations, drift strength, image layout and grain"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the glitch flicker sequence on hover",
+      "where": "glitchIn function"
+    },
+    {
+      "change": "Change the grain texture or animation",
+      "where": "grainUrl constant and scopedCss"
+    }
+  ],
+  "fixed": [
+    "Hover glitch preview needs a mouse; touch opens items by tap",
+    "Window mousemove listener is added while mounted and removed on unmount",
+    "Root fills the viewport height"
+  ],
+  "mood": [
+    "editorial",
+    "moody",
+    "artistic",
+    "dynamic"
+  ],
+  "industries": [
+    "fashion",
+    "photography",
+    "art gallery",
+    "music",
+    "creative agency"
+  ],
+  "sections": [
+    "hero",
+    "portfolio"
+  ],
+  "dependencies": [
+    "gsap"
+  ]
+}

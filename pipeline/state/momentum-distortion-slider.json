@@ -4,11 +4,12 @@
   "sourceHash": "38976bf2afea376da63a650527e20707c798fb4e2c99ad877aef42ea0c80c691",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "momentum-distortion-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.495Z"
+  "note": "Index label min size 10px for mobile. Preloader, particles, hint kept. Wheel capture and touch-move preventDefault in fixed. Small portrait screens crop slide. No frame change, no variants.",
+  "updatedAt": "2026-11-01T09:50:37.118Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,76 @@
+{
+  "slug": "marquee-menu",
+  "name": "Marquee Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-screen list of large outlined menu links on a grainy background. Hovering a link fades its outline and reveals a scrolling marquee of its name plus a tilted preview image.",
+  "contents": [
+    "Vertical list of oversized outline-text links with numbered counters",
+    "Per-link scrolling marquee text and hover preview image",
+    "Animated film grain overlay"
+  ],
+  "behavior": [
+    "Hover or keyboard focus fades the link outline to transparent",
+    "Marquee of repeated text runs across the row with a blend mode while hovered",
+    "Preview image fades in, rotates slightly and settles beside the link",
+    "Grain overlay jitters continuously with stepped animation",
+    "Animations are disabled under prefers-reduced-motion"
+  ],
+  "props": [
+    { "name": "items", "type": "{label,marquee,image,href}[]", "default": "5 sample items" },
+    { "name": "bgColor", "type": "string", "default": "#f8ecde" },
+    { "name": "textColor", "type": "string", "default": "#111" },
+    { "name": "strokeColor", "type": "string", "default": "#000" },
+    { "name": "strokeWidth", "type": "number", "default": 1.5 },
+    { "name": "fontFamily", "type": "string", "default": "'Sofia Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif" },
+    { "name": "itemFontSize", "type": "string", "default": "10vw" },
+    { "name": "itemFontWeight", "type": "number", "default": 900 },
+    { "name": "menuPaddingTop", "type": "string", "default": "10vh" },
+    { "name": "menuPaddingBottom", "type": "string", "default": "25vh" },
+    { "name": "itemPaddingX", "type": "string", "default": "5vw" },
+    { "name": "marqueeWidth", "type": "string", "default": "100vw" },
+    { "name": "marqueeOffset", "type": "string", "default": "20vw" },
+    { "name": "marqueeDuration", "type": "number", "default": 5 },
+    { "name": "marqueeRepeat", "type": "number", "default": 4 },
+    { "name": "marqueeItalic", "type": "boolean", "default": true },
+    { "name": "marqueeBlendMode", "type": "string", "default": "color-burn" },
+    { "name": "linkFadeDuration", "type": "number", "default": 0.1 },
+    { "name": "linkResetDuration", "type": "number", "default": 0.4 },
+    { "name": "imageHeight", "type": "string", "default": "50vh" },
+    { "name": "imageMaxHeight", "type": "string", "default": "400px" },
+    { "name": "imageOffsetX", "type": "string", "default": "6vw" },
+    { "name": "imageRotation", "type": "number", "default": 4 },
+    { "name": "imageTransition", "type": "number", "default": 0.4 },
+    { "name": "showCounter", "type": "boolean", "default": true },
+    { "name": "counterFontSize", "type": "string", "default": "1rem" },
+    { "name": "showGrain", "type": "boolean", "default": true },
+    { "name": "grainOpacity", "type": "number", "default": 0.6 },
+    { "name": "grainDuration", "type": "number", "default": 8 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Link labels, marquee text, hrefs, preview images and number of items",
+    "Colors, stroke, font, sizes and spacing",
+    "Marquee speed, repeat, blend mode and italics",
+    "Image size, offset, rotation and transition",
+    "Counter and grain toggles and intensity"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the grain texture",
+      "where": "GRAIN_URI constant"
+    },
+    {
+      "change": "Change the grain jitter path",
+      "where": "@keyframes grain block inside the css template"
+    }
+  ],
+  "fixed": [
+    "Font family is a prop but no font file is loaded, the host page must provide it",
+    "Root is at least full viewport height with large bottom padding"
+  ],
+  "mood": ["bold", "editorial", "playful", "retro"],
+  "industries": ["creative agency", "film production", "portfolio", "design studio", "fashion"],
+  "sections": ["navbar", "hero"],
+  "dependencies": []
+}

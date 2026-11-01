@@ -4,11 +4,12 @@
   "sourceHash": "380d6ba7ca1c8e8063cd801a89f2c892d988393ef3d99a870df53b2b14f0725d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "mirror-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.494Z"
+  "note": "gates passed. layout prop renamed variant (horizontal, vertical). gsap via dynamic import; load-failure fallback dropped; unmount kills tweens. No frame change.",
+  "updatedAt": "2026-11-01T09:46:46.999Z",
+  "gateOutput": "gates passed"
 }

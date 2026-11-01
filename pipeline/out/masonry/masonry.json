@@ -1,0 +1,85 @@
+{
+    "slug": "masonry",
+    "name": "Masonry",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Responsive masonry image grid with spring-based reveal animation, drag-to-reorder, hover effects, captions and an animated fullscreen lightbox with keyboard navigation.",
+    "contents": [
+        "Absolutely positioned image tiles laid out in shortest-column masonry order",
+        "Optional title and description captions over each image",
+        "Fullscreen lightbox with backdrop, close, previous and next buttons, and caption with Open link"
+    ],
+    "behavior": [
+        "Columns computed from container width, either a fixed count or auto from columnWidth",
+        "Tiles reveal with a spring animation from a chosen direction, optionally with blur-to-focus, staggered, on scroll into view",
+        "Hover effects: zoom, lift, tilt toward the pointer, or none; optional dimming of other tiles on hover",
+        "Mouse users can drag tiles to reorder; layout reflows live and onReorder fires on drop",
+        "Optional parallax shift of images while scrolling",
+        "Clicking a tile opens a lightbox that animates from the tile; Escape closes, arrow keys step",
+        "Removed items animate out as ghosts; reduced-motion preference disables animation",
+        "Images without a height are measured by preloading, with a 2.5s fallback"
+    ],
+    "props": [
+        { "name": "items", "type": "{id,img,url?,title?,description?,alt?,width?,height?,span?}[]", "default": [] },
+        { "name": "columns", "type": "'auto' | number", "default": "auto" },
+        { "name": "columnWidth", "type": "number", "default": 240 },
+        { "name": "gap", "type": "number", "default": 12 },
+        { "name": "radius", "type": "number", "default": 12 },
+        { "name": "animateFrom", "type": "'bottom' | 'top' | 'left' | 'right' | 'center' | 'random' | 'none'", "default": "bottom" },
+        { "name": "stagger", "type": "number", "default": 0.05 },
+        { "name": "duration", "type": "number", "default": 0.6 },
+        { "name": "bounce", "type": "number", "default": 0.15 },
+        { "name": "blurToFocus", "type": "boolean", "default": true },
+        { "name": "revealOnScroll", "type": "boolean", "default": true },
+        { "name": "hoverEffect", "type": "'zoom' | 'lift' | 'tilt' | 'none'", "default": "zoom" },
+        { "name": "focusOnHover", "type": "boolean", "default": false },
+        { "name": "captions", "type": "'hover' | 'always' | 'none'", "default": "hover" },
+        { "name": "parallax", "type": "number", "default": 0 },
+        { "name": "lightbox", "type": "boolean", "default": true },
+        { "name": "draggable", "type": "boolean", "default": true },
+        { "name": "onItemClick", "type": "(item, index, event) => void", "default": "undefined" },
+        { "name": "onReorder", "type": "(items) => void", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Images, links, titles, descriptions, alt text, sizes and column spans through items",
+        "Column count or auto column width, gap and corner radius",
+        "Reveal direction, stagger, duration, bounce and blur",
+        "Hover effect, focus dimming, caption mode and parallax strength",
+        "Lightbox and drag-to-reorder toggles, click and reorder callbacks"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change lightbox backdrop color or controls styling",
+            "where": "BOX_BACKDROP, BOX_CLOSE, BOX_PREV and BOX_NEXT constants"
+        },
+        {
+            "change": "Change caption gradient or text styles",
+            "where": "CAPTION, TITLE and TEXT constants"
+        },
+        {
+            "change": "Change lightbox Open link label or aria labels",
+            "where": "The lightbox block inside createPortal, text 'Open', 'Close', 'Previous', 'Next'"
+        },
+        {
+            "change": "Change tilt strength",
+            "where": "onTilt function (the multiplier 10)"
+        }
+    ],
+    "fixed": [
+        "Default items is an empty array, so nothing renders until items are passed",
+        "Requires the packages @hugeicons/react and @hugeicons/core-free-icons for lightbox icons",
+        "Root height is set by JS from the layout, and width follows the parent, which must have a defined width",
+        "Lightbox renders in a portal on document.body at z-index 1000 and sets overflow hidden on the html element while open, restoring it on close",
+        "Adds window pointer listeners during drag and scroll or resize listeners for parallax, and removes them on cleanup",
+        "Dragging is disabled for touch pointers, and tap opens the lightbox instead",
+        "Hover effects and hover captions need a pointer, and on touch the hover caption mode stays hidden, so use captions always for touch",
+        "Lightbox uses hardcoded padding of 72px, or 16px below 640px viewport width",
+        "Needs a browser environment: uses ResizeObserver, IntersectionObserver and Web Animations API"
+    ],
+    "mood": ["modern", "playful", "polished", "interactive"],
+    "industries": ["photography", "design agency", "e-commerce", "art", "travel", "architecture"],
+    "sections": ["gallery", "portfolio"],
+    "dependencies": ["react", "react-dom", "@hugeicons/react", "@hugeicons/core-free-icons"]
+}

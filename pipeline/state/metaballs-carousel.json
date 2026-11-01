@@ -4,11 +4,12 @@
   "sourceHash": "af8ec41dce2dbc682d132074fbe079351ccd5168cc73de11a5c1b8167c057397",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "metaballs-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.494Z"
+  "note": "gates passed. three via dynamic import (threeUrl prop removed); unused useId removed; heightClass prop removed, root h-screen with className. Wheel capture listed in fixed. No variants.",
+  "updatedAt": "2026-11-01T09:44:36.606Z",
+  "gateOutput": "gates passed"
 }

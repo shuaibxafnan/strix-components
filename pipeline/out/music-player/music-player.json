@@ -1,0 +1,55 @@
+{
+    "slug": "music-player",
+    "name": "Music Player",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Compact album-art music player card with sliding covers, scrubbable progress bar, transport controls, animated equalizer bars and a slide-up queue panel.",
+    "contents": [
+        "Cover carousel with track title, artist and track counter",
+        "Progress bar with elapsed and total time",
+        "Previous, play/pause and next buttons",
+        "Slide-up queue list with cover, title, artist and duration"
+    ],
+    "behavior": [
+        "Plays audio from each song's audio URL with autoplay to the next track",
+        "Covers slide horizontally when the track changes",
+        "Progress bar can be clicked or dragged to seek",
+        "Equalizer bars animate while playing",
+        "Queue panel slides up over the card from the list button"
+    ],
+    "props": [
+        {"name": "songs", "type": "{songName,artist,cover,audio,duration}[]", "default": "3 sample songs"},
+        {"name": "accentColor", "type": "string", "default": "#ffffff"},
+        {"name": "cardBg", "type": "string", "default": "#0a0a0a"},
+        {"name": "playlistBg", "type": "string", "default": "#141414"},
+        {"name": "borderRadius", "type": "string", "default": "20px"},
+        {"name": "animDuration", "type": "string", "default": "0.7s"},
+        {"name": "queueLabel", "type": "string", "default": "Queue"},
+        {"name": "playLabel", "type": "string", "default": "Play"},
+        {"name": "pauseLabel", "type": "string", "default": "Pause"},
+        {"name": "previousLabel", "type": "string", "default": "Previous track"},
+        {"name": "nextLabel", "type": "string", "default": "Next track"},
+        {"name": "showPlaylistLabel", "type": "string", "default": "Show playlist"},
+        {"name": "showNowPlayingLabel", "type": "string", "default": "Show now playing"},
+        {"name": "closePlaylistLabel", "type": "string", "default": "Close playlist"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Songs, covers, audio sources, titles, artists and durations",
+        "Accent, card and queue colors, corner radius, slide duration",
+        "All button and panel labels"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change card width or cover height", "where": "w-[340px] card wrapper and h-[300px] cover block"},
+        {"change": "Change equalizer bar heights", "where": "WAVE_HEIGHTS constant"}
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Uses Bricolage Grotesque and Inter through next/font/google, so it requires Next.js",
+        "Text and control tints are fixed white-on-dark"
+    ],
+    "mood": ["modern", "sleek", "dark", "minimal"],
+    "industries": ["music", "entertainment", "podcast", "media", "portfolio"],
+    "sections": ["other"],
+    "dependencies": []
+}

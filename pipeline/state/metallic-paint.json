@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "metallic-paint",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.588Z"
+  "note": "gates passed. backgrounds-3d. No deps, no variants. Needs WebGL2 and imageSrc or text; root h-full w-full; remote images need CORS; honors reduced motion.",
+  "updatedAt": "2026-11-01T09:45:10.150Z",
+  "gateOutput": "gates passed"
 }

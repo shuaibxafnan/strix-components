@@ -4,11 +4,12 @@
   "sourceHash": "d1fb26f9758ead8a55b75054b99abf6c41f4a291380bc3cafe7ed468ce6a8ba5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "news-ticker",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.503Z"
+  "note": "gates passed. bg-white demo background removed; darkColor renamed color; item href default; className added; reset timeout cleared on unmount. dangerouslySetInnerHTML kept for headlines. No variants.",
+  "updatedAt": "2026-11-01T10:05:35.139Z",
+  "gateOutput": "gates passed"
 }

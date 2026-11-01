@@ -1,0 +1,64 @@
+{
+  "slug": "depth-scan-reveal",
+  "name": "Depth Scan Reveal",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen WebGPU image with a depth-map driven scanning grid of crosses that sweeps through the scene with bloom, pointer parallax and an animated uppercase title over it.",
+  "contents": [
+    "Full-viewport WebGPU canvas showing an image with a depth map",
+    "Animated title split by word and a subtitle overlay",
+    "Loading screen with pulsing dot"
+  ],
+  "behavior": [
+    "A looping scan line reveals a tiled cross pattern along the depth map",
+    "Image shifts with pointer position based on depth",
+    "Bloom post-processing on bright areas",
+    "Loader fades out when textures load, then title words drop in and subtitle rises"
+  ],
+  "props": [
+    {"name": "textureSrc", "type": "string", "default": "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/dungeon.png"},
+    {"name": "depthSrc", "type": "string", "default": "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/dungeon-depth.png"},
+    {"name": "planeWidth", "type": "number", "default": 1226},
+    {"name": "planeHeight", "type": "number", "default": 650},
+    {"name": "distortionStrength", "type": "number", "default": 0.01},
+    {"name": "baseDim", "type": "number", "default": 0.5},
+    {"name": "tiling", "type": "number", "default": 50},
+    {"name": "crossWidth", "type": "number", "default": 0.3},
+    {"name": "crossThickness", "type": "number", "default": 0.02},
+    {"name": "crossRadius", "type": "number", "default": 0},
+    {"name": "scanTarget", "type": "number", "default": 0.9},
+    {"name": "scanDuration", "type": "number", "default": 3},
+    {"name": "maskColor", "type": "number[]", "default": [10, 10, 10]},
+    {"name": "bloomStrength", "type": "number", "default": 0.3},
+    {"name": "bloomThreshold", "type": "number", "default": 1},
+    {"name": "bloomRadius", "type": "number", "default": 0.5},
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "loaderBgColor", "type": "string", "default": "#6b7280"},
+    {"name": "loaderDotColor", "type": "string", "default": "#fff"},
+    {"name": "title", "type": "string", "default": "Embrace Nature's Rhythm"},
+    {"name": "titleSizeClassName", "type": "string", "default": "text-xl md:text-4xl xl:text-6xl 2xl:text-7xl"},
+    {"name": "subtitleLines", "type": "string[]", "default": ["where one endless road leads to an uncertain future."]},
+    {"name": "titleTextColor", "type": "string", "default": "#fff"},
+    {"name": "descTextColor", "type": "string", "default": "#fff"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Image and depth map sources, title and subtitle text",
+    "Scan pattern size, speed and mask color, bloom, parallax strength",
+    "Background, loader and text colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the title font", "where": "tomorrow constant"},
+    {"change": "Change the title and subtitle entrance animation", "where": "useGSAP timeline in DepthScanReveal"}
+  ],
+  "fixed": [
+    "Requires a WebGPU capable browser",
+    "Needs a depth map image matching the main image",
+    "Loading overlay is fixed full screen until textures load",
+    "Uses the Tomorrow font through next/font/google, so it needs Next.js"
+  ],
+  "mood": ["cinematic", "futuristic", "dark", "dramatic"],
+  "industries": ["gaming", "film", "technology", "travel", "art"],
+  "sections": ["hero", "background"],
+  "dependencies": ["@react-three/fiber", "@react-three/drei", "three", "gsap", "@gsap/react", "next"]
+}

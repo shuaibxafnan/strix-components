@@ -1,0 +1,49 @@
+{
+  "slug": "draggable-sort-grid",
+  "name": "Draggable Sort Grid",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Grid of labeled cards that can be dragged to reorder, with neighboring cards sliding into place and numbered badges updating live. Dragged cards lift with a shadow and accent border.",
+  "contents": [
+    "Grid of draggable cards, each with an order badge, grip dots and a label"
+  ],
+  "behavior": [
+    "Cards are dragged with GSAP Draggable and snap to grid cells",
+    "Other cards animate to new cells as the dragged card crosses cells",
+    "Order badges renumber during the drag",
+    "Dragged card scales up with a deeper shadow and accent border",
+    "Card size shrinks to fit narrow screens and the grid rebuilds on resize"
+  ],
+  "props": [
+    {"name": "items", "type": "string[]", "default": ["Alpha","Bravo","Charlie","Delta","Echo","Foxtrot","Gulf","Hotel","India"]},
+    {"name": "cols", "type": "number", "default": 3},
+    {"name": "rows", "type": "number", "default": 3},
+    {"name": "colGap", "type": "number", "default": 16},
+    {"name": "rowGap", "type": "number", "default": 16},
+    {"name": "itemWidth", "type": "number", "default": 240},
+    {"name": "itemHeight", "type": "number", "default": 140},
+    {"name": "cardColor", "type": "string", "default": "#13151a"},
+    {"name": "borderColor", "type": "string", "default": "#27272a"},
+    {"name": "textColor", "type": "string", "default": "#d4d4d8"},
+    {"name": "mutedColor", "type": "string", "default": "#71717a"},
+    {"name": "accentColor", "type": "string", "default": "#a855f7"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Card labels, grid columns, rows, gaps and card size",
+    "Card, border, text, muted and accent colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change drag lift effect", "where": "interactionAnim tween in createSortable"},
+    {"change": "Change card layout contents", "where": "item-card-ui block"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Items beyond cols times rows are not shown",
+    "Item labels must be unique because they are used as keys"
+  ],
+  "mood": ["modern", "dark", "interactive", "minimal"],
+  "industries": ["saas", "productivity", "design tools", "dashboards"],
+  "sections": ["features", "other"],
+  "dependencies": ["gsap"]
+}
