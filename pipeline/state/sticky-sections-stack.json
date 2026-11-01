@@ -4,11 +4,12 @@
   "sourceHash": "fd480e95d5496007cf8be047c60f550c9926bd950c6e7c391e9d9bba6e17c89b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sticky-sections-stack",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.563Z"
+  "note": "Rewritten to template. CDN loader replaced with dynamic imports of gsap, ScrollTrigger, lenis; lenisUrl, fontFamily, fontFaces props removed; hero header and outro copy removed as demo copy; className prop and item.alt added. Gates passed; warning: image-preload once listeners have no removeEventListener. Open question: font rule conflict between hard rules and template section 1 item 5.",
+  "updatedAt": "2026-11-01T13:56:32.135Z",
+  "gateOutput": "WARN  addEventListener with once and no removeEventListener\ngates passed"
 }

@@ -1,0 +1,161 @@
+{
+  "slug": "sticky-sections-stack",
+  "name": "Sticky Sections Stack",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Stack of full-height cards that stick to the top while scrolling, each shrinking and lifting away as the next one arrives, with an image contrast fade and smooth scrolling.",
+  "contents": [
+    "Stack of sticky cards, each with counter, image, title with lead word and short text",
+    "Optional full-screen loader shown until images are ready"
+  ],
+  "behavior": [
+    "Cards stick near the top and scale down while moving up as the next card covers them",
+    "Card images fade from high contrast to normal while scrolling in",
+    "Smooth scrolling through Lenis, skipped when reduced motion is preferred",
+    "Loader fades out once all images have loaded"
+  ],
+  "props": [
+    {
+      "name": "sections",
+      "type": "{image,alt,titleLead,title,text,cardColor}[]",
+      "default": "6 sample cards"
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "default": "bg-black"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "text-white"
+    },
+    {
+      "name": "loaderColor",
+      "type": "string",
+      "default": "bg-white/60"
+    },
+    {
+      "name": "cardTop",
+      "type": "string",
+      "default": "top-[10vh]"
+    },
+    {
+      "name": "cardRadius",
+      "type": "string",
+      "default": "rounded-md"
+    },
+    {
+      "name": "imageSize",
+      "type": "string",
+      "default": "h-[50%]"
+    },
+    {
+      "name": "scrollStart",
+      "type": "string",
+      "default": "center center"
+    },
+    {
+      "name": "stackScrollLength",
+      "type": "string",
+      "default": "max"
+    },
+    {
+      "name": "scaleTo",
+      "type": "number",
+      "default": 0.4
+    },
+    {
+      "name": "stackYPercent",
+      "type": "number",
+      "default": -50
+    },
+    {
+      "name": "imageFromContrast",
+      "type": "number",
+      "default": 400
+    },
+    {
+      "name": "imageToContrast",
+      "type": "number",
+      "default": 100
+    },
+    {
+      "name": "imageScrollStart",
+      "type": "string",
+      "default": "top bottom"
+    },
+    {
+      "name": "imageScrollEnd",
+      "type": "string",
+      "default": "max"
+    },
+    {
+      "name": "smoothScroll",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "lerp",
+      "type": "number",
+      "default": 0.2
+    },
+    {
+      "name": "smoothWheel",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showLoader",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Number of cards, images, titles, text and card colors",
+    "Background, text and loader colors",
+    "Card position, radius and image size",
+    "Scale, lift and contrast values and scroll ranges",
+    "Smooth scroll on or off and its smoothing"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the card layout or add a button",
+      "where": "data-panel div inside sections.map"
+    },
+    {
+      "change": "Change the stacking animation",
+      "where": "gsap.context block inside the useEffect"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+    "Loader covers the whole viewport until images load",
+    "Cards are 80vh tall and stick in place, which needs the page to scroll past them"
+  ],
+  "mood": [
+    "bold",
+    "modern",
+    "dark",
+    "editorial"
+  ],
+  "industries": [
+    "agency",
+    "portfolio",
+    "technology",
+    "storytelling"
+  ],
+  "sections": [
+    "features",
+    "portfolio"
+  ],
+  "dependencies": [
+    "gsap",
+    "lenis"
+  ]
+}
