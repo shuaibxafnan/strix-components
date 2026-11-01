@@ -4,11 +4,12 @@
   "sourceHash": "30abdbb10f52c79965c0e59b93dab903329998eb01842e0e9683e07e32ff0896",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sticky-sections-fling",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.562Z"
+  "note": "CDN gsap/ScrollTrigger/Lenis -> npm dynamic imports; Lenis required, no fallback. Removed lenisUrl, DM Sans @font-face and fontFamily/fontFaces props (ambiguous; conflicts with TEMPLATE 1.5). className added. No frame, no variants. Kept loader, hero, outro, reduced-motion check.",
+  "updatedAt": "2026-11-01T13:30:54.194Z",
+  "gateOutput": "WARN  addEventListener with once and no removeEventListener\ngates passed"
 }
