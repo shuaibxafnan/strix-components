@@ -1,0 +1,86 @@
+{
+    "slug": "pixel-transition",
+    "name": "Pixel Transition",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Card that swaps between two pieces of content through a canvas pixel grid that covers the first content and then reveals the second, triggered by hover, focus, click or an external active flag.",
+    "contents": [
+        "Focusable 300px wide rounded card with two stacked content layers (first and second)",
+        "Canvas overlay that draws the pixel grid transition"
+    ],
+    "behavior": [
+        "Pixels cover the first content during the first half and uncover the second content during the second half",
+        "Hover trigger plays on pointer enter and reverses on leave; keyboard focus-visible also triggers it",
+        "Click trigger toggles on click, Enter or Space; touch devices always toggle on tap",
+        "Can be controlled through active and onActiveChange",
+        "Transition origin follows the pointer entry point for ripple and wipe patterns",
+        "Respects prefers-reduced-motion by skipping the animation steps"
+    ],
+    "props": [
+        { "name": "firstContent", "type": "ReactNode", "default": null },
+        { "name": "secondContent", "type": "ReactNode", "default": null },
+        { "name": "gridSize", "type": "number", "default": 10 },
+        { "name": "pixelColor", "type": "string", "default": "#ffffff" },
+        { "name": "mosaic", "type": "number", "default": 0 },
+        { "name": "animationStepDuration", "type": "number", "default": 0.4 },
+        { "name": "pattern", "type": "'random' | 'dither' | 'ripple' | 'wipe'", "default": "random" },
+        { "name": "randomness", "type": "number", "default": 0.3 },
+        { "name": "pixelAnimation", "type": "'pop' | 'grow' | 'fade'", "default": "pop" },
+        { "name": "pixelShape", "type": "'square' | 'rounded' | 'circle'", "default": "square" },
+        { "name": "gap", "type": "number", "default": 0 },
+        { "name": "fps", "type": "number", "default": 0 },
+        { "name": "trigger", "type": "'hover' | 'click'", "default": "hover" },
+        { "name": "active", "type": "boolean", "default": null },
+        { "name": "once", "type": "boolean", "default": false },
+        { "name": "onActiveChange", "type": "(active: boolean) => void", "default": null },
+        { "name": "aspectRatio", "type": "string", "default": "100%" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "CSSProperties", "default": null }
+    ],
+    "editableByProps": [
+        "Both content layers",
+        "Grid density (2 to 80), pixel color, mosaic tone variation, gap between pixels",
+        "Pixel animation (pop, grow, fade) and pixel shape (square, rounded, circle)",
+        "Speed, randomness of the wipe and ripple, frame rate cap",
+        "Hover or click trigger, controlled mode, one-way mode",
+        "Aspect ratio, extra classes and inline style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the card width or corner radius",
+            "where": "ROOT constant"
+        },
+        {
+            "change": "Add more transition patterns",
+            "where": "PATTERNS constant and the delay calculation inside draw"
+        },
+        {
+            "change": "Change how wide the per-pixel animation window is",
+            "where": "WINDOW constant"
+        }
+    ],
+    "fixed": [
+        "Card is a fixed 300px wide (max 100% of parent) with 16px rounded corners and overflow hidden",
+        "Root is focusable (tabIndex 0) and takes role button in click mode",
+        "Needs two content layers; both fill the card absolutely",
+        "Canvas resolution is capped at device pixel ratio 2",
+        "Hover and focus triggers ignore touch pointers; touch toggles on tap",
+        "Pixel overlay color is auto-darkened or lightened for mosaic tones",
+        "Unknown pattern, pixelAnimation or pixelShape values fall back to random, pop and square",
+        "Does not scale well to very small cards because the pixel grid is fixed by column count"
+    ],
+    "mood": ["playful", "techy", "retro", "dynamic"],
+    "industries": ["gaming", "creative agency", "portfolio", "e-commerce", "tech"],
+    "sections": ["portfolio", "features", "gallery"],
+    "dependencies": [],
+    "variants": {
+        "prop": "pattern",
+        "default": "random",
+        "options": [
+            { "value": "random", "look": "Pixels appear in random order across the card", "useWhen": "Product or team card that flips to a reveal image on hover" },
+            { "value": "dither", "look": "Ordered Bayer dither fill with a retro halftone feel", "useWhen": "Retro or game themed portfolio tiles" },
+            { "value": "ripple", "look": "Pixels spread outward from the pointer entry point", "useWhen": "Interactive gallery card where the reveal should follow the cursor" },
+            { "value": "wipe", "look": "Pixels sweep in from the edge nearest the pointer", "useWhen": "Before and after or feature cards that slide to alternate content" }
+        ]
+    }
+}
