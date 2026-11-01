@@ -1,0 +1,44 @@
+{
+  "slug": "neumorphic-wave-button",
+  "name": "Neumorphic Wave Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Round neumorphic icon button that presses into the surface on click while soft embossed ripple waves expand outward across the full colored background.",
+  "contents": [
+    "Centered round button with lightning bolt icon",
+    "Expanding double-ring neumorphic ripple waves"
+  ],
+  "behavior": [
+    "Click flips the button shadow from raised to inset and back, and fills the icon briefly",
+    "Each click spawns a ripple that grows, fades in then out, and is removed after its duration",
+    "Clicks are debounced for 700ms",
+    "Renders only after mount"
+  ],
+  "props": [
+    {"name": "baseColor", "type": "string", "default": "#55b9f3"},
+    {"name": "lightenColor", "type": "string", "default": "#62d5ff"},
+    {"name": "darkenColor", "type": "string", "default": "#489dcf"},
+    {"name": "iconColor", "type": "string", "default": "#c8deeb"},
+    {"name": "maxWaveSize", "type": "number", "default": 900},
+    {"name": "waveDuration", "type": "number", "default": 5000},
+    {"name": "onClick", "type": "function", "default": null},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Surface, highlight, shadow and icon colors",
+    "Ripple size and duration",
+    "Click handler"
+  ],
+  "needsCodeEdit": [
+    {"change": "Swap the lightning bolt icon", "where": "svg path inside the button"},
+    {"change": "Change button size", "where": "w-[40px] h-[40px] classes on the button"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Root paints baseColor as its background and clips overflow"
+  ],
+  "mood": ["soft", "tactile", "minimal", "playful"],
+  "industries": ["saas", "mobile apps", "smart home", "creative studios"],
+  "sections": ["cta", "hero"],
+  "dependencies": []
+}
