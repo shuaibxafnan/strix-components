@@ -1,0 +1,52 @@
+{
+  "slug": "holographic-card",
+  "name": "Holographic Card",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Image cards that tilt in 3D toward the pointer with a shifting holographic foil glow, dot pattern, and a soft light shine following the cursor.",
+  "contents": ["Row of image cards with a holographic glow layer and a shine layer"],
+  "behavior": [
+    "Card tilts in 3D following the pointer position",
+    "Image shifts slightly opposite the tilt for depth",
+    "Foil gradient and dot pattern move with the pointer and brighten on hover",
+    "Card eases back to center when the pointer leaves"
+  ],
+  "props": [
+    {"name": "backgroundColor", "type": "string", "default": "bg-black"},
+    {"name": "cards", "type": "{src,alt}[]", "default": "2 sample images"},
+    {"name": "cardWidth", "type": "string", "default": "50vmin"},
+    {"name": "cardMinWidth", "type": "string", "default": "280px"},
+    {"name": "cardAspect", "type": "string", "default": "3 / 4"},
+    {"name": "cardRadius", "type": "string", "default": "8px"},
+    {"name": "tiltXDeg", "type": "number", "default": 50},
+    {"name": "tiltYDeg", "type": "number", "default": 40},
+    {"name": "imgShiftPct", "type": "number", "default": 20},
+    {"name": "imgScale", "type": "number", "default": 1.2},
+    {"name": "glowColor1", "type": "string", "default": "#ffffff"},
+    {"name": "glowColor2", "type": "string", "default": "#a3a3a3"},
+    {"name": "glowOpacity", "type": "number", "default": 0.2},
+    {"name": "glowHoverOpacity", "type": "number", "default": 1},
+    {"name": "shineOpacity", "type": "number", "default": 0.5},
+    {"name": "patternSize", "type": "string", "default": "6%"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Number of cards, images and alt text",
+    "Card size, aspect ratio and corner radius",
+    "Tilt strength, image parallax and zoom",
+    "Glow colors, glow and shine intensity, dot pattern size",
+    "Background as a Tailwind background class"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the foil gradient angle or stops", "where": "background-image gradient in the first aria-hidden div"},
+    {"change": "Change the perspective depth", "where": "[perspective:100vmin] class on the root div"}
+  ],
+  "fixed": [
+    "Root fills at least the viewport height and centers its content. Override with className using an important modifier such as !min-h-0.",
+    "Tilt and glow respond to pointer movement only, touch drag moves them while touching"
+  ],
+  "mood": ["futuristic", "shiny", "playful", "modern"],
+  "industries": ["trading cards", "gaming", "collectibles", "fashion", "tech"],
+  "sections": ["gallery", "portfolio", "features"],
+  "dependencies": []
+}
