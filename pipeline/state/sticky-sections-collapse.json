@@ -4,11 +4,12 @@
   "sourceHash": "328e48a83915cd13dac7816c61558f3b0c2b0f54defc9b5d4401041a66bc5851",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sticky-sections-collapse",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.561Z"
+  "note": "CDN gsap/ScrollTrigger/Lenis -> npm dynamic imports. Removed lenisUrl prop, loader, Lenis fallback. className added. No frame, no variants. Kept inline @font-face with fontFamily/fontFaces props (TEMPLATE 1.5), hero, outro, loader overlay.",
+  "updatedAt": "2026-11-01T13:29:19.452Z",
+  "gateOutput": "WARN  addEventListener with once and no removeEventListener\ngates passed"
 }
