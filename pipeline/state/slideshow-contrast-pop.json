@@ -4,11 +4,12 @@
   "sourceHash": "5ed31575a7e5ce52338defb09b5ebbd025dd08c1cbf4d33efbef452b4f902ee3",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-contrast-pop",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.543Z"
+  "note": "CDN loader replaced by gsap and gsap/Observer imports. Cleanup kills timeline and tweens. className and nav aria-labels added, mobile offsets. No variants.",
+  "updatedAt": "2026-11-01T12:41:12.688Z",
+  "gateOutput": "gates passed"
 }
