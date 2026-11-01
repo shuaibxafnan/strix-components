@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "split-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.633Z"
+  "note": "Gates passed. Source copied unchanged. Needs gsap SplitText club plugin, ScrollTrigger, @gsap/react. Variants: effect, 7 options, default rise. Hover effects need pointer.",
+  "updatedAt": "2026-11-01T13:10:21.302Z",
+  "gateOutput": "gates passed"
 }
