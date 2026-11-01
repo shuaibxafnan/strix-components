@@ -1,0 +1,52 @@
+{
+  "slug": "split-product-slider",
+  "name": "Split Product Slider",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen split product slider with a spec panel and prev/next controls on one side and layered photos on a colored panel on the other, switching scenes with slide and wipe transitions.",
+  "contents": [
+    "Left panel with brand label, counter, scene title, product image and spec grid",
+    "Prev and next buttons",
+    "Right panel with colored backdrop, two overlapping photos and maker name with tag"
+  ],
+  "behavior": [
+    "Next and previous buttons or arrow keys change the scene, wrapping around",
+    "Panels slide in and out while photos cross-fade and a color cover wipes across them",
+    "Input is locked during the transition",
+    "Stacks vertically on mobile with the photos on top"
+  ],
+  "props": [
+    {"name": "brandName", "type": "string", "default": "Collection"},
+    {"name": "transitionMs", "type": "number", "default": 500},
+    {"name": "sceneColors", "type": "string[]", "default": ["#000000", "#262626", "#404040"]},
+    {"name": "scenes", "type": "{name,vaseImg,specs:{label,value}[],topPhoto,topPhotoAlt,bottomPhoto,bottomPhotoAlt,makerName,makerTag}[]", "default": "3 sample scenes"},
+    {"name": "prevLabel", "type": "string", "default": "Prev"},
+    {"name": "nextLabel", "type": "string", "default": "Next"},
+    {"name": "prevAriaLabel", "type": "string", "default": "Previous vase"},
+    {"name": "nextAriaLabel", "type": "string", "default": "Next vase"},
+    {"name": "headingFont", "type": "string", "default": "Barlow Condensed"},
+    {"name": "bodyFont", "type": "string", "default": "Space Grotesk"},
+    {"name": "backgroundColor", "type": "string", "default": "bg-white"},
+    {"name": "textColor", "type": "string", "default": "text-black"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Scenes, all text, specs, images and maker details",
+    "Panel colors per scene, background and text color classes",
+    "Transition duration, button labels and fonts"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the wipe cover colors", "where": "coverRefs divs with bg-black and bg-white"},
+    {"change": "Change the easing curve", "where": "EASE and WIPE_EASING constants"},
+    {"change": "Swap the panel sides", "where": "order-1 and order-2 classes on the two main panels"}
+  ],
+  "fixed": [
+    "Fills the full viewport height (100dvh) and is meant to be used as a full-screen section",
+    "Listens to ArrowLeft and ArrowRight on the window while mounted and removes the listeners on unmount",
+    "Loads the heading and body fonts from Google Fonts"
+  ],
+  "mood": ["editorial", "elegant", "bold"],
+  "industries": ["ecommerce", "ceramics", "interior design", "crafts", "retail"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": []
+}
