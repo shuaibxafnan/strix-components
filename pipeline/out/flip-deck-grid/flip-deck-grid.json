@@ -1,0 +1,77 @@
+{
+  "slug": "flip-deck-grid",
+  "name": "Flip Deck Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Responsive grid of image cards where each card is a page-flip deck that turns images like a book page with 3D folds and shadows, controlled by arrows, swipe, keyboard or autoplay.",
+  "contents": [
+    "Grid of cards, each with a label, title, page counter, flip deck of images and progress bar",
+    "Previous and next arrow buttons per card"
+  ],
+  "behavior": [
+    "Images flip like book pages with perspective, fold shadows and configurable speed and easing",
+    "Navigation by arrows, horizontal swipe, arrow keys when a card is focused, or optional autoplay that pauses on hover",
+    "Arrows appear on hover or focus, and always show on touch devices",
+    "Images are split into decks automatically or supplied as explicit decks"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "25 sample image URLs" },
+    { "name": "titles", "type": "string[]", "default": "7 sample titles" },
+    { "name": "decks", "type": "{title,label,images}[] | null", "default": null },
+    { "name": "perDeck", "type": "number", "default": 4 },
+    { "name": "columns", "type": "number", "default": 2 },
+    { "name": "aspect", "type": "string", "default": "4/3" },
+    { "name": "orientation", "type": "\"vertical\" | \"horizontal\"", "default": "vertical" },
+    { "name": "speed", "type": "number", "default": 620 },
+    { "name": "easing", "type": "string", "default": "cubic-bezier(0.22, 1, 0.36, 1)" },
+    { "name": "shadows", "type": "boolean", "default": true },
+    { "name": "shadowSides", "type": "number", "default": 0.34 },
+    { "name": "shadowFlip", "type": "number", "default": 0.16 },
+    { "name": "circular", "type": "boolean", "default": true },
+    { "name": "autoplay", "type": "boolean", "default": false },
+    { "name": "interval", "type": "number", "default": 4200 },
+    { "name": "swipe", "type": "boolean", "default": true },
+    { "name": "pauseOnHover", "type": "boolean", "default": true },
+    { "name": "bgColor", "type": "string", "default": "#08090b" },
+    { "name": "cardColor", "type": "string", "default": "#101216" },
+    { "name": "pageColor", "type": "string", "default": "#0b0d10" },
+    { "name": "borderColor", "type": "string", "default": "#ffffff14" },
+    { "name": "textColor", "type": "string", "default": "#e7e9ee" },
+    { "name": "mutedColor", "type": "string", "default": "#6f7580" },
+    { "name": "accentColor", "type": "string", "default": "#7dd3fc" },
+    { "name": "showCounter", "type": "boolean", "default": true },
+    { "name": "showProgress", "type": "boolean", "default": true },
+    { "name": "showArrows", "type": "boolean", "default": true },
+    { "name": "keyboard", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, deck grouping, titles, labels and number of columns",
+    "Flip direction, speed, easing, shadow strength, looping and autoplay timing",
+    "Counter, progress bar, arrows, swipe and keyboard toggles",
+    "All background, card, border, text and accent colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change arrow button icons or styling",
+      "where": "Previous page and Next page buttons inside the Deck component"
+    },
+    {
+      "change": "Change the card header or footer layout",
+      "where": "header and footer elements inside the Deck component"
+    },
+    {
+      "change": "Change the perspective depth of the flip",
+      "where": "perspective value in the .bb-bookblock rule of the css template"
+    }
+  ],
+  "fixed": [
+    "Section fills at least the viewport height with its own background color and page padding",
+    "Flip uses DOM cloning of item markup, so deck items should be images only",
+    "Decks built from images drop any trailing images that do not fill a full deck"
+  ],
+  "mood": ["elegant", "tactile", "dark", "editorial"],
+  "industries": ["photography", "publishing", "fashion", "portfolio", "travel"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

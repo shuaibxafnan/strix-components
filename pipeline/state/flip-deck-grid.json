@@ -4,11 +4,12 @@
   "sourceHash": "819160879d788a65e8555152f0e8ad3f14797877065b66ed4d6d22d1edf53d80",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "flip-deck-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.439Z"
+  "note": "Removed unused scope prop. Arrows always visible on touch. No frame change, no variants. Gate warning: rAF without cancel kept from source.",
+  "updatedAt": "2026-11-01T07:06:23.679Z",
+  "gateOutput": "WARN  requestAnimationFrame without cancelAnimationFrame\ngates passed"
 }
