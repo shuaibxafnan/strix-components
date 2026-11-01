@@ -4,11 +4,12 @@
   "sourceHash": "a79967a3e7cb49fc45030e2f54e944025a106ef398db46797d84c9a0bd333dc8",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "thumb-strip-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.400Z"
+  "note": "bird-slideshow -> thumb-strip-slideshow. No removals. Kept Archivo font links. No frame (full-viewport slider). No variants.",
+  "updatedAt": "2026-10-31T20:01:16.790Z",
+  "gateOutput": "gates passed"
 }

@@ -4,11 +4,12 @@
   "sourceHash": "142217406c325a8a6bd0075598b2427548de71a03a2e870d4fbf9013938e5473",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "cloth-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.409Z"
+  "note": "CDN three/cannon/gsap -> npm dynamic imports (not installed or run); PlaneBufferGeometry -> PlaneGeometry. Removed dead title text system (titleColor, titleFontFamily, titleFontSize, titleFontWeight, titleLetterSpacing, titleLineHeight, titleUppercase, titleBlendMode, textDuration, textStagger, hideTexts, revealTexts, splits) as splitRef was never attached - ambiguous. Wheel handler blocks page scroll. Slides gained optional alt. Gates passed.",
+  "updatedAt": "2026-11-01T05:09:29.854Z",
+  "gateOutput": "gates passed"
 }

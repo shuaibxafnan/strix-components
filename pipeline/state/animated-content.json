@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "animated-content",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.583Z"
+  "note": "Bits describe-only. Category scroll-section-layouts. Wrapper invisible until effect runs; registers ScrollTrigger globally. Gates passed.",
+  "updatedAt": "2026-10-31T19:49:27.920Z",
+  "gateOutput": "gates passed"
 }

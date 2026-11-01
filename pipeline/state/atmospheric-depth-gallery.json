@@ -4,11 +4,12 @@
   "sourceHash": "361ce06d2c3ce731a842e1a1126cc69809f4dd3b18b31a06c73a8dd6128a8b27",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "atmospheric-depth-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.397Z"
+  "note": "CDN three.js dynamic import replaced with import('three'). No other changes. Gates passed.",
+  "updatedAt": "2026-10-31T19:55:15.760Z",
+  "gateOutput": "gates passed"
 }

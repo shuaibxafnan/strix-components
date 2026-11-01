@@ -4,11 +4,12 @@
   "sourceHash": "cccca2e5b630c72ea0c1f6507f9a54e7b6a04cf51dfcaf268e257b623972f9b4",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "bear-like-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.398Z"
+  "note": "bear-like -> bear-like-button. Removed demo bgColor prop and page background. Frame added. GSAP CDN script loader replaced by npm dynamic import. Kept Roboto font link. No variants.",
+  "updatedAt": "2026-10-31T19:58:11.666Z",
+  "gateOutput": "gates passed"
 }

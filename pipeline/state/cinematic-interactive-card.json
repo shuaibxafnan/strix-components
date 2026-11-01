@@ -4,11 +4,12 @@
   "sourceHash": "52e763374391e4b30add5e040b130bb82f64d431ed0ac5bd3459701357d977d9",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "cinematic-interactive-card",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.406Z"
+  "note": "Removed Source and 3 min tutorial links; removed isMounted gate (ambiguous, now renders on first render); frame added; bgColor prop (dark default); className. Host page must load Font Awesome. Gates passed.",
+  "updatedAt": "2026-11-01T05:02:52.901Z",
+  "gateOutput": "gates passed"
 }

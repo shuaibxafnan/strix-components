@@ -1,0 +1,55 @@
+{
+  "slug": "column-grid-transition",
+  "name": "Column Grid Transition",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Pinned full-screen scroll sequence where each image is revealed through a grid mask that opens column by column with shuffled cells, with animated text overlays and a segmented progress bar.",
+  "contents": [
+    "Full-screen image slides with kicker, title, description and counter",
+    "Segmented scroll progress bar"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Scroll-scrubbed timeline opens an SVG cell mask column by column, random order inside each column",
+    "Slide text wipes in and out with a clip-path",
+    "Column count changes at mobile and tablet breakpoints and rebuilds on resize"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#000000"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "slides", "type": "{image,kicker,title,description}[]", "default": "3 sample slides"},
+    {"name": "mobileCols", "type": "number", "default": 6},
+    {"name": "tabletCols", "type": "number", "default": 10},
+    {"name": "desktopCols", "type": "number", "default": 14},
+    {"name": "mobileBreakpoint", "type": "number", "default": 599},
+    {"name": "tabletBreakpoint", "type": "number", "default": 1024},
+    {"name": "cellStagger", "type": "number", "default": 0.02},
+    {"name": "scrubAmount", "type": "number", "default": 2.5},
+    {"name": "lerp", "type": "number", "default": 0.15},
+    {"name": "showProgressBar", "type": "boolean", "default": true},
+    {"name": "titleFontFamily", "type": "string", "default": "'Playfair Display', serif"},
+    {"name": "bodyFontFamily", "type": "string", "default": "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"},
+    {"name": "labelFontFamily", "type": "string", "default": "'Space Mono', monospace"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides: images, kicker, title, description",
+    "Background and text colors, fonts",
+    "Grid density per breakpoint, cell stagger, scrub and scroll smoothness",
+    "Progress bar visibility"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the mask reveal order (for example rows instead of columns)", "where": "openGrid function"},
+    {"change": "Change text reveal animation", "where": "textIn and textOut functions"},
+    {"change": "Dim or remove the image darkening", "where": "brightness(0.75) filter on the image element"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Section height is slides count times 100vh to give the pinned scroll room",
+    "Loads Playfair Display and Space Mono from Google Fonts at mount"
+  ],
+  "mood": ["cinematic", "editorial", "dramatic"],
+  "industries": ["photography", "film", "fashion", "travel", "art"],
+  "sections": ["hero", "portfolio", "gallery"],
+  "dependencies": ["gsap", "lenis"]
+}

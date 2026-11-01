@@ -1,0 +1,318 @@
+{
+  "slug": "card-deck-fan",
+  "name": "Card Deck Fan",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Stack of image cards with captions that fans out into arcs, lines or circles through preset buttons, with previous, next and collapse controls and click to bring a card to front.",
+  "contents": [
+    "Row of preset buttons that spread the deck in different fan layouts",
+    "Stack of image cards with index, title and text caption over a gradient scrim",
+    "Previous, next and collapse buttons",
+    "Optional Add items button that appends cards with an entrance animation"
+  ],
+  "behavior": [
+    "Cards fan out with rotation and translation around a configurable transform origin",
+    "Previous and next slide the top or bottom card out and reorder the stack",
+    "Clicking a card brings it to the front",
+    "Scatter presets add random angle and offset per card on each fan",
+    "Interactions are locked while an animation runs"
+  ],
+  "props": [
+    {
+      "name": "items",
+      "type": "(string | {image,title,text})[]",
+      "default": "13 sample images with captions"
+    },
+    {
+      "name": "cardWidth",
+      "type": "number",
+      "default": 260
+    },
+    {
+      "name": "cardHeight",
+      "type": "number",
+      "default": 360
+    },
+    {
+      "name": "cardRadius",
+      "type": "number",
+      "default": 3
+    },
+    {
+      "name": "cardPadding",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "cardBg",
+      "type": "string",
+      "default": "#fbfaf8"
+    },
+    {
+      "name": "cardRingColor",
+      "type": "string",
+      "default": "rgba(24,24,22,0.14)"
+    },
+    {
+      "name": "cardShadow",
+      "type": "string",
+      "default": "0 18px 40px -22px rgba(20,19,17,0.7)"
+    },
+    {
+      "name": "captionPadding",
+      "type": "number",
+      "default": 20
+    },
+    {
+      "name": "scrimColor",
+      "type": "string",
+      "default": "rgba(14,13,12,0.88)"
+    },
+    {
+      "name": "scrimHeight",
+      "type": "number",
+      "default": 62
+    },
+    {
+      "name": "imageBrightness",
+      "type": "number",
+      "default": 0.92
+    },
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#e9e6e0"
+    },
+    {
+      "name": "speed",
+      "type": "number",
+      "default": 300
+    },
+    {
+      "name": "easing",
+      "type": "string",
+      "default": "ease-in-out"
+    },
+    {
+      "name": "navExtraOffset",
+      "type": "number",
+      "default": 15
+    },
+    {
+      "name": "navRotation",
+      "type": "number",
+      "default": 5
+    },
+    {
+      "name": "fanSpeed",
+      "type": "number",
+      "default": 500
+    },
+    {
+      "name": "fanEasing",
+      "type": "string",
+      "default": "ease-out"
+    },
+    {
+      "name": "fanRange",
+      "type": "number",
+      "default": 90
+    },
+    {
+      "name": "fanDirection",
+      "type": "string",
+      "default": "right"
+    },
+    {
+      "name": "fanOrigin",
+      "type": "{x,y} | {minX,maxX,y}",
+      "default": {
+        "x": 25,
+        "y": 100
+      }
+    },
+    {
+      "name": "fanTranslation",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "fanCenter",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "fanScatter",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "presets",
+      "type": "{label,range,direction,origin,center,translation,scatter}[]",
+      "default": "14 fan presets"
+    },
+    {
+      "name": "showControls",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showNav",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "addItems",
+      "type": "{image,title,text}[]",
+      "default": []
+    },
+    {
+      "name": "showAddButton",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "addStagger",
+      "type": "number",
+      "default": 200
+    },
+    {
+      "name": "addSpeed",
+      "type": "number",
+      "default": 500
+    },
+    {
+      "name": "showCaptions",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "titleColor",
+      "type": "string",
+      "default": "#f6f4f0"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "rgba(246,244,240,0.72)"
+    },
+    {
+      "name": "indexColor",
+      "type": "string",
+      "default": "rgba(246,244,240,0.55)"
+    },
+    {
+      "name": "buttonBg",
+      "type": "string",
+      "default": "transparent"
+    },
+    {
+      "name": "buttonColor",
+      "type": "string",
+      "default": "#4a463f"
+    },
+    {
+      "name": "buttonBorder",
+      "type": "string",
+      "default": "rgba(24,24,22,0.18)"
+    },
+    {
+      "name": "buttonHoverBg",
+      "type": "string",
+      "default": "#1b1a17"
+    },
+    {
+      "name": "buttonHoverColor",
+      "type": "string",
+      "default": "#f4f2ee"
+    },
+    {
+      "name": "navButtonBg",
+      "type": "string",
+      "default": "#1b1a17"
+    },
+    {
+      "name": "navButtonColor",
+      "type": "string",
+      "default": "#f4f2ee"
+    },
+    {
+      "name": "navButtonHoverBg",
+      "type": "string",
+      "default": "#4a463f"
+    },
+    {
+      "name": "addLabel",
+      "type": "string",
+      "default": "Add items"
+    },
+    {
+      "name": "collapseLabel",
+      "type": "string",
+      "default": "Collapse"
+    },
+    {
+      "name": "prevLabel",
+      "type": "string",
+      "default": "Previous card"
+    },
+    {
+      "name": "nextLabel",
+      "type": "string",
+      "default": "Next card"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Card images, titles and text",
+    "Card size, radius, background, ring, shadow and caption styling",
+    "Fan range, direction, origin, translation, center and scatter defaults",
+    "Preset list and button labels",
+    "Transition speeds and easings",
+    "Button and background colors",
+    "Show or hide controls, navigation and captions",
+    "Extra cards for the Add items button"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change fallback captions used for plain image strings",
+      "where": "CAPTIONS constant"
+    },
+    {
+      "change": "Change the stacking base z-index",
+      "where": "Z_MIN constant"
+    },
+    {
+      "change": "Change the entrance of a card brought to front",
+      "where": "moveToFront function"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Preset buttons and nav buttons are spans with role button",
+    "Interactions are ignored while an animation runs"
+  ],
+  "mood": [
+    "playful",
+    "editorial",
+    "tactile",
+    "modern"
+  ],
+  "industries": [
+    "photography",
+    "design agency",
+    "portfolio",
+    "events",
+    "ecommerce"
+  ],
+  "sections": [
+    "gallery",
+    "portfolio",
+    "features"
+  ],
+  "dependencies": []
+}

@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "beams",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.594Z"
+  "note": "Bits describe-only. Category backgrounds-3d. Needs WebGL2; fills parent; pointer listeners on window; lightMode needed on light pages. Gates passed.",
+  "updatedAt": "2026-10-31T19:57:33.224Z",
+  "gateOutput": "gates passed"
 }

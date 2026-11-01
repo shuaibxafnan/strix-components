@@ -1,0 +1,43 @@
+{
+ "slug":"bento-flip-gallery",
+ "name":"Bento Flip Gallery",
+ "category":"cards-galleries",
+ "isReactBits":false,
+ "description":"Pinned bento grid of eight photos that expands on scroll into a full-screen grid using a GSAP Flip transition, followed by an editorial text section with heading, details, quote and columns.",
+ "contents":["Bento grid of eight images","Editorial section with heading, detail list, lead paragraph, pull quote and two-column paragraphs"],
+ "behavior":["Scroll-scrubbed GSAP Flip morph from small bento tiles to large grid cells","Gallery is pinned while the scrub runs","Timeline rebuilds on window resize","Drop cap and sticky heading in the text section"],
+ "props":[
+  {"name":"images","type":"{src,alt}[]","default":"8 sample photos"},
+  {"name":"inkColor","type":"string","default":"#0b0b0c"},
+  {"name":"paperColor","type":"string","default":"#f3efe6"},
+  {"name":"safelightColor","type":"string","default":"#e8442c"},
+  {"name":"displayFont","type":"string","default":"Bodoni Moda"},
+  {"name":"bodyFont","type":"string","default":"Newsreader"},
+  {"name":"heading","type":"string","default":"One roll, eight frames"},
+  {"name":"leadParagraph","type":"string","default":"I shot this roll over a single weekend in late autumn, mostly at dusk, when the light was too thin for anything but a wide aperture and a steady breath. Ten exposures went in. Eight came out the other side."},
+  {"name":"paragraphs","type":"string[]","default":"4 sample paragraphs"},
+  {"name":"pullQuote","type":"string","default":"Most of what I keep is what I almost missed."},
+  {"name":"pullQuoteCredit","type":"string","default":"From the darkroom notebook"},
+  {"name":"details","type":"{label,value}[]","default":"4 sample details"},
+  {"name":"itemGap","type":"number","default":1},
+  {"name":"colWidth","type":"number","default":32.5},
+  {"name":"rowHeight","type":"number","default":23},
+  {"name":"finalColWidth","type":"number","default":100},
+  {"name":"finalRowHeight","type":"number","default":49.5},
+  {"name":"scrubStart","type":"string","default":"center center"},
+  {"name":"scrubDistance","type":"string","default":"+=100%"},
+  {"name":"ease","type":"string","default":"expoScale(1, 5)"},
+  {"name":"pinContainer","type":"boolean","default":true},
+  {"name":"className","type":"string","default":""}
+ ],
+ "editableByProps":["Images, heading, all text, details and quote","Ink, paper and accent colors, fonts","Grid sizes, gap, scrub start, distance, ease and pinning"],
+ "needsCodeEdit":[
+  {"change":"Change the bento tile layout","where":"AREAS constant"},
+  {"change":"Change number of grid columns or rows","where":"grid-template-columns classes on the gallery element"}
+ ],
+ "fixed":["Uses GSAP ScrollTrigger pin on the gallery parent","Loads Bodoni Moda and Newsreader from Google Fonts via link tags","Layout supports up to eight images placed by AREAS"],
+ "mood":["editorial","cinematic","elegant","dark"],
+ "industries":["photography","portfolio","editorial","art","magazine"],
+ "sections":["gallery","portfolio"],
+ "dependencies":["gsap"]
+}

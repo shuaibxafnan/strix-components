@@ -1,0 +1,33 @@
+{
+  "slug": "book-gallery",
+  "name": "Book Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Stack of 3D book covers over a photo background with a large split heading. Clicking a book flips it and the ones before it open like pages, shifting the stack sideways.",
+  "contents": ["Full-screen background image with large two-part heading", "Stack of book pages with a front and back image each"],
+  "behavior": ["Click a book to flip it open with staggered delays", "Click the same book or the background to close", "Stack shifts sideways while open", "Heading uses exclusion blend mode"],
+  "props": [
+    {"name": "books", "type": "{front,back}[]", "default": "5 sample books"},
+    {"name": "width", "type": "number", "default": 200},
+    {"name": "height", "type": "number", "default": 300},
+    {"name": "perspective", "type": "number", "default": 1200},
+    {"name": "spineShift", "type": "number", "default": 100},
+    {"name": "bgImage", "type": "string", "default": "https://images.unsplash.com/photo-1763152496539-302ef51ef66f?q=80&w=687&auto=format&fit=crop"},
+    {"name": "headingText", "type": "string[]", "default": ["Book", "Gallery"]},
+    {"name": "fontClass", "type": "string", "default": "font-sans"},
+    {"name": "animationSpeed", "type": "number", "default": 600},
+    {"name": "headingColor", "type": "string", "default": "#ffffff"},
+    {"name": "fallbackColor", "type": "string", "default": "#e0e0e0"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Book images, count and size", "Background image and heading text and color", "Perspective, shift distance and animation speed"],
+  "needsCodeEdit": [
+    {"change": "Change the per-book stagger delay", "where": "runningDelay constant"},
+    {"change": "Change the flip easing", "where": "transition style on the book div"}
+  ],
+  "fixed": ["Heading text is split into exactly two parts, first and second entries", "Alt text on book images is generated from the index"],
+  "mood": ["playful", "tactile", "editorial"],
+  "industries": ["publishing", "education", "portfolio", "creative agency"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

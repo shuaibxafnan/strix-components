@@ -1,0 +1,67 @@
+{
+  "slug": "circular-stack-intro",
+  "name": "Circular Stack Intro",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen intro where image cards fly out into a ring, unwind with a rotation, then keep slowly spinning around a blurred-in centered title, with random cards flipping over.",
+  "contents": [
+    "Ring of image cards",
+    "Centered uppercase title lines with a subtitle",
+    "Radial gradient background"
+  ],
+  "behavior": [
+    "Cards scale in with a stagger from the center onto a circle",
+    "The group unwinds with a power4 rotation while the title fades in from blur",
+    "The ring spins continuously",
+    "A random card flips on an interval",
+    "Radius and card size switch at a breakpoint",
+    "Reduced motion shows the final state without animation"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "8 sample images"},
+    {"name": "title", "type": "string[]", "default": ["Celestial", "Visions"]},
+    {"name": "subtitle", "type": "string", "default": "2024"},
+    {"name": "bgInner", "type": "string", "default": "#ece6df"},
+    {"name": "bgOuter", "type": "string", "default": "#8b8078"},
+    {"name": "titleColor", "type": "string", "default": "#191818"},
+    {"name": "fontFamily", "type": "string", "default": "Gloock, ui-serif, Georgia, serif"},
+    {"name": "desktopRadius", "type": "number", "default": 250},
+    {"name": "mobileRadius", "type": "number", "default": 180},
+    {"name": "breakpoint", "type": "string", "default": "53em"},
+    {"name": "cardWidth", "type": "string", "default": "6em"},
+    {"name": "cardWidthMobile", "type": "string", "default": "5em"},
+    {"name": "cardAspect", "type": "string", "default": "2/3"},
+    {"name": "cardRadius", "type": "string", "default": "5px"},
+    {"name": "startAngle", "type": "number", "default": -45},
+    {"name": "staggerDelay", "type": "number", "default": 0.15},
+    {"name": "entranceDuration", "type": "number", "default": 1},
+    {"name": "unwindRotation", "type": "number", "default": -450},
+    {"name": "unwindDuration", "type": "number", "default": 3},
+    {"name": "headingDelay", "type": "number", "default": 1},
+    {"name": "headingBlur", "type": "number", "default": 60},
+    {"name": "spinDuration", "type": "number", "default": 20},
+    {"name": "spinDirection", "type": "number", "default": -1},
+    {"name": "flipInterval", "type": "number", "default": 2},
+    {"name": "flipEnabled", "type": "boolean", "default": true},
+    {"name": "perspective", "type": "string", "default": "1000px"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, title lines, subtitle",
+    "Background gradient and title colors, font family",
+    "Ring radius, card size, aspect, corner radius and start angle",
+    "Entrance, unwind, spin and flip timing"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change title font sizes", "where": "clamp(2.5rem, 1.59rem + 3.883vw, 6.25rem) fontSize in the h1"},
+    {"change": "Change the unwind easing", "where": "power4.out ease in the groupRef tween"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and hides overflow",
+    "The font family is only applied, the font itself must be loaded by the host page"
+  ],
+  "mood": ["elegant", "editorial", "cinematic", "artistic"],
+  "industries": ["photography", "art", "fashion", "events", "portfolio"],
+  "sections": ["hero"],
+  "dependencies": ["gsap"]
+}

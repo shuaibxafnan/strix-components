@@ -4,11 +4,12 @@
   "sourceHash": "bd1fe86d1588a3b4b38a6fcf633fbcff4d87f8534ec0f5ab36df64fb4e6ab543",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "chevron-reel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.406Z"
+  "note": "Removed header/props comment block; className prop. Renders only after mount; Lenis takes over scroll (includeLenis default true). Gates passed.",
+  "updatedAt": "2026-11-01T05:01:27.846Z",
+  "gateOutput": "gates passed"
 }

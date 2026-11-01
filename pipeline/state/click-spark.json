@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "click-spark",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.583Z"
+  "note": "Bits describe-only. Category cursor-effects. Variants: shape (line, streak, dot, star). No dependencies. Parent needs defined height. Gates passed.",
+  "updatedAt": "2026-11-01T05:06:13.428Z",
+  "gateOutput": "gates passed"
 }

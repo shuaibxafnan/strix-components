@@ -1,0 +1,53 @@
+{
+  "slug": "coffee-ratio-slider",
+  "name": "Coffee Ratio Slider",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Horizontal ratio slider that splits a bar into coffee and milk colors with a glowing divider, live percentage labels that spring up and down, on a subtle masked grid backdrop.",
+  "contents": [
+    "Invisible range input over a coffee and milk split bar",
+    "Divider handle that glows while active",
+    "Coffee and milk percentage labels",
+    "Masked grid background"
+  ],
+  "behavior": [
+    "Dragging moves the divider and resizes the coffee and milk fills",
+    "Bar height and labels spring between half and full height when the value is in the middle range",
+    "Divider lights up on hover, focus or drag",
+    "Coffee shade and milk opacity change with the value"
+  ],
+  "props": [
+    {"name": "initialValue", "type": "number", "default": 86},
+    {"name": "trackHeight", "type": "number", "default": 60},
+    {"name": "coffeeSolid", "type": "string | null", "default": null},
+    {"name": "milkSolid", "type": "string | null", "default": null},
+    {"name": "indicatorColor", "type": "string | null", "default": null},
+    {"name": "bgColor", "type": "string", "default": "#0a0a0a"},
+    {"name": "gridColor", "type": "string | null", "default": null},
+    {"name": "coffeeLabel", "type": "string", "default": "COFFEE"},
+    {"name": "milkLabel", "type": "string", "default": "MILK"},
+    {"name": "ariaLabel", "type": "string", "default": "Coffee to Milk Ratio"},
+    {"name": "springDuration", "type": "number", "default": 650},
+    {"name": "updateDuration", "type": "number", "default": 100},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Starting value, track height, labels and accessibility label",
+    "Coffee, milk, divider, grid and background colors",
+    "Spring and update animation durations"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the middle range that triggers the label shift", "where": "inMiddle constant in the first useEffect"},
+    {"change": "Change slider width", "where": "width: 300 values on the wrapper div and the input"},
+    {"change": "Change grid mask direction", "where": "maskImage style on the grid div"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Slider width is fixed at 300px",
+    "Default coffee and milk colors are derived from the value"
+  ],
+  "mood": ["playful", "minimal", "warm"],
+  "industries": ["cafe", "food and beverage", "e-commerce", "restaurants"],
+  "sections": ["other"],
+  "dependencies": []
+}

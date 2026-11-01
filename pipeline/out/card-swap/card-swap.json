@@ -1,0 +1,72 @@
+{
+    "slug": "card-swap",
+    "name": "Card Swap",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Perspective stack of cards where the front card flies out and the rest move forward, with autoplay, drag and click to swap, spring physics, pointer parallax and light or dark themes.",
+    "contents": [
+        "Stack of cards in 3D perspective, each with icon badge, title and image (4 sample cards by default)",
+        "Exported Card component for building custom card content as children",
+        "Ref API with next() and prev()"
+    ],
+    "behavior": [
+        "Autoplay cycles the front card out and back to the rear at a set delay",
+        "Spring-based motion with bounce, pointer parallax and hover spread of the stack",
+        "Drag, click or arrow keys swap cards (arrows go next and previous)",
+        "Pauses on hover, when off screen or when the tab is hidden",
+        "Intro animation on mount, honors prefers-reduced-motion",
+        "Cards behind the front are dimmed and fade out past the visible count"
+    ],
+    "props": [
+        {"name": "items", "type": "{title,image,icon,alt}[]", "default": "4 sample items"},
+        {"name": "width", "type": "number", "default": 460},
+        {"name": "height", "type": "number", "default": 340},
+        {"name": "cardDistance", "type": "number", "default": 60},
+        {"name": "verticalDistance", "type": "number", "default": 70},
+        {"name": "depth", "type": "number", "default": 90},
+        {"name": "skewAmount", "type": "number", "default": 6},
+        {"name": "visibleCards", "type": "number", "default": 4},
+        {"name": "delay", "type": "number", "default": 4000},
+        {"name": "autoplay", "type": "boolean", "default": true},
+        {"name": "pauseOnHover", "type": "boolean", "default": true},
+        {"name": "draggable", "type": "boolean", "default": true},
+        {"name": "speed", "type": "number", "default": 1},
+        {"name": "bounce", "type": "number", "default": 0.35},
+        {"name": "parallax", "type": "number", "default": 0.5},
+        {"name": "hoverSpread", "type": "number", "default": 0.12},
+        {"name": "dim", "type": "number", "default": 0.5},
+        {"name": "cardRadius", "type": "number", "default": 18},
+        {"name": "intro", "type": "boolean", "default": true},
+        {"name": "theme", "type": "'dark' | 'light'", "default": "dark"},
+        {"name": "onCardClick", "type": "(index: number) => void", "default": null},
+        {"name": "onChange", "type": "(index: number) => void", "default": null},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "children", "type": "ReactNode", "default": null}
+    ],
+    "editableByProps": [
+        "Card content through items or custom children",
+        "Card size, spacing, depth, skew, visible count and corner radius",
+        "Autoplay, delay, hover pause, dragging, speed, bounce, parallax, hover spread and dimming",
+        "Dark or light theme and intro animation",
+        "Click and change callbacks"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change theme colors or add a new theme", "where": "THEMES constant"},
+        {"change": "Change sample cards and icons", "where": "DEFAULT_ITEMS constant"},
+        {"change": "Change card layout (title row, image area)", "where": "ItemCard component"},
+        {"change": "Change perspective strength", "where": "PERSPECTIVE constant and perspective in STAGE_STYLE"}
+    ],
+    "fixed": [
+        "Requires @hugeicons/react and @hugeicons/core-free-icons for the default sample icons",
+        "Sample images load from Unsplash URLs",
+        "Perspective is fixed at 900px",
+        "New cards always enter from below",
+        "Sets aria-label 'Card stack' and a carousel role, root is keyboard focusable",
+        "Listens to document visibilitychange to pause when the tab is hidden",
+        "Scales down to fit its container width"
+    ],
+    "mood": ["playful", "modern", "dynamic", "polished"],
+    "industries": ["travel", "photography", "portfolio", "saas", "marketing"],
+    "sections": ["hero", "features", "portfolio", "gallery"],
+    "dependencies": ["react", "@hugeicons/react", "@hugeicons/core-free-icons"]
+}

@@ -4,11 +4,12 @@
   "sourceHash": "06a5e3521ff87095b31fd8c5cdecc99a312030f2bf8795ca255a4f95edb34f9a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "column-grid-transition",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.411Z"
+  "note": "Removed demo intro and outro blocks and props showIntro/introTitle/introHint/showOutro/outroText plus chevron-bounce style (ambiguous). CDN gsap/ScrollTrigger/lenis -> npm dynamic imports; className prop. Google Fonts loadFont kept (template 1.5 vs no-font-imports rule, reviewer to decide). Lenis takes over page scroll. Gates passed.",
+  "updatedAt": "2026-11-01T05:12:27.370Z",
+  "gateOutput": "gates passed"
 }

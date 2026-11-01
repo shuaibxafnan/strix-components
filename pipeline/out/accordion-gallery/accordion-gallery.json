@@ -1,0 +1,46 @@
+{
+  "slug": "accordion-gallery",
+  "name": "Accordion Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Horizontal row of tall image strips with staggered vertical offsets. Hovering a strip expands it while the others stay narrow and fade back.",
+  "contents": ["Row of image cards with rounded corners and staggered top offsets"],
+  "behavior": [
+    "Hovered card expands its width smoothly while others shrink and dim",
+    "Leaving the row restores all cards to equal width and full opacity",
+    "Image zooms slightly on hover",
+    "Card height switches between mobile and desktop values below 768px width"
+  ],
+  "props": [
+    {"name": "items", "type": "{id,src,alt}[]", "default": "10 sample images"},
+    {"name": "gridBgColor", "type": "string", "default": "#f0f0f0"},
+    {"name": "cardBgColor", "type": "string", "default": "#ffffff"},
+    {"name": "maxContainerWidth", "type": "string", "default": "1440px"},
+    {"name": "containerPadding", "type": "string", "default": "0 3rem"},
+    {"name": "cardMinPercent", "type": "number", "default": 1},
+    {"name": "cardActivePercent", "type": "number", "default": 30},
+    {"name": "cardHeightMobile", "type": "number", "default": 400},
+    {"name": "cardHeightDesktop", "type": "number", "default": 600},
+    {"name": "transitionSpeed", "type": "number", "default": 600},
+    {"name": "initialOpacity", "type": "number", "default": 0.2},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, alt text and number of cards",
+    "Background and card colors",
+    "Container width, padding, card heights",
+    "Expanded width, transition speed, dimmed opacity"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the staggered vertical offsets", "where": "getMarginTopClass function"},
+    {"change": "Change image hover zoom", "where": "group-hover:scale-105 class on the img"}
+  ],
+  "fixed": [
+    "Renders nothing until mounted on the client",
+    "Mobile card height is decided once at render using a 768px width check"
+  ],
+  "mood": ["clean", "editorial", "interactive"],
+  "industries": ["photography", "fashion", "architecture", "travel"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

@@ -1,0 +1,61 @@
+{
+    "slug": "confetti-button",
+    "name": "Confetti Button",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Tilting 3D button with a party cannon icon that fires a burst of colorful confetti particles when clicked, with three color variants.",
+    "contents": [
+        "Single button with a party cannon icon and a text label"
+    ],
+    "behavior": [
+        "Button tilts in 3D toward the cursor and resets on mouse leave",
+        "Click fires confetti particles from the cannon with a GSAP animation, then the cannon bounces back with an elastic ease",
+        "Cannon streamers retract and confetti pieces vanish during the click animation"
+    ],
+    "props": [
+        { "name": "label", "type": "string", "default": "Confirm" },
+        { "name": "variant", "type": "\"dark\" | \"white\" | \"grey\"", "default": "dark" },
+        { "name": "primaryColor", "type": "string", "default": "#1E2235" },
+        { "name": "textColor", "type": "string", "default": "#F6F8FF" },
+        { "name": "shadowColor", "type": "string", "default": "#00093D" },
+        { "name": "cannonDark", "type": "string", "default": "#A6ACCD" },
+        { "name": "cannonLight", "type": "string", "default": "#F6F8FF" },
+        { "name": "cannonShadow", "type": "string", "default": "#0D0F18" },
+        { "name": "confettiColors", "type": "string[]", "default": ["#892AB8", "#EA4C89", "#FFFF04", "#4AF2FD"] },
+        { "name": "confettiQuantity", "type": "number", "default": 100 },
+        { "name": "strokeWidth", "type": "number", "default": 1 },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Button label",
+        "Button, text, shadow and cannon colors in the dark variant",
+        "Confetti colors, amount of particles and streamer stroke width"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the confetti launch angle, speed or fall distance",
+            "where": "generateParticles function and the generateParticles call in handleExplicitClick"
+        },
+        {
+            "change": "Change the tilt strength",
+            "where": "handleMouseMove function"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "White and grey variants use fixed built-in colors that ignore the color props"
+    ],
+    "mood": ["playful", "celebratory", "modern"],
+    "industries": ["saas", "e-commerce", "events", "education"],
+    "sections": ["cta", "hero"],
+    "dependencies": ["gsap"],
+    "variants": {
+        "prop": "variant",
+        "default": "dark",
+        "options": [
+            { "value": "dark", "look": "Dark navy button with light text, driven by the color props", "useWhen": "Confirm or submit action on a light page where the button should stand out" },
+            { "value": "white", "look": "White button with a thin outline, dark text and blue cannon", "useWhen": "Secondary action on a tinted or colored section background" },
+            { "value": "grey", "look": "Muted grey-blue button with white text and light cannon", "useWhen": "Subtle confirm action in a dark-toned or neutral UI" }
+        ]
+    }
+}

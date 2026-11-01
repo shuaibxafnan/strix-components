@@ -4,11 +4,12 @@
   "sourceHash": "c0e2ba327d08168692e3935fa626c5a12e5b870315417a9c325a47cb6bfe2ced",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "bubbly-image-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.403Z"
+  "note": "className prop; removed unused time/clock/stateRef; cleanup returned directly and now kills uProgress tweens on unmount. Gates passed.",
+  "updatedAt": "2026-11-01T04:54:12.083Z",
+  "gateOutput": "gates passed"
 }

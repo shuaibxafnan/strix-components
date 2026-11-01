@@ -1,0 +1,51 @@
+{
+  "slug": "vertical-warp-slideshow",
+  "name": "Vertical Warp Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen vertical image slideshow where slides push past each other with a rotating, stretching warp, staggered text line reveals, an arrow cursor, and an animated counter with progress bar.",
+  "contents": [
+    "Full-screen slides with background image and two-line uppercase caption",
+    "Top-left series title and description, top-right hint text",
+    "Bottom counter with rolling numbers and progress bar",
+    "Custom circular cursor showing previous or next arrow"
+  ],
+  "behavior": [
+    "Navigates by wheel, click on left or right half, arrow keys, or vertical touch swipe",
+    "Outgoing image warps with scale and rotation while the next slides in; caption lines reveal with stagger",
+    "Cursor ring follows the mouse, shows a direction arrow and hides after inactivity",
+    "Slides loop endlessly"
+  ],
+  "props": [
+    {"name": "slidesData", "type": "{img,lines}[]", "default": "5 sample slides"},
+    {"name": "slideDuration", "type": "number", "default": 1.5},
+    {"name": "cursorActiveTime", "type": "number", "default": 2000},
+    {"name": "fontClass", "type": "string", "default": "font-sans"},
+    {"name": "textTracking", "type": "string", "default": "tracking-[-0.02em]"},
+    {"name": "seriesTitle", "type": "string", "default": "Contemplative Series"},
+    {"name": "seriesDesc", "type": "string", "default": "Navigate through a visual journey exploring the boundaries between form and emptiness."},
+    {"name": "hintText", "type": "string", "default": "scroll / click to browse"},
+    {"name": "backgroundColor", "type": "string", "default": "#000000"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slide images, caption lines and number of slides",
+    "Transition duration, cursor timeout, caption tracking and font class",
+    "Series title, description, hint text and background color"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the warp angle or scale", "where": "performNavigation function"},
+    {"change": "Change easing curves", "where": "CustomEase.create calls"},
+    {"change": "Change overlay text color", "where": "mix-blend-difference overlay blocks at the bottom of the JSX"}
+  ],
+  "fixed": [
+    "Registers document and window listeners for wheel, click, keys, touch and mouse, removed on unmount",
+    "Wheel, click and key input anywhere on the page navigates slides, so use one per page",
+    "Overlays and cursor use fixed positioning with white difference-blended text",
+    "Renders only after mount, so nothing appears during server render"
+  ],
+  "mood": ["cinematic", "minimal", "moody", "immersive"],
+  "industries": ["photography", "art", "fashion", "architecture", "film"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}

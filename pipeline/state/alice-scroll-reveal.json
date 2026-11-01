@@ -4,11 +4,12 @@
   "sourceHash": "6969510da823daf8a658a25ea65492d0c73778b7d23b2fcb12b6a128e2fe111f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "split-curtain-scroll-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.393Z"
+  "note": "Renamed from alice-scroll-reveal (named for demo text). CDN gsap -> npm imports; className prop; CDN loader removed. Agent could not run gates.",
+  "updatedAt": "2026-10-31T19:48:20.360Z",
+  "gateOutput": "WARN  requestAnimationFrame without cancelAnimationFrame\ngates passed"
 }

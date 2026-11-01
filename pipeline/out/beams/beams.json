@@ -1,0 +1,102 @@
+{
+    "slug": "beams",
+    "name": "Beams",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 background of slanted, glossy light beams that ripple over time, with film grain, bloom, an intro sweep, and a pointer-following highlight. Works on dark or light pages.",
+    "contents": [
+        "Container div holding a full-size WebGL2 canvas",
+        "Two shader passes: a beam field pass and a composite pass with bloom, tone mapping, grain and edge fade"
+    ],
+    "behavior": [
+        "Beams drift and ripple continuously with time",
+        "Intro sweep fades the beams in over 1.6 seconds",
+        "Light highlight follows the pointer across the page with easing",
+        "Pauses rendering when offscreen or when the tab is hidden",
+        "Rendering is static (no motion, no intro, no pointer) when the user prefers reduced motion",
+        "Re-renders on container resize"
+    ],
+    "props": [
+        { "name": "color", "type": "string", "default": "#ffffff" },
+        { "name": "beamWidth", "type": "number", "default": 140 },
+        { "name": "rotation", "type": "number", "default": 30 },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "waveLength", "type": "number", "default": 233 },
+        { "name": "depth", "type": "number", "default": 1 },
+        { "name": "sharpness", "type": "number", "default": 0.6 },
+        { "name": "twist", "type": "number", "default": 0 },
+        { "name": "fillLight", "type": "number", "default": 0.3 },
+        { "name": "glow", "type": "number", "default": 0.6 },
+        { "name": "brightness", "type": "number", "default": 1.6 },
+        { "name": "variation", "type": "number", "default": 0 },
+        { "name": "grain", "type": "number", "default": 0.35 },
+        { "name": "quality", "type": "number", "default": 0.75 },
+        { "name": "mouseInteraction", "type": "boolean", "default": true },
+        { "name": "mouseStrength", "type": "number", "default": 1 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "fade", "type": "number", "default": 0 },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "backgroundColor", "type": "string", "default": null },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Beam color, width, angle, wave length, depth, sharpness, twist, brightness, glow and fill light",
+        "Animation speed, pause, intro on or off, pattern seed via variation",
+        "Grain amount, edge fade, overall opacity, render quality and pixel ratio",
+        "Pointer interaction on or off and its strength",
+        "Light mode for dark beams on light pages",
+        "Background color, className, style and extra div attributes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change the grain, bloom or tone mapping look",
+            "where": "COMPOSITE shader string"
+        },
+        {
+            "change": "Change beam shape or lighting model",
+            "where": "FIELD shader string, glint and lobe functions"
+        },
+        {
+            "change": "Raise or lower the pixel budget for the beam field",
+            "where": "MAX_FIELD_PIXELS constant"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable",
+        "Listens to pointermove on window and pointerleave on the document element, so the pointer reacts anywhere on the page",
+        "Fills its parent (h-full w-full), so the parent needs a defined size and positioning",
+        "Pixel ratio capped at 2 and beam field capped at 1.6 million pixels",
+        "Numeric props are clamped internally (for example beamWidth min 8, waveLength min 20, quality 0.25 to 1, opacity 0 to 1)",
+        "Beams are additive light; on a light page use lightMode or beams are invisible",
+        "Canvas is aria-hidden and decorative",
+        "Uses Tailwind classes for layout",
+        "Marked use client"
+    ],
+    "mood": [
+        "futuristic",
+        "elegant",
+        "dramatic",
+        "cinematic"
+    ],
+    "industries": [
+        "technology",
+        "saas",
+        "ai",
+        "creative agency",
+        "fashion"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "cta"
+    ],
+    "dependencies": []
+}

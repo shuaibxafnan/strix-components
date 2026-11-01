@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "code-slots",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.619Z"
+  "note": "Bits describe-only. Category ui-elements, section other. No variants. Digits only; needs motion, @hugeicons packages, Tailwind 4. Click behavior wording clumsy; mood/industries/sections tags are agent-written. Gates passed.",
+  "updatedAt": "2026-11-01T05:09:59.226Z",
+  "gateOutput": "gates passed"
 }

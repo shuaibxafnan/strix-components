@@ -4,11 +4,12 @@
   "sourceHash": "8417e88c479334fa4205a902ca703016c04ac640fc625b69f29b217322423718",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "card-deck-fan",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.403Z"
+  "note": "Frame added (was min-h-screen); nav row spacing pb-24 pt-16 -> pt-8 (ambiguous demo spacing); timers/rAF/transitionend cleaned up on unmount; addLabel/collapseLabel/prevLabel/nextLabel props. Gates passed.",
+  "updatedAt": "2026-11-01T04:56:07.174Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,72 @@
+{
+    "slug": "bubble-menu",
+    "name": "Bubble Menu",
+    "category": "navigation-menus",
+    "isReactBits": true,
+    "description": "Floating pill-shaped header with a logo bubble and a hamburger toggle that opens a full-screen overlay of rounded link pills popping in with staggered scale and label animations.",
+    "contents": [
+        "Logo bubble (image URL or custom node)",
+        "Hamburger toggle bubble that morphs into an X",
+        "Overlay with a grid of rounded link pills, each with a label and its own hover color"
+    ],
+    "behavior": [
+        "Pills scale in with a staggered, slightly randomized delay and labels slide up and fade in",
+        "Closing scales pills out quickly and unmounts the overlay",
+        "On screens 900px and wider pills are tilted by each item's rotation and scale on hover with the item's hover colors",
+        "Below 900px pills stack in a single full-width column with no rotation",
+        "Resize while open re-applies or removes pill rotation"
+    ],
+    "props": [
+        { "name": "logo", "type": "string | ReactNode", "default": null },
+        { "name": "onMenuClick", "type": "(isOpen: boolean) => void", "default": null },
+        { "name": "className", "type": "string", "default": null },
+        { "name": "style", "type": "object", "default": null },
+        { "name": "menuAriaLabel", "type": "string", "default": "Toggle menu" },
+        { "name": "menuBg", "type": "string", "default": "#fff" },
+        { "name": "menuContentColor", "type": "string", "default": "#111" },
+        { "name": "useFixedPosition", "type": "boolean", "default": false },
+        { "name": "items", "type": "{label,href,ariaLabel,rotation,hoverStyles:{bgColor,textColor}}[]", "default": "5 sample items: home, about, projects, blog, contact" },
+        { "name": "animationEase", "type": "string", "default": "back.out(1.5)" },
+        { "name": "animationDuration", "type": "number", "default": 0.5 },
+        { "name": "staggerDelay", "type": "number", "default": 0.12 }
+    ],
+    "editableByProps": [
+        "Logo, menu links, labels, hrefs, aria labels, tilt angles and per-item hover colors",
+        "Bubble and pill background and content colors",
+        "Fixed or absolute positioning, extra class and style",
+        "Open animation ease, duration and stagger",
+        "Open/close callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the 900px desktop/mobile breakpoint",
+            "where": "min-width 899px/900px media queries in the style tag and handleResize"
+        },
+        {
+            "change": "Change close animation speed or easing",
+            "where": "The else if (showOverlay) branch of the first useEffect"
+        },
+        {
+            "change": "Change pill size and layout columns",
+            "where": "pill-col flex-basis class and pill-link style (minHeight, padding, fontSize)"
+        },
+        {
+            "change": "Change logo bubble width",
+            "where": "logo-content span class w-[120px]"
+        }
+    ],
+    "fixed": [
+        "Requires Tailwind CSS classes and gsap",
+        "Injects a style tag with global .bubble-menu and .bubble-menu-items rules",
+        "Header sits at top-8 with z-index 1001 and overlay at 1000",
+        "Overlay is only mounted while open or closing",
+        "Pills are laid out three per row on desktop, with fourth item centered when 4 or 5 items",
+        "Pill rotation only applies at 900px and wider",
+        "Logo bubble and pills use white fallback background and fixed shadows",
+        "Random jitter of 0.05s added to each pill's stagger delay"
+    ],
+    "mood": ["playful", "modern", "bold", "friendly"],
+    "industries": ["creative agency", "portfolio", "startup", "e-commerce", "SaaS"],
+    "sections": ["navbar", "global"],
+    "dependencies": ["gsap"]
+}

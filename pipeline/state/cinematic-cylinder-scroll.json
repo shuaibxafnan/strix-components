@@ -4,11 +4,12 @@
   "sourceHash": "0c7af6ad788c308078418e3798b71adf279d3eeaad1f14e7ef63587bbd2998a5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "cinematic-cylinder-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.406Z"
+  "note": "Removed unused momentum and particleInertia/particleDecay props (ambiguous). Static ogl/gsap/ScrollTrigger imports -> dynamic; className prop with single root div; cleanup scoped to own timelines (no global ScrollTrigger kill); scroll hint follows textColor. Effect runs once on mount. Gates passed.",
+  "updatedAt": "2026-11-01T05:02:19.665Z",
+  "gateOutput": "gates passed"
 }

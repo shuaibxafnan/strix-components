@@ -1,0 +1,117 @@
+{
+    "slug": "card-nav",
+    "name": "Card Nav",
+    "category": "navigation-menus",
+    "isReactBits": true,
+    "description": "Floating pill navigation bar that expands on click or hover into a panel of link cards, with a spring-driven open animation, animated burger icon, optional logo and call-to-action button.",
+    "contents": [
+        "Rounded bar with animated burger menu button and Menu/Close label",
+        "Optional centered logo link (image URL or custom node)",
+        "Optional call-to-action button, moved into the expanded panel on narrow widths",
+        "Expandable panel of cards, each with label, description and arrow links"
+    ],
+    "behavior": [
+        "Panel height and card entrance driven by a spring animation with adjustable bounce, speed and stagger",
+        "Opens on click or on hover, closes on outside pointer press, Escape, or link click",
+        "Cards animate in with rise, unfold or fade effect",
+        "Intro animation wipes the bar in from a pill shape on mount",
+        "Switches to a stacked single-column layout when the component is narrower than 560px",
+        "Link arrows swap with a diagonal slide on hover or focus",
+        "Skips spring motion when reduced motion is preferred",
+        "Supports controlled and uncontrolled open state"
+    ],
+    "props": [
+        { "name": "logo", "type": "string | ReactNode", "default": "undefined" },
+        { "name": "logoAlt", "type": "string", "default": "Logo" },
+        { "name": "logoHref", "type": "string", "default": "#" },
+        { "name": "items", "type": "{label,description,links:{label,href,ariaLabel}[],bgColor,textColor}[]", "default": "3 sample cards: About, Projects, Contact" },
+        { "name": "cta", "type": "{label,href,onClick}", "default": "undefined" },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "surface", "type": "'glass' | 'solid'", "default": "glass" },
+        { "name": "openOn", "type": "'click' | 'hover'", "default": "click" },
+        { "name": "cardEffect", "type": "'rise' | 'unfold' | 'fade'", "default": "rise" },
+        { "name": "stagger", "type": "number", "default": 0.12 },
+        { "name": "bounce", "type": "number", "default": 0.2 },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "cardHeight", "type": "number", "default": 176 },
+        { "name": "maxWidth", "type": "number", "default": 800 },
+        { "name": "accentColor", "type": "string", "default": "undefined" },
+        { "name": "menuLabel", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "defaultOpen", "type": "boolean", "default": false },
+        { "name": "open", "type": "boolean", "default": "undefined" },
+        { "name": "onOpenChange", "type": "(open: boolean) => void", "default": "undefined" },
+        { "name": "linkComponent", "type": "elementType", "default": "a" },
+        { "name": "onLinkClick", "type": "(link, item, event) => void", "default": "undefined" },
+        { "name": "ariaLabel", "type": "string", "default": "Main" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Logo, cards, card text, links, per-card background and text colors, call-to-action",
+        "Dark or light theme, glass or solid surface, accent color for the call-to-action",
+        "Open on click or hover, card entrance effect, stagger, bounce, speed",
+        "Card height, max width, Menu label visibility, intro animation, initial or controlled open state",
+        "Custom link component such as a router Link, link click handler"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the narrow-layout breakpoint",
+            "where": "NARROW constant"
+        },
+        {
+            "change": "Change bar height, corner radius, padding or gaps",
+            "where": "'--cn-bar', '--cn-inset', '--cn-gap', '--cn-radius' entries in the vars object"
+        },
+        {
+            "change": "Change theme colors or add a new theme",
+            "where": "THEMES constant"
+        },
+        {
+            "change": "Change the Menu and Close words",
+            "where": "WORD_OPEN and WORD_CLOSE spans in the menu button"
+        },
+        {
+            "change": "Change the link arrow icon",
+            "where": "ArrowUpRight01Icon import and the two HugeiconsIcon elements inside ARROW"
+        },
+        {
+            "change": "Change the intro animation",
+            "where": "The useLayoutEffect that calls panel.animate"
+        }
+    ],
+    "fixed": [
+        "Requires @hugeicons/react and @hugeicons/core-free-icons for the link arrows",
+        "Uses Tailwind arbitrary values and CSS variables set inline on the root",
+        "Listens on document for pointerdown and Escape keydown while open",
+        "Root is a centered block capped at maxWidth and does not push page content, the expanded panel overlays what is below",
+        "Bar height 60px, inset 8px, gap 8px, radius 18px and logo height 24px are hardcoded",
+        "Switches to stacked layout under 560px root width",
+        "Hover close has a hardcoded 160ms delay and hover is ignored for touch pointers",
+        "Stagger is clamped to 0-0.3, bounce to 0-1, speed to 0.2-3",
+        "Hover and click behavior depends on openOn, not both at once on touch",
+        "Without logo or cta, those slots stay empty",
+        "Links without href render as buttons",
+        "Burger label text Menu and Close and default aria labels are hardcoded in English"
+    ],
+    "mood": ["modern", "sleek", "minimal", "premium"],
+    "industries": ["saas", "agency", "portfolio", "startup", "creative studio"],
+    "sections": ["navbar"],
+    "dependencies": ["react", "@hugeicons/react", "@hugeicons/core-free-icons"],
+    "variants": {
+        "prop": "theme",
+        "default": "dark",
+        "options": [
+            {
+                "value": "dark",
+                "look": "Translucent dark purple-gray panel with light text and a white call-to-action",
+                "useWhen": "Navbar floats over a dark hero, dark landing page or photo background"
+            },
+            {
+                "value": "light",
+                "look": "Translucent light gray panel with dark text and a dark call-to-action",
+                "useWhen": "Navbar sits on a white or pastel page such as a light marketing site"
+            }
+        ]
+    }
+}

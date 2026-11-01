@@ -1,0 +1,88 @@
+{
+    "slug": "cinematic-cylinder-scroll",
+    "name": "Cinematic Cylinder Scroll",
+    "category": "backgrounds-3d",
+    "isReactBits": false,
+    "description": "Full-screen WebGL cylinder textured with an image strip that rotates and flies the camera around it as the page scrolls, with timed text captions, streaking particle lines and a loader.",
+    "contents": [
+        "Fixed WebGL canvas with a cylinder wrapped in the images",
+        "Scroll-timed caption texts with optional description",
+        "Loading bar overlay and bouncing scroll hint"
+    ],
+    "behavior": [
+        "Scroll scrubs cylinder rotation and a keyframed camera path through GSAP ScrollTrigger",
+        "Captions fade in and out one after another across the scroll range",
+        "Particle line strips appear while the cylinder rotates",
+        "Loader fades out when all images are loaded",
+        "Responsive cylinder size, camera distance and FOV by breakpoint"
+    ],
+    "props": [
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "bgColor", "type": "string", "default": "#000000" },
+        { "name": "loaderBg", "type": "string", "default": "#000000" },
+        { "name": "loaderBarColor", "type": "string", "default": "#ffffff" },
+        { "name": "textColor", "type": "string", "default": "#ffffff" },
+        { "name": "images", "type": "string[]", "default": "12 sample image URLs" },
+        { "name": "perspectives", "type": "{title,description,position}[]", "default": "4 sample captions" },
+        { "name": "cylinderRadius", "type": "number", "default": 2.5 },
+        { "name": "cylinderRadiusTablet", "type": "number", "default": 2.2 },
+        { "name": "cylinderRadiusMobile", "type": "number", "default": 1.8 },
+        { "name": "cylinderHeight", "type": "number", "default": 2 },
+        { "name": "cylinderRadialSegments", "type": "number", "default": 64 },
+        { "name": "cylinderDarkness", "type": "number", "default": 0.3 },
+        { "name": "imageTileWidth", "type": "number", "default": 1024 },
+        { "name": "imageTileHeight", "type": "number", "default": 1024 },
+        { "name": "cameraFovDesktop", "type": "number", "default": 45 },
+        { "name": "cameraFovMobile", "type": "number", "default": 50 },
+        { "name": "cameraZDesktop", "type": "number", "default": 8 },
+        { "name": "cameraZTablet", "type": "number", "default": 7 },
+        { "name": "cameraZMobile", "type": "number", "default": 6 },
+        { "name": "mobileBreakpoint", "type": "number", "default": 768 },
+        { "name": "tabletBreakpoint", "type": "number", "default": 1024 },
+        { "name": "maxDPR", "type": "number", "default": 2 },
+        { "name": "scrollLength", "type": "string", "default": "500svh" },
+        { "name": "scrollScrub", "type": "number", "default": 1 },
+        { "name": "rotationRadians", "type": "number", "default": 28.27 },
+        { "name": "cameraKeyframes", "type": "{x,y,z,duration,ease}[]", "default": "5 sample keyframes" },
+        { "name": "textScrub", "type": "number", "default": 0.8 },
+        { "name": "particlesEnabled", "type": "boolean", "default": true },
+        { "name": "numParticles", "type": "number", "default": 12 },
+        { "name": "particleRadiusOffset", "type": "number", "default": 0.8 },
+        { "name": "particleSegments", "type": "number", "default": 20 },
+        { "name": "particleAngleSpan", "type": "number", "default": 0.3 },
+        { "name": "particleColor", "type": "string", "default": "#ffffff" },
+        { "name": "showScrollHint", "type": "boolean", "default": true },
+        { "name": "scrollHintText", "type": "string", "default": "Scroll" }
+    ],
+    "editableByProps": [
+        "Images, captions and caption positions (top, top-left, left, center, top-right, bottom, bottom-left, bottom-right)",
+        "Colors for background, loader, text and particles",
+        "Cylinder size, darkness, camera path, FOV and breakpoints",
+        "Scroll length and scrub smoothness, particle count and look, scroll hint"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the loader animation",
+            "where": "ccs-loader keyframes in the style tag"
+        },
+        {
+            "change": "Change particle or cylinder shading",
+            "where": "CYLINDER_FRAGMENT and PARTICLE_FRAGMENT constants"
+        },
+        {
+            "change": "Change caption placement presets",
+            "where": "getPositionClasses function"
+        }
+    ],
+    "fixed": [
+        "Canvas, captions, loader and scroll hint are fixed to the viewport and cover the whole page",
+        "Includes a tall scroll spacer (scrollLength) that gives the scroll animation its range",
+        "Rendering loop and window resize listener are cleaned up on unmount",
+        "Needs images served with CORS access for the WebGL texture",
+        "Props are read once on mount, changing them later does not rebuild the scene"
+    ],
+    "mood": ["cinematic", "immersive", "dark", "futuristic"],
+    "industries": ["creative agency", "photography", "film", "fashion", "events"],
+    "sections": ["hero", "gallery"],
+    "dependencies": ["ogl", "gsap"]
+}

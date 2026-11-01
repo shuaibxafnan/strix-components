@@ -4,11 +4,12 @@
   "sourceHash": "62e37dc3e61898a2f9ac4f619c7580e3619d70a54f6d50bac6cfd99b753a8b90",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "card-scanner",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.404Z"
+  "note": "CDN three -> import('three'); backgroundColor/className props; body userSelect/cursor reset on unmount; console.error removed. Google Fonts links kept (template 1.5 vs no-font-imports rule, reviewer to decide). Gate warning: setTimeout without clearTimeout (600ms scan flash).",
+  "updatedAt": "2026-11-01T04:57:21.932Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

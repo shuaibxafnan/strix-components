@@ -1,0 +1,103 @@
+{
+    "slug": "code-slots",
+    "name": "Code Slots",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "One-time code input made of animated digit slots. Digits spring in, a caret glides between slots, errors drain the digits out, and success washes the row with an accent color and a check icon.",
+    "contents": [
+        "Row of digit slots with a hidden numeric input on top",
+        "Animated caret that glides between slots",
+        "Success overlay with check icon",
+        "Screen reader live region with digit count"
+    ],
+    "behavior": [
+        "Digits scale in with a spring and cascade when pasted",
+        "Backspace, Delete, arrow keys, Home and End move or clear slots; click selects the first empty slot at most",
+        "status error drains filled digits in reverse order, tints slots red, then clears the code",
+        "status success reveals an accent wash from the center, sinks digits and pops in a check icon",
+        "Works controlled (value) or uncontrolled (defaultValue), fires onChange and onComplete when all slots fill",
+        "Respects reduced motion by jumping without animation"
+    ],
+    "props": [
+        { "name": "length", "type": "number", "default": 6 },
+        { "name": "value", "type": "string", "default": "undefined" },
+        { "name": "defaultValue", "type": "string", "default": "" },
+        { "name": "onChange", "type": "(code: string) => void", "default": "undefined" },
+        { "name": "onComplete", "type": "(code: string) => void", "default": "undefined" },
+        { "name": "status", "type": "string", "default": "idle" },
+        { "name": "mask", "type": "boolean", "default": false },
+        { "name": "caret", "type": "boolean", "default": true },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "autoFocus", "type": "boolean", "default": false },
+        { "name": "accentColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "inkColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "slotColor", "type": "string", "default": "#27272a" },
+        { "name": "digitColor", "type": "string", "default": "#18181b" },
+        { "name": "dangerColor", "type": "string", "default": "#ff3b30" },
+        { "name": "slotSize", "type": "number", "default": 44 },
+        { "name": "gap", "type": "number", "default": 8 },
+        { "name": "radius", "type": "number", "default": 12 },
+        { "name": "bounce", "type": "number", "default": 0.2 },
+        { "name": "settle", "type": "number", "default": 0.3 },
+        { "name": "rise", "type": "number", "default": 8 },
+        { "name": "cascade", "type": "number", "default": 20 },
+        { "name": "ariaLabel", "type": "string", "default": "One-time code" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Code length, initial or controlled value, masking, caret, disabled and autofocus",
+        "Idle, error or success state via status",
+        "Colors for accent, caret, slot, digit and error",
+        "Slot size, gap, corner radius",
+        "Spring bounce, settle time, digit rise distance and paste cascade delay",
+        "Accessible label and extra class name"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Allow letters or alphanumeric codes",
+            "where": "digitsOf helper, the /^[0-9]$/ test in onKeyDown, and the inputMode and pattern attributes on the input"
+        },
+        {
+            "change": "Change success check icon",
+            "where": "HugeiconsIcon with Tick02Icon inside the wash motion.span"
+        },
+        {
+            "change": "Change the success and error timings",
+            "where": "WASH_IN, WASH_OUT, SINK_DELAY, SINK_STEP, CHECK_DELAY, CHECK_RISE and SINK_FADE constants"
+        },
+        {
+            "change": "Change screen reader messages",
+            "where": "The aria-live span with id ending in -count"
+        }
+    ],
+    "fixed": [
+        "Digits only, other characters are ignored",
+        "Requires motion and @hugeicons/react with @hugeicons/core-free-icons, and Tailwind CSS 4 classes",
+        "Injects a style tag with the code-slots-blink keyframes",
+        "Input is disabled for typing while status is success or while error drain runs",
+        "Error status clears the code after the drain animation",
+        "Mask character is a fixed bullet",
+        "Slot height is fixed at 1.18 times slot size and font size at half of slot size",
+        "Client component only"
+    ],
+    "mood": [
+        "minimal",
+        "polished",
+        "dark",
+        "playful"
+    ],
+    "industries": [
+        "fintech",
+        "saas",
+        "security",
+        "banking"
+    ],
+    "sections": [
+        "other"
+    ],
+    "dependencies": [
+        "motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+    ]
+}

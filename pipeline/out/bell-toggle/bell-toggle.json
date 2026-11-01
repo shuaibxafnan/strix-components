@@ -1,0 +1,95 @@
+{
+    "slug": "bell-toggle",
+    "name": "Bell Toggle",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Pill-shaped notify toggle button with a bell icon that rings on activation, while the label crossfades and the pill width morphs between off and on text. Optional counter badge and sound waves.",
+    "contents": [
+        "Pill button with bell icon and crossfading off/on label",
+        "Optional sound wave arcs beside the bell",
+        "Optional red count badge showing the number, capped at 9+",
+        "Optional clapper dot under the bell"
+    ],
+    "behavior": [
+        "Click or Enter/Space toggles the on/off state",
+        "Pill width springs between the two label widths and colors swap to the on palette",
+        "Bell swings with decaying amplitude and waves pulse on activation by pointer",
+        "Increasing count while on triggers a small wobble ring",
+        "Pressed scale-down feedback, hover tint on fine pointers",
+        "Keyboard toggles and reduced motion users get no spring or ring, state changes instantly",
+        "Works controlled via pressed or uncontrolled via defaultPressed"
+    ],
+    "props": [
+        { "name": "offLabel", "type": "string", "default": "Notify me" },
+        { "name": "onLabel", "type": "string", "default": "You'll be notified" },
+        { "name": "icon", "type": "ReactNode", "default": "undefined (Hugeicons Notification03Icon)" },
+        { "name": "label", "type": "string", "default": "undefined (aria-label falls back to offLabel)" },
+        { "name": "color", "type": "string", "default": "#f5f5f5" },
+        { "name": "background", "type": "string", "default": "#27272a" },
+        { "name": "onColor", "type": "string", "default": "#18181b" },
+        { "name": "onBackground", "type": "string", "default": "#f5f5f5" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "md" },
+        { "name": "radius", "type": "number", "default": 22 },
+        { "name": "ringAmplitude", "type": "number", "default": 17 },
+        { "name": "ringPasses", "type": "number", "default": 5 },
+        { "name": "ringDecay", "type": "number", "default": 1 },
+        { "name": "ringDuration", "type": "number", "default": 820 },
+        { "name": "ringPivot", "type": "number", "default": 16 },
+        { "name": "crossfadeMs", "type": "number", "default": 200 },
+        { "name": "revealBounce", "type": "number", "default": 0 },
+        { "name": "count", "type": "number", "default": 0 },
+        { "name": "badge", "type": "boolean", "default": true },
+        { "name": "badgeColor", "type": "string", "default": "#ef4444" },
+        { "name": "badgeTextColor", "type": "string", "default": "#ffffff" },
+        { "name": "waves", "type": "boolean", "default": true },
+        { "name": "clapper", "type": "boolean", "default": false },
+        { "name": "pressed", "type": "boolean", "default": "undefined" },
+        { "name": "defaultPressed", "type": "boolean", "default": false },
+        { "name": "onChange", "type": "(next: boolean) => void", "default": "undefined" },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Off and on labels, accessible label, custom icon",
+        "Off and on colors and backgrounds, corner radius, size preset",
+        "Ring amplitude, passes, decay, duration, pivot, crossfade time and reveal bounce",
+        "Count, badge visibility and colors, waves and clapper toggles",
+        "Controlled or uncontrolled state, change callback, disabled"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change size presets or their dimensions",
+            "where": "SIZES constant"
+        },
+        {
+            "change": "Change the wobble strength when count increases",
+            "where": "WOBBLE constant"
+        },
+        {
+            "change": "Change the spring feel of the pill width morph",
+            "where": "SPRING_UI constant"
+        },
+        {
+            "change": "Change the bell shape drawn in clapper mode",
+            "where": "BELL_BODY constant"
+        },
+        {
+            "change": "Change the badge cap of 9+",
+            "where": "badge span rendering count > 9"
+        }
+    ],
+    "fixed": [
+        "Requires motion and @hugeicons/react with @hugeicons/core-free-icons, and Tailwind CSS with arbitrary value and starting: variants",
+        "Client component using Web Animations API, DOMMatrix and ResizeObserver",
+        "Badge only shows when on and count is above 0",
+        "Unknown size value falls back to md",
+        "Clapper mode replaces the icon prop with a built-in bell drawing",
+        "Ring and wave animations only run on pointer activation, never on keyboard",
+        "Label widths are measured after fonts load to size the pill",
+        "Button height, padding, font size and icon size come from the size preset"
+    ],
+    "mood": ["playful", "modern", "minimal", "tactile"],
+    "industries": ["saas", "e-commerce", "media", "events", "apps"],
+    "sections": ["cta", "navbar", "other"],
+    "dependencies": ["motion", "@hugeicons/react", "@hugeicons/core-free-icons"]
+}

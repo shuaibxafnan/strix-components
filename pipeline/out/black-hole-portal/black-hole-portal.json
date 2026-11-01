@@ -1,0 +1,52 @@
+{
+  "slug": "black-hole-portal",
+  "name": "Black Hole Portal",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen canvas of thousands of orbiting star trails around a central ENTER button. Hovering pulls the stars inward, clicking bursts them outward before they settle back.",
+  "contents": [
+    "Full-screen canvas with orbiting star trails",
+    "Centered circular ENTER trigger with line accents"
+  ],
+  "behavior": [
+    "Stars orbit the center and leave fading trails",
+    "Hovering the trigger collapses the stars toward the center",
+    "Clicking expands the stars outward for a set time, then they drift back to their orbits",
+    "Trigger fades out while the expansion and recovery run"
+  ],
+  "props": [
+    { "name": "maxOrbit", "type": "number", "default": 255 },
+    { "name": "starCount", "type": "number", "default": 2500 },
+    { "name": "spaceBgColor", "type": "string", "default": "#191919" },
+    { "name": "enterTextColor", "type": "string", "default": "#666666" },
+    { "name": "enterHoverColor", "type": "string", "default": "#DDDDDD" },
+    { "name": "expansionSecs", "type": "number", "default": 25 },
+    { "name": "recoverySecs", "type": "number", "default": 8 },
+    { "name": "enterLabel", "type": "string", "default": "ENTER" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Button label, background and text colors, hover color",
+    "Star count, orbit size, expansion and recovery timing"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the star trail color or fade strength",
+      "where": "this.color in the Star constructor and the rgba(25,25,25,0.2) fillStyle in renderLoop"
+    },
+    {
+      "change": "Run an action when the trigger is clicked",
+      "where": "handleTriggerClick function"
+    }
+  ],
+  "fixed": [
+    "Root is full-bleed and fills the viewport height",
+    "Canvas is sized once on mount and does not resize with the window",
+    "Canvas redraws every frame, so it is CPU heavy at high star counts",
+    "Trigger is a fixed 255px circle centered in the section"
+  ],
+  "mood": ["dark", "cosmic", "mysterious", "immersive"],
+  "industries": ["gaming", "film", "space", "music", "creative agency"],
+  "sections": ["hero", "background"],
+  "dependencies": []
+}

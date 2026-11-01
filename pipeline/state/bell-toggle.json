@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "bell-toggle",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.618Z"
+  "note": "Bits describe-only. Category ui-elements. Needs motion, @hugeicons packages. No variants (size is a preset). Gates passed.",
+  "updatedAt": "2026-10-31T19:58:53.618Z",
+  "gateOutput": "gates passed"
 }

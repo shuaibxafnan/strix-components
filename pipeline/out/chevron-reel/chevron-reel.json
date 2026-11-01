@@ -1,0 +1,52 @@
+{
+  "slug": "chevron-reel",
+  "name": "Chevron Reel",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen WebGL image reel where columns of curved photos form two chevron-shaped streams that move with page scroll velocity, looping infinitely.",
+  "contents": [
+    "Fixed full-screen WebGL canvas with columns of images arranged in two rotated groups",
+    "Loading progress indicator"
+  ],
+  "behavior": [
+    "Smooth infinite scrolling through Lenis drives the image columns",
+    "Images wrap around endlessly and bend with a cosine curve shader",
+    "Scroll velocity displaces the images, optionally smoothed",
+    "Vertical or horizontal reel direction"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "25 sample image URLs" },
+    { "name": "direction", "type": "\"vertical\" | \"horizontal\"", "default": "vertical" },
+    { "name": "groups", "type": "{rotationZ,columns:{position,imageSize,gap,curveFrequency,curveStrength,wheelFactor,wheelDirection}[]}[]", "default": "2 chevron groups with 3 columns each" },
+    { "name": "scrollSpeedSmoothing", "type": "number", "default": 0 },
+    { "name": "cameraZ", "type": "number", "default": 3 },
+    { "name": "bgColor", "type": "string", "default": "#f8f8f8" },
+    { "name": "includeLenis", "type": "boolean", "default": true },
+    { "name": "lenisOptions", "type": "object", "default": { "infinite": true, "syncTouch": true } },
+    { "name": "showLoader", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, direction, column layout, curvature and speed per column",
+    "Background color, camera distance, scroll smoothing, Lenis options, loader visibility"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the image cropping or add color effects",
+      "where": "IMAGE_FRAGMENT_SHADER constant"
+    },
+    {
+      "change": "Change the bend shape of the images",
+      "where": "VERTICAL_VERTEX_SHADER and HORIZONTAL_VERTEX_SHADER constants"
+    }
+  ],
+  "fixed": [
+    "Canvas is position fixed and covers the whole viewport",
+    "Takes over page scrolling with Lenis when includeLenis is on, so it should be the only smooth scroll on the page",
+    "Renders only after mount"
+  ],
+  "mood": ["immersive", "dynamic", "modern", "playful"],
+  "industries": ["photography", "fashion", "creative agency", "portfolio", "art"],
+  "sections": ["hero", "background", "gallery"],
+  "dependencies": ["@react-three/fiber", "@react-three/drei", "lenis", "three"]
+}

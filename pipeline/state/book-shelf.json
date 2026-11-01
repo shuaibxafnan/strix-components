@@ -4,11 +4,12 @@
   "sourceHash": "1a609fac125bc2f8db136764d9cf246a4f3e590b33b4cdfba26b8d52e2f9ebba",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "book-shelf",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.402Z"
+  "note": "Removed theme toggle, localStorage theme logic, isDark/darkMode props; colors now props (light defaults) - ambiguous vs template keep-dark/light. CDN gsap -> import('gsap'); tween cleanup. Google Fonts links kept. Gates passed.",
+  "updatedAt": "2026-10-31T20:07:01.512Z",
+  "gateOutput": "gates passed"
 }

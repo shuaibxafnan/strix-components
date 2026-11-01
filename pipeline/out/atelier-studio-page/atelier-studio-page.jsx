@@ -287,6 +287,11 @@ export default function AtelierStudioPage({
         let ctx;
         let lenis;
         let rafId;
+        const removers = [];
+        const listen = (el, type, fn) => {
+            el.addEventListener(type, fn);
+            removers.push(() => el.removeEventListener(type, fn));
+        };
 
         const run = async () => {
             loadFonts();
@@ -392,7 +397,7 @@ export default function AtelierStudioPage({
                     .to(panel, { opacity: 0, rotate: -28, ...o }, 0)
                     .to(overlay, { opacity: 0, pointerEvents: "none", ...o }, 0);
 
-                menuButton.addEventListener("click", () => {
+                listen(menuButton, "click", () => {
                     isMenuOpen = !isMenuOpen;
                     if (isMenuOpen) {
                         lenis?.stop();
@@ -407,7 +412,7 @@ export default function AtelierStudioPage({
                 });
 
                 qa("[data-smooth]").forEach((el) => {
-                    el.addEventListener("click", (e) => {
+                    listen(el, "click", (e) => {
                         e.preventDefault();
                         const href = el.getAttribute("href");
                         if (isMenuOpen) {
@@ -430,7 +435,7 @@ export default function AtelierStudioPage({
                 });
 
                 const backTop = q("[data-back-top]");
-                backTop.addEventListener("click", (e) => {
+                listen(backTop, "click", (e) => {
                     e.preventDefault();
                     if (lenis) lenis.scrollTo(0, { duration: 2 });
                     else window.scrollTo({ top: 0, behavior: "smooth" });
@@ -595,6 +600,7 @@ export default function AtelierStudioPage({
 
         return () => {
             cancelled = true;
+            removers.forEach((fn) => fn());
             cancelAnimationFrame(rafId);
             lenis?.destroy();
             ctx?.revert();

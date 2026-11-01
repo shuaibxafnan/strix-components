@@ -1,0 +1,33 @@
+{
+  "slug": "animated-sparkle-text",
+  "name": "Animated Sparkle Text",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Large headline whose letters bounce, tilt and scale in a staggered wave on hover while a Lottie sparkle animation plays behind the text with a glowing accent shadow.",
+  "contents": ["Headline text split into per-letter spans", "Lottie sparkle canvas centered over the text", "Optional hint line below"],
+  "behavior": ["Hovering the headline staggers each letter with translate, rotate and scale", "Lottie sparkle fades in and plays on hover, pauses on leave", "Text glow switches to the accent color on hover"],
+  "props": [
+    {"name": "text", "type": "string", "default": "Animation"},
+    {"name": "fontSize", "type": "string", "default": "clamp(3rem, 8vw, 6rem)"},
+    {"name": "speed", "type": "number", "default": 1},
+    {"name": "accentColor", "type": "string", "default": "#ffd36b"},
+    {"name": "baseTextColor", "type": "string", "default": "#ffffff"},
+    {"name": "lottieSrc", "type": "string", "default": "https://lottie.host/aa8461b8-0395-40aa-9916-3aa8737d127d/wgZlYJ42zU.lottie"},
+    {"name": "canvasSize", "type": "number", "default": 240},
+    {"name": "hintText", "type": "string", "default": "Hover over the text to trigger magic physics"},
+    {"name": "fontClass", "type": "string", "default": "font-black tracking-wider"},
+    {"name": "transformYMax", "type": "number", "default": -7},
+    {"name": "hintColor", "type": "string", "default": "#9aa0a6"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Headline text, hint text, font size and font classes", "Text, accent and hint colors", "Lottie source, size and speed", "Letter lift height"],
+  "needsCodeEdit": [
+    {"change": "Change per-letter rotation and scale pattern", "where": "rotationOffset and scaleOffset constants inside characters.map"},
+    {"change": "Change stagger timing", "where": "transitionDelay constant inside characters.map"}
+  ],
+  "fixed": ["Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.", "Idle text glow uses a fixed faint gold shadow"],
+  "mood": ["playful", "magical", "bold"],
+  "industries": ["entertainment", "gaming", "creative agency", "education"],
+  "sections": ["hero", "other"],
+  "dependencies": ["@lottiefiles/dotlottie-web"]
+}

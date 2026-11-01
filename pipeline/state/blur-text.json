@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "blur-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.628Z"
+  "note": "Bits describe-only. Category text-effects. Variants: effect (blur, zoom, tilt, focus, drift). Needs motion. Gates passed.",
+  "updatedAt": "2026-10-31T20:04:56.973Z",
+  "gateOutput": "gates passed"
 }

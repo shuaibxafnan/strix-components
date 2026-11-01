@@ -1,0 +1,112 @@
+{
+    "slug": "animated-content",
+    "name": "Animated Content",
+    "category": "scroll-section-layouts",
+    "isReactBits": true,
+    "description": "Wrapper that animates any children into view with a slide, fade, scale, blur, rotate, tilt or mask wipe, triggered on scroll or mount, with optional stagger, scrub and exit.",
+    "contents": [
+        "A single div wrapper that renders the children passed in, hidden until its animation is set up"
+    ],
+    "behavior": [
+        "Children slide in from a distance along the vertical or horizontal axis while fading, scaling, blurring, rotating or tilting to rest",
+        "Plays when the wrapper reaches the scroll threshold, or immediately on mount",
+        "With stagger above 0, each direct child animates in sequence",
+        "Optional mask wipe reveals content from up, down, left, right or center",
+        "With scrub, the animation follows scroll position instead of playing on its own",
+        "With once false, the animation reverses when scrolling back above the trigger",
+        "With disappearAfter above 0, content animates out after finishing (only when once is true and scrub is off)",
+        "Skips the animation and shows content at once when the user prefers reduced motion"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": "undefined" },
+        { "name": "container", "type": "Element | string | null", "default": "undefined" },
+        { "name": "distance", "type": "number", "default": 100 },
+        { "name": "direction", "type": "'vertical' | 'horizontal'", "default": "vertical" },
+        { "name": "reverse", "type": "boolean", "default": false },
+        { "name": "duration", "type": "number", "default": 0.8 },
+        { "name": "ease", "type": "string", "default": "power3.out" },
+        { "name": "initialOpacity", "type": "number", "default": 0 },
+        { "name": "animateOpacity", "type": "boolean", "default": true },
+        { "name": "scale", "type": "number", "default": 1 },
+        { "name": "blur", "type": "number", "default": 0 },
+        { "name": "rotate", "type": "number", "default": 0 },
+        { "name": "tilt", "type": "number", "default": 0 },
+        { "name": "wipe", "type": "'none' | 'up' | 'down' | 'left' | 'right' | 'center'", "default": "none" },
+        { "name": "threshold", "type": "number", "default": 0.1 },
+        { "name": "delay", "type": "number", "default": 0 },
+        { "name": "stagger", "type": "number", "default": 0 },
+        { "name": "staggerFrom", "type": "string | number", "default": "start" },
+        { "name": "trigger", "type": "'scroll' | 'mount'", "default": "scroll" },
+        { "name": "once", "type": "boolean", "default": true },
+        { "name": "scrub", "type": "boolean | number", "default": false },
+        { "name": "disappearAfter", "type": "number", "default": 0 },
+        { "name": "disappearDuration", "type": "number", "default": 0.5 },
+        { "name": "disappearEase", "type": "string", "default": "power3.in" },
+        { "name": "onStart", "type": "() => void", "default": "undefined" },
+        { "name": "onComplete", "type": "() => void", "default": "undefined" },
+        { "name": "onDisappearanceComplete", "type": "() => void", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Wrapped content via children",
+        "Direction, distance, reverse, duration, ease, delay",
+        "Fade, scale, blur, rotate and tilt amounts",
+        "Wipe direction",
+        "Scroll threshold, trigger mode, once, scrub and custom scroll container",
+        "Stagger timing and origin",
+        "Exit timing and easing",
+        "Callbacks, className, style and extra div attributes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change wipe shapes",
+            "where": "WIPES constant"
+        },
+        {
+            "change": "Change the exit scale or direction",
+            "where": "disappear function inside the gsap.context"
+        },
+        {
+            "change": "Change the 3D tilt perspective",
+            "where": "transformPerspective 900 in the tilt block"
+        },
+        {
+            "change": "Change the scrub scroll distance",
+            "where": "end value in the scrub branch of ScrollTrigger.create"
+        }
+    ],
+    "fixed": [
+        "Requires gsap and its ScrollTrigger plugin, registered globally at module load",
+        "Wrapper is hidden with the invisible class until the effect runs, so content stays hidden if JavaScript fails",
+        "Without a container prop, uses the element with id snap-main-container as scroller if present, otherwise the window",
+        "Inline transform, filter and mask styles are cleared after the animation finishes, except in scrub mode",
+        "Exit animation always scales to 0.8 and moves opposite to the entry direction",
+        "Wipe fade edge is a fixed 40 percent soft gradient",
+        "Scrub range ends 45 percentage points of viewport above the start",
+        "Changing most animation props re-creates the animation"
+    ],
+    "mood": [
+        "smooth",
+        "dynamic",
+        "modern",
+        "polished"
+    ],
+    "industries": [
+        "saas",
+        "agency",
+        "portfolio",
+        "ecommerce",
+        "startup"
+    ],
+    "sections": [
+        "hero",
+        "features",
+        "about",
+        "services",
+        "other"
+    ],
+    "dependencies": [
+        "gsap"
+    ]
+}

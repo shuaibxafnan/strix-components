@@ -1,0 +1,62 @@
+{
+  "slug": "absinthe-gallery",
+  "name": "Absinthe Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen portrait gallery where each slide is a square card that flips between a photo with biography and a photo with a quote, with thumbnail strip, arrows, swipe and keyboard navigation.",
+  "contents": [
+    "Heading with title and script accent word",
+    "Horizontal slider of portrait cards with front biography and back quote",
+    "Bottom navigation with thumbnail strip, previous and next buttons, signature and page counter",
+    "Top progress line"
+  ],
+  "behavior": [
+    "Slides move horizontally with eased transform",
+    "Clicking a card crossfades between front and back faces",
+    "Arrow keys change slide and space flips all cards",
+    "Horizontal touch swipe changes slide",
+    "Active thumbnail scrolls into view",
+    "Broken images fall back to initials"
+  ],
+  "props": [
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "title", "type": "string", "default": "Absinthe"},
+    {"name": "titleAccent", "type": "string", "default": "gallery"},
+    {"name": "bg", "type": "string", "default": "#0b0b0b"},
+    {"name": "fg", "type": "string", "default": "#f4f4f2"},
+    {"name": "accent", "type": "string", "default": "#ffffff"},
+    {"name": "shade", "type": "string", "default": "#000000"},
+    {"name": "onCard", "type": "string", "default": "#ffffff"},
+    {"name": "tint", "type": "string", "default": ""},
+    {"name": "tintOpacity", "type": "number", "default": 0.7},
+    {"name": "grayscale", "type": "boolean", "default": true},
+    {"name": "radius", "type": "string", "default": "2px"},
+    {"name": "titleFont", "type": "string", "default": "Fredericka the Great"},
+    {"name": "bodyFont", "type": "string", "default": "Jost"},
+    {"name": "serifFont", "type": "string", "default": "Fleur De Leah"},
+    {"name": "signatureFont", "type": "string", "default": "Mrs Saint Delafield"},
+    {"name": "galleryItems", "type": "{id,name,signature,frontImage,frontAlt,frontTitle,frontDate,frontDesc,backImage,backAlt,backQuote,backAttribution}[]", "default": "9 sample portraits"}
+  ],
+  "editableByProps": [
+    "Heading text, all card text, quotes, images and signatures",
+    "Number of cards",
+    "Background, text, accent, shade and card colors, optional image tint, grayscale, corner radius"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change slide timing or easing", "where": "ease-[cubic-bezier(0.65,0,0.2,1)] class on the slider div"},
+    {"change": "Change keyboard shortcuts", "where": "onKey function inside the first useEffect"},
+    {"change": "Change swipe threshold", "where": "onEnd function with the 50 pixel check"},
+    {"change": "Change the Google Fonts families loaded", "where": "link stylesheet href at the top of the returned fragment"}
+  ],
+  "fixed": [
+    "Listens for arrow keys and space on window while mounted, space is prevented from scrolling, removed on unmount",
+    "Loads Google Fonts through link tags for the default font props",
+    "Progress line and bottom navigation are position fixed to the viewport",
+    "Root is a full-screen section, 100dvh by 100vw, with hidden overflow",
+    "backQuote is rendered as HTML, supports b and strong tags"
+  ],
+  "mood": ["dark", "editorial", "vintage", "moody", "elegant"],
+  "industries": ["art", "history", "museums", "publishing", "hospitality", "portfolio"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

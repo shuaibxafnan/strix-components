@@ -4,11 +4,12 @@
   "sourceHash": "7de64a3d9c97eb56eb58c933c69a0e2ef528970c32b40682b90af9dd2d2ca0e8",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "cosmic-warp-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.413Z"
+  "note": "CDN gsap -> import('gsap'); full unmount cleanup; backgroundColor/textColor/className props; stray character removed from max-w-full class. Drag-line and thumb strip rgba colors hardcoded (needsCodeEdit). Gates passed.",
+  "updatedAt": "2026-11-01T05:18:03.062Z",
+  "gateOutput": "gates passed"
 }

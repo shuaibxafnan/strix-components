@@ -1,0 +1,104 @@
+{
+    "slug": "click-spark",
+    "name": "Click Spark",
+    "category": "cursor-effects",
+    "isReactBits": true,
+    "description": "Wrapper that bursts canvas sparks from the pointer position on every click inside it, with selectable spark shape, colors, gravity, spread, glow and an optional ring.",
+    "contents": [
+        "Full-size relative wrapper div rendering its children",
+        "Overlay layer that holds a short-lived canvas per click burst",
+        "Imperative spark(x, y) method exposed through ref"
+    ],
+    "behavior": [
+        "Left mouse press spawns a burst of sparks at the cursor; touch, pen and keyboard clicks spawn one on click",
+        "Sparks fly outward with the chosen easing, fade out, and can fall with gravity",
+        "Colors from an array are cycled across the sparks of a burst",
+        "Keeps at most 32 bursts alive, oldest are removed first",
+        "Under prefers-reduced-motion, sparks show a short static fade instead of travelling"
+    ],
+    "props": [
+        { "name": "sparkColor", "type": "string | string[]", "default": "#fff" },
+        { "name": "sparkSize", "type": "number", "default": 14 },
+        { "name": "sparkRadius", "type": "number", "default": 30 },
+        { "name": "sparkCount", "type": "number", "default": 8 },
+        { "name": "sparkWidth", "type": "number", "default": 2 },
+        { "name": "duration", "type": "number", "default": 500 },
+        { "name": "easing", "type": "'linear' | 'ease-in' | 'ease-out' | 'ease-in-out' | 'spring'", "default": "ease-out" },
+        { "name": "extraScale", "type": "number", "default": 1 },
+        { "name": "shape", "type": "'line' | 'streak' | 'dot' | 'star'", "default": "line" },
+        { "name": "randomness", "type": "number", "default": 0.2 },
+        { "name": "gravity", "type": "number", "default": 0 },
+        { "name": "spread", "type": "number", "default": 360 },
+        { "name": "direction", "type": "number", "default": 0 },
+        { "name": "glow", "type": "number", "default": 0 },
+        { "name": "ring", "type": "boolean", "default": false },
+        { "name": "layer", "type": "'front' | 'back'", "default": "front" },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null },
+        { "name": "children", "type": "ReactNode", "default": null }
+    ],
+    "editableByProps": [
+        "Spark shape, color or color list, size, width, radius, count and duration",
+        "Easing, randomness, gravity, spread angle and direction",
+        "Glow, expanding ring, front or back layer, disabling the effect",
+        "Wrapper className and style, and the children it wraps"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Trigger on touch pointerdown as well as mouse",
+            "where": "onPointerDown handler, the pointerType check"
+        },
+        {
+            "change": "Raise or lower the number of simultaneous bursts",
+            "where": "MAX_BURSTS constant"
+        },
+        {
+            "change": "Change gravity strength scale",
+            "where": "GRAVITY constant"
+        },
+        {
+            "change": "Add a new easing curve",
+            "where": "EASINGS object"
+        }
+    ],
+    "fixed": [
+        "Wrapper is always relative, isolated and h-full w-full, so the parent needs a defined height",
+        "Only left mouse button triggers on press; other pointer types trigger on click",
+        "Sparks are clipped to the viewport per burst canvas, device pixel ratio capped at 2",
+        "Values are clamped: count 1 to 64, duration at least 60, width at least 0.5, spread 0 to 360, glow and randomness 0 to 1",
+        "Unknown shape or easing falls back to line or ease-out",
+        "Burst settings are captured at click time, so prop changes affect only new bursts",
+        "Respects prefers-reduced-motion, read once on mount",
+        "Unknown colors that the canvas cannot parse render as black for the streak gradient"
+    ],
+    "mood": [
+        "playful",
+        "energetic",
+        "interactive",
+        "delightful"
+    ],
+    "industries": [
+        "gaming",
+        "creative agency",
+        "saas",
+        "e-commerce",
+        "education"
+    ],
+    "sections": [
+        "hero",
+        "cta",
+        "global"
+    ],
+    "dependencies": [],
+    "variants": {
+        "prop": "shape",
+        "default": "line",
+        "options": [
+            { "value": "line", "look": "Short radiating strokes with rounded caps that shrink as they travel", "useWhen": "Classic click feedback on buttons or a hero where a clean burst is wanted" },
+            { "value": "streak", "look": "Comet-like tapered trails with a fading tail and round head", "useWhen": "Fast, energetic call-to-action areas or gaming pages" },
+            { "value": "dot", "look": "Small round particles that shrink while flying out", "useWhen": "Soft playful confetti-like feedback on friendly or kids oriented pages" },
+            { "value": "star", "look": "Four-point twinkling stars that spin and pulse", "useWhen": "Magical or celebratory moments such as sign-up success or premium highlights" }
+        ]
+    }
+}

@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "circular-carousel",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.610Z"
+  "note": "Bits describe-only. Category sliders-carousels. Variants: preset (cylinder, orbit, wheel, panorama). Fills parent; captures wheel events with preventDefault; injects style tag. Gates passed.",
+  "updatedAt": "2026-11-01T05:03:41.700Z",
+  "gateOutput": "gates passed"
 }

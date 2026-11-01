@@ -1,0 +1,93 @@
+{
+    "slug": "animations-ghost-cursor",
+    "name": "Ghost Cursor",
+    "category": "cursor-effects",
+    "isReactBits": true,
+    "description": "WebGL smoke-like ghost trail that follows the pointer across its parent area, with bloom, grain, click puffs and a dark or light theme.",
+    "contents": [
+        "Absolutely positioned overlay container filling the parent",
+        "WebGL2 canvas rendering a fluid-like trail simulation with bloom and grain"
+    ],
+    "behavior": [
+        "Trail of glowing smoke follows the pointer anywhere in the window and drifts and swirls with noise",
+        "Clicking or tapping emits a puff that expands outward when clickPuff is on",
+        "Plays an intro animation on mount when intro is on",
+        "Trail fades out after the pointer goes idle, with shorter delays on touch devices",
+        "Pauses when the tab is hidden and recovers from WebGL context loss",
+        "Resolution is scaled to a pixel budget and capped device pixel ratio",
+        "Does not render when WebGL2 or float color buffers are unavailable"
+    ],
+    "props": [
+        { "name": "color", "type": "string", "default": "#B497CF" },
+        { "name": "brightness", "type": "number", "default": 1 },
+        { "name": "size", "type": "number", "default": 80 },
+        { "name": "trailLength", "type": "number", "default": 50 },
+        { "name": "inertia", "type": "number", "default": 0.5 },
+        { "name": "turbulence", "type": "number", "default": 0.5 },
+        { "name": "drift", "type": "number", "default": 0.3 },
+        { "name": "detail", "type": "number", "default": 1 },
+        { "name": "grainIntensity", "type": "number", "default": 0.05 },
+        { "name": "bloomStrength", "type": "number", "default": 0.6 },
+        { "name": "bloomRadius", "type": "number", "default": 1 },
+        { "name": "bloomThreshold", "type": "number", "default": 0.025 },
+        { "name": "edgeIntensity", "type": "number", "default": 0 },
+        { "name": "clickPuff", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "mixBlendMode", "type": "string", "default": "undefined (screen for dark, normal for light)" },
+        { "name": "fadeDelayMs", "type": "number", "default": "undefined (1000, or 500 on touch)" },
+        { "name": "fadeDurationMs", "type": "number", "default": "undefined (1500, or 1000 on touch)" },
+        { "name": "maxDevicePixelRatio", "type": "number", "default": 2 },
+        { "name": "targetPixels", "type": "number", "default": "undefined (600000, or 300000 on touch)" },
+        { "name": "zIndex", "type": "number", "default": 10 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Trail color, brightness, size, length, inertia, turbulence, drift and detail",
+        "Bloom strength, radius and threshold, grain and edge intensity",
+        "Click puff and intro toggles, fade delay and duration",
+        "Dark or light theme and blend mode",
+        "Performance limits through maxDevicePixelRatio and targetPixels",
+        "Stacking order, class names and inline style of the overlay"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Track the pointer only inside the parent instead of the whole window",
+            "where": "window pointermove and pointerdown listeners in the main useEffect"
+        },
+        {
+            "change": "Change the look of the smoke shape and shading",
+            "where": "SHADE fragment shader constant"
+        },
+        {
+            "change": "Change how the trail flows and swirls",
+            "where": "SIM fragment shader constant"
+        },
+        {
+            "change": "Show a fallback when WebGL2 is unavailable",
+            "where": "The early return after canvas.getContext('webgl2') in the main useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2 with EXT_color_buffer_float, otherwise renders nothing",
+        "Sets the parent element to position relative when it is static and restores it on unmount",
+        "Needs a parent element with real size since the overlay fills it with absolute inset-0",
+        "Listens to pointer events on window and document for the whole page, not only the parent",
+        "Overlay is pointer-events-none so it never blocks clicks",
+        "Respects prefers-reduced-motion",
+        "Client component using the use client directive"
+    ],
+    "mood": ["mystical", "ethereal", "futuristic", "playful"],
+    "industries": ["gaming", "entertainment", "creative agency", "tech", "music"],
+    "sections": ["hero", "background", "global"],
+    "dependencies": [],
+    "variants": {
+        "prop": "theme",
+        "default": "dark",
+        "options": [
+            { "value": "dark", "look": "Glowing additive smoke blended with screen mode", "useWhen": "Dark hero or full-page dark site where a glowing cursor trail should stand out" },
+            { "value": "light", "look": "Smoke shaded for light backgrounds with normal blending", "useWhen": "White or pastel landing page needing a soft ink-like cursor trail" }
+        ]
+    }
+}

@@ -1,0 +1,362 @@
+{
+  "slug": "atmospheric-depth-gallery",
+  "name": "Atmospheric Depth Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen WebGL gallery where images float in a deep 3D stack. Wheel or touch moves the camera through the planes while the background gradient shifts per image and a glowing trail follows.",
+  "contents": [
+    "Full-viewport WebGL canvas with image planes stacked in depth",
+    "Animated gradient background with blobs and grain",
+    "Glowing ribbon trail",
+    "Overlay with index, tone name, color chip and CMYK/RGB/HEX/PMS specs"
+  ],
+  "behavior": [
+    "Wheel and touch scroll fly the camera through the planes with smoothing",
+    "Planes cross-fade and background colors blend based on camera depth",
+    "Pointer parallax, tilt and scale pulse driven by scroll velocity",
+    "Trail grows with scroll progress",
+    "Overlay labels update to the active plane"
+  ],
+  "props": [
+    {
+      "name": "planes",
+      "type": "array of { textureSrc, position:{x,y}, fallbackColor, accentColor, backgroundColor, blob1Color, blob2Color, label:{word,pms,color} }",
+      "default": "DEFAULT_PLANES (8 planes)"
+    },
+    {
+      "name": "showLabels",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "labelColor",
+      "type": "string",
+      "default": "rgba(244,244,244,0.92)"
+    },
+    {
+      "name": "fontFamily",
+      "type": "string",
+      "default": "'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+    },
+    {
+      "name": "letterSpacing",
+      "type": "string",
+      "default": "0.08em"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "planeGap",
+      "type": "number",
+      "default": 5
+    },
+    {
+      "name": "desktopPlaneScale",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "mobilePlaneScale",
+      "type": "number",
+      "default": 0.65
+    },
+    {
+      "name": "mobileXSpreadFactor",
+      "type": "number",
+      "default": 0.25
+    },
+    {
+      "name": "mobileBreakpoint",
+      "type": "number",
+      "default": 768
+    },
+    {
+      "name": "planeFadeSampleOffset",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "planeFadeSmoothing",
+      "type": "number",
+      "default": 0.14
+    },
+    {
+      "name": "moodSampleOffset",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "parallaxEnabled",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "parallaxAmountX",
+      "type": "number",
+      "default": 0.16
+    },
+    {
+      "name": "parallaxAmountY",
+      "type": "number",
+      "default": 0.08
+    },
+    {
+      "name": "parallaxSmoothing",
+      "type": "number",
+      "default": 0.08
+    },
+    {
+      "name": "breathEnabled",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "breathTiltAmount",
+      "type": "number",
+      "default": 0.045
+    },
+    {
+      "name": "breathScaleAmount",
+      "type": "number",
+      "default": 0.03
+    },
+    {
+      "name": "breathSmoothing",
+      "type": "number",
+      "default": 0.14
+    },
+    {
+      "name": "breathGain",
+      "type": "number",
+      "default": 1.1
+    },
+    {
+      "name": "gestureParallaxEnabled",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "gestureParallaxAmountY",
+      "type": "number",
+      "default": 0.05
+    },
+    {
+      "name": "gestureParallaxSmoothing",
+      "type": "number",
+      "default": 0.05
+    },
+    {
+      "name": "scrollSmoothing",
+      "type": "number",
+      "default": 0.08
+    },
+    {
+      "name": "scrollToWorldFactor",
+      "type": "number",
+      "default": 0.01
+    },
+    {
+      "name": "wheelScrollSpeed",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "touchScrollSpeed",
+      "type": "number",
+      "default": 1.8
+    },
+    {
+      "name": "invertScroll",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "useScrollBounds",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "firstPlaneViewOffset",
+      "type": "number",
+      "default": 5
+    },
+    {
+      "name": "lastPlaneViewOffset",
+      "type": "number",
+      "default": 5
+    },
+    {
+      "name": "velocityDamping",
+      "type": "number",
+      "default": 0.12
+    },
+    {
+      "name": "velocityMax",
+      "type": "number",
+      "default": 1.5
+    },
+    {
+      "name": "baseBlobRadius",
+      "type": "number",
+      "default": 0.65
+    },
+    {
+      "name": "secondaryBlobRadiusRatio",
+      "type": "number",
+      "default": 0.78
+    },
+    {
+      "name": "baseBlobStrength",
+      "type": "number",
+      "default": 0.9
+    },
+    {
+      "name": "noiseStrength",
+      "type": "number",
+      "default": 0.04
+    },
+    {
+      "name": "depthToRadiusAmount",
+      "type": "number",
+      "default": 0.08
+    },
+    {
+      "name": "velocityToStrengthAmount",
+      "type": "number",
+      "default": 0.1
+    },
+    {
+      "name": "motionSmoothing",
+      "type": "number",
+      "default": 0.1
+    },
+    {
+      "name": "trailEnabled",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "trailColor",
+      "type": "string",
+      "default": "#f6f9ff"
+    },
+    {
+      "name": "trailGlowColor",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "trailGlowIntensity",
+      "type": "number",
+      "default": 1.35
+    },
+    {
+      "name": "trailOpacity",
+      "type": "number",
+      "default": 0.51
+    },
+    {
+      "name": "trailRadiusHead",
+      "type": "number",
+      "default": 0.012
+    },
+    {
+      "name": "trailRadiusTail",
+      "type": "number",
+      "default": 0.003
+    },
+    {
+      "name": "trailWidth",
+      "type": "number",
+      "default": 3
+    },
+    {
+      "name": "trailHorizontalCycles",
+      "type": "number",
+      "default": 1.85
+    },
+    {
+      "name": "trailVerticalCycles",
+      "type": "number",
+      "default": 2.1
+    },
+    {
+      "name": "trailVerticalAmplitude",
+      "type": "number",
+      "default": 0.78
+    },
+    {
+      "name": "trailMinPoints",
+      "type": "number",
+      "default": 14
+    },
+    {
+      "name": "trailMaxPoints",
+      "type": "number",
+      "default": 220
+    },
+    {
+      "name": "trailCurveTension",
+      "type": "number",
+      "default": 0.67
+    },
+    {
+      "name": "trailPointSmoothing",
+      "type": "number",
+      "default": 0.53
+    }
+  ],
+  "editableByProps": [
+    "Images, positions and per-plane colors and labels via planes",
+    "Label visibility, color, font family and letter spacing",
+    "Plane spacing, scale and mobile layout",
+    "Parallax, breath, scroll and velocity tuning",
+    "Background blob size, strength and grain",
+    "Trail color, glow, opacity, shape and length"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Background gradient shader look",
+      "where": "FRAGMENT_SHADER"
+    },
+    {
+      "change": "Label overlay layout and typography",
+      "where": "showLabels"
+    },
+    {
+      "change": "Trail tube geometry",
+      "where": "buildTube"
+    }
+  ],
+  "fixed": [
+    "Wheel and touch scrolling is captured on window with preventDefault, taking over page scrolling",
+    "Canvas is position fixed and covers the viewport",
+    "Requires the three npm package, loaded by dynamic import",
+    "Window listeners for resize, pointer, wheel and touch are removed on unmount"
+  ],
+  "mood": [
+    "immersive",
+    "cinematic",
+    "atmospheric",
+    "elegant"
+  ],
+  "industries": [
+    "photography",
+    "fashion",
+    "design studio",
+    "architecture",
+    "art",
+    "interiors"
+  ],
+  "sections": [
+    "hero",
+    "gallery",
+    "portfolio"
+  ],
+  "dependencies": [
+    "three"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+    "slug": "call-chip",
+    "name": "Call Chip",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Compact status chip for a tool call showing an icon, name, argument and live timer, with a progress fill, icon swap and shake on failure. Fits AI agent and developer tool interfaces.",
+    "contents": [
+        "Inline pill with tool icon, name, argument text and elapsed timer",
+        "Progress fill layer behind the content",
+        "Icon slot that swaps between tool, check and retry glyphs",
+        "Invisible retry button overlay shown on error when onRetry is given",
+        "Screen reader only live status text"
+    ],
+    "behavior": [
+        "Running: fill scales to 90% over expectedMs and the timer counts up each frame",
+        "Done: fill completes, turns green and wipes away, icon rolls to a green check",
+        "Error: fill freezes at its current progress with a red wash, chip shakes horizontally, icon rolls to a red retry glyph",
+        "Idle: fill resets to zero and timer shows a dash",
+        "Icon swap uses a blur and vertical slide transition",
+        "Retry button gives a pressed scale effect on pointer down",
+        "Reduced motion disables the shake and icon slide, and the timer updates every 100 ms"
+    ],
+    "props": [
+        { "name": "icon", "type": "'terminal' | 'file' | 'search' | 'edit' | ReactNode", "default": "terminal" },
+        { "name": "name", "type": "string", "default": "bash" },
+        { "name": "argument", "type": "string", "default": "npm test" },
+        { "name": "status", "type": "'running' | 'done' | 'error' | 'idle'", "default": "running" },
+        { "name": "expectedMs", "type": "number", "default": 2500 },
+        { "name": "size", "type": "number", "default": 34 },
+        { "name": "radius", "type": "number", "default": 10 },
+        { "name": "color", "type": "string", "default": "currentColor" },
+        { "name": "surfaceColor", "type": "string", "default": "#27272a" },
+        { "name": "progressColor", "type": "string", "default": "currentColor" },
+        { "name": "progressOpacity", "type": "number", "default": 0.08 },
+        { "name": "doneColor", "type": "string", "default": "#22c55e" },
+        { "name": "errorColor", "type": "string", "default": "#ef4444" },
+        { "name": "washOpacity", "type": "number", "default": 0.14 },
+        { "name": "shake", "type": "number", "default": 6 },
+        { "name": "showTimer", "type": "boolean", "default": true },
+        { "name": "onRetry", "type": "() => void", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Tool icon, name and argument text",
+        "Status and expected duration of the progress fill",
+        "Size, corner radius, text, surface, progress, done and error colors",
+        "Fill and wash opacity, shake distance, timer visibility",
+        "Retry callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add more built-in tool icons",
+            "where": "ICONS constant and the hugeicons import"
+        },
+        {
+            "change": "Change the status labels read by screen readers",
+            "where": "WORDS constant"
+        },
+        {
+            "change": "Change how far the fill advances while running",
+            "where": "HOLD_AT constant"
+        },
+        {
+            "change": "Change the shake pattern or duration",
+            "where": "SHAKE constant and the animate call in the apply function"
+        },
+        {
+            "change": "Change timer format",
+            "where": "fmt function"
+        }
+    ],
+    "fixed": [
+        "Requires the @hugeicons/react and @hugeicons/core-free-icons packages and Tailwind CSS with arbitrary value and group-data variants",
+        "Marked 'use client' and relies on browser APIs (Web Animations, DOMMatrix, matchMedia)",
+        "Status changes are driven only by the status prop, the chip does not run or finish tasks itself",
+        "Fill stops at 90% while running until status becomes done",
+        "Retry button only appears when status is error and onRetry is provided",
+        "Timer text is written directly to the DOM, and shows a dash when idle",
+        "Sizes of font, padding and gap derive from size",
+        "Timer column has a minimum width of 6ch",
+        "Default icon glyph set is limited to terminal, file, search and edit",
+        "Component has no frame and renders inline"
+    ],
+    "mood": [
+        "technical",
+        "minimal",
+        "polished",
+        "dark"
+    ],
+    "industries": [
+        "developer tools",
+        "AI",
+        "SaaS",
+        "devops"
+    ],
+    "sections": [
+        "features",
+        "hero",
+        "other"
+    ],
+    "dependencies": [
+        "react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+    ]
+}

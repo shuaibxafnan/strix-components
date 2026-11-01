@@ -1,0 +1,56 @@
+{
+    "slug": "circular-showcase-slider",
+    "name": "Circular Showcase Slider",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Pseudo-3D curved carousel of tall image cards that lean toward the center, rotated by drag, arrow keys or buttons, with a glass modal detail view on click.",
+    "contents": [
+        "Eyebrow subtitle and uppercase main title",
+        "Row of image cards arranged in a perspective arc",
+        "Previous and next arrow buttons and a hint line",
+        "Detail modal with image, eyebrow, title, description, tags and a call-to-action button"
+    ],
+    "behavior": [
+        "Cards are repositioned with GSAP tweens when the track rotates by drag, arrow keys or buttons",
+        "Dragging rotates one step per threshold distance",
+        "Clicking a card opens a blurred glass modal, the track blurs behind it",
+        "Escape or backdrop click closes the modal"
+    ],
+    "props": [
+        {"name": "slides", "type": "{id,title,desc,img}[]", "default": "11 sample slides"},
+        {"name": "subtitle", "type": "string", "default": "Behind creativity"},
+        {"name": "mainTitle", "type": "string", "default": "Curious what else we've created?"},
+        {"name": "hintText", "type": "string", "default": "[ Drag or use Arrow Keys ]"},
+        {"name": "modalEyebrow", "type": "string", "default": "Selected Canvas"},
+        {"name": "modalTags", "type": "string[]", "default": ["Identity", "Packaging", "Editorial"]},
+        {"name": "modalCtaLabel", "type": "string", "default": "View Project →"},
+        {"name": "accentColor", "type": "string", "default": "#ff6b35"},
+        {"name": "pageBg", "type": "string", "default": "#070709"},
+        {"name": "textColor", "type": "string", "default": "#ffffff"},
+        {"name": "dragThreshold", "type": "number", "default": 60},
+        {"name": "duration", "type": "number", "default": 0.6},
+        {"name": "ease", "type": "string", "default": "power3.out"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Slides with title, description and image, all headings, hint and modal text and tags",
+        "Accent, background and text colors",
+        "Drag sensitivity, tween duration and easing"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the card arc shape, heights, depth or tilt", "where": "POSITIONS constant"},
+        {"change": "Change card width", "where": "w-[240px] class on the card div inside slides.map"},
+        {"change": "Change the ambient glow colors", "where": "Ambient glow divs at the top of the root element"},
+        {"change": "Change modal animation timing", "where": "STYLES constant and the 400ms timeout in closeModal"}
+    ],
+    "fixed": [
+        "Listens for ArrowLeft, ArrowRight and Escape on window while mounted and removes the listeners on unmount",
+        "Root is at least one viewport tall with its own background and hides overflow",
+        "Needs 11 slides to fill every slot of the arc",
+        "Card heights and tilt follow the fixed 11-slot POSITIONS table"
+    ],
+    "mood": ["dark", "cinematic", "premium", "modern"],
+    "industries": ["design agency", "fashion", "branding", "photography", "e-commerce"],
+    "sections": ["portfolio", "gallery"],
+    "dependencies": ["gsap"]
+}

@@ -1,0 +1,51 @@
+{
+  "slug": "bubbly-image-reveal",
+  "name": "Bubbly Image Reveal",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Fixed WebGL canvas where each image sits in its own viewport-height scroll section and is revealed through a bubbly, wobbling circle mask shader as you scroll to it.",
+  "contents": [
+    "One full-screen section per image",
+    "Fixed large uppercase heading at the bottom right"
+  ],
+  "behavior": [
+    "Camera follows page scroll with smoothing",
+    "Entering a section animates its shader progress from 0 to 1, growing a blobby circle cluster that reveals the image",
+    "Heading uses difference blend mode over the canvas",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "4 sample image URLs"},
+    {"name": "imageSizes", "type": "[number,number][]", "default": [[1000,667],[450,581],[553,600],[600,600]]},
+    {"name": "heading", "type": "string", "default": "Image Reveal"},
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "headingColor", "type": "string", "default": "#fff"},
+    {"name": "revealDuration", "type": "number", "default": 3.0},
+    {"name": "cameraFov", "type": "number", "default": 35},
+    {"name": "cameraNear", "type": "number", "default": 0.1},
+    {"name": "cameraFar", "type": "number", "default": 2000},
+    {"name": "cameraZ", "type": "number", "default": 1600},
+    {"name": "scrollLerpFactor", "type": "number", "default": 0.1},
+    {"name": "planeSegments", "type": "number", "default": 128},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, their plane sizes and number of sections",
+    "Heading text, background and heading colors",
+    "Reveal duration, camera settings and scroll smoothing"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the bubble shape or reveal pattern", "where": "FRAGMENT_SHADER constant"},
+    {"change": "Move or restyle the heading", "where": "h1 element in the returned JSX"}
+  ],
+  "fixed": [
+    "Canvas is fixed to the viewport and sized to the window, driven by window scroll",
+    "Adds window scroll and resize listeners while mounted and removes them on unmount",
+    "Renders one h-screen section per image to provide scroll range",
+    "Reveal starts only after all textures have loaded"
+  ],
+  "mood": ["dramatic", "fluid", "modern", "playful"],
+  "industries": ["photography", "art", "fashion", "portfolio", "agency"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": ["three", "gsap"]
+}

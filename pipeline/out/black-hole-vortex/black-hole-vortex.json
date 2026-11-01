@@ -1,0 +1,70 @@
+{
+    "slug": "black-hole-vortex",
+    "name": "Black Hole Vortex",
+    "category": "backgrounds-3d",
+    "isReactBits": false,
+    "description": "Full-screen canvas black hole with concentric rings spiraling into a funnel, rising white particles, a glowing animated aura beam, purple glow and scanline overlay.",
+    "contents": [
+        "Canvas with animated concentric discs, radial lines and rising particles",
+        "Vignette, animated aura gradient, glow and scanline overlay layers"
+    ],
+    "behavior": [
+        "Discs continuously travel toward the center of the funnel using an exponential ease",
+        "Particles drift upward along the funnel and respawn at the bottom",
+        "Aura gradient scrolls vertically in a loop",
+        "Canvas rebuilds on window resize",
+        "Animation frame and resize listener are cleaned up on unmount"
+    ],
+    "props": [
+        {"name": "bgColor", "type": "string", "default": "#141414"},
+        {"name": "discColor", "type": "string", "default": "#444444"},
+        {"name": "discLineWidth", "type": "number", "default": 2},
+        {"name": "totalDiscs", "type": "number", "default": 100},
+        {"name": "totalLines", "type": "number", "default": 100},
+        {"name": "totalParticles", "type": "number", "default": 100},
+        {"name": "startDiscWidthRatio", "type": "number", "default": 0.75},
+        {"name": "startDiscHeightRatio", "type": "number", "default": 0.7},
+        {"name": "startDiscYRatio", "type": "number", "default": 0.45},
+        {"name": "endDiscYRatio", "type": "number", "default": 0.95},
+        {"name": "particleAreaHeightRatio", "type": "number", "default": 0.85},
+        {"name": "vignetteInnerStop", "type": "string", "default": "10%"},
+        {"name": "vignetteOuterStop", "type": "string", "default": "50%"},
+        {"name": "glowColor", "type": "string", "default": "#a900ff"},
+        {"name": "glowInnerStop", "type": "string", "default": "20%"},
+        {"name": "glowOuterStop", "type": "string", "default": "75%"},
+        {"name": "auraGradient", "type": "string", "default": "linear-gradient(20deg, #00f8f1, #ffbd1e20 16.5%, #fe848f 33%, #fe848f20 49.5%, #00f8f1 66%, #00f8f160 85.5%, #ffbd1e 100%) 0 100% / 100% 200%"},
+        {"name": "auraBlur", "type": "number", "default": 50},
+        {"name": "auraOpacity", "type": "number", "default": 0.75},
+        {"name": "auraAnimationDuration", "type": "number", "default": 5},
+        {"name": "overlayOpacity", "type": "number", "default": 0.5},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Background, disc and glow colors",
+        "Density of discs, lines and particles and funnel geometry",
+        "Aura gradient, blur, opacity and speed, vignette stops and scanline opacity"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change disc travel speed",
+            "where": "moveDiscs function (the 0.001 increment)"
+        },
+        {
+            "change": "Change particle size or color",
+            "where": "initParticle function"
+        },
+        {
+            "change": "Change how often rings are drawn",
+            "where": "drawDiscs function (the i % 5 check)"
+        }
+    ],
+    "fixed": [
+        "Root is w-screen h-screen and renders as a full-viewport background",
+        "Canvas size is measured from the container and rebuilt on window resize",
+        "Requires the easing-utils package, loaded by dynamic import"
+    ],
+    "mood": ["dark", "cosmic", "mysterious", "futuristic"],
+    "industries": ["gaming", "technology", "entertainment", "science", "music"],
+    "sections": ["hero", "background"],
+    "dependencies": ["easing-utils"]
+}

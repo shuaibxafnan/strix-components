@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "call-chip",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.619Z"
+  "note": "Bits describe-only. Category ui-elements. No variants (status selects states). Needs @hugeicons packages and Tailwind. Gates passed.",
+  "updatedAt": "2026-11-01T04:55:21.948Z",
+  "gateOutput": "gates passed"
 }

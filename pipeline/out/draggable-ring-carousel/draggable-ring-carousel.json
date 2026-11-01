@@ -1,0 +1,50 @@
+{
+    "slug": "draggable-ring-carousel",
+    "name": "Draggable Ring Carousel",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Full-screen 3D ring of image panels that you rotate by dragging, with a staggered rise-in entry and edge vignette fading the sides into the background.",
+    "contents": [
+        "Ring of image panels arranged in a circle in 3D space",
+        "Edge vignette overlay and invisible drag surface"
+    ],
+    "behavior": [
+        "Panels rise and fade in with a stagger on load",
+        "Dragging horizontally rotates the ring around the Y axis",
+        "Each panel's background image shifts while rotating for a parallax effect"
+    ],
+    "props": [
+        {"name": "images", "type": "string[]", "default": "10 sample image URLs"},
+        {"name": "containerPerspective", "type": "number", "default": 2000},
+        {"name": "ringRadius", "type": "number", "default": 500},
+        {"name": "dragVelocityMultiplier", "type": "number", "default": 0.1},
+        {"name": "entryDuration", "type": "number", "default": 1.5},
+        {"name": "entryStagger", "type": "number", "default": 0.1},
+        {"name": "vignetteWidth", "type": "string", "default": "1400px"},
+        {"name": "backgroundColor", "type": "string", "default": "#000000"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Image list and number of panels",
+        "Ring radius, perspective, drag speed, entry timing",
+        "Background and vignette color, vignette width"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change panel size or border and shadow styling",
+            "where": "img-node class in the images map"
+        },
+        {
+            "change": "Change the parallax strength of the background shift",
+            "where": "getBgPos function"
+        }
+    ],
+    "fixed": [
+        "Panels are fixed at 300px by 300px on a full-viewport-height root",
+        "Panels use background-size cover with a fixed 400px parallax range"
+    ],
+    "mood": ["immersive", "modern", "dark", "playful"],
+    "industries": ["photography", "creative agency", "fashion", "events", "portfolio"],
+    "sections": ["hero", "gallery", "portfolio"],
+    "dependencies": ["gsap"]
+}

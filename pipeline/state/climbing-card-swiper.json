@@ -4,11 +4,12 @@
   "sourceHash": "5f45ccee0ac3d5491cf97306bd6862592e58e2196d002b29307a8306da44ba78",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "climbing-card-swiper",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.408Z"
+  "note": "CDN swiper script/link injection -> dynamic import of npm swiper (core, EffectCoverflow, CSS); Swiper options unchanged; className prop. Google Fonts links kept. Gates passed.",
+  "updatedAt": "2026-11-01T05:06:46.963Z",
+  "gateOutput": "gates passed"
 }

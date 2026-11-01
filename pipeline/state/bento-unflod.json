@@ -4,11 +4,12 @@
   "sourceHash": "6fda650cb2739387ed82360bc5a5ce65274e9640f059b2ede3606c964db989d5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "bento-unfold-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.399Z"
+  "note": "Renamed bento-unflod -> bento-unfold-grid. Removed JSX comment placeholders. Hardcoded labels (Active, Explore, close aria, View details) moved to props. No frame (full-bleed section root). No variants. Header kept as showHeader prop.",
+  "updatedAt": "2026-10-31T20:00:35.177Z",
+  "gateOutput": "gates passed"
 }

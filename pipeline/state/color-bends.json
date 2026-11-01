@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "color-bends",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.594Z"
+  "note": "Bits describe-only. Category backgrounds-3d. No variants. Needs three; parent needs defined height; render loop never pauses offscreen; className has no default so omitting it renders 'undefined' in class string. Gates passed.",
+  "updatedAt": "2026-11-01T05:11:48.627Z",
+  "gateOutput": "gates passed"
 }

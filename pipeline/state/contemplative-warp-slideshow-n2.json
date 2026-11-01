@@ -4,11 +4,12 @@
   "sourceHash": "e34a658c8951b49f5f358d1a879068f3e23df53042cdaa4151aabbcefa47dc72",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "warp-zoom-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.412Z"
+  "note": "Renamed ContemplativeWarpSlideshowN2 -> WarpZoomSlideshow. No frame. Loaded gsap and CustomEase via npm dynamic import instead of CDN scripts; fixed listener cleanup; hint text and className now props. Removed console.error catch. No variants.",
+  "updatedAt": "2026-11-01T05:16:10.677Z",
+  "gateOutput": "gates passed"
 }

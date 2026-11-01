@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "branched-menu",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.619Z"
+  "note": "Bits describe-only. Category navigation-menus. No variants. One nesting level; needs @hugeicons packages. Gates passed.",
+  "updatedAt": "2026-11-01T04:53:10.759Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,61 @@
+{
+  "slug": "slide-up-image-gallery",
+  "name": "Slide Up Image Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-height dark gallery of staggered image columns with hover parallax. Clicking an image slides the grid away and a full-screen version of the photo rises in, with a return button.",
+  "contents": [
+    "Header with heading, subheading and side label",
+    "Row of image columns with varied heights, tag and title per image",
+    "Full-screen image view with a return button"
+  ],
+  "behavior": [
+    "Hover moves each title and image slightly toward the cursor, easing back on leave",
+    "Click slides all columns up with random timing, sweeps an overlay panel, then raises the full-screen image",
+    "Return button slides the full-screen view down and drops the columns back"
+  ],
+  "props": [
+    {
+      "name": "items",
+      "type": "{id,title,tag,image}[]",
+      "default": "4 sample items"
+    },
+    { "name": "heading", "type": "string", "default": "EXPLORE DISCOVERIES" },
+    { "name": "subheading", "type": "string", "default": "VOL. 26 — ISSUE IV" },
+    { "name": "label", "type": "string", "default": "[ SELECTED SCENICS ]" },
+    { "name": "backLabel", "type": "string", "default": "RETURN TO INDEX" },
+    { "name": "gridBg", "type": "string", "default": "bg-neutral-950" },
+    { "name": "transitionOverlayBg", "type": "string", "default": "bg-white" },
+    { "name": "titleColor", "type": "string", "default": "text-white" },
+    { "name": "subTitleColor", "type": "string", "default": "text-neutral-500" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, titles, tags and number of items",
+    "Header texts and return button label",
+    "Background, overlay and text colors as Tailwind classes"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change column heights",
+      "where": "wrapperHeightClass logic inside items.map"
+    },
+    {
+      "change": "Change slide timing or easing",
+      "where": "onItemClick function and onBackClick handler"
+    },
+    {
+      "change": "Change the decorative glow blobs",
+      "where": "The two blur-[140px] and blur-[120px] divs at the top of the root"
+    }
+  ],
+  "fixed": [
+    "Root is full width and one screen tall with hidden overflow",
+    "Column heights are set for the first four items only, later items use the default height",
+    "Uses Tailwind color classes for color props, not hex values"
+  ],
+  "mood": ["dark", "editorial", "cinematic", "minimal"],
+  "industries": ["photography", "architecture", "art", "travel", "fashion"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

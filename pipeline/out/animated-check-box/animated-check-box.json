@@ -1,0 +1,51 @@
+{
+    "slug": "animated-check-box",
+    "name": "Animated Check Box",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Dark checklist card with animated checkboxes: a check mark pops in, the label dims and a strike line wipes across. Includes a progress counter and clear all / check all actions.",
+    "contents": [
+        "Card with eyebrow label, title and checked count badge",
+        "List of checkbox rows with numbering",
+        "Clear all and check all buttons"
+    ],
+    "behavior": [
+        "Check mark pops with a bouncy scale and rotation when checked",
+        "Strike line wipes across the label and the label dims, reversed on uncheck",
+        "Rows fade in with a staggered delay on mount",
+        "Counter badge highlights when all items are checked"
+    ],
+    "props": [
+        {"name": "items", "type": "{id,label,defaultChecked}[]", "default": "5 sample fruit items"},
+        {"name": "title", "type": "string", "default": "Your list"},
+        {"name": "eyebrow", "type": "string", "default": "Checklist"},
+        {"name": "clearLabel", "type": "string", "default": "Clear all"},
+        {"name": "checkAllLabel", "type": "string", "default": "Check all"},
+        {"name": "bgColor", "type": "string", "default": "#0e0e0f"},
+        {"name": "cardBg", "type": "string", "default": "#161618"},
+        {"name": "borderColor", "type": "string", "default": "#2a2a2e"},
+        {"name": "accentColor", "type": "string", "default": "#6ee7b7"},
+        {"name": "accentDim", "type": "string", "default": "#1a3028"},
+        {"name": "textColor", "type": "string", "default": "#e8e8ea"},
+        {"name": "textDimColor", "type": "string", "default": "#6a7a72"},
+        {"name": "animDuration", "type": "string", "default": "0.55s"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Title, eyebrow, button labels and the list of items with initial checked state",
+        "All colors and animation duration"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the check mark shape", "where": "path element inside the acb-check-icon span"},
+        {"change": "Change the strike or check animations", "where": "acb-strike and acb-check-pop keyframes in the style block"}
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Loads the Outfit font from Google Fonts through a CSS import",
+        "Card is limited to max-w-sm width"
+    ],
+    "mood": ["playful", "clean", "dark", "modern"],
+    "industries": ["productivity", "saas", "education", "ecommerce"],
+    "sections": ["features", "other"],
+    "dependencies": []
+}

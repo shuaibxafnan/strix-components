@@ -4,11 +4,12 @@
   "sourceHash": "2d24d412b7df639999ecd6c3e744651635ce30de5106ca5b046abacc6de0cfb3",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "accordion-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.387Z"
+  "note": "Added className prop and alt text; stripped comments. Gates passed.",
+  "updatedAt": "2026-10-31T19:43:20.936Z",
+  "gateOutput": "gates passed"
 }

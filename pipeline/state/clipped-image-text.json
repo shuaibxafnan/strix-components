@@ -4,11 +4,12 @@
   "sourceHash": "e08d2f84fa87997cda1dfbad4f8a555c8c35449e22d0f6441c47a66c67bc30fa",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "clipped-image-text",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.409Z"
+  "note": "Template frame applied (min-h-screen -> h-screen) to placeholder and main root; href, imageAlt, className props; empty placeholders and no-op backgroundImage inherit removed. Category text-effects. Gates passed.",
+  "updatedAt": "2026-11-01T05:07:58.045Z",
+  "gateOutput": "gates passed"
 }

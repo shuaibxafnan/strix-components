@@ -1,0 +1,47 @@
+{
+  "slug": "clipped-image-text",
+  "name": "Clipped Image Text",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Large uppercase link text that, on hover, reveals a circular spotlight following the cursor, showing the text in a light color over a circular image.",
+  "contents": [
+    "Centered bold uppercase text link",
+    "Circular image lens that follows the cursor with lit text clipped inside it"
+  ],
+  "behavior": [
+    "Text changes color on hover",
+    "A circular image and clipped light text follow the mouse while the link is hovered",
+    "Overlay fades in and out on hover",
+    "Mouse tracking is throttled with requestAnimationFrame"
+  ],
+  "props": [
+    {"name": "text", "type": "string", "default": "Tokyo Tower"},
+    {"name": "imageSrc", "type": "string", "default": "https://images.unsplash.com/photo-1743309411498-a0f4f4b96b65?auto=format&fit=crop&w=1600&q=80"},
+    {"name": "circleRadius", "type": "number", "default": 75},
+    {"name": "textColor", "type": "string", "default": "#808080"},
+    {"name": "textHoverColor", "type": "string", "default": "#333333"},
+    {"name": "litTextColor", "type": "string", "default": "#ffffff"},
+    {"name": "bgColor", "type": "string", "default": "#f2f0ed"},
+    {"name": "transitionDuration", "type": "string", "default": "100ms"},
+    {"name": "href", "type": "string", "default": "#"},
+    {"name": "imageAlt", "type": "string", "default": "Tokyo Tower at night"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Text, link, image and alt text",
+    "Lens size, all colors and fade duration"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the font size of the text", "where": "text-[3em] class on the link and the lit span"},
+    {"change": "Dim the image inside the lens", "where": "brightness-[0.9] class on the img"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Tracks the mouse on the window while mounted and removes the listener on unmount",
+    "Effect only works with a mouse pointer"
+  ],
+  "mood": ["playful", "bold", "editorial"],
+  "industries": ["travel", "fashion", "photography", "agency"],
+  "sections": ["hero", "other"],
+  "dependencies": []
+}

@@ -1,0 +1,97 @@
+{
+    "slug": "carousel",
+    "name": "Carousel",
+    "category": "sliders-carousels",
+    "isReactBits": true,
+    "description": "Draggable spring-physics carousel with five transition effects, optional glass frame, round mode, dots, bars or counter indicators, arrows, autoplay and keyboard control.",
+    "contents": [
+        "Row of cards built from items: strings (images), objects with image, title, description and icon, or custom React elements",
+        "Optional glass frame panel around the stage",
+        "Optional indicator (dots, progress bars or numeric counter) and previous/next arrow buttons"
+    ],
+    "behavior": [
+        "Spring-based motion with drag, swipe momentum and horizontal trackpad wheel support",
+        "Five transition effects: tilt, slide, scale, fade, cube",
+        "Optional autoplay that pauses on focus, drag, wheel, hidden tab, offscreen and optionally hover; bars indicator fills as a timer",
+        "Keyboard: ArrowLeft, ArrowRight, Home and End when focused; clicking a side card moves to it",
+        "Counter number animates on change; reduced-motion preference disables spring and counter animation",
+        "Width follows the container via ResizeObserver; edges fade with a mask when frame is off and effect is not fade or cube"
+    ],
+    "props": [
+        { "name": "items", "type": "(string | {id,title,description,image,alt,icon} | ReactElement)[]", "default": "5 sample feature cards with icons" },
+        { "name": "baseWidth", "type": "number | string", "default": 300 },
+        { "name": "aspectRatio", "type": "number", "default": 1.25 },
+        { "name": "peek", "type": "number", "default": 0 },
+        { "name": "gap", "type": "number", "default": 16 },
+        { "name": "radius", "type": "number", "default": 12 },
+        { "name": "frame", "type": "boolean", "default": true },
+        { "name": "effect", "type": "'tilt' | 'slide' | 'scale' | 'fade' | 'cube'", "default": "tilt" },
+        { "name": "indicator", "type": "'dots' | 'bars' | 'counter' | 'none'", "default": "dots" },
+        { "name": "arrows", "type": "boolean", "default": false },
+        { "name": "autoplay", "type": "boolean", "default": false },
+        { "name": "autoplayDelay", "type": "number", "default": 3000 },
+        { "name": "pauseOnHover", "type": "boolean", "default": false },
+        { "name": "loop", "type": "boolean", "default": false },
+        { "name": "draggable", "type": "boolean", "default": true },
+        { "name": "round", "type": "boolean", "default": false },
+        { "name": "initialIndex", "type": "number", "default": 0 },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "onChange", "type": "(index:number) => void", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Cards content: images, titles, descriptions, icons or custom elements",
+        "Size, aspect ratio, gap, peek, corner radius, round cards, frame on or off",
+        "Transition effect, indicator style, arrows, dark or light theme",
+        "Autoplay, delay, pause on hover, loop, dragging, start index, change callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change spring feel of the motion",
+            "where": "STIFFNESS and DAMPING constants"
+        },
+        {
+            "change": "Change theme colors or add a theme",
+            "where": "THEMES object"
+        },
+        {
+            "change": "Change image overlay gradient or card text sizes",
+            "where": "SCRIM and TITLE_BASE constants"
+        },
+        {
+            "change": "Change aria label or arrow labels",
+            "where": "aria-label attributes in the Carousel return block"
+        },
+        {
+            "change": "Add a new transition effect",
+            "where": "EFFECTS constant and pose function"
+        }
+    ],
+    "fixed": [
+        "Requires @hugeicons/react and @hugeicons/core-free-icons, Tailwind CSS, and a client component environment",
+        "Autoplay wraps back to the first card at the end when loop is off; autoplayDelay is at least 600ms",
+        "Unknown effect falls back to tilt; unknown theme falls back to dark",
+        "Peek is ignored for fade, cube and round framed modes; peek is capped at 20% of width",
+        "Horizontal wheel scrolling over the carousel is captured with preventDefault when draggable",
+        "Root is focusable (tabIndex 0) with carousel region ARIA roles and fixed 'Carousel' label",
+        "Sample cards are shown when items is omitted",
+        "Counter and dot indicators ignore autoplay timing; only bars show a progress fill",
+        "Controls are hidden when there is only one item"
+    ],
+    "mood": ["modern", "polished", "interactive", "sleek"],
+    "industries": ["saas", "e-commerce", "portfolio", "travel", "media"],
+    "sections": ["features", "gallery", "testimonials", "portfolio"],
+    "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+    "variants": {
+        "prop": "effect",
+        "default": "tilt",
+        "options": [
+            { "value": "tilt", "look": "Cards sit side by side and rotate around the Y axis as they leave the center", "useWhen": "Feature or product showcase that should feel 3D with neighboring cards visible" },
+            { "value": "slide", "look": "Plain horizontal slide with fading focus on side cards", "useWhen": "Image gallery or logo strip needing a clean, simple swipe" },
+            { "value": "scale", "look": "Side cards shrink and dim while the center card stays full size", "useWhen": "Testimonial or team carousel highlighting one card with neighbors peeking" },
+            { "value": "fade", "look": "One card at a time, crossfading with slight scale", "useWhen": "Hero rotator or quote slider where only one slide should show" },
+            { "value": "cube", "look": "One card at a time turning like a 3D cube face", "useWhen": "Playful promo or product highlight that needs a bold transition" }
+        ]
+    }
+}

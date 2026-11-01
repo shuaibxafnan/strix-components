@@ -1,0 +1,74 @@
+{
+    "slug": "color-bends",
+    "name": "Color Bends",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "Full-size WebGL shader background of flowing, warped bands of color that drift over time and bend gently toward the pointer. Supports transparency, rotation, grain and up to 8 custom colors.",
+    "contents": [
+        "Single container div filled by a Three.js WebGL canvas running a fragment shader"
+    ],
+    "behavior": [
+        "Continuous animated flowing color bands driven by time and speed",
+        "Pointer movement over the container shifts and bends the pattern with smoothed easing",
+        "Optional constant auto rotation on top of a fixed base rotation",
+        "Canvas resizes with the container through ResizeObserver",
+        "Without colors, the shader renders a default 3-channel RGB band pattern"
+    ],
+    "props": [
+        { "name": "className", "type": "string", "default": "undefined" },
+        { "name": "style", "type": "object", "default": "undefined" },
+        { "name": "rotation", "type": "number", "default": 90 },
+        { "name": "speed", "type": "number", "default": 0.2 },
+        { "name": "colors", "type": "string[]", "default": [] },
+        { "name": "transparent", "type": "boolean", "default": true },
+        { "name": "autoRotate", "type": "number", "default": 0 },
+        { "name": "scale", "type": "number", "default": 1 },
+        { "name": "frequency", "type": "number", "default": 1 },
+        { "name": "warpStrength", "type": "number", "default": 1 },
+        { "name": "mouseInfluence", "type": "number", "default": 1 },
+        { "name": "parallax", "type": "number", "default": 0.5 },
+        { "name": "noise", "type": "number", "default": 0.15 },
+        { "name": "iterations", "type": "number", "default": 1 },
+        { "name": "intensity", "type": "number", "default": 1.5 },
+        { "name": "bandWidth", "type": "number", "default": 6 }
+    ],
+    "editableByProps": [
+        "Band colors (hex, up to 8), speed, scale, frequency, warp, band width and intensity",
+        "Rotation angle and auto rotation speed",
+        "Pointer reaction through mouseInfluence and parallax",
+        "Grain amount, transparency and container classes or style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Raise the maximum number of colors above 8",
+            "where": "MAX_COLORS constant"
+        },
+        {
+            "change": "Change the pointer smoothing speed",
+            "where": "pointerSmoothRef initial value"
+        },
+        {
+            "change": "Change the pixel ratio cap",
+            "where": "renderer.setPixelRatio call in the first useEffect"
+        },
+        {
+            "change": "Change the pattern look itself",
+            "where": "frag shader string"
+        }
+    ],
+    "fixed": [
+        "Requires the three package and WebGL support in the browser",
+        "Fills its parent: root is w-full h-full, so the parent needs a defined height",
+        "Pointer events are listened to on the container only, so it needs pointer events enabled to react to the mouse",
+        "Pixel ratio capped at 2 and antialiasing is off",
+        "Continuous requestAnimationFrame render loop that never pauses offscreen",
+        "Changing speed, scale, frequency, warpStrength, mouseInfluence, parallax, noise, iterations, intensity, bandWidth or transparent recreates the renderer",
+        "Iterations effect is capped at 5 passes by the shader loop",
+        "Colors must be hex strings, 3 or 6 digits",
+        "className defaults to undefined, so the class string may contain the word undefined when omitted"
+    ],
+    "mood": ["fluid", "vibrant", "futuristic", "dreamy", "dynamic"],
+    "industries": ["tech", "creative agency", "music", "gaming", "fashion", "saas"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": ["three"]
+}

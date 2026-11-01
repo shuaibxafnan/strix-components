@@ -4,11 +4,12 @@
   "sourceHash": "cbe02a3e6f1c5ee6f802f1a4a15afff3ed556608c23984e0d93644985c0b1da1",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "card-stack-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.404Z"
+  "note": "className and cardBg props (cardBg replaces bg-[#131926]/90); swap timeouts cleared on unmount; empty placeholders removed. Root frame kept as in source; reviewer may revisit. Gates passed.",
+  "updatedAt": "2026-11-01T04:57:57.368Z",
+  "gateOutput": "gates passed"
 }

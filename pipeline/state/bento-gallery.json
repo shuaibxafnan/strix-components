@@ -4,11 +4,12 @@
   "sourceHash": "acc6ed755d30ddf4cd96ed8cd8d7d5c7e141d9cd41e3180a6cb62237a94ff14c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "bento-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.399Z"
+  "note": "Removed Gallery heading and photographs counter; dropped h-screen; className prop; bgColor now color string (default #111416); window.innerWidth guarded. Gates passed.",
+  "updatedAt": "2026-10-31T20:00:01.090Z",
+  "gateOutput": "gates passed"
 }

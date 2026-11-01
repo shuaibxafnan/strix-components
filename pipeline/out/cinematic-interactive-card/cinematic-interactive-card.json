@@ -1,0 +1,48 @@
+{
+  "slug": "cinematic-interactive-card",
+  "name": "Cinematic Interactive Card",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Tall bordered card with a dotted grid and an icon. On hover a gradient mesh sweeps across and the subtitle words rise in one after another.",
+  "contents": [
+    "Single card with title, subtitle split into words, and a corner icon",
+    "Dotted grid backing and gradient overlay"
+  ],
+  "behavior": [
+    "Hover slides the gradient overlay and scales it slightly",
+    "Hover shifts the dot grid position",
+    "Subtitle words fade and rise in with a staggered delay on hover",
+    "Icon brightens on hover"
+  ],
+  "props": [
+    {"name": "title", "type": "string", "default": "I know exactly what I'm doing"},
+    {"name": "subtitleText", "type": "string", "default": "But in a much more real sense, I have no idea what I'm doing."},
+    {"name": "iconClass", "type": "string", "default": "fa-solid fa-hat-witch"},
+    {"name": "wordDelayOffset", "type": "number", "default": 40},
+    {"name": "cardWidth", "type": "string", "default": "56vmin"},
+    {"name": "cardAspectRatio", "type": "string", "default": "1/1.6"},
+    {"name": "borderColor", "type": "string", "default": "rgb(3, 169, 244)"},
+    {"name": "gradColor1", "type": "string", "default": "rgb(98, 0, 234)"},
+    {"name": "gradColor2", "type": "string", "default": "rgb(236, 64, 122)"},
+    {"name": "gradColor3", "type": "string", "default": "rgb(253, 216, 53)"},
+    {"name": "dotGridOpacity", "type": "string", "default": "0.2"},
+    {"name": "bgColor", "type": "string", "default": "rgb(10, 10, 10)"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Title, subtitle, and icon class",
+    "Card size, aspect ratio, border and gradient colors, dot grid opacity, background color, word stagger"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change text color", "where": "text-white classes on the h3 and h4 elements"},
+    {"change": "Change gradient angle or stops", "where": "before:bg-[linear-gradient(130deg,...)] class on the card div"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Icon relies on a Font Awesome stylesheet loaded by the host page"
+  ],
+  "mood": ["cinematic", "bold", "playful", "dark"],
+  "industries": ["gaming", "entertainment", "creative studios", "portfolios"],
+  "sections": ["features", "portfolio", "other"],
+  "dependencies": []
+}

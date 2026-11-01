@@ -1,0 +1,72 @@
+{
+  "slug": "carousel-patterns",
+  "name": "Carousel Patterns",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen set of image cards that fan in, then arrange as a draggable wheel, wave, staggered grid, grid, fan or 3D depth layout, chosen with the variant prop.",
+  "contents": [
+    "Twelve image cards with optional zero-padded number labels",
+    "Dark dotted background"
+  ],
+  "behavior": [
+    "Cards scale in one by one, then glide into the chosen layout",
+    "Circle and fan layouts can be dragged to rotate with inertia",
+    "Wave layout bobs continuously, stagger shifts vertically with the mouse, depth tilts the scene with the mouse",
+    "Changing the variant prop animates cards to the new layout, window resize re-lays out the cards"
+  ],
+  "props": [
+    { "name": "images", "type": "string[]", "default": "12 grayscale sample photos" },
+    { "name": "bgColor", "type": "string", "default": "#111111" },
+    { "name": "cardWidth", "type": "number", "default": 430 },
+    { "name": "cardHeight", "type": "number", "default": 610 },
+    { "name": "cardRadius", "type": "number", "default": 6 },
+    { "name": "wheelRadius", "type": "number", "default": 35 },
+    { "name": "totalCards", "type": "number", "default": 12 },
+    { "name": "showCardNumbers", "type": "boolean", "default": true },
+    { "name": "transitionDuration", "type": "number", "default": 1.2 },
+    { "name": "fontFamily", "type": "string", "default": "'TheGoodMonolith', 'Courier New', monospace" },
+    { "name": "variant", "type": "'circle' | 'wave' | 'stagger' | 'grid' | 'fan' | 'depth'", "default": "circle" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Card images, count, size, corner radius and number labels",
+    "Background color, font family, wheel radius and transition speed",
+    "Layout pattern through variant"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the stagger grid columns and rows",
+      "where": "setupStaggerPositions function"
+    },
+    {
+      "change": "Change the 3D depth card positions",
+      "where": "positions array in setup3DDepthPositions"
+    },
+    {
+      "change": "Change card shadow or number label style",
+      "where": "generateCardsHTML function"
+    }
+  ],
+  "fixed": [
+    "Depth layout supports only the first 12 cards",
+    "Stagger layout uses a fixed 4 by 3 grid",
+    "Adds a stylesheet link for the TheGoodMonolith font to the document head and removes it on unmount",
+    "Layouts are sized from the window size, so the component is meant to fill the viewport"
+  ],
+  "mood": ["bold", "editorial", "dark", "playful", "modern"],
+  "industries": ["photography", "fashion", "portfolio", "art", "agency"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["gsap"],
+  "variants": {
+    "prop": "variant",
+    "default": "circle",
+    "options": [
+      { "value": "circle", "look": "Cards spaced around a draggable wheel that stays upright as it spins", "useWhen": "A hero or portfolio opener that invites the visitor to spin through work" },
+      { "value": "wave", "look": "Cards in a row with a gently bobbing sine wave", "useWhen": "A calm, ambient strip of work under a headline" },
+      { "value": "stagger", "look": "Offset 4 by 3 brick grid that shifts vertically with the mouse", "useWhen": "A project index where hovering around feels alive" },
+      { "value": "grid", "look": "Even responsive grid of scaled cards", "useWhen": "A clean overview of every item at once" },
+      { "value": "fan", "look": "Cards fanned like a hand, draggable to rotate", "useWhen": "Showcasing a deck or collection like cards or products" },
+      { "value": "depth", "look": "Cards scattered through 3D space that tilt with the mouse", "useWhen": "An immersive intro or showreel with depth" }
+    ]
+  }
+}

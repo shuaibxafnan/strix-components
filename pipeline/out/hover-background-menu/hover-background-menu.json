@@ -1,0 +1,57 @@
+{
+  "slug": "hover-background-menu",
+  "name": "Hover Background Menu",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Full-screen menu of large serif links where hovering or focusing a link crossfades the background to that item's photo with a slow scale-in settle and clipped circle highlights.",
+  "contents": [
+    "Centered list of menu links, each with a small tag above and a large label",
+    "Full-bleed stack of background images, one per item, with dimmed full layer and clip-path circle highlights"
+  ],
+  "behavior": [
+    "Hover, focus or click on a link fades in that item's background and scales it down from slightly zoomed",
+    "Previous background fades out quickly",
+    "Links stack left-aligned on small screens and center on desktop"
+  ],
+  "props": [
+    {"name": "items", "type": "{tag,label,image}[]", "default": "4 sample seasonal items"},
+    {"name": "bgColor", "type": "string", "default": "#000000"},
+    {"name": "itemBgColor", "type": "string", "default": "#282b27"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "linkColor", "type": "string", "default": "#e5e3e0"},
+    {"name": "linkHoverColor", "type": "string", "default": "#ffffff"},
+    {"name": "tagColor", "type": "string", "default": "#ffffff"},
+    {"name": "menuLinkColor", "type": "string", "default": "#d05d3b"},
+    {"name": "menuLinkHoverColor", "type": "string", "default": "#ffffff"},
+    {"name": "menuFont", "type": "string", "default": "Georgia, \"Times New Roman\", serif"},
+    {"name": "menuFontWeight", "type": "number", "default": 700},
+    {"name": "menuFontSize", "type": "string", "default": "5vw"},
+    {"name": "bodyFont", "type": "string", "default": "Inter, \"Helvetica Neue\", Arial, sans-serif"},
+    {"name": "clipShapes", "type": "string[]", "default": ["circle(41.9% at 19% 99%)", "circle(16.2% at 74% 38%)"]},
+    {"name": "fullOpacity", "type": "number", "default": 0.6},
+    {"name": "scaleFrom", "type": "number", "default": 1.07},
+    {"name": "showDuration", "type": "number", "default": 1.8},
+    {"name": "hideDuration", "type": "number", "default": 0.4},
+    {"name": "showEase", "type": "string", "default": "power2.out"},
+    {"name": "hideEase", "type": "string", "default": "power2.out"},
+    {"name": "activateOnClick", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Number of items, tags, labels and background images",
+    "All colors, fonts, link size and weight",
+    "Clip-path highlight shapes, dim level, scale and timing, easing"
+  ],
+  "needsCodeEdit": [
+    {"change": "Make links navigate to real URLs", "where": "The a element with onClick preventDefault inside the nav"},
+    {"change": "Change the crossfade or scale animation", "where": "activate function"}
+  ],
+  "fixed": [
+    "Links use href=\"#\" and only drive the background",
+    "Section is at least full viewport height"
+  ],
+  "mood": ["editorial", "elegant", "immersive"],
+  "industries": ["restaurants", "fashion", "photography", "travel", "culture"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": ["gsap"]
+}

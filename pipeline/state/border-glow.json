@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "border-glow",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.607Z"
+  "note": "Bits describe-only. Category cards-galleries. No variants. Root has no size of its own; glow clipped by overflow hidden parents. Gates passed.",
+  "updatedAt": "2026-10-31T20:07:28.713Z",
+  "gateOutput": "gates passed"
 }

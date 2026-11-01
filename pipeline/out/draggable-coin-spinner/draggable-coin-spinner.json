@@ -1,0 +1,38 @@
+{
+ "slug":"draggable-coin-spinner","name":"Draggable Coin Spinner","category":"ui-elements","isReactBits":false,
+ "description":"A 3D coin rendered from a preloaded image sequence on a canvas that auto-spins and can be dragged horizontally to rotate, with inertia throw and a caption.",
+ "contents":["Canvas showing the coin frame sequence","Caption text below the coin","Loading bar shown while frames preload"],
+ "behavior":["Preloads all frames then fades in the caption","Auto-plays the frame sequence in a loop","Horizontal drag scrubs frames with optional inertia throw","Resumes auto-play after release","Uses lower drag resistance on mobile user agents"],
+ "props":[
+  {"name":"bgColor","type":"string","default":"#131318"},
+  {"name":"description","type":"string","default":"Drag horizontally to spin the coin"},
+  {"name":"frameBaseUrl","type":"string","default":"https://cerpow.github.io/cerpow-img/coin/"},
+  {"name":"frameExtension","type":"string","default":".png"},
+  {"name":"framePad","type":"number","default":4},
+  {"name":"frameCount","type":"number","default":260},
+  {"name":"fps","type":"number","default":100},
+  {"name":"autoPlayIntervalMs","type":"number","default":20},
+  {"name":"canvasSize","type":"number","default":600},
+  {"name":"coinSize","type":"string","default":"3em"},
+  {"name":"canvasMarginTop","type":"string","default":"0em"},
+  {"name":"enableInertia","type":"boolean","default":true},
+  {"name":"throwResistance","type":"number","default":2200},
+  {"name":"dragResistance","type":"number","default":0.6},
+  {"name":"mobileThrowResistance","type":"number","default":1800},
+  {"name":"mobileDragResistance","type":"number","default":0.42},
+  {"name":"descriptionColor","type":"string","default":"rgba(114, 119, 128, 0.8)"},
+  {"name":"selectionColor","type":"string","default":"rgba(0, 178, 200, 0.57)"},
+  {"name":"mainFontSize","type":"string","default":"clamp(5.4375rem, 1.2946rem + 20.7143vw, 9.0625rem)"},
+  {"name":"className","type":"string","default":""}
+ ],
+ "editableByProps":["Frame image source, count, extension and padding","Background, caption and selection colors","Caption text","Coin size, spin speed and drag/inertia feel"],
+ "needsCodeEdit":[
+  {"change":"Change coin placement inside the canvas","where":"ctx.drawImage call inside animate"},
+  {"change":"Change loader bar look","where":"coinLoader keyframes in the style block"}
+ ],
+ "fixed":["Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.","Canvas drop shadow is hardcoded","Frame images must be a numbered sequence from 0 to frameCount"],
+ "mood":["playful","premium","dark","interactive"],
+ "industries":["crypto","fintech","gaming","ecommerce"],
+ "sections":["hero","other"],
+ "dependencies":["gsap"]
+}

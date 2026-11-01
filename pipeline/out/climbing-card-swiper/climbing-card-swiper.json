@@ -1,0 +1,46 @@
+{
+  "slug": "climbing-card-swiper",
+  "name": "Climbing Card Swiper",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Coverflow card swiper of tilted polaroid-style photo cards on a dark stage. The active card straightens, brightens and reveals its caption with a wipe.",
+  "contents": [
+    "Looping row of polaroid-style cards, each with a photo, handwritten title and caption"
+  ],
+  "behavior": [
+    "Swiper coverflow effect with centered, looping slides and grab cursor",
+    "Inactive cards are tilted and dimmed, the active card straightens and brightens",
+    "Caption reveals by a clip-path wipe on the active card",
+    "Photo zooms slightly on hover",
+    "Slides per view adapts across breakpoints"
+  ],
+  "props": [
+    {"name": "slides", "type": "{img,title,caption,alt}[]", "default": "8 sample slides"},
+    {"name": "bgColor", "type": "string", "default": "#0a0a0a"},
+    {"name": "fontFamily", "type": "string", "default": "Schibsted Grotesk"},
+    {"name": "titleFont", "type": "string", "default": "Caveat"},
+    {"name": "cardWidth", "type": "string", "default": "420px"},
+    {"name": "cardHeight", "type": "string", "default": "540px"},
+    {"name": "rotateAngle", "type": "number", "default": 40},
+    {"name": "slideDepth", "type": "number", "default": 140},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides: images, titles, captions, alt text",
+    "Background color, fonts, card size, coverflow rotation and depth"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change slides per view at each screen width", "where": "breakpoints object in the Swiper options"},
+    {"change": "Change card tilt angles", "where": "TILTS constant"},
+    {"change": "Change card paper color or shadow", "where": "bg-[linear-gradient(180deg,#f8f5ee,#eee8da)] class on the card div"}
+  ],
+  "fixed": [
+    "Loads Caveat and Schibsted Grotesk from Google Fonts through link tags",
+    "Stage is at least full viewport height with vertical padding",
+    "Loops infinitely and needs enough slides to fill the loop"
+  ],
+  "mood": ["nostalgic", "editorial", "warm", "dark"],
+  "industries": ["photography", "travel", "portfolio", "lifestyle", "events"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["swiper"]
+}

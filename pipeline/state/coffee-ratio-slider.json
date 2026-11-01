@@ -4,11 +4,12 @@
   "sourceHash": "81fb85be423ddf087c13d767e9702030c37de7d40f0ec60c59e3f41f5978d877",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "coffee-ratio-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.410Z"
+  "note": "Component CoffeeMilkSlider -> CoffeeRatioSlider; frame added (min-h-screen -> h-screen); removed showDebug prop and debug style; coffeeLabel/milkLabel/ariaLabel/className props. bgColor and masked grid backdrop kept (arguably demo-only). Gates passed.",
+  "updatedAt": "2026-11-01T05:10:31.513Z",
+  "gateOutput": "gates passed"
 }

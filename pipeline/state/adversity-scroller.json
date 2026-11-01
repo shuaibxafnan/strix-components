@@ -4,11 +4,12 @@
   "sourceHash": "c51843217e8cad7bb703524d9bffcab830d027e49fcf0d2c6b054c3c1bb87e5b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "adversity-scroller",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.392Z"
+  "note": "CDN loaders -> npm imports (gsap, lenis, imagesloaded); dropped unused jQuery; gsap.context revert on unmount; className prop; demo heading removed (heading defaults to []). Gates passed.",
+  "updatedAt": "2026-10-31T19:46:47.773Z",
+  "gateOutput": "gates passed"
 }

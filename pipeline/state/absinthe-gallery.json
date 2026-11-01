@@ -4,11 +4,12 @@
   "sourceHash": "fa9972fb7b513c35d80ae392fb590070b18b35db0440d6571750fb8ec934fceb",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "absinthe-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.386Z"
+  "note": "Added className, title/titleAccent props; removed empty placeholders. Gates passed.",
+  "updatedAt": "2026-10-31T19:42:51.995Z",
+  "gateOutput": "gates passed"
 }

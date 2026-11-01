@@ -1,0 +1,229 @@
+{
+    "slug": "cloth-slideshow",
+    "name": "Cloth Slideshow",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Full-height WebGL slideshow of tilted image tiles in an endless vertical loop. The focused image hangs like cloth blowing in the wind, and scrolling or dragging snaps to the nearest slide.",
+    "contents": [
+        "Vertical list of image tiles rendered on a WebGL canvas, tilted by a camera angle"
+    ],
+    "behavior": [
+        "Wheel and drag move the loop with easing, then snap to the closest slide",
+        "Active slide is a cannon.js cloth simulation with gravity and noise-driven wind",
+        "Wind direction follows the mouse on desktop",
+        "Slides fade between idle and focus opacity by distance from center or on hover",
+        "Wheel events on the component are captured and default scrolling is prevented"
+    ],
+    "props": [
+        {
+            "name": "slides",
+            "type": "{src,alt}[]",
+            "default": "14 sample images"
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#0b0b0d"
+        },
+        {
+            "name": "slideWidth",
+            "type": "string",
+            "default": "34vw"
+        },
+        {
+            "name": "slideMaxWidth",
+            "type": "string",
+            "default": "420px"
+        },
+        {
+            "name": "slideAspect",
+            "type": "number",
+            "default": 144.7
+        },
+        {
+            "name": "slideGap",
+            "type": "number",
+            "default": 15
+        },
+        {
+            "name": "cameraAngle",
+            "type": "number",
+            "default": 30
+        },
+        {
+            "name": "perspective",
+            "type": "number",
+            "default": 800
+        },
+        {
+            "name": "clothSegments",
+            "type": "number",
+            "default": 8
+        },
+        {
+            "name": "clothMass",
+            "type": "number",
+            "default": 2
+        },
+        {
+            "name": "clothDamping",
+            "type": "number",
+            "default": 0.8
+        },
+        {
+            "name": "gravity",
+            "type": "number",
+            "default": -800
+        },
+        {
+            "name": "gravityRamp",
+            "type": "number",
+            "default": 2
+        },
+        {
+            "name": "windForce",
+            "type": "number",
+            "default": 40
+        },
+        {
+            "name": "windSpeed",
+            "type": "number",
+            "default": 2
+        },
+        {
+            "name": "windScale",
+            "type": "number",
+            "default": 0.1
+        },
+        {
+            "name": "windRamp",
+            "type": "number",
+            "default": 2
+        },
+        {
+            "name": "windFollowsMouse",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "scrollSpeed",
+            "type": "number",
+            "default": 1.5
+        },
+        {
+            "name": "scrollEase",
+            "type": "number",
+            "default": 0.065
+        },
+        {
+            "name": "dragMultiplier",
+            "type": "number",
+            "default": 3
+        },
+        {
+            "name": "settleDelay",
+            "type": "number",
+            "default": 100
+        },
+        {
+            "name": "snapDuration",
+            "type": "number",
+            "default": 0.4
+        },
+        {
+            "name": "restDuration",
+            "type": "number",
+            "default": 0.8
+        },
+        {
+            "name": "windDelay",
+            "type": "number",
+            "default": 400
+        },
+        {
+            "name": "focusOpacity",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "idleOpacity",
+            "type": "number",
+            "default": 0.25
+        },
+        {
+            "name": "focusRange",
+            "type": "number",
+            "default": 0.5
+        },
+        {
+            "name": "hoverToFocus",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "opacityEase",
+            "type": "number",
+            "default": 0.08
+        },
+        {
+            "name": "distortAmount",
+            "type": "number",
+            "default": 0.2
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Images, background color, tile size, spacing and tilt",
+        "Cloth, gravity and wind physics",
+        "Scroll, drag and snap timing",
+        "Opacity of focused and idle slides"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the cloth shader look",
+            "where": "FRAGMENT_SHADER constant"
+        },
+        {
+            "change": "Change the noise seed for wind",
+            "where": "makeNoise function seed variable"
+        },
+        {
+            "change": "Show a title per slide",
+            "where": "buildItems function and the slides map in the returned JSX"
+        }
+    ],
+    "fixed": [
+        "Loads three, cannon and gsap with dynamic imports",
+        "Root fills the viewport height and is full width",
+        "Wheel events over the root are captured with preventDefault, so page scroll is blocked there",
+        "Images are drawn as WebGL textures and need CORS-enabled sources",
+        "Mobile (767px and below) uses a heavier cloth and shorter timings, hover focus is disabled"
+    ],
+    "mood": [
+        "dynamic",
+        "immersive",
+        "editorial",
+        "modern"
+    ],
+    "industries": [
+        "fashion",
+        "photography",
+        "art gallery",
+        "portfolio",
+        "design agency"
+    ],
+    "sections": [
+        "hero",
+        "gallery",
+        "portfolio"
+    ],
+    "dependencies": [
+        "three",
+        "cannon",
+        "gsap"
+    ]
+}

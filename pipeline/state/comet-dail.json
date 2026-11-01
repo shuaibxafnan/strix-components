@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "comet-dail",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.620Z"
+  "note": "Bits describe-only. Category ui-elements. No variants. Needs motion. Default colors near white, needs dark background. Source filename Comet_Dail misspells CometDial; slug kept as comet-dail. Gates passed.",
+  "updatedAt": "2026-11-01T05:12:55.719Z",
+  "gateOutput": "gates passed"
 }

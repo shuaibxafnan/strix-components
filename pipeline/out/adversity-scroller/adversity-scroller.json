@@ -1,0 +1,76 @@
+{
+    "slug": "adversity-scroller",
+    "name": "Adversity Scroller",
+    "category": "text-effects",
+    "isReactBits": false,
+    "description": "Scroll-driven showcase where giant words act as clip-paths over photos, sliding, scaling and rotating across the screen as you scroll, interleaved with gradient-headed prose blocks.",
+    "contents": [
+        "Optional heading lines",
+        "Eight sections of oversized SVG clip-path text revealing background images or video",
+        "Prose block with gradient heading and body text after each section"
+    ],
+    "behavior": [
+        "Each word is a clipPath over a photo and is animated by scrubbed ScrollTrigger timelines",
+        "Per-section effects: sliding, skew, scale, rotation, hue and brightness shifts, drop shadow",
+        "One section swaps its image with a brightness fade as scroll progresses",
+        "Smooth scrolling through Lenis",
+        "Root fades in once images have loaded"
+    ],
+    "props": [
+        { "name": "sections", "type": "object[]", "default": "8 built-in section configs with animation builders" },
+        { "name": "images", "type": "string[]", "default": "25 sample photo URLs" },
+        { "name": "texts", "type": "{heading,body}[]", "default": "8 sample prose blocks" },
+        { "name": "words", "type": "(string|string[])[] | null", "default": null },
+        { "name": "heading", "type": "string[]", "default": [] },
+        { "name": "videoSrc", "type": "string | null", "default": null },
+        { "name": "bgColor", "type": "string", "default": "#0f0e0e" },
+        { "name": "textColor", "type": "string", "default": "#f3f3f3" },
+        { "name": "headingGradient", "type": "string[]", "default": ["#e35384", "#e8a53c"] },
+        { "name": "fonts", "type": "string[]", "default": "9 font-family stacks" },
+        { "name": "fontFaces", "type": "{family,woff2,woff,otf,ttf,weight,style}[]", "default": "Blackout Midnight woff2" },
+        { "name": "fontUrl", "type": "string", "default": "Google Fonts stylesheet URL for the display fonts" },
+        { "name": "bodyFont", "type": "string", "default": "Georgia, \"Times New Roman\", serif" },
+        { "name": "baseFontSize", "type": "string", "default": "16px" },
+        { "name": "sizeScale", "type": "number", "default": 1 },
+        { "name": "posterHeight", "type": "string", "default": "100vh" },
+        { "name": "halfHeight", "type": "string", "default": "28vw" },
+        { "name": "sectionGap", "type": "string", "default": "15vh" },
+        { "name": "proseSize", "type": "string", "default": "clamp(1.5rem, 5vw, 2.25rem)" },
+        { "name": "proseMaxWidth", "type": "string", "default": "950px" },
+        { "name": "smoothScroll", "type": "boolean", "default": true },
+        { "name": "lerp", "type": "number", "default": 0.2 },
+        { "name": "scrub", "type": "boolean", "default": true },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Words shown in each section, images, video, prose texts and optional heading",
+        "Background, text and heading gradient colors",
+        "Fonts, font faces, text scale, section heights and gaps",
+        "Smooth scroll on or off, lerp and scrub"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the animation of a section",
+            "where": "build function of each entry in the SECTIONS constant"
+        },
+        {
+            "change": "Add or remove sections or change their layout",
+            "where": "SECTIONS constant"
+        },
+        {
+            "change": "Change the image swap behavior",
+            "where": "onUpdate callback in the Momoso section build function"
+        }
+    ],
+    "fixed": [
+        "Takes over page scrolling with Lenis when smoothScroll is true, so it should be the only smooth scroll on the page",
+        "Appends the font stylesheet link to document.head and does not remove it on unmount",
+        "Root starts at opacity 0 and fades in after images load",
+        "Section animations are tied to the built-in section order and image assignment order",
+        "Includes vertical gaps between sections for scroll range"
+    ],
+    "mood": ["bold", "experimental", "dramatic", "editorial"],
+    "industries": ["creative agency", "portfolio", "fashion", "entertainment", "art"],
+    "sections": ["hero", "portfolio"],
+    "dependencies": ["gsap", "lenis", "imagesloaded"]
+}
