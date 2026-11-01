@@ -4,11 +4,12 @@
   "sourceHash": "05711fcfcc9c6692f2944a9b6cff77dfabdd874530b9f199dba5bbf6d922e837",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "nested-faq",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.503Z"
+  "note": "gates passed. Export renamed NestedFaq; root min-h-screen; eyebrowText prop added. Google Fonts import and font props kept. No frame, no variants.",
+  "updatedAt": "2026-11-01T10:04:21.370Z",
+  "gateOutput": "gates passed"
 }
