@@ -4,11 +4,12 @@
   "sourceHash": "1ba50ec5a2912783ae57b67601322e34f923546e74b6ea66f98b009b98352657",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "triangle-images",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.573Z"
+  "note": "Renamed traingle-images -> triangle-images. Frame added. No variants. Responsive: image width capped to container, overlap only on md+, panel padding reduced on mobile. Removed demo comments, kept panel/crosshairs/dot background.",
+  "updatedAt": "2026-11-01T15:13:11.033Z",
+  "gateOutput": "gates passed"
 }

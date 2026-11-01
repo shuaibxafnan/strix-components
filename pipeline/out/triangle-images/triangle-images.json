@@ -1,0 +1,52 @@
+{
+  "slug": "triangle-images",
+  "name": "Triangle Images",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Editorial display panel showing photos masked into rounded triangles that overlap in a row, with the corner radius animating on hover, plus a header and caption tray.",
+  "contents": [
+    "Glass display panel with subtitle badge, title and description header",
+    "Row of overlapping rounded-triangle image masks, alternating up and down",
+    "Caption tray with numbered labels and corner crosshair marks",
+    "Dot matrix background"
+  ],
+  "behavior": [
+    "Hovering a triangle animates its corner radius, scales it slightly and restores image color",
+    "Captions brighten on hover",
+    "Row stacks vertically on screens below 768px"
+  ],
+  "props": [
+    { "name": "title", "type": "string", "default": "Geometric Enclosures" },
+    { "name": "subtitle", "type": "string", "default": "MUSEUM ARCHIVE // VOL. 04" },
+    { "name": "description", "type": "string", "default": "A study on mask interpolation, contrasting angular point vectors against fluid photographic subjects." },
+    { "name": "images", "type": "{src,alt,inverted}[]", "default": "2 sample images" },
+    { "name": "radius", "type": "string", "default": "40px" },
+    { "name": "hoverRadius", "type": "string", "default": "8px" },
+    { "name": "size", "type": "string", "default": "310px" },
+    { "name": "overlap", "type": "string", "default": "90px" },
+    { "name": "bg", "type": "string", "default": "#0f0f11" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All text, number of images, sources, alt text and orientation",
+    "Corner radius, hover radius, triangle size, overlap and background color"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change panel and text colors",
+      "where": "Outer panel div with the backdrop-blur-xl class"
+    },
+    {
+      "change": "Change image tint filter",
+      "where": "saturate-[0.7] classes on the img element"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Uses CSS @property, tan() and cos() in CSS, which need a modern browser"
+  ],
+  "mood": ["editorial", "geometric", "dark", "minimal", "premium"],
+  "industries": ["art", "photography", "architecture", "fashion", "museums", "design"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
