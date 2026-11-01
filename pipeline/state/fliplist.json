@@ -4,11 +4,12 @@
   "sourceHash": "fc4fa56cc9c9f961b5612ed9e24ba979f5e336c9d838902bfe8e2ff12b25ed5b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "expanding-team-list",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.441Z"
+  "note": "fliplist -> expanding-team-list; frame added; title and badge made props; unmount cleanup added; responsive: padding reduced on mobile",
+  "updatedAt": "2026-11-01T07:09:54.316Z",
+  "gateOutput": "WARN  requestAnimationFrame without cancelAnimationFrame\ngates passed"
 }

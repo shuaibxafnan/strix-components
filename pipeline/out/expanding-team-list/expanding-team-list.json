@@ -1,0 +1,49 @@
+{
+  "slug": "expanding-team-list",
+  "name": "Expanding Team List",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Dark team roster where each person is a compact row that expands on click into a detailed card with larger avatar, bio and tags, animated with GSAP Flip.",
+  "contents": ["Heading with member count badge", "List of people rows with avatar, name, role and chevron", "Expanded state with bio and tag chips"],
+  "behavior": ["Clicking a row expands it and collapses the previous one", "GSAP Flip animates layout changes between states", "Clicking the open row collapses it"],
+  "props": [
+    {"name": "items", "type": "{name,role,avatar,tags,detail}[]", "default": "6 sample people"},
+    {"name": "title", "type": "string", "default": "Team"},
+    {"name": "badgeLabel", "type": "string", "default": "members"},
+    {"name": "maxWidth", "type": "string", "default": "520px"},
+    {"name": "itemGap", "type": "string", "default": "10px"},
+    {"name": "borderRadius", "type": "string", "default": "14px"},
+    {"name": "padding", "type": "string", "default": "18px 20px"},
+    {"name": "expandedPadding", "type": "string", "default": "24px"},
+    {"name": "backgroundColor", "type": "string", "default": "#0c0c0c"},
+    {"name": "itemBackground", "type": "string", "default": "#141414"},
+    {"name": "itemBorderColor", "type": "string", "default": "rgba(255,255,255,0.06)"},
+    {"name": "expandedBg", "type": "string", "default": "#181818"},
+    {"name": "accentColor", "type": "string", "default": "#c9a96e"},
+    {"name": "tagBackground", "type": "string", "default": "rgba(255,255,255,0.06)"},
+    {"name": "tagColor", "type": "string", "default": "rgba(255,255,255,0.45)"},
+    {"name": "nameFont", "type": "string", "default": "'Cormorant Garamond', Georgia, serif"},
+    {"name": "bodyFont", "type": "string", "default": "'DM Sans', system-ui, sans-serif"},
+    {"name": "nameSize", "type": "string", "default": "1.15rem"},
+    {"name": "roleSize", "type": "string", "default": "0.7rem"},
+    {"name": "detailSize", "type": "string", "default": "0.82rem"},
+    {"name": "avatarSize", "type": "number", "default": 44},
+    {"name": "avatarExpandedSize", "type": "number", "default": 72},
+    {"name": "flipDuration", "type": "number", "default": 0.45},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["People, heading, badge text, avatars, tags and bios", "Colors, fonts, sizes, spacing and animation duration"],
+  "needsCodeEdit": [
+    {"change": "Allow several rows open at once", "where": "handleClick function and expandedIndex state"},
+    {"change": "Change the expanded card shadow", "where": "boxShadow in the li style"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Loads Cormorant Garamond and DM Sans through a Google Fonts import inside the style tag",
+    "Only one row is open at a time"
+  ],
+  "mood": ["elegant", "dark", "editorial", "refined"],
+  "industries": ["agency", "startup", "design studio", "consulting"],
+  "sections": ["about"],
+  "dependencies": ["gsap"]
+}
