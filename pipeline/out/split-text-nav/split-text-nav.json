@@ -1,0 +1,99 @@
+{
+    "slug": "split-text-nav",
+    "name": "Split Text Nav",
+    "category": "navigation-menus",
+    "isReactBits": false,
+    "description": "Full-screen vertical link menu in large type where each link flips letter by letter on hover from a serif italic face to a bold sans italic face while sliding sideways.",
+    "contents": [
+        "Vertical list of large text links centered on a solid background"
+    ],
+    "behavior": [
+        "On hover each character rotates away in 3D with a staggered delay while the alternate font face rotates in",
+        "The link slides horizontally by a set distance on hover",
+        "Renders after mount to avoid server and client mismatch"
+    ],
+    "props": [
+        {
+            "name": "items",
+            "type": "{text,href}[]",
+            "default": "Home, About, Contact"
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#ffffff"
+        },
+        {
+            "name": "fontSize",
+            "type": "string (Tailwind class)",
+            "default": "text-[clamp(2.5rem,12vw,5rem)]"
+        },
+        {
+            "name": "linkTranslateX",
+            "type": "string (CSS length)",
+            "default": "3rem"
+        },
+        {
+            "name": "primaryFont",
+            "type": "string (Tailwind classes)",
+            "default": "font-['Playfair_Display'] italic font-normal"
+        },
+        {
+            "name": "secondaryFont",
+            "type": "string (Tailwind classes)",
+            "default": "font-['Roboto'] italic font-bold"
+        },
+        {
+            "name": "staggerDelayMs",
+            "type": "number",
+            "default": 25
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Link labels, URLs and number of links",
+        "Background and text colors",
+        "Font size, both font faces, hover slide distance and letter stagger"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the letter rotation axis or angle on hover",
+            "where": "rotate3d classes on the character spans"
+        },
+        {
+            "change": "Use different Google fonts",
+            "where": "@import url in the style tag"
+        }
+    ],
+    "fixed": [
+        "Loads Playfair Display and Roboto from Google Fonts through an @import inside the component",
+        "Section fills at least the viewport height with its own background"
+    ],
+    "mood": [
+        "editorial",
+        "bold",
+        "elegant",
+        "playful"
+    ],
+    "industries": [
+        "fashion",
+        "creative agency",
+        "portfolio",
+        "publishing",
+        "art"
+    ],
+    "sections": [
+        "navbar",
+        "hero"
+    ],
+    "dependencies": []
+}
