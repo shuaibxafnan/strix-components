@@ -4,11 +4,12 @@
   "sourceHash": "1b215b5bfa2b605335d6c39fe7d17be675fe24dd54e437e963661c78e7b0dc8b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "random-grid-transition",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.520Z"
+  "note": "Gates passed. gsap/ScrollTrigger/lenis CDN loaders replaced by dynamic imports, dependencies listed (untested). Removed Google Fonts loader; host supplies Playfair Display and Space Mono. Intro/outro kept (ambiguous). Added outroLabel, className. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:02:47.962Z",
+  "gateOutput": "gates passed"
 }

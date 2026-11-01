@@ -1,0 +1,62 @@
+{
+  "slug": "random-grid-transition",
+  "name": "Random Grid Transition",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Pinned scroll sequence where full-screen images are revealed through a grid of cells fading in at random, with titles clipped in per slide and a segmented progress bar.",
+  "contents": [
+    "Optional intro screen with title and scroll hint",
+    "Pinned stage with one full-screen image per slide, kicker pill, counter, title and description",
+    "Segmented progress bar",
+    "Optional outro screen"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis drives the whole page",
+    "Scroll scrubs a GSAP timeline that fades SVG mask cells in at random order to reveal each image",
+    "Slide text wipes in and out with a clip-path",
+    "Grid column count changes by mobile, tablet and desktop breakpoints and rebuilds on resize"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#000000"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "slides", "type": "{image,kicker,title,description}[]", "default": "3 sample slides"},
+    {"name": "mobileCols", "type": "number", "default": 6},
+    {"name": "tabletCols", "type": "number", "default": 10},
+    {"name": "desktopCols", "type": "number", "default": 14},
+    {"name": "mobileBreakpoint", "type": "number", "default": 599},
+    {"name": "tabletBreakpoint", "type": "number", "default": 1024},
+    {"name": "cellStagger", "type": "number", "default": 0.02},
+    {"name": "scrubAmount", "type": "number", "default": 2.5},
+    {"name": "lerp", "type": "number", "default": 0.15},
+    {"name": "showIntro", "type": "boolean", "default": true},
+    {"name": "introTitle", "type": "string", "default": "On-Scroll Mask Transitions"},
+    {"name": "introHint", "type": "string", "default": "Scroll down"},
+    {"name": "showOutro", "type": "boolean", "default": true},
+    {"name": "outroText", "type": "string", "default": "End of transition"},
+    {"name": "showProgressBar", "type": "boolean", "default": true},
+    {"name": "titleFontFamily", "type": "string", "default": "'Playfair Display', serif"},
+    {"name": "bodyFontFamily", "type": "string", "default": "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"},
+    {"name": "labelFontFamily", "type": "string", "default": "'Space Mono', monospace"},
+    {"name": "outroLabel", "type": "string", "default": "— FIN —"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides, images and all text",
+    "Background and text colors",
+    "Grid density per breakpoint, reveal stagger and scrub smoothness",
+    "Intro, outro and progress bar visibility"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the image dimming", "where": "filter brightness style on the image element"},
+    {"change": "Change reveal or text animation timing", "where": "openGrid, textIn and textOut functions"}
+  ],
+  "fixed": [
+    "Lenis takes over page scrolling and is destroyed on unmount",
+    "Stage height is slides count times 100vh to provide the pinned scroll range",
+    "Playfair Display and Space Mono fonts are not loaded by the component, the host must provide them or override the font props"
+  ],
+  "mood": ["cinematic", "editorial", "dramatic", "modern"],
+  "industries": ["photography", "film", "fashion", "travel", "agency", "portfolio"],
+  "sections": ["hero", "portfolio", "gallery"],
+  "dependencies": ["gsap", "lenis"]
+}
