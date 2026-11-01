@@ -1,0 +1,187 @@
+{
+  "slug": "full-screen-hover-loop",
+  "name": "Full Screen Hover Loop",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-height portfolio landing with a large tagline and a nav link that, on hover, loops photos fullscreen and, on click, scatters them into an animated grid with category sidebar.",
+  "contents": [
+    "Header with brand name and menu links",
+    "Large tagline with hint text",
+    "Photo grid with title and year labels per image",
+    "Category sidebar with back arrow and year range"
+  ],
+  "behavior": [
+    "Hovering the loop menu link cycles photos fullscreen over the container",
+    "Clicking it flies the photos into a grid with staggered GSAP motion",
+    "Clicking the brand name or back arrow hides the grid",
+    "Menu link gets an animated accent underline on hover",
+    "Images zoom slightly on hover"
+  ],
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#000000"
+    },
+    {
+      "name": "mutedColor",
+      "type": "string",
+      "default": "#b4b4b4"
+    },
+    {
+      "name": "accentColor",
+      "type": "string",
+      "default": "#f73378"
+    },
+    {
+      "name": "brandName",
+      "type": "string",
+      "default": "Alexandra Sokolov"
+    },
+    {
+      "name": "menuItems",
+      "type": "{label,loop?}[]",
+      "default": "3 sample items"
+    },
+    {
+      "name": "items",
+      "type": "{img,year,title,subtitle,area}[]",
+      "default": "8 sample photos"
+    },
+    {
+      "name": "categories",
+      "type": "string[]",
+      "default": [
+        "Portraits",
+        "Landscape",
+        "Architecture",
+        "Sports"
+      ]
+    },
+    {
+      "name": "activeCategory",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "categoryRange",
+      "type": "string",
+      "default": "2001 — 2018"
+    },
+    {
+      "name": "tagline",
+      "type": "string",
+      "default": "Selected work"
+    },
+    {
+      "name": "hint",
+      "type": "string",
+      "default": "hover photography"
+    },
+    {
+      "name": "hoverDelay",
+      "type": "number",
+      "default": 40
+    },
+    {
+      "name": "loopInterval",
+      "type": "number",
+      "default": 350
+    },
+    {
+      "name": "gridRows",
+      "type": "number",
+      "default": 4
+    },
+    {
+      "name": "gridColumns",
+      "type": "number",
+      "default": 6
+    },
+    {
+      "name": "gridGap",
+      "type": "string",
+      "default": "0.6rem"
+    },
+    {
+      "name": "height",
+      "type": "string",
+      "default": "100vh"
+    },
+    {
+      "name": "revealDuration",
+      "type": "number",
+      "default": 0.8
+    },
+    {
+      "name": "hideDuration",
+      "type": "number",
+      "default": 0.5
+    },
+    {
+      "name": "easing",
+      "type": "string",
+      "default": "power4.out"
+    },
+    {
+      "name": "zoomOnHover",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showMeta",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "editableByProps": [
+    "All text, menu links, categories, photos and grid placement",
+    "Colors, container height, grid size and gap",
+    "Loop speed, hover delay, animation durations and easing"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Make more than one menu link trigger the loop",
+      "where": "menuItems map with the m.loop handlers"
+    },
+    {
+      "change": "Change the fly-in motion of the grid photos",
+      "where": "showGrid function"
+    }
+  ],
+  "fixed": [
+    "Loads GSAP at runtime by dynamic import",
+    "Hover loop is mouse only, on touch the loop link opens the grid by tap",
+    "Grid areas in each item use the 6 by 4 grid, keep gridRows and gridColumns matching them",
+    "Sidebar is hidden below 640px"
+  ],
+  "mood": [
+    "editorial",
+    "minimal",
+    "playful"
+  ],
+  "industries": [
+    "photography",
+    "art",
+    "design agency",
+    "fashion"
+  ],
+  "sections": [
+    "hero",
+    "portfolio",
+    "gallery"
+  ],
+  "dependencies": [
+    "gsap"
+  ]
+}
