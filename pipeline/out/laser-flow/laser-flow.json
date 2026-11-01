@@ -1,0 +1,85 @@
+{
+    "slug": "laser-flow",
+    "name": "Laser Flow",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 shader background of a vertical laser beam that drops in, hits a surface and spills glowing light, fog, streaks and dust across it, with a cursor-following lens that can reveal an image.",
+    "contents": [
+        "Full-size container with a single WebGL2 canvas rendering the beam, spill, fog, dust and streaks",
+        "Optional surface element the beam lands on, measured from surfaceRef",
+        "Optional reveal image shown as light near the cursor"
+    ],
+    "behavior": [
+        "Beam drops from the top with a spring bloom intro, then settles into a continuous animation",
+        "Light spills and flows along the top edge of the surface, with fog, drifting dust and twinkling sparks",
+        "Cursor lens follows the pointer with spring motion, brightens the glow and reveals the image",
+        "Renders only while visible in the viewport and the tab is active",
+        "Skips the intro and stops motion when the user prefers reduced motion"
+    ],
+    "props": [
+        {"name": "surfaceRef", "type": "React.RefObject<HTMLElement>", "default": "undefined"},
+        {"name": "beamPosition", "type": "number", "default": 0.6},
+        {"name": "surfaceLevel", "type": "number", "default": 1},
+        {"name": "color", "type": "string", "default": "#3847ff"},
+        {"name": "intensity", "type": "number", "default": 1.8},
+        {"name": "beamWidth", "type": "number", "default": 1.5},
+        {"name": "flare", "type": "number", "default": 1.5},
+        {"name": "spread", "type": "number", "default": 1.5},
+        {"name": "spill", "type": "number", "default": 1},
+        {"name": "fog", "type": "number", "default": 0.2},
+        {"name": "dust", "type": "number", "default": 1.6},
+        {"name": "streaks", "type": "number", "default": 1.5},
+        {"name": "dots", "type": "number", "default": 1},
+        {"name": "pulse", "type": "number", "default": 1.5},
+        {"name": "speed", "type": "number", "default": 1.5},
+        {"name": "seed", "type": "number", "default": 3},
+        {"name": "mouseInteraction", "type": "boolean", "default": true},
+        {"name": "revealImage", "type": "string", "default": "undefined"},
+        {"name": "revealRadius", "type": "number", "default": 220},
+        {"name": "revealOpacity", "type": "number", "default": 0.6},
+        {"name": "intro", "type": "boolean", "default": true},
+        {"name": "theme", "type": "'dark' | 'light'", "default": "dark"},
+        {"name": "paused", "type": "boolean", "default": false},
+        {"name": "dpr", "type": "number", "default": "undefined"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Beam horizontal position, width, flare, spread, intensity and color",
+        "Fog, dust, streaks, dots, pulse, animation speed and noise seed",
+        "Surface the beam lands on through surfaceRef, or a fallback surface level",
+        "Cursor interaction, reveal image, radius and opacity",
+        "Intro on or off, dark or light theme, pause, pixel ratio, extra class and div attributes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the hue and saturation offsets of the glow layers",
+            "where": "TINTS constant"
+        },
+        {
+            "change": "Change the intro duration or drop speed",
+            "where": "INTRO_DROP and INTRO_END constants"
+        },
+        {
+            "change": "Change the beam look, spill shapes or fog logic",
+            "where": "FRAGMENT shader string"
+        },
+        {
+            "change": "Change the render resolution cap",
+            "where": "MAX_RENDER_DIM constant"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if it is unavailable",
+        "Fills its parent (h-full w-full), so the parent needs a defined size",
+        "Container is pointer-events-none, so it never captures clicks",
+        "Listens to window pointermove and document pointerleave for the cursor lens, cleaned up on unmount",
+        "Render resolution is capped at 2048px on the longest side and DPR at 2",
+        "Reveal image is loaded with crossOrigin anonymous, so it needs CORS headers",
+        "Heavy full-screen fragment shader; may be slow on low-end mobile GPUs",
+        "Beam color is derived by hue and saturation shifts from color, so palette is fixed to that scheme"
+    ],
+    "mood": ["futuristic", "dramatic", "glowing", "dark"],
+    "industries": ["technology", "SaaS", "AI", "gaming", "cybersecurity"],
+    "sections": ["hero", "background"],
+    "dependencies": []
+}

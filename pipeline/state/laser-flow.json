@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "laser-flow",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.587Z"
+  "note": "React Bits, JSX copied unchanged. Category backgrounds-3d, no variants, no deps. Fixed: needs WebGL2; parent needs size; heavy shader on low-end mobile; window pointer listeners; reveal image needs CORS; intro skipped on reduced motion.",
+  "updatedAt": "2026-11-01T09:14:29.540Z",
+  "gateOutput": "gates passed"
 }
