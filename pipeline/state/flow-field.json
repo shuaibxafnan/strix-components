@@ -4,11 +4,12 @@
   "sourceHash": "75a3b7139572bb986fc65a42e8a62c5fa8d4b359dec78dd4d354dbfbe40e356c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "flow-field",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.442Z"
+  "note": "Removed unused stateRef. Added min-h-screen to root. bgColor trail fade supports hex or black only. Category backgrounds-3d. No frame, no variants.",
+  "updatedAt": "2026-11-01T07:11:31.571Z",
+  "gateOutput": "gates passed"
 }
