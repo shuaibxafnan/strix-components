@@ -4,11 +4,12 @@
   "sourceHash": "8928c6c5a389e40a73bbd45be8f9b05b49a1d9bc2a0e11724ce0bce15db6a531",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "grid-flow-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.453Z"
+  "note": "No rename. CDN gsap, Flip, imagesloaded replaced with dynamic imports; deps gsap, imagesloaded. Added className. Frame: none. Variants: none. Responsive ok. Props read once on mount.",
+  "updatedAt": "2026-11-01T07:53:43.455Z",
+  "gateOutput": "gates passed"
 }
