@@ -1,0 +1,47 @@
+{
+  "slug": "news-hero-carousel",
+  "name": "News Hero Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen auto-advancing news hero where image slides rise in with a tag, headline and link, plus glass preview tabs with a progress bar on desktop and a top progress bar on mobile.",
+  "contents": [
+    "Full-bleed slides with background image, tag badge, headline and link or play-video call to action",
+    "Glass tab cards on desktop showing tag, date and title for each slide"
+  ],
+  "behavior": [
+    "Auto-advances on a timer with a progress bar filling per slide",
+    "Slides transition by sliding up with fade, text staggers in",
+    "Clicking a tab jumps to that slide and resets progress",
+    "Tabs are hidden below 1024px where a thin top progress bar shows instead"
+  ],
+  "props": [
+    {"name": "accentColor", "type": "string", "default": "#c20000"},
+    {"name": "loopIntervalMs", "type": "number", "default": 5000},
+    {"name": "mixBlendBg", "type": "string", "default": "rgba(7, 5, 5, 0.45)"},
+    {"name": "animationDuration", "type": "string", "default": "duration-700"},
+    {"name": "timingFunction", "type": "string", "default": "ease-[cubic-bezier(0.25,1,0.5,1)]"},
+    {"name": "textAlignment", "type": "string", "default": "items-start text-left"},
+    {"name": "glassOpacity", "type": "string", "default": "bg-zinc-900/80"},
+    {"name": "scaleIntensity", "type": "string", "default": "scale-105"},
+    {"name": "carouselData", "type": "{id,tag,published,title,img,type,linkText,href}[]", "default": "3 sample slides"},
+    {"name": "backgroundColor", "type": "string", "default": "#090707"},
+    {"name": "textColor", "type": "string", "default": "#f4f4f5"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides: tag, date, headline, image, link text, link URL, link or video type",
+    "Accent, overlay, background and text colors, timing, and text alignment"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change tab layout or position", "where": "hidden lg:grid tab container at the end of the root"},
+    {"change": "Change the headline size", "where": "h1 element inside each article"}
+  ],
+  "fixed": [
+    "Slides use a fixed 100 step progress timer and a 500ms click lock",
+    "Root is min-h-screen and full-bleed; slides are absolutely positioned"
+  ],
+  "mood": ["bold", "cinematic", "editorial", "dark", "energetic"],
+  "industries": ["media", "sports", "automotive", "news", "entertainment"],
+  "sections": ["hero"],
+  "dependencies": []
+}
