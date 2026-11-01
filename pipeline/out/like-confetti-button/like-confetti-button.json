@@ -1,0 +1,43 @@
+{
+  "slug": "like-confetti-button",
+  "name": "Like Confetti Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Thumbs-up like button that toggles to a liked state with an animated hand, a label change and a burst of colored confetti particles on click.",
+  "contents": ["Pill button with drawn thumbs-up icon and label that extends when liked"],
+  "behavior": [
+    "Hover tilts the thumb and lightens the background",
+    "Clicking to like plays a hand wave animation and emits confetti particles via GSAP",
+    "Clicking again unlikes without confetti",
+    "Shows a pulsing placeholder until mounted"
+  ],
+  "props": [
+    {"name": "defaultLabel", "type": "string", "default": "Like"},
+    {"name": "likedLabel", "type": "string", "default": "Liked"},
+    {"name": "initialLiked", "type": "boolean", "default": false},
+    {"name": "particleCount", "type": "number", "default": 48},
+    {"name": "themeBgRest", "type": "string", "default": "#404660"},
+    {"name": "themeBgHover", "type": "string", "default": "#393E57"},
+    {"name": "themeBgActive", "type": "string", "default": "#275EFE"},
+    {"name": "iconColorRest", "type": "string", "default": "#E1E6F9"},
+    {"name": "iconColorActive", "type": "string", "default": "#FFFFFF"},
+    {"name": "particleColors", "type": "string[]", "default": ["#FFFF04", "#EA4C89", "#892AB8", "#4AF2FD", "#275EFE"]},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Labels, initial state, particle count",
+    "Button background colors for rest, hover and liked, icon colors and confetti colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change confetti spread or duration", "where": "triggerParticles function"},
+    {"change": "Change the hand wave animation", "where": "@keyframes hand block in the style tag"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Button text color is fixed light"
+  ],
+  "mood": ["playful", "friendly", "energetic"],
+  "industries": ["social media", "blogs", "e-commerce", "media"],
+  "sections": ["other"],
+  "dependencies": ["gsap"]
+}

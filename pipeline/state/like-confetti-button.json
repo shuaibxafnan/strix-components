@@ -4,11 +4,12 @@
   "sourceHash": "8a6b1bd626a53630d85255e53f5cee3c1cd9cb9930182221412f283fe127452e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "like-confetti-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.487Z"
+  "note": "Removed empty comment remnants. Frame added: w-full h-screen flex center root with className (fixed). Placeholder color follows themeBgRest. Added unmount cleanup for timeout and GSAP timelines. style jsx global changed to plain style. No variants, responsive ok.",
+  "updatedAt": "2026-11-01T09:21:21.283Z",
+  "gateOutput": "gates passed"
 }
