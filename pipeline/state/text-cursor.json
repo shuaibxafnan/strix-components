@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "text-cursor",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.634Z"
+  "note": "JSON written; component unchanged. Category cursor-effects. Variants from mode prop (stamp, ribbon, chain). Needs sized parent. Gates passed.",
+  "updatedAt": "2026-11-01T14:12:25.262Z",
+  "gateOutput": "gates passed"
 }

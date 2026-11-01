@@ -1,0 +1,95 @@
+{
+    "slug": "text-cursor",
+    "name": "Text Cursor",
+    "category": "cursor-effects",
+    "isReactBits": true,
+    "description": "Pointer-following text trail inside a container. A word is stamped along the mouse path, or letters flow as a ribbon or a chain of repeated words, with fade, shrink, pop-in and float.",
+    "contents": [
+        "Interactive root container that tracks the pointer",
+        "Absolutely positioned layer holding the trail text elements"
+    ],
+    "behavior": [
+        "Trail follows pointer movement over the container, also on pointer down, and fades out when the pointer leaves or stops",
+        "Stamp mode drops copies of the text at fixed distances along the path, oldest ones shrink, fade and exit",
+        "Ribbon mode spreads the letters of the text along the path like a snake with shrinking tail",
+        "Chain mode shows maxPoints copies of the text following the path in a line",
+        "Optional rotation along movement direction, random sway or wave, and back-out pop-in",
+        "Animation loop only runs while the trail is active; reduced motion disables float and pop-in"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "Hello" },
+        { "name": "mode", "type": "'stamp' | 'ribbon' | 'chain'", "default": "stamp" },
+        { "name": "spacing", "type": "number", "default": 88 },
+        { "name": "maxPoints", "type": "number", "default": 7 },
+        { "name": "followMouseDirection", "type": "boolean", "default": true },
+        { "name": "randomFloat", "type": "boolean", "default": true },
+        { "name": "exitDuration", "type": "number", "default": 0.5 },
+        { "name": "removalInterval", "type": "number", "default": 30 },
+        { "name": "shrink", "type": "number", "default": 0.5 },
+        { "name": "fade", "type": "number", "default": 0.6 },
+        { "name": "smoothing", "type": "number", "default": 0.3 },
+        { "name": "popIn", "type": "boolean", "default": true },
+        { "name": "keepUpright", "type": "boolean", "default": true },
+        { "name": "hideCursor", "type": "boolean", "default": false },
+        { "name": "color", "type": "string", "default": "currentColor" },
+        { "name": "fontSize", "type": "number", "default": 28 },
+        { "name": "fontWeight", "type": "number | string", "default": 600 },
+        { "name": "fontFamily", "type": "string", "default": "inherit" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Trail text, color, font size, weight and family",
+        "Trail style via mode, spacing between items and number of items",
+        "Direction following, upright text, float, pop-in, shrink, fade, smoothing and exit timing",
+        "Hiding the native cursor, container size and extra styles via className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the pop-in or exit easing",
+            "where": "backOut and smootherstep functions at the top of the file"
+        },
+        {
+            "change": "Change the float sway strength or speed",
+            "where": "float block inside the frame function"
+        },
+        {
+            "change": "Use different per-item content than a single repeated text",
+            "where": "take calls for links and stamps inside the useEffect"
+        }
+    ],
+    "fixed": [
+        "Root is h-full w-full relative, so the parent must have a defined height or the trail area collapses",
+        "Trail only reacts to the pointer inside the root container, not the whole page",
+        "Trail layer is aria-hidden and pointer-events-none, text is decorative",
+        "Needs a pointing device; on touch it only shows while dragging or tapping",
+        "Changing text, mode, or (in ribbon and chain modes) layout props rebuilds the trail elements",
+        "Ribbon mode splits the text into letters, so the text length sets the ribbon length",
+        "Trail items are clipped to the container (overflow hidden)"
+    ],
+    "mood": ["playful", "dynamic", "modern", "interactive"],
+    "industries": ["creative agency", "portfolio", "entertainment", "fashion", "events"],
+    "sections": ["hero", "background", "other"],
+    "dependencies": [],
+    "variants": {
+        "prop": "mode",
+        "default": "stamp",
+        "options": [
+            {
+                "value": "stamp",
+                "look": "Copies of the word are dropped along the pointer path at fixed intervals, older ones shrinking, fading and floating away",
+                "useWhen": "A playful hero where the word should be scattered behind the mouse like a trail of stickers"
+            },
+            {
+                "value": "ribbon",
+                "look": "The letters of the text line up along the path like a snake, tapering toward the tail",
+                "useWhen": "A tagline or brand word that should follow the cursor as one continuous flowing line"
+            },
+            {
+                "value": "chain",
+                "look": "A fixed number of whole-word copies trail the pointer in a line along the path",
+                "useWhen": "A short label or emoji-like word that should trail the cursor as a compact string of repeats"
+            }
+        ]
+    }
+}
