@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "swipe-toast",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.626Z"
+  "note": "JSON written; component unchanged. Category ui-elements. Single toast only; downward swipe dismisses; needs motion and @hugeicons. Gates passed.",
+  "updatedAt": "2026-11-01T14:06:05.348Z",
+  "gateOutput": "gates passed"
 }
