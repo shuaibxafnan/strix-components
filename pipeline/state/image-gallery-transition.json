@@ -4,11 +4,12 @@
   "sourceHash": "642241333bd3ea53ba6fbe712a8113540c3ff393d5bbd4a17192bb78ae2a94b4",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "thumbnail-crossfade-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.464Z"
+  "note": "renamed image-gallery-transition -> thumbnail-crossfade-gallery; frame: none (already min-h-screen full-bleed, w-screen -> w-full to avoid overflow); no variants; responsive: already ok; kept next/font fonts and fixed grain overlay",
+  "updatedAt": "2026-11-01T08:33:05.596Z",
+  "gateOutput": "gates passed"
 }
