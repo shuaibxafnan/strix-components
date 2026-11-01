@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "gradient-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.630Z"
+  "note": "React Bits describe-only. Variants: linear, flow, conic via variant prop. Needs Tailwind arbitrary values and IntersectionObserver. direction overrides angle. No dependencies.",
+  "updatedAt": "2026-11-01T07:51:25.563Z",
+  "gateOutput": "gates passed"
 }
