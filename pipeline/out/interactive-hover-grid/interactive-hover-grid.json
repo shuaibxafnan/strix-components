@@ -1,0 +1,45 @@
+{
+  "slug": "interactive-hover-grid",
+  "name": "Interactive Hover Grid",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Full-screen grid of dark cells with a soft blurred glow that trails the cursor underneath, shining through the gaps and through transparent reveal cells that show a short text.",
+  "contents": [
+    "Grid of rows by columns opaque cells",
+    "Transparent reveal cells with text",
+    "Blurred radial glow following the pointer"
+  ],
+  "behavior": [
+    "Glow follows the pointer with smooth lerped easing via requestAnimationFrame",
+    "Glow is visible through the 2px gaps and transparent cells",
+    "Uses pointer events so touch drag also moves the glow"
+  ],
+  "props": [
+    {"name": "bgCellColor", "type": "string", "default": "#111"},
+    {"name": "bgRevealColor", "type": "string", "default": "#222"},
+    {"name": "cursorGlowColor", "type": "string", "default": "rgba(0, 170, 255, 0.3)"},
+    {"name": "glowSize", "type": "number", "default": 400},
+    {"name": "lerpSpeed", "type": "number", "default": 0.1},
+    {"name": "rows", "type": "number", "default": 3},
+    {"name": "columns", "type": "number", "default": 4},
+    {"name": "revealIndices", "type": "number[]", "default": [5]},
+    {"name": "revealText", "type": "string", "default": "This grid cell is transparent."},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Grid size, which cells are transparent, and their text",
+    "Cell, background and glow colors, glow size and follow speed"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the glow blur amount", "where": "blur-[70px] class on the glow div"},
+    {"change": "Change gap between cells", "where": "gap-[2px] class on the grid div"}
+  ],
+  "fixed": [
+    "Glow position is tracked from window pointer events, so it follows the pointer anywhere on the page",
+    "Root is at least the viewport height"
+  ],
+  "mood": ["dark", "techy", "minimal"],
+  "industries": ["technology", "saas", "gaming", "creative agency"],
+  "sections": ["hero", "background"],
+  "dependencies": []
+}
