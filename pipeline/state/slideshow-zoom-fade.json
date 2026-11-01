@@ -4,11 +4,12 @@
   "sourceHash": "31b5e8769801117e78a39b8a60dad94b9c19fdededdbaae0d65462436123951b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-zoom-fade",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.548Z"
+  "note": "CDN loader replaced by gsap imports. className added, mobile nav offsets, trialWarn removed. Init failure still logs console error. No variants.",
+  "updatedAt": "2026-11-01T12:52:14.564Z",
+  "gateOutput": "gates passed"
 }
