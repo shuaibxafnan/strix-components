@@ -4,11 +4,12 @@
   "sourceHash": "1f583f92bcd1f5200271e80408d1110533237f8a6b6bb31ffc9292a0f3c5bcc3",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-color-changer",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.527Z"
+  "note": "No rename. Gates passed. Removed credit and props creditText, creditUrl. CDN scripts replaced with npm gsap, locomotive-scroll dynamic imports. Inlined minimal locomotive CSS; scrollbar styling not copied. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:22:22.174Z",
+  "gateOutput": "gates passed"
 }

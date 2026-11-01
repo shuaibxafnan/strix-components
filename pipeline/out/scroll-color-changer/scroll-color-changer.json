@@ -1,0 +1,41 @@
+{
+  "slug": "scroll-color-changer",
+  "name": "Scroll Color Changer",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen scroll sections with parallax image and text blocks, where the page background and text color transition to each section's colors as it scrolls into view, with a hero opener.",
+  "contents": [
+    "Hero section with parallax background image, tagline and large heading",
+    "Alternating image and text sections, each with tagline and heading"
+  ],
+  "behavior": [
+    "Smooth scrolling through Locomotive Scroll with per-element parallax speeds",
+    "Page background and text color tween to each section's colors when it reaches 40% of the viewport",
+    "Scrolling back up restores the previous section's colors",
+    "Section images zoom slightly on hover"
+  ],
+  "props": [
+    { "name": "transitionDuration", "type": "number", "default": 0.4 },
+    { "name": "smoothScrollSpeed", "type": "number", "default": 1 },
+    { "name": "sections", "type": "{bgcolor,textcolor,tagline,heading,headingSize,scrollSpeed,imgSrc,imgAlt,isHero}[]", "default": "4 sample sections" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of sections, taglines, headings, heading sizes, images and alt text",
+    "Background and text color per section",
+    "Color transition duration, smooth scroll speed and parallax speed per section"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change the scroll trigger point for color changes", "where": "start: \"top 40%\" in the ScrollTrigger.create call" },
+    { "change": "Change hero or content section layout", "where": "sec.isHero branch inside sections.map" }
+  ],
+  "fixed": [
+    "Changes the page body background and text color while mounted and resets them on unmount",
+    "Takes over page scrolling with Locomotive Scroll, so it should be the only smooth scroll on the page",
+    "Injects a global style block for html and body overflow used by smooth scrolling"
+  ],
+  "mood": ["bold", "cinematic", "editorial", "modern"],
+  "industries": ["agency", "photography", "fashion", "architecture", "portfolio"],
+  "sections": ["hero", "features", "portfolio"],
+  "dependencies": ["gsap", "locomotive-scroll"]
+}
