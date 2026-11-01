@@ -1,0 +1,46 @@
+{
+  "slug": "drift-reel",
+  "name": "Drift Reel",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen WebGL image reel where rows of photos curve along a wave and drift infinitely with scroll velocity, bending as they move.",
+  "contents": [
+    "Fixed full-screen WebGL canvas with three rows of looping images",
+    "Loading progress indicator"
+  ],
+  "behavior": [
+    "Lenis infinite smooth scroll drives the image movement",
+    "Images shift and warp by scroll speed through a vertex shader",
+    "Rows wrap around endlessly",
+    "Rows move at different speeds for depth"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "25 sample image URLs"},
+    {"name": "direction", "type": "\"horizontal\" | \"vertical\"", "default": "horizontal"},
+    {"name": "groupPositionY", "type": "number", "default": 0.4},
+    {"name": "rows", "type": "{position,imageSize,gap,curveFrequency,curveStrength,wheelFactor,wheelDirection}[]", "default": "3 sample rows"},
+    {"name": "cameraZ", "type": "number", "default": 3},
+    {"name": "scrollSpeedSmoothing", "type": "number", "default": 0},
+    {"name": "bgColor", "type": "string", "default": "#f8f8f8"},
+    {"name": "includeLenis", "type": "boolean", "default": true},
+    {"name": "lenisOptions", "type": "object", "default": {"infinite": true, "syncTouch": true}},
+    {"name": "showLoader", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, direction, row layout, sizes, gaps, curve and speed",
+    "Camera distance, background color, smoothing, Lenis options and loader"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change image fit or add effects", "where": "IMAGE_FRAGMENT_SHADER constant"},
+    {"change": "Change the warp shape", "where": "HORIZONTAL_VERTEX_SHADER constant"}
+  ],
+  "fixed": [
+    "Canvas is fixed to the viewport and covers the whole screen",
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page"
+  ],
+  "mood": ["playful", "immersive", "modern", "fluid"],
+  "industries": ["photography", "fashion", "art", "portfolio", "travel"],
+  "sections": ["gallery", "hero"],
+  "dependencies": ["three", "@react-three/fiber", "@react-three/drei", "lenis"]
+}

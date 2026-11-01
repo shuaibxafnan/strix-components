@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "faulty-terminal",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.595Z"
+  "note": "React Bits, metadata only. Category backgrounds-3d, no dependencies. glyphs prop documented as variants (blocks, dots, characters). Needs WebGL2; parent needs height; window-wide pointer listeners; pixel ratio capped at 2.",
+  "updatedAt": "2026-11-01T06:52:19.586Z",
+  "gateOutput": "gates passed"
 }

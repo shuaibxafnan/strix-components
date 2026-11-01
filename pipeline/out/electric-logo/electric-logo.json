@@ -1,0 +1,81 @@
+{
+    "slug": "electric-logo",
+    "name": "Electric Logo",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "WebGL logo effect that traces any image outline and draws crackling electric arcs and a glow around it, with cursor-reactive sparks and click pulses.",
+    "contents": [
+        "Single container div that fills its parent and hosts a WebGL canvas",
+        "Logo outline traced from an image (default lightning bolt SVG)"
+    ],
+    "behavior": [
+        "Traces the image edge into a distance field and renders electric arcs and glow in a fragment shader",
+        "Random arcs spawn along the outline; arcs flicker and crackle",
+        "Cursor hover attracts sparks near the pointer, click or tap sends a pulse and burst",
+        "Morphs smoothly when the src changes",
+        "Pauses rendering when scrolled out of view",
+        "Respects prefers-reduced-motion by disabling click pulses and reducing motion"
+    ],
+    "props": [
+        { "name": "src", "type": "string", "default": "built-in lightning bolt SVG data URL" },
+        { "name": "color", "type": "string", "default": "#ecc7ff" },
+        { "name": "glowColor", "type": "string", "default": "#ad6dff" },
+        { "name": "scale", "type": "number", "default": 0.7 },
+        { "name": "intensity", "type": "number", "default": 1 },
+        { "name": "glow", "type": "number", "default": 1 },
+        { "name": "thickness", "type": "number", "default": 1.5 },
+        { "name": "strands", "type": "number", "default": 4 },
+        { "name": "bend", "type": "number", "default": 0.6 },
+        { "name": "crackle", "type": "number", "default": 1.5 },
+        { "name": "arcs", "type": "number", "default": 1 },
+        { "name": "flicker", "type": "number", "default": 0.6 },
+        { "name": "fill", "type": "number", "default": 0 },
+        { "name": "speed", "type": "number", "default": 2.5 },
+        { "name": "interactive", "type": "boolean", "default": true },
+        { "name": "cursorIntensity", "type": "number", "default": 0.75 },
+        { "name": "cursorRadius", "type": "number", "default": 100 },
+        { "name": "theme", "type": "string", "default": "dark" },
+        { "name": "onRender", "type": "function", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Logo image source",
+        "Arc and glow colors, intensity, thickness, strands, bend, crackle, flicker, fill",
+        "Logo scale, animation speed, arc frequency",
+        "Cursor interactivity, cursor strength and radius",
+        "Dark or light theme, container class and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the number of simultaneous arcs or click pulses",
+            "where": "ARCS and PULSES constants at the top of the file"
+        },
+        {
+            "change": "Change tracing resolution or render pixel limit",
+            "where": "RASTER and PIXEL_BUDGET constants"
+        },
+        {
+            "change": "Change the default logo",
+            "where": "BOLT constant"
+        },
+        {
+            "change": "Cap device pixel ratio differently",
+            "where": "Renderer dpr setting and the dpr line in the resize function"
+        }
+    ],
+    "fixed": [
+        "Requires the ogl package and WebGL2 support (GLSL 300 es shaders)",
+        "Container fills its parent (w-full h-full), so the parent needs a defined size",
+        "Image is loaded with crossOrigin anonymous, so remote logos need CORS headers",
+        "Logo must be a transparent image or one with a uniform background, shape is detected from alpha or edge color",
+        "Device pixel ratio capped at 2 and total pixels capped at about 4 million",
+        "Outline sampling is capped at about 3000 edge points",
+        "Pointer events are attached to the container only, no global listeners",
+        "Not meaningfully usable on touch for hover, only tap pulses work; renders fine on small screens if the container has size"
+    ],
+    "mood": ["energetic", "futuristic", "dramatic", "techy"],
+    "industries": ["energy", "gaming", "technology", "music", "esports"],
+    "sections": ["hero", "logos"],
+    "dependencies": ["ogl"]
+}

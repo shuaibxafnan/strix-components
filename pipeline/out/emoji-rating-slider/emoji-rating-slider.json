@@ -1,0 +1,52 @@
+{
+  "slug": "emoji-rating-slider",
+  "name": "Emoji Rating Slider",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Gradient feedback card with a draggable thumb that snaps across five moods, morphing an emoji face, card colors and a watermark word, with a Save button.",
+  "contents": [
+    "Card with large watermark rating word behind a morphing emoji face",
+    "Draggable track with snap points",
+    "Bottom bar with prompt text, current rating word and Save button"
+  ],
+  "behavior": [
+    "Dragging the thumb changes the rating live and snaps to the nearest of five points on release",
+    "Face mouth and eyes morph, card gradient and accent colors cross-fade",
+    "Face bounces when the rating changes",
+    "Save calls onSave with the rating name"
+  ],
+  "props": [
+    { "name": "morphDuration", "type": "number", "default": 0.35 },
+    { "name": "snapDuration", "type": "number", "default": 0.25 },
+    { "name": "onSave", "type": "function", "default": "undefined" },
+    { "name": "saveLabel", "type": "string", "default": "Save" },
+    { "name": "promptText", "type": "string", "default": "I'm feeling" },
+    { "name": "showSave", "type": "boolean", "default": true },
+    { "name": "ratings", "type": "{name,gradStart,gradEnd,fill,radial,border,shadow,mouthFill,mouthShadow,mouthShine,wordColor,teeth}[]", "default": "5 sample ratings: awful, bad, okay, good, great" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Rating names and all per-rating colors",
+    "Prompt text, save label, save button visibility",
+    "Animation durations and save callback"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the face shapes",
+      "where": "PATHS constant"
+    },
+    {
+      "change": "Change card size or track length",
+      "where": "SNAP_X and TRACK_W constants"
+    }
+  ],
+  "fixed": [
+    "Exactly five ratings are supported, matching the five face shapes and snap points",
+    "Card is a fixed 320 by 288 pixel size",
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto."
+  ],
+  "mood": ["playful", "friendly", "colorful", "modern"],
+  "industries": ["saas", "e-commerce", "healthcare", "education", "hospitality"],
+  "sections": ["other"],
+  "dependencies": []
+}

@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "fade-content",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.586Z"
+  "note": "React Bits, metadata only. Category ui-elements. effect prop documented as variants (fade, focus, develop, dissolve, mist, pixel). Needs Tailwind invisible class; scroller falls back to #snap-main-container; noise effects append hidden SVG to body.",
+  "updatedAt": "2026-11-01T06:48:35.590Z",
+  "gateOutput": "gates passed"
 }

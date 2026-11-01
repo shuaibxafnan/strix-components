@@ -4,11 +4,12 @@
   "sourceHash": "e55f794b1d3d0ba130f9fed930cb8921455fad8476e6dcca3a46fff4747b5a17",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "elastic-grid-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.431Z"
+  "note": "CDN loadScript replaced by dynamic npm imports (gsap, ScrollTrigger, ScrollSmoother, imagesloaded); added className. ScrollSmoother takeover and 10rem grid padding in fixed. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:38:40.824Z",
+  "gateOutput": "gates passed"
 }

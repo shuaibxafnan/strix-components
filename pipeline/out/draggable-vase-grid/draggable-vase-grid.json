@@ -1,0 +1,57 @@
+{
+    "slug": "draggable-vase-grid",
+    "name": "Draggable Vase Grid",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Full-screen draggable grid of product tiles that zooms in on load. Clicking a tile flips it into a side panel with split-text reveals of its title, price and description.",
+    "contents": [
+        "Staggered grid of product image tiles",
+        "Side detail panel with product thumbnail, title, price and description",
+        "Round close cross that follows the cursor while the panel is open"
+    ],
+    "behavior": [
+        "Tiles pop in with a random stagger, then the grid scales up to full size",
+        "Grid is dragged with inertia and also pans with the mouse wheel or trackpad",
+        "Tiles outside the viewport fade and shrink, and return when visible",
+        "Clicking a tile slides the panel in, flips the tile into it and reveals the text line by line and char by char",
+        "Clicking another tile swaps the product, clicking the background, the cross or the open tile closes the panel"
+    ],
+    "props": [
+        {"name": "products", "type": "{id,image,title,price,description}[]", "default": "7 sample vase products"},
+        {"name": "columns", "type": "number", "default": 10},
+        {"name": "itemsPerColumn", "type": "number", "default": 5},
+        {"name": "tileSize", "type": "string", "default": "15vw"},
+        {"name": "gridGap", "type": "string", "default": "5vw"},
+        {"name": "bgColor", "type": "string", "default": "#fff"},
+        {"name": "panelBgColor", "type": "string", "default": "#f1f1f1"},
+        {"name": "panelWidth", "type": "string", "default": "50vw"},
+        {"name": "crossColor", "type": "string", "default": "#313131"},
+        {"name": "introDuration", "type": "number", "default": 0.6},
+        {"name": "introStagger", "type": "number", "default": 1.2},
+        {"name": "dragInertia", "type": "boolean", "default": true},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Products with image, title, price and description",
+        "Grid size, tile size and gap",
+        "Background, panel and close icon colors",
+        "Intro timing and drag inertia"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the pairing of products to grid cells", "where": "productIndex calculation in columnData"},
+        {"change": "Change panel text sizes and colors", "where": "data-title, data-price and data-desc paragraphs"},
+        {"change": "Change drag and wheel limits", "where": "getBounds function"},
+        {"change": "Change the tile flip duration or easing", "where": "flipProduct function"}
+    ],
+    "fixed": [
+        "Listens to window wheel events and prevents default, so the grid pans instead of the page scrolling",
+        "Listens to window mousemove and resize, removed on unmount",
+        "Root fills the viewport height with hidden overflow and the grid and panel are fixed to the viewport, so it should be the only content on the screen",
+        "Uses gsap Draggable, Flip, SplitText and InertiaPlugin",
+        "Panel text sizes are viewport-based and the panel widens to 90% below 600px"
+    ],
+    "mood": ["playful", "editorial", "immersive", "modern"],
+    "industries": ["e-commerce", "interior design", "ceramics", "fashion", "art"],
+    "sections": ["portfolio", "gallery"],
+    "dependencies": ["gsap"]
+}

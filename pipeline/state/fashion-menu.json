@@ -4,11 +4,12 @@
   "sourceHash": "7b36faae663976870fbadfd6801b27b4eddbf7abf9104b52258d9f869abb7ccf",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "fashion-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.436Z"
+  "note": "strip-comments failed (AST changed), comments removed by hand. gsap and splitting via dynamic npm import replacing CDN loaders; full unmount cleanup; added className and ariaLabel. Gate warning: style tag without template literal (concatenated CSS, kept). Html/body overflow hidden takeover and fine-pointer cursor in fixed. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:51:35.363Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

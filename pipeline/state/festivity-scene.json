@@ -4,11 +4,12 @@
   "sourceHash": "94de81ca513f2fc697c814e1d8c0babe26a57efb4d734f3591aff90fea7674be",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sphere-collision-hero",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.437Z"
+  "note": "Renamed Festivity Scene -> Sphere Collision Hero. Frame: none (full-bleed). Variants: none. Responsive: fixed oversized 160px labels and brand title, hid rotated hint on mobile. CDN scripts replaced by npm three/gsap/OrbitControls; cleanup fixed.",
+  "updatedAt": "2026-11-01T06:54:03.942Z",
+  "gateOutput": "gates passed"
 }

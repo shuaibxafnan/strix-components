@@ -1,0 +1,60 @@
+{
+  "slug": "expanding-carousel",
+  "name": "Expanding Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Row of portrait cards where one card is expanded with a name and title overlay while the others collapse into narrow strips. Autoplays, rotates on click, and has arrow and dot navigation.",
+  "contents": [
+    "Row of image cards with one expanded active card showing title and name over a gradient",
+    "Previous and next buttons with dot indicators",
+    "Subtle film grain overlay"
+  ],
+  "behavior": [
+    "Autoplay rotates the card list on an interval and pauses briefly after manual input",
+    "Clicking a collapsed card or dot rotates it into the active position",
+    "Width, saturation and brightness of cards transition smoothly with distance from the active card",
+    "Card widths scale with viewport width on small screens"
+  ],
+  "props": [
+    {"name": "slides", "type": "{image,name,title}[]", "default": "7 sample slides"},
+    {"name": "activeIndex", "type": "number", "default": 4},
+    {"name": "autoPlay", "type": "boolean", "default": true},
+    {"name": "autoPlayInterval", "type": "number", "default": 3500},
+    {"name": "cardHeight", "type": "string", "default": "75vh"},
+    {"name": "activeCardWidth", "type": "string", "default": "min(380px, 40vw)"},
+    {"name": "collapsedCardWidth", "type": "string", "default": "clamp(14px, 4vw, 56px)"},
+    {"name": "cardBorderRadius", "type": "string", "default": "10px"},
+    {"name": "cardGap", "type": "string", "default": "8px"},
+    {"name": "backgroundColor", "type": "string", "default": "#080808"},
+    {"name": "accentColor", "type": "string", "default": "#c9a96e"},
+    {"name": "nameFont", "type": "string", "default": "'Cormorant Garamond', Georgia, serif"},
+    {"name": "titleFont", "type": "string", "default": "'DM Sans', system-ui, sans-serif"},
+    {"name": "nameFontSize", "type": "string", "default": "1.85rem"},
+    {"name": "titleFontSize", "type": "string", "default": "0.62rem"},
+    {"name": "transitionMs", "type": "number", "default": 500},
+    {"name": "showNav", "type": "boolean", "default": true},
+    {"name": "onSlideChange", "type": "function | null", "default": null},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides with image, name and title",
+    "Starting active position, autoplay and interval",
+    "Card sizes, radius, gap, height and transition speed",
+    "Background, accent color, fonts and font sizes",
+    "Navigation visibility and slide change callback"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the shadow of the active card", "where": "boxShadow style in the list.map card"},
+    {"change": "Change the grain overlay", "where": "backgroundImage data URL on the absolute inset-0 div"},
+    {"change": "Change how inactive images are dimmed", "where": "sat and bri constants in the list.map"}
+  ],
+  "fixed": [
+    "Loads Cormorant Garamond and DM Sans through a Google Fonts import inside the component style tag",
+    "Slide names are used as keys and must be unique",
+    "Root uses h-full, so the parent needs a height for vertical centering"
+  ],
+  "mood": ["elegant", "editorial", "cinematic", "dark"],
+  "industries": ["agency", "fashion", "photography", "portfolio", "creative studio"],
+  "sections": ["about", "portfolio", "gallery"],
+  "dependencies": []
+}

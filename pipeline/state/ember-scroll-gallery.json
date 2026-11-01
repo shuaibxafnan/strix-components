@@ -4,11 +4,12 @@
   "sourceHash": "603f977dfa31311c7362a62f44448d6504d80ca8734b2b6cd2d0d0e3f8f4ddb4",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "ember-scroll-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.433Z"
+  "note": "CDN loader replaced by dynamic imports (gsap, ScrollTrigger, lenis, imagesloaded); head style injection replaced by in-component style element; removed unused rootRef; added className. Lenis takeover and fixed overlays in fixed. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:43:12.019Z",
+  "gateOutput": "gates passed"
 }

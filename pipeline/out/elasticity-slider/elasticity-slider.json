@@ -1,0 +1,73 @@
+{
+  "slug": "elasticity-slider",
+  "name": "Elasticity Slider",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Fullscreen vertical slideshow driven by wheel, touch or drag, where slides push past each other with stretched image easing. Clicking a slide reveals a text panel behind the image.",
+  "contents": [
+    "Fullscreen slides with image, title and text",
+    "Side navigation list of slide titles",
+    "Title, scroll hint, go back label and custom cursor label"
+  ],
+  "behavior": [
+    "Wheel, touch and drag move to the next or previous slide with an elastic vertical stretch",
+    "Clicking a slide image slides it up to reveal its text panel, a back button closes it",
+    "Navigation items jump to a slide and mark the current one",
+    "Custom cursor label follows the mouse with smoothing",
+    "Loader pulse shows until images are preloaded"
+  ],
+  "props": [
+    { "name": "slides", "type": "{image,title,text}[]", "default": "5 sample chapters" },
+    { "name": "bgColor", "type": "string", "default": "#000000" },
+    { "name": "slideBgColor", "type": "string", "default": "#171719" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "mutedColor", "type": "string", "default": "rgba(255,255,255,0.5)" },
+    { "name": "hoverColor", "type": "string", "default": "#f8c5dc" },
+    { "name": "fontFamily", "type": "string", "default": "ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" },
+    { "name": "title", "type": "string", "default": "Fullscreen Scrolling Slideshow" },
+    { "name": "hintLabel", "type": "string", "default": "↓ Scroll or drag ↓" },
+    { "name": "cursorLabel", "type": "string", "default": "+ Discover more" },
+    { "name": "backLabel", "type": "string", "default": "← Go back" },
+    { "name": "duration", "type": "number", "default": 1.6 },
+    { "name": "ease", "type": "string", "default": "power3.inOut" },
+    { "name": "imageScale", "type": "number", "default": 2 },
+    { "name": "contentImgScale", "type": "number", "default": 1.5 },
+    { "name": "cursorLerp", "type": "number", "default": 0.15 },
+    { "name": "cursorOffsetX", "type": "number", "default": 20 },
+    { "name": "wheelSpeed", "type": "number", "default": -1 },
+    { "name": "tolerance", "type": "number", "default": 10 },
+    { "name": "contentImgHeight", "type": "number", "default": 300 },
+    { "name": "showNav", "type": "boolean", "default": true },
+    { "name": "showCursor", "type": "boolean", "default": true },
+    { "name": "loaderColor", "type": "string", "default": "rgba(255,255,255,0.5)" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Slides, titles, texts, images, labels and heading",
+    "All colors, font family, timing, easing and scale amounts",
+    "Scroll sensitivity, cursor smoothing and offset, navigation and cursor visibility"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Switch to horizontal slide direction",
+      "where": "navigate function, yPercent tweens and transformOrigin values"
+    },
+    {
+      "change": "Change the frame layout of title, hint and navigation",
+      "where": "pointer-events-none fixed z-[100] grid block in the returned JSX"
+    },
+    {
+      "change": "Change the content panel layout",
+      "where": "slide__content block in the returned JSX"
+    }
+  ],
+  "fixed": [
+    "Root is a fullscreen h-screen block that captures wheel, touch and pointer input through GSAP Observer while mounted",
+    "Overlay frame with title, hint and navigation is position fixed over the viewport",
+    "Custom cursor follows the mouse and is not shown on touch devices without mouse movement"
+  ],
+  "mood": ["cinematic", "editorial", "immersive", "dark"],
+  "industries": ["photography", "travel", "fashion", "film", "art"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

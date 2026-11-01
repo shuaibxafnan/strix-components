@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "electric-border",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.585Z"
+  "note": "React Bits, metadata only. Category ui-elements, no dependencies. theme prop documented as variants. Needs WebGL2; canvas overflows container by 64px; window pointer listeners; per-frame shader.",
+  "updatedAt": "2026-11-01T06:41:13.465Z",
+  "gateOutput": "gates passed"
 }

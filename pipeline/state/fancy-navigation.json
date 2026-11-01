@@ -4,11 +4,12 @@
   "sourceHash": "f843fa6e07fab64ed31c8ee00365d31c303977347113606d97e38005271bbd21",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-panel-nav",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.436Z"
+  "note": "renamed fancy-navigation -> image-panel-nav; items prop replaces customItems; added color props and className; no frame (full-screen section); responsive: already ok; no variants",
+  "updatedAt": "2026-11-01T06:50:29.842Z",
+  "gateOutput": "gates passed"
 }

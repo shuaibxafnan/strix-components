@@ -4,11 +4,12 @@
   "sourceHash": "05fc8cb4a44d16a01ae4ce083f315baed38efcae9bdf934898054224a4765d06",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "draggable-image-strip",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.425Z"
+  "note": "Dynamic import of gsap replaces CDN gsapUrl prop; added className; fixed listener cleanup on unmount. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:28:49.916Z",
+  "gateOutput": "gates passed"
 }

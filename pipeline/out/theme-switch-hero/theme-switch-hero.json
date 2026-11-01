@@ -1,0 +1,66 @@
+{
+  "slug": "theme-switch-hero",
+  "name": "Theme Switch Hero",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Full-screen hero headline framed by hairline grid lines with a moon/sun toggle that switches light and dark themes using a circular view-transition reveal, plus a spinning textured accent word.",
+  "contents": [
+    "Headline with gradient text and a textured accent word",
+    "Framed section with crossing grid lines and corner dots",
+    "Fixed moon/sun theme toggle at top center"
+  ],
+  "behavior": [
+    "Toggle expands a circular clip-path reveal from the toggle using the View Transitions API, with plain switch fallback",
+    "Initial theme follows system preference when enabled",
+    "Accent word texture rotates continuously"
+  ],
+  "props": [
+    {"name": "headline", "type": "string", "default": "make"},
+    {"name": "headlineSub", "type": "string", "default": "every"},
+    {"name": "headlineAccent", "type": "string", "default": "transition"},
+    {"name": "headlineTail", "type": "string", "default": "count."},
+    {"name": "accentTexture", "type": "string", "default": "repeating-conic-gradient(from var(--texture-angle) at 50% 80%, #ffffff 0 6deg, transparent 6deg 18deg), repeating-radial-gradient(circle at 50% 80%, #ffffff 0 2px, transparent 2px 14px)"},
+    {"name": "textureSpinDuration", "type": "number", "default": 12000},
+    {"name": "toggleToLightLabel", "type": "string", "default": "Switch to light mode"},
+    {"name": "toggleToDarkLabel", "type": "string", "default": "Switch to dark mode"},
+    {"name": "transitionDuration", "type": "number", "default": 500},
+    {"name": "defaultDark", "type": "boolean", "default": false},
+    {"name": "respectSystemPref", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "bgLight", "type": "string", "default": "#ffffff"},
+    {"name": "toggleLight", "type": "string", "default": "#000000"},
+    {"name": "lineLight", "type": "string", "default": "rgba(0,0,0,0.1)"},
+    {"name": "dotLight", "type": "string", "default": "rgba(0,0,0,0.35)"},
+    {"name": "textTopLight", "type": "string", "default": "#000000"},
+    {"name": "textBottomLight", "type": "string", "default": "#404040"},
+    {"name": "textCircleLight", "type": "string", "default": "#404040"},
+    {"name": "bgDark", "type": "string", "default": "#000000"},
+    {"name": "toggleDark", "type": "string", "default": "#d4d4d4"},
+    {"name": "lineDark", "type": "string", "default": "rgba(255,255,255,0.15)"},
+    {"name": "dotDark", "type": "string", "default": "rgba(255,255,255,0.9)"},
+    {"name": "textTopDark", "type": "string", "default": "#ffffff"},
+    {"name": "textBottomDark", "type": "string", "default": "#e5e5e5"},
+    {"name": "textCircleDark", "type": "string", "default": "rgba(255,255,255,0.15)"}
+  ],
+  "editableByProps": [
+    "Headline words, accent texture and spin speed",
+    "Toggle labels and transition duration",
+    "Default theme and system preference use",
+    "All light and dark theme colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the toggle size or position", "where": "label with ref toggleRef"},
+    {"change": "Change the reveal shape or easing", "where": "handleToggle function"},
+    {"change": "Change corner dot placement", "where": "DOT_POSITIONS constant"}
+  ],
+  "fixed": [
+    "Root is a full-viewport section with min-h-[100dvh] that centers its content",
+    "Toggle is fixed to the top center of the viewport",
+    "Injects global view-transition CSS for the root while mounted",
+    "Uses the Instrument Sans font via next/font/google, requires Next.js"
+  ],
+  "mood": ["minimal", "modern", "clean", "playful"],
+  "industries": ["saas", "developer tools", "agency", "portfolio"],
+  "sections": ["hero"],
+  "dependencies": []
+}

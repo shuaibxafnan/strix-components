@@ -4,11 +4,12 @@
   "sourceHash": "25b4fa5d2ba334f817a25f28f2382543a474e9c492f56f1af9aee4bf54da9e83",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "exploding-piece-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.435Z"
+  "note": "gsap via dynamic import replacing CDN loader; removed console.error, unused attrs and pieceHeight, stray classes; added className, arrowColor; unmount cleanup. Responsive: image width min(width px, 65vw), smaller arrows below sm. Frame kept (fixed); mounted gate kept. No variants.",
+  "updatedAt": "2026-11-01T06:48:02.007Z",
+  "gateOutput": "gates passed"
 }

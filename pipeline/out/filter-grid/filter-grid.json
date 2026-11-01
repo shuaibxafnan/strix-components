@@ -1,0 +1,28 @@
+{
+  "slug": "filter-grid",
+  "name": "Filter Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Dark product grid with a sticky filter bar. Choosing a filter animates cards out and the remaining cards slide into their new positions while the grid height adjusts.",
+  "contents": ["Sticky filter bar with toggle buttons and a clear button", "Responsive grid of product cards with image, index number, category, name, price and star rating"],
+  "behavior": ["Clicking a filter hides non-matching products with scale and fade, and moves the rest with a FLIP style slide", "Clicking the active filter or Clear shows all products", "Image zooms slightly on hover", "Grid height animates between layouts"],
+  "props": [
+    {"name": "filters", "type": "string[]", "default": ["Best Sellers", "New Arrivals", "Hot Sales"]},
+    {"name": "products", "type": "{image,name,rating,price,filters}[]", "default": "24 sample products"},
+    {"name": "animDuration", "type": "number", "default": 350},
+    {"name": "filterLabel", "type": "string", "default": "Filter"},
+    {"name": "clearLabel", "type": "string", "default": "Clear"},
+    {"name": "bgColor", "type": "string", "default": "#0e0e0e"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Filter names, products, images, prices, ratings", "Animation duration, labels and background color"],
+  "needsCodeEdit": [
+    {"change": "Change text color from white", "where": "text-white classes in the root div and card markup"},
+    {"change": "Change grid card minimum width", "where": "gridTemplateColumns style on the grid div"}
+  ],
+  "fixed": ["Loads Cormorant Garamond and DM Sans from Google Fonts", "Each product must list its filter names in its filters array to match the filters prop", "Text uses white tones, so it is meant for dark backgrounds"],
+  "mood": ["dark", "editorial", "minimal", "elegant"],
+  "industries": ["fashion", "ecommerce", "retail", "lifestyle"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": []
+}

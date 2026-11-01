@@ -4,11 +4,12 @@
   "sourceHash": "3786030fd0ec3acb75c2f567d10aa8bd8a932aa69920591bcd7f9e543c060f33",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "ember-depth-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.432Z"
+  "note": "Added className prop only. Kept next/font/google Tomorrow import (template 1.5 vs no-font-imports rule conflict, check). Fixed loader overlay and global data selectors in fixed. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:42:27.818Z",
+  "gateOutput": "gates passed"
 }

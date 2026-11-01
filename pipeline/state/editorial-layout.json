@@ -4,11 +4,12 @@
   "sourceHash": "7bcd5b1f874edcaf07514e2b1f34184328946cdf527adcf99f79854c66e4ebe3",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "editorial-layout",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.430Z"
+  "note": "Removed unused use client and React import; added className, backgroundColor, alt and label props; small responsive fixes (overflow-x-hidden, footer flex-wrap, nowrap label). Headline uses dangerouslySetInnerHTML, kept. Category scroll-section-layouts has no scroll logic; cards-galleries is closest alternative. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:36:46.227Z",
+  "gateOutput": "gates passed"
 }

@@ -4,11 +4,12 @@
   "sourceHash": "0323c7091aed27e7f6ee841e3cb454a6c8c38831780f9cb4d593d7b5a0371e81",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "filter-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.438Z"
+  "note": "Removed Collection title, SS 2025 subtitle and No. 01 label as demo header; title/subtitle replaced by filterLabel and clearLabel props; w-screen/min-h-screen -> w-full; added className, bgColor. Text stays white (fixed, needsCodeEdit). Google Fonts link kept. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:56:11.937Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,67 @@
+{
+    "slug": "dynamic-custom-cursor",
+    "name": "Dynamic Custom Cursor",
+    "category": "cursor-effects",
+    "isReactBits": false,
+    "description": "Replaces the system cursor with a pill badge that follows the mouse smoothly and changes its label based on the card being hovered, flipping sides near the viewport edges.",
+    "contents": [
+        "Row of link cards, each with a small label, title and its own cursor text",
+        "Floating pill cursor badge showing the current text",
+        "Two blurred glow blobs behind the cards"
+    ],
+    "behavior": [
+        "System cursor is hidden inside the component",
+        "Badge follows the mouse with eased quickTo tweens and pops in with a small scale on card enter",
+        "Badge text switches to the data-cursor value of the hovered card and resets on leave",
+        "Badge flips to the other side of the pointer near the right and bottom viewport edges",
+        "Cards lift and show a gradient glow on hover"
+    ],
+    "props": [
+        {
+            "name": "cards",
+            "type": "{label,title,cursorText,href,titleColor,hoverShadow}[]",
+            "default": "2 sample cards"
+        },
+        { "name": "bgColor", "type": "string", "default": "bg-[#0a0a0c]" },
+        { "name": "cursorColor", "type": "string", "default": "bg-white" },
+        { "name": "cursorTextColor", "type": "string", "default": "text-[#0a0a0c]" },
+        { "name": "primaryBtnBg", "type": "string", "default": "bg-zinc-900/40" },
+        { "name": "secondaryBtnBg", "type": "string", "default": "bg-zinc-900/40" },
+        { "name": "cardBorder", "type": "string", "default": "border-zinc-800/80" },
+        { "name": "glowColor", "type": "string", "default": "from-indigo-500/10" },
+        { "name": "labelColor", "type": "string", "default": "text-zinc-500" },
+        { "name": "initialCursorText", "type": "string", "default": "DISCOVER" },
+        { "name": "defaultXOffset", "type": "number", "default": 12 },
+        { "name": "defaultYOffset", "type": "number", "default": 12 },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Number of cards, their labels, titles, links and per-card cursor text",
+        "Default cursor text and badge offset from the pointer",
+        "Background, badge, card, border, glow and label colors"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the glow blob colors or positions",
+            "where": "The two absolute blur-[120px] divs at the top of the root"
+        },
+        {
+            "change": "Change cursor follow smoothness",
+            "where": "The quickTo calls xTo and yTo"
+        },
+        {
+            "change": "Change the pop animation on card enter",
+            "where": "The gsap.fromTo call inside onMouseEnter"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Hides the system cursor inside the component, so it is a mouse-only effect and shows no badge on touch devices",
+        "Adds a window mousemove listener while mounted and removes it on unmount",
+        "Badge position tracks window coordinates and flips against the window size"
+    ],
+    "mood": ["dark", "sleek", "interactive", "modern"],
+    "industries": ["agency", "portfolio", "saas", "creative studio"],
+    "sections": ["hero", "portfolio", "features"],
+    "dependencies": ["gsap"]
+}

@@ -4,11 +4,12 @@
   "sourceHash": "40068ec8453d9e6edce42c4b20195b6efab88a61abf2bec5b9382410fa64d2d3",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "emoji-reaction-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.434Z"
+  "note": "Removed empty comment placeholders and CSS comments; added title, labels, className props; full-screen wrapper is root (fixed); p-4 sm:p-6 and gap-x-4 sm:gap-x-6 for 360px. Gate warning: setTimeout without clearTimeout (timers cleared via ref on unmount, likely false positive). Category ui-elements. No variants.",
+  "updatedAt": "2026-11-01T06:46:02.754Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

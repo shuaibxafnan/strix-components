@@ -4,11 +4,12 @@
   "sourceHash": "799f6a7bb51bccacff492fd66a036ccb5d6cc9ee240b6f180fc3efd2dc7a036e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "theme-switch-hero",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.429Z"
+  "note": "Renamed EaseMate -> ThemeSwitchHero. Replaced brand default headline 'easemate.' with 'make'. Frame: none added (already min-h-[100dvh] centered root). Variants: none. Kept next/font Instrument_Sans, light/dark logic. responsive: already ok",
+  "updatedAt": "2026-11-01T06:35:56.517Z",
+  "gateOutput": "gates passed"
 }

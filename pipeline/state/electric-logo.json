@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "electric-logo",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.585Z"
+  "note": "React Bits, metadata only. Category ui-elements. Needs ogl and WebGL2; fills parent; remote logos need CORS; touch gets tap pulse only. No variants.",
+  "updatedAt": "2026-11-01T06:41:51.494Z",
+  "gateOutput": "gates passed"
 }

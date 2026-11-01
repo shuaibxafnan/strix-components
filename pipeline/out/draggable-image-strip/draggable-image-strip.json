@@ -1,0 +1,77 @@
+{
+  "slug": "draggable-image-strip",
+  "name": "Draggable Image Strip",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-height horizontal strip of numbered portrait images dragged with inertia and overdrag, with a custom cursor. Clicking a number opens a full-screen detail view with title and text.",
+  "contents": [
+    "Horizontal strip of portrait images with varied heights and two-digit index numbers",
+    "Corner heading, subheading and a progress indicator bar",
+    "Outlined cover title shown while dragging",
+    "Full-screen detail view per item with image, title, text and close button"
+  ],
+  "behavior": [
+    "Pointer drag moves the strip with lerp smoothing and rubber-band overdrag at the ends",
+    "While dragging, items shrink, fade and images zoom while the cover title scales in",
+    "Clicking an item number slides the items up and reveals the detail view with staggered tweens",
+    "Custom circular cursor follows the mouse and grows over numbers and while dragging",
+    "Touch devices keep the native cursor and vertical page panning"
+  ],
+  "props": [
+    { "name": "items", "type": "{image,title,text,size}[]", "default": "16 sample items" },
+    { "name": "sizes", "type": "{s,m,l,xl,base}", "default": { "s": 300, "m": 360, "l": 390, "xl": 420, "base": 450 } },
+    { "name": "aspect", "type": "number", "default": 0.7 },
+    { "name": "bgColor", "type": "string", "default": "#000000" },
+    { "name": "textColor", "type": "string", "default": "#767676" },
+    { "name": "accentColor", "type": "string", "default": "#c35340" },
+    { "name": "accentHoverColor", "type": "string", "default": "#ffffff" },
+    { "name": "indicatorColor", "type": "string", "default": "#1b1b1b" },
+    { "name": "heading", "type": "string", "default": "Morandi" },
+    { "name": "subheading", "type": "string", "default": "2019" },
+    { "name": "coverTitle", "type": "string", "default": "Morandi" },
+    { "name": "coverSubtitle", "type": "string", "default": "2019" },
+    { "name": "displayFont", "type": "string", "default": "Georgia, 'Times New Roman', serif" },
+    { "name": "bodyFont", "type": "string", "default": "Georgia, 'Times New Roman', serif" },
+    { "name": "dragScale", "type": "number", "default": 0.8 },
+    { "name": "dragOpacity", "type": "number", "default": 0.3 },
+    { "name": "dragImageScale", "type": "number", "default": 1.6 },
+    { "name": "coverScale", "type": "number", "default": 0.75 },
+    { "name": "lerp", "type": "number", "default": 0.1 },
+    { "name": "overdragFactor", "type": "number", "default": 0.5 },
+    { "name": "imageBleed", "type": "number", "default": 20 },
+    { "name": "stripHeight", "type": "string", "default": "100vh" },
+    { "name": "minStripHeight", "type": "string", "default": "750px" },
+    { "name": "openDuration", "type": "number", "default": 1 },
+    { "name": "showIndicator", "type": "boolean", "default": true },
+    { "name": "showCover", "type": "boolean", "default": true },
+    { "name": "customCursor", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Items: images, titles, detail text and frame size class",
+    "Heading, subheading and cover texts",
+    "All colors and fonts",
+    "Drag feel: smoothing, overdrag, scale and opacity while dragging",
+    "Strip height, image aspect and sizes",
+    "Toggle indicator, cover title and custom cursor"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the open and close animation sequence",
+      "where": "showItem and closeContent functions"
+    },
+    {
+      "change": "Change the number hover animation",
+      "where": "onNumberEnter function"
+    }
+  ],
+  "fixed": [
+    "Requires the gsap npm package, loaded by dynamic import",
+    "Height is stripHeight with a minimum of 750px, so the strip does not shrink below that on short screens",
+    "Items hidden in the detail view use a fixed 500px tall drag area"
+  ],
+  "mood": ["editorial", "dark", "artistic", "immersive", "elegant"],
+  "industries": ["art gallery", "photography", "fashion", "museum", "portfolio", "architecture"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

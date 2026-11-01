@@ -1,0 +1,57 @@
+{
+  "slug": "dungeon-reveal",
+  "name": "Dungeon Reveal",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Full-screen dungeon map hidden under darkness, revealed through a flickering torch-light circle that follows the cursor or finger, with a slider to resize the lit radius.",
+  "contents": [
+    "Full-bleed map image",
+    "Dark overlay with radial light mask",
+    "Torch icon cursor",
+    "Radius slider panel in the top right"
+  ],
+  "behavior": [
+    "Light circle follows mouse and touch movement",
+    "Radius flickers continuously with a sine wave",
+    "Slider changes the lit radius",
+    "Native cursor is hidden and replaced by a torch icon"
+  ],
+  "props": [
+    { "name": "mapSrc", "type": "string", "default": "https://commons.wikimedia.org/wiki/Special:FilePath/Castle_of_Doom_(Eamon).png?width=2000" },
+    { "name": "mapAlt", "type": "string", "default": "Dungeon map" },
+    { "name": "radiusLabel", "type": "string", "default": "radius" },
+    { "name": "minRadius", "type": "number", "default": 40 },
+    { "name": "maxRadius", "type": "number", "default": 300 },
+    { "name": "initialRadius", "type": "number", "default": 110 },
+    { "name": "torchColor", "type": "string", "default": "#f9aa47" },
+    { "name": "bgColor", "type": "string", "default": "#111111" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Map image and alt text",
+    "Slider label and radius range and starting radius",
+    "Torch icon color and background color"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change flicker speed or strength",
+      "where": "animateFlicker function"
+    },
+    {
+      "change": "Change how soft the light edge is",
+      "where": "radial-gradient mask classes on the overlay div"
+    },
+    {
+      "change": "Swap the torch icon",
+      "where": "svg path inside the cursorRef div"
+    }
+  ],
+  "fixed": [
+    "Fills the full viewport height and hides the native cursor",
+    "Touch movement over the overlay is captured with preventDefault, blocking page scroll on touch"
+  ],
+  "mood": ["dark", "mysterious", "playful", "immersive"],
+  "industries": ["gaming", "entertainment", "storytelling", "education"],
+  "sections": ["hero", "other"],
+  "dependencies": []
+}

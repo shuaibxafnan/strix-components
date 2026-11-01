@@ -4,11 +4,12 @@
   "sourceHash": "ef6ac6f77e7108e3889e15f7c13dfff83b85709b251a6a72ae14350f2f398e26",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "draggable-vase-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.425Z"
+  "note": "gsap and plugins via dynamic import from npm; removed CDN loader, gsapVersion prop, fallback paths; added className; cleared drag timeout on unmount. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:29:45.020Z",
+  "gateOutput": "gates passed"
 }

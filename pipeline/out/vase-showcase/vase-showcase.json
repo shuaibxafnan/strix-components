@@ -1,0 +1,48 @@
+{
+    "slug": "vase-showcase",
+    "name": "Vase Showcase",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Auto-playing product slider card where a colored panel wipes down to switch between items, showing the name, tagline, image and a row of five spec columns, with dot navigation.",
+    "contents": [
+        "Product card with two-part title and tagline",
+        "Centered product image",
+        "Spec panel with five value and label columns",
+        "Vertical dot navigation"
+    ],
+    "behavior": [
+        "Autoplays to the next item after a delay",
+        "Item color overlay slides down, content fades out and swaps, then fades back in",
+        "Dots jump to a chosen item and are ignored during a transition",
+        "Respects reduced motion"
+    ],
+    "props": [
+        {"name": "items", "type": "{name:[string,string],tagline,color,image,specs:{val,desc}[]}[]", "default": "4 sample vases"},
+        {"name": "autoPlayDuration", "type": "number", "default": 4500},
+        {"name": "dotLabel", "type": "string", "default": "Show vase"},
+        {"name": "backgroundColor", "type": "string", "default": "bg-black"},
+        {"name": "textColor", "type": "string", "default": "text-white"},
+        {"name": "panelBgColor", "type": "string", "default": "bg-white"},
+        {"name": "panelTextColor", "type": "string", "default": "text-black"},
+        {"name": "labelTextColor", "type": "string", "default": "text-black/60"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Items, names, taglines, colors, images and specs",
+        "Autoplay delay and dot label",
+        "Page, text and spec panel colors as Tailwind classes"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change wipe direction or timing", "where": "The useEffect with the swap and done timeouts and the overlay translate classes"},
+        {"change": "Change card size", "where": "h-[520px] and max-w-[640px] classes on the card div"}
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Exactly five specs per item fit the spec panel layout",
+        "Colors are Tailwind class strings, not hex values"
+    ],
+    "mood": ["bold", "clean", "playful"],
+    "industries": ["e-commerce", "home decor", "ceramics", "retail"],
+    "sections": ["features", "portfolio"],
+    "dependencies": []
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "exploding-piece-carousel",
+  "name": "Exploding Piece Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Image carousel that slices the picture into horizontal strips which rotate and fly off screen on navigation, then the next image's strips fly back in and reassemble.",
+  "contents": [
+    "Image made of horizontal strips",
+    "Left and right arrow buttons"
+  ],
+  "behavior": [
+    "Clicking an arrow rotates the strips, then flies them out in alternating directions",
+    "New image strips enter from opposite sides and settle with a rotation",
+    "Navigation loops at both ends and is blocked while animating",
+    "Image scales down on narrow screens, arrows shrink"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#ffffff" },
+    { "name": "arrowColor", "type": "string", "default": "#262626" },
+    { "name": "width", "type": "number", "default": 400 },
+    { "name": "height", "type": "number", "default": 400 },
+    { "name": "pieceCount", "type": "number", "default": 10 },
+    { "name": "xChange", "type": "number", "default": 1000 },
+    { "name": "yChange", "type": "number", "default": 1000 },
+    { "name": "rotationAngle", "type": "number", "default": 25 },
+    { "name": "duration", "type": "number", "default": 1 },
+    { "name": "imageOptions", "type": "string[]", "default": "3 sample image URLs" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, background and arrow colors",
+    "Image size, number of strips, fly distance, rotation and timing"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the easing or the order of the rotate and fly steps",
+      "where": "handlePositionChange function"
+    },
+    {
+      "change": "Change arrow glyphs or size",
+      "where": "arrowClass constant and the arrow spans"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Strips are horizontal only"
+  ],
+  "mood": ["playful", "dynamic", "bold"],
+  "industries": ["photography", "portfolio", "fashion", "creative agency", "ecommerce"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["gsap"]
+}

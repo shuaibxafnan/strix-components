@@ -4,11 +4,12 @@
   "sourceHash": "eb54568df966187aae294d64bdb3203c57aa8eaaa5b45188c30d50bf360de4ed",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "elastic-glitch-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.430Z"
+  "note": "gsap via dynamic import replacing CDN loader; removed pageBg prop, pre-mount placeholder, console.error catch; added className; onChange via ref; pointer events and touch-none for touch drag; max-w-full px-4. Intro sweep always plays (fixed, needsCodeEdit). No variants.",
+  "updatedAt": "2026-11-01T06:37:29.059Z",
+  "gateOutput": "gates passed"
 }

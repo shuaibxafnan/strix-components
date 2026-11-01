@@ -4,11 +4,12 @@
   "sourceHash": "5ee2c3962cac9e9c40184847d359d46d90d1718fbbfe4536bd9da1cbe1bbcd74",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "elasticity-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.432Z"
+  "note": "gsap and Observer via dynamic import replacing CDN loadScript; added className. Gate warning: style tag without template literal (concatenated CSS with scope id, kept). No frame change, no variants.",
+  "updatedAt": "2026-11-01T06:40:38.715Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

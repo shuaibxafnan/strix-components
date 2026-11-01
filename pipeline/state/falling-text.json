@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "falling-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.629Z"
+  "note": "React Bits, metadata only. Category text-effects. variant prop documented (text, tiles). Dependency matter-js. Fills parent (needs height); static with reduced motion; touch drag disables scroll on falling pieces.",
+  "updatedAt": "2026-11-01T06:49:09.096Z",
+  "gateOutput": "gates passed"
 }

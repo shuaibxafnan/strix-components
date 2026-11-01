@@ -4,11 +4,12 @@
   "sourceHash": "a790f507c1345a71d8170111df4085e515e3399d8e869c8ad4cd07642b406a63",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "drift-skew-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.427Z"
+  "note": "Added className and ariaLabel props. Gate warning: style tag without template literal (concatenated CSS with per-instance id, kept). Google Fonts loader kept. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:31:30.735Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }

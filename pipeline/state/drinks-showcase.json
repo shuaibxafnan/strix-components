@@ -4,11 +4,12 @@
   "sourceHash": "6a05174ec780298c3131e270fde523ea8a7cf936c1dab939cda7fbd37dd404af",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "vase-showcase",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.427Z"
+  "note": "Source file DrinksShowcase actually renders vases; renamed drinks-showcase -> vase-showcase. Frame kept (min-h-screen -> h-screen, className merged). No variants. Responsive: spec values scaled down on mobile (text-xs, px-2). Removed none ambiguous.",
+  "updatedAt": "2026-11-01T06:32:01.308Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,206 @@
+{
+  "slug": "editorial-layout",
+  "name": "Editorial Layout",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "A full-width magazine-style article layout with masthead, headline, byline, wide featured image, drop-cap intro with sticky sidebar, pull quote, two-column text, image grid and footer.",
+  "contents": [
+    "Masthead with title and issue text",
+    "Headline and summary with byline",
+    "Wide featured image with caption",
+    "Body paragraphs with drop cap and key concepts sidebar",
+    "Pull quote",
+    "Two-column context text",
+    "Three-image grid",
+    "Footer line"
+  ],
+  "behavior": [
+    "Images are grayscale and zoom slightly on hover",
+    "Intro label and sidebar stick on scroll at md and up",
+    "Layout collapses to a single column on mobile"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "string",
+      "default": "The Quarterly"
+    },
+    {
+      "name": "issueText",
+      "type": "string",
+      "default": "Issue 04 — Winter 2026"
+    },
+    {
+      "name": "headline",
+      "type": "string",
+      "default": "The Architecture<br />of Silence"
+    },
+    {
+      "name": "summaryText",
+      "type": "string",
+      "default": "How negative space shapes modern design philosophy and influences contemporary creative practice"
+    },
+    {
+      "name": "author",
+      "type": "string",
+      "default": "Eleanor Chen"
+    },
+    {
+      "name": "photographer",
+      "type": "string",
+      "default": "Marcus Webb"
+    },
+    {
+      "name": "featuredImage",
+      "type": "string",
+      "default": "https://images.unsplash.com/photo-1781513747645-757fb2619e57?auto=format&fit=crop&w=1440&q=80"
+    },
+    {
+      "name": "featuredCaption",
+      "type": "string",
+      "default": "Figure 01 — Spatial composition study, 2025"
+    },
+    {
+      "name": "bodyParagraphs",
+      "type": "string[]",
+      "default": [
+        "In the pursuit of visual clarity, what we choose to omit becomes as crucial as what we include. This fundamental principle guides contemporary design thinking.",
+        "The intentional use of empty space — what designers call negative space or white space — creates rhythm, hierarchy, and breathing room within compositions. It allows elements to exist without competing for attention, establishing a visual language that speaks through restraint rather than abundance.",
+        "Throughout history, masters of various disciplines have understood this principle. Japanese aesthetics celebrate ma, the meaningful void. Minimalist composers explore silence as counterpoint to sound. Architects design with light and air as tangible materials."
+      ]
+    },
+    {
+      "name": "sidebarTitle",
+      "type": "string",
+      "default": "Key Concepts"
+    },
+    {
+      "name": "sidebarItems",
+      "type": "string[]",
+      "default": [
+        "Negative space as active element",
+        "Visual hierarchy through spacing",
+        "Rhythm and pacing in layout",
+        "Material reduction strategies"
+      ]
+    },
+    {
+      "name": "blockquoteText",
+      "type": "string",
+      "default": "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."
+    },
+    {
+      "name": "blockquoteAttr",
+      "type": "string",
+      "default": "Antoine de Saint-Exupéry"
+    },
+    {
+      "name": "columnTextLeft",
+      "type": "string",
+      "default": "Implementing these principles requires discipline and confidence. The designer must resist the urge to fill every available space, trusting that emptiness serves a purpose beyond mere aesthetics. Consider the page spread: generous margins frame the content, line spacing allows text to breathe, paragraph breaks create natural pauses."
+    },
+    {
+      "name": "columnTextRight",
+      "type": "string",
+      "default": "Digital interfaces present unique challenges. Screen real estate feels precious, stakeholders request more features, analytics drive density. Yet the most successful platforms maintain spatial generosity. The lesson remains consistent across media: clarity emerges from selective focus, enhanced by the strategic use of nothing at all."
+    },
+    {
+      "name": "gridImages",
+      "type": "string[]",
+      "default": [
+        "https://images.unsplash.com/photo-1611419010196-a360856fc42f?auto=format&fit=crop&w=720&q=80",
+        "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=720&q=80",
+        "https://images.unsplash.com/photo-1777947085284-d454d1aa2f40?auto=format&fit=crop&w=720&q=80"
+      ]
+    },
+    {
+      "name": "footerLeft",
+      "type": "string",
+      "default": "Continue reading in Issue 05"
+    },
+    {
+      "name": "footerRight",
+      "type": "string",
+      "default": "thequarterly.com"
+    },
+    {
+      "name": "themeColor",
+      "type": "string",
+      "default": "#1a1a1a"
+    },
+    {
+      "name": "accentMuted",
+      "type": "string",
+      "default": "#a3a3a3"
+    },
+    {
+      "name": "grayBg",
+      "type": "string",
+      "default": "#f7f7f5"
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "default": "#fafafa"
+    },
+    {
+      "name": "featuredAlt",
+      "type": "string",
+      "default": "Featured editorial image"
+    },
+    {
+      "name": "gridImageAlt",
+      "type": "string",
+      "default": "Supporting editorial image"
+    },
+    {
+      "name": "introLabel",
+      "type": "string",
+      "default": "Intro"
+    },
+    {
+      "name": "contextLabel",
+      "type": "string",
+      "default": "Context"
+    },
+    {
+      "name": "quoteLabel",
+      "type": "string",
+      "default": "Perspective"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "All text, images and alt text",
+    "Body paragraphs, sidebar items and grid images arrays",
+    "Text, muted, sidebar and page background colors",
+    "Section labels"
+  ],
+  "needsCodeEdit": [],
+  "fixed": [
+    "Images are rendered in grayscale via the grayscale class on the img elements"
+  ],
+  "mood": [
+    "editorial",
+    "minimal",
+    "elegant",
+    "calm"
+  ],
+  "industries": [
+    "publishing",
+    "media",
+    "architecture",
+    "design",
+    "agency",
+    "blog"
+  ],
+  "sections": [
+    "blog",
+    "about"
+  ],
+  "dependencies": []
+}

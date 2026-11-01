@@ -1,0 +1,55 @@
+{
+  "slug": "elastic-grid-center-lag",
+  "name": "Elastic Grid Center Lag",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-width image grid where each column lags behind the scroll by a different amount, with center columns trailing most, creating an elastic stretching effect on smooth scroll.",
+  "contents": [
+    "Grid of portrait images with optional captions",
+    "Optional top and bottom dark gradient overlay"
+  ],
+  "behavior": [
+    "Smooth scrolling through GSAP ScrollSmoother",
+    "Items are regrouped into columns, each column gets a scroll lag based on its distance from the center",
+    "Columns rebuild when the responsive column count changes on resize",
+    "Component fades in once images have loaded"
+  ],
+  "props": [
+    {"name": "items", "type": "{img,caption}[]", "default": "125 sample items (25 images repeated 5 times)"},
+    {"name": "bgColor", "type": "string", "default": "#111"},
+    {"name": "textColor", "type": "string", "default": "#fff"},
+    {"name": "showCaptions", "type": "boolean", "default": false},
+    {"name": "pagePadding", "type": "string", "default": "0"},
+    {"name": "columnGap", "type": "string", "default": "0vw"},
+    {"name": "rowGap", "type": "string", "default": "0vw"},
+    {"name": "columnMinWidth", "type": "string", "default": "80px"},
+    {"name": "columnCountMobile", "type": "number", "default": 3},
+    {"name": "columnCountDesktop", "type": "number", "default": 9},
+    {"name": "desktopBreakpoint", "type": "string", "default": "65em"},
+    {"name": "baseLag", "type": "number", "default": 0.3},
+    {"name": "lagFactor", "type": "number", "default": 0.15},
+    {"name": "smoothness", "type": "number", "default": 1},
+    {"name": "normalizeScroll", "type": "boolean", "default": true},
+    {"name": "captionFontSize", "type": "string", "default": "11px"},
+    {"name": "overlay", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images and captions, number of items",
+    "Colors, padding, gaps, column counts and breakpoint",
+    "Lag amount, smoothness, caption visibility and size, overlay"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the image aspect ratio", "where": "aspect-[128/160] class on the data-egscl-img div"},
+    {"change": "Change the overlay gradient fade length or darkness", "where": "linear-gradient background in the overlay div"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with GSAP ScrollSmoother, so it should be the only smooth scroll on the page",
+    "Normalizes scroll (normalizeScroll) by default, affecting touch scrolling",
+    "Requires gsap with the ScrollSmoother plugin and imagesloaded"
+  ],
+  "mood": ["dynamic", "immersive", "modern", "playful"],
+  "industries": ["photography", "fashion", "art", "agency", "portfolio"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["gsap", "imagesloaded"]
+}

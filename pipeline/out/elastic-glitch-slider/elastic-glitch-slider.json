@@ -1,0 +1,56 @@
+{
+  "slug": "elastic-glitch-slider",
+  "name": "Elastic Glitch Slider",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Draggable step slider whose knob is three overlapping CMYK-colored bubbles that follow with different elastic delays, while the track stretches and snaps around it.",
+  "contents": [
+    "Horizontal track split in two bars around the knob",
+    "Knob made of three multiply-blended colored circles"
+  ],
+  "behavior": [
+    "Plays an intro sweep from the initial step to step 5 and then step 1",
+    "Click or drag on the track moves the knob with staggered elastic easing",
+    "Track bars shrink and stretch with the knob position",
+    "Calls onChange with the nearest step number",
+    "Works with mouse and touch through pointer events"
+  ],
+  "props": [
+    { "name": "steps", "type": "number", "default": 6 },
+    { "name": "initialStep", "type": "number", "default": 3 },
+    { "name": "width", "type": "string", "default": "600px" },
+    { "name": "trackHeight", "type": "string", "default": "4px" },
+    { "name": "bubbleSize", "type": "string", "default": "48px" },
+    { "name": "yellowColor", "type": "string", "default": "#ffff00" },
+    { "name": "magentaColor", "type": "string", "default": "#ff00ff" },
+    { "name": "cyanColor", "type": "string", "default": "#00ffff" },
+    { "name": "trackBg", "type": "string", "default": "#040404" },
+    { "name": "onChange", "type": "(step: number) => void", "default": null },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Slider width, track thickness and knob size",
+    "Knob bubble colors and track color",
+    "Number of steps and starting step",
+    "Change callback"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Remove or change the intro sweep",
+      "where": "timer1 and timer2 setTimeout calls in the useEffect"
+    },
+    {
+      "change": "Adjust elastic timing of each bubble",
+      "where": "gsap.to calls for yellowRef, magentaRef and cyanRef in changeStep"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Intro sweep to step 5 then step 1 always plays on mount",
+    "Page background is not set, the host controls it"
+  ],
+  "mood": ["playful", "colorful", "glitchy", "modern"],
+  "industries": ["creative agency", "design tools", "music", "gaming"],
+  "sections": ["other"],
+  "dependencies": ["gsap"]
+}

@@ -1,0 +1,54 @@
+{
+  "slug": "falling-text-gravity",
+  "name": "Falling Text Gravity",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Full-screen text statements with inline images that break into characters and fall off the screen under simulated gravity as each line scrolls past the top of the viewport.",
+  "contents": [
+    "List of full-height text sections, each a headline mixing words and inline tilted images"
+  ],
+  "behavior": [
+    "Each line is split into characters with SplitText",
+    "When a line reaches the top of the viewport its characters fall with Physics2D gravity, random rotation, then fade out",
+    "Plays once per line"
+  ],
+  "props": [
+    { "name": "lines", "type": "(string | {src,alt,className})[][]", "default": "3 sample lines with inline images" },
+    { "name": "bgColor", "type": "string", "default": "#1A1A1A" },
+    { "name": "textColor", "type": "string", "default": "#efeeec" },
+    { "name": "minHeight", "type": "string", "default": "350vh" },
+    { "name": "sectionHeight", "type": "string", "default": "min-h-screen" },
+    { "name": "maxTextWidth", "type": "string", "default": "max-w-[40rem]" },
+    { "name": "minVelocity", "type": "number", "default": 500 },
+    { "name": "maxVelocity", "type": "number", "default": 1000 },
+    { "name": "gravity", "type": "number", "default": 3000 },
+    { "name": "minDuration", "type": "number", "default": 1.5 },
+    { "name": "maxDuration", "type": "number", "default": 3.0 },
+    { "name": "minRotation", "type": "number", "default": -90 },
+    { "name": "maxRotation", "type": "number", "default": 90 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Text lines, inline images and their tilt classes",
+    "Background and text colors, section height and text width",
+    "Fall speed, gravity, duration and rotation range"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Trigger the fall at a different scroll position",
+      "where": "start value in the scrollTrigger object inside onSplit"
+    },
+    {
+      "change": "Change headline font size",
+      "where": "text-[2.5rem] sm:text-[3rem] md:text-[4rem] classes on the h1"
+    }
+  ],
+  "fixed": [
+    "Text falls only on scroll past the top of the viewport and plays once per line",
+    "Sections are viewport-tall and the wrapper has a 350vh minimum height so there is scroll room for the effect"
+  ],
+  "mood": ["playful", "bold", "kinetic"],
+  "industries": ["creative agency", "retail", "entertainment", "education"],
+  "sections": ["about", "other"],
+  "dependencies": ["gsap"]
+}
