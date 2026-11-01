@@ -4,11 +4,12 @@
   "sourceHash": "169ce7f09be77e9fc3ed5ed11b24d14995f41872dcaf66f11e8b0a27ae331f68",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-rotating-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.474Z"
+  "note": "Slug kept. Gates passed. ogl CDN dynamic import via new Function replaced by import(ogl), oglUrl prop removed, ogl added to dependencies. Console error tag renamed. Window wheel/mouse/touch listeners and fixed canvas kept, noted in fixed.",
+  "updatedAt": "2026-11-01T08:50:53.712Z",
+  "gateOutput": "gates passed"
 }

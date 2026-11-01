@@ -1,0 +1,67 @@
+{
+    "slug": "infinite-rotating-gallery",
+    "name": "Infinite Rotating Gallery",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Full-screen WebGL gallery of images stacked vertically in an endless loop. Scrolling, wheel or dragging moves them while each plane flips in 3D with a smooth distortion.",
+    "contents": [
+        "Vertical endless column of image planes rendered on a full-screen canvas",
+        "Pulsing loader dot shown until images are loaded"
+    ],
+    "behavior": [
+        "Mouse wheel and drag or touch move the gallery with eased inertia",
+        "Images rotate in 3D with a vertex distortion based on their position",
+        "Planes wrap around infinitely in both directions",
+        "Canvas fades in once all images are preloaded",
+        "Canvas resizes with the window"
+    ],
+    "props": [
+        { "name": "images", "type": "string[]", "default": "25 sample image URLs" },
+        { "name": "bgColor", "type": "string", "default": "#fffdf8" },
+        { "name": "planeWidth", "type": "number", "default": 320 },
+        { "name": "planeHeight", "type": "number", "default": 300 },
+        { "name": "gap", "type": "number", "default": 0.8 },
+        { "name": "scrollEase", "type": "number", "default": 0.01 },
+        { "name": "wheelSensitivity", "type": "number", "default": 0.005 },
+        { "name": "dragSensitivity", "type": "number", "default": 0.1 },
+        { "name": "cameraFov", "type": "number", "default": 45 },
+        { "name": "cameraDistance", "type": "number", "default": 20 },
+        { "name": "widthSegments", "type": "number", "default": 100 },
+        { "name": "distortion", "type": "number", "default": 3 },
+        { "name": "rotationAxis", "type": "number[]", "default": [0, 1, 0] },
+        { "name": "distortionAxis", "type": "number[]", "default": [1, 1, 0] },
+        { "name": "timeStep", "type": "number", "default": 0.04 },
+        { "name": "rotationRangeMin", "type": "number", "default": 5 },
+        { "name": "rotationRangeMax", "type": "number", "default": 15 },
+        { "name": "maxDpr", "type": "number", "default": 2 },
+        { "name": "showLoader", "type": "boolean", "default": true },
+        { "name": "loaderColor", "type": "string", "default": "#000010" },
+        { "name": "fadeDuration", "type": "number", "default": 1000 },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Images, background color and loader color",
+        "Plane size, gap, scroll and drag feel, camera, distortion and rotation settings",
+        "Loader visibility and fade duration, pixel ratio cap"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the image fit or shading",
+            "where": "FRAGMENT_SHADER constant"
+        },
+        {
+            "change": "Change the flip animation curve",
+            "where": "VERTEX_SHADER constant, qinticInOut function"
+        }
+    ],
+    "fixed": [
+        "Listens to wheel, mouse and touch events on window while mounted and removes them on unmount",
+        "Canvas is fixed to the full viewport and sized from the window",
+        "Section is one viewport tall with touch scrolling disabled on it",
+        "Requires the ogl package, loaded by dynamic import"
+    ],
+    "mood": ["immersive", "playful", "modern", "artistic"],
+    "industries": ["photography", "fashion", "art", "design studios", "travel"],
+    "sections": ["gallery", "portfolio", "hero"],
+    "dependencies": ["ogl"]
+}
