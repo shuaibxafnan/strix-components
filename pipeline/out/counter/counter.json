@@ -1,0 +1,96 @@
+{
+    "slug": "counter",
+    "name": "Counter",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Animated number counter where each digit rolls like an odometer wheel with spring physics, staggered timing, motion blur and fade masks. Supports locale formatting, prefix and suffix, and starts when scrolled into view.",
+    "contents": [
+        "Inline number made of per-digit rolling wheels (0-9) and static symbols for separators, signs and currency",
+        "Optional prefix and suffix nodes",
+        "Screen-reader-only text with the formatted value, visual row hidden from assistive tech",
+        "Hidden measuring row and per-digit SVG blur filters"
+    ],
+    "behavior": [
+        "When value changes, each digit spins to its new digit with a spring (duration, bounce) and staggered start from the lowest place",
+        "Digits and symbols are added or removed with a width and opacity transition when the digit count changes",
+        "Roll direction follows value growth or shrink in auto mode, or is forced up, down or shortest",
+        "Vertical motion blur scales with digit speed",
+        "Top and bottom edges of each wheel fade out through a gradient mask",
+        "Intro spin plays once when the counter is at least 50% visible",
+        "Honors prefers-reduced-motion by jumping straight to the value"
+    ],
+    "props": [
+        { "name": "value", "type": "number", "default": 0 },
+        { "name": "locale", "type": "string", "default": "en-US" },
+        { "name": "format", "type": "Intl.NumberFormatOptions", "default": null },
+        { "name": "decimals", "type": "number", "default": null },
+        { "name": "minDigits", "type": "number", "default": 1 },
+        { "name": "prefix", "type": "ReactNode", "default": null },
+        { "name": "suffix", "type": "ReactNode", "default": null },
+        { "name": "direction", "type": "'auto' | 'up' | 'down' | 'shortest'", "default": "auto" },
+        { "name": "duration", "type": "number", "default": 0.7 },
+        { "name": "bounce", "type": "number", "default": 0.2 },
+        { "name": "stagger", "type": "number", "default": 0.04 },
+        { "name": "motionBlur", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "fade", "type": "number", "default": 0.3 },
+        { "name": "fontSize", "type": "number | string", "default": 100 },
+        { "name": "fontWeight", "type": "string | number", "default": "inherit" },
+        { "name": "textColor", "type": "string", "default": "inherit" },
+        { "name": "gap", "type": "number", "default": 0 },
+        { "name": "padding", "type": "number", "default": 0 },
+        { "name": "tabular", "type": "boolean", "default": true },
+        { "name": "digitStyle", "type": "React.CSSProperties", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": null }
+    ],
+    "editableByProps": [
+        "Number, locale, currency or percent formatting through format, fixed decimals, minimum digits",
+        "Prefix and suffix content",
+        "Roll direction, duration, bounce, stagger, motion blur, intro on or off",
+        "Font size, weight, color, digit gap, vertical padding, fade height, tabular widths",
+        "Extra classes and inline styles on root and digits"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change intro visibility trigger point",
+            "where": "IntersectionObserver threshold 0.5 in the intro useEffect"
+        },
+        {
+            "change": "Change blur strength curve",
+            "where": "radius calculation in the paint function"
+        },
+        {
+            "change": "Change the fade mask shape",
+            "where": "MASK constant"
+        }
+    ],
+    "fixed": [
+        "Value must be changed by the parent through the value prop, the component has no internal counting or timer",
+        "Digit wheels always run 0-9 and the motion is spring-based, no easing choice",
+        "Intro spin is a full extra wheel turn triggered once by scroll visibility",
+        "Frame time step is capped at 1/20 s and uses requestAnimationFrame",
+        "Requires Tailwind CSS for the styling classes",
+        "Default font size is 100px, large for small screens, reduce fontSize on mobile",
+        "Client component using browser APIs, guarded for server rendering"
+    ],
+    "mood": [
+        "dynamic",
+        "modern",
+        "playful",
+        "polished"
+    ],
+    "industries": [
+        "saas",
+        "fintech",
+        "e-commerce",
+        "analytics",
+        "sports"
+    ],
+    "sections": [
+        "stats",
+        "hero",
+        "features"
+    ],
+    "dependencies": []
+}

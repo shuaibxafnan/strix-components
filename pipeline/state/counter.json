@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "counter",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.610Z"
+  "note": "Bits describe-only. Gates passed. Value parent-driven; fontSize default 100px; intro spin once at 50% visible; honors reduced motion; Tailwind needed.",
+  "updatedAt": "2026-11-01T05:59:23.800Z",
+  "gateOutput": "gates passed"
 }
