@@ -1,0 +1,77 @@
+{
+    "slug": "spring-check",
+    "name": "Spring Check",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Animated checkbox with a spring-driven fill, drawn tick and a label that fades and gets struck through when checked. Works controlled or uncontrolled.",
+    "contents": [
+        "Checkbox button with rounded box, ring, fill and drawn tick icon",
+        "Text label with strike-through rule"
+    ],
+    "behavior": [
+        "Spring animation drives fill scale, box swell, tick draw, label fade and strike-through from one motion value",
+        "Bounce prop sets spring overshoot",
+        "Press scales the box down to 0.95 on pointer down",
+        "Hover brightens the ring on fine-pointer devices",
+        "Keyboard toggles skip the animation and jump instantly",
+        "Reduced motion preference makes changes instant",
+        "Shows a focus-visible outline"
+    ],
+    "props": [
+        { "name": "label", "type": "string", "default": "Ship the build" },
+        { "name": "checked", "type": "boolean", "default": "undefined" },
+        { "name": "defaultChecked", "type": "boolean", "default": false },
+        { "name": "onChange", "type": "(next: boolean) => void", "default": "undefined" },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "color", "type": "string", "default": "#ffffff" },
+        { "name": "fillColor", "type": "string", "default": "#ffffff" },
+        { "name": "checkColor", "type": "string", "default": "#0b0b0f" },
+        { "name": "boxSize", "type": "number", "default": 28 },
+        { "name": "boxRadius", "type": "number", "default": 9 },
+        { "name": "fontSize", "type": "number", "default": 18 },
+        { "name": "bounce", "type": "number", "default": 0.2 },
+        { "name": "strikeLag", "type": "number", "default": 0.12 },
+        { "name": "doneOpacity", "type": "number", "default": 0.42 },
+        { "name": "strike", "type": "'left' | 'center' | 'right' | 'none'", "default": "left" },
+        { "name": "ariaLabel", "type": "string", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Label text, aria label, checked state (controlled or default) and change handler",
+        "Text, ring, fill and tick colors",
+        "Box size, corner radius and font size",
+        "Spring bounce, strike delay, checked label opacity",
+        "Strike direction or no strike",
+        "Disabled state and extra classes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change spring speed",
+            "where": "VISUAL_DURATION constant"
+        },
+        {
+            "change": "Change how much the box swells on overshoot",
+            "where": "SWELL constant"
+        },
+        {
+            "change": "Use a different tick icon",
+            "where": "TICK_PATH constant and Tick02Icon import"
+        },
+        {
+            "change": "Change the strike line position or end point",
+            "where": "RULE_END constant and the ruleRef span className top-[46%]"
+        }
+    ],
+    "fixed": [
+        "Needs motion and @hugeicons/core-free-icons installed",
+        "Uses 'use client', so it only works in client-rendered React",
+        "Hover ring highlight only applies on devices with fine hover pointers",
+        "Touch row height is at least 44px",
+        "Uses a button with role checkbox, label is inline text only",
+        "Single checkbox only, no group handling"
+    ],
+    "mood": ["playful", "minimal", "tactile", "modern"],
+    "industries": ["saas", "productivity", "software", "e-commerce"],
+    "sections": ["features", "other"],
+    "dependencies": ["motion", "@hugeicons/core-free-icons", "react"]
+}

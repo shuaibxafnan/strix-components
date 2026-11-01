@@ -4,11 +4,12 @@
   "sourceHash": "5467b6b1d24fb01a22af489f41a052afb0e74fe48f9f14abc8a7dd70309c128a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "spotlight-cursor",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.555Z"
+  "note": "className added. Empty comments removed. mousemove -> pointermove, cleaned on unmount. No frame, no variants. Kept pt-5 and 50% defaults.",
+  "updatedAt": "2026-11-01T13:13:30.546Z",
+  "gateOutput": "gates passed"
 }

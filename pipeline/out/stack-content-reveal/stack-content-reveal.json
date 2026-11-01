@@ -1,0 +1,200 @@
+{
+    "slug": "stack-content-reveal",
+    "name": "Stack Content Reveal",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Vertical stack of image strips that expands on click into a full slide view with animated title and text reveal, previous and next arrows, and scroll or back to return to the stack.",
+    "contents": [
+        "Vertical stack of image strips",
+        "Per-item split title, meta line and description",
+        "Back button and previous/next arrow buttons",
+        "Large section title with subtitle behind the stack"
+    ],
+    "behavior": [
+        "Clicking a strip animates the stack into a slide column with a Flip transition",
+        "Titles and text slide in and out with masked line reveals",
+        "Arrows move between items with the stack shifting vertically",
+        "Scrolling, wheel or touch drag, or the back button closes the slides",
+        "Body scrolling is locked while a slide is open"
+    ],
+    "props": [
+        {
+            "name": "items",
+            "type": "{image,titleTop,titleBottom,meta,text}[]",
+            "default": "12 sample items"
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#000"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#fff"
+        },
+        {
+            "name": "mutedColor",
+            "type": "string",
+            "default": "#787878"
+        },
+        {
+            "name": "accentColor",
+            "type": "string",
+            "default": "#c87e4f"
+        },
+        {
+            "name": "mainTitle",
+            "type": "string",
+            "default": "Photography"
+        },
+        {
+            "name": "mainSubtitle",
+            "type": "string",
+            "default": "1986 — 2022"
+        },
+        {
+            "name": "backLabel",
+            "type": "string",
+            "default": "Back"
+        },
+        {
+            "name": "fontUrl",
+            "type": "string",
+            "default": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Inter:wght@300;400;500&display=swap"
+        },
+        {
+            "name": "displayFont",
+            "type": "string",
+            "default": "'Bodoni Moda', Didot, 'Times New Roman', serif"
+        },
+        {
+            "name": "bodyFont",
+            "type": "string",
+            "default": "'Inter', ui-sans-serif, system-ui, sans-serif"
+        },
+        {
+            "name": "descenderPad",
+            "type": "string",
+            "default": "0.16em"
+        },
+        {
+            "name": "stackWidth",
+            "type": "string",
+            "default": "38vw"
+        },
+        {
+            "name": "stackItemHeight",
+            "type": "string",
+            "default": "8vh"
+        },
+        {
+            "name": "stackMargin",
+            "type": "string",
+            "default": "50vh"
+        },
+        {
+            "name": "stackMarginMobile",
+            "type": "string",
+            "default": "10rem"
+        },
+        {
+            "name": "slideHeight",
+            "type": "string",
+            "default": "50vh"
+        },
+        {
+            "name": "slideGap",
+            "type": "string",
+            "default": "2.4vh"
+        },
+        {
+            "name": "stackGap",
+            "type": "string",
+            "default": "1.1vh"
+        },
+        {
+            "name": "pagePadding",
+            "type": "string",
+            "default": "2.5rem"
+        },
+        {
+            "name": "itemOpacity",
+            "type": "number",
+            "default": 0.2
+        },
+        {
+            "name": "itemOpacityHover",
+            "type": "number",
+            "default": 0.5
+        },
+        {
+            "name": "slideOpacity",
+            "type": "number",
+            "default": 0.5
+        },
+        {
+            "name": "duration",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "ease",
+            "type": "string",
+            "default": "expo"
+        },
+        {
+            "name": "scrollToClose",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Items with images, titles, meta and text",
+        "Colors, fonts and the font stylesheet URL",
+        "Stack width, strip height, slide height and gaps",
+        "Animation duration, easing and scroll-to-close",
+        "Main title, subtitle and back label"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the size of the arrow icons or their path",
+            "where": "NAV_ARROW and NAV_ARROW_HEAD constants"
+        },
+        {
+            "change": "Change breakpoint for the desktop layout",
+            "where": "min-[53em] classes in the class constants and JSX"
+        }
+    ],
+    "fixed": [
+        "Locks body scrolling while a slide is open and resets it on close and unmount",
+        "Content layer and main title are fixed to the viewport",
+        "Stack is followed by spacers above and below that give the page scroll range",
+        "Previous and next labels are fixed aria labels"
+    ],
+    "mood": [
+        "editorial",
+        "elegant",
+        "cinematic",
+        "dark"
+    ],
+    "industries": [
+        "photography",
+        "portfolio",
+        "art",
+        "fashion",
+        "publishing"
+    ],
+    "sections": [
+        "portfolio",
+        "gallery"
+    ],
+    "dependencies": [
+        "gsap"
+    ]
+}

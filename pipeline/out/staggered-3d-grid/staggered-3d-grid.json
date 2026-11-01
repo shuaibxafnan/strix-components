@@ -1,0 +1,170 @@
+{
+    "slug": "staggered-3d-grid",
+    "name": "Staggered 3D Grid",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Long scroll page where image grids tilt and fly in with staggered 3D transforms, with a scrubbed marquee, split-letter headline, column-staggered full grid and closing credits text.",
+    "contents": [
+        "Hero with two-line title, tags and scroll hint",
+        "Two-column 3D image grid with a fixed horizontal marquee of names",
+        "Big split-letter word",
+        "Full-width staggered image grid",
+        "Closing credit lines"
+    ],
+    "behavior": [
+        "Smooth scrolling through Lenis",
+        "Grid images rotate, skew, blur and slide in and out scrubbed by scroll",
+        "Marquee travels horizontally with scroll",
+        "Characters of big text and credits animate in by scroll",
+        "Full grid columns rise in staggered from the center column"
+    ],
+    "props": [
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#000"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#fff"
+        },
+        {
+            "name": "linkHoverColor",
+            "type": "string",
+            "default": "#ef5d36"
+        },
+        {
+            "name": "altFontClassName",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "images",
+            "type": "string[]",
+            "default": "20 sample photos"
+        },
+        {
+            "name": "titleLine1",
+            "type": "string",
+            "default": "Staggered (3D)"
+        },
+        {
+            "name": "titleLine2",
+            "type": "string",
+            "default": "Grid Animations"
+        },
+        {
+            "name": "tags",
+            "type": "string[]",
+            "default": [
+                "#scroll",
+                "#3d",
+                "#grid"
+            ]
+        },
+        {
+            "name": "introInfo",
+            "type": "string",
+            "default": "Scroll gently & enjoy"
+        },
+        {
+            "name": "heroBgImage",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "marqueeItems",
+            "type": "{primary,secondary}[]",
+            "default": "10 sample names"
+        },
+        {
+            "name": "bigText",
+            "type": "string",
+            "default": "Halcyon"
+        },
+        {
+            "name": "creditsTexts",
+            "type": "string[]",
+            "default": [
+                "Thank you for scrolling",
+                "Back to top"
+            ]
+        },
+        {
+            "name": "mainGridCount",
+            "type": "number",
+            "default": 44
+        },
+        {
+            "name": "fullGridColumns",
+            "type": "number",
+            "default": 7
+        },
+        {
+            "name": "fullGridRows",
+            "type": "number",
+            "default": 5
+        },
+        {
+            "name": "scrubEase",
+            "type": "string",
+            "default": "sine"
+        },
+        {
+            "name": "lerp",
+            "type": "number",
+            "default": 0.12
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Background, text and link hover colors",
+        "Title, tags, intro hint, big word, credit lines and marquee names",
+        "Images, hero background image and grid sizes",
+        "Scrub easing and smooth scroll lerp"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the 3D entry and exit transforms of the grid images",
+            "where": "gridImages.forEach timeline with from and to tweens"
+        },
+        {
+            "change": "Change main grid column layout",
+            "where": "data-grid-main div"
+        }
+    ],
+    "fixed": [
+        "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+        "Hides the page scrollbar on html and body while mounted",
+        "Marquee and edge fade overlay are fixed to the viewport while mounted",
+        "Scrolls the window to the top after setup",
+        "Content stays hidden until images are preloaded",
+        "Needs gsap with ScrollTrigger and SplitText plugins"
+    ],
+    "mood": [
+        "bold",
+        "dynamic",
+        "editorial",
+        "dark"
+    ],
+    "industries": [
+        "photography",
+        "art",
+        "fashion",
+        "agency",
+        "portfolio"
+    ],
+    "sections": [
+        "portfolio",
+        "gallery"
+    ],
+    "dependencies": [
+        "gsap",
+        "lenis"
+    ]
+}

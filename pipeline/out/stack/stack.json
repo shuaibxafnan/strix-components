@@ -1,0 +1,129 @@
+{
+    "slug": "stack",
+    "name": "Stack",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Draggable stack of cards where the top card can be flung, flicked, clicked or auto-advanced to the back with spring physics. Offers four stack layouts: fan, cascade, deck and pile.",
+    "contents": [
+        "Stack of cards, each any React node, defaulting to 4 sample images",
+        "Optional frame border around each card and depth shading on lower cards"
+    ],
+    "behavior": [
+        "Top card is draggable with 3D tilt following drag velocity",
+        "Dragging past the threshold distance or flicking sends the top card flying out and back to the bottom of the stack",
+        "Lower cards lift forward as the top card is dragged",
+        "Optional click to send the top card to the back and optional autoplay with pause on hover",
+        "Keyboard: Arrow Right, Arrow Down, Enter or Space sends the top card to the back",
+        "Reduced motion preference replaces springs with short fades and skips tilt and fling",
+        "onChange fires with the index of the new top card"
+    ],
+    "props": [
+        { "name": "cards", "type": "ReactNode[]", "default": "4 sample images" },
+        { "name": "layout", "type": "'fan' | 'cascade' | 'deck' | 'pile'", "default": "fan" },
+        { "name": "visible", "type": "number", "default": 4 },
+        { "name": "spread", "type": "number", "default": 0.5 },
+        { "name": "depth", "type": "number", "default": 0.5 },
+        { "name": "radius", "type": "number", "default": 16 },
+        { "name": "frame", "type": "number", "default": 0 },
+        { "name": "frameColor", "type": "string", "default": "#ffffff" },
+        { "name": "shadow", "type": "boolean", "default": true },
+        { "name": "tilt", "type": "number", "default": 30 },
+        { "name": "threshold", "type": "number", "default": 90 },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "sendToBackOnClick", "type": "boolean", "default": false },
+        { "name": "autoplay", "type": "boolean", "default": false },
+        { "name": "autoplayDelay", "type": "number", "default": 3000 },
+        { "name": "pauseOnHover", "type": "boolean", "default": false },
+        { "name": "onChange", "type": "(index: number) => void", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Card content and count, layout, number of visible cards",
+        "Spread, depth scaling, corner radius, frame width and color, shadow",
+        "Tilt amount, drag threshold, animation speed",
+        "Click to advance, autoplay, delay and pause on hover",
+        "Root size and position through className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change exit direction of the sent card per layout",
+            "where": "EXITS constant"
+        },
+        {
+            "change": "Change the shadow style",
+            "where": "SHADOW constant"
+        },
+        {
+            "change": "Tune spring feel",
+            "where": "SPRINGS constant"
+        },
+        {
+            "change": "Change card positions for a layout",
+            "where": "placement function"
+        },
+        {
+            "change": "Change accessibility label or keyboard keys",
+            "where": "aria-label on the root div and onKeyDown function"
+        }
+    ],
+    "fixed": [
+        "Root is w-full h-full, so the parent must give it a width and height or it collapses",
+        "Cards fill the root, so card size equals root size and cards should be sized through the parent or className",
+        "Only the top card can be dragged, other cards ignore pointer drag",
+        "Listens to window pointermove, pointerup and pointercancel while dragging, removed on release and unmount",
+        "Root is focusable with tabIndex 0 for keyboard use",
+        "Unknown layout value falls back to fan",
+        "Requires the motion package",
+        "Default sample images load from Unsplash URLs",
+        "Touch dragging uses touch-action pan-y on the top card, so vertical page scroll still works"
+    ],
+    "mood": [
+        "playful",
+        "tactile",
+        "interactive",
+        "modern"
+    ],
+    "industries": [
+        "photography",
+        "portfolio",
+        "e-commerce",
+        "travel",
+        "creative agency"
+    ],
+    "sections": [
+        "portfolio",
+        "gallery",
+        "testimonials",
+        "hero"
+    ],
+    "dependencies": [
+        "motion"
+    ],
+    "variants": {
+        "prop": "layout",
+        "default": "fan",
+        "options": [
+            {
+                "value": "fan",
+                "look": "Cards pivot from the bottom right corner and fan out with slight rotation and shrinking scale",
+                "useWhen": "A hero or showcase beside text needs a playful hand-of-cards photo stack"
+            },
+            {
+                "value": "cascade",
+                "look": "Cards offset diagonally up and left behind the top card, each slightly smaller",
+                "useWhen": "A portfolio or product preview needs a neat layered pile suggesting more items behind"
+            },
+            {
+                "value": "deck",
+                "look": "Cards stacked straight up with a vertical offset like a deck, top card sends down",
+                "useWhen": "A testimonials or stories widget needs a tidy vertical deck to swipe through"
+            },
+            {
+                "value": "pile",
+                "look": "Cards scattered with random offsets and rotations like a casual pile of photos",
+                "useWhen": "A gallery or travel memories section wants a casual scattered photo pile"
+            }
+        ]
+    }
+}

@@ -4,11 +4,12 @@
   "sourceHash": "d864d6aa456c32acfa914e3a7feaa643f18c7e7478d5c6c0a7b5122cba5696dd",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "stack-motion-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.557Z"
+  "note": "CDN gsap/lenis loaders replaced with npm dynamic imports; Lenis fallback removed. Removed unused introHint, dead CSS. Card grid made responsive. Kept fonts, hideScrollbars option, spacers, Lenis takeover. No frame, no variants.",
+  "updatedAt": "2026-11-01T13:17:41.430Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

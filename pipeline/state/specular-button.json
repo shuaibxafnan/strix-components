@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "specular-button",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.617Z"
+  "note": "Gates passed. Source copied unchanged. Category ui-elements. Needs WebGL2. Canvas overflows 24px, clipped by overflow hidden parent. Needs dark/colorful bg. Reduced-motion disables orbit.",
+  "updatedAt": "2026-11-01T13:07:39.681Z",
+  "gateOutput": "gates passed"
 }

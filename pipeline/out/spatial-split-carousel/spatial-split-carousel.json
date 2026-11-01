@@ -1,0 +1,47 @@
+{
+  "slug": "spatial-split-carousel",
+  "name": "Spatial Split Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-height image carousel that cuts each slide into vertical slices which slide away and reveal the next image in a staggered wave, with a counter, progress bars and animated titles.",
+  "contents": [
+    "Full-bleed image slides with title and meta line",
+    "Top label with pulsing dot and slide counter",
+    "Progress bar indicators and Prev / Next buttons"
+  ],
+  "behavior": [
+    "Autoplays and advances after the autoplay interval",
+    "Slices of the outgoing image slide up and down alternately while the new image reveals with a staggered delay",
+    "Active progress bar fills over the autoplay duration",
+    "Clicking a progress bar or Prev / Next jumps to that slide"
+  ],
+  "props": [
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "label", "type": "string", "default": "Spatial Concept Gallery"},
+    {"name": "prevLabel", "type": "string", "default": "Prev"},
+    {"name": "nextLabel", "type": "string", "default": "Next"},
+    {"name": "backgroundColor", "type": "string", "default": "#07080b"},
+    {"name": "width", "type": "string", "default": "100%"},
+    {"name": "height", "type": "string", "default": "100vh"},
+    {"name": "sliceCount", "type": "number", "default": 5},
+    {"name": "autoPlaySpeed", "type": "number", "default": 5000},
+    {"name": "accentColor", "type": "string", "default": "#f43f5e"},
+    {"name": "carouselItems", "type": "{id,title,meta,src}[]", "default": "4 sample slides"}
+  ],
+  "editableByProps": [
+    "Slides, titles, meta text and images",
+    "Label, button labels, accent and background colors",
+    "Slice count, autoplay speed, width and height"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change slice transition direction or easing", "where": "translationDirection constant and the cubic-bezier values in the slice style"},
+    {"change": "Change title animation", "where": "textUp keyframes in the style block"}
+  ],
+  "fixed": [
+    "Slide change lock lasts 1100ms, matching the slice animation timing"
+  ],
+  "mood": ["minimal", "cinematic", "modern"],
+  "industries": ["architecture", "interior design", "photography", "art", "real estate"],
+  "sections": ["hero", "gallery"],
+  "dependencies": []
+}

@@ -4,11 +4,12 @@
   "sourceHash": "d1f8ff5002ea16158e2de05a7429fead65bfbebcf55e9361144f557436793f95",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "split-text-nav",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.554Z"
+  "note": "Props added: className, textColor. style jsx global -> style. Font size now clamp for mobile. Empty comments removed. No frame, no variants.",
+  "updatedAt": "2026-11-01T13:11:40.656Z",
+  "gateOutput": "gates passed"
 }

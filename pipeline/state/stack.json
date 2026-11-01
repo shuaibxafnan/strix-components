@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "stack",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.617Z"
+  "note": "Gates passed. Source copied unchanged. Variants layout: fan, cascade, deck, pile. Needs motion. Parent must size root. Unsplash default images.",
+  "updatedAt": "2026-11-01T13:16:47.006Z",
+  "gateOutput": "gates passed"
 }

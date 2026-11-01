@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "sticker-peel",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.592Z"
+  "note": "Gates passed. Source copied unchanged. Category ui-elements. Needs WebGL2. Absolutely positioned top-left in parent. Remote images need CORS. Fixed pixel width.",
+  "updatedAt": "2026-11-01T13:25:18.178Z",
+  "gateOutput": "gates passed"
 }

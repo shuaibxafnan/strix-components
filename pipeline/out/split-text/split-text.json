@@ -1,0 +1,92 @@
+{
+    "slug": "split-text",
+    "name": "Split Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Splits a text into characters, words or lines and animates each piece in with a staggered GSAP reveal, triggered on scroll, load, hover or click, with optional looping, accent color and hover lift or wave.",
+    "contents": [
+        "Single text element (configurable tag) split into chars, words or lines",
+        "Optional line or piece masks for clipped reveals"
+    ],
+    "behavior": [
+        "Waits for fonts to load, then splits the text with GSAP SplitText and hides it until ready",
+        "Staggered reveal of each piece using the chosen effect, started by ScrollTrigger on view, immediately on load, or replayed on hover or click",
+        "Optional loop replays conceal then reveal after a delay",
+        "Optional accent color flashes on each piece during reveal",
+        "Hover effect lift raises letters near the pointer with spring physics, wave sends a ripple across letters on pointer enter",
+        "Respects prefers-reduced-motion by showing the text without animation",
+        "Calls onLetterAnimationComplete once per text after the first reveal"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "delay", "type": "number (ms stagger per piece)", "default": 50 },
+        { "name": "duration", "type": "number (seconds)", "default": 1.25 },
+        { "name": "ease", "type": "string | function", "default": "undefined" },
+        { "name": "splitType", "type": "string (chars, words, lines, or combinations)", "default": "chars" },
+        { "name": "from", "type": "gsap vars object", "default": "undefined" },
+        { "name": "to", "type": "gsap vars object", "default": "undefined" },
+        { "name": "threshold", "type": "number", "default": 0.1 },
+        { "name": "rootMargin", "type": "string", "default": "-100px" },
+        { "name": "textAlign", "type": "string", "default": "center" },
+        { "name": "tag", "type": "string", "default": "p" },
+        { "name": "staggerFrom", "type": "string | number", "default": "start" },
+        { "name": "mask", "type": "boolean", "default": false },
+        { "name": "effect", "type": "'rise' | 'fade' | 'blur' | 'flip' | 'pop' | 'skew' | 'wave'", "default": "rise" },
+        { "name": "trigger", "type": "'view' | 'load' | 'hover' | 'click'", "default": "view" },
+        { "name": "loop", "type": "boolean", "default": false },
+        { "name": "loopDelay", "type": "number (seconds)", "default": 1.5 },
+        { "name": "hoverEffect", "type": "'none' | 'lift' | 'wave'", "default": "none" },
+        { "name": "color", "type": "string", "default": "undefined" },
+        { "name": "accentColor", "type": "string", "default": "undefined" },
+        { "name": "onLetterAnimationComplete", "type": "function", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Text, element tag, alignment, color, accent color and className",
+        "Split unit, stagger delay and origin, duration, easing, mask",
+        "Reveal effect, or fully custom from and to values",
+        "Trigger mode, scroll start threshold and margin, looping",
+        "Hover effect and completion callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Tune hover lift spring feel",
+            "where": "STIFFNESS, DAMPING and KICK constants"
+        },
+        {
+            "change": "Add a new reveal effect",
+            "where": "getEffect switch function"
+        },
+        {
+            "change": "Change default rise offset",
+            "where": "DEFAULT_FROM and DEFAULT_TO constants"
+        }
+    ],
+    "fixed": [
+        "Requires gsap with the club SplitText plugin, ScrollTrigger and @gsap/react",
+        "Registers GSAP plugins globally at import",
+        "Text must be a plain string, it is the only child and is re-split when it changes",
+        "Element is hidden (visibility hidden) until fonts load and the split completes",
+        "Parent is inline-block and clips overflow for rise, fade and custom from/to when hoverEffect is none",
+        "Lift and wave hover effects need a pointer, so they do nothing on touch screens",
+        "Cursor becomes pointer when trigger is click",
+        "Scroll start is computed from threshold and rootMargin and plays once"
+    ],
+    "mood": ["playful", "dynamic", "modern", "bold"],
+    "industries": ["creative agency", "portfolio", "startup", "marketing", "entertainment"],
+    "sections": ["hero", "about", "cta"],
+    "dependencies": ["gsap", "@gsap/react"],
+    "variants": {
+        "prop": "effect",
+        "default": "rise",
+        "options": [
+            { "value": "rise", "look": "Pieces fade in while sliding up 40px", "useWhen": "Default hero headline entrance on a landing page" },
+            { "value": "fade", "look": "Pieces fade in with no movement", "useWhen": "Subtle intro of a quiet tagline or section lead" },
+            { "value": "blur", "look": "Pieces sharpen from a blur while fading in", "useWhen": "Dreamy or premium brand statement on a photo hero" },
+            { "value": "flip", "look": "Pieces rotate up from a flat bottom edge in 3D", "useWhen": "Bold feature headline that should feel mechanical" },
+            { "value": "pop", "look": "Pieces scale from zero with a bouncy overshoot", "useWhen": "Playful call-to-action or kids and fun brand titles" },
+            { "value": "skew", "look": "Pieces slide in from the left with a skew that straightens", "useWhen": "Fast energetic sports or event headline" },
+            { "value": "wave", "look": "Pieces rise slightly with an oscillating wave ease", "useWhen": "Friendly greeting or about section with a lively feel" }
+        ]
+    }
+}

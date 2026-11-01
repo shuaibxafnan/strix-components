@@ -4,11 +4,12 @@
   "sourceHash": "91eab4629d0721735b5b91c0ebcaf47ba02436f67beb3c5dd9ea5612e971297d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "staggered-3d-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.559Z"
+  "note": "Renamed to staggered-3d-grid. CDN loaders replaced with npm dynamic imports: gsap, ScrollTrigger, SplitText, lenis. Removed SplitText fallback, window lookups, console.error. Cancelled flag, SplitText revert on cleanup. className added. No frame, no variants. Kept fixed marquee/overlay and scrollbar-hiding style.",
+  "updatedAt": "2026-11-01T13:22:14.979Z",
+  "gateOutput": "gates passed"
 }

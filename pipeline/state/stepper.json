@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "stepper",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.618Z"
+  "note": "Gates passed. Source copied unchanged. Category ui-elements. Variants indicator numbers/dots/bars. Needs @hugeicons/react and core-free-icons. Children must be Step. Not centered. Titles truncated.",
+  "updatedAt": "2026-11-01T13:24:35.207Z",
+  "gateOutput": "gates passed"
 }

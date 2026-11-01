@@ -1,0 +1,69 @@
+{
+  "slug": "squircle-gallery",
+  "name": "Squircle Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Grid of squircle-clipped, sepia-toned photo tiles where one tile is expanded with a caption. Clicking any tile swaps it into the featured spot using view transitions.",
+  "contents": [
+    "Grid of image tiles clipped to a squircle shape",
+    "One featured larger tile with gradient overlay and animated title caption"
+  ],
+  "behavior": [
+    "Clicking a tile swaps it with the active tile, animated with the View Transitions API when supported",
+    "Inactive tiles are sepia and become full color when active",
+    "Images zoom from rest scale to hover scale on hover",
+    "Caption bounces in with a custom linear easing",
+    "Grid switches between mobile and desktop column and span settings at a breakpoint"
+  ],
+  "props": [
+    { "name": "items", "type": "{title,src}[]", "default": "9 sample photos" },
+    { "name": "initialActiveIndex", "type": "number", "default": 5 },
+    { "name": "gridColsMobile", "type": "number", "default": 2 },
+    { "name": "gridColsDesktop", "type": "number", "default": 6 },
+    { "name": "rowHeightMobile", "type": "string", "default": "180px" },
+    { "name": "rowHeightDesktop", "type": "string", "default": "170px" },
+    { "name": "activeColSpanMobile", "type": "string", "default": "1 / -1" },
+    { "name": "activeRowSpanMobile", "type": "string", "default": "3 / 5" },
+    { "name": "activeColSpanDesktop", "type": "string", "default": "3 / 5" },
+    { "name": "activeRowSpanDesktop", "type": "string", "default": "1 / 3" },
+    { "name": "breakpoint", "type": "number", "default": 800 },
+    { "name": "gap", "type": "string", "default": "1rem" },
+    { "name": "rowGap", "type": "string", "default": "1.5rem" },
+    { "name": "maxWidth", "type": "string", "default": "1200px" },
+    { "name": "sepiaAmount", "type": "number", "default": 0.75 },
+    { "name": "restZoom", "type": "number", "default": 1.5 },
+    { "name": "hoverZoom", "type": "number", "default": 1 },
+    { "name": "swapDuration", "type": "number", "default": 300 },
+    { "name": "zoomDuration", "type": "number", "default": 1000 },
+    { "name": "titleFontFamily", "type": "string", "default": "'Amatic SC', handwriting" },
+    { "name": "titleFontSize", "type": "string", "default": "1.6rem" },
+    { "name": "titleColor", "type": "string", "default": "white" },
+    { "name": "overlayColor", "type": "string", "default": "rgb(0,0,0)" },
+    { "name": "fontImportUrl", "type": "string", "default": "https://fonts.bunny.net/css?family=amatic-sc:400" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Photos, titles and starting featured tile",
+    "Grid columns, row heights, spans, gaps, max width and breakpoint",
+    "Sepia amount, zoom levels, transition durations",
+    "Caption font, size, color and overlay color"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the tile shape",
+      "where": "SQUIRCLE_PATH constant"
+    },
+    {
+      "change": "Change the caption entrance easing",
+      "where": "TITLE_EASE constant"
+    }
+  ],
+  "fixed": [
+    "Appends the caption font stylesheet link to document head and leaves it in place on unmount",
+    "Click swap animation needs View Transitions API support, otherwise it swaps instantly"
+  ],
+  "mood": ["playful", "artistic", "vintage", "modern"],
+  "industries": ["photography", "travel", "portfolio", "art", "fashion"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

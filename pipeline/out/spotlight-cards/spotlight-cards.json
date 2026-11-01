@@ -1,0 +1,41 @@
+{
+  "slug": "spotlight-cards",
+  "name": "Spotlight Cards",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Responsive grid of dark feature cards with a cursor-following spotlight glow that lights up card borders and surfaces across the whole grid on hover.",
+  "contents": [
+    "Grid of cards, each with gradient icon, large faded background icon, title with arrow and description"
+  ],
+  "behavior": [
+    "A radial spotlight follows the cursor across every card, lighting borders and card surface",
+    "Hovered card lifts slightly and its arrow and background icon fade in",
+    "Grid collapses from 3 columns to 2 to 1 on smaller screens"
+  ],
+  "props": [
+    { "name": "cards", "type": "{icon,title,subtitle,accent}[]", "default": "6 sample cards" },
+    { "name": "bgColor", "type": "string", "default": "rgb(10, 10, 11)" },
+    { "name": "cardBg", "type": "string", "default": "rgb(17, 17, 19)" },
+    { "name": "cardBorder", "type": "string", "default": "rgba(255, 255, 255, 0.04)" },
+    { "name": "spotlightHover", "type": "string", "default": "rgba(255, 255, 255, 0.03)" },
+    { "name": "spotlightBorder", "type": "string", "default": "rgba(255, 255, 255, 0.25)" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Card icons, titles, descriptions and gradient accents",
+    "Page, card, border and spotlight colors"
+  ],
+  "needsCodeEdit": [
+    { "change": "Spotlight sizes and fade timing", "where": ".sc-card::before" },
+    { "change": "Card height", "where": "h-[280px]" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Icons use Font Awesome classes loaded from a CDN stylesheet link",
+    "Inter font loaded through next/font/google"
+  ],
+  "mood": ["dark", "modern", "technical", "sleek"],
+  "industries": ["saas", "developer tools", "ai", "cloud infrastructure", "fintech"],
+  "sections": ["features", "services"],
+  "dependencies": []
+}

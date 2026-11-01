@@ -4,11 +4,12 @@
   "sourceHash": "5d63d7a3a7c6d0548afb40c8b7d0ff0c34c775f526be853e5e5b882099ef27f1",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "stagger-cursor-portal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.558Z"
+  "note": "Root w-full h-screen, className merged. mousemove -> pointermove. Removed empty comments, mounted gate, styled-jsx global. CDN gsap -> npm dynamic import. Selection color scoped via CSS var. Native cursor hidden on all devices. No variants.",
+  "updatedAt": "2026-11-01T13:20:04.429Z",
+  "gateOutput": "gates passed"
 }

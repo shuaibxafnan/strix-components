@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "status-mark",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.625Z"
+  "note": "Gates passed. Source copied unchanged. Category ui-elements. Dep motion. Hardcoded English screen-reader text. Injects style tag. progress is 0-1.",
+  "updatedAt": "2026-11-01T13:23:58.521Z",
+  "gateOutput": "gates passed"
 }

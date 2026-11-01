@@ -1,0 +1,54 @@
+{
+  "slug": "stagger-cursor-portal",
+  "name": "Stagger Cursor Portal",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Full-screen colored canvas with a big heading where staggered circles trail the cursor and reveal the canvas color through the white content layer using a screen blend.",
+  "contents": [
+    "Full-screen colored canvas with a custom dot cursor",
+    "Stack of staggered circles that follow the pointer",
+    "Centered heading on a blended content layer"
+  ],
+  "behavior": [
+    "Native cursor is hidden and replaced by a small dot that tracks the pointer instantly",
+    "Circles follow the pointer with eased tweens, each delayed by the stagger offset",
+    "The content layer uses mix-blend-screen so the circles show through as a portal",
+    "Text selection color follows the canvas color"
+  ],
+  "props": [
+    { "name": "canvasBg", "type": "string", "default": "#2128bd" },
+    { "name": "contentBg", "type": "string", "default": "#ffffff" },
+    { "name": "cursorBg", "type": "string", "default": "#2128bd" },
+    { "name": "shapeColors", "type": "string[]", "default": ["#005ffe", "#ffe5e3", "#ffcc57"] },
+    { "name": "shapeSizes", "type": "number[]", "default": [650, 440, 270] },
+    { "name": "staggerOffset", "type": "number", "default": -0.1 },
+    { "name": "cursorSize", "type": "number", "default": 20 },
+    { "name": "textHeading", "type": "string", "default": "Hello there!" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Heading text",
+    "Canvas, content layer, cursor and circle colors",
+    "Number, sizes and trailing delay of circles",
+    "Cursor dot size"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the easing of the circles",
+      "where": "gsap.to call with ease power2.out inside handleMove"
+    },
+    {
+      "change": "Replace the heading with other content",
+      "where": "h1 inside the mix-blend-screen content layer"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height. Override with className using an important modifier such as !h-auto.",
+    "Native cursor is hidden inside the component on all devices",
+    "Listens to pointermove on window while mounted and removes it on unmount"
+  ],
+  "mood": ["playful", "bold", "modern", "vibrant"],
+  "industries": ["creative agency", "portfolio", "marketing", "entertainment"],
+  "sections": ["hero"],
+  "dependencies": ["gsap"]
+}

@@ -4,11 +4,12 @@
   "sourceHash": "25a2b27081ca31e934fd891c01a2280cf239adb49b6f28129c422e67d902a0d8",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "squircle-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.557Z"
+  "note": "Removed unused gridRef/useRef/styleId, demo wrapper; merged root divs; className added. No frame, no variants. Kept fontImportUrl link (not removed on unmount) and View Transitions swap.",
+  "updatedAt": "2026-11-01T13:16:09.689Z",
+  "gateOutput": "gates passed"
 }

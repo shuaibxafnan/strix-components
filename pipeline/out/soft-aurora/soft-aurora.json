@@ -1,0 +1,92 @@
+{
+    "slug": "soft-aurora",
+    "name": "Soft Aurora",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 shader background of soft flowing aurora bands with grain, a spectrum color cycle, cursor-reactive bending, click pulses and an intro fade-in. Supports dark and light page modes.",
+    "contents": [
+        "Container div with a single full-size WebGL canvas drawing the aurora fragment shader"
+    ],
+    "behavior": [
+        "Two layered Perlin noise bands flow over time and shift hue along the horizontal axis",
+        "Pointer position bends the band near the cursor and shifts the noise field with smoothed easing",
+        "Click or tap inside the container sends a ripple pulse across the bands, up to 4 at once",
+        "Intro animation ramps brightness and band sharpness over about 2 seconds on first mount",
+        "Rendering pauses when offscreen or the tab is hidden and resumes automatically",
+        "Reduced motion preference slows the flow, skips the intro and disables click pulses",
+        "Canvas resolution is scaled down based on noiseFrequency and scale for performance",
+        "Recovers from WebGL context loss by rebuilding the program"
+    ],
+    "props": [
+        { "name": "speed", "type": "number", "default": 0.6 },
+        { "name": "scale", "type": "number", "default": 1.5 },
+        { "name": "brightness", "type": "number", "default": 1.0 },
+        { "name": "color1", "type": "string (hex or rgb)", "default": "#f7f7f7" },
+        { "name": "color2", "type": "string (hex or rgb)", "default": "#e100ff" },
+        { "name": "noiseFrequency", "type": "number", "default": 2.5 },
+        { "name": "noiseAmplitude", "type": "number", "default": 1.0 },
+        { "name": "bandHeight", "type": "number", "default": 0.5 },
+        { "name": "bandSpread", "type": "number", "default": 1.0 },
+        { "name": "octaveDecay", "type": "number", "default": 0.1 },
+        { "name": "layerOffset", "type": "number", "default": 0 },
+        { "name": "colorSpeed", "type": "number", "default": 1.0 },
+        { "name": "spectrum", "type": "number (0 to 1)", "default": 1 },
+        { "name": "tilt", "type": "number (degrees, -90 to 90)", "default": 0 },
+        { "name": "enableMouseInteraction", "type": "boolean", "default": true },
+        { "name": "mouseInfluence", "type": "number", "default": 0.25 },
+        { "name": "clickPulse", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "opacity", "type": "number (0 to 1)", "default": 1 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Two aurora colors, brightness, opacity and the spectrum color cycle amount and speed",
+        "Flow speed, noise scale, frequency, amplitude, octave decay, band height, spread, layer offset and tilt",
+        "Cursor interaction, click pulses and intro animation toggles",
+        "Dark or light page rendering via lightMode",
+        "Sizing and placement through className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Allow more than 4 simultaneous click pulses",
+            "where": "MAX_PULSES constant at the top of the file"
+        },
+        {
+            "change": "Change the aurora shape or number of noise octaves",
+            "where": "auroraGlow function in the FRAGMENT shader"
+        },
+        {
+            "change": "Change pulse lifetime or intro duration",
+            "where": "pulse age check of 2.6 and opening dt / 2 inside the frame function"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if unsupported or shader compile fails",
+        "Root is h-full w-full, so the parent must have a defined height or the className must set one",
+        "Does not set a background, it draws transparent glow, so place it over a dark background or set lightMode on light pages",
+        "Listens to pointer events on window and document, so mouse reaction works even when content sits above the canvas (canvas has no pointer events of its own)",
+        "Canvas is aria-hidden and purely decorative",
+        "Runs a continuous animation loop while visible and speed is above 0, which is GPU heavy on low-end mobile"
+    ],
+    "mood": [
+        "dreamy",
+        "ethereal",
+        "futuristic",
+        "calm"
+    ],
+    "industries": [
+        "technology",
+        "saas",
+        "creative agency",
+        "music",
+        "wellness"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "cta"
+    ],
+    "dependencies": []
+}

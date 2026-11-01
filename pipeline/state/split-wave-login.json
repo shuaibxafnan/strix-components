@@ -4,11 +4,12 @@
   "sourceHash": "eb7b75aaef6a538fc8f76071d61c4b5ff1f2e01c7d624f01ffb22337b1504849",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "split-wave-login",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.555Z"
+  "note": "Empty comments removed. Props added: className, text, link and href props. No frame, no variants. Kept mounted gate and style jsx global (affects all inputs).",
+  "updatedAt": "2026-11-01T13:12:24.404Z",
+  "gateOutput": "gates passed"
 }

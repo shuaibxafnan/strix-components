@@ -1,0 +1,58 @@
+{
+  "slug": "staggered-particles-effect",
+  "name": "Staggered Particles Effect",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-area background of a glowing grid of particles that trails the pointer with a staggered delay, pulses outward from the center, and drifts on its own when idle.",
+  "contents": [
+    "Square grid of glowing rounded particles on a solid background"
+  ],
+  "behavior": [
+    "Particles follow the mouse or touch with a delay that grows from the center outward",
+    "Periodic pulse wave scales particles up from the center",
+    "After 1.5 seconds without input the grid moves on its own along a looping path",
+    "Particles blend additively for a glow"
+  ],
+  "props": [
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "rows", "type": "number", "default": 13 },
+    { "name": "particleSize", "type": "string", "default": "4em" },
+    { "name": "particleMargin", "type": "string", "default": "3em" },
+    { "name": "particleRadius", "type": "string", "default": "2em" },
+    { "name": "baseFontSize", "type": "string", "default": ".2vh" },
+    { "name": "hue", "type": "number", "default": 4 },
+    { "name": "saturation", "type": "number", "default": 70 },
+    { "name": "frameRate", "type": "number", "default": 15 },
+    { "name": "staggerDelay", "type": "number", "default": 40 },
+    { "name": "pulseInterval", "type": "number", "default": 1650 },
+    { "name": "bgColor", "type": "string", "default": "#0a0000" }
+  ],
+  "editableByProps": [
+    "Grid size, particle size, spacing and roundness",
+    "Particle hue and saturation, background color",
+    "Follow delay, update frame rate and pulse interval"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the autonomous movement path",
+      "where": "autoMove timeline"
+    },
+    {
+      "change": "Change the pulse look",
+      "where": "pulse function"
+    },
+    {
+      "change": "Start the grid from a corner instead of the center",
+      "where": "from constant"
+    }
+  ],
+  "fixed": [
+    "Root is absolutely positioned and fills the nearest positioned ancestor",
+    "Listens to document mousemove and touchmove, removed on unmount",
+    "Viewport size for the idle path is measured once on mount"
+  ],
+  "mood": ["futuristic", "glowing", "hypnotic", "dark"],
+  "industries": ["technology", "music", "gaming", "creative agency"],
+  "sections": ["hero", "background"],
+  "dependencies": ["animejs"]
+}

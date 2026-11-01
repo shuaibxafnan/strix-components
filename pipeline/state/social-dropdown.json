@@ -4,11 +4,12 @@
   "sourceHash": "66a548c66758d77fe8bf67334c1d45a0e26156668fafe7f5edf1df93d09a0910",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "social-dropdown",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.552Z"
+  "note": "Gates passed. Frame kept, bg dropped. Props: platforms, textColor, className. defaultPlatform now 'Facebook' (case-insensitive). Removed empty comments, selection style, capitalize. Kept font link, removed on unmount.",
+  "updatedAt": "2026-11-01T13:03:49.927Z",
+  "gateOutput": "gates passed"
 }

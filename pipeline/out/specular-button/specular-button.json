@@ -1,0 +1,84 @@
+{
+    "slug": "specular-button",
+    "name": "Specular Button",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Glassy button with a WebGL specular highlight that travels around its rounded rim, follows the nearby cursor, flares on press, and can orbit on its own.",
+    "contents": [
+        "Native button element with a translucent tinted glass background",
+        "WebGL2 canvas overlay drawing the rim highlight and hairline border",
+        "Children slot for the label or icon content"
+    ],
+    "behavior": [
+        "Highlight steers toward the pointer along the button outline as the cursor gets within the proximity distance, and brightens with closeness",
+        "At rest the highlight settles at the top-left corner at idle intensity",
+        "autoAnimate makes the highlight orbit continuously at speed radians per second, unless the user prefers reduced motion",
+        "Pressing the button briefly widens and brightens the highlight",
+        "Rendering pauses when the button is off screen and when nothing is animating",
+        "Scales down on active press, dims at 50 percent opacity when disabled"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": "Get Started" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "lg" },
+        { "name": "radius", "type": "number", "default": 18 },
+        { "name": "tint", "type": "string", "default": "#ffffff" },
+        { "name": "tintOpacity", "type": "number", "default": 0.04 },
+        { "name": "blur", "type": "number", "default": 0 },
+        { "name": "textColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "lineColor", "type": "string", "default": "#ffffff" },
+        { "name": "baseColor", "type": "string", "default": "#525252" },
+        { "name": "intensity", "type": "number", "default": 1 },
+        { "name": "idleIntensity", "type": "number", "default": 0.35 },
+        { "name": "shineSize", "type": "number", "default": 10 },
+        { "name": "shineFade", "type": "number", "default": 34 },
+        { "name": "thickness", "type": "number", "default": 1.2 },
+        { "name": "glow", "type": "number", "default": 1 },
+        { "name": "speed", "type": "number", "default": 0.35 },
+        { "name": "followMouse", "type": "boolean", "default": true },
+        { "name": "proximity", "type": "number", "default": 250 },
+        { "name": "autoAnimate", "type": "boolean", "default": false },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "onClick", "type": "function", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "type", "type": "string", "default": "button" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Label or content, size preset (sm, md, lg), corner radius",
+        "Glass tint color and opacity, backdrop blur, text color",
+        "Highlight color, rim base color, intensity, idle intensity, size, fade, thickness and glow",
+        "Cursor following on or off, proximity distance, auto orbit and orbit speed",
+        "Disabled state, click handler, button type, className, inline style and any extra button attributes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change size presets",
+            "where": "SIZES constant"
+        },
+        {
+            "change": "Change the drop shadow, press scale or focus ring",
+            "where": "BUTTON constant"
+        },
+        {
+            "change": "Change highlight shape, falloff or glow pool",
+            "where": "FRAGMENT shader string"
+        },
+        {
+            "change": "Change follow smoothing or press decay speed",
+            "where": "frame function inside the first useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; without it the button renders as a plain tinted button with no highlight",
+        "Draws the highlight on a canvas extending 24px beyond the button on every side (PAD), so parent overflow hidden will clip it",
+        "Listens to pointer events on window and the document element while mounted, and removes them on unmount",
+        "Default colors are light on dark, so it needs a dark or colorful background to be visible",
+        "Cursor following depends on a hovering pointer, on touch it only reacts to press",
+        "Respects prefers-reduced-motion by disabling the auto orbit",
+        "Works at small screens since size is set by padding and content, but long labels do not wrap"
+    ],
+    "mood": ["sleek", "futuristic", "premium", "glassy"],
+    "industries": ["saas", "technology", "fintech", "gaming", "creative agency"],
+    "sections": ["hero", "cta"],
+    "dependencies": []
+}

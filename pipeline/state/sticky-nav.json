@@ -4,11 +4,12 @@
   "sourceHash": "760b53d6b05c4516203ce43c3918a97518f5b0a82cc148bfa6f381eda8b010e2",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sticky-nav",
+  "nameLocked": true,
+  "status": "gate_failed",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.560Z"
+  "note": "Subagent returned placeholder report twice and wrote no output files. Needs rerun.",
+  "updatedAt": "2026-11-01T13:27:44.787Z",
+  "gateOutput": "ERROR missing pipeline/out/sticky-nav/sticky-nav.jsx\nERROR missing pipeline/out/sticky-nav/sticky-nav.json"
 }

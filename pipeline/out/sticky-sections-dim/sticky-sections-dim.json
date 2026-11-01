@@ -1,0 +1,214 @@
+{
+  "slug": "sticky-sections-dim",
+  "name": "Sticky Sections Dim",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen cards stack as you scroll. Each card dims, shifts up and lets its image rotate away while the next card slides over it. Includes a hero intro, a numbered counter and a closing statement.",
+  "contents": [
+    "Hero header with title and description",
+    "Sticky full-screen cards, each with image, title, text and counter",
+    "Closing statement paragraph",
+    "Optional full-screen loader until images load"
+  ],
+  "behavior": [
+    "Cards stick to the top and are dimmed by brightness and contrast filters as the next card covers them",
+    "Card image moves up and rotates, with a contrast fade-in as it enters",
+    "Last card stays undimmed when keepLastSection is true",
+    "Optional Lenis smooth scrolling, skipped when reduced motion is preferred"
+  ],
+  "props": [
+    {
+      "name": "sections",
+      "type": "{image,titleLead,title,text,cardColor}[]",
+      "default": "6 sample sections"
+    },
+    {
+      "name": "heroTitleLead",
+      "type": "string",
+      "default": "The"
+    },
+    {
+      "name": "heroTitle",
+      "type": "string",
+      "default": "Denizens"
+    },
+    {
+      "name": "heroDescription",
+      "type": "string",
+      "default": "As data conglomerates reveled in the opulence of cognitive wealth, a silent underclass manifested, condemned to the digital periphery."
+    },
+    {
+      "name": "outro",
+      "type": "string",
+      "default": "Lost in perpetual dependency, inhabitants of the Synthetic Era found solace in cryptic simulations, where pain ebbed and cognitive loads momentarily lightened."
+    },
+    {
+      "name": "fontFamily",
+      "type": "string",
+      "default": "DM Sans"
+    },
+    {
+      "name": "fontFaces",
+      "type": "{weight,url}[]",
+      "default": "DM Sans 300, 500, 700"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "default": "bg-black"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "text-white"
+    },
+    {
+      "name": "loaderColor",
+      "type": "string",
+      "default": "bg-white/60"
+    },
+    {
+      "name": "cardRadius",
+      "type": "string",
+      "default": "rounded-md"
+    },
+    {
+      "name": "imageSize",
+      "type": "string",
+      "default": "h-[50%]"
+    },
+    {
+      "name": "stickyOffset",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "scrollLength",
+      "type": "string",
+      "default": "+=100%"
+    },
+    {
+      "name": "dimBrightness",
+      "type": "number",
+      "default": 60
+    },
+    {
+      "name": "dimContrast",
+      "type": "number",
+      "default": 135
+    },
+    {
+      "name": "sectionYPercent",
+      "type": "number",
+      "default": -15
+    },
+    {
+      "name": "imageYPercent",
+      "type": "number",
+      "default": -40
+    },
+    {
+      "name": "imageRotation",
+      "type": "number",
+      "default": -20
+    },
+    {
+      "name": "imageEase",
+      "type": "string",
+      "default": "power1.in"
+    },
+    {
+      "name": "keepLastSection",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "imageFromContrast",
+      "type": "number",
+      "default": 400
+    },
+    {
+      "name": "imageToContrast",
+      "type": "number",
+      "default": 100
+    },
+    {
+      "name": "imageScrollStart",
+      "type": "string",
+      "default": "top bottom"
+    },
+    {
+      "name": "imageScrollEnd",
+      "type": "string",
+      "default": "max"
+    },
+    {
+      "name": "smoothScroll",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "lerp",
+      "type": "number",
+      "default": 0.2
+    },
+    {
+      "name": "smoothWheel",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showLoader",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "editableByProps": [
+    "Hero text, closing text, all card images, titles, texts and card colors",
+    "Page background, text and loader colors, card radius, image size",
+    "Dim strength, shift, image rotation, easing, scroll length and sticky offset",
+    "Smooth scroll settings and the loader toggle"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change counter format",
+      "where": "pad function"
+    },
+    {
+      "change": "Change dimming of the stacked cards",
+      "where": "filter tween in the first gsap timeline inside gsap.context"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+    "Hero header has an 80vh minimum height and the outro has 50vh top and 30vh bottom padding",
+    "Each card fills the viewport height",
+    "Loader overlay covers the whole screen until images load"
+  ],
+  "mood": [
+    "dark",
+    "cinematic",
+    "editorial",
+    "bold"
+  ],
+  "industries": [
+    "agency",
+    "film",
+    "fashion",
+    "technology",
+    "portfolio"
+  ],
+  "sections": [
+    "features",
+    "portfolio"
+  ],
+  "dependencies": [
+    "gsap",
+    "lenis"
+  ]
+}

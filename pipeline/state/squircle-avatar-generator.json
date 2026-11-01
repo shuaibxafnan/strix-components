@@ -4,11 +4,12 @@
   "sourceHash": "e187c6c101e80df31265532d581a14bf4e5e9ee31d58cf38faa116eae833ca8e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "squircle-avatar-generator",
+  "nameLocked": true,
+  "status": "gate_failed",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.556Z"
+  "note": "Export renamed to SquircleAvatarGenerator. Text props, className added. Kept min-h-screen root. Canvas responsive, drag math scaled, pointer events with touch-none. No variants.",
+  "updatedAt": "2026-11-01T13:15:26.778Z",
+  "gateOutput": "ERROR 2 code comments found"
 }

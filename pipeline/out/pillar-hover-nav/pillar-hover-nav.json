@@ -1,0 +1,51 @@
+{
+  "slug": "pillar-hover-nav",
+  "name": "Pillar Hover Nav",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Sticky top navbar whose links drop down as pillars on hover, with neighboring links following in a wave. Collapses to a plus-icon toggle with a slide-down menu on mobile.",
+  "contents": [
+    "Sticky bar with text logo link",
+    "Row of equal-width links with arrow icons",
+    "Mobile plus toggle and slide-down link panel"
+  ],
+  "behavior": [
+    "Hovered link drops down and the next two links follow with smaller offsets",
+    "Arrow icon appears on hover",
+    "Below 768px links move into a panel opened by a rotating plus button",
+    "Links flagged ebook are hidden below the xl breakpoint",
+    "Bar stays stuck to the top of the page"
+  ],
+  "props": [
+    { "name": "logoText", "type": "string", "default": "Brand" },
+    { "name": "logoHref", "type": "string", "default": "#" },
+    { "name": "links", "type": "{label,href,ebook?}[]", "default": "5 sample links" },
+    { "name": "bgColor", "type": "string", "default": "#ffffff" },
+    { "name": "textColor", "type": "string", "default": "#404040" },
+    { "name": "pillarColor", "type": "string", "default": "#ffffff" },
+    { "name": "dividerColor", "type": "string", "default": "#f5f5f5" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Logo text and link, number of links, labels and hrefs",
+    "Bar, text, pillar and divider colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the pillar drop distances",
+      "where": "hover:translate-y-[80%] classes on the desktop link anchor"
+    },
+    {
+      "change": "Change the blink timing keyframes",
+      "where": "css constant"
+    }
+  ],
+  "fixed": [
+    "Bar is 60px tall and sticky to the top of the page",
+    "Content width is capped at 1100px"
+  ],
+  "mood": ["playful", "minimal", "modern"],
+  "industries": ["portfolio", "agency", "creator", "saas"],
+  "sections": ["navbar"],
+  "dependencies": []
+}

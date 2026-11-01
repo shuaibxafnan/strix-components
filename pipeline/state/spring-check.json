@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "spring-check",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.625Z"
+  "note": "Gates passed. Source copied unchanged. Needs motion and @hugeicons/core-free-icons. Client component. Single checkbox, no group handling. No variants.",
+  "updatedAt": "2026-11-01T13:14:34.923Z",
+  "gateOutput": "gates passed"
 }

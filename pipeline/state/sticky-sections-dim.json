@@ -4,11 +4,12 @@
   "sourceHash": "01f4327104a05b39b460cf73877a1209eb1594283fb6b0c6fae6f3ad1521bb07",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sticky-sections-dim",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.561Z"
+  "note": "CDN gsap/ScrollTrigger/Lenis -> npm dynamic imports. Removed lenisUrl prop, Lenis fallback, unused outroImage prop (ambiguous). className added. No frame, no variants. Kept fontFaces/fontFamily, hero, outro, loader overlay, spacing.",
+  "updatedAt": "2026-11-01T13:30:06.716Z",
+  "gateOutput": "WARN  addEventListener with once and no removeEventListener\ngates passed"
 }

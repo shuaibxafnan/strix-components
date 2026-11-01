@@ -1,0 +1,61 @@
+{
+    "slug": "staggered-segmented-nav",
+    "name": "Staggered Segmented Nav",
+    "category": "navigation-menus",
+    "isReactBits": false,
+    "description": "Hamburger button that opens a full-screen menu overlay revealed in four vertical segments that drop down in a staggered sequence, with large variable-weight links.",
+    "contents": [
+        "Fixed hamburger toggle button that morphs into a cross",
+        "Full-screen colored menu overlay with a list of large links"
+    ],
+    "behavior": [
+        "Overlay clip-path is split into four columns whose bottom edges animate down one after another with GSAP",
+        "Overlay slides out of view after the segments retract",
+        "Menu link font weight increases on hover",
+        "Toggle lines rotate into a cross when open"
+    ],
+    "props": [
+        { "name": "triggerColor", "type": "string", "default": "#252525" },
+        { "name": "triggerOpenColor", "type": "string", "default": "#fff" },
+        { "name": "triggerTransitionEase", "type": "string", "default": "cubic-bezier(.17, .67, 0, 1)" },
+        { "name": "navBgColor", "type": "string", "default": "#FF3C3C" },
+        { "name": "navSlideOutDuration", "type": "number", "default": 0.9 },
+        { "name": "navSlideInDuration", "type": "number", "default": 0 },
+        { "name": "menuItems", "type": "{label,href}[]", "default": "3 sample links" },
+        { "name": "menuItemFontSize", "type": "string", "default": "calc(100vw / 24 * 2)" },
+        { "name": "menuItemFontWeight", "type": "number", "default": 700 },
+        { "name": "menuItemHoverFontWeight", "type": "number", "default": 900 },
+        { "name": "menuItemMarginTop", "type": "string", "default": "0.35em" },
+        { "name": "menuItemColor", "type": "string", "default": "#fff" },
+        { "name": "panelAnimationDuration", "type": "number", "default": 0.4 },
+        { "name": "panelAnimationEase", "type": "string", "default": "power1.out" },
+        { "name": "panelAnimationStagger", "type": "number", "default": 0.1 },
+        { "name": "fontFamily", "type": "string", "default": "Anybody" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Menu links, labels and hrefs",
+        "Overlay, toggle and link colors",
+        "Segment animation duration, ease and stagger, overlay slide timing",
+        "Link size, weights and spacing, font family"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the number or width of the overlay segments",
+            "where": "clipPath polygon in the nav style and the forEach over [1, 2, 3, 4] in handleToggle"
+        },
+        {
+            "change": "Move the toggle button to the right side",
+            "where": "header element with justify-between"
+        }
+    ],
+    "fixed": [
+        "Toggle button and overlay are fixed to the viewport and cover the full screen when open",
+        "Weight changes rely on a variable font such as Anybody",
+        "Loads the Anybody font from Google Fonts"
+    ],
+    "mood": ["bold", "playful", "modern", "energetic"],
+    "industries": ["creative agency", "portfolio", "fashion", "events", "startups"],
+    "sections": ["navbar"],
+    "dependencies": ["gsap"]
+}

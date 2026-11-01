@@ -1,0 +1,54 @@
+{
+  "slug": "split-wave-login",
+  "name": "Split Wave Login",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Split-panel login card with a form on one side and an image on the other. Floating labels lift letter by letter in a wave when the field has text.",
+  "contents": [
+    "Title and subtitle",
+    "Email and password fields with wavy floating labels",
+    "Forgot password link, sign in button, register link",
+    "Side image panel shown from tablet width up"
+  ],
+  "behavior": [
+    "Each label letter rises and shrinks with a staggered delay once the input has a value",
+    "Focused input underline and label take the accent color",
+    "Form submit is prevented, no data is sent",
+    "On screens below 768px the image panel is hidden and the card is a single column"
+  ],
+  "props": [
+    { "name": "accentColor", "type": "string", "default": "#9333EA" },
+    { "name": "panelBg", "type": "string", "default": "#ffffff" },
+    { "name": "pageBg", "type": "string", "default": "#fafafa" },
+    { "name": "imageUrl", "type": "string", "default": "https://images.unsplash.com/photo-1637611331620-51149c7ceb94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" },
+    { "name": "title", "type": "string", "default": "Welcome Back" },
+    { "name": "subtitle", "type": "string", "default": "Login to access your dashboard" },
+    { "name": "emailLabel", "type": "string", "default": "Email Address" },
+    { "name": "passwordLabel", "type": "string", "default": "Password" },
+    { "name": "forgotLabel", "type": "string", "default": "Forgot Password?" },
+    { "name": "forgotHref", "type": "string", "default": "#" },
+    { "name": "submitLabel", "type": "string", "default": "Sign In" },
+    { "name": "registerPrompt", "type": "string", "default": "Don't have an account?" },
+    { "name": "registerLabel", "type": "string", "default": "Register here" },
+    { "name": "registerHref", "type": "string", "default": "#" },
+    { "name": "transitionDelayMs", "type": "number", "default": 40 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All text, link targets and the side image",
+    "Accent, card and page background colors",
+    "Letter stagger speed of the label wave"
+  ],
+  "needsCodeEdit": [
+    { "change": "Wire the form to a real login handler", "where": "onSubmit" },
+    { "change": "Gray text and border colors", "where": "text-gray-900" }
+  ],
+  "fixed": [
+    "Root fills at least the viewport height and centers the card on the page background.",
+    "Uses a styled-jsx global style block for the input focus rules, which affects all inputs on the page."
+  ],
+  "mood": ["clean", "modern", "playful", "minimal"],
+  "industries": ["saas", "fintech", "education", "ecommerce", "productivity"],
+  "sections": ["contact", "other"],
+  "dependencies": []
+}
