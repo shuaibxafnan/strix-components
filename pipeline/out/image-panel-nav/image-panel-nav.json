@@ -1,0 +1,46 @@
+{
+  "slug": "image-panel-nav",
+  "name": "Image Panel Nav",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-screen navigation made of image panels that reveal a short description on hover. Clicking a panel wipes open a full-screen detail view with image, title and text.",
+  "contents": [
+    "Four side-by-side image panels (stacked rows on mobile) with tag, arrow icon, title and short description",
+    "Full-screen detail overlay per item with image, title, paragraphs and close button"
+  ],
+  "behavior": [
+    "Image desaturates and zooms slightly, description expands on hover",
+    "Click opens a detail panel with a clip-path wipe and delayed text fade-in",
+    "Escape key or close button closes the detail panel",
+    "Mobile stacks panels in rows and the detail view stacks image above text"
+  ],
+  "props": [
+    { "name": "speed", "type": "number", "default": 0.6 },
+    { "name": "items", "type": "{tag,title,shortDesc,img,paragraphs[]}[]", "default": "4 sample items" },
+    { "name": "readMoreLabel", "type": "string", "default": "Read more" },
+    { "name": "closeLabel", "type": "string", "default": "Close" },
+    { "name": "fontFamily", "type": "string", "default": "Hanken Grotesk" },
+    { "name": "titleFont", "type": "string", "default": "Newsreader" },
+    { "name": "backgroundColor", "type": "string", "default": "#0a0a0a" },
+    { "name": "panelColor", "type": "string", "default": "#0d0d0d" },
+    { "name": "textColor", "type": "string", "default": "#e5e5e5" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Items, tags, titles, descriptions, images and detail paragraphs",
+    "Button labels, fonts, animation speed and colors"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change the number of columns on desktop", "where": "md:grid-cols-4 class on the nav element" },
+    { "change": "Change the arrow or close icons", "where": "ArrowUpRight and CloseIcon components" }
+  ],
+  "fixed": [
+    "Fills the viewport height as a full-screen section",
+    "Loads Hanken Grotesk and Newsreader from Google Fonts through link tags",
+    "Layout assumes four items on desktop, other counts change panel widths on mobile rows"
+  ],
+  "mood": ["editorial", "elegant", "dark", "immersive"],
+  "industries": ["interior design", "architecture", "real estate", "hospitality"],
+  "sections": ["navbar", "portfolio", "services"],
+  "dependencies": []
+}
