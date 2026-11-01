@@ -1,0 +1,54 @@
+{
+  "slug": "floating-icon-dropdown",
+  "name": "Floating Icon Dropdown",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Select dropdown with an icon and label trigger. The menu opens below, and a floating icon chip follows the cursor over a sliding highlight row.",
+  "contents": [
+    "Trigger button showing the selected option icon, label and rotating chevron",
+    "Dropdown panel listing options with staggered fade in",
+    "Cursor-following icon chip and sliding row highlight"
+  ],
+  "behavior": [
+    "Click the trigger to open or close, selecting an option updates the trigger and closes the menu",
+    "Clicking anywhere outside closes the menu",
+    "On hover the real cursor is hidden and an icon chip follows the pointer while a highlight slides between rows"
+  ],
+  "props": [
+    { "name": "channels", "type": "{key,label,path}[]", "default": "5 social channels (linkedin, instagram, facebook, twitter, youtube)" },
+    { "name": "defaultSelection", "type": "string", "default": "facebook" },
+    { "name": "menuWidth", "type": "string", "default": "340px" },
+    { "name": "surfaceColor", "type": "string", "default": "#282a30" },
+    { "name": "borderColor", "type": "string", "default": "#414552" },
+    { "name": "accentColor", "type": "string", "default": "#2c62f6" },
+    { "name": "textColor", "type": "string", "default": "#b1b8ca" },
+    { "name": "hoverTextColor", "type": "string", "default": "#ffffff" },
+    { "name": "hoverBgColor", "type": "string", "default": "#202227" },
+    { "name": "chipColor", "type": "string", "default": "#494d59" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Options list with keys, labels and 16x16 SVG icon paths",
+    "Initially selected option and menu width",
+    "Surface, border, accent, text, hover and chip colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change row height",
+      "where": "BUTTON_HEIGHT_PX constant"
+    },
+    {
+      "change": "Show the normal cursor instead of the icon chip",
+      "where": "cursor-none class on the option button"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "A window click listener closes the menu while it is open and is removed on close and unmount.",
+    "The cursor-following chip needs a mouse, on touch the rows still work by tapping."
+  ],
+  "mood": ["minimal", "modern", "playful", "dark"],
+  "industries": ["saas", "social media", "agency", "developer tools"],
+  "sections": ["other"],
+  "dependencies": []
+}

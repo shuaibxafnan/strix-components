@@ -4,11 +4,12 @@
   "sourceHash": "da6f2a1419d37faefc041c6dacf054063ac19b7879709326196501a861238f8e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "floating-icon-dropdown",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.442Z"
+  "note": "Removed demo background. Frame kept. channels array prop, color props, className added. Hover color via mouse handlers. No variants.",
+  "updatedAt": "2026-11-01T07:10:54.445Z",
+  "gateOutput": "gates passed"
 }
