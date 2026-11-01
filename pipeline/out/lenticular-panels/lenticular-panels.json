@@ -1,0 +1,60 @@
+{
+  "slug": "lenticular-panels",
+  "name": "Lenticular Panels",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "WebGL lenticular image plane made of ridged strips that show one of two photos depending on viewing angle, swinging automatically and orbitable by drag.",
+  "contents": ["Full-size WebGL canvas with a ridged plane showing two interleaved images"],
+  "behavior": [
+    "Plane swings left and right on a GSAP timeline, revealing the two images alternately",
+    "Drag to orbit the camera",
+    "Canvas resizes with its container and the window"
+  ],
+  "props": [
+    {"name": "imageA", "type": "string", "default": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=800&q=80"},
+    {"name": "imageB", "type": "string", "default": "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80"},
+    {"name": "bgColor", "type": "string", "default": "#0b0b0b"},
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "planeWidth", "type": "number", "default": 10},
+    {"name": "planeHeight", "type": "number", "default": 10},
+    {"name": "stripDensity", "type": "number", "default": 20},
+    {"name": "ridgeDepth", "type": "number", "default": 0.5},
+    {"name": "cameraFov", "type": "number", "default": 75},
+    {"name": "cameraDistance", "type": "number", "default": 8},
+    {"name": "cameraNear", "type": "number", "default": 0.1},
+    {"name": "cameraFar", "type": "number", "default": 100},
+    {"name": "lightColor", "type": "string", "default": "white"},
+    {"name": "lightIntensity", "type": "number", "default": 1},
+    {"name": "lightDistance", "type": "number | null", "default": null},
+    {"name": "lightAngle", "type": "number", "default": 1.5707963267948966},
+    {"name": "enableControls", "type": "boolean", "default": true},
+    {"name": "enableDamping", "type": "boolean", "default": false},
+    {"name": "autoRotate", "type": "boolean", "default": false},
+    {"name": "autoRotateSpeed", "type": "number", "default": 1},
+    {"name": "animate", "type": "boolean", "default": true},
+    {"name": "swingAngle", "type": "number", "default": 0.6283185307179586},
+    {"name": "tiltRatio", "type": "number", "default": 0.5},
+    {"name": "stepDuration", "type": "number", "default": 0.35},
+    {"name": "repeat", "type": "number", "default": 1},
+    {"name": "yoyo", "type": "boolean", "default": true},
+    {"name": "delay", "type": "number", "default": 0}
+  ],
+  "editableByProps": [
+    "Both images and background color",
+    "Plane size, strip density and ridge depth",
+    "Camera, light and orbit control settings",
+    "Swing animation angle, timing, repeat and yoyo"
+  ],
+  "needsCodeEdit": [
+    {"change": "Use more than two images", "where": "textures array and geoms loop in boot"},
+    {"change": "Change the swing sequence", "where": "gsap timeline block in boot"}
+  ],
+  "fixed": [
+    "Root fills the full width and the viewport height; override with className such as !h-96",
+    "Requires WebGL support"
+  ],
+  "mood": ["immersive", "futuristic", "playful"],
+  "industries": ["photography", "fashion", "art", "advertising"],
+  "sections": ["hero", "gallery", "background"],
+  "dependencies": ["three", "gsap"]
+}
