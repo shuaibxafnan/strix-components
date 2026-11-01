@@ -1,0 +1,55 @@
+{
+  "slug": "more-menu",
+  "name": "More Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Round hamburger button that morphs into a close icon and opens a small dropdown of icon actions with a springy scale-in and staggered item reveal.",
+  "contents": [
+    "Circular hamburger toggle button with ring glow",
+    "Dropdown list of icon and label actions with dividers, including a danger item"
+  ],
+  "behavior": [
+    "Hamburger lines morph into an X when open",
+    "Button pulses on open and glows on hover",
+    "Menu scales in from the button corner and items slide in with a stagger",
+    "Clicking outside closes the menu, selecting an item calls onSelect and closes it"
+  ],
+  "props": [
+    {"name": "items", "type": "{id,label,icon,danger}[]", "default": "Settings, Copy, Share, Delete"},
+    {"name": "btnSize", "type": "number", "default": 48},
+    {"name": "btnBg", "type": "string", "default": "#6366f1"},
+    {"name": "btnHoverBg", "type": "string", "default": "#4f46e5"},
+    {"name": "btnRingColor", "type": "string", "default": "#6366f1"},
+    {"name": "menuBg", "type": "string", "default": "#18181b"},
+    {"name": "menuBorder", "type": "string", "default": "#2d2d35"},
+    {"name": "menuWidth", "type": "number", "default": 168},
+    {"name": "menuRadius", "type": "number", "default": 14},
+    {"name": "itemColor", "type": "string", "default": "#a1a1aa"},
+    {"name": "itemHoverColor", "type": "string", "default": "#f4f4f5"},
+    {"name": "itemHoverBg", "type": "string", "default": "#27272a"},
+    {"name": "itemDivider", "type": "string", "default": "#2d2d35"},
+    {"name": "iconSize", "type": "number", "default": 16},
+    {"name": "fontSize", "type": "string", "default": "13px"},
+    {"name": "position", "type": "string", "default": "bottom-right"},
+    {"name": "staggerDelay", "type": "number", "default": 75},
+    {"name": "onSelect", "type": "function", "default": "() => {}"},
+    {"name": "ariaLabel", "type": "string", "default": "Open menu"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Menu items, labels, icons and danger flag",
+    "Button, menu, item and ring colors",
+    "Sizes, radius, font size, stagger timing and open direction"
+  ],
+  "needsCodeEdit": [
+    {"change": "Hamburger line thickness and morph easing", "where": "HamburgerIcon"},
+    {"change": "Menu shadow and blur", "where": "ul role=\"menu\""}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto."
+  ],
+  "mood": ["minimal", "modern", "playful", "dark"],
+  "industries": ["saas", "dashboards", "productivity", "apps"],
+  "sections": ["other"],
+  "dependencies": []
+}
