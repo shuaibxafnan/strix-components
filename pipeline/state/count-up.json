@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "count-up",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.628Z"
+  "note": "Bits describe-only. Gates passed. Required prop to; no frame; view trigger once; roll mode fixed 1.2em cell; reduced motion skips animation.",
+  "updatedAt": "2026-11-01T05:58:53.446Z",
+  "gateOutput": "gates passed"
 }

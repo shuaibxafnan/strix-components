@@ -1,0 +1,82 @@
+{
+    "slug": "count-up",
+    "name": "Count Up",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Inline animated number counter that counts from one value to another, or rolls digit columns like an odometer, with prefix, suffix, separators, compact units and optional replay on hover.",
+    "contents": [
+        "A single inline span showing a formatted number with optional prefix and suffix",
+        "In roll mode, per-digit vertical strips with motion blur and an offscreen screen reader text"
+    ],
+    "behavior": [
+        "Starts when scrolled into view once, or on load when trigger is load",
+        "Count mode updates the text from start to end value with the chosen easing",
+        "Roll mode spins each digit column with staggered timing, blur, and fade for digits that enter or leave",
+        "Direction down swaps start and end values",
+        "Compact format shortens values to K, M, B, T units",
+        "Replays on pointer enter when replayOnHover is true, roll mode spins in place",
+        "Skips animation and jumps to the final value when the user prefers reduced motion"
+    ],
+    "props": [
+        { "name": "to", "type": "number", "default": null },
+        { "name": "from", "type": "number", "default": 0 },
+        { "name": "direction", "type": "'up' | 'down'", "default": "up" },
+        { "name": "delay", "type": "number (seconds)", "default": 0 },
+        { "name": "duration", "type": "number (seconds)", "default": 2 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": null },
+        { "name": "startWhen", "type": "boolean", "default": true },
+        { "name": "separator", "type": "string", "default": "" },
+        { "name": "prefix", "type": "string", "default": "" },
+        { "name": "suffix", "type": "string", "default": "" },
+        { "name": "mode", "type": "'count' | 'roll'", "default": "count" },
+        { "name": "easing", "type": "'linear' | 'easeOut' | 'expo' | 'spring'", "default": "easeOut" },
+        { "name": "decimals", "type": "number", "default": null },
+        { "name": "format", "type": "'standard' | 'compact'", "default": "standard" },
+        { "name": "trigger", "type": "'view' | 'load'", "default": "view" },
+        { "name": "replayOnHover", "type": "boolean", "default": false },
+        { "name": "onStart", "type": "() => void", "default": null },
+        { "name": "onEnd", "type": "() => void", "default": null }
+    ],
+    "editableByProps": [
+        "Start and end values, direction, delay, duration, easing",
+        "Prefix, suffix, thousands separator, decimal places, compact units",
+        "Count or roll display mode",
+        "Trigger on view or load, gating through startWhen, replay on hover",
+        "Font, size and color through className and style",
+        "Start and end callbacks"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change compact unit labels",
+            "where": "UNITS constant"
+        },
+        {
+            "change": "Change roll cell height or column stagger",
+            "where": "CELL and STAGGER constants"
+        },
+        {
+            "change": "Add a new easing curve",
+            "where": "EASINGS object"
+        },
+        {
+            "change": "Replay every time the element re-enters view",
+            "where": "useInView call with once: true"
+        }
+    ],
+    "fixed": [
+        "The prop to is required, there is no default",
+        "Requires the motion package, imported from motion/react",
+        "Renders an inline span with tabular-nums, it has no frame and does not center itself",
+        "Roll mode uses fixed 1.2em cell height and a hidden SVG blur filter per digit column",
+        "View trigger fires once only, with no re-trigger on scrolling back",
+        "Roll mode digits are aria-hidden with the final value in sr-only text",
+        "Reduced motion preference skips the animation",
+        "Hover replay needs pointer events, so touch devices only get the initial run",
+        "Responsive result: scales with the surrounding font size, no fixed widths, works at all sizes"
+    ],
+    "mood": ["energetic", "modern", "precise"],
+    "industries": ["fintech", "saas", "e-commerce", "analytics", "startups"],
+    "sections": ["stats", "hero"],
+    "dependencies": ["motion"]
+}
