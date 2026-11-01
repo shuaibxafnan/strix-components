@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "prompt-bar",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.623Z"
+  "note": "Gates passed. Needs motion, @hugeicons/react, @hugeicons/core-free-icons. Width default 400px. No variants.",
+  "updatedAt": "2026-11-01T10:58:23.140Z",
+  "gateOutput": "gates passed"
 }

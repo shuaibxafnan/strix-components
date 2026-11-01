@@ -1,0 +1,83 @@
+{
+    "slug": "prompt-bar",
+    "name": "Prompt Bar",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "AI chat prompt input with auto-growing textarea, plus-menu for sources, slash commands, model and effort pickers, attachments, dictation, and a send/stop button that morphs shape.",
+    "contents": [
+        "Auto-growing textarea with placeholder",
+        "Plus menu listing sources with attach option",
+        "Slash command menu opened by typing a command token",
+        "Model picker and effort picker menus",
+        "Attachment chips, dictation mic button, send/stop morph button",
+        "Glow and spark effect that reacts to typing"
+    ],
+    "behavior": [
+        "Textarea grows up to maxRows then scrolls",
+        "Menus open from the plus button, typed tokens, or picker buttons and close on outside pointer down",
+        "Send button morphs between arrow and square when busy",
+        "Send button squashes and tilts, and the bar scales on press",
+        "Spark glow is drawn on a canvas and intensifies with typing energy",
+        "Respects reduced motion preference"
+    ],
+    "props": [
+        {"name": "placeholder", "type": "string", "default": "Ask anything"},
+        {"name": "sources", "type": "{key,name,description,icon,attach}[]", "default": "6 sample sources"},
+        {"name": "commands", "type": "{key,name,description}[]", "default": "5 sample slash commands"},
+        {"name": "models", "type": "{key,name,tag}[]", "default": "3 sample models"},
+        {"name": "defaultModel", "type": "string", "default": ""},
+        {"name": "efforts", "type": "string[]", "default": ["Low", "Medium", "High", "Extra", "Max"]},
+        {"name": "defaultEffort", "type": "string", "default": ""},
+        {"name": "onEffortChange", "type": "function", "default": "undefined"},
+        {"name": "busy", "type": "boolean", "default": false},
+        {"name": "onSend", "type": "function", "default": "undefined"},
+        {"name": "onStop", "type": "function", "default": "undefined"},
+        {"name": "onAttach", "type": "function", "default": "undefined"},
+        {"name": "onDictate", "type": "function", "default": "undefined"},
+        {"name": "background", "type": "string", "default": "#27272a"},
+        {"name": "color", "type": "string", "default": "#f5f5f5"},
+        {"name": "menuBackground", "type": "string", "default": "#323236"},
+        {"name": "sparkColor", "type": "string", "default": "#b39dff"},
+        {"name": "sparkBoost", "type": "number", "default": 1},
+        {"name": "width", "type": "number", "default": 400},
+        {"name": "radius", "type": "number", "default": 16},
+        {"name": "maxRows", "type": "number", "default": 5},
+        {"name": "morphDuration", "type": "number", "default": 240},
+        {"name": "squash", "type": "number", "default": 0.12},
+        {"name": "tilt", "type": "number", "default": 8},
+        {"name": "pressScale", "type": "number", "default": 0.96},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Placeholder, sources, slash commands, models and effort levels",
+        "Default model and effort, busy state, and all callbacks",
+        "Colors, spark color and intensity, width, radius, max rows",
+        "Morph duration, squash, tilt and press scale of the send button"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the send and stop icon shapes",
+            "where": "ARROW_UP and SQUARE constants"
+        },
+        {
+            "change": "Change default sources, commands, models or effort lists",
+            "where": "DEFAULT_SOURCES, DEFAULT_COMMANDS, DEFAULT_MODELS and DEFAULT_EFFORTS constants"
+        },
+        {
+            "change": "Change the line height used for textarea sizing",
+            "where": "LINE constant"
+        }
+    ],
+    "fixed": [
+        "Requires motion and @hugeicons/react with @hugeicons/core-free-icons installed",
+        "Client component, uses a canvas and browser APIs",
+        "Adds a document pointerdown listener while mounted to close menus",
+        "Uses Tailwind arbitrary-value classes, so Tailwind is required",
+        "Bar is a fixed pixel width (default 400), narrower screens need a smaller width prop",
+        "Menu labels and UI strings other than the placeholder are hardcoded"
+    ],
+    "mood": ["modern", "sleek", "dark", "interactive"],
+    "industries": ["AI", "SaaS", "developer tools", "productivity"],
+    "sections": ["hero", "other"],
+    "dependencies": ["motion", "@hugeicons/react", "@hugeicons/core-free-icons"]
+}
