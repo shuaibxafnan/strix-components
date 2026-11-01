@@ -1,0 +1,67 @@
+{
+    "slug": "drag-trail-stamp",
+    "name": "Drag Trail Stamp",
+    "category": "cursor-effects",
+    "isReactBits": false,
+    "description": "Draggable image that leaves a fading trail of stamped copies as it is dragged quickly, with a bold serif title behind it and a small caption, on a flat colored background.",
+    "contents": [
+        "Draggable image cards, each with a stack of trail copies",
+        "Large multi-row serif title overlay",
+        "Small corner caption"
+    ],
+    "behavior": [
+        "Dragging with pointer or touch moves the image and scales it down while the inner image scales up",
+        "Each time the drag distance passes a threshold a trail copy is stamped at the position and fades out with GSAP",
+        "Scales ease back with lerp on release",
+        "Body cursor switches to grabbing while dragging"
+    ],
+    "props": [
+        {"name": "items", "type": "{image}[]", "default": "1 sample image"},
+        {"name": "bgColor", "type": "string", "default": "#eceae9"},
+        {"name": "titleRows", "type": "string[]", "default": ["Italy", "Art Fair @ Savona", "Apr — 2020"]},
+        {"name": "showTitle", "type": "boolean", "default": true},
+        {"name": "titleColor", "type": "string", "default": "#dc4823"},
+        {"name": "titleSize", "type": "string", "default": "8.5vw"},
+        {"name": "titleLineHeight", "type": "number", "default": 1.3},
+        {"name": "firstRowIndent", "type": "string", "default": "22vw"},
+        {"name": "titleClassName", "type": "string", "default": ""},
+        {"name": "caption", "type": "string", "default": "Drag the images (fast)"},
+        {"name": "showCaption", "type": "boolean", "default": true},
+        {"name": "captionColor", "type": "string", "default": "#000000"},
+        {"name": "imageWidth", "type": "number", "default": 210},
+        {"name": "imageHeight", "type": "number", "default": 300},
+        {"name": "trailsTotal", "type": "number", "default": 10},
+        {"name": "threshold", "type": "number", "default": 30},
+        {"name": "innerScaleUp", "type": "number", "default": 1.5},
+        {"name": "innerScaleAmt", "type": "number", "default": 0.2},
+        {"name": "outerScaleDown", "type": "number", "default": 0.8},
+        {"name": "outerScaleAmt", "type": "number", "default": 0.2},
+        {"name": "trailFadeDuration", "type": "number", "default": 0.3},
+        {"name": "trailFadeDelay", "type": "number", "default": 0.1},
+        {"name": "gap", "type": "string", "default": "3rem"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Images, title rows, caption text and visibility",
+        "Background, title and caption colors, title size and indent",
+        "Image size, trail count, drag threshold, scale and fade timing"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the fade easing of trail copies",
+            "where": "showNextTrailImage function, ease power1.out"
+        },
+        {
+            "change": "Change the title font family",
+            "where": "font-serif class on the h2"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Sets document body cursor while dragging and resets it on unmount"
+    ],
+    "mood": ["editorial", "playful", "bold"],
+    "industries": ["art", "fashion", "photography", "events", "design"],
+    "sections": ["hero", "gallery"],
+    "dependencies": ["gsap"]
+}
