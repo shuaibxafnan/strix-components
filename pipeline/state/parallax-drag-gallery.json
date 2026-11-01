@@ -4,11 +4,12 @@
   "sourceHash": "e7559fb517153ca57091bd94b1663f55861a5e5b40409849ea564e137291e801",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "parallax-drag-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.508Z"
+  "note": "Removed empty comment placeholders. Added className. Window touchmove preventDefault blocks page scroll on touch while mounted; kept, recorded in fixed.",
+  "updatedAt": "2026-11-01T10:21:48.106Z",
+  "gateOutput": "gates passed"
 }

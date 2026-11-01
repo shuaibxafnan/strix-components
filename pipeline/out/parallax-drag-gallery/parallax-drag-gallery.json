@@ -1,0 +1,46 @@
+{
+  "slug": "parallax-drag-gallery",
+  "name": "Parallax Drag Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-width horizontal strip of image cards that you drag or swipe, with eased inertia and a parallax shift of each image inside its card as the strip moves.",
+  "contents": ["Horizontal strip of image cards with alt labels"],
+  "behavior": [
+    "Drag with mouse or swipe on touch to scroll the strip horizontally",
+    "Strip position eases toward the target each frame",
+    "Image background position shifts with progress for a parallax effect",
+    "Cursor switches between grab and grabbing"
+  ],
+  "props": [
+    {"name": "images", "type": "{src,alt}[]", "default": "11 sample images"},
+    {"name": "containerHeight", "type": "string", "default": "h-screen"},
+    {"name": "bgColor", "type": "string", "default": "bg-[#0a0a0a]"},
+    {"name": "cardWidth", "type": "number", "default": 260},
+    {"name": "cardHeight", "type": "number", "default": 380},
+    {"name": "cardGap", "type": "number", "default": 20},
+    {"name": "paddingX", "type": "number", "default": 60},
+    {"name": "cardRadius", "type": "string", "default": "rounded-md"},
+    {"name": "brightness", "type": "number", "default": 0.82},
+    {"name": "easing", "type": "number", "default": 0.09},
+    {"name": "parallaxRange", "type": "number", "default": 60},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images and alt text, number of cards",
+    "Card size, gap, padding, radius, image brightness",
+    "Background color class, container height class",
+    "Drag easing and parallax range"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the starting parallax image offset", "where": "bgPos calculation inside the tick function"},
+    {"change": "Change the image zoom used for parallax room", "where": "w-[140%] -ml-[20%] classes on the inner image div"}
+  ],
+  "fixed": [
+    "Window touchmove listener calls preventDefault, which blocks vertical page scroll during touch on the page while mounted",
+    "Window mouse and touch listeners are removed on unmount"
+  ],
+  "mood": ["immersive", "tactile", "modern"],
+  "industries": ["photography", "fashion", "travel", "art", "agency"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
