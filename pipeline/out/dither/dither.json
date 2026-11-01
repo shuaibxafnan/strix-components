@@ -1,0 +1,113 @@
+{
+    "slug": "dither",
+    "name": "Dither",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 animated noise-wave background rendered as a pixelated dithered image, with pointer-driven erase, reveal or ripple effects, click ripples and an intro reveal.",
+    "contents": [
+        "Container div with a single full-size WebGL canvas",
+        "Two shader passes: animated fractal noise field and an ordered dither or palette quantizer"
+    ],
+    "behavior": [
+        "Noise waves drift continuously unless disableAnimation is set",
+        "Pointer over the page leaves a fading trail that erases, reveals or ripples the pattern depending on mouseEffect",
+        "Clicking inside adds up to 4 expanding ripple rings when clickRipple is on",
+        "Pattern grows outward from the center on mount when intro is on",
+        "Rendering pauses when offscreen or the tab is hidden",
+        "With prefers-reduced-motion the animation, intro, pointer effects and ripples are turned off and a static frame is drawn",
+        "Canvas resizes with the container, device pixel ratio capped at 2"
+    ],
+    "props": [
+        { "name": "waveSpeed", "type": "number", "default": 0.05 },
+        { "name": "waveFrequency", "type": "number", "default": 3 },
+        { "name": "waveAmplitude", "type": "number", "default": 0.3 },
+        { "name": "waveColor", "type": "number[] | string", "default": [0.5, 0.5, 0.5] },
+        { "name": "backgroundColor", "type": "number[] | string", "default": [0, 0, 0] },
+        { "name": "colorNum", "type": "number", "default": 4 },
+        { "name": "pixelSize", "type": "number", "default": 2 },
+        { "name": "disableAnimation", "type": "boolean", "default": false },
+        { "name": "enableMouseInteraction", "type": "boolean", "default": true },
+        { "name": "mouseRadius", "type": "number", "default": 1 },
+        { "name": "ditherMode", "type": "'bayer' | 'bayer4' | 'bayer2' | 'halftone' | 'lines' | 'crosshatch' | 'noise' | 'none'", "default": "bayer" },
+        { "name": "palette", "type": "(number[] | string)[]", "default": null },
+        { "name": "scale", "type": "number", "default": 1 },
+        { "name": "contrast", "type": "number", "default": 1 },
+        { "name": "brightness", "type": "number", "default": 0 },
+        { "name": "mouseEffect", "type": "'erase' | 'reveal' | 'ripple'", "default": "erase" },
+        { "name": "mouseStrength", "type": "number", "default": 1 },
+        { "name": "trail", "type": "number", "default": 0.5 },
+        { "name": "clickRipple", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "dpr", "type": "number", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Wave colors, background color (or 'transparent') and an optional palette of up to 8 colors",
+        "Wave speed, frequency, amplitude, scale, contrast and brightness",
+        "Dither pattern, number of color levels and pixel size",
+        "Mouse interaction on or off, effect type (erase, reveal, ripple), radius, strength and trail length",
+        "Click ripple, intro reveal and animation on or off",
+        "Device pixel ratio, className and inline style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change ripple or intro duration",
+            "where": "INTRO_SECONDS and RIPPLE_SECONDS constants"
+        },
+        {
+            "change": "Allow more trail points, ripples or palette colors",
+            "where": "MAX_TRAIL, MAX_RIPPLES and MAX_PALETTE constants"
+        },
+        {
+            "change": "Add a new dither pattern",
+            "where": "MODES map and the threshold function in DITHER_FRAGMENT"
+        },
+        {
+            "change": "Limit pointer tracking to the component instead of the whole window",
+            "where": "window.addEventListener pointermove and pointerdown calls in the main useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if unavailable",
+        "Root is relative with h-full w-full, so the parent must have a height or the canvas collapses to 1px",
+        "Pointer listeners are attached to window, so pointer effects respond anywhere on the page, not only over the container",
+        "Device pixel ratio capped at 2",
+        "Trail limited to 16 points, 4 simultaneous ripples, 8 palette colors",
+        "Canvas has aria-hidden and is purely decorative, put content above it with z-index",
+        "Responsive: sizes from the container with a resize observer, works on mobile, touch pointers act only while pressed or moving"
+    ],
+    "mood": [
+        "retro",
+        "futuristic",
+        "moody",
+        "experimental",
+        "minimal"
+    ],
+    "industries": [
+        "creative agency",
+        "gaming",
+        "music",
+        "technology",
+        "art and design"
+    ],
+    "sections": [
+        "hero",
+        "background"
+    ],
+    "dependencies": [],
+    "variants": {
+        "prop": "ditherMode",
+        "default": "bayer",
+        "options": [
+            { "value": "bayer", "look": "Fine 8x8 ordered dither with smooth gradient steps", "useWhen": "Hero background that should feel like a refined retro-digital texture" },
+            { "value": "bayer4", "look": "Coarser 4x4 ordered dither with a more visible grid", "useWhen": "Pixel-art or game landing page needing a chunkier look" },
+            { "value": "bayer2", "look": "Very coarse 2x2 dither with harsh stepped pixels", "useWhen": "Bold 1-bit style hero with strong graphic contrast" },
+            { "value": "halftone", "look": "Rotated dot pattern like a printed halftone", "useWhen": "Editorial or print-inspired portfolio and magazine sites" },
+            { "value": "lines", "look": "Horizontal scanline stripes", "useWhen": "Retro CRT or terminal themed product page" },
+            { "value": "crosshatch", "look": "Diagonal crossed line hatching", "useWhen": "Sketch or illustration studio site wanting an engraved feel" },
+            { "value": "noise", "look": "Random grain instead of a regular grid", "useWhen": "Film-grain atmospheric background for music or photography sites" },
+            { "value": "none", "look": "Flat constant threshold with no pattern, only posterized bands", "useWhen": "Clean banded gradient backdrop behind text-heavy sections" }
+        ]
+    }
+}

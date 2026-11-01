@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "dither",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.595Z"
+  "note": "Bits describe-only. Gates passed. Needs WebGL2; parent needs height; window pointer listeners; honors reduced motion; pauses offscreen; DPR capped 2; ditherMode 8 variants default bayer.",
+  "updatedAt": "2026-11-01T06:17:39.553Z",
+  "gateOutput": "gates passed"
 }
