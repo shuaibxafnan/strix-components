@@ -1,0 +1,64 @@
+{
+  "slug": "creative-process-scroller",
+  "name": "Creative Process Scroller",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Pinned fullscreen scroll section where two columns of words highlight one at a time while background photos wipe in, a featured title animates, and a closing text block follows.",
+  "contents": [
+    "Header title lines over fullscreen background images",
+    "Left and right word columns with a centered featured title",
+    "Progress counter and bar",
+    "Loading counter overlay",
+    "Closing section with title and paragraph"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Section is pinned and each scroll step snaps to the next item",
+    "Background images reveal by clip-path wipe with parallax shift",
+    "Featured title animates word by word",
+    "Clicking a word jumps to its section",
+    "Layout blurs and shrinks as the closing section arrives",
+    "Columns stack on screens 768px and below"
+  ],
+  "props": [
+    {"name": "sections", "type": "{artist,category,featured,image}[]", "default": "10 sample sections"},
+    {"name": "headerLines", "type": "string[]", "default": ["The Creative", "Process"]},
+    {"name": "footerTitle", "type": "string", "default": "Beyond thinking."},
+    {"name": "footerText", "type": "string", "default": "Quiet attention, patience and a willingness to let things be. The rest tends to arrive on its own."},
+    {"name": "loadingLabel", "type": "string", "default": "Loading"},
+    {"name": "bgColor", "type": "string", "default": "#fff"},
+    {"name": "textColor", "type": "string", "default": "rgba(245, 245, 245, 0.9)"},
+    {"name": "footerColor", "type": "string", "default": "#0a0a0a"},
+    {"name": "imageBrightness", "type": "number", "default": 0.65},
+    {"name": "fontFamily", "type": "string", "default": "Inter Tight"},
+    {"name": "sectionScrollVh", "type": "number", "default": 110},
+    {"name": "transitionDuration", "type": "number", "default": 0.64},
+    {"name": "parallaxAmount", "type": "number", "default": 5},
+    {"name": "customEasePath", "type": "string", "default": "M0,0 C0.86,0 0.07,1 1,1"},
+    {"name": "lenisDuration", "type": "number", "default": 1.2},
+    {"name": "snapScrollDuration", "type": "number", "default": 0.8},
+    {"name": "showLoader", "type": "boolean", "default": true},
+    {"name": "loaderDuration", "type": "number", "default": 30},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Number of sections, words, featured titles and images",
+    "Header lines, closing title and text, loader label",
+    "Colors, image brightness, scroll length per section, animation timings, easing and loader toggle"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the wipe direction of background images", "where": "clipPath inset values inside the backgrounds.forEach block in changeSection"},
+    {"change": "Change the blur and shrink effect when the end section arrives", "where": "endTrigger ScrollTrigger.create block"},
+    {"change": "Change the font loaded", "where": "the link rel stylesheet tag in the returned JSX"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Full-screen loading overlay is fixed over the page until the counter completes",
+    "Pinned container and closing section are each 100vh and scroll length is sectionScrollVh times the number of sections",
+    "Loads the Inter Tight font from Google Fonts"
+  ],
+  "mood": ["editorial", "cinematic", "minimal", "immersive"],
+  "industries": ["art", "photography", "design studios", "wellness", "agencies"],
+  "sections": ["hero", "portfolio", "features"],
+  "dependencies": ["gsap", "lenis"]
+}
