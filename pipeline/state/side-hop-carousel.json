@@ -4,11 +4,12 @@
   "sourceHash": "345c11c2fc3a62b72a305a066846de2e73e8bac7400469db9e469544e92ffff1",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "side-hop-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.540Z"
+  "note": "Heading prop, responsive title and widths, rules follow textColor. Host supplies Cardo and Inter. No variants.",
+  "updatedAt": "2026-11-01T12:31:33.276Z",
+  "gateOutput": "gates passed"
 }
