@@ -1,0 +1,157 @@
+{
+    "slug": "poem-cube",
+    "name": "Poem Cube",
+    "category": "text-effects",
+    "isReactBits": false,
+    "description": "Cinematic card with a background and foreground image sandwiching a rotating 3D cube whose faces scroll a poem endlessly, with a blurred reflection, slow zoom and color-shifting overlay.",
+    "contents": [
+        "Rounded card with background image and foreground cutout image",
+        "3D cube of scrolling poem text with highlighted words and a blurred reflection",
+        "Animated hue overlay"
+    ],
+    "behavior": [
+        "Poem text scrolls endlessly along three cube faces",
+        "Card slowly zooms, dims and blurs the foreground over the scroll duration",
+        "Hue overlay cycles continuously",
+        "Card scales down on viewports narrower than the card width"
+    ],
+    "props": [
+        {
+            "name": "backgroundImage",
+            "type": "string",
+            "default": "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/room.png"
+        },
+        {
+            "name": "foregroundImage",
+            "type": "string",
+            "default": "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/girl.png"
+        },
+        {
+            "name": "poemHtml",
+            "type": "string (HTML, highlighted words in span)",
+            "default": "Kipling poem 'If' HTML"
+        },
+        {
+            "name": "accentColor",
+            "type": "string",
+            "default": "red"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#fff"
+        },
+        {
+            "name": "fontFamily",
+            "type": "string",
+            "default": "Bebas Neue"
+        },
+        {
+            "name": "fontSize",
+            "type": "string",
+            "default": "calc(6em + (190px / 10) * 0.7)"
+        },
+        {
+            "name": "cardWidth",
+            "type": "number",
+            "default": 1000
+        },
+        {
+            "name": "cardHeight",
+            "type": "number",
+            "default": 562
+        },
+        {
+            "name": "borderRadius",
+            "type": "number",
+            "default": 40
+        },
+        {
+            "name": "cubeW",
+            "type": "number",
+            "default": 870
+        },
+        {
+            "name": "cubeH",
+            "type": "number",
+            "default": 190
+        },
+        {
+            "name": "cubeDepth",
+            "type": "number",
+            "default": 435
+        },
+        {
+            "name": "hueColor",
+            "type": "string",
+            "default": "#1e5799"
+        },
+        {
+            "name": "hueColor2",
+            "type": "string",
+            "default": "#7db9e8"
+        },
+        {
+            "name": "hueRotateMax",
+            "type": "number",
+            "default": 100
+        },
+        {
+            "name": "hueCycleDuration",
+            "type": "number",
+            "default": 8
+        },
+        {
+            "name": "scrollDuration",
+            "type": "number",
+            "default": 200
+        },
+        {
+            "name": "zoomEnd",
+            "type": "number",
+            "default": 2.5
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Both images, poem text and highlighted words, colors, font",
+        "Card size, corner radius, cube size, animation durations and zoom"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change per-face text scroll start offsets and distances",
+            "where": "pc-left, pc-back and pc-right keyframes"
+        },
+        {
+            "change": "Change reflection position or blur",
+            "where": "pc-reflect wrapper div"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Loads the font through a Google Fonts @import inside the style block",
+        "Scroll distance of poem faces is baked into keyframes for a long poem"
+    ],
+    "mood": [
+        "cinematic",
+        "moody",
+        "dramatic",
+        "editorial"
+    ],
+    "industries": [
+        "film",
+        "music",
+        "publishing",
+        "entertainment",
+        "portfolio"
+    ],
+    "sections": [
+        "hero",
+        "other"
+    ],
+    "dependencies": []
+}

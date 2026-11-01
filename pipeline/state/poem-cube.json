@@ -4,11 +4,12 @@
   "sourceHash": "f842bbd471bc648f7ac5fffa6dc89d30aed5463112c953fd8d4a9b6bfdfb664c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "poem-cube",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.514Z"
+  "note": "Category text-effects. Frame fixed. Removed duplicate runtime font link effect; font kept via @import. No variants.",
+  "updatedAt": "2026-11-01T10:49:44.218Z",
+  "gateOutput": "gates passed"
 }
