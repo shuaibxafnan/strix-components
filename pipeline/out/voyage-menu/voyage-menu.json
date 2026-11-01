@@ -1,0 +1,57 @@
+{
+    "slug": "voyage-menu",
+    "name": "Voyage Menu",
+    "category": "navigation-menus",
+    "isReactBits": false,
+    "description": "Fullscreen menu overlay revealed by a clip-path wipe while the page behind tilts and scales away, with large staggered link letters and background images that crossfade on link hover.",
+    "contents": [
+        "Logo text and square toggle button with two animated lines",
+        "Fullscreen overlay with large menu links and social links",
+        "Background image layers behind the overlay",
+        "Sample hero with heading, description and call to action button",
+        "Closing text section"
+    ],
+    "behavior": [
+        "Toggle opens the overlay with a diagonal clip-path reveal",
+        "Page content rotates, scales and shifts while the menu is open",
+        "Toggle lines morph into a cross",
+        "Menu link letters drop in with a stagger",
+        "Hovering a link crossfades and zooms a background image, leaving restores the first image",
+        "Clicking a link closes the menu"
+    ],
+    "props": [
+        {"name": "menuLinks", "type": "{label,href}[]", "default": "5 sample links"},
+        {"name": "socialLinks", "type": "{label,href}[]", "default": "3 sample links"},
+        {"name": "bgImages", "type": "string[]", "default": "6 sample image urls"},
+        {"name": "logoText", "type": "string", "default": "VOYAGE"},
+        {"name": "menuToggleLabel", "type": "string", "default": "Toggle menu"},
+        {"name": "heroHeader", "type": "string", "default": "Find Your Way to Anywhere in the world"},
+        {"name": "heroCtaText", "type": "string", "default": "EXPLORE TRIPS"},
+        {"name": "heroCtaHref", "type": "string", "default": "#"},
+        {"name": "heroCtaDesc", "type": "string", "default": "From cityscapes to beaches, we guide you. We handle details so you can focus on getting lost in the moment."},
+        {"name": "heroBgUrl", "type": "string", "default": "sample image url"},
+        {"name": "footerTitle", "type": "string", "default": "Where Will You Wander Next"},
+        {"name": "footerText", "type": "string", "default": "Every journey starts with a single step. Tell us where your curiosity points and we will map the route, book the details, and leave the wonder to you."},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Menu links, social links, logo text, toggle label",
+        "Background images and hero image",
+        "Hero and closing section text and call to action link"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change colors", "where": "Hex color classes such as bg-[#ffdcac], bg-[#ffad3b] and text-[#fff7e8] in the JSX"},
+        {"change": "Change the reveal shape or tilt amount", "where": "clipPath and rotation values in the menuTimeline tweens"},
+        {"change": "Replace the sample page content", "where": "The data-page div containing the two sections"}
+    ],
+    "fixed": [
+        "Overlay and header are fixed to the viewport with very high z-index",
+        "Page content inside data-page is what tilts, so real page content should replace the sample sections there",
+        "Background images map to links by index, the first image is the default and image n+1 shows for link n",
+        "No font is loaded, text uses the inherited font"
+    ],
+    "mood": ["bold", "editorial", "dynamic", "immersive"],
+    "industries": ["travel", "tourism", "agency", "portfolio", "hospitality"],
+    "sections": ["navbar", "hero"],
+    "dependencies": ["gsap"]
+}
