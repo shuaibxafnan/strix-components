@@ -1,0 +1,50 @@
+{
+  "slug": "country-showcase",
+  "name": "Country Showcase",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-bleed image slider with a large featured slide and title text, plus a row of upcoming thumbnail cards that shift forward with prev and next buttons.",
+  "contents": [
+    "Featured full-width slide with title, description and button over a dimmed image",
+    "Row of three upcoming thumbnail cards",
+    "Previous and next round buttons"
+  ],
+  "behavior": [
+    "Next and previous rotate the list so thumbnails slide left or right and expand into the featured slide",
+    "Featured text animates in with blur and slide up on each change",
+    "Thumbnail cards are hidden below 768px, leaving the featured slide and controls"
+  ],
+  "props": [
+    {"name": "items", "type": "{id,name,description,image}[]", "default": "6 sample countries"},
+    {"name": "containerWidth", "type": "string", "default": "max-w-[1100px]"},
+    {"name": "containerHeight", "type": "string", "default": "h-[600px]"},
+    {"name": "cardWidth", "type": "string", "default": "w-[200px]"},
+    {"name": "cardHeight", "type": "string", "default": "h-[200px]"},
+    {"name": "activeTransition", "type": "string", "default": "duration-[550ms]"},
+    {"name": "backgroundColor", "type": "string", "default": "#eaeaea"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "overlayColor", "type": "string", "default": "rgba(0,0,0,0.38)"},
+    {"name": "buttonLabel", "type": "string", "default": "See More"},
+    {"name": "prevLabel", "type": "string", "default": "Previous"},
+    {"name": "nextLabel", "type": "string", "default": "Next"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides: names, descriptions and images",
+    "Slider size, card size and transition speed through Tailwind classes",
+    "Background, text and image overlay colors, button and aria labels"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the spacing between thumbnail cards", "where": "cardLeftStyle calc with col * 216"},
+    {"change": "Make the See More button link somewhere", "where": "button with buttonLabel"},
+    {"change": "Change the text entrance animation", "where": "slideUp keyframes in the style block"}
+  ],
+  "fixed": [
+    "Shows three thumbnail cards ahead of the featured slide, so it needs at least 5 items",
+    "Thumbnail cards are hidden below 768px"
+  ],
+  "mood": ["cinematic", "immersive", "modern"],
+  "industries": ["travel", "tourism", "hospitality", "photography"],
+  "sections": ["hero", "gallery"],
+  "dependencies": []
+}

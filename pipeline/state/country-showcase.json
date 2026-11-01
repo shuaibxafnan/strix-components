@@ -4,11 +4,12 @@
   "sourceHash": "5e21be62b6d14786305139e6da976f3ea00e35ded9583696bfc93af69e91c43f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "country-showcase",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.414Z"
+  "note": "Rewritten. Gates passed. Demo wrapper removed; backgroundColor prop default #eaeaea; added text/label/className props; type=button on buttons; thumbnails hidden below md; no frame; no variants.",
+  "updatedAt": "2026-11-01T06:00:02.702Z",
+  "gateOutput": "gates passed"
 }
