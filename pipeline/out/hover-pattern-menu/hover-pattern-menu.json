@@ -1,0 +1,39 @@
+{
+  "slug": "hover-pattern-menu",
+  "name": "Hover Pattern Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-screen dark menu with large serif links over a dot pattern and faded photo. Hovering a link dims the others and shifts the pattern and image position.",
+  "contents": ["Vertical list of large menu labels", "Dot pattern layer", "Faded background photo layer"],
+  "behavior": [
+    "Hovering the menu shrinks the pattern and image and dims the non-hovered items",
+    "Each item shifts the pattern and image background position",
+    "Tapping an item triggers the same state on touch screens"
+  ],
+  "props": [
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "items", "type": "{label,href}[]", "default": "Home, Shop, About, Contact Us"},
+    {"name": "backgroundImage", "type": "string", "default": "https://images.unsplash.com/photo-1492496913980-501348b61469?auto=format&fit=crop&w=2574&q=80"},
+    {"name": "bgColor", "type": "string", "default": "rgb(20, 20, 20)"},
+    {"name": "patternColor", "type": "string", "default": "rgba(255,255,255,0.1)"},
+    {"name": "patternSize", "type": "string", "default": "12vmin"},
+    {"name": "patternSizeHover", "type": "string", "default": "11vmin"},
+    {"name": "bgImageSize", "type": "string", "default": "110vmax"},
+    {"name": "bgImageSizeHover", "type": "string", "default": "100vmax"},
+    {"name": "bgImageOpacity", "type": "number", "default": 0.15},
+    {"name": "bgImageOpacityHover", "type": "number", "default": 0.1},
+    {"name": "patternOpacityHover", "type": "number", "default": 0.5},
+    {"name": "transitionDuration", "type": "string", "default": "800ms"},
+    {"name": "itemTransition", "type": "string", "default": "400ms"}
+  ],
+  "editableByProps": ["Menu labels, background image, colors, pattern and image sizes, opacities, transition timings"],
+  "needsCodeEdit": [
+    {"change": "Change the pattern and image shift per item", "where": "PATTERN_POSITIONS and IMAGE_POSITIONS constants"},
+    {"change": "Make items real links", "where": "hm-item div in items.map"}
+  ],
+  "fixed": ["Loads the Ibarra Real Nova Google font via a link element", "Root is full width and full viewport height", "Pattern and image positions support up to 4 items"],
+  "mood": ["dark", "elegant", "editorial", "minimal"],
+  "industries": ["fashion", "photography", "agency", "portfolio", "hospitality"],
+  "sections": ["navbar", "hero"],
+  "dependencies": []
+}
