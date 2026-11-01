@@ -4,11 +4,12 @@
   "sourceHash": "15cbf8129a5bd13e67d3d8636288c8b02c8c0dae537fdcfbc76567020917b299",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "horizontal-scroll-section",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.461Z"
+  "note": "No rename. Removed Made by Beings link, tutorial intro text, empty placeholders; fixed layout typo. Labels, titles, closing link made props; link default 'Get in touch' / '#' is invented. CDN loading replaced with dynamic imports; deps gsap, locomotive-scroll; Locomotive CSS inlined; data-scroll-container added. Cleanup now runs on unmount (was never run). Frame: none. Variants: none. Locomotive takes over scroll; html/body overflow hidden.",
+  "updatedAt": "2026-11-01T08:10:10.441Z",
+  "gateOutput": "gates passed"
 }

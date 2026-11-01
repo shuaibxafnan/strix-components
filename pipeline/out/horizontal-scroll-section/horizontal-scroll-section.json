@@ -1,0 +1,69 @@
+{
+  "slug": "horizontal-scroll-section",
+  "name": "Horizontal Scroll Section",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Dark editorial page with an intro, a pinned strip of text and image cards that slides sideways as you scroll with a progress bar, and a closing section with image and link.",
+  "contents": [
+    "Intro section with label, large title, and short text",
+    "Pinned horizontal strip of text and image cards with tags and titles",
+    "Progress indicator inside the pinned strip",
+    "Closing section with image, label, title, and link"
+  ],
+  "behavior": [
+    "Smooth scrolling through Locomotive Scroll",
+    "Vertical scroll is converted into horizontal movement while the strip section is pinned by GSAP ScrollTrigger",
+    "Progress bar fills as the strip moves",
+    "Image cards turn from grayscale to color and zoom on hover"
+  ],
+  "props": [
+    { "name": "introLabel", "type": "string", "default": "Editorial Showcase / Volume I" },
+    { "name": "introTitleStart", "type": "string", "default": "Horizontal" },
+    { "name": "introTitleAccent", "type": "string", "default": "scrolling structural" },
+    { "name": "introTitleEnd", "type": "string", "default": "canvas platform." },
+    { "name": "introText", "type": "string", "default": "Scroll down and the exhibition slides sideways while the section stays pinned in place." },
+    { "name": "exhibitionLabel", "type": "string", "default": "EXHIBITION" },
+    { "name": "navLabel", "type": "string", "default": "INDEX / NAV" },
+    { "name": "outroLabel", "type": "string", "default": "COLLABORATION" },
+    { "name": "outroTitle", "type": "string", "default": "Let's map new digital directions." },
+    { "name": "outroImageSrc", "type": "string", "default": "https://images.pexels.com/photos/4791474/pexels-photo-4791474.jpeg?auto=compress&cs=tinysrgb&w=800" },
+    { "name": "outroImageAlt", "type": "string", "default": "Signoff Portrait" },
+    { "name": "linkLabel", "type": "string", "default": "Get in touch" },
+    { "name": "linkHref", "type": "string", "default": "#" },
+    { "name": "sectionOneBg", "type": "string", "default": "bg-[#0a0a0a]" },
+    { "name": "sectionOneTextColor", "type": "string", "default": "text-neutral-100" },
+    { "name": "sectionThreeBg", "type": "string", "default": "bg-[#0d0d0d]" },
+    { "name": "sectionThreeTextColor", "type": "string", "default": "text-neutral-400" },
+    { "name": "horizontalBg", "type": "string", "default": "bg-[#111111]" },
+    { "name": "accentColor", "type": "string", "default": "bg-amber-200/90" },
+    { "name": "multiplier", "type": "number", "default": 1.1 },
+    { "name": "scrub", "type": "number", "default": 0.5 },
+    { "name": "items", "type": "{type,tag,title,content,src,alt}[]", "default": "4 sample items (1 text, 3 image)" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All intro, strip, and closing text, link, and images",
+    "Number and type (text or image) of strip cards",
+    "Section background, text, and accent colors as Tailwind classes",
+    "Scroll speed multiplier and scrub smoothness"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the easing of the horizontal movement",
+      "where": "ease: \"power1.out\" in the gsap.to call"
+    },
+    {
+      "change": "Change card width or spacing in the strip",
+      "where": "w-[55vw] md:w-[45vw] pr-[12vw] classes on the item wrapper"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Locomotive Scroll and sets overflow hidden on html and body while mounted, so it should be the only smooth scroll on the page",
+    "Injects a small style block for Locomotive Scroll classes",
+    "Includes full-height intro and closing sections that give the pin scroll room"
+  ],
+  "mood": ["editorial", "dark", "minimal", "cinematic"],
+  "industries": ["architecture", "photography", "design agency", "art", "fashion"],
+  "sections": ["portfolio", "gallery", "hero"],
+  "dependencies": ["gsap", "locomotive-scroll"]
+}
