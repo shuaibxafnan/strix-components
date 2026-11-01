@@ -4,11 +4,12 @@
   "sourceHash": "9d02104dbffcd3fb9399ffe0e119850b5d6e833fdbc7dda3cfa04f8f5a140d88",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "text-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.569Z"
+  "note": "Rewritten to template. CDN loaders replaced with npm dynamic imports of gsap, ScrollTrigger, lenis, split-type; props backgroundColor, textColor, className added; full cleanup on unmount; mobile max-w-[90%]. Gates passed.",
+  "updatedAt": "2026-11-01T14:14:19.636Z",
+  "gateOutput": "gates passed"
 }
