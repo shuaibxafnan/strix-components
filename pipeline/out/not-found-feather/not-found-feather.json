@@ -1,0 +1,48 @@
+{
+  "slug": "not-found-feather",
+  "name": "Not Found Feather",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Full-screen 404 page where moving the pointer stamps feather shapes alternately filled with photos and solid black, with a large 404 heading and a pill-shaped home button.",
+  "contents": [
+    "Large 404 heading",
+    "Pill home link button with hover color swap",
+    "Full-screen canvas that paints feather stamps"
+  ],
+  "behavior": [
+    "Pointer or touch movement on the canvas draws a feather at a random scale and rotation, throttled",
+    "Stamps alternate between an image-filled feather and a solid feather",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    {"name": "heading", "type": "string", "default": "404"},
+    {"name": "message", "type": "string", "default": "I'm lost... Take me home!"},
+    {"name": "homeHref", "type": "string", "default": "/"},
+    {"name": "bgColor", "type": "string", "default": "#fff"},
+    {"name": "buttonBg", "type": "string", "default": "#e1e444"},
+    {"name": "buttonBgHover", "type": "string", "default": "#000"},
+    {"name": "buttonColor", "type": "string", "default": "#000"},
+    {"name": "buttonColorHover", "type": "string", "default": "#fff"},
+    {"name": "throttleMs", "type": "number", "default": 100},
+    {"name": "images", "type": "string[]", "default": "8 sample image URLs"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Heading, button text and link",
+    "Background and button colors",
+    "Feather image set and stamp rate"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the feather shape", "where": "FEATHER_PATH constant"},
+    {"change": "Change stamp size range", "where": "randRange call in the draw function"},
+    {"change": "Change heading color", "where": "h1 element text-white class"}
+  ],
+  "fixed": [
+    "Canvas is sized to the window and fills the root, which is full viewport height",
+    "Heading text is white, so it needs a background image or dark color behind it to stay visible against the default white background"
+  ],
+  "mood": ["playful", "bold", "artistic"],
+  "industries": ["creative agency", "portfolio", "fashion", "photography"],
+  "sections": ["other"],
+  "dependencies": []
+}
