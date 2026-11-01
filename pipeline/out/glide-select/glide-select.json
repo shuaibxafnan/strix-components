@@ -1,0 +1,79 @@
+{
+    "slug": "glide-select",
+    "name": "Glide Select",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Custom dropdown select with a pop-in menu and a highlight pill that glides between options. Supports keyboard navigation, typeahead, pointer scrubbing, optional tags and auto-flipping placement.",
+    "contents": [
+        "Trigger button showing the selected label or placeholder with a chevron",
+        "Popup listbox of options with optional right-aligned tag text and a tick on the selected row",
+        "Sliding highlight pill behind the options"
+    ],
+    "behavior": [
+        "Menu pops with scale and fade, and flips to the opposite side when it would overflow the viewport",
+        "Highlight pill glides to the hovered or active row",
+        "Press, drag and release on the list picks the row under the pointer",
+        "Arrow keys, Home, End, Enter, Space, Escape, Tab and typeahead work from the trigger",
+        "Closes on outside pointerdown",
+        "Selected label blurs in briefly after a pointer pick",
+        "Works controlled (value) or uncontrolled (defaultValue)",
+        "Respects reduced motion preferences"
+    ],
+    "props": [
+        { "name": "options", "type": "(string | {value,label,tag?})[]", "default": ["One", "Two", "Three"] },
+        { "name": "value", "type": "string", "default": "undefined" },
+        { "name": "defaultValue", "type": "string", "default": "" },
+        { "name": "onChange", "type": "(value, option) => void", "default": "undefined" },
+        { "name": "placeholder", "type": "string", "default": "Select…" },
+        { "name": "showTags", "type": "boolean", "default": true },
+        { "name": "accentColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "surfaceColor", "type": "string", "default": "#27272a" },
+        { "name": "highlightColor", "type": "string", "default": "#3f3f46" },
+        { "name": "textColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "md" },
+        { "name": "radius", "type": "number", "default": 10 },
+        { "name": "menuWidth", "type": "number", "default": 176 },
+        { "name": "placement", "type": "'bottom' | 'top'", "default": "bottom" },
+        { "name": "align", "type": "'left' | 'right'", "default": "left" },
+        { "name": "popDuration", "type": "number", "default": 180 },
+        { "name": "glideDuration", "type": "number", "default": 220 },
+        { "name": "rememberPosition", "type": "boolean", "default": true },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "ariaLabel", "type": "string", "default": "Select" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Options, labels, tags, selected value and placeholder",
+        "Surface, highlight, text and tick colors",
+        "Size preset, corner radius, menu width, placement and alignment",
+        "Pop and glide durations, highlight memory, disabled state, aria label"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change trigger or row dimensions and font sizes beyond the presets",
+            "where": "SIZES constant"
+        },
+        {
+            "change": "Swap the chevron or tick icons",
+            "where": "HugeiconsIcon elements using ArrowDown01Icon and Tick02Icon"
+        },
+        {
+            "change": "Change gap between trigger and menu",
+            "where": "MENU_GAP constant and the data-[side=...] top/bottom classes on the menu div"
+        }
+    ],
+    "fixed": [
+        "Requires @hugeicons/react and @hugeicons/core-free-icons",
+        "Uses 'use client' and browser APIs, so it must render on the client",
+        "Renders inline (inline-block) with no frame, placed wherever the parent puts it",
+        "Menu is absolutely positioned inside the root, so overflow-hidden ancestors can clip it",
+        "Menu width is fixed in px via menuWidth, minimum is the trigger width",
+        "Document pointerdown listener is added only while open and removed on close or unmount",
+        "Default colors are dark, so it needs a dark surface or custom color props on light pages",
+        "Option values must be unique since they are used as keys"
+    ],
+    "mood": ["minimal", "polished", "modern", "dark"],
+    "industries": ["saas", "developer tools", "dashboards", "fintech"],
+    "sections": ["other"],
+    "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"]
+}

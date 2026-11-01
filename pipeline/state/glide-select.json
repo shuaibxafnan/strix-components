@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "glide-select",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.621Z"
+  "note": "Category ui-elements. No variants. Deps @hugeicons/react, @hugeicons/core-free-icons. JSX unchanged.",
+  "updatedAt": "2026-11-01T07:32:54.342Z",
+  "gateOutput": "gates passed"
 }
