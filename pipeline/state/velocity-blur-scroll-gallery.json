@@ -4,11 +4,12 @@
   "sourceHash": "2c6bddf7ad77891f3357704441ca4769c4a2fdba75ac04c21354dde58a05c948",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "velocity-blur-scroll-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.574Z"
+  "note": "No rename. CDN scripts replaced by dynamic imports of gsap, ScrollTrigger, lenis, imagesloaded. Keyframes as style tag. Added className. Ticker cleanup via ref. No frame, no variants. Kept Google Fonts link, page bg override, Lenis scroll, loader/vignette overlays.",
+  "updatedAt": "2026-11-01T15:18:25.146Z",
+  "gateOutput": "gates passed"
 }

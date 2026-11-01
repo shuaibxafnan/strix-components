@@ -1,0 +1,78 @@
+{
+  "slug": "velocity-blur-scroll-gallery",
+  "name": "Velocity Blur Scroll Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Vertical gallery of 3D-tilted images zigzagging down the page while a giant blend-mode name marquee sweeps across. Scroll speed adds blur and desaturation to the images.",
+  "contents": [
+    "Vertical list of images, each offset sideways in a sine wave",
+    "Fixed full-width marquee of uppercase names behind the images",
+    "Loading line overlay and radial vignette overlay"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Each image rotates in 3D and moves in depth as it scrolls through the viewport",
+    "Scroll velocity drives blur and desaturation on the images",
+    "Marquee moves horizontally scrubbed by scroll, with blend mode over the images",
+    "Loader shows until images are loaded, positions recalculate on resize"
+  ],
+  "props": [
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "images", "type": "{src,alt}[]", "default": "19 sample mountain photos" },
+    { "name": "names", "type": "string[]", "default": "15 sample names" },
+    { "name": "bgColor", "type": "string", "default": "#F6F1EA" },
+    { "name": "textColor", "type": "string", "default": "#241F1C" },
+    { "name": "bodyFont", "type": "string", "default": "'Inter', system-ui, sans-serif" },
+    { "name": "marqueeFont", "type": "string", "default": "'Space Grotesk', system-ui, sans-serif" },
+    { "name": "itemAspectRatio", "type": "string", "default": "4 / 5" },
+    { "name": "itemWidthPx", "type": "number", "default": 300 },
+    { "name": "itemBorderRadius", "type": "number", "default": 7 },
+    { "name": "itemGapRem", "type": "number", "default": 5 },
+    { "name": "marqueeColor", "type": "string", "default": "#5B4CFF" },
+    { "name": "marqueeFontSize", "type": "string", "default": "clamp(2rem, 16vw, 14rem)" },
+    { "name": "blendMode", "type": "string", "default": "difference" },
+    { "name": "shadowInColor", "type": "string", "default": "rgba(0,0,0,0.12)" },
+    { "name": "shadowOutColor", "type": "string", "default": "rgba(36,31,28,0.35)" },
+    { "name": "amplitudeFactor", "type": "number", "default": 0.2 },
+    { "name": "angleStep", "type": "number", "default": 1 },
+    { "name": "rotationXRange", "type": "[number, number]", "default": [-10, 10] },
+    { "name": "rotationYRange", "type": "[number, number]", "default": [200, 290] },
+    { "name": "rotationZRange", "type": "[number, number]", "default": [-10, 10] },
+    { "name": "zAmplitude", "type": "number", "default": 150 },
+    { "name": "blurVelocityDivisor", "type": "number", "default": 40 },
+    { "name": "maxBlurPx", "type": "number", "default": 15 },
+    { "name": "blurLerp", "type": "number", "default": 0.45 },
+    { "name": "marginTopVh", "type": "number", "default": 25 },
+    { "name": "marginBottomVh", "type": "number", "default": 35 }
+  ],
+  "editableByProps": [
+    "Images, alt text and marquee names",
+    "Background, text, marquee and vignette colors, fonts and blend mode",
+    "Image size, aspect ratio, radius, gap and zigzag amplitude",
+    "3D rotation ranges, depth, blur strength and spacing above and below"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the loader animation",
+      "where": "STYLE_RULES constant"
+    },
+    {
+      "change": "Disable smooth scrolling",
+      "where": "new Lenis() call inside the init function"
+    },
+    {
+      "change": "Change the Google Fonts families loaded",
+      "where": "ensureFonts function"
+    }
+  ],
+  "fixed": [
+    "Changes the page and html background color while mounted and resets it on unmount",
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Loads Space Grotesk and Inter from Google Fonts through a link added to the document head",
+    "Loader and vignette overlays are fixed to the viewport and cover the whole screen"
+  ],
+  "mood": ["bold", "immersive", "editorial", "playful"],
+  "industries": ["photography", "travel", "creative agency", "fashion", "art"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap", "lenis", "imagesloaded"]
+}
