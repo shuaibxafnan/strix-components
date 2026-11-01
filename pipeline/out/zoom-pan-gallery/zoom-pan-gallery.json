@@ -1,0 +1,238 @@
+{
+  "slug": "zoom-pan-gallery",
+  "name": "Zoom Pan Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Fullscreen grid of images on a pannable canvas. Arrow keys or a minimap move between cells, a slider and wheel zoom out, and a click expands the selected image fullscreen.",
+  "contents": [
+    "Square grid of fullscreen image cells",
+    "Minimap, crosshair, vertical zoom slider, close button, loading spinner"
+  ],
+  "behavior": [
+    "Preloads images then fades the gallery in",
+    "Arrow keys move the selection, Enter toggles expand",
+    "Mouse wheel and slider change zoom level",
+    "Canvas pans with eased transform between cells"
+  ],
+  "props": [
+    {
+      "name": "images",
+      "type": "string[]",
+      "default": "16 sample images"
+    },
+    {
+      "name": "gridSize",
+      "type": "number",
+      "default": 4
+    },
+    {
+      "name": "initialIndex",
+      "type": "number",
+      "default": 5
+    },
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#111"
+    },
+    {
+      "name": "cellBg",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "cellOpacity",
+      "type": "number",
+      "default": 0.25
+    },
+    {
+      "name": "cellRadius",
+      "type": "string",
+      "default": "2rem"
+    },
+    {
+      "name": "cellGap",
+      "type": "string",
+      "default": "2rem"
+    },
+    {
+      "name": "mapSize",
+      "type": "string",
+      "default": "8rem"
+    },
+    {
+      "name": "mapBg",
+      "type": "string",
+      "default": "rgba(34,34,34,0.1)"
+    },
+    {
+      "name": "mapBlur",
+      "type": "string",
+      "default": "5px"
+    },
+    {
+      "name": "mapMargin",
+      "type": "string",
+      "default": "2rem"
+    },
+    {
+      "name": "showMap",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showZoom",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showBack",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showCrosshair",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "minZoom",
+      "type": "number",
+      "default": 0.375
+    },
+    {
+      "name": "maxZoom",
+      "type": "number",
+      "default": 0.75
+    },
+    {
+      "name": "zoomStep",
+      "type": "number",
+      "default": 0.041666666666666664
+    },
+    {
+      "name": "backLabel",
+      "type": "string",
+      "default": "close"
+    },
+    {
+      "name": "backBg",
+      "type": "string",
+      "default": "rgba(14,13,13,0.4)"
+    },
+    {
+      "name": "backBlur",
+      "type": "string",
+      "default": "5px"
+    },
+    {
+      "name": "crosshairColor",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "crosshairSize",
+      "type": "string",
+      "default": "2rem"
+    },
+    {
+      "name": "focusBorder",
+      "type": "string",
+      "default": "2px solid whitesmoke"
+    },
+    {
+      "name": "easeInOut",
+      "type": "string",
+      "default": "cubic-bezier(0.65,0,0.35,1)"
+    },
+    {
+      "name": "easeIn",
+      "type": "string",
+      "default": "cubic-bezier(0.32,0,0.67,0)"
+    },
+    {
+      "name": "easeOut",
+      "type": "string",
+      "default": "cubic-bezier(0.33,1,0.68,1)"
+    },
+    {
+      "name": "transitionSpeed",
+      "type": "number",
+      "default": 0.9
+    },
+    {
+      "name": "zoomTransSpeed",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "altPrefix",
+      "type": "string",
+      "default": "Art id"
+    },
+    {
+      "name": "expandLabel",
+      "type": "string",
+      "default": "expand image"
+    },
+    {
+      "name": "zoomLabel",
+      "type": "string",
+      "default": "zoom"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "onSelect",
+      "type": "function",
+      "default": null
+    },
+    {
+      "name": "onOpen",
+      "type": "function",
+      "default": null
+    }
+  ],
+  "editableByProps": [
+    "Images, grid size, start cell",
+    "Colors, radius, gap, minimap and button styling",
+    "Labels, zoom range, easing and speeds",
+    "Toggle minimap, zoom slider, crosshair and close button"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change keyboard bindings",
+      "where": "handleKeyboard function in the keydown useEffect"
+    },
+    {
+      "change": "Change wheel zoom sensitivity",
+      "where": "handleWheel function"
+    }
+  ],
+  "fixed": [
+    "Root and cells are sized to the viewport (100vw by 100vh), so the gallery is full screen",
+    "Listens to keydown and wheel on document while mounted",
+    "Zoom slider is a fixed-size vertical control"
+  ],
+  "mood": [
+    "immersive",
+    "dark",
+    "editorial",
+    "interactive"
+  ],
+  "industries": [
+    "photography",
+    "art",
+    "portfolio",
+    "fashion",
+    "travel"
+  ],
+  "sections": [
+    "gallery",
+    "portfolio"
+  ],
+  "dependencies": []
+}
