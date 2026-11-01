@@ -1,0 +1,70 @@
+{
+  "slug": "full-screen-clip-morph",
+  "name": "Full Screen Clip Morph",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen image that morphs with an animated clip-path into a rounded preview, while neighboring slides fly in with skew and a large title splits apart letter by letter.",
+  "contents": [
+    "Full-screen hero image with a row of neighboring image slides",
+    "Large title split into letters",
+    "Toggle button"
+  ],
+  "behavior": [
+    "Button toggles between full-screen image and a rounded clipped preview with side slides",
+    "Side slides slide in with stagger, scaleX and skew, and out from the edges",
+    "Title letters spread apart in full-screen state and gather in preview state",
+    "Optional brightness flash while expanding to full screen",
+    "GSAP is loaded on mount and the button is disabled until ready"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "5 sample Unsplash images"},
+    {"name": "currentIndex", "type": "number", "default": 2},
+    {"name": "title", "type": "string", "default": "Monom"},
+    {"name": "buttonLabel", "type": "string", "default": "Toggle effect"},
+    {"name": "startOpen", "type": "boolean", "default": true},
+    {"name": "bgColor", "type": "string", "default": "#3d4a54"},
+    {"name": "bgColor2", "type": "string", "default": "#38454d"},
+    {"name": "titleColor", "type": "string", "default": "#fcf8ec"},
+    {"name": "titleSize", "type": "string", "default": "11vw"},
+    {"name": "titleWeight", "type": "number", "default": 700},
+    {"name": "titleTracking", "type": "string", "default": "-0.02em"},
+    {"name": "uppercase", "type": "boolean", "default": true},
+    {"name": "buttonBg", "type": "string", "default": "#151c1e"},
+    {"name": "buttonColor", "type": "string", "default": "#ece1d4"},
+    {"name": "charSpread", "type": "number", "default": 80},
+    {"name": "insetY", "type": "number", "default": 22},
+    {"name": "insetX", "type": "number", "default": 39},
+    {"name": "clipRadius", "type": "string", "default": "23vw"},
+    {"name": "slideRadius", "type": "string", "default": "23vw"},
+    {"name": "slideHeight", "type": "string", "default": "56vh"},
+    {"name": "slideWidth", "type": "string", "default": "22%"},
+    {"name": "slideGap", "type": "string", "default": "2.5vw"},
+    {"name": "previewScale", "type": "number", "default": 1.2},
+    {"name": "pushDistance", "type": "number", "default": 800},
+    {"name": "skewAmount", "type": "number", "default": 25},
+    {"name": "scaleXAmount", "type": "number", "default": 5},
+    {"name": "duration", "type": "number", "default": 1.2},
+    {"name": "staggerAmount", "type": "number", "default": 0.1},
+    {"name": "easeIn", "type": "string", "default": "power4.inOut"},
+    {"name": "easeOut", "type": "string", "default": "expo.inOut"},
+    {"name": "flashFilter", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, active image, title and button label",
+    "Background, title and button colors",
+    "Clip shape, slide size and spacing, animation timing and easing, starting state"
+  ],
+  "needsCodeEdit": [
+    {"change": "Trigger the morph on scroll instead of a button", "where": "toggle function and the button element"},
+    {"change": "Change the slide in and out motion", "where": "showSlider and showPreview functions"}
+  ],
+  "fixed": [
+    "Section fills the viewport height",
+    "Slides are laid out in a single row of equal columns, so many images become very narrow on small screens"
+  ],
+  "mood": ["bold", "cinematic", "editorial", "modern"],
+  "industries": ["photography", "fashion", "architecture", "agency", "travel"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}
