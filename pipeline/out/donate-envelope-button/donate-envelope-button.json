@@ -1,0 +1,43 @@
+{
+  "slug": "donate-envelope-button",
+  "name": "Donate Envelope Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Donate button that opens into an animated envelope with an amount input inside. Submitting slides the letter away and reveals a thank you message.",
+  "contents": ["Heart icon button with label", "Envelope flap and body drawn with CSS", "Currency amount input", "Thank you message"],
+  "behavior": [
+    "Click opens the envelope in a staged sequence and the input slides up out of it",
+    "Typing formats the value as a currency amount with thousands dots and two decimals",
+    "Click again or form submit sends the letter away and shows the thank you text",
+    "Clicking outside closes the envelope until it is submitted",
+    "Button background changes on hover while closed"
+  ],
+  "props": [
+    {"name": "defaultLabel", "type": "string", "default": "Donate"},
+    {"name": "thanksLabel", "type": "string", "default": "Thank you!"},
+    {"name": "initialAmount", "type": "string", "default": "$0,00"},
+    {"name": "containerWidth", "type": "string", "default": "132px"},
+    {"name": "themeInputBg", "type": "string", "default": "#4171FE"},
+    {"name": "themeInputColor", "type": "string", "default": "#FFFFFF"},
+    {"name": "themeButtonBg", "type": "string", "default": "#FFFFFF"},
+    {"name": "themeButtonHover", "type": "string", "default": "#ECEFFC"},
+    {"name": "themeTextColor", "type": "string", "default": "#275EFE"},
+    {"name": "themeLetterInner", "type": "string", "default": "#CEDAFF"},
+    {"name": "themeLetterTop", "type": "string", "default": "#E0E8FF"},
+    {"name": "themeBorderShadow", "type": "string", "default": "#E5E9F3"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Button label and thank you text", "Starting amount and button width", "All envelope, button, input and text colors"],
+  "needsCodeEdit": [
+    {"change": "Change currency symbol or number format", "where": "handleInputChange function"},
+    {"change": "Hook up a real donation action", "where": "handleSubmitForm function"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Once submitted the button stays in the thank you state until remount"
+  ],
+  "mood": ["playful", "friendly", "clean", "delightful"],
+  "industries": ["nonprofit", "charity", "crowdfunding", "fundraising", "education"],
+  "sections": ["cta"],
+  "dependencies": []
+}

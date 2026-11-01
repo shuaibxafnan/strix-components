@@ -4,11 +4,12 @@
   "sourceHash": "b3aa1566dc260d60efce383262a934971c434239ed22d676a41b3cc0aea1b449",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "donate-envelope-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.422Z"
+  "note": "Rewritten. Component renamed DonateEnvelopeButton. Frame added: root w-full h-screen flex center, className merged. Added className, max-w-full guard. Removed empty comment placeholders and unused arg. style jsx global keyframes kept; --input-line undefined in original. No variants.",
+  "updatedAt": "2026-11-01T06:19:48.531Z",
+  "gateOutput": "gates passed"
 }
