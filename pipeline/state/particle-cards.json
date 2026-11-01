@@ -4,11 +4,12 @@
   "sourceHash": "346ce41868edcba48e01418c6fefa06e558e40fdec642f7418b96350dbb357d7",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "particle-cards",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.509Z"
+  "note": "Removed empty comment placeholders. Card width clamped to viewport-96px with resize listener; padding/cardGap use clamp; overflow-x-hidden. GSAP timeline kill and alive flag on unmount. Red Rose font link injected in head; loading overlay kept; images via XHR need CORS.",
+  "updatedAt": "2026-11-01T10:25:11.813Z",
+  "gateOutput": "gates passed"
 }
