@@ -4,11 +4,12 @@
   "sourceHash": "8409c4d412691a7c80977ab44d643c680c8b4cd37efda8f5542ffcad2fe78d51",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "file-compressor-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.438Z"
+  "note": "Removed isMounted gate, demo background and font classes, empty comments; added timeout cleanup, className, toothColor, trackColor; hoverBgColor now drives hover via CSS variables. Frame added (w-full h-screen centered, fixed). No variants.",
+  "updatedAt": "2026-11-01T06:55:34.989Z",
+  "gateOutput": "gates passed"
 }

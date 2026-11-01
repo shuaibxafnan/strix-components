@@ -1,0 +1,48 @@
+{
+    "slug": "file-compressor-button",
+    "name": "File Compressor Button",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Button that plays a file compression animation on click: paper sheets drop in, the button folds, a zipper runs across it, and the label swaps to a checkmark.",
+    "contents": [
+        "Single button with label, three paper sheets, zipper and checkmark"
+    ],
+    "behavior": [
+        "Click starts the compression animation, ignored while it runs",
+        "Button folds and a zipper slides across, then a checkmark appears",
+        "Returns to idle after the duration",
+        "Hover darkens the button, press scales it down"
+    ],
+    "props": [
+        {"name": "initialText", "type": "string", "default": "Compress files"},
+        {"name": "completedText", "type": "string", "default": "Compressed"},
+        {"name": "duration", "type": "number", "default": 4000},
+        {"name": "btnWidth", "type": "string", "default": "152px"},
+        {"name": "baseBgColor", "type": "string", "default": "#404660"},
+        {"name": "hoverBgColor", "type": "string", "default": "#3A4059"},
+        {"name": "backBgColor", "type": "string", "default": "#1E2235"},
+        {"name": "textColor", "type": "string", "default": "#F6F8FF"},
+        {"name": "paperColor", "type": "string", "default": "#F6F8FF"},
+        {"name": "lineSecondary", "type": "string", "default": "#D1D6EE"},
+        {"name": "zipperColor", "type": "string", "default": "#BBC1E1"},
+        {"name": "toothColor", "type": "string", "default": "#646B8C"},
+        {"name": "trackColor", "type": "string", "default": "#8A91B4"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Idle and completed labels, button width, animation reset time",
+        "All button, paper, zipper and text colors"
+    ],
+    "needsCodeEdit": [
+        {"change": "Run a callback or real compression on click", "where": "handleTriggerAction function"},
+        {"change": "Change the number or position of paper sheets", "where": "The three paper divs using animate-paper-run"}
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Animation timings are fixed in the keyframes and assume a duration of at least 3.5s"
+    ],
+    "mood": ["playful", "clean", "modern"],
+    "industries": ["saas", "file storage", "productivity", "developer tools"],
+    "sections": ["cta", "other"],
+    "dependencies": []
+}
