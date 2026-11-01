@@ -1,0 +1,101 @@
+{
+    "slug": "text-loop",
+    "name": "Text Loop",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Endless looping text that travels along an SVG path (wave, circle, infinity, arch, line or custom) on an optional colored ribbon, with hover pause, drag, scroll boost and optional crossing second ribbon.",
+    "contents": [
+        "SVG with text repeated along a path, optionally on a colored ribbon stroke",
+        "Optional second crossing ribbon with its own text and drop shadow",
+        "Optional edge fade mask on left and right"
+    ],
+    "behavior": [
+        "Text scrolls continuously along the path at a set speed in either direction",
+        "Repeat count is measured so the text tiles seamlessly around the path",
+        "Hovering with a mouse eases the motion to a stop, leaving eases it back",
+        "When draggable, pointer drag moves the text and release flings it with momentum",
+        "When scrollBoost is above 0, page scroll speed adds to the text speed",
+        "Animation runs only while in view and stays still with prefers-reduced-motion",
+        "Cross ribbon runs in the opposite direction"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "React ✦ Bits" },
+        { "name": "shape", "type": "'wave' | 'circle' | 'infinity' | 'arch' | 'line'", "default": "wave" },
+        { "name": "path", "type": "string (SVG path d in a 1200x520 viewBox)", "default": null },
+        { "name": "speed", "type": "number (px per second)", "default": 90 },
+        { "name": "direction", "type": "'forward' | 'reverse'", "default": "forward" },
+        { "name": "separator", "type": "string", "default": "✦" },
+        { "name": "curviness", "type": "number", "default": 90 },
+        { "name": "tilt", "type": "number (degrees)", "default": 0 },
+        { "name": "fontSize", "type": "number (px)", "default": 46 },
+        { "name": "fontWeight", "type": "number | string", "default": 800 },
+        { "name": "letterSpacing", "type": "number (px)", "default": 2 },
+        { "name": "uppercase", "type": "boolean", "default": true },
+        { "name": "color", "type": "string", "default": null },
+        { "name": "ribbon", "type": "boolean", "default": true },
+        { "name": "ribbonColor", "type": "string", "default": "#5227FF" },
+        { "name": "ribbonWidth", "type": "number", "default": 86 },
+        { "name": "edgeFade", "type": "number (0 to 1)", "default": 0 },
+        { "name": "pauseOnHover", "type": "boolean", "default": true },
+        { "name": "cross", "type": "boolean", "default": false },
+        { "name": "crossColor", "type": "string", "default": null },
+        { "name": "crossAngle", "type": "number (degrees)", "default": 16 },
+        { "name": "draggable", "type": "boolean", "default": false },
+        { "name": "scrollBoost", "type": "number", "default": 0 },
+        { "name": "outline", "type": "boolean", "default": false },
+        { "name": "outlineWidth", "type": "number", "default": 1.5 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": {} }
+    ],
+    "editableByProps": [
+        "Text, separator, uppercase, font size, weight and letter spacing",
+        "Path shape or a custom SVG path, curviness, tilt",
+        "Speed, direction, hover pause, drag, scroll boost",
+        "Text color, ribbon on/off, ribbon color and width, outline text",
+        "Edge fade, crossing second ribbon with color and angle",
+        "Wrapper className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the canvas proportions of the SVG",
+            "where": "VIEW_W and VIEW_H constants"
+        },
+        {
+            "change": "Add a new built-in path shape",
+            "where": "switch statement in the buildPath function"
+        },
+        {
+            "change": "Change hover ease time or fling decay",
+            "where": "glide function and fling decay in the tick function"
+        },
+        {
+            "change": "Change the crossing ribbon text separately from the main text",
+            "where": "unit memo and crossText constant"
+        }
+    ],
+    "fixed": [
+        "Requires gsap, whose ticker drives the animation",
+        "Adds a capturing window scroll listener when scrollBoost is above 0",
+        "Cross ribbon text is the same as the main text and always runs opposite",
+        "Text is aria-hidden, the SVG carries the text as aria-label",
+        "Fills container width at a fixed 1200x520 aspect ratio, so the height scales with width and font size shrinks on small screens",
+        "Cross ribbon uses its own mirrored path only for wave, arch and circle (circle becomes an ellipse); ignored when custom path is set",
+        "Default text color is white on ribbon, currentColor without ribbon",
+        "Hover pause ignores touch input"
+    ],
+    "mood": ["playful", "bold", "energetic", "modern"],
+    "industries": ["creative agency", "music", "fashion", "events", "tech startups"],
+    "sections": ["hero", "logos", "cta", "other"],
+    "dependencies": ["gsap"],
+    "variants": {
+        "prop": "shape",
+        "default": "wave",
+        "options": [
+            { "value": "wave", "look": "Text flows along a horizontal sine-like wave", "useWhen": "Hero or section divider needing a lively full-width ticker" },
+            { "value": "circle", "look": "Text rotates around a circle", "useWhen": "Badge or rotating seal beside a hero heading or CTA" },
+            { "value": "infinity", "look": "Text follows a figure-eight loop", "useWhen": "Playful centerpiece in a brand or about section" },
+            { "value": "arch", "look": "Text follows a single curved arch", "useWhen": "Banner arcing over a heading or product image" },
+            { "value": "line", "look": "Text runs along a straight horizontal line", "useWhen": "Classic marquee strip between sections or above the footer" }
+        ]
+    }
+}
