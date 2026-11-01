@@ -1,0 +1,48 @@
+{
+    "slug": "halloween-parallax",
+    "name": "Halloween Parallax",
+    "category": "backgrounds-3d",
+    "isReactBits": false,
+    "description": "Full-screen WebGL image with a mouse-driven depth parallax, animated smoke, flickering lightning and a pointer-following light, with depth and normal maps generated automatically from the image.",
+    "contents": [
+        "Full-height WebGL canvas showing one image"
+    ],
+    "behavior": [
+        "Pointer or touch movement shifts the image by generated depth and lights it with a smoothed light",
+        "Animated noise adds waves, smoke tint, flickering particles and lightning flashes",
+        "Depth, normal and noise maps are generated from the image unless URLs are given",
+        "Canvas resizes with its container and the image scales to fit narrow screens"
+    ],
+    "props": [
+        {"name": "imageUrl", "type": "string", "default": "https://images.unsplash.com/photo-1573306533578-12e23afbf2c6?q=80&w=1080&auto=format&fit=crop"},
+        {"name": "depthUrl", "type": "string | null", "default": null},
+        {"name": "normalUrl", "type": "string | null", "default": null},
+        {"name": "noiseUrl", "type": "string | null", "default": null},
+        {"name": "backgroundColor", "type": "string", "default": "bg-black"},
+        {"name": "cameraZ", "type": "number", "default": 260},
+        {"name": "fieldOfView", "type": "number", "default": 50},
+        {"name": "planeSize", "type": "number", "default": 200},
+        {"name": "planeSegments", "type": "number", "default": 256},
+        {"name": "mouseLerp", "type": "number", "default": 0.07},
+        {"name": "touchMultiplier", "type": "number", "default": 1.5},
+        {"name": "timeStep", "type": "number", "default": 0.01},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Image, optional depth, normal and noise maps",
+        "Background Tailwind class, camera and plane settings, pointer smoothing and animation speed"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the smoke, lightning or particle look", "where": "FRAGMENT_SHADER constant"},
+        {"change": "Change how depth is derived from the image", "where": "buildDepthAndNormal function"}
+    ],
+    "fixed": [
+        "Listens to window pointer movement while mounted and removes it on unmount",
+        "Image must allow cross-origin loading",
+        "Container is h-screen and touch-none, so touch drags on it do not scroll the page"
+    ],
+    "mood": ["dark", "spooky", "atmospheric", "immersive"],
+    "industries": ["entertainment", "gaming", "events", "film"],
+    "sections": ["hero", "background"],
+    "dependencies": ["three"]
+}
