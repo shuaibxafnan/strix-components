@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "stroke-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.633Z"
+  "note": "JSON written; component unchanged. Gates passed. Requires gsap and ScrollTrigger; hover trigger not usable on touch; no variants block.",
+  "updatedAt": "2026-11-01T13:58:34.001Z",
+  "gateOutput": "gates passed"
 }

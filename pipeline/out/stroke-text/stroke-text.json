@@ -1,0 +1,87 @@
+{
+    "slug": "stroke-text",
+    "name": "Stroke Text",
+    "isReactBits": true,
+    "category": "text-effects",
+    "description": "Large SVG headline that draws its letter outlines stroke by stroke, then fills them with a wipe or fade, with optional dashed outlines, drop shadow and several triggers.",
+    "contents": [
+        "SVG text rendered as an outline layer and a fill layer, split per character",
+        "Optional dashed or dotted outline masked to the letter edges",
+        "Optional soft drop shadow that lifts in after the fill"
+    ],
+    "behavior": [
+        "Outline draws letter by letter with a stagger via GSAP stroke dash offset",
+        "Fill follows by a directional clip wipe or per-letter fade",
+        "Trigger can be mount, scroll (top 82% of viewport, once), hover (pointer enter) or loop (yoyo with 0.9s pause)",
+        "Optional hover redraw replays the outline after the first draw finishes",
+        "Optional marching dashes animate continuously for dashed or dotted styles",
+        "Scales to container width through the SVG viewBox, measured with getBBox and ResizeObserver",
+        "With prefers-reduced-motion the final state is shown with no animation"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "Draw Attention" },
+        { "name": "strokeColor", "type": "string", "default": "#A78BFA" },
+        { "name": "fillColor", "type": "string", "default": "currentColor" },
+        { "name": "strokeWidth", "type": "number", "default": 1.4 },
+        { "name": "drawDuration", "type": "number", "default": 1.6 },
+        { "name": "fillDelay", "type": "number", "default": 0.2 },
+        { "name": "stagger", "type": "number", "default": 0.05 },
+        { "name": "ease", "type": "string", "default": "power2.out" },
+        { "name": "trigger", "type": "'mount' | 'scroll' | 'hover' | 'loop'", "default": "mount" },
+        { "name": "fillMode", "type": "'wipe' | 'fade' | 'none'", "default": "wipe" },
+        { "name": "wipeFrom", "type": "'left' | 'right' | 'top' | 'bottom'", "default": "left" },
+        { "name": "fontSize", "type": "number", "default": 128 },
+        { "name": "fontWeight", "type": "number | string", "default": 800 },
+        { "name": "fontFamily", "type": "string", "default": "inherit" },
+        { "name": "letterSpacing", "type": "number", "default": -4 },
+        { "name": "reverse", "type": "boolean", "default": false },
+        { "name": "strokeStyle", "type": "'solid' | 'dashed' | 'dotted'", "default": "solid" },
+        { "name": "dashLength", "type": "number", "default": 10 },
+        { "name": "marching", "type": "boolean", "default": false },
+        { "name": "hoverRedraw", "type": "boolean", "default": false },
+        { "name": "shadow", "type": "boolean", "default": false },
+        { "name": "shadowColor", "type": "string", "default": "undefined (uses strokeColor)" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": {} }
+    ],
+    "editableByProps": [
+        "Text, font size, weight, family and letter spacing",
+        "Stroke and fill colors, stroke width, solid, dashed or dotted outline, marching dashes",
+        "Draw duration, fill delay, stagger, easing, reverse order",
+        "Trigger type, fill mode, wipe direction, hover redraw",
+        "Drop shadow on or off and its color"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the scroll trigger start position",
+            "where": "ScrollTrigger.create call with start: 'top 82%'"
+        },
+        {
+            "change": "Change shadow strength",
+            "where": "SHADOW_OPACITY constant and the lift/softness values"
+        },
+        {
+            "change": "Change loop pause or fill wipe easing",
+            "where": "build function inside the animation useLayoutEffect"
+        },
+        {
+            "change": "Change dot or dash spacing logic",
+            "where": "getDashPattern function"
+        }
+    ],
+    "fixed": [
+        "Requires gsap and its ScrollTrigger plugin, registered at module load",
+        "Marked as a client component",
+        "Fills the full width of its parent as a block, with the SVG capped at the measured text width",
+        "Text is a single line, no wrapping, so long text shrinks to fit the container width",
+        "Uses Tailwind utility classes for layout (block, w-full, mx-auto, select-none, cursor-pointer)",
+        "Shadow has no effect when fillMode is none",
+        "Hover trigger shows the final state first and redraws on pointer enter, so it does not work on touch devices",
+        "Marching only applies to dashed and dotted styles",
+        "Hidden until text is measured, so it appears after the first layout pass"
+    ],
+    "mood": ["bold", "modern", "playful", "expressive"],
+    "industries": ["creative agency", "design studio", "fashion", "entertainment", "tech startups"],
+    "sections": ["hero", "cta", "about"],
+    "dependencies": ["gsap"]
+}
