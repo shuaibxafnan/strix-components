@@ -1,0 +1,173 @@
+{
+  "slug": "scroll-letter-bend",
+  "name": "Scroll Letter Bend",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Full-screen image sections with large serif titles whose letters bend into an arch based on scroll speed, while images drift with a parallax shift.",
+  "contents": [
+    "One full-height section per item with a parallax image and a large title overlapping it"
+  ],
+  "behavior": [
+    "Letters of each title shift vertically in an arch shape proportional to scroll velocity and ease back when scrolling stops",
+    "Images move with a scroll-based parallax",
+    "Smooth scrolling through Lenis, optional"
+  ],
+  "props": [
+    {
+      "name": "sections",
+      "type": "{title,image,alt}[]",
+      "default": "5 sample sections"
+    },
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#131212"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "titleColor",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "fontHref",
+      "type": "string",
+      "default": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@500;600&display=swap"
+    },
+    {
+      "name": "titleFontFamily",
+      "type": "string",
+      "default": "\"Bodoni Moda\", \"Didot\", \"Times New Roman\", serif"
+    },
+    {
+      "name": "bodyFontFamily",
+      "type": "string",
+      "default": "\"Archivo\", \"Helvetica Neue\", Arial, sans-serif"
+    },
+    {
+      "name": "titleFontSize",
+      "type": "string",
+      "default": "12vw"
+    },
+    {
+      "name": "titleFontSizeMin",
+      "type": "string",
+      "default": "3.25rem"
+    },
+    {
+      "name": "titleFontSizeMax",
+      "type": "string",
+      "default": "7rem"
+    },
+    {
+      "name": "titleWeight",
+      "type": "number",
+      "default": 300
+    },
+    {
+      "name": "titleTracking",
+      "type": "string",
+      "default": "-0.02em"
+    },
+    {
+      "name": "titleTransform",
+      "type": "string",
+      "default": "uppercase"
+    },
+    {
+      "name": "imageHeight",
+      "type": "string",
+      "default": "65vh"
+    },
+    {
+      "name": "imageMaxWidth",
+      "type": "string",
+      "default": "400px"
+    },
+    {
+      "name": "imageRadius",
+      "type": "string",
+      "default": "0.75rem"
+    },
+    {
+      "name": "parallaxSpeed",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "bendRange",
+      "type": "number",
+      "default": 50
+    },
+    {
+      "name": "bendScrollRange",
+      "type": "number",
+      "default": 150
+    },
+    {
+      "name": "bendRelease",
+      "type": "number",
+      "default": 0.15
+    },
+    {
+      "name": "smoothScroll",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "lerpAmount",
+      "type": "number",
+      "default": 0.1
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Sections, titles, images and alt text",
+    "Background, text and title colors, title font, size, weight and case",
+    "Image size and radius, parallax and bend strength, smooth scroll"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the arch shape of the letter bend",
+      "where": "applyBend function"
+    },
+    {
+      "change": "Change parallax direction",
+      "where": "applyParallax function"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+    "Loads the Google Fonts stylesheet into document head",
+    "Each section is full screen height"
+  ],
+  "mood": [
+    "editorial",
+    "elegant",
+    "dramatic",
+    "modern"
+  ],
+  "industries": [
+    "fashion",
+    "photography",
+    "travel",
+    "art",
+    "architecture"
+  ],
+  "sections": [
+    "hero",
+    "portfolio",
+    "gallery"
+  ],
+  "dependencies": [
+    "lenis"
+  ]
+}
