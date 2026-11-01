@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "card-swap",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.609Z"
+  "note": "Bits describe-only. Category cards-galleries. 24 props documented; theme not in variants. Agent did not read lines ~400-700, behavior entries partly from grep. Needs @hugeicons packages. Gates passed.",
+  "updatedAt": "2026-11-01T04:58:32.558Z",
+  "gateOutput": "gates passed"
 }
