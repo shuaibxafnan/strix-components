@@ -4,11 +4,12 @@
   "sourceHash": "d42d96488dda85721b48277447962dbc00a9344d32e19ac43cd89bd493fe85f1",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "concept-insight-matrix",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.411Z"
+  "note": "Frame kept; items, labels, color props and className added. Behavior fixes beyond template: hover handlers read window.gsap (never set) so hover never ran, now use dynamically imported gsap; added unmount cleanup (timeline, tweens, onclick). Replay button fixed to viewport. Gates passed.",
+  "updatedAt": "2026-11-01T05:14:07.250Z",
+  "gateOutput": "gates passed"
 }

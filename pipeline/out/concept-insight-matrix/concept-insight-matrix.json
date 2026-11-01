@@ -1,0 +1,54 @@
+{
+  "slug": "concept-insight-matrix",
+  "name": "Concept Insight Matrix",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Two-column table of concepts and insights that fades in row by row on a dark stage, shifts each row to a highlight color, then fades out and leaves a replay button.",
+  "contents": [
+    "Header row with two column labels",
+    "Rows of concept and insight text",
+    "Fixed corner replay button made of dots"
+  ],
+  "behavior": [
+    "Header and rows fade in with a stagger, then rows change from a muted to an active color",
+    "After a hold time rows and header fade out and the replay button appears",
+    "Clicking the button restarts the sequence",
+    "Hovering the button reveals extra corner dots and a glowing center dot"
+  ],
+  "props": [
+    {"name": "items", "type": "{concept,insight}[]", "default": "8 sample concept and insight pairs"},
+    {"name": "conceptLabel", "type": "string", "default": "Concept"},
+    {"name": "insightLabel", "type": "string", "default": "Insight"},
+    {"name": "restartLabel", "type": "string", "default": "Restart Grid Animation Sequence"},
+    {"name": "backgroundColor", "type": "string", "default": "#000000"},
+    {"name": "initialColor", "type": "string", "default": "#4f4f4f"},
+    {"name": "activeColor", "type": "string", "default": "#ffffff"},
+    {"name": "insightColor", "type": "string", "default": "#a1a1aa"},
+    {"name": "headerColor", "type": "string", "default": "#71717a"},
+    {"name": "dotColor", "type": "string", "default": "#ffffff"},
+    {"name": "hoverDotColor", "type": "string", "default": "#a1a1aa"},
+    {"name": "accentColor", "type": "string", "default": "#34d399"},
+    {"name": "staggerSpeed", "type": "number", "default": 0.075},
+    {"name": "displayDuration", "type": "number", "default": 1.5},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All row text, column labels and button label",
+    "Background, row, header, insight and button dot colors",
+    "Stagger speed and hold duration"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the fade and color easing of the sequence", "where": "runSequence function inside the useEffect"},
+    {"change": "Change the replay button position", "where": "fixed bottom-8 right-8 classes on the button"},
+    {"change": "Change the table max width", "where": "max-w-[800px] class on the containerRef div"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Replay button is fixed to the bottom right corner of the viewport",
+    "Renders nothing until mounted on the client"
+  ],
+  "mood": ["minimal", "cinematic", "dark", "editorial"],
+  "industries": ["creative agency", "film", "design studio", "portfolio", "technology"],
+  "sections": ["hero", "about"],
+  "dependencies": ["gsap"]
+}
