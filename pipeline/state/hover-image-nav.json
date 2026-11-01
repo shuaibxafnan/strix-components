@@ -4,11 +4,12 @@
   "sourceHash": "88bd16ff2d4671d8e6459fe8131f51e0edeb4a6549002cbe3ffc1c140952d62c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "hover-image-nav",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.461Z"
+  "note": "No rename. Removed empty comment remnants. Added bgColor, textColor, className; white rgba now color-mix on --hn-text. Frame: none. Variants: none. Responsive ok. Google Fonts @import kept (Cormorant Garamond, DM Mono).",
+  "updatedAt": "2026-11-01T08:11:09.974Z",
+  "gateOutput": "gates passed"
 }
