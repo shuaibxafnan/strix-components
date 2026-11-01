@@ -1,0 +1,45 @@
+{
+  "slug": "social-dropdown",
+  "name": "Social Dropdown",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Dark dropdown select for social platforms with an animated chevron, staggered list reveal, a sliding hover highlight and a small icon badge that follows the cursor.",
+  "contents": [
+    "Titled label above a select button showing the chosen platform icon and name",
+    "Collapsible list of platforms with hover highlight and cursor-following icon badge"
+  ],
+  "behavior": [
+    "Click the button to expand or collapse the list with a height and opacity transition",
+    "Hover highlight slides between rows and an icon badge follows the pointer",
+    "Clicking a row selects it and closes the list"
+  ],
+  "props": [
+    { "name": "platforms", "type": "{name,icon}[]", "default": "Linkedin, Instagram, Facebook, Twitter, Youtube with SVG path data" },
+    { "name": "defaultPlatform", "type": "string", "default": "Facebook" },
+    { "name": "panelTitle", "type": "string", "default": "Connect Account" },
+    { "name": "panelMaxWidth", "type": "string", "default": "360px" },
+    { "name": "cardBg", "type": "string", "default": "#09090C" },
+    { "name": "accentActiveColor", "type": "string", "default": "#FFFFFF" },
+    { "name": "textColor", "type": "string", "default": "#FFFFFF" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Platform list names and icon paths, initial selection, title",
+    "Panel width, card background, badge color and text color"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change row height used by the hover highlight",
+      "where": "translateY(${hoverIndex * 48}px) in the highlight div"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Loads the Plus Jakarta Sans Google font link while mounted and removes it on unmount",
+    "Icons must be 16x16 viewBox SVG path strings"
+  ],
+  "mood": ["sleek", "minimal", "dark", "modern"],
+  "industries": ["saas", "social media", "marketing", "creative agency"],
+  "sections": ["other"],
+  "dependencies": []
+}
