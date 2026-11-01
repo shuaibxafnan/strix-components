@@ -1,0 +1,68 @@
+{
+  "slug": "infinite-horizontal-scroll",
+  "name": "Infinite Horizontal Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen cinematic horizontal scroller that loops endlessly. Wheel and touch drag move through text and image panels with parallax, a progress bar and a counter.",
+  "contents": [
+    "Intro panel, quote panel, axis panel with text and image, full-bleed image panel, hover word list, image panel, outro panel",
+    "Top progress line and bottom-right percentage counter",
+    "Film grain overlay"
+  ],
+  "behavior": [
+    "Vertical wheel and horizontal touch drag move the track sideways with eased smoothing",
+    "Panels are cloned so the track loops infinitely in both directions",
+    "Images and quote text drift with parallax relative to their position",
+    "Progress line and counter show position within one loop",
+    "Images shift from grayscale on hover"
+  ],
+  "props": [
+    { "name": "smoothFactor", "type": "number", "default": 0.045 },
+    { "name": "touchSensitivity", "type": "number", "default": 2.4 },
+    { "name": "bufferSize", "type": "number", "default": 2 },
+    { "name": "backgroundColor", "type": "string", "default": "#070707" },
+    { "name": "accentColor", "type": "string", "default": "#f97316" },
+    { "name": "edition", "type": "string", "default": "EDITION // 2026_V1" },
+    { "name": "titleTop", "type": "string", "default": "THE ART OF" },
+    { "name": "titleAccent", "type": "string", "default": "displacement." },
+    { "name": "intro", "type": "string", "default": "An interactive spatial essay evaluating the friction between horizontal linear momentum and luxury digital architecture." },
+    { "name": "metaLeft", "type": "string", "default": "INDEX_REF // 001-008" },
+    { "name": "metaRight", "type": "string", "default": "BOUNDLESS CANVAS ENGINE" },
+    { "name": "sectionLabels", "type": "string[]", "default": ["02 // DISRUPTION CONTRAST", "03 // GEOMETRIC EXCHANGES", "04 // KINETIC AXIS", "05 // EPILOGUE ARCHIVE"] },
+    { "name": "quoteStart", "type": "string", "default": "“Logic leaves you structured." },
+    { "name": "quoteAccent", "type": "string", "default": "Pure asymmetry" },
+    { "name": "quoteEnd", "type": "string", "default": "leaves you memorable.”" },
+    { "name": "axisTitle", "type": "string", "default": "The Compositional Axis" },
+    { "name": "axisText", "type": "string", "default": "By detaching the text modules from fixed layout positions, characters float freely through empty space, reacting intuitively with the scrolling user." },
+    { "name": "words", "type": "{lead,accent}[]", "default": "3 sample word pairs" },
+    { "name": "outroTitleTop", "type": "string", "default": "THE LOOP" },
+    { "name": "outroTitleBottom", "type": "string", "default": "IS INFINITE." },
+    { "name": "outroText", "type": "string", "default": "EXPERIMENTS IN HIGH-FIDELITY INTERACTION." },
+    { "name": "footerLeft", "type": "string", "default": "DESIGN LABS // VOL_04" },
+    { "name": "footerRight", "type": "string", "default": "© 2026" },
+    { "name": "frameLabelPrefix", "type": "string", "default": "FRAME_" },
+    { "name": "images", "type": "{src,alt}[]", "default": "4 sample images" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All panel text, labels, word list and footer text",
+    "Four images and alt text",
+    "Background and accent colors",
+    "Scroll smoothing, touch sensitivity and clone buffer"
+  ],
+  "needsCodeEdit": [
+    { "change": "Add, remove or reorder panels", "where": "section elements inside the scrollerRef div" },
+    { "change": "Change parallax strength", "where": "renderDepthLayers function" },
+    { "change": "Remove film grain", "where": "div with opacity-[0.045] mix-blend-overlay" }
+  ],
+  "fixed": [
+    "Root is fixed and covers the whole viewport",
+    "Captures wheel and touch events on the root with preventDefault, so page scrolling is taken over",
+    "Panel set is fixed at seven panels with their own layouts",
+    "Uses Syne, Playfair Display and Plus Jakarta Sans font families by name without importing them, so they must be loaded by the host"
+  ],
+  "mood": ["cinematic", "dark", "editorial", "luxury"],
+  "industries": ["photography", "fashion", "architecture", "film", "creative agency"],
+  "sections": ["hero", "portfolio", "gallery"],
+  "dependencies": []
+}
