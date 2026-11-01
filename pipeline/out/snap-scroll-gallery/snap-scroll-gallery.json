@@ -1,0 +1,52 @@
+{
+  "slug": "snap-scroll-gallery",
+  "name": "Snap Scroll Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen vertical photo gallery with scroll snapping, a fixed pill navigation that animates the page to a chosen photo, and a caption card that slides in for the active image.",
+  "contents": [
+    "Fixed top navigation with one link per item",
+    "Full-viewport image per item",
+    "Caption card with title, description and photo credit link"
+  ],
+  "behavior": [
+    "Page scroll snaps to each full-screen image",
+    "Active item is detected from the scroll position and highlights its nav link",
+    "Clicking a nav link scales the current image down and eases the page scroll to the target",
+    "Caption slides in from the right for the active image"
+  ],
+  "props": [
+    { "name": "linkActiveColor", "type": "string", "default": "#fe9a00" },
+    { "name": "linkHoverColor", "type": "string", "default": "#00598a" },
+    { "name": "stepDuration", "type": "number", "default": 600 },
+    { "name": "captionWidth", "type": "string", "default": "w-[30ch]" },
+    { "name": "items", "type": "{title,description,url_img,url_external,photographer}[]", "default": "10 landmark photos" },
+    { "name": "photoCreditLabel", "type": "string", "default": "Photo by" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images, titles, descriptions and credit links",
+    "Active and hover colors of nav links and credit links",
+    "Scroll duration per step and caption width"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change page background colors",
+      "where": "root div className with bg-[#ffedd4] and dark:bg-[#101828]"
+    },
+    {
+      "change": "Change caption position or style",
+      "where": "figcaption className"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with window scroll listener and scripted smooth scroll on nav click",
+    "Uses scroll-snap on the gallery section and full-screen 100vh slides",
+    "Navigation is fixed to the top of the viewport",
+    "Includes dark mode classes on the root background and text"
+  ],
+  "mood": ["immersive", "cinematic", "clean", "editorial"],
+  "industries": ["travel", "photography", "tourism", "portfolio", "education"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

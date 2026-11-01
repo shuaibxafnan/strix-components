@@ -4,11 +4,12 @@
   "sourceHash": "15b347f6f9902741b30dace21b442fc4634d31499eb544ca474c5b0edb3717ac",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "snap-scroll-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.551Z"
+  "note": "className and photoCreditLabel added, rAF cleanup on unmount. Dark-mode classes kept. Invalid grid-auto classes left unchanged. Page scroll takeover. No variants.",
+  "updatedAt": "2026-11-01T12:56:55.953Z",
+  "gateOutput": "gates passed"
 }
