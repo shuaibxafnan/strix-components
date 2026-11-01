@@ -1,0 +1,64 @@
+{
+  "slug": "music-player-device",
+  "name": "Music Player Device",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Skeuomorphic dark music player device with a cover art screen showing track title and artist, and a tilting directional dial with play, pause, skip and volume controls.",
+  "contents": [
+    "Screen with cover art, song title and band name over a gradient",
+    "Round dial with play/pause button, previous and next, volume up and down",
+    "Hidden audio element playing the current track"
+  ],
+  "behavior": [
+    "Play and pause toggle, skipping wraps around the track list",
+    "Next track starts automatically when one ends",
+    "Volume changes in steps between 0 and 1",
+    "Dial tilts in 3D toward the pressed control",
+    "Below 760px the device scales down in steps to fit narrow screens"
+  ],
+  "props": [
+    { "name": "tracks", "type": "{song,band,audio,art}[]", "default": "3 sample tracks" },
+    { "name": "initialVolume", "type": "number", "default": 0.1 },
+    { "name": "volumeStep", "type": "number", "default": 0.1 },
+    { "name": "playerBg", "type": "string", "default": "linear-gradient(380deg,#1a1a1a 0%,#3C3C3C 100%)" },
+    { "name": "innerBg", "type": "string", "default": "linear-gradient(180deg,#1b1b1b 0%,#212121 11.2%,#3A3A3A 100%)" },
+    { "name": "dialBg", "type": "string", "default": "linear-gradient(180deg,#292929 0%,#1F1F1F 100%)" },
+    { "name": "dialInnerBg", "type": "string", "default": "linear-gradient(175deg,#1F1F1F 3.94%,#2D2D2D 44.59%,#3D3D3D 81.99%)" },
+    { "name": "playBtnBg", "type": "string", "default": "linear-gradient(180deg,#292929 0%,#1F1F1F 100%)" },
+    { "name": "playBtnOverlayBg", "type": "string", "default": "linear-gradient(189deg,#1F1F1F 6.91%,#2D2D2D 50.27%,#393939 83.66%)" },
+    { "name": "width", "type": "string", "default": "697px" },
+    { "name": "height", "type": "string", "default": "372px" },
+    { "name": "playLabel", "type": "string", "default": "Play" },
+    { "name": "pauseLabel", "type": "string", "default": "Pause" },
+    { "name": "previousLabel", "type": "string", "default": "Previous track" },
+    { "name": "nextLabel", "type": "string", "default": "Next track" },
+    { "name": "volumeUpLabel", "type": "string", "default": "Volume up" },
+    { "name": "volumeDownLabel", "type": "string", "default": "Volume down" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Tracks with song, band, audio source and cover art",
+    "Starting volume and volume step",
+    "All device, dial and button gradients",
+    "Device width and height, control aria labels"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the dial tilt angles or shadows",
+      "where": "DIAL_TILT constant"
+    },
+    {
+      "change": "Change control positions around the dial",
+      "where": "controlClass constant and the position classes on each control button"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Inner screen, dial and icon sizes are fixed pixel values, narrow screens use stepped scale transforms",
+    "Audio uses preload none and starts only after user interaction"
+  ],
+  "mood": ["skeuomorphic", "dark", "tactile", "retro"],
+  "industries": ["music", "entertainment", "podcasts", "consumer electronics"],
+  "sections": ["other"],
+  "dependencies": []
+}
