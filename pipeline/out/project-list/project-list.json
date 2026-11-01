@@ -1,0 +1,59 @@
+{
+  "slug": "project-list",
+  "name": "Project List",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Centered list of large project titles that tilt in 3D perspective; clicking one expands it to reveal an image with tag lines on both sides while the other titles recede.",
+  "contents": [
+    "List of project titles with year",
+    "Expandable panel per project with image and left and right tag lines"
+  ],
+  "behavior": [
+    "Items fade in with a stagger on mount",
+    "Hovering a title shows animated bar indicators on both sides",
+    "Clicking a title expands it with clip-path image reveal and staggered tag lines",
+    "Neighbouring titles tilt back in 3D by distance from the open item",
+    "Clicking the open item or another item collapses and switches",
+    "List scrolls to keep the opened item centered"
+  ],
+  "props": [
+    {"name": "projects", "type": "{id,title,year,image,tagsLeft,tagsRight}[]", "default": "8 sample projects"},
+    {"name": "backgroundColor", "type": "string", "default": "bg-white"},
+    {"name": "textColor", "type": "string", "default": "text-black"},
+    {"name": "indicatorColor", "type": "string", "default": "bg-black"},
+    {"name": "tagColor", "type": "string", "default": "text-black/60"},
+    {"name": "placeholderColor", "type": "string", "default": "bg-black/5"},
+    {"name": "fontFamily", "type": "string", "default": "Inter Tight"},
+    {"name": "fontUrlMedium", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/inter-tight@latest/latin-500-normal.woff2"},
+    {"name": "fontUrlBlack", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/inter-tight@latest/latin-900-normal.woff2"},
+    {"name": "titleSize", "type": "string", "default": "text-[clamp(1.8rem,4vw,3rem)]"},
+    {"name": "imageAspect", "type": "string", "default": "aspect-[4/3]"},
+    {"name": "expandDuration", "type": "number", "default": 0.4},
+    {"name": "collapseDuration", "type": "number", "default": 0.3},
+    {"name": "textStagger", "type": "number", "default": 0.05},
+    {"name": "onProjectOpen", "type": "function|null", "default": null},
+    {"name": "onProjectClose", "type": "function|null", "default": null},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Projects, titles, years, images and tag lines",
+    "Background, text, indicator, tag and placeholder colors",
+    "Font files, title size, image aspect ratio and animation timing",
+    "Open and close callbacks"
+  ],
+  "needsCodeEdit": [
+    {"change": "Adjust the 3D tilt depth of neighbouring titles", "where": "TILT constant"},
+    {"change": "Change the entrance fade-in", "where": "gsap.fromTo call inside the start function"},
+    {"change": "Change the hover indicator motion", "where": "showIndicator and hideIndicator functions"}
+  ],
+  "fixed": [
+    "Registers custom GSAP eases for expand, collapse and text reveal",
+    "Loads the font through injected @font-face rules",
+    "Preloads all project images on mount",
+    "Fills the height of its parent with a minimum of one screen"
+  ],
+  "mood": ["editorial", "minimal", "elegant", "bold"],
+  "industries": ["photography", "design studio", "architecture", "creative agency", "art"],
+  "sections": ["portfolio", "services"],
+  "dependencies": ["gsap"]
+}
