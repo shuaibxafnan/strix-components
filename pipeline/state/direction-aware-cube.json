@@ -4,11 +4,12 @@
   "sourceHash": "0855e4dcef09a575776f35d39bd77b026004335ee44eb6b658c48eb7cc32d68c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "direction-aware-cube",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.421Z"
+  "note": "Rewritten. Gates passed. Removed demo header and showHeader/headerTitle/headerSubtitle props (ambiguous). ul maxWidth now min(100%, ...px). Google Fonts @import kept (fixed). No frame; no variants.",
+  "updatedAt": "2026-11-01T06:15:37.792Z",
+  "gateOutput": "gates passed"
 }

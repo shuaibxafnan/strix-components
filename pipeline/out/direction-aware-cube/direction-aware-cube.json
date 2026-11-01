@@ -1,0 +1,49 @@
+{
+  "slug": "direction-aware-cube",
+  "name": "Direction Aware Cube",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Grid of square image tiles that flip like a cube toward the edge the cursor enters or leaves from, revealing the item title on the hidden face.",
+  "contents": [
+    "Grid of square image tiles, each with a grayscale-blended image on the front",
+    "Back face with title and two-digit index number"
+  ],
+  "behavior": [
+    "Hover direction is detected from the entering or leaving edge (top, right, bottom, left)",
+    "Tile rotates in 3D around that edge to show the back face and rotates back on leave",
+    "Tile positions are re-measured on window resize"
+  ],
+  "props": [
+    {"name": "items", "type": "{title,image}[]", "default": "12 sample items"},
+    {"name": "tileSize", "type": "number", "default": 180},
+    {"name": "gap", "type": "number", "default": 6},
+    {"name": "columns", "type": "number", "default": 4},
+    {"name": "duration", "type": "number", "default": 220},
+    {"name": "easing", "type": "string", "default": "ease-out"},
+    {"name": "perspective", "type": "number", "default": 320},
+    {"name": "backgroundColor", "type": "string", "default": "#0a0a0a"},
+    {"name": "frontGradFrom", "type": "string", "default": "#1a1a2e"},
+    {"name": "frontGradTo", "type": "string", "default": "#0f0f1e"},
+    {"name": "backBackground", "type": "string", "default": "radial-gradient(circle at 50% 40%, #1e1e2e, #0a0a0a 160%)"},
+    {"name": "titleColor", "type": "string", "default": "#f0ece4"},
+    {"name": "titleFont", "type": "string", "default": "'Cormorant Garamond', Georgia, serif"},
+    {"name": "titleSize", "type": "string", "default": "1.1rem"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Tile images and titles, number of tiles",
+    "Tile size, gap, column count, flip duration, easing and perspective",
+    "Background, front gradient, back face background, title color, font and size"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the index number style on the back face", "where": "span with String(i + 1).padStart(2, \"0\") inside .dac-back"},
+    {"change": "Change the image blend effect", "where": ".dac-front img rule (mix-blend-mode: luminosity)"}
+  ],
+  "fixed": [
+    "Loads Cormorant Garamond and DM Sans through a Google Fonts @import inside the component style block"
+  ],
+  "mood": ["dark", "elegant", "interactive", "editorial"],
+  "industries": ["portfolio", "art", "photography", "fashion", "entertainment"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
