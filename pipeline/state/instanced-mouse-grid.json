@@ -4,11 +4,12 @@
   "sourceHash": "bfba1e851aed2d34a3a72387c62c2dd5040c42fd0e5171c349bdc8ff915c035f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "instanced-mouse-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.480Z"
+  "note": "Slug kept. three esm.sh import via new Function replaced by import(three) and RoundedBoxGeometry import; three in dependencies. Removed threeVersion prop and unused useId/uid. rotationAmmount spelling kept. Window pointermove/touchmove listeners removed on unmount, in fixed.",
+  "updatedAt": "2026-11-01T08:58:16.890Z",
+  "gateOutput": "gates passed"
 }

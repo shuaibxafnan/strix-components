@@ -1,0 +1,67 @@
+{
+  "slug": "instanced-mouse-grid",
+  "name": "Instanced Mouse Grid",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "WebGL isometric grid of instanced 3D shapes that grow in on load and sink, scale and spin around the pointer, with an optional glowing sphere that follows the cursor.",
+  "contents": [
+    "Full-size canvas with a grid of instanced shapes (rounded cube, cylinder, torus or icosahedron)",
+    "Optional sphere following the pointer"
+  ],
+  "behavior": [
+    "Intro animation scales cells in from the center outward",
+    "Cells near the smoothed pointer trail sink and can scale or rotate",
+    "Cells bob in a gentle wave over time",
+    "Pointer and touch movement tracked on the window",
+    "Canvas resizes with its container"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "gridCount", "type": "number", "default": 55},
+    {"name": "cellSize", "type": "number", "default": 0.5},
+    {"name": "shape", "type": "\"square\" | \"cylinder\" | \"torus\" | \"icosahedron\"", "default": "square"},
+    {"name": "color", "type": "string", "default": "#dddddd"},
+    {"name": "colorDegrade", "type": "number", "default": 1},
+    {"name": "metalness", "type": "number", "default": 0},
+    {"name": "roughness", "type": "number", "default": 0},
+    {"name": "frustumSize", "type": "number", "default": 4},
+    {"name": "cameraDistance", "type": "number", "default": 40},
+    {"name": "speed", "type": "number", "default": 1},
+    {"name": "frequency", "type": "number", "default": 1},
+    {"name": "mouseSize", "type": "number", "default": 1},
+    {"name": "rotationSpeed", "type": "number", "default": 1},
+    {"name": "rotationAmmount", "type": "number", "default": 0},
+    {"name": "mouseScaling", "type": "number", "default": 0},
+    {"name": "mouseIndent", "type": "number", "default": 1},
+    {"name": "introDuration", "type": "number", "default": 3},
+    {"name": "mouseEase", "type": "number", "default": 0.08},
+    {"name": "trailEase", "type": "number", "default": 0.05},
+    {"name": "showFollower", "type": "boolean", "default": true},
+    {"name": "followerColor", "type": "string", "default": "#cb0f40"},
+    {"name": "followerSize", "type": "number", "default": 0.4},
+    {"name": "followerSpin", "type": "number", "default": 1},
+    {"name": "enableShadows", "type": "boolean", "default": true},
+    {"name": "dprMax", "type": "number", "default": 1.5}
+  ],
+  "editableByProps": [
+    "Background, cell and follower colors",
+    "Grid density, cell size and shape",
+    "Animation speed, wave frequency, pointer influence and intro duration",
+    "Follower visibility, size and spin; shadows and pixel ratio cap"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change lighting setup", "where": "HemisphereLight, AmbientLight and DirectionalLight lines in start"},
+    {"change": "Change how cells react to the pointer", "where": "projectVertex array"}
+  ],
+  "fixed": [
+    "Root is a full-width h-screen block, override height with className",
+    "Listens to window pointermove and touchmove while mounted and removes them on unmount",
+    "Needs WebGL support",
+    "Pointer tracking only reacts within a 20 unit plane under the grid"
+  ],
+  "mood": ["futuristic", "playful", "minimal", "immersive"],
+  "industries": ["technology", "creative agency", "gaming", "portfolio", "music"],
+  "sections": ["hero", "background"],
+  "dependencies": ["three"]
+}
