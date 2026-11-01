@@ -1,0 +1,59 @@
+{
+  "slug": "logout-jump-button",
+  "name": "Logout Jump Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Animated log out button where a little figure walks to a door, slams it, and falls away, then the button resets. Available in a dark and a light look.",
+  "contents": [
+    "Button with label text",
+    "Animated door and walking figure icons"
+  ],
+  "behavior": [
+    "Figure shifts slightly on hover",
+    "Click triggers walk, door slam, a spinning fall and a reset after about 3 seconds",
+    "Clicks are ignored while the animation plays",
+    "Calls onLogout on click"
+  ],
+  "props": [
+    { "name": "variant", "type": "\"dark\" | \"light\"", "default": "dark" },
+    { "name": "text", "type": "string", "default": "Log Out" },
+    { "name": "darkColor", "type": "string", "default": "#1f2335" },
+    { "name": "middleColor", "type": "string", "default": "#4371f7" },
+    { "name": "lightColor", "type": "string", "default": "#f4f7ff" },
+    { "name": "onLogout", "type": "function", "default": "undefined" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Label text",
+    "Button, text, door and figure colors",
+    "Logout callback"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change animation timing or poses",
+      "where": "LOGOUT_BUTTON_STATES constant"
+    },
+    {
+      "change": "Change button size",
+      "where": "w-[130px] and h-[40px] classes on the button"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Button is a fixed 130px by 40px size",
+    "Uses Quicksand font family without importing it, falls back to sans-serif",
+    "Renders nothing until mounted on the client"
+  ],
+  "mood": ["playful", "modern", "minimal"],
+  "industries": ["saas", "web apps", "dashboards"],
+  "sections": ["other"],
+  "dependencies": [],
+  "variants": {
+    "prop": "variant",
+    "default": "dark",
+    "options": [
+      { "value": "dark", "look": "Dark button with light text and door", "useWhen": "Placing the button on a light page or header" },
+      { "value": "light", "look": "Light button with dark text and door", "useWhen": "Placing the button on a dark page or dark sidebar" }
+    ]
+  }
+}
