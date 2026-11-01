@@ -1,0 +1,85 @@
+{
+    "slug": "scroll-expand",
+    "name": "Scroll Expand",
+    "category": "scroll-section-layouts",
+    "isReactBits": true,
+    "description": "Scroll-driven media reveal where a small rounded image or video frame expands to fill the whole container while a title fades out and overlay content fades in.",
+    "contents": [
+        "Full-size image or looping muted video that is clipped to a small rounded frame at the start",
+        "Optional centered title and bottom scroll hint text",
+        "Optional overlay area for children that appears once the media is fully expanded",
+        "Dark gradient scrim that fades in over the media as it expands"
+    ],
+    "behavior": [
+        "Clip-path inset grows from startWidth/startHeight percent to full size with eased (smoothstep) progress",
+        "Corner radius animates from startRadius to endRadius",
+        "Media scales from mediaZoom down to 1 while expanding",
+        "Title fades up and out between 40% and 88% progress, scroll hint fades out in the first 12%",
+        "Children overlay fades and slides in from 68% to 100% progress",
+        "Progress is smoothed with a requestAnimationFrame lerp controlled by smoothing, and applied instantly when smoothing is 0 or the user prefers reduced motion",
+        "Stage is sticky while a tall track provides the scroll range",
+        "Recomputes sizes on window resize and container resize"
+    ],
+    "props": [
+        { "name": "src", "type": "string", "default": "" },
+        { "name": "mediaType", "type": "'image' | 'video'", "default": "image" },
+        { "name": "poster", "type": "string", "default": "" },
+        { "name": "alt", "type": "string", "default": "" },
+        { "name": "title", "type": "string", "default": "" },
+        { "name": "scrollHint", "type": "string", "default": "" },
+        { "name": "startWidth", "type": "number (percent)", "default": 42 },
+        { "name": "startHeight", "type": "number (percent)", "default": 58 },
+        { "name": "startRadius", "type": "number (px)", "default": 24 },
+        { "name": "endRadius", "type": "number (px)", "default": 0 },
+        { "name": "mediaZoom", "type": "number", "default": 1.35 },
+        { "name": "scrollDistance", "type": "number (stage heights)", "default": 1.2 },
+        { "name": "holdDistance", "type": "number (stage heights)", "default": 0.35 },
+        { "name": "smoothing", "type": "number", "default": 0.1 },
+        { "name": "overlayScrim", "type": "number (0 to 1)", "default": 0.45 },
+        { "name": "useWindowScroll", "type": "boolean", "default": false },
+        { "name": "enabled", "type": "boolean", "default": true },
+        { "name": "children", "type": "ReactNode", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": null }
+    ],
+    "editableByProps": [
+        "Media source, image or video type, poster and alt text",
+        "Title, scroll hint and overlay content through children",
+        "Starting frame size and corner radii, media zoom and scrim strength",
+        "Scroll length, hold length and smoothing",
+        "Scroll container: internal scroller or the window (useWindowScroll)",
+        "Disable the effect so the media shows fully expanded (enabled=false)",
+        "Extra props and style are passed to the root element"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change title size range or text shadow",
+            "where": "--se-title-size clamp in the measure function and the title div classes"
+        },
+        {
+            "change": "Change the scrim gradient colors",
+            "where": "scrimRef div bg-[linear-gradient(...)] class"
+        },
+        {
+            "change": "Change timing of title, hint and overlay fades",
+            "where": "smoothstep ranges inside applyProgress"
+        },
+        {
+            "change": "Use a different frame shape than a rounded inset",
+            "where": "frame.style.clipPath line in applyProgress"
+        }
+    ],
+    "fixed": [
+        "Root is w-full h-full, so the parent must have a defined height (for example h-screen) when useWindowScroll is false, otherwise the stage collapses",
+        "By default the root becomes its own hidden-scrollbar scroll container with overscroll-contain, so page scroll does not drive it; set useWindowScroll to use page scrolling",
+        "In window mode the stage height equals the window height and the component adds scroll room of about 2.5 viewport heights by default",
+        "Title and scroll hint text are white with fixed styling, so they need a media with enough contrast",
+        "Video is always autoplay, muted, looped and playsInline, with no controls",
+        "No frame added: it is a full-bleed section layout",
+        "Works on small screens, sizes are measured from the container and title size scales with width"
+    ],
+    "mood": ["cinematic", "immersive", "bold", "modern"],
+    "industries": ["film and media", "travel", "fashion", "real estate", "automotive"],
+    "sections": ["hero", "about"],
+    "dependencies": []
+}
