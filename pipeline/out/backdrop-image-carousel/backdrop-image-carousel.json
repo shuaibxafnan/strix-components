@@ -1,0 +1,44 @@
+{
+  "slug": "backdrop-image-carousel",
+  "name": "Backdrop Image Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen autoplay image carousel with a square framed card over a blurred, cross-fading copy of the same image as backdrop, a progress bar, a counter and prev/next buttons.",
+  "contents": [
+    "Full-bleed backdrop of the current image",
+    "Square image card with autoplay progress bar",
+    "Counter and previous/next buttons bar"
+  ],
+  "behavior": [
+    "Advances automatically every autoPlayInterval ms and loops",
+    "Images cross-fade with a slight scale while the backdrop fades in sync",
+    "Progress bar restarts on every slide change, manual navigation resets the timer"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "4 sample space photos"},
+    {"name": "autoPlayInterval", "type": "number", "default": 4000},
+    {"name": "cardWidth", "type": "string", "default": "max-w-[460px]"},
+    {"name": "backdropOpacity", "type": "string", "default": "opacity-40"},
+    {"name": "backgroundColor", "type": "string", "default": "#0a0a0a"},
+    {"name": "textColor", "type": "string", "default": "#ffffff"},
+    {"name": "altText", "type": "string", "default": "Exhibition view"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, alt text, autoplay speed",
+    "Card width and backdrop opacity as Tailwind classes",
+    "Background and text colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the card aspect ratio", "where": "aspect-square class on the card div"},
+    {"change": "Change the fade timing", "where": "duration-[1200ms] and duration-1000 classes on the backdrop and img elements"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and stays full-bleed with overflow hidden",
+    "Counter and button bar styling uses fixed white translucent tones"
+  ],
+  "mood": ["cinematic", "dark", "immersive", "modern"],
+  "industries": ["photography", "travel", "art", "astronomy", "events"],
+  "sections": ["hero", "gallery"],
+  "dependencies": []
+}

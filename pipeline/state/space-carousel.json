@@ -4,11 +4,12 @@
   "sourceHash": "71533348d9e598c11540e1d8ba915313d93cdf9451adf289c5de33102f5d24af",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "backdrop-image-carousel",
+  "nameLocked": true,
+  "status": "gate_failed",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.552Z"
+  "note": "Renamed to backdrop-image-carousel. Removed empty comments and dead overlay div. Props added: backgroundColor, textColor, altText, className. No frame, no variants.",
+  "updatedAt": "2026-11-01T13:05:01.880Z",
+  "gateOutput": "ERROR missing pipeline/out/backdrop-image-carousel/backdrop-image-carousel.jsx"
 }
