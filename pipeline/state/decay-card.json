@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "decay-card",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.610Z"
+  "note": "Bits describe-only. Gates passed. Needs WebGL2, else plain img; image needs CORS; fixed pixel size; canvas bleeds 24%; global window pointermove; window scope weak on touch.",
+  "updatedAt": "2026-11-01T06:09:37.759Z",
+  "gateOutput": "gates passed"
 }
