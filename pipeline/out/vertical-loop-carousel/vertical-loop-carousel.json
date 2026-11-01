@@ -1,0 +1,51 @@
+{
+  "slug": "vertical-loop-carousel",
+  "name": "Vertical Loop Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "3D cascading card stack carousel where images tilt back above and below the active card, with name and role beside it, arrows, dots, and swipe navigation in an endless loop.",
+  "contents": [
+    "Stack of image cards with perspective depth",
+    "Name and role heading for the active item",
+    "Arrow buttons and progress dots"
+  ],
+  "behavior": [
+    "Cards above and below tilt, scale and fade by distance from the active one",
+    "Loops endlessly in both directions",
+    "Click a side card or dot to jump to it",
+    "Vertical swipe on touch moves to next or previous",
+    "Optional autoplay at a set interval"
+  ],
+  "props": [
+    { "name": "items", "type": "{id,name,role,img}[]", "default": "6 sample members" },
+    { "name": "autoPlay", "type": "boolean", "default": false },
+    { "name": "interval", "type": "number", "default": 5000 },
+    { "name": "bgColor", "type": "string", "default": "#0a0a0a" },
+    { "name": "textColor", "type": "string", "default": "#f5f5f5" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Cards: image, name and role, any count",
+    "Autoplay and its interval",
+    "Background and text color"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change card tilt, depth or spacing",
+      "where": "positionClasses assignments inside the items.map block"
+    },
+    {
+      "change": "Change swipe sensitivity",
+      "where": "handleTouchEnd function"
+    }
+  ],
+  "fixed": [
+    "Fills at least the viewport height",
+    "Card sizes are fixed per breakpoint",
+    "Renders a blank placeholder until mounted"
+  ],
+  "mood": ["sleek", "dark", "dimensional", "modern"],
+  "industries": ["portfolio", "team", "agency", "entertainment"],
+  "sections": ["gallery", "portfolio", "about"],
+  "dependencies": []
+}

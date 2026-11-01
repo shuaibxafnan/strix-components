@@ -1,0 +1,51 @@
+{
+    "slug": "water-image-distortion",
+    "name": "Water Image Distortion",
+    "category": "backgrounds-3d",
+    "isReactBits": false,
+    "description": "Full-screen WebGL image with a flowing water ripple effect: layered noise distorts the picture and adds bluish light caustics on its surface.",
+    "contents": [
+        "Full-viewport WebGL canvas showing one image through a water shader"
+    ],
+    "behavior": [
+        "Continuously animated ripples and caustic highlights driven by time",
+        "Image is cover-fitted and slightly zoomed, with soft faded edges",
+        "Canvas resizes with the window and caps pixel ratio"
+    ],
+    "props": [
+        { "name": "initialImageSrc", "type": "string", "default": "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=1600&q=80" },
+        { "name": "blueish", "type": "number", "default": 0.6 },
+        { "name": "scale", "type": "number", "default": 7 },
+        { "name": "illumination", "type": "number", "default": 0.15 },
+        { "name": "surfaceDistortion", "type": "number", "default": 0.07 },
+        { "name": "waterDistortion", "type": "number", "default": 0.03 },
+        { "name": "devicePixelRatioCap", "type": "number", "default": 2 },
+        { "name": "backgroundColor", "type": "string", "default": "#000000" },
+        { "name": "vertexShaderSource", "type": "string", "default": "DEFAULT_VERTEX_SHADER" },
+        { "name": "fragmentShaderSource", "type": "string", "default": "DEFAULT_FRAGMENT_SHADER" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Image source",
+        "Water tint, ripple scale, light intensity and distortion strengths",
+        "Background color, pixel ratio cap and custom shaders"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change image zoom level",
+            "where": "scale_factor in DEFAULT_FRAGMENT_SHADER"
+        },
+        {
+            "change": "Change edge fade width",
+            "where": "edge_width in DEFAULT_FRAGMENT_SHADER"
+        }
+    ],
+    "fixed": [
+        "Canvas is fixed to the viewport and sized from window dimensions, not the container",
+        "Image must allow cross-origin loading"
+    ],
+    "mood": ["calm", "fluid", "immersive", "cinematic"],
+    "industries": ["travel", "hospitality", "wellness", "art", "spa"],
+    "sections": ["hero", "background"],
+    "dependencies": []
+}

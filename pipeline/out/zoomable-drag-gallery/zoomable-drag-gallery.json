@@ -1,0 +1,62 @@
+{
+  "slug": "zoomable-drag-gallery",
+  "name": "Zoomable Drag Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen draggable image grid with inertia, zoom presets and fit control. Clicking an image flies it into a split-screen view with an animated numbered caption.",
+  "contents": [
+    "Grid of images (rows x cols) on a draggable canvas",
+    "Preloader spinner with label",
+    "Zoom control bar with percentage and preset buttons",
+    "Split-screen detail view with number, title, description and close button"
+  ],
+  "behavior": [
+    "Preloader fades out, then images fly in from the center in a staggered grid reveal",
+    "Drag with inertia and edge resistance inside computed bounds",
+    "Zoom presets change scale and grid gap; keyboard 1, 2, 3 and F, Escape closes the detail view",
+    "Click an image to Flip it into the left half with high-res swap and line-split text reveal",
+    "Images outside the viewport fade to low opacity via IntersectionObserver",
+    "Controls bar and detail view adapt to small screens"
+  ],
+  "props": [
+    {"name": "images", "type": "{src,full,alt}[]", "default": "25 sample Unsplash images"},
+    {"name": "slides", "type": "{number,title,description}[]", "default": "10 sample slides"},
+    {"name": "rows", "type": "number", "default": 8},
+    {"name": "cols", "type": "number", "default": 12},
+    {"name": "itemSize", "type": "number", "default": 320},
+    {"name": "initialZoom", "type": "number", "default": 0.6},
+    {"name": "zoomOutLevel", "type": "number", "default": 0.3},
+    {"name": "zoomInLevel", "type": "number", "default": 1.0},
+    {"name": "backgroundColor", "type": "string", "default": "bg-black"},
+    {"name": "textColor", "type": "string", "default": "text-white"},
+    {"name": "preloaderBackground", "type": "string", "default": "bg-black"},
+    {"name": "preloaderDuration", "type": "number", "default": 2000},
+    {"name": "loadingLabel", "type": "string", "default": "Loading"},
+    {"name": "zoomOutLabel", "type": "string", "default": "Zoom Out"},
+    {"name": "normalLabel", "type": "string", "default": "Normal"},
+    {"name": "zoomInLabel", "type": "string", "default": "Zoom In"},
+    {"name": "fitLabel", "type": "string", "default": "Fit"},
+    {"name": "closeLabel", "type": "string", "default": "Close zoom view"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, captions, grid size, tile size",
+    "Zoom levels and labels",
+    "Background, text and preloader colors (Tailwind classes)",
+    "Preloader duration and all UI labels"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the gap used at each zoom level", "where": "gapForZoom function"},
+    {"change": "Change the easing curves", "where": "CustomEase.create calls for gallery-smooth and gallery-center"}
+  ],
+  "fixed": [
+    "Requires GSAP with Draggable, InertiaPlugin, CustomEase and Flip plugins",
+    "Root is h-screen with fixed-position layers; place it as a full-page section",
+    "Adds an overlay node to document.body during zoom and listens to document keydown, window resize and document mouseleave; all removed on unmount",
+    "Keyboard shortcuts 1, 2, 3, F and Escape are hardcoded"
+  ],
+  "mood": ["immersive", "modern", "editorial", "dark", "playful"],
+  "industries": ["photography", "art", "ceramics", "portfolio", "fashion", "architecture"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["gsap"]
+}

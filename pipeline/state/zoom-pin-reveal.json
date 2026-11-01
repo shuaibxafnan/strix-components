@@ -4,11 +4,12 @@
   "sourceHash": "55fda3c0f690872a58b8cb931a1f94f22abb793478ad0c6f0c5d0e49e7c6b634",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "zoom-pin-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.582Z"
+  "note": "No rename. Removed markers debug prop (ambiguous). CDN loader replaced by dynamic imports of gsap and ScrollTrigger. Added className. No frame, no variants. Pin and scroll distance in fixed.",
+  "updatedAt": "2026-11-01T15:42:24.399Z",
+  "gateOutput": "gates passed"
 }

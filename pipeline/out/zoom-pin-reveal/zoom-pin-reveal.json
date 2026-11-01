@@ -1,0 +1,48 @@
+{
+  "slug": "zoom-pin-reveal",
+  "name": "Zoom Pin Reveal",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen pinned scroll section where a foreground cutout image zooms toward the viewer in 3D over a slightly scaling background image, revealing depth as you scroll.",
+  "contents": [
+    "Full-viewport background image",
+    "Foreground cutout image layered above in a perspective container"
+  ],
+  "behavior": [
+    "Section pins to the viewport while scrolling",
+    "Foreground image scales and moves along Z while the background scales up, scrubbed by scroll"
+  ],
+  "props": [
+    { "name": "bgImage", "type": "string", "default": "https://images.unsplash.com/photo-1589848315097-ba7b903cc1cc?q=80&w=1920&auto=format&fit=crop" },
+    { "name": "bgSize", "type": "string", "default": "cover" },
+    { "name": "bgPosition", "type": "string", "default": "center center" },
+    { "name": "foregroundImage", "type": "string", "default": "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/alone.png" },
+    { "name": "foregroundAlt", "type": "string", "default": "Foreground subject" },
+    { "name": "pinEnd", "type": "string", "default": "+=150%" },
+    { "name": "scrub", "type": "boolean", "default": true },
+    { "name": "imgScale", "type": "number", "default": 2 },
+    { "name": "imgZ", "type": "number", "default": 350 },
+    { "name": "perspective", "type": "number", "default": 500 },
+    { "name": "heroScale", "type": "number", "default": 1.1 },
+    { "name": "ease", "type": "string", "default": "power1.inOut" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Background and foreground images, alt text, background sizing and position",
+    "Pin length, scrub, zoom amounts, perspective and easing"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change where the pin starts",
+      "where": "start: \"top top\" in the scrollTrigger config"
+    }
+  ],
+  "fixed": [
+    "Pins the section during scroll, adding scroll distance set by pinEnd",
+    "Each layer is a full viewport height (h-screen)"
+  ],
+  "mood": ["cinematic", "immersive", "dramatic"],
+  "industries": ["travel", "film", "fashion", "automotive", "gaming"],
+  "sections": ["hero"],
+  "dependencies": ["gsap"]
+}

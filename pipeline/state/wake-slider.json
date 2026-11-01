@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "wake-slider",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.627Z"
+  "note": "Bits describe-only. Category ui-elements. No variants. Needs motion. 32 bars may get thin at 360px (in fixed).",
+  "updatedAt": "2026-11-01T15:26:59.517Z",
+  "gateOutput": "gates passed"
 }

@@ -4,11 +4,12 @@
   "sourceHash": "3358f15cb6c7a16cf5ba39731ab59c9a3683c4f4ced7b402f9e1adcbecdf488d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "expanding-photo-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.576Z"
+  "note": "Renamed visual-silence -> expanding-photo-grid. GSAP/CustomEase via dynamic import (deps gsap, next). Added className. Kept next/font/google Inter_Tight; possible conflict with no-font-imports rule, reviewer to check. No frame change, no variants. Gate warning rAF without cancel, single call.",
+  "updatedAt": "2026-11-01T15:22:15.767Z",
+  "gateOutput": "WARN  requestAnimationFrame without cancelAnimationFrame\ngates passed"
 }

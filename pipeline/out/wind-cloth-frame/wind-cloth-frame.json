@@ -1,0 +1,61 @@
+{
+  "slug": "wind-cloth-frame",
+  "name": "Wind Cloth Frame",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "WebGL photo or video printed on a paper-framed sheet that billows in a procedural wind, with ragged edges, film grain, scratches and orbit drag controls.",
+  "contents": [
+    "Full-height WebGL canvas with a waving paper-framed image",
+    "Optional file upload button to swap in a local image or video"
+  ],
+  "behavior": [
+    "Plane vertices ripple with gusting wind, pinned at the top",
+    "Paper edge is ragged by noise, photo gets grain, dust and scratches",
+    "Drag to orbit the camera with damping",
+    "Uploaded videos play muted in a loop as the texture",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#111111"},
+    {"name": "defaultMediaUrl", "type": "string", "default": "https://images.unsplash.com/photo-1777902609361-a8b8b7a697fb?auto=format&fit=crop&w=1080&q=80"},
+    {"name": "cameraZ", "type": "number", "default": 2.5},
+    {"name": "baseHeight", "type": "number", "default": 1.3},
+    {"name": "enableOrbitControls", "type": "boolean", "default": true},
+    {"name": "enableFileUpload", "type": "boolean", "default": true},
+    {"name": "uploadButtonLabel", "type": "string", "default": "Load File"},
+    {"name": "windForce", "type": "number", "default": 0.2},
+    {"name": "fabricDetail", "type": "number", "default": 0.45},
+    {"name": "shadowOpacity", "type": "number", "default": 0.4},
+    {"name": "edgeScale", "type": "number", "default": 8.8},
+    {"name": "edgeAmp", "type": "number", "default": 0.07},
+    {"name": "frameSize", "type": "number", "default": 0},
+    {"name": "photoInset", "type": "number", "default": 0.013},
+    {"name": "paperColor", "type": "string", "default": "#f0ebe0"},
+    {"name": "edgeShadowColor", "type": "string", "default": "#000000"},
+    {"name": "edgeShadowOpacity", "type": "number", "default": 0.071},
+    {"name": "grainAmp", "type": "number", "default": 0.034925},
+    {"name": "scratchAmp", "type": "number", "default": 0.0106272},
+    {"name": "vignette", "type": "number", "default": 0},
+    {"name": "seed", "type": "number", "default": 0},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Image URL, background and paper colors, upload button label and visibility",
+    "Wind strength, fabric ripple, shadow, edge roughness, grain, scratches and vignette",
+    "Camera distance, image size and orbit controls toggle"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the cloth mesh resolution", "where": "PlaneGeometry(1, 1, 64, 64) call"},
+    {"change": "Change wave shape of the billowing", "where": "VERTEX_SHADER constant"},
+    {"change": "Change gust rhythm", "where": "gust calculation inside animate"}
+  ],
+  "fixed": [
+    "Root is a full-width, viewport-height container that draws the canvas inside it",
+    "Requires WebGL",
+    "Listens to window resize while mounted and removes it on unmount"
+  ],
+  "mood": ["dreamy", "vintage", "artistic", "tactile"],
+  "industries": ["photography", "art", "fashion", "film", "portfolio"],
+  "sections": ["hero", "gallery", "background"],
+  "dependencies": ["three"]
+}

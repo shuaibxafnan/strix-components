@@ -1,0 +1,46 @@
+{
+  "slug": "magnifier-image-gallery",
+  "name": "Magnifier Image Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Vertical stack of captioned image cards where hovering an image shows a circular magnifier lens that follows the cursor and zooms into the photo.",
+  "contents": [
+    "Stack of image cards, each with index label, tag pill, image, title, subtitle and credit link",
+    "Circular zoom lens overlay on the hovered image"
+  ],
+  "behavior": [
+    "Circular lens follows the cursor over the image and shows a magnified view",
+    "Lens fades out on mouse leave",
+    "Image loses its grayscale and scales slightly on card hover",
+    "Renders only after mount"
+  ],
+  "props": [
+    {"name": "images", "type": "{src,alt,title,tag,credit,creditLink}[]", "default": "2 sample images"},
+    {"name": "zoomFactor", "type": "number", "default": 2.2},
+    {"name": "lensSize", "type": "number", "default": 140},
+    {"name": "cardWidth", "type": "string", "default": "max-w-xl"},
+    {"name": "catalogLabel", "type": "string", "default": "CATALOG"},
+    {"name": "subtitle", "type": "string", "default": "Exhibition Archive Specimen"},
+    {"name": "creditLabel", "type": "string", "default": "Captured by"},
+    {"name": "backgroundColor", "type": "string", "default": "#0b0c10"},
+    {"name": "textColor", "type": "string", "default": "#e5e7eb"},
+    {"name": "accentColor", "type": "string", "default": "#9ab504"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, titles, tags, credits and links",
+    "Zoom level, lens size and card width",
+    "Labels, background, text and accent colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Touch support for the lens", "where": "handleMouseMove"}
+  ],
+  "fixed": [
+    "Lens is mouse hover only; images remain visible on touch devices",
+    "Cards stack vertically with fixed spacing (space-y-32)"
+  ],
+  "mood": ["dark", "elegant", "editorial", "tactile"],
+  "industries": ["photography", "art", "museums", "portfolio", "editorial"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

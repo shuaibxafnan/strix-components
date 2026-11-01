@@ -1,0 +1,35 @@
+{
+  "slug": "hover-displacement-image",
+  "name": "Hover Displacement Image",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "A single WebGL image that warps with a chromatic radial displacement when hovered or touched, easing smoothly in and out through a custom fragment shader.",
+  "contents": ["One WebGL-rendered image plane centered in the viewport"],
+  "behavior": [
+    "Hover or touch eases a shader progress uniform from 0 to 1 with GSAP, producing a radial zoom distortion with RGB channel separation",
+    "Leaving or releasing eases the effect back",
+    "Plane scales to the container width up to a max width, height adapts to viewport"
+  ],
+  "props": [
+    {"name": "imageUrl", "type": "string", "default": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb"},
+    {"name": "imageAlt", "type": "string", "default": "Image with displacement hover effect"},
+    {"name": "maxPlaneWidth", "type": "string", "default": "320px"},
+    {"name": "hoverDuration", "type": "number", "default": 1.0},
+    {"name": "hoverEase", "type": "string", "default": "expo.inOut"},
+    {"name": "backgroundColor", "type": "string", "default": "#1d1e22"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Image and alt text", "Plane max width", "Transition duration and easing", "Background color"],
+  "needsCodeEdit": [
+    {"change": "Change the distortion look", "where": "FRAGMENT_SHADER constant"},
+    {"change": "Change plane height", "where": "h-[calc(50vw+180px)] sm:h-[70vh] classes on the planeRef div"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Image must allow cross-origin loading for WebGL textures"
+  ],
+  "mood": ["futuristic", "dramatic", "playful"],
+  "industries": ["photography", "fashion", "art", "portfolio"],
+  "sections": ["gallery", "hero"],
+  "dependencies": ["curtainsjs", "gsap"]
+}

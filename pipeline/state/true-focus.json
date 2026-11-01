@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "true-focus",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.635Z"
+  "note": "Bits describe-only. Category text-effects. Variants via focusStyle. Depends on motion; 3rem word size hardcoded; needs 2+ words to cycle.",
+  "updatedAt": "2026-11-01T15:14:54.413Z",
+  "gateOutput": "gates passed"
 }

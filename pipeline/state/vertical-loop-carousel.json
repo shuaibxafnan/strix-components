@@ -4,11 +4,12 @@
   "sourceHash": "c748ac101ae8b17993222dc24ed9ca14c8996f7ab44aa0e185a943d58ef1f587",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "vertical-loop-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.574Z"
+  "note": "No rename. Removed comments only. Added bgColor, textColor props, aria-labels on mobile arrows. No frame, no variants. Kept pre-mount blank placeholder.",
+  "updatedAt": "2026-11-01T15:19:08.862Z",
+  "gateOutput": "gates passed"
 }

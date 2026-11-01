@@ -1,0 +1,79 @@
+{
+    "slug": "warm-tooltip",
+    "name": "Warm Tooltip",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Tooltip that wraps any element and appears on hover, focus or touch long-press. Once one is open, neighbouring tooltips open instantly and glide between triggers in a shared bubble.",
+    "contents": [
+        "Wrapper around a single child element that acts as the trigger",
+        "Floating tooltip bubble with text or node content, optional keyboard shortcut chip and optional arrow",
+        "Optional fuse line showing the open delay progress next to the trigger",
+        "Optional WarmTooltipGroup export to share timing across several tooltips"
+    ],
+    "behavior": [
+        "Cold hover opens after a delay with a scale, rise and blur pop",
+        "While a tooltip is open or just closed (warm window), hovering another trigger opens at once and the bubble springs to the new position and size",
+        "Content cross-fades with a small slide and blur when switching triggers",
+        "Keyboard focus-visible opens instantly, Escape or blur closes",
+        "Touch devices open on long press, which suppresses the click, and tapping outside closes",
+        "Bubble follows the trigger on scroll and resize and is clamped inside the viewport",
+        "Optional lean tilt of the bubble based on movement speed in a group",
+        "Reduced motion disables pop, rise, blur and lean"
+    ],
+    "props": [
+        { "name": "content", "type": "ReactNode", "default": "undefined" },
+        { "name": "shortcut", "type": "ReactNode", "default": "undefined" },
+        { "name": "children", "type": "ReactElement", "default": "undefined" },
+        { "name": "side", "type": "'top' | 'bottom' | 'left' | 'right'", "default": "top" },
+        { "name": "delay", "type": "number", "default": "undefined (uses group delay, 400)" },
+        { "name": "warmWindow", "type": "number", "default": "undefined (uses group warmWindow, 300)" },
+        { "name": "surfaceColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "inkColor", "type": "string", "default": "#18181b" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "md" },
+        { "name": "radius", "type": "number", "default": 8 },
+        { "name": "gap", "type": "number", "default": 8 },
+        { "name": "arrow", "type": "boolean", "default": true },
+        { "name": "popDuration", "type": "number", "default": 160 },
+        { "name": "popScale", "type": "number", "default": 0.94 },
+        { "name": "popBlur", "type": "number", "default": 4 },
+        { "name": "showFuse", "type": "boolean", "default": false },
+        { "name": "longPress", "type": "number", "default": 500 },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Tooltip content, shortcut chip and trigger element",
+        "Side, gap, size, radius, arrow, colors",
+        "Open delay, warm window, pop duration, scale and blur, long-press time",
+        "Fuse indicator and disabled state",
+        "Group timing (delay, warmWindow, travel, lean) by wrapping triggers in WarmTooltipGroup"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the font sizes and padding of the size presets",
+            "where": "SIZES constant"
+        },
+        {
+            "change": "Change the close grace period or content swap animation",
+            "where": "GRACE, SWAP and SWAP_SHIFT constants and the LAYER variants"
+        },
+        {
+            "change": "Change the bubble shadow or font weight",
+            "where": "className of the inner motion.span inside the portal in WarmTooltipGroup"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package (motion/react) and React DOM portals",
+        "Renders the bubble in a portal on document.body with z-index 9999",
+        "Adds document-level pointerdown, visibilitychange and capture-phase window scroll and resize listeners while open",
+        "Children must be a single React element that accepts aria-describedby",
+        "Content is a single nowrap line, so long text can overflow narrow screens",
+        "Hover opening is ignored for touch pointers, touch relies on long press",
+        "Default colors are a light surface with dark text",
+        "Group props travel and lean are only available on WarmTooltipGroup, not on WarmTooltip"
+    ],
+    "mood": ["polished", "minimal", "smooth"],
+    "industries": ["saas", "developer tools", "productivity", "fintech"],
+    "sections": ["global", "navbar", "features"],
+    "dependencies": ["motion"]
+}

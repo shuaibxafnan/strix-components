@@ -4,11 +4,12 @@
   "sourceHash": "5b76952832ff07b55df37317b96ae875f9e3a87f190311a8921a03ceb4de849e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "undo-redo-clock",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.574Z"
+  "note": "No rename. Removed containerBg prop/demo bg (judgement call), isMounted guard, empty {} placeholders. Frame kept, className merged. Added undoLabel, redoLabel, className. No variants. Invalid cubic-bezier Tailwind classes left as is.",
+  "updatedAt": "2026-11-01T15:16:22.984Z",
+  "gateOutput": "gates passed"
 }

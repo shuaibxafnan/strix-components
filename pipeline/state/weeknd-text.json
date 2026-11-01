@@ -4,11 +4,12 @@
   "sourceHash": "b0e2eb485ed7d45147b017be13bd0c69f0cd31c7251028d71b3c1506ec1de8ee",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "stretch-morph-text",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.580Z"
+  "note": "Renamed weeknd-text -> stretch-morph-text (brand name). CDN loader replaced by import('gsap'), cancel guard, timeline kill. GSAP targets scoped to own SVG, layers mapped. Removed {} remnants, console.error. Added className. Frame kept. No variants. LETTER_PATHS in needsCodeEdit.",
+  "updatedAt": "2026-11-01T15:38:11.836Z",
+  "gateOutput": "gates passed"
 }

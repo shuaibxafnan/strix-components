@@ -4,11 +4,12 @@
   "sourceHash": "8f6e4d706e8ae48d4f2b382f2a8712cc3dc51b919b86252a3f57c78b808082cb",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "wind-cloth-frame",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.580Z"
+  "note": "No rename. esm.sh loaders replaced by dynamic imports of three and OrbitControls (dep three). Added className. Kept file upload (enableFileUpload, uploadButtonLabel). No frame change, no variants.",
+  "updatedAt": "2026-11-01T15:38:58.018Z",
+  "gateOutput": "gates passed"
 }

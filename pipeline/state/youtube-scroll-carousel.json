@@ -4,11 +4,12 @@
   "sourceHash": "1755bc2910d53aca2026326c4b4971b052d616c04fd1cb78a717588d6c22c6ae",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "arrow-scroll-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.581Z"
+  "note": "Renamed youtube-scroll-carousel -> arrow-scroll-carousel (brand name). Root h-screen replaced by py-8. Removed {} remnants, mounted gate, item ids. Added className, per-item alt. Scrollbar-hiding style kept as plain style tag. No variants.",
+  "updatedAt": "2026-11-01T15:40:40.599Z",
+  "gateOutput": "gates passed"
 }

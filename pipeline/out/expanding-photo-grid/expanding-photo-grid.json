@@ -1,0 +1,70 @@
+{
+  "slug": "expanding-photo-grid",
+  "name": "Expanding Photo Grid",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen dark gallery showing one grayscale photo that expands on hover into a 3x3 grid, with a category menu sliding in, a logo that collapses to its initials, and a card that flips to reveal a quote.",
+  "contents": [
+    "3x3 grid of grayscale photo cards with number, title and subtitle captions",
+    "Logo text with gallery and series labels",
+    "Vertical category list on the right edge (desktop)",
+    "Flip card with quote and author on its back",
+    "Hint message at the bottom"
+  ],
+  "behavior": [
+    "Hovering the center card expands the other eight cards outward from the center with staggered easing",
+    "Category menu staggers in and the logo letters blur out and merge to initials while expanded",
+    "Hovering the flip card spins it in 3D to show a quote, leaving flips it back",
+    "Leaving the grid collapses it again",
+    "On touch devices, tapping the center card toggles expansion and tapping the flip card toggles the flip",
+    "Animated film grain overlay and edge vignette"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#0a0a0a" },
+    { "name": "logoText", "type": "string", "default": "VISUAL SILENCE" },
+    { "name": "galleryLabel", "type": "string", "default": "Gallery" },
+    { "name": "seriesLabel", "type": "string", "default": "Series I" },
+    { "name": "mysteriousMessage", "type": "string", "default": "The magic lies within the seventh frame..." },
+    { "name": "duration", "type": "number", "default": 0.64 },
+    { "name": "flipDuration", "type": "number", "default": 0.8 },
+    { "name": "showNoise", "type": "boolean", "default": true },
+    { "name": "cards", "type": "{image,title,subtitle}[]", "default": "9 sample cards" },
+    { "name": "flipCardIndex", "type": "number", "default": 6 },
+    { "name": "flipCardQuote", "type": "string", "default": "In the spaces between light and shadow, the unseen reveals itself. The photograph captures not just what is visible, but the mystery that lies beyond perception." },
+    { "name": "flipCardAuthor", "type": "string", "default": "VS" },
+    { "name": "quoteMark", "type": "string", "default": "“" },
+    { "name": "categories", "type": "string[]", "default": "8 sample categories" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All card images, titles and subtitles",
+    "Logo text, labels, hint message, quote text and author, category names",
+    "Background color, grain on or off, expand and flip speeds",
+    "Which card flips"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change which card sits in the center or the final grid positions",
+      "where": "positions array inside the useEffect"
+    },
+    {
+      "change": "Change grain strength or vignette",
+      "where": "vs-noise block and the radial-gradient div"
+    },
+    {
+      "change": "Show images in color instead of grayscale",
+      "where": "grayscale class on the img elements"
+    }
+  ],
+  "fixed": [
+    "Needs exactly 9 cards, the center card is index 4",
+    "Registers the GSAP CustomEase plugin and creates the customEase ease",
+    "Grain overlay, vignette, logo, hint message and category list are position fixed against the viewport",
+    "Category list is hidden below the md breakpoint",
+    "Root is a full viewport height section"
+  ],
+  "mood": ["dark", "minimal", "editorial", "cinematic", "mysterious"],
+  "industries": ["photography", "art gallery", "fashion", "portfolio", "film"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["gsap", "next"]
+}

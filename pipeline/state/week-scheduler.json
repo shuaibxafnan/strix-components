@@ -4,11 +4,12 @@
   "sourceHash": "b56f2d1c343b3ee43a24343136f5c753185a45252cd7caca71f076a7db6b3645",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "week-scheduler",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.580Z"
+  "note": "No rename. Labels/colors now props. Kept Google Fonts import, randomUUID. Added timer cleanup (gate WARN remains). min-h-full to min-h-screen. Slot row wraps, min-w-[120px] time box. No frame, no variants.",
+  "updatedAt": "2026-11-01T15:37:25.927Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

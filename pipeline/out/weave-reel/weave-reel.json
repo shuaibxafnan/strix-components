@@ -1,0 +1,42 @@
+{
+  "slug": "weave-reel",
+  "name": "Weave Reel",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen WebGL reel of image strips that curve and cross like woven ribbons, moving and bending with page scroll velocity through Lenis infinite scrolling.",
+  "contents": ["Fixed full-viewport three.js canvas with several rotated, curved columns of looping images", "Optional drei loading progress indicator"],
+  "behavior": [
+    "Images loop endlessly along each column",
+    "Scroll velocity from Lenis moves each column at its own speed and bends the images through the vertex shader",
+    "Lenis runs in infinite mode with touch sync",
+    "Direction can be vertical or horizontal"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "25 sample image URLs"},
+    {"name": "imageSize", "type": "[number, number]", "default": [0.3, 0.4]},
+    {"name": "gap", "type": "number", "default": 0},
+    {"name": "direction", "type": "\"vertical\" | \"horizontal\"", "default": "vertical"},
+    {"name": "columns", "type": "{position,rotation,wheelFactor,wheelDirection,curveStrength,curveFrequency}[]", "default": "6 sample columns"},
+    {"name": "scrollSpeedSmoothing", "type": "number", "default": 0},
+    {"name": "cameraZ", "type": "number", "default": 3},
+    {"name": "bgColor", "type": "string", "default": "#f8f8f8"},
+    {"name": "includeLenis", "type": "boolean", "default": true},
+    {"name": "lenisOptions", "type": "object", "default": {"infinite": true, "syncTouch": true}},
+    {"name": "showLoader", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Images, sizes, spacing, direction", "Column layout, rotation, curve and scroll speed", "Background color, camera distance, Lenis options, loader"],
+  "needsCodeEdit": [
+    {"change": "Change the image fragment look", "where": "IMAGE_FRAGMENT_SHADER constant"},
+    {"change": "Change the bend shape", "where": "VERTICAL_VERTEX_SHADER and HORIZONTAL_VERTEX_SHADER constants"}
+  ],
+  "fixed": [
+    "Canvas is fixed to the full viewport behind page content",
+    "Lenis takes over page scrolling in infinite mode when includeLenis is true",
+    "Images load from remote URLs and need CORS access"
+  ],
+  "mood": ["dynamic", "modern", "immersive", "playful"],
+  "industries": ["fashion", "photography", "creative agency", "art", "portfolio"],
+  "sections": ["background", "hero", "gallery"],
+  "dependencies": ["three", "@react-three/fiber", "@react-three/drei", "lenis"]
+}

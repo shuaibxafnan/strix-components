@@ -4,11 +4,12 @@
   "sourceHash": "eb83d67de80ef9b3225d85cf12c0171dd2a61a67b866b1170850b920047668d2",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "voyage-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.576Z"
+  "note": "No rename. CDN loader replaced by import('gsap'). Removed next/font Anton and Inter_Tight (look changes, in fixed). Added className. Kept sample hero/closing sections (ambiguous). No frame, no variants.",
+  "updatedAt": "2026-11-01T15:25:17.064Z",
+  "gateOutput": "gates passed"
 }

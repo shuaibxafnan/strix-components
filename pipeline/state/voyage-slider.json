@@ -4,11 +4,12 @@
   "sourceHash": "e421eb833d828f6ba4688c49ca7b5b4b51ef4e070f8b9a9d681a36d548722144",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "voyage-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.577Z"
+  "note": "No rename. Removed empty {} remnants. imagesloaded via import() (dep). Added backgroundColor, textColor, loadingLabel, prevLabel, nextLabel, className. Cleanup for cancel, timeout, RAF. slideWidth default now clamp(120px,25vw,300px). No frame change, no variants.",
+  "updatedAt": "2026-11-01T15:26:20.848Z",
+  "gateOutput": "gates passed"
 }

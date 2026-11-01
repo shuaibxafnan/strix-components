@@ -1,0 +1,56 @@
+{
+  "slug": "webgl-scroll-carousel",
+  "name": "WebGL Scroll Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Pinned full-screen WebGL carousel of image planes that slide sideways as the page scrolls, with velocity-driven RGB shift and bend, behind a large horizontally drifting watermark word.",
+  "contents": [
+    "Large faded watermark word that moves horizontally on scroll",
+    "Full-screen canvas with a row of image planes rendered in Three.js"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Canvas section is pinned while scroll progress moves the image row sideways",
+    "Scroll velocity bends the planes and splits the blue channel",
+    "Canvas resizes to the window with a debounce"
+  ],
+  "props": [
+    {"name": "watermarkText", "type": "string", "default": "Culture"},
+    {"name": "watermarkOpacity", "type": "number", "default": 0.05},
+    {"name": "watermarkFontSize", "type": "string", "default": "35vw"},
+    {"name": "scrollPinLength", "type": "string", "default": "+=500%"},
+    {"name": "watermarkPinLength", "type": "string", "default": "+=600%"},
+    {"name": "watermarkStartX", "type": "string", "default": "20%"},
+    {"name": "watermarkEndX", "type": "string", "default": "-60%"},
+    {"name": "lenisDuration", "type": "number", "default": 1.2},
+    {"name": "cameraZ", "type": "number", "default": 1.75},
+    {"name": "cameraY", "type": "number", "default": 0.3},
+    {"name": "cameraRotationZ", "type": "number", "default": 0.01},
+    {"name": "planeWidth", "type": "number", "default": 1},
+    {"name": "planeHeight", "type": "number", "default": 0.75},
+    {"name": "planeSpacing", "type": "number", "default": 1.1},
+    {"name": "planeRotationY", "type": "number", "default": 0.03},
+    {"name": "velocityScale", "type": "number", "default": 0.00002},
+    {"name": "images", "type": "string[]", "default": "9 sample image URLs"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Watermark text, size, opacity and travel",
+    "Image list and plane size, spacing and tilt",
+    "Camera position and tilt, scroll lengths, smooth scroll duration, distortion strength"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the distortion effect", "where": "fragmentShader and vertexShader constants"},
+    {"change": "Disable smooth scrolling", "where": "new Lenis block inside the useEffect"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Pins the watermark and canvas sections with ScrollTrigger and adds scroll room through the pin lengths",
+    "Kills all ScrollTrigger instances on unmount",
+    "Canvas sized to the full window"
+  ],
+  "mood": ["editorial", "immersive", "modern"],
+  "industries": ["photography", "fashion", "art", "travel"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap", "three", "@studio-freight/lenis"]
+}

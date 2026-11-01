@@ -1,0 +1,60 @@
+{
+  "slug": "pyramid-carousel",
+  "name": "Pyramid Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "WebGL carousel of tall image planes stacked in a pyramid shape that slide on wheel or drag, with hover scaling and a click that expands an image to fullscreen with a wave distortion.",
+  "contents": [
+    "Row of image planes rendered in a WebGL canvas with pyramid depth stacking"
+  ],
+  "behavior": [
+    "Wheel and drag move the carousel, planes ease into new positions with GSAP",
+    "Hovered plane scales up",
+    "Click expands a plane to fill the canvas with a wave warp, click again to close",
+    "Canvas resizes with its container"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "8 sample image URLs"},
+    {"name": "bgColor", "type": "string", "default": "#d5d5d5"},
+    {"name": "height", "type": "string", "default": "100vh"},
+    {"name": "planeWidth", "type": "number", "default": 1},
+    {"name": "planeHeight", "type": "number", "default": 2.5},
+    {"name": "planeGap", "type": "number", "default": 0.1},
+    {"name": "segments", "type": "number", "default": 30},
+    {"name": "stackOffset", "type": "number", "default": 0.1},
+    {"name": "cameraZ", "type": "number", "default": 5},
+    {"name": "cameraFov", "type": "number", "default": 45},
+    {"name": "speedWheel", "type": "number", "default": 0.02},
+    {"name": "speedDrag", "type": "number", "default": -0.3},
+    {"name": "tweenDuration", "type": "number", "default": 2.5},
+    {"name": "tweenEase", "type": "string", "default": "power3.out"},
+    {"name": "hoverScale", "type": "number", "default": 1.1},
+    {"name": "hoverDuration", "type": "number", "default": 0.5},
+    {"name": "openDuration", "type": "number", "default": 2.5},
+    {"name": "waveFrequency", "type": "number", "default": 15},
+    {"name": "waveSpeed", "type": "number", "default": 12},
+    {"name": "enableWheel", "type": "boolean", "default": true},
+    {"name": "enableDrag", "type": "boolean", "default": true},
+    {"name": "enableClick", "type": "boolean", "default": true},
+    {"name": "startProgress", "type": "number", "default": 0},
+    {"name": "dpr", "type": "number", "default": 2},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, background color, height",
+    "Plane size, gap, stacking, camera and wave settings",
+    "Speeds, easing, hover and open durations, input toggles"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the wave distortion shape", "where": "VERTEX_SHADER constant"},
+    {"change": "Change the pyramid stacking order", "where": "pyramidal function"}
+  ],
+  "fixed": [
+    "Canvas gets touch-none, so touch drags on it do not scroll the page",
+    "Image URLs must allow cross-origin texture loading"
+  ],
+  "mood": ["immersive", "modern", "editorial"],
+  "industries": ["photography", "fashion", "art", "architecture"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["three", "gsap"]
+}

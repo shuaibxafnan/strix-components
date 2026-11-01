@@ -4,11 +4,12 @@
   "sourceHash": "67d14ed9fac04a251140e0fce40714afd34717f8bb15d19c23fc01bc4975c5a1",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-warp-image-list",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.578Z"
+  "note": "Renamed web-gl-effect-list -> scroll-warp-image-list. CDN loaders replaced by dynamic imports (gsap incl ScrollSmoother, three). Removed right label, {} remnants, console.error. Added className and color props, unmount cleanup, overflow restore. No frame, no variants.",
+  "updatedAt": "2026-11-01T15:34:07.752Z",
+  "gateOutput": "gates passed"
 }

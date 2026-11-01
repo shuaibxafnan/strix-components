@@ -1,0 +1,49 @@
+{
+  "slug": "wormhole-card",
+  "name": "Wormhole Card",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Tilting glass card with a perspective wormhole grid behind it, where glowing icon orbs drift out of the tunnel on a looping timeline above a tag, title and description.",
+  "contents": [
+    "Card with tag chip, gradient title and description with highlighted phrase",
+    "Wormhole wireframe of ellipses, curves and points",
+    "Looping glowing orbs with icons and orbiting sparks"
+  ],
+  "behavior": [
+    "Card tilts in 3D following the pointer and eases back on leave",
+    "Orbs fly out of the tunnel in staggered loops and fade",
+    "Small sparks orbit and bob around each orb"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#000000" },
+    { "name": "strokeColor", "type": "string", "default": "#ffffff" },
+    { "name": "accentColor", "type": "string", "default": "#404040" },
+    { "name": "orbColor", "type": "string", "default": "#ffffff" },
+    { "name": "borderAccent", "type": "string", "default": "#ffffff55" },
+    { "name": "animationSpeed", "type": "string", "default": "24s" },
+    { "name": "orbs", "type": "{icon,offset,startX,startY}[]", "default": "6 sample orbs" },
+    { "name": "tagText", "type": "string", "default": "Hand Thrown" },
+    { "name": "titleText", "type": "string", "default": "Shaped by Hand\nFinished by Fire" },
+    { "name": "descriptionBefore", "type": "string", "default": "Every vase begins as a lump of clay and ends as " },
+    { "name": "descriptionHighlight", "type": "string", "default": "something that holds light" },
+    { "name": "descriptionAfter", "type": "string", "default": ". No two pieces are ever the same, and that is the point." },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "All card text and highlighted phrase",
+    "Background, stroke, accent, orb and border colors",
+    "Orb count, icons, start positions, delays and loop duration"
+  ],
+  "needsCodeEdit": [
+    { "change": "Wormhole wireframe shapes", "where": "LINES" },
+    { "change": "Tilt intensity", "where": "handleMouseMove" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Uses the Manrope font through next/font/google"
+  ],
+  "mood": ["futuristic", "dark", "cosmic", "elegant"],
+  "industries": ["technology", "ecommerce", "art", "gaming"],
+  "sections": ["features", "other"],
+  "dependencies": []
+}

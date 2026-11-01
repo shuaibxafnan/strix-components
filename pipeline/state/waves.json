@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "waves",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.606Z"
+  "note": "Bits describe-only. Category backgrounds-3d. Variants on lineStyle (solid, dashed). Needs WebGL2 and RG32F, no fallback. GPU heavy at small spacing. Parent must be positioned/sized. Honors reduced motion.",
+  "updatedAt": "2026-11-01T15:30:50.232Z",
+  "gateOutput": "gates passed"
 }

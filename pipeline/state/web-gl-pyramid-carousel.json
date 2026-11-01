@@ -4,11 +4,12 @@
   "sourceHash": "dd3df259cd445398ee6cf971fb2d653b66e9b01eb4307b0af949009900f7462b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "pyramid-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.579Z"
+  "note": "Renamed web-gl-pyramid-carousel -> pyramid-carousel. CDN/new Function loaders replaced by import('three'), import('gsap'). Added className, pointerleave removal, tween kills on cleanup. No frame, no variants. touch-none canvas kept.",
+  "updatedAt": "2026-11-01T15:34:50.921Z",
+  "gateOutput": "gates passed"
 }

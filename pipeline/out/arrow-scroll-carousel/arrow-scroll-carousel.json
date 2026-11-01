@@ -1,0 +1,43 @@
+{
+  "slug": "arrow-scroll-carousel",
+  "name": "Arrow Scroll Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Horizontally scrollable row of square image tiles with floating glass arrow buttons that appear only when more content exists in that direction and scroll the row smoothly.",
+  "contents": [
+    "Row of square rounded image tiles",
+    "Previous and next circular arrow buttons"
+  ],
+  "behavior": [
+    "Native horizontal scroll with hidden scrollbar",
+    "Arrows scroll by a set number of tiles with smooth scrolling",
+    "Arrows fade in and out depending on scroll position",
+    "Images zoom slightly and brighten on hover"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#0b0c10"},
+    {"name": "itemSize", "type": "number", "default": 200},
+    {"name": "gapSize", "type": "number", "default": 24},
+    {"name": "scrollMultiplier", "type": "number", "default": 2},
+    {"name": "arrowBgColor", "type": "string", "default": "rgba(15, 23, 42, 0.6)"},
+    {"name": "arrowIconColor", "type": "string", "default": "#ffffff"},
+    {"name": "items", "type": "{src,alt}[]", "default": "9 sample images"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images and alt text, tile size, gap and scroll distance",
+    "Background and arrow colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change tile corner radius or shadow", "where": "rounded-[20px] tile div inside items.map"},
+    {"change": "Move arrow positions", "where": "left-8 md:left-16 and right-8 md:right-16 classes on the buttons"}
+  ],
+  "fixed": [
+    "Tiles are always square",
+    "Adds a global rule hiding the scrollbar of the no-scrollbar class"
+  ],
+  "mood": ["minimal", "modern", "dark"],
+  "industries": ["photography", "e-commerce", "travel", "interior design"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

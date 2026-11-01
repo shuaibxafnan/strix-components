@@ -1,0 +1,79 @@
+{
+    "slug": "wake-slider",
+    "name": "Wake Slider",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Horizontal slider made of vertical bars. Dragging the handle creates a wave in the bars that scales with drag speed and trails behind the head, like a boat wake.",
+    "contents": [
+        "Row of vertical bars that fill up to the current value",
+        "Optional crest overlay color on the wave peaks",
+        "Optional numeric value readout to the right",
+        "Invisible accessible slider button covering the track"
+    ],
+    "behavior": [
+        "Click or drag on the track to set the value, with pointer capture",
+        "Spring-driven head follows the value; bar heights swell with movement speed and settle flat at rest",
+        "Keyboard control with arrows, PageUp/PageDown, Home and End; jumps skip the animation",
+        "Works controlled (value, onChange) or uncontrolled (defaultValue)",
+        "Respects reduced motion by disabling the wave",
+        "Supports RTL direction"
+    ],
+    "props": [
+        { "name": "value", "type": "number", "default": "undefined" },
+        { "name": "defaultValue", "type": "number", "default": 50 },
+        { "name": "onChange", "type": "(value:number)=>void", "default": "undefined" },
+        { "name": "min", "type": "number", "default": 0 },
+        { "name": "max", "type": "number", "default": 100 },
+        { "name": "step", "type": "number", "default": 1 },
+        { "name": "bars", "type": "number", "default": 32 },
+        { "name": "height", "type": "number", "default": 56 },
+        { "name": "restHeight", "type": "number", "default": 12 },
+        { "name": "gap", "type": "number", "default": 4 },
+        { "name": "fillColor", "type": "string", "default": "#f5f5f5" },
+        { "name": "trackColor", "type": "string", "default": "#27272a" },
+        { "name": "crestColor", "type": "string", "default": "" },
+        { "name": "sensitivity", "type": "number", "default": 1 },
+        { "name": "reach", "type": "number", "default": 6 },
+        { "name": "skew", "type": "number", "default": 0.6 },
+        { "name": "glide", "type": "number", "default": 0.3 },
+        { "name": "smoothing", "type": "number", "default": 100 },
+        { "name": "showValue", "type": "boolean", "default": false },
+        { "name": "formatValue", "type": "(value:number)=>string", "default": "String" },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "ariaLabel", "type": "string", "default": "Value" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Range, step, initial or controlled value and change callback",
+        "Bar count, height, resting height and gap",
+        "Fill, track and crest colors",
+        "Wave strength, reach, skew, glide and smoothing",
+        "Value readout and its format, disabled state, aria label, extra classes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Make the slider vertical",
+            "where": "commitFromX function and the flex layout classes on the trackRef div"
+        },
+        {
+            "change": "Change the wave falloff shape",
+            "where": "paint function, the lift calculation using Math.cos"
+        },
+        {
+            "change": "Change the readout text size or position",
+            "where": "The showValue span at the end of the returned JSX"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package (motion/react) and Tailwind CSS",
+        "Fills the width of its parent (w-full); width is controlled by the container",
+        "Track has a minimum height of 44px for touch targets",
+        "Handles only horizontal pointer position and does not use touch scrolling (touch-none)",
+        "Bar count is fixed by prop, so many bars with small gaps can become very thin on 360px screens",
+        "Wave spring constants SETTLE, FULL_SPEED, MIN_REACH and FLAT are hardcoded"
+    ],
+    "mood": ["playful", "modern", "minimal", "tactile"],
+    "industries": ["music", "audio tools", "SaaS", "gaming", "creative tools"],
+    "sections": ["other"],
+    "dependencies": ["motion"]
+}

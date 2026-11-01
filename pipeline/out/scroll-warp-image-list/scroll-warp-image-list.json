@@ -1,0 +1,51 @@
+{
+  "slug": "scroll-warp-image-list",
+  "name": "Scroll Warp Image List",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Smooth-scrolled vertical list of large serif titles with WebGL image planes behind them that warp and RGB-split in response to scroll velocity, while titles drift sideways on scroll.",
+  "contents": [
+    "Large ghost heading and small fixed heading label",
+    "List of entries, each with a subtitle, a big serif title and a WebGL image plane",
+    "Fullscreen fixed WebGL canvas overlay"
+  ],
+  "behavior": [
+    "GSAP ScrollSmoother smooths page scrolling inside the wrapper",
+    "Image planes follow their DOM images, tilted on a diagonal, and bend and RGB-shift with scroll velocity",
+    "Titles slide horizontally as each entry crosses the viewport",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    {"name": "items", "type": "{subtitle,title,img}[]", "default": "6 sample entries"},
+    {"name": "mainHeading", "type": "string", "default": "Seoul Dynamics"},
+    {"name": "smoothTime", "type": "number", "default": 1.2},
+    {"name": "deformationStrength", "type": "number", "default": 0.00004},
+    {"name": "rgbShiftStrength", "type": "number", "default": 0.00002},
+    {"name": "lerpSpeed", "type": "number", "default": 0.08},
+    {"name": "meshSkewAngle", "type": "number", "default": -4},
+    {"name": "backgroundColor", "type": "string", "default": "#070708"},
+    {"name": "textColor", "type": "string", "default": "#f4f4f5"},
+    {"name": "labelColor", "type": "string", "default": "#a3a3a3"},
+    {"name": "ghostHeadingColor", "type": "string", "default": "#171717"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Entries, titles, subtitles, images and heading text",
+    "Scroll smoothing, warp strength, RGB shift, lerp speed and plane tilt",
+    "Background, text, label and ghost heading colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change plane group tilt or scale", "where": "meshGroup scale and rotation lines"},
+    {"change": "Change warp or color-split shader", "where": "VERTEX_SHADER and FRAGMENT_SHADER constants"}
+  ],
+  "fixed": [
+    "Sets body and html overflow to auto while mounted and restores it on unmount",
+    "Takes over page scrolling with ScrollSmoother on the component wrapper",
+    "Appends a fixed fullscreen WebGL canvas that sizes to the window",
+    "Fixed heading label is hidden below the md breakpoint"
+  ],
+  "mood": ["editorial", "dark", "cinematic", "dynamic"],
+  "industries": ["photography", "fashion", "architecture", "agency", "art"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": ["gsap", "three"]
+}

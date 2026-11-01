@@ -4,11 +4,12 @@
   "sourceHash": "65632f1c6320477784da98125d386ad8fdb5ad4c74c3580df952e21de6c94916",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "magnifier-image-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.582Z"
+  "note": "Renamed zoomable-image-stack -> magnifier-image-gallery. Removed demo header, {} remnants. Added catalogLabel, subtitle, creditLabel, color props, className. Dropped min-h-screen. Lens mouse-only (in fixed, needsCodeEdit). Kept mounted gate. No variants.",
+  "updatedAt": "2026-11-01T15:44:16.673Z",
+  "gateOutput": "gates passed"
 }
