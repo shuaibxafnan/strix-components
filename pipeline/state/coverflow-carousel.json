@@ -4,11 +4,12 @@
   "sourceHash": "40bff04c5bc7685041c4c98bef84765b2a29ae048028f8f466755d3d032647bb",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "coverflow-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.415Z"
+  "note": "Rewritten. Gates passed, 1 warning: orientationchange setTimeout without clearTimeout. Added className, ariaLabel props; goTo raf cleanup. showDots/showProgress false throws on null element (in fixed). Root 100vh. No frame; no variants.",
+  "updatedAt": "2026-11-01T06:01:20.562Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }
