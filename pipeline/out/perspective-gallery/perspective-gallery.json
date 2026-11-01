@@ -1,0 +1,49 @@
+{
+  "slug": "perspective-gallery",
+  "name": "Perspective Gallery",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-height image slider where the active card sits centered and neighbouring cards tilt and shrink to the sides, with serial, title and description revealed on the active card.",
+  "contents": [
+    "Stack of image cards with serial label, title, description and a view link",
+    "Previous and next arrow buttons"
+  ],
+  "behavior": [
+    "Active card is centered at full scale, neighbours fade, scale down, shift and rotate slightly",
+    "Arrow buttons step through slides, optionally looping",
+    "Card text fades in only on the active card",
+    "Image zooms slightly on hover"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#0b0c10"},
+    {"name": "cardWidth", "type": "string", "default": "500px"},
+    {"name": "cardHeight", "type": "string", "default": "500px"},
+    {"name": "transitionTime", "type": "number", "default": 700},
+    {"name": "scaleReduction", "type": "number", "default": 0.12},
+    {"name": "translateXOffset", "type": "number", "default": 150},
+    {"name": "repeat", "type": "boolean", "default": true},
+    {"name": "slides", "type": "{id,img,title,serial,description,alt}[]", "default": "6 sample slides"},
+    {"name": "viewLabel", "type": "string", "default": "View Case"},
+    {"name": "prevLabel", "type": "string", "default": "Back"},
+    {"name": "nextLabel", "type": "string", "default": "Forward"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides, images, titles, serials and descriptions",
+    "Background color, card size, transition speed, tilt spacing and scale",
+    "Looping and button labels"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change tilt angles of side cards", "where": "getDynamicStyles function"},
+    {"change": "Change arrow color", "where": "text-white/40 classes on the Back and Forward buttons"}
+  ],
+  "fixed": [
+    "Root is a full viewport height section with hidden overflow",
+    "Card text colors are white over a dark gradient",
+    "View link is a decorative button without a link target"
+  ],
+  "mood": ["cinematic", "moody", "editorial", "dark"],
+  "industries": ["travel", "photography", "outdoor", "portfolio"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
