@@ -1,0 +1,76 @@
+{
+    "slug": "target-cursor",
+    "name": "Target Cursor",
+    "category": "cursor-effects",
+    "isReactBits": true,
+    "description": "Custom cursor made of four rotating corner brackets and a center dot that snaps onto hovered targets, resizing to wrap them with spring motion, optional label, color change and click squeeze.",
+    "contents": [
+        "Four corner bracket elements and a center dot rendered in a portal on document.body",
+        "Optional text label above the locked target, read from its data-cursor-label attribute"
+    ],
+    "behavior": [
+        "Brackets spin continuously around the pointer while not over a target",
+        "Over an element matching the target selector, brackets lock on, rotate to a quarter turn and resize to wrap it with padding",
+        "Slight parallax lean toward the pointer while locked",
+        "Press squeezes the brackets and shrinks the dot",
+        "Cursor color blends to the on-target color when locked",
+        "Fades in and out as the pointer enters or leaves the window or container",
+        "Spring physics driven by requestAnimationFrame that sleeps when idle"
+    ],
+    "props": [
+        { "name": "targetSelector", "type": "string", "default": ".cursor-target" },
+        { "name": "cursorColor", "type": "string", "default": "#ffffff" },
+        { "name": "cursorColorOnTarget", "type": "string", "default": null },
+        { "name": "spinDuration", "type": "number", "default": 2 },
+        { "name": "hoverDuration", "type": "number", "default": 0.2 },
+        { "name": "parallaxOn", "type": "boolean", "default": true },
+        { "name": "hideDefaultCursor", "type": "boolean", "default": true },
+        { "name": "size", "type": "number", "default": 36 },
+        { "name": "cornerSize", "type": "number", "default": 12 },
+        { "name": "thickness", "type": "number", "default": 3 },
+        { "name": "padding", "type": "number", "default": 6 },
+        { "name": "matchRadius", "type": "boolean", "default": true },
+        { "name": "dotSize", "type": "number", "default": 4 },
+        { "name": "blendMode", "type": "string", "default": "difference" },
+        { "name": "showLabel", "type": "boolean", "default": true },
+        { "name": "clickEffect", "type": "boolean", "default": true },
+        { "name": "container", "type": "HTMLElement | RefObject", "default": null }
+    ],
+    "editableByProps": [
+        "Which elements are targets via a CSS selector, and an optional restricting container",
+        "Colors, blend mode, bracket size, corner length, thickness, dot size and padding",
+        "Spin speed, snap speed, parallax, corner radius matching, label and click effect toggles",
+        "Whether the native cursor is hidden"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change label font size or styling",
+            "where": "The labelRef span className in the returned portal"
+        },
+        {
+            "change": "Change spring feel while following the pointer",
+            "where": "The follow and followC constants inside the frame function"
+        },
+        {
+            "change": "Change press squeeze amount",
+            "where": "The squeeze constant in the frame function"
+        },
+        {
+            "change": "Support touch pointers",
+            "where": "The finePointer media query and the pointerType checks in the handlers"
+        }
+    ],
+    "fixed": [
+        "Renders nothing on touch or non-hover devices, so it has no effect on mobile and tablets",
+        "Attaches global pointer, scroll and blur listeners on window and injects a style tag into document.head",
+        "Hides the native cursor on the whole page (or container) with an important cursor rule while the pointer is inside",
+        "Overlay is fixed full screen at the maximum z-index and ignores pointer events",
+        "Target elements need the matching selector class (default cursor-target) and optional data-cursor-label attribute",
+        "Spin is disabled when the user prefers reduced motion",
+        "Label is fixed at 12px medium text"
+    ],
+    "mood": ["techy", "futuristic", "playful", "bold"],
+    "industries": ["gaming", "creative agency", "portfolio", "technology", "e-commerce"],
+    "sections": ["global"],
+    "dependencies": ["react", "react-dom"]
+}
