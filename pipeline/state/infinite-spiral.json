@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "infinite-spiral",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.614Z"
+  "note": "Bits describe-only. Gates passed. Category cards-galleries. animationMode (auto, scroll, drag, all) documented as variants. Limits in fixed: needs items well above cardsPerTurn, parent needs height, window scroll listener and rAF loop, drag blocks link clicks. Source unchanged.",
+  "updatedAt": "2026-11-01T08:54:03.395Z",
+  "gateOutput": "gates passed"
 }
