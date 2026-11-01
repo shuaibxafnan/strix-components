@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "split-flap-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.632Z"
+  "note": "Gates passed. Source copied unchanged. Category text-effects. Variant tileStyle board/minimal. No frame. Tiles overflow on mobile for long phrases. Needs color-mix. Global style tag.",
+  "updatedAt": "2026-11-01T13:09:45.749Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,93 @@
+{
+    "slug": "split-flap-text",
+    "name": "Split Flap Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Airport-style split-flap display that flips tile by tile through random glyphs to reveal each phrase, then cycles through a list of phrases, with adjustable depth, glare and tile styling.",
+    "contents": [
+        "Row of flip tiles, one per character, padded to a fixed width",
+        "Screen-reader-only label with the current phrase",
+        "Inline stylesheet with keyframes for flap, shade, glare and reveal"
+    ],
+    "behavior": [
+        "Each tile flips through random glyphs from the charset before landing on the target character",
+        "Tiles start in a cascade from left, right or center with a stagger delay",
+        "Cycles through the words list after a hold delay, optionally looping",
+        "Optional intro flips in the first phrase from blank tiles",
+        "Respects prefers-reduced-motion by skipping flap animation",
+        "Depth controls shading, hinge and shadow strength, glare adds a sheen on flipping flaps"
+    ],
+    "props": [
+        { "name": "words", "type": "string[]", "default": ["LAUNCH READY", "SYNC ONLINE", "SIGNAL LIVE"] },
+        { "name": "text", "type": "string", "default": "undefined" },
+        { "name": "flipDuration", "type": "number", "default": 0.12 },
+        { "name": "stagger", "type": "number", "default": 0.06 },
+        { "name": "cycleDelay", "type": "number", "default": 2400 },
+        { "name": "charset", "type": "'alpha' | 'alphanumeric' | 'numeric' | string", "default": "alphanumeric" },
+        { "name": "flipsPerChar", "type": "number", "default": 8 },
+        { "name": "tileColor", "type": "string", "default": "#111827" },
+        { "name": "textColor", "type": "string", "default": "#f8fafc" },
+        { "name": "tileRadius", "type": "number | string", "default": 8 },
+        { "name": "gap", "type": "number | string", "default": 6 },
+        { "name": "fontSize", "type": "number | string", "default": 52 },
+        { "name": "loop", "type": "boolean", "default": true },
+        { "name": "padTo", "type": "number", "default": 12 },
+        { "name": "align", "type": "'left' | 'center' | 'right'", "default": "left" },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "glare", "type": "number", "default": 0 },
+        { "name": "depth", "type": "number", "default": 0.5 },
+        { "name": "order", "type": "'left' | 'right' | 'center' | 'random'", "default": "left" },
+        { "name": "tileStyle", "type": "'board' | 'minimal'", "default": "board" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": {} }
+    ],
+    "editableByProps": [
+        "Phrases to show (words array or single text), alignment and minimum tile count",
+        "Tile and text colors, radius, gap and font size",
+        "Flip speed, stagger, hold time, flips per character, charset, cascade order, looping and intro",
+        "Depth and glare intensity, board or minimal tile look"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the font family",
+            "where": ".split-flap-text rule in the styles template literal"
+        },
+        {
+            "change": "Change the flip easing or keyframe motion",
+            "where": "split-flap-front and split-flap-back keyframes in the styles constant"
+        },
+        {
+            "change": "Add more glyph sets",
+            "where": "CHARSETS constant"
+        }
+    ],
+    "fixed": [
+        "Root is an inline-flex row with no frame, so it sits at the start of its parent and is not centered by itself",
+        "Injects a style tag with global class names prefixed split-flap-text",
+        "Tiles are fixed-width flex items sized from fontSize and never wrap, so long phrases or large fontSize overflow horizontally on small screens, reduce fontSize or padTo there",
+        "Phrases longer than the tile width are cut, width is the larger of padTo and the longest phrase",
+        "Uses a monospace font stack and a hardcoded tile shadow and gradient look",
+        "Extra props are spread onto the root div",
+        "Uses color-mix in CSS, requiring a modern browser"
+    ],
+    "mood": ["retro", "mechanical", "bold", "techy"],
+    "industries": ["travel", "transport", "technology", "events", "gaming"],
+    "sections": ["hero", "stats", "other"],
+    "dependencies": [],
+    "variants": {
+        "prop": "tileStyle",
+        "default": "board",
+        "options": [
+            {
+                "value": "board",
+                "look": "Solid dark tiles with gradient, hinge line, shadow and 3D flap rotation",
+                "useWhen": "A hero headline or status board that should look like a physical airport departures display"
+            },
+            {
+                "value": "minimal",
+                "look": "Transparent tiles with only a thin split line and a clip-path reveal of glyphs, no tile background",
+                "useWhen": "A large headline over a photo or colored section where the text should flip without visible tile boxes"
+            }
+        ]
+    }
+}
