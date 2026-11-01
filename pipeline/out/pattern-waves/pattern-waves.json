@@ -1,0 +1,113 @@
+{
+    "slug": "pattern-waves",
+    "name": "Pattern Waves",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL background where a field of dots, lines, plus signs or text glyphs is displaced and lit by animated wave surfaces, with cursor ripples and a fade mask.",
+    "contents": [
+        "Single full-size container div hosting an OGL WebGL2 canvas",
+        "Six surface presets combining mark pattern, wave type, spacing and lighting"
+    ],
+    "behavior": [
+        "Animated silk, swell or ripple wave surface shades a grid of marks in the chosen color over the background color",
+        "Pointer movement over the page leaves ripples, pressing creates a stronger burst",
+        "Intro animation plays for about 2 seconds on mount",
+        "Rendering pauses when off screen, when the tab is hidden, or when paused is true",
+        "Edges, center, top or bottom of the canvas can fade out"
+    ],
+    "props": [
+        { "name": "preset", "type": "'silk' | 'ocean' | 'pond' | 'lines' | 'terminal' | 'mesh'", "default": "silk" },
+        { "name": "pattern", "type": "'dot' | 'square' | 'plus' | 'line' | 'glyph'", "default": "preset value" },
+        { "name": "wave", "type": "'silk' | 'swell' | 'ripple'", "default": "preset value" },
+        { "name": "spacing", "type": "number", "default": "preset value" },
+        { "name": "markSize", "type": "number", "default": "preset value" },
+        { "name": "depth", "type": "number", "default": "preset value" },
+        { "name": "light", "type": "number", "default": "preset value" },
+        { "name": "shine", "type": "number", "default": "preset value" },
+        { "name": "contrast", "type": "number", "default": "preset value" },
+        { "name": "speed", "type": "number", "default": "preset value" },
+        { "name": "scale", "type": "number", "default": "preset value" },
+        { "name": "direction", "type": "number", "default": "preset value" },
+        { "name": "color", "type": "string", "default": "#ffffff" },
+        { "name": "backgroundColor", "type": "string", "default": "#000000" },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "fade", "type": "'none' | 'edges' | 'center' | 'bottom' | 'top'", "default": "edges" },
+        { "name": "fadeSize", "type": "number", "default": 0.5 },
+        { "name": "characters", "type": "string", "default": ".:-=+*#%@" },
+        { "name": "interactive", "type": "boolean", "default": true },
+        { "name": "cursorSize", "type": "number", "default": 50 },
+        { "name": "cursorStrength", "type": "number", "default": 0.6 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Preset style, mark pattern, wave type, spacing, mark size, depth, lighting, contrast, speed, scale and direction",
+        "Mark and background colors, opacity, fade mask and fade size",
+        "Glyph characters, cursor ripple on/off, size and strength, intro and pause"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or tweak preset looks",
+            "where": "SURFACE_PRESETS constant"
+        },
+        {
+            "change": "Change intro length",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change glyph font",
+            "where": "GLYPH_FONT constant"
+        },
+        {
+            "change": "Change wave shape math",
+            "where": "surface function inside fieldFragment shader"
+        },
+        {
+            "change": "Lower rendering resolution cap",
+            "where": "PIXEL_BUDGET constant"
+        }
+    ],
+    "fixed": [
+        "Requires the ogl package and a WebGL2 browser, renders nothing without WebGL2",
+        "Fills its parent (h-full w-full), the parent needs a size",
+        "Listens to pointer events on window, so ripples react even when other elements cover it",
+        "Client component, canvas created in useEffect on mount",
+        "Pixel budget capped at 4.5 million pixels",
+        "Preset values are used for any style prop left undefined",
+        "Heavy shader work, costly on low-power mobile devices"
+    ],
+    "mood": [
+        "futuristic",
+        "technical",
+        "dark",
+        "hypnotic"
+    ],
+    "industries": [
+        "technology",
+        "saas",
+        "gaming",
+        "creative agency",
+        "crypto"
+    ],
+    "sections": [
+        "hero",
+        "background"
+    ],
+    "dependencies": [
+        "ogl"
+    ],
+    "variants": {
+        "prop": "preset",
+        "default": "silk",
+        "options": [
+            { "value": "silk", "look": "Fine dots on a flowing silk wave with soft shine", "useWhen": "Elegant general-purpose hero background" },
+            { "value": "ocean", "look": "Dots on slow rolling swells with strong highlights", "useWhen": "Calm, watery or travel themes" },
+            { "value": "pond", "look": "Dots with concentric ripple waves", "useWhen": "Gentle, reactive backgrounds" },
+            { "value": "lines", "look": "Thin line marks over a silk wave", "useWhen": "Clean editorial or topographic feel" },
+            { "value": "terminal", "look": "Text glyph marks with ripple waves and high contrast", "useWhen": "Developer, hacker or data themes" },
+            { "value": "mesh", "look": "Plus-sign marks on a silk wave with high contrast", "useWhen": "Blueprint or grid-like technical looks" }
+        ]
+    }
+}

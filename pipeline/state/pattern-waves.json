@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "pattern-waves",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.601Z"
+  "note": "Bits describe-only. Needs ogl and WebGL2. Fills parent, needs sized parent. Pointer events on window. Heavy on low-power mobile. preset prop documented as variants (silk default, ocean, pond, lines, terminal, mesh).",
+  "updatedAt": "2026-11-01T10:28:15.196Z",
+  "gateOutput": "gates passed"
 }
