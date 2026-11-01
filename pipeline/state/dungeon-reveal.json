@@ -4,11 +4,12 @@
   "sourceHash": "d51d8dd2edad9e32c967e133d05f17ae86e3d658d1205b6180870995b2457b5d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "dungeon-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.428Z"
+  "note": "Added className prop; w-screen -> w-full. Radius slider panel kept (ambiguous, could be demo control). Touch preventDefault in fixed. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:33:20.063Z",
+  "gateOutput": "gates passed"
 }
