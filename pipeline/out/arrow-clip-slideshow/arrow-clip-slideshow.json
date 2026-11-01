@@ -1,0 +1,277 @@
+{
+  "slug": "arrow-clip-slideshow",
+  "name": "Arrow Clip Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen image slideshow where each photo is clipped into an arrow shape that slides across the screen, with staggered headline lines, arrow buttons and a slide counter.",
+  "contents": [
+    "Slides with a background image, two-row headline with italic and bold accent words, and a link",
+    "Title in the top corner",
+    "Previous and next arrow buttons with a numbered counter pill"
+  ],
+  "behavior": [
+    "Image morphs into an arrow-shaped clip path and slides out while the next one slides in with parallax",
+    "Headline rows slide vertically with a stagger",
+    "Hovering the link relaxes the image clip into a framed rectangle",
+    "Keyboard arrows navigate, optional wheel and autoplay",
+    "Loops from last slide to first"
+  ],
+  "props": [
+    {
+      "name": "slides",
+      "type": "{image,rows,linkLabel,linkHref}[]",
+      "default": "5 sample slides"
+    },
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#000"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#fff"
+    },
+    {
+      "name": "frameColor",
+      "type": "string",
+      "default": "#ff5ba4"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "default": "Stories"
+    },
+    {
+      "name": "showTitle",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showNav",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showIndex",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "imgParallax",
+      "type": "number",
+      "default": 100
+    },
+    {
+      "name": "autoplay",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "autoplayDelay",
+      "type": "number",
+      "default": 5000
+    },
+    {
+      "name": "enableKeyboard",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "enableWheel",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "headlineSize",
+      "type": "string",
+      "default": "clamp(2rem,6.5vw,6rem)"
+    },
+    {
+      "name": "accentSize",
+      "type": "string",
+      "default": "clamp(2rem,7vw,6rem)"
+    },
+    {
+      "name": "serifFamily",
+      "type": "string",
+      "default": "Georgia, serif"
+    },
+    {
+      "name": "height",
+      "type": "string",
+      "default": "100vh"
+    },
+    {
+      "name": "clipInitial",
+      "type": "string",
+      "default": "polygon(100% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%, 0% 0%)"
+    },
+    {
+      "name": "clipFinalRight",
+      "type": "string",
+      "default": "polygon(75% 10%, 90% 50%, 75% 90%, 10% 90%, 20% 50%, 10% 10%)"
+    },
+    {
+      "name": "clipFinalLeft",
+      "type": "string",
+      "default": "polygon(90% 10%, 75% 50%, 90% 90%, 30% 90%, 10% 50%, 30% 10%)"
+    },
+    {
+      "name": "clipHover",
+      "type": "string",
+      "default": "polygon(97% 10%, 97% 50%, 97% 87%, 3% 87%, 3% 50%, 3% 10%)"
+    },
+    {
+      "name": "hoverDuration",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "hoverEase",
+      "type": "string",
+      "default": "expo"
+    },
+    {
+      "name": "clipOutDuration",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "clipOutEase",
+      "type": "string",
+      "default": "expo"
+    },
+    {
+      "name": "clipInDuration",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "clipInEase",
+      "type": "string",
+      "default": "expo.inOut"
+    },
+    {
+      "name": "clipInDelay",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "slideOutDuration",
+      "type": "number",
+      "default": 0.5
+    },
+    {
+      "name": "slideOutEase",
+      "type": "string",
+      "default": "expo.inOut"
+    },
+    {
+      "name": "slideOutDelay",
+      "type": "number",
+      "default": 0.4
+    },
+    {
+      "name": "slideInDuration",
+      "type": "number",
+      "default": 0.5
+    },
+    {
+      "name": "slideInEase",
+      "type": "string",
+      "default": "expo"
+    },
+    {
+      "name": "slideInDelay",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "textOutDuration",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "textOutEase",
+      "type": "string",
+      "default": "power3"
+    },
+    {
+      "name": "textInDuration",
+      "type": "number",
+      "default": 1.5
+    },
+    {
+      "name": "textInEase",
+      "type": "string",
+      "default": "expo.inOut"
+    },
+    {
+      "name": "textInDelay",
+      "type": "number",
+      "default": 0.4
+    },
+    {
+      "name": "textStagger",
+      "type": "number",
+      "default": 0.1
+    },
+    {
+      "name": "linkFadeDuration",
+      "type": "number",
+      "default": 0.5
+    },
+    {
+      "name": "linkFadeDelay",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Slide images, headline rows with emphasis styles, link labels and hrefs",
+    "Background, text and frame colors, title and visibility of title, nav and counter",
+    "Clip path shapes, animation durations, eases, delays and stagger",
+    "Autoplay, keyboard and wheel navigation, headline sizes, serif font and height"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change arrow button icons",
+      "where": "The two svg elements inside the showNav block"
+    },
+    {
+      "change": "Change the link underline style",
+      "where": "The -link::after rule in the css string"
+    }
+  ],
+  "fixed": [
+    "Listens to arrow keys on the window while keyboard navigation is enabled, removed on unmount",
+    "Headline rows do not wrap, so very long lines can clip on narrow screens"
+  ],
+  "mood": [
+    "editorial",
+    "bold",
+    "cinematic",
+    "elegant"
+  ],
+  "industries": [
+    "fashion",
+    "photography",
+    "travel",
+    "art",
+    "magazines"
+  ],
+  "sections": [
+    "hero",
+    "portfolio",
+    "gallery"
+  ],
+  "dependencies": [
+    "gsap"
+  ]
+}
