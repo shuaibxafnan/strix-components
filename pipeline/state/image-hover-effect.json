@@ -4,11 +4,12 @@
   "sourceHash": "abaee82ec031e10c87e954f17c0def5c6eb7faec82906278449c88b09ab35af7",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "tilt-distort-image",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.465Z"
+  "note": "image-hover-effect -> tilt-distort-image; frame added; no variants; responsive: already ok (canvas sized from container, resize handled), hover is mouse-only",
+  "updatedAt": "2026-11-01T08:35:41.610Z",
+  "gateOutput": "gates passed"
 }

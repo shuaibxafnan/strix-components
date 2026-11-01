@@ -1,0 +1,142 @@
+{
+    "slug": "tilt-distort-image",
+    "name": "Tilt Distort Image",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "WebGL image plane that tilts and shifts toward the cursor and zooms in with an RGB split and pixel displacement ripple on hover.",
+    "contents": [
+        "Single WebGL canvas showing one image on a 3D plane"
+    ],
+    "behavior": [
+        "Plane rotates, scales and slides toward the pointer with eased interpolation",
+        "Hovering the image zooms it with radial RGB shift and pixel displacement",
+        "Resets smoothly when the pointer leaves",
+        "Canvas resizes with the container and window"
+    ],
+    "props": [
+        {
+            "name": "imageUrl",
+            "type": "string",
+            "default": "https://images.unsplash.com/photo-1517462964-21fdcec3f25b?auto=format&fit=crop&w=934&q=80"
+        },
+        {
+            "name": "imageAspectRatio",
+            "type": "number",
+            "default": 0.8
+        },
+        {
+            "name": "backgroundColor",
+            "type": "string",
+            "default": "#111111"
+        },
+        {
+            "name": "opacity",
+            "type": "number",
+            "default": 1.0
+        },
+        {
+            "name": "planeWidth",
+            "type": "number",
+            "default": 5
+        },
+        {
+            "name": "planeHeight",
+            "type": "number",
+            "default": 7
+        },
+        {
+            "name": "fov",
+            "type": "number",
+            "default": 60
+        },
+        {
+            "name": "cameraZ",
+            "type": "number",
+            "default": 8
+        },
+        {
+            "name": "zoomLevel",
+            "type": "number",
+            "default": 0.2
+        },
+        {
+            "name": "rgbShiftIntensity",
+            "type": "number",
+            "default": 0.01
+        },
+        {
+            "name": "pixelDisplaceIntensity",
+            "type": "number",
+            "default": 0.05
+        },
+        {
+            "name": "rotationIntensity",
+            "type": "number",
+            "default": 0.3
+        },
+        {
+            "name": "scaleIntensity",
+            "type": "number",
+            "default": 0.1
+        },
+        {
+            "name": "positionIntensity",
+            "type": "number",
+            "default": 1.0
+        },
+        {
+            "name": "hoverLerpSpeed",
+            "type": "number",
+            "default": 0.02
+        },
+        {
+            "name": "transformLerpSpeed",
+            "type": "number",
+            "default": 0.08
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Image, aspect ratio, background color and opacity",
+        "Plane and camera size",
+        "Zoom, RGB shift, displacement, tilt, scale and position intensities, easing speeds"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the distortion look",
+            "where": "buildFragmentShader function"
+        },
+        {
+            "change": "Support touch interaction",
+            "where": "onMouseMove and onMouseLeave handlers"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Effect is driven by mouse movement, so touch devices show only the static image"
+    ],
+    "mood": [
+        "modern",
+        "immersive",
+        "playful"
+    ],
+    "industries": [
+        "fashion",
+        "photography",
+        "portfolio",
+        "e-commerce",
+        "music"
+    ],
+    "sections": [
+        "hero",
+        "gallery",
+        "portfolio"
+    ],
+    "dependencies": [
+        "three"
+    ]
+}
