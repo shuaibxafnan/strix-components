@@ -1,0 +1,184 @@
+{
+    "slug": "scroll-color-gallery",
+    "name": "Scroll Color Gallery",
+    "category": "scroll-section-layouts",
+    "isReactBits": false,
+    "description": "Full-page scroll story with a large typographic hero, then color-themed panels that wipe in over each other with floating framed photos, and a closing footer panel.",
+    "contents": [
+        "Hero section with three-line oversized title over a background image",
+        "Themed panels, each with background image, four framed photos and a two-line title",
+        "Closing footer section with three-line title over an image"
+    ],
+    "behavior": [
+        "Smooth scrolling through Lenis, disabled with reduced motion",
+        "Each panel wipes in from the right while its background scales down and title lines slide in",
+        "Framed photos fly in from alternating directions and settle with a slight tilt",
+        "Panels dim and slide away as the next panel arrives"
+    ],
+    "props": [
+        {
+            "name": "items",
+            "type": "{backgroundImage,images,titleTop,titleBottom,accentClass,centerWrapper}[]",
+            "default": "3 sample flower panels"
+        },
+        {
+            "name": "heroImage",
+            "type": "string",
+            "default": "Pexels photo 9649050"
+        },
+        {
+            "name": "heroLineTop",
+            "type": "string",
+            "default": "Three"
+        },
+        {
+            "name": "heroLineCenter",
+            "type": "string",
+            "default": "COLORS"
+        },
+        {
+            "name": "heroLineBottom",
+            "type": "string",
+            "default": "in bloom"
+        },
+        {
+            "name": "heroAccentClass",
+            "type": "string",
+            "default": "text-white/60"
+        },
+        {
+            "name": "footerImage",
+            "type": "string",
+            "default": "Pexels photo 29837792"
+        },
+        {
+            "name": "footerLineTop",
+            "type": "string",
+            "default": "Until"
+        },
+        {
+            "name": "footerLineCenter",
+            "type": "string",
+            "default": "NEXT"
+        },
+        {
+            "name": "footerLineBottom",
+            "type": "string",
+            "default": "season"
+        },
+        {
+            "name": "footerAccentClass",
+            "type": "string",
+            "default": "text-white/60"
+        },
+        {
+            "name": "backgroundColor",
+            "type": "string",
+            "default": "bg-black"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "text-white"
+        },
+        {
+            "name": "frameColor",
+            "type": "string",
+            "default": "bg-white/75"
+        },
+        {
+            "name": "fontFamily",
+            "type": "string",
+            "default": "Instrument Serif"
+        },
+        {
+            "name": "fontUrlRegular",
+            "type": "string",
+            "default": "https://cdn.jsdelivr.net/fontsource/fonts/instrument-serif@latest/latin-400-normal.woff2"
+        },
+        {
+            "name": "fontUrlItalic",
+            "type": "string",
+            "default": "https://cdn.jsdelivr.net/fontsource/fonts/instrument-serif@latest/latin-400-italic.woff2"
+        },
+        {
+            "name": "imageWidthVw",
+            "type": "number",
+            "default": 25
+        },
+        {
+            "name": "stackWidthVw",
+            "type": "number",
+            "default": 21
+        },
+        {
+            "name": "lenisLerp",
+            "type": "number",
+            "default": 0.05
+        },
+        {
+            "name": "lenisWheelMultiplier",
+            "type": "number",
+            "default": 0.7
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Number of panels, their background and framed photos, titles and accent colors",
+        "Hero and footer images and three-line titles",
+        "Background, text and photo frame colors (Tailwind classes)",
+        "Font family and font files",
+        "Photo frame size and smooth scroll feel"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the number of photos per panel from four",
+            "where": "ENTRY constant and restPosition function"
+        },
+        {
+            "change": "Change fly-in directions of photos",
+            "where": "ENTRY constant"
+        },
+        {
+            "change": "Change wipe direction of panels",
+            "where": "[clip-path:inset(0_0%_0_100%)] class on the data-item element and the clipPath tween"
+        },
+        {
+            "change": "Change scroll length per panel",
+            "where": "data-ghost div with h-[300vh]"
+        }
+    ],
+    "fixed": [
+        "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+        "Panels are position fixed and revealed by scroll, with 300vh scroll spacers per panel that the effect needs",
+        "Each panel needs exactly four images",
+        "Registers a GSAP ticker and resets its lag smoothing on unmount",
+        "Loads the font through an inline font-face rule"
+    ],
+    "mood": [
+        "editorial",
+        "bold",
+        "cinematic",
+        "colorful"
+    ],
+    "industries": [
+        "photography",
+        "fashion",
+        "travel",
+        "magazine",
+        "art"
+    ],
+    "sections": [
+        "hero",
+        "portfolio",
+        "gallery"
+    ],
+    "dependencies": [
+        "gsap",
+        "lenis"
+    ]
+}

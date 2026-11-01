@@ -4,11 +4,12 @@
   "sourceHash": "0d3cead0591c9da279cca218924065f462176194902b76b842c1c97a229ed179",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-color-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.527Z"
+  "note": "No rename. Gates passed. CDN loader replaced with npm gsap, lenis dynamic imports. Added className prop. Cleanup extended (ticker, lagSmoothing). Kept inline Instrument Serif font-face. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:23:03.681Z",
+  "gateOutput": "gates passed"
 }
