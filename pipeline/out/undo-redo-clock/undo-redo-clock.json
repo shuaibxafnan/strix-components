@@ -1,0 +1,27 @@
+{
+  "slug": "undo-redo-clock",
+  "name": "Undo Redo Clock",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Compact pill with undo and redo buttons and a sliding clock face in the middle. Pressing a side slides the clock over it, spins the hands and steps through an action history.",
+  "contents": ["Pill with undo and redo arrow buttons", "Sliding round clock face with 12 ticks and two hands"],
+  "behavior": ["Press slides the clock toward the pressed side and spins the clock hands", "Click steps the action index down or up and calls onUndo or onRedo", "Buttons disable at the start and end of the history", "Touch press triggers the same animation"],
+  "props": [
+    {"name": "hue", "type": "number", "default": 223},
+    {"name": "initialIndex", "type": "number", "default": 4},
+    {"name": "totalActions", "type": "number", "default": 9},
+    {"name": "scaleSize", "type": "string", "default": "75px"},
+    {"name": "undoLabel", "type": "string", "default": "Undo"},
+    {"name": "redoLabel", "type": "string", "default": "Redo"},
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "onUndo", "type": "(index:number)=>void", "default": null},
+    {"name": "onRedo", "type": "(index:number)=>void", "default": null}
+  ],
+  "editableByProps": ["Color theme through hue", "Overall size through scaleSize", "History length and start position", "Button aria labels", "Undo and redo callbacks"],
+  "needsCodeEdit": [{"change": "Change the clock tick count", "where": "clockTicks"}],
+  "fixed": ["Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto."],
+  "mood": ["playful", "minimal", "clean"],
+  "industries": ["saas", "productivity", "design tools", "creative"],
+  "sections": ["other"],
+  "dependencies": []
+}
