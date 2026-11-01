@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "option-wheel",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.616Z"
+  "note": "Bits describe-only. Needs parent with defined height. Captures wheel and touch, blocks page scroll. Labels do not wrap; reduce fontSize and inset on mobile. Audio only if soundUrl set. No deps, no variants.",
+  "updatedAt": "2026-11-01T10:18:03.652Z",
+  "gateOutput": "gates passed"
 }
