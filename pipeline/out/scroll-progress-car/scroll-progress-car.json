@@ -1,0 +1,58 @@
+{
+  "slug": "scroll-progress-car",
+  "name": "Scroll Progress Car",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Reading page with a car fixed to the bottom edge that drives from left to right as the page scrolls, reaching the right edge at the end of the page.",
+  "contents": [
+    "Header with eyebrow label and title",
+    "Heading and list of body paragraphs",
+    "Fixed car image on a road line at the bottom of the viewport"
+  ],
+  "behavior": [
+    "Car horizontal position maps to page scroll progress",
+    "Updates are batched with requestAnimationFrame and written to a CSS variable",
+    "Recalculated on window resize",
+    "Car size scales with viewport width up to 600px"
+  ],
+  "props": [
+    { "name": "carImageUrl", "type": "string", "default": "https://raw.githubusercontent.com/shuaibxafnan/vintage-collectibles/refs/heads/main/ford.png" },
+    { "name": "carAlt", "type": "string", "default": "Car driving across the page" },
+    { "name": "carHeightScale", "type": "number", "default": 3.2 },
+    { "name": "eyebrow", "type": "string", "default": "Scroll progress" },
+    { "name": "title", "type": "string", "default": "A car that drives as you read" },
+    { "name": "heading", "type": "string", "default": "How it works" },
+    { "name": "paragraphs", "type": "string[]", "default": "7 sample paragraphs" },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "textColor", "type": "string", "default": "text-neutral-400" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Car image, alt text and aspect ratio",
+    "Eyebrow, title, heading and all paragraphs",
+    "Background and text colors as Tailwind classes"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Make the car drive right to left",
+      "where": "The [transform:scaleX(-1)_translateX(...)] class on the car wrapper"
+    },
+    {
+      "change": "Change the maximum car width",
+      "where": "carWidth calculation in the update function and --car-w style"
+    },
+    {
+      "change": "Change the road line style",
+      "where": "The fixed gradient div with h-px"
+    }
+  ],
+  "fixed": [
+    "Car and road line are fixed to the bottom of the viewport",
+    "Listens to window scroll and resize while mounted and removes the listeners on unmount",
+    "Progress is measured against the whole document scroll height, so it tracks page scroll rather than the component only"
+  ],
+  "mood": ["playful", "minimal", "editorial"],
+  "industries": ["automotive", "blogs", "publishing", "travel"],
+  "sections": ["other"],
+  "dependencies": []
+}
