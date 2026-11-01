@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "micro-stats",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.600Z"
+  "note": "gates passed. backgrounds-3d. Deps ogl. Presets documented as variants on preset prop. Needs WebGL2; container h-full w-full. fixed pointer line corrected after source check.",
+  "updatedAt": "2026-11-01T09:46:02.240Z",
+  "gateOutput": "gates passed"
 }
