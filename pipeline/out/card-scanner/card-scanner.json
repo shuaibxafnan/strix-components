@@ -1,0 +1,70 @@
+{
+  "slug": "card-scanner",
+  "name": "Card Scanner",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-width stream of draggable cards that glide past a glowing vertical scanner beam, flipping each card into scrolling code text as it crosses, with particle effects around the beam.",
+  "contents": [
+    "Endless horizontal stream of up to 5 gradient cards looped 3 times",
+    "Vertical scanner beam with particle canvas and a WebGL particle backdrop",
+    "Swipe hint label with animated arrows"
+  ],
+  "behavior": [
+    "Cards auto-scroll with decaying velocity down to a minimum speed",
+    "Drag, touch or wheel moves the stream and release keeps momentum",
+    "Card is clipped at the beam: front face on one side, generated code text on the other",
+    "Beam glow and particle density intensify while a card is crossing",
+    "Code text randomly regenerates every 200ms"
+  ],
+  "props": [
+    { "name": "cards", "type": "{brand,number,holder,expiry,from,to}[]", "default": "5 sample cards" },
+    { "name": "cardWidth", "type": "number", "default": 400 },
+    { "name": "cardHeight", "type": "number", "default": 250 },
+    { "name": "cardGap", "type": "number", "default": 60 },
+    { "name": "initialVelocity", "type": "number", "default": 120 },
+    { "name": "friction", "type": "number", "default": 0.95 },
+    { "name": "minVelocity", "type": "number", "default": 30 },
+    { "name": "scannerWidth", "type": "number", "default": 8 },
+    { "name": "scannerColor", "type": "string", "default": "#8b5cf6" },
+    { "name": "particleCount", "type": "number", "default": 400 },
+    { "name": "scanParticleMax", "type": "number", "default": 2500 },
+    { "name": "baseParticleMax", "type": "number", "default": 800 },
+    { "name": "codeSnippets", "type": "string[]", "default": "sample code lines" },
+    { "name": "swipeLabel", "type": "string", "default": "Swipe" },
+    { "name": "cardLabels", "type": "{holder,expires}", "default": { "holder": "Card holder", "expires": "Expires" } },
+    { "name": "fontFamily", "type": "string", "default": "Hanken Grotesk" },
+    { "name": "monoFont", "type": "string", "default": "JetBrains Mono" },
+    { "name": "backgroundColor", "type": "string", "default": "#000000" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Card content, gradient colors, size and spacing",
+    "Scanner color, width and particle counts",
+    "Speed, friction, code snippets, labels, fonts and background color"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the maximum number of cards or loop repeats",
+      "where": "MAX_CARDS and REPEATS constants"
+    },
+    {
+      "change": "Change the front card layout",
+      "where": "CardFace function"
+    },
+    {
+      "change": "Change the WebGL backdrop particle look",
+      "where": "createRadialGradient block and ShaderMaterial in the particle canvas useEffect"
+    }
+  ],
+  "fixed": [
+    "Full-bleed section, height is 100dvh",
+    "Sets body user-select and cursor while dragging and resets them on release and unmount",
+    "Captures wheel and touch events over the card stream, preventing default scrolling there",
+    "Canvases are sized to window width and listen to window resize",
+    "Loads Hanken Grotesk and JetBrains Mono from Google Fonts"
+  ],
+  "mood": ["futuristic", "techy", "dark", "dramatic"],
+  "industries": ["fintech", "banking", "payments", "security", "saas"],
+  "sections": ["hero", "features"],
+  "dependencies": ["three"]
+}
