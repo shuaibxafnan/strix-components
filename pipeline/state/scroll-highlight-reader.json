@@ -4,11 +4,12 @@
   "sourceHash": "38363f7f61e5a0b12e2a31a269a4374e5b4961d94b713822a4016732be4cba33",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-highlight-reader",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.529Z"
+  "note": "No rename. Gates passed. Removed demo header, style select, dark toggle; colors now props. Fixed garbled underline class. Added paragraphs, className props. Variants: background, half, underline. No frame.",
+  "updatedAt": "2026-11-01T11:28:21.488Z",
+  "gateOutput": "gates passed"
 }
