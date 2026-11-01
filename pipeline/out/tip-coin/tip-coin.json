@@ -1,0 +1,71 @@
+{
+  "slug": "tip-coin",
+  "name": "Tip Coin",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Press-and-hold tip button with a 3D coin that flips out of the button on release, then drops into a pocket and returns, with physics-based motion and a handwritten hint.",
+  "contents": [
+    "Black tip button with a small 3D coin and label",
+    "Handwritten hint text with an arrow that disappears after the first flip",
+    "Faint masked grid backdrop"
+  ],
+  "behavior": [
+    "Holding the button tilts it, releasing launches the coin with GSAP Physics2D",
+    "Tilt amount controls launch distance, speed, spin count and bounce",
+    "Coin spins on hover",
+    "Button and coin reset after landing"
+  ],
+  "props": [
+    {"name": "buttonBg", "type": "string", "default": "#000000"},
+    {"name": "buttonText", "type": "string", "default": "Leave tip"},
+    {"name": "buttonTextColor", "type": "string", "default": "text-white"},
+    {"name": "ariaLabel", "type": "string", "default": "Leave a tip"},
+    {"name": "hintText", "type": "string", "default": "hold to flip coin"},
+    {"name": "coinFace", "type": "string", "default": "#ffffff"},
+    {"name": "coinSide", "type": "string", "default": "#a3a3a3"},
+    {"name": "coinDetail", "type": "string", "default": "#171717"},
+    {"name": "coinIconPath", "type": "string", "default": "star path"},
+    {"name": "coinSize", "type": "number", "default": 24},
+    {"name": "coinDepth", "type": "number", "default": 2},
+    {"name": "coinThickness", "type": "number", "default": 4},
+    {"name": "rotationUnits", "type": "number", "default": 15},
+    {"name": "backgroundColor", "type": "string", "default": "bg-white"},
+    {"name": "timeScale", "type": "number", "default": 1.1},
+    {"name": "distanceLower", "type": "number", "default": 100},
+    {"name": "distanceUpper", "type": "number", "default": 350},
+    {"name": "bounceLower", "type": "number", "default": 2},
+    {"name": "bounceUpper", "type": "number", "default": 12},
+    {"name": "velocityLower", "type": "number", "default": 300},
+    {"name": "velocityUpper", "type": "number", "default": 700},
+    {"name": "rotationLower", "type": "number", "default": 0},
+    {"name": "rotationUpper", "type": "number", "default": 15},
+    {"name": "flipSpeedLower", "type": "number", "default": 0.25},
+    {"name": "flipSpeedUpper", "type": "number", "default": 0.6},
+    {"name": "spinsLower", "type": "number", "default": 1},
+    {"name": "spinsUpper", "type": "number", "default": 6},
+    {"name": "rotateLower", "type": "number", "default": 0},
+    {"name": "rotateUpper", "type": "number", "default": 90},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Button label, hint text, aria label and coin icon shape",
+    "Button, text, coin and background colors",
+    "Coin size, depth and thickness",
+    "Launch physics ranges, flip speed, spins and overall timeScale"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the button shadow", "where": "BUTTON_SHADOW constant"},
+    {"change": "Change the grid backdrop", "where": "aria-hidden div with background-image linear-gradient"},
+    {"change": "Change the hint position", "where": "span with hintText and translate classes"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Uses the Gloria Hallelujah font through next/font/google for the hint text",
+    "Grid backdrop and hint are fixed to the viewport",
+    "Button is scaled up 1.2x"
+  ],
+  "mood": ["playful", "tactile", "minimal"],
+  "industries": ["creators", "restaurants", "SaaS", "nonprofits", "e-commerce"],
+  "sections": ["cta", "other"],
+  "dependencies": ["gsap"]
+}
