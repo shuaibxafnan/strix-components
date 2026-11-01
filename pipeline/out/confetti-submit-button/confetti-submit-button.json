@@ -1,0 +1,42 @@
+{
+  "slug": "confetti-submit-button",
+  "name": "Confetti Submit Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Pill submit button that morphs into a loading dots state, then a success checkmark while a burst of confetti and sequins shoots out of it.",
+  "contents": ["Dark pill button with arrow icon and Submit label", "Loading dots state", "Success state with animated checkmark", "Full-screen canvas for confetti and sequins"],
+  "behavior": [
+    "Click or Enter/Space keyup starts a loading state, then a success state",
+    "Confetti and sequins burst from below the button and fall with gravity and drag",
+    "Button resets to ready after a few seconds",
+    "Letters stagger in and out on each state change"
+  ],
+  "props": [
+    {"name": "buttonBg", "type": "string", "default": "#1f2335"},
+    {"name": "submitColor", "type": "string", "default": "#5c86ff"},
+    {"name": "successColor", "type": "string", "default": "#5cffa1"},
+    {"name": "confettiAmount", "type": "number", "default": 20},
+    {"name": "sequinAmount", "type": "number", "default": 10},
+    {"name": "loadingDuration", "type": "number", "default": 1800},
+    {"name": "submitText", "type": "string", "default": "Submit"},
+    {"name": "successText", "type": "string", "default": "Success"},
+    {"name": "confettiColors", "type": "{front,back}[]", "default": [{"front":"#7b5cff","back":"#6245e0"},{"front":"#b3c7ff","back":"#8fa5e5"},{"front":"#5c86ff","back":"#345dd1"}]},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Button label texts and colors", "Confetti colors and amounts", "Loading duration"],
+  "needsCodeEdit": [
+    {"change": "Change physics of the confetti", "where": "gravityConfetti and dragConfetti values in runtimeRef"},
+    {"change": "Change button size", "where": "w-[150px] h-10 classes on the button element"},
+    {"change": "Change the reset delay after success", "where": "triggerSubmit function"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Adds window listeners for resize and keyup (Enter or Space triggers submit anywhere on the page) and removes them on unmount",
+    "Confetti canvas is fixed to the full viewport above the page",
+    "Confetti origin assumes the button is centered in the viewport"
+  ],
+  "mood": ["playful", "celebratory", "modern"],
+  "industries": ["saas", "e-commerce", "forms", "events"],
+  "sections": ["cta", "contact"],
+  "dependencies": []
+}

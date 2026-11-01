@@ -4,11 +4,12 @@
   "sourceHash": "b2e33182278ac434e1c8e8cf6cfbd7ea0e057b2e6d6364902fa73c6dc06c464c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "confetti-submit-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.564Z"
+  "note": "Renamed to confetti-submit-button. Props submitText, successText, confettiColors, className added; canvasBg and demo background removed; window.initBurst replaced with ref function; timeouts cleared on unmount. Frame kept.",
+  "updatedAt": "2026-11-01T14:00:16.119Z",
+  "gateOutput": "gates passed"
 }
