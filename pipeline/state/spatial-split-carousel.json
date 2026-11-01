@@ -4,11 +4,12 @@
   "sourceHash": "06c5d871ec6eb3c67374c3db12d86f5790c190b75cbb07468fab9d9ac6ae8801",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "spatial-split-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.553Z"
+  "note": "Removed empty comments, style jsx -> style. Props added: className, label, prevLabel, nextLabel, backgroundColor. Timeout cleared on unmount. No frame, no variants. Kept touch-none and mounted placeholder.",
+  "updatedAt": "2026-11-01T13:06:20.999Z",
+  "gateOutput": "gates passed"
 }
