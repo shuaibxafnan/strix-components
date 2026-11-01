@@ -1,0 +1,66 @@
+{
+  "slug": "reverse-clip-menu",
+  "name": "Reverse Clip Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Fullscreen menu opened by a round toggle. An image grid scatters radially outward while the menu list is revealed by a clip-path expanding from the center, with an optional looping background video.",
+  "contents": [
+    "Round hamburger toggle button in the top right",
+    "Grid of cover images behind a large two-line title",
+    "Fullscreen menu list with numbered items and hover underline",
+    "Optional background video inside the menu"
+  ],
+  "behavior": [
+    "Opening scatters cover images outward from the center with random rotation and fades the title",
+    "Menu panel expands from a center point by clip-path",
+    "Closing reverses the timeline with an elastic ease, or faster if interrupted mid-open",
+    "Escape key closes the menu and returns focus to the toggle",
+    "Loading line shows until GSAP and images are ready"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#090909" },
+    { "name": "menuItemColor", "type": "string", "default": "#ffffff" },
+    { "name": "menuAccentColor", "type": "string", "default": "#8b7cff" },
+    { "name": "menuOverlayColor", "type": "string", "default": "rgba(0,0,0,0.55)" },
+    { "name": "toggleColor", "type": "string", "default": "#ffffff" },
+    { "name": "toggleBg", "type": "string", "default": "rgba(255,255,255,0.08)" },
+    { "name": "title", "type": "string[]", "default": ["Human", "Zero"] },
+    { "name": "titleFontFamily", "type": "string", "default": "'Unbounded', sans-serif" },
+    { "name": "titleFontSize", "type": "string", "default": "clamp(2rem, 10vw, 9rem)" },
+    { "name": "menuItems", "type": "string[]", "default": ["NEW GAME", "MISSIONS", "SKILLS", "QUEST LOG", "ABOUT PLAYER", "SETTINGS", "EXIT"] },
+    { "name": "menuFontFamily", "type": "string", "default": "'Unbounded', sans-serif" },
+    { "name": "menuFontSize", "type": "string", "default": "clamp(1.75rem, 6vw, 4rem)" },
+    { "name": "images", "type": "string[]", "default": "14 sample image URLs" },
+    { "name": "gridColumns", "type": "number", "default": 20 },
+    { "name": "gridRows", "type": "number", "default": 10 },
+    { "name": "coverPositions", "type": "[row,col][]", "default": "14 sample grid positions" },
+    { "name": "videoSrc", "type": "string", "default": "" },
+    { "name": "radialDistance", "type": "number", "default": 600 },
+    { "name": "menuClipDelay", "type": "number", "default": 0.3 },
+    { "name": "coverItemMaxDelay", "type": "number", "default": 0.3 },
+    { "name": "fullCloseEase", "type": "string", "default": "elastic.out(0.3)" },
+    { "name": "interruptSpeed", "type": "number", "default": 2 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Colors of background, text, accent, overlay and toggle",
+    "Title lines and menu item labels",
+    "Cover images, grid size and image positions",
+    "Fonts and font sizes",
+    "Background video",
+    "Scatter distance, delays and close easing"
+  ],
+  "needsCodeEdit": [
+    { "change": "Menu item links (hrefs or click handlers)", "where": "menuItems.map" },
+    { "change": "Font stylesheet loaded for Unbounded", "where": "loadFont" }
+  ],
+  "fixed": [
+    "Root is full-bleed at 100dvh and clips its content",
+    "Menu panel and loader use fixed positioning layers inside the root",
+    "Requires gsap installed from npm"
+  ],
+  "mood": ["bold", "playful", "dramatic", "modern"],
+  "industries": ["gaming", "creative agency", "entertainment", "portfolio", "events"],
+  "sections": ["navbar", "hero"],
+  "dependencies": ["gsap"]
+}
