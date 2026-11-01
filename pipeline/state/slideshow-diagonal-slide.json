@@ -4,11 +4,12 @@
   "sourceHash": "d9cb9488d7ffe4d6847b34b655e1bd5cf372a7df4c28877e4a9a4b0fbdd475b5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "diagonal-wipe-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.544Z"
+  "note": "Renamed slideshow-diagonal-slide -> diagonal-wipe-slideshow. Removed window script loader and CDN gsap; now npm gsap dynamic import. Added className, timeline cleanup. No frame (full-width slider). No variants. Responsive: already ok.",
+  "updatedAt": "2026-11-01T12:43:19.635Z",
+  "gateOutput": "gates passed"
 }
