@@ -1,0 +1,71 @@
+{
+  "slug": "progressive-blur-gallery",
+  "name": "Progressive Blur Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Scrolling editorial image gallery rendered in WebGL, where images start blurred with film grain and sharpen as they scroll, with a hero title, captions and a staggered blur-in text list.",
+  "contents": [
+    "Hero eyebrow and title above a large hero image",
+    "Several image layout rows with numbered captions",
+    "Three-column text list that blurs in on scroll",
+    "Fixed full-screen WebGL canvas drawing the images"
+  ],
+  "behavior": [
+    "Images are drawn as OGL planes with a blur and noise shader synced to page scroll",
+    "Hero image sharpens and scales slightly as the page scrolls",
+    "List items fade from blur to sharp when they enter the viewport",
+    "Smooth scrolling through Lenis, optional",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "images", "type": "string[]", "default": "10 sample image URLs"},
+    {"name": "listColumns", "type": "string[][]", "default": "3 columns of 5 labels"},
+    {"name": "heroEyebrow", "type": "string", "default": "WebGL / OGL"},
+    {"name": "heroTitle", "type": "string", "default": "Progressive Blur"},
+    {"name": "bgColor", "type": "string", "default": "#e3e3e3"},
+    {"name": "textColor", "type": "string", "default": "#000000"},
+    {"name": "fontSans", "type": "string", "default": "Fustat, sans-serif"},
+    {"name": "fontSerif", "type": "string", "default": "'Bodoni Moda', serif"},
+    {"name": "showCaptions", "type": "boolean", "default": true},
+    {"name": "sectionMargin", "type": "number", "default": 200},
+    {"name": "gutter", "type": "number", "default": 20},
+    {"name": "cameraFov", "type": "number", "default": 45},
+    {"name": "cameraZ", "type": "number", "default": 20},
+    {"name": "widthSegments", "type": "number", "default": 100},
+    {"name": "heightSegments", "type": "number", "default": 50},
+    {"name": "blurStrength", "type": "number", "default": 1},
+    {"name": "heroBlurAmount", "type": "number", "default": 0.8},
+    {"name": "heroScaleAmount", "type": "number", "default": 0.05},
+    {"name": "heroRange", "type": "number", "default": 0.57},
+    {"name": "noiseAmount", "type": "number", "default": 0.08},
+    {"name": "blurRadius", "type": "number", "default": 0.08},
+    {"name": "timeSpeed", "type": "number", "default": 0.04},
+    {"name": "lenisEnabled", "type": "boolean", "default": true},
+    {"name": "lenisDuration", "type": "number", "default": 1.2},
+    {"name": "listBlur", "type": "number", "default": 5},
+    {"name": "listScale", "type": "number", "default": 1.4},
+    {"name": "listOffsetY", "type": "number", "default": 40},
+    {"name": "listStagger", "type": "number", "default": 0.2}
+  ],
+  "editableByProps": [
+    "Images, hero text and list labels",
+    "Colors, fonts, spacing and captions",
+    "Blur, grain, hero scale and list animation amounts",
+    "Smooth scroll on or off and its duration"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the image layout rows or their proportions", "where": "The section elements after the hero section in the returned JSX"},
+    {"change": "Change the blur or grain look", "where": "buildFragmentShader function"}
+  ],
+  "fixed": [
+    "Draws images on a fixed full-screen canvas behind the content",
+    "Takes over page scrolling with Lenis when lenisEnabled is true, so it should be the only smooth scroll on the page",
+    "Needs at least 9 images, the layout uses images by index",
+    "Layout images are hidden DOM images that the canvas redraws, so image hosts must allow cross-origin loading"
+  ],
+  "mood": ["editorial", "elegant", "soft", "artistic"],
+  "industries": ["photography", "fashion", "art", "architecture", "design"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["ogl", "lenis"]
+}

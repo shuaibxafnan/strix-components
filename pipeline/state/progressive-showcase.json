@@ -4,11 +4,12 @@
   "sourceHash": "850944c3e3a367810984d5b77b421c18e2d685643cba68dfb91c6a76b1165cc7",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "progressive-blur-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.517Z"
+  "note": "renamed progressive-showcase -> progressive-blur-gallery; esm.sh imports replaced with npm ogl and lenis; lenis raf loop now cancelled on unmount; list column gap reduced on mobile; className prop added; no frame; variants none; responsive: list gap fixed for mobile",
+  "updatedAt": "2026-11-01T10:56:22.015Z",
+  "gateOutput": "gates passed"
 }
