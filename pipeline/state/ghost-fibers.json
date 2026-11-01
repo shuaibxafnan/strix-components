@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "ghost-fibers",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.596Z"
+  "note": "No variants, no deps. Needs WebGL2 and parent height. JSX unchanged.",
+  "updatedAt": "2026-11-01T07:27:14.393Z",
+  "gateOutput": "gates passed"
 }
