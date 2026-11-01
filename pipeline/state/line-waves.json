@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "line-waves",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.599Z"
+  "note": "React Bits, JSX copied unchanged. Category backgrounds-3d, no variants, no deps. Fixed: needs WebGL2; parent needs defined height; colors default white, set colors or lightMode on light backgrounds; window pointer listeners; resolution capped by pixel budget.",
+  "updatedAt": "2026-11-01T09:21:53.814Z",
+  "gateOutput": "gates passed"
 }
