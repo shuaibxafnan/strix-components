@@ -1,0 +1,258 @@
+{
+  "slug": "shape-slideshow-arch",
+  "name": "Shape Slideshow Arch",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen slideshow where each photo sits inside an arch-shaped clip that widens and slides away on navigation, with staggered headline text, arrow controls and a counter.",
+  "contents": [
+    "Slides with image, multi-row headline with plain, italic serif and serif accent words, and a link",
+    "Previous and next arrow buttons with a slide counter pill"
+  ],
+  "behavior": [
+    "Image is clipped to an arch shape that expands on link hover",
+    "Navigation animates clip-out, vertical slide, parallax image shift and staggered text rows via GSAP",
+    "Arrow keys navigate, optional mouse wheel and autoplay"
+  ],
+  "props": [
+    {
+      "name": "slides",
+      "type": "{image,rows:{text,style}[][],linkLabel,linkHref}[]",
+      "default": "4 sample slides"
+    },
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#000"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#fff"
+    },
+    {
+      "name": "frameColor",
+      "type": "string",
+      "default": "#ff5ba4"
+    },
+    {
+      "name": "showNav",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showIndex",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "clipInitial",
+      "type": "string",
+      "default": "inset(10% 30.1% 0% 30% round 25vw 25vw 0vw 0vw)"
+    },
+    {
+      "name": "clipFinal",
+      "type": "string",
+      "default": "inset(15% 40.1% 15% 40% round 25vw 25vw 25.01vw 25.01vw)"
+    },
+    {
+      "name": "clipHover",
+      "type": "string",
+      "default": "inset(20% 40% 20.01% 40.01% round 25vw 25vw 25.01vw 25.01vw)"
+    },
+    {
+      "name": "imgParallax",
+      "type": "number",
+      "default": 100
+    },
+    {
+      "name": "autoplay",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "autoplayDelay",
+      "type": "number",
+      "default": 5000
+    },
+    {
+      "name": "enableKeyboard",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "enableWheel",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "headlineSize",
+      "type": "string",
+      "default": "clamp(2rem,6.5vw,6rem)"
+    },
+    {
+      "name": "accentSize",
+      "type": "string",
+      "default": "clamp(2rem,7vw,6rem)"
+    },
+    {
+      "name": "serifFamily",
+      "type": "string",
+      "default": "Georgia, serif"
+    },
+    {
+      "name": "height",
+      "type": "string",
+      "default": "100vh"
+    },
+    {
+      "name": "hoverDuration",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "hoverEase",
+      "type": "string",
+      "default": "expo"
+    },
+    {
+      "name": "clipOutDuration",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "clipOutEase",
+      "type": "string",
+      "default": "expo"
+    },
+    {
+      "name": "clipInDuration",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "clipInEase",
+      "type": "string",
+      "default": "expo.inOut"
+    },
+    {
+      "name": "clipInDelay",
+      "type": "number",
+      "default": 0.9
+    },
+    {
+      "name": "slideOutDuration",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "slideOutEase",
+      "type": "string",
+      "default": "expo.inOut"
+    },
+    {
+      "name": "slideOutDelay",
+      "type": "number",
+      "default": 0.4
+    },
+    {
+      "name": "slideInDuration",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "slideInEase",
+      "type": "string",
+      "default": "expo"
+    },
+    {
+      "name": "slideInDelay",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "textOutDuration",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "textOutEase",
+      "type": "string",
+      "default": "power3"
+    },
+    {
+      "name": "textInDuration",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "textInEase",
+      "type": "string",
+      "default": "power3.inOut"
+    },
+    {
+      "name": "textInDelay",
+      "type": "number",
+      "default": 0.8
+    },
+    {
+      "name": "textStagger",
+      "type": "number",
+      "default": 0.1
+    },
+    {
+      "name": "linkFadeDuration",
+      "type": "number",
+      "default": 0.2
+    },
+    {
+      "name": "linkFadeDelay",
+      "type": "number",
+      "default": 1.3
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Slides, images, headline words and styles, link labels and hrefs",
+    "Background, text and control colors",
+    "Arch clip shapes, autoplay, keyboard and wheel input, headline sizes and serif font, height",
+    "Timing and easing props for hover, clip, slide and text animations"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the link underline style",
+      "where": "-link::after rule in the css string"
+    },
+    {
+      "change": "Change the arrow icons",
+      "where": "svg paths inside the Previous slide and Next slide buttons"
+    }
+  ],
+  "fixed": [
+    "Adds a window keydown listener for arrow keys while mounted when enableKeyboard is on, removed on unmount",
+    "Fills its width and uses height prop (100vh by default), no centering frame"
+  ],
+  "mood": [
+    "elegant",
+    "editorial",
+    "dramatic",
+    "artistic"
+  ],
+  "industries": [
+    "fashion",
+    "travel",
+    "photography",
+    "art gallery",
+    "hospitality"
+  ],
+  "sections": [
+    "hero",
+    "gallery"
+  ],
+  "dependencies": [
+    "gsap"
+  ]
+}
