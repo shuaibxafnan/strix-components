@@ -1,0 +1,51 @@
+{
+  "slug": "overlap-card",
+  "name": "Overlap Card",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Stack of overlapping photo cards that fan out with small satellite cards on hover, with skip and like buttons that slide between image groups.",
+  "contents": [
+    "Groups of four large and four small image cards with a label",
+    "Group label text",
+    "Skip and like round buttons with dot indicators"
+  ],
+  "behavior": [
+    "Hovering a group fans the large cards out and spreads the small cards around with rotation and shadow",
+    "Skip and like buttons slide to the previous or next group with a scale transition and wrap around",
+    "Active dot stretches and uses the accent color"
+  ],
+  "props": [
+    { "name": "groups", "type": "{label,bigCards:string[],smallCards:string[]}[]", "default": "3 sample groups (Dogs, Forests, Cities)" },
+    { "name": "cardWidthVmin", "type": "number", "default": 30 },
+    { "name": "accentColor", "type": "string", "default": "#3b82f6" },
+    { "name": "backgroundColor", "type": "string", "default": "#0a0a0a" },
+    { "name": "skipLabel", "type": "string", "default": "Skip" },
+    { "name": "likeLabel", "type": "string", "default": "Like" },
+    { "name": "showButtons", "type": "boolean", "default": true },
+    { "name": "showLabel", "type": "boolean", "default": true },
+    { "name": "onLove", "type": "(index:number)=>void", "default": "undefined" },
+    { "name": "onHate", "type": "(index:number)=>void", "default": "undefined" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of groups, images and labels",
+    "Card size, accent color, background color",
+    "Button aria labels, visibility of buttons and label",
+    "Callbacks on next and previous"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change fanned-out positions of large cards", "where": "BIG_CARD_HOVER constant" },
+    { "change": "Change fanned-out positions of small cards", "where": "SMALL_CARD_HOVER constant" },
+    { "change": "Change slide transition timing", "where": "getGroupClasses function" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Each group holds exactly four large and four small cards",
+    "Sizes use vmin units so the stack scales with the viewport",
+    "Fan-out is triggered by mouse hover"
+  ],
+  "mood": ["playful", "dark", "interactive"],
+  "industries": ["photography", "dating apps", "travel", "pet services"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
