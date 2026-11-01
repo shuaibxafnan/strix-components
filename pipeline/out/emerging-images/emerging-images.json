@@ -1,0 +1,75 @@
+{
+  "slug": "emerging-images",
+  "name": "Emerging Images",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Scroll-revealed WebGL image grid where each image emerges through a shader transition such as pixel wipe, noise curtain or dither fade as it enters the viewport, with captions and smooth scrolling.",
+  "contents": [
+    "Staggered grid of images, each with title and year caption",
+    "Fixed full-viewport WebGL canvas rendering one shader view per image"
+  ],
+  "behavior": [
+    "Each image animates from a flat fill color into the picture when it enters the viewport and reverses when it leaves",
+    "Five shader reveal styles selectable by variant",
+    "Smooth scrolling through Lenis",
+    "Grid collapses to a single column on screens 53em and below"
+  ],
+  "props": [
+    {"name": "items", "type": "{title,year,r,c,s,src?}[]", "default": "13 sample items"},
+    {"name": "images", "type": "string[]", "default": "14 sample image URLs"},
+    {"name": "variant", "type": "\"pixel-wipe\" | \"noise-curtain\" | \"dither-fade\" | \"wave-dissolve\" | \"pixel-resolve\"", "default": "pixel-wipe"},
+    {"name": "fillColor", "type": "string", "default": "#403fb7"},
+    {"name": "bgColor", "type": "string", "default": "#101014"},
+    {"name": "textColor", "type": "string", "default": "#f0f0f0"},
+    {"name": "titleColor", "type": "string", "default": "#7f7f8f"},
+    {"name": "yearColor", "type": "string", "default": "#b9b3af"},
+    {"name": "displayFont", "type": "string", "default": "ui-monospace, monospace"},
+    {"name": "baseFontSize", "type": "string", "default": "12px"},
+    {"name": "imgRatio", "type": "number", "default": 1.3},
+    {"name": "gridColumns", "type": "number", "default": 10},
+    {"name": "gridGap", "type": "string", "default": "3vw"},
+    {"name": "gridPadding", "type": "string", "default": "3rem"},
+    {"name": "revealDuration", "type": "number", "default": 1.5},
+    {"name": "revealEase", "type": "\"none\" | \"power1\" | \"power2\" | \"power3\"", "default": "none"},
+    {"name": "revealMargin", "type": "string", "default": "-10% 0px"},
+    {"name": "pixelSteps", "type": "number[]", "default": "PIXELS constant (36 steps)"},
+    {"name": "showFallback", "type": "boolean", "default": false},
+    {"name": "smoothScroll", "type": "boolean", "default": true},
+    {"name": "lerp", "type": "number", "default": 0.1},
+    {"name": "dpr", "type": "number | [number, number]", "default": [1, 2]},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Items with titles, years, grid row, column and span, and images",
+    "Reveal style, duration, easing and trigger margin",
+    "Fill, background, text, title and year colors",
+    "Grid columns, gap, padding, image ratio, font and size",
+    "Smooth scroll on or off and its lerp"
+  ],
+  "needsCodeEdit": [
+    {"change": "Tweak or add shader reveal effects", "where": "EmergeMaterial fragment shader branches on uType"},
+    {"change": "Change the easing curves available", "where": "easings object inside useFrame in EmergeMesh"},
+    {"change": "Change caption placement", "where": ".rwi-item-caption rule in the css template"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis unless smoothScroll is false, so it should be the only smooth scroll on the page",
+    "Renders one fixed full-viewport WebGL canvas with pointer events disabled above the page",
+    "Images must allow cross-origin loading for WebGL textures",
+    "Grid positions come from each item's r, c and s values on screens wider than 53em"
+  ],
+  "mood": ["editorial", "dramatic", "modern", "experimental"],
+  "industries": ["photography", "art", "fashion", "architecture", "agency"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["@react-three/fiber", "@react-three/drei", "three", "lenis"],
+  "variants": {
+    "prop": "variant",
+    "default": "pixel-wipe",
+    "options": [
+      {"value": "pixel-wipe", "look": "Image wipes in left to right as a pixelated grid that sharpens, with a colored gradient edge", "useWhen": "A portfolio gallery needs a techy, digital reveal on scroll"},
+      {"value": "noise-curtain", "look": "Grainy fill color curtain with noisy edge sweeps up to uncover the image", "useWhen": "A photography or editorial page wants a textured print-like reveal"},
+      {"value": "dither-fade", "look": "Fine dithered dots dissolve from fill color into the image from top to bottom", "useWhen": "A retro or minimal brand page wants a subtle fade-in"},
+      {"value": "wave-dissolve", "look": "Wavy pixelated dissolve that resolves into the image with a tinted edge", "useWhen": "A creative studio page wants a fluid organic reveal"},
+      {"value": "pixel-resolve", "look": "Whole image starts heavily pixelated and sharpens in place", "useWhen": "A lookbook or product gallery wants a clean focus-in with no color overlay"}
+    ]
+  }
+}

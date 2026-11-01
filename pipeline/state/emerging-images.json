@@ -4,11 +4,12 @@
   "sourceHash": "4762c0fae9819f83ec5107d27ccc34e7f4f56ce4ef3cbb48f017aa0f931d21a0",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "emerging-images",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.433Z"
+  "note": "Removed demo heading, outro section, rwi-frame header, picker UI, linkColor/linkHoverColor; variant now string prop (pixel-wipe, noise-curtain, dither-fade, wave-dissolve, pixel-resolve). Lenis via npm import instead of CDN @studio-freight/lenis 1.0.42 (behavior change). Canvas 100vw -> 100%; added className. Fixed canvas and scroll takeover in fixed.",
+  "updatedAt": "2026-11-01T06:44:19.201Z",
+  "gateOutput": "gates passed"
 }
