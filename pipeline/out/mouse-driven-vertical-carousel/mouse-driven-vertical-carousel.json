@@ -1,0 +1,48 @@
+{
+  "slug": "mouse-driven-vertical-carousel",
+  "name": "Mouse Driven Vertical Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen vertical list of titles over a crossfading background image, where the list scrolls with the pointer position and the hovered item becomes active.",
+  "contents": [
+    "Full-bleed background image per slide with crossfade and slight scale",
+    "Vertical list of numbered eyebrow and uppercase title items",
+    "Dark radial gradient overlay for text legibility"
+  ],
+  "behavior": [
+    "Moving the mouse vertically translates the list proportionally to the pointer position",
+    "Hovering or touching an item makes it active and swaps the background image",
+    "Inactive items fade and shift sideways by their distance from the active one",
+    "Touch dragging moves the list the same way as the mouse"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#021417"},
+    {"name": "eyebrowFontSize", "type": "string", "default": "text-lg"},
+    {"name": "titleFontSize", "type": "string", "default": "text-2xl sm:text-3xl md:text-4xl"},
+    {"name": "titleLetterSpacing", "type": "string", "default": "tracking-[8px]"},
+    {"name": "titleLineHeight", "type": "string", "default": "leading-none"},
+    {"name": "verticalPadding", "type": "string", "default": "py-8"},
+    {"name": "leftOffsetPercent", "type": "string", "default": "pl-[22%] md:pl-[54.1666%]"},
+    {"name": "indexLeftOffset", "type": "string", "default": "left-[-32px] md:left-[-45px]"},
+    {"name": "transitionSpeed", "type": "string", "default": "duration-500"},
+    {"name": "slides", "type": "{id,eyebrow,title,img}[]", "default": "7 sample slides"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides: eyebrow, title and background image",
+    "Background color, font sizes, letter spacing, padding, list offset and transition speed through Tailwind class props"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the dark overlay gradient", "where": "radial-gradient class on the overlay i element"},
+    {"change": "Change the list easing", "where": "transition style on the ul element"},
+    {"change": "Make items link to real pages", "where": "the a element with onClick preventDefault"}
+  ],
+  "fixed": [
+    "Fills the viewport height with a hidden-overflow full-bleed layout",
+    "Renders an empty background-colored placeholder until mounted"
+  ],
+  "mood": ["cinematic", "immersive", "editorial", "bold"],
+  "industries": ["travel", "real estate", "photography", "tourism", "media"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": []
+}
