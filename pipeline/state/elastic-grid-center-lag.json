@@ -4,11 +4,12 @@
   "sourceHash": "53646cef0e1280d7c7e94972ebb30c75c2399cb8e7851a7ca1245c1605705263",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "elastic-grid-center-lag",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.430Z"
+  "note": "CDN loadScript replaced by dynamic npm imports (gsap, ScrollTrigger, ScrollSmoother, imagesloaded); added className; removed unused rep param; fixed console error prefix. ScrollSmoother takeover and normalizeScroll in fixed. Overlay gradient colors hardcoded. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:38:05.600Z",
+  "gateOutput": "gates passed"
 }
