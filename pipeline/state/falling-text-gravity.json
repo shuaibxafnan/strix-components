@@ -4,11 +4,12 @@
   "sourceHash": "ba97d18d0c515d6af11d944cd82fd034eb5e1728e5e5a0db59f170648ab6fe5e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "falling-text-gravity",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.436Z"
+  "note": "gsap, ScrollTrigger, SplitText, Physics2DPlugin via dynamic npm import replacing CDN injection; headlines moved to lines prop; textColor now inline color value; added className; responsive headline sizes and px-4. 350vh min-height kept (fixed). No frame, no variants.",
+  "updatedAt": "2026-11-01T06:49:49.542Z",
+  "gateOutput": "gates passed"
 }
