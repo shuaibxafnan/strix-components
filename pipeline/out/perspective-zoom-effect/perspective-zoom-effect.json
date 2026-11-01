@@ -1,0 +1,58 @@
+{
+  "slug": "perspective-zoom-effect",
+  "name": "Perspective Zoom Effect",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Scroll-driven landing sequence: a pinned 3D perspective zoom of floating space images around a big title, then a letter-by-letter text reveal, a scrolling marquee and chapter cards.",
+  "contents": [
+    "Pinned hero with large title and 12 floating images on three depth layers",
+    "Pinned paragraph that reveals character by character",
+    "Scroll-linked marquee band",
+    "Chapters section with label, title, intro and three cards"
+  ],
+  "behavior": [
+    "Images and title fly toward the viewer with CSS perspective while the section is pinned",
+    "Characters fade in on scroll, then the paragraph scales up and fades out",
+    "Marquee track moves horizontally with scroll",
+    "Chapter cards rise in with a stagger when the section enters"
+  ],
+  "props": [
+    { "name": "images", "type": "{src,alt,layer}[]", "default": "12 sample space images" },
+    { "name": "titleText", "type": "string", "default": "Universe" },
+    { "name": "revealText", "type": "string", "default": "Look up long enough and the night sky stops feeling distant and starts feeling like home." },
+    { "name": "marqueeItems", "type": "string[]", "default": ["Deep Space", "Quiet Light", "Deep Space", "Quiet Light"] },
+    { "name": "chaptersLabel", "type": "string", "default": "Chapters" },
+    { "name": "chaptersTitle", "type": "string", "default": "Three Ways to Look Up" },
+    { "name": "chaptersIntro", "type": "string", "default": "A short tour of where stars come from, how their light travels, and how much room there is out there." },
+    { "name": "chapters", "type": "{tag,title,desc}[]", "default": "3 sample chapters" },
+    { "name": "scrubSpeed", "type": "number", "default": 1 },
+    { "name": "zoomDuration", "type": "string", "default": "+=150%" },
+    { "name": "textRevealDuration", "type": "number", "default": 1500 },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "textColor", "type": "string", "default": "text-white" },
+    { "name": "mutedColor", "type": "string", "default": "text-white/60" },
+    { "name": "borderColor", "type": "string", "default": "border-white/10" },
+    { "name": "marqueeColor", "type": "string", "default": "text-white/15" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Title, reveal paragraph, marquee words, chapters text and cards",
+    "Images, alt text and depth layer of each image",
+    "Scrub smoothness and scroll length of zoom and reveal",
+    "Background, text, muted, border and marquee Tailwind color classes"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change where images sit around the title", "where": "POSITIONS constant" },
+    { "change": "Change layer opacity or depth travel", "where": "LAYER_CLASSES constant and the data-layer tweens in the first timeline" },
+    { "change": "Change card entrance animation", "where": "gsap.from call targeting [data-card]" }
+  ],
+  "fixed": [
+    "Uses GSAP ScrollTrigger pins for the hero and the text reveal, so it adds scroll length to the page",
+    "Image positions are fixed slots that repeat after 12 images",
+    "Image size is capped at 300px and slots scale with viewport width, so images are small on phones"
+  ],
+  "mood": ["cosmic", "immersive", "dramatic", "cinematic"],
+  "industries": ["astronomy", "science", "film", "technology", "education"],
+  "sections": ["hero", "features"],
+  "dependencies": ["gsap"]
+}
