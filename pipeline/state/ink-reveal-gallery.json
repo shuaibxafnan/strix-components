@@ -4,11 +4,12 @@
   "sourceHash": "e3459d6244580fd12bcc5a66242cb081e0c98f744082900b4fc07ab2d98c34e3",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "ink-reveal-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.479Z"
+  "note": "Slug kept. three and gsap CDN loaders replaced by dynamic imports, both in dependencies; console-only .catch removed. className added, mousemove throttle timeout cleared on unmount. Tiles col-span-full below md, original placement from md up. Hover reveal mouse-only, no touch fallback, in fixed. Fixed z-[1000] grid overlay and one WebGL renderer per tile kept.",
+  "updatedAt": "2026-11-01T08:56:13.500Z",
+  "gateOutput": "gates passed"
 }
