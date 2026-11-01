@@ -4,11 +4,12 @@
   "sourceHash": "d4a5a083773ce2ab0d309cc4f2fc7d924c7224b9ec2de5706875824ee75f5633",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "zoom-blur-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.581Z"
+  "note": "Renamed zoom-blur-slidershow -> zoom-blur-slideshow (typo). Removed unused params/getWorldSize call, {} remnants. Added prevLabel, nextLabel. Root h-full to h-screen. Kept wheel preventDefault and window keyup. Dep three. No variants.",
+  "updatedAt": "2026-11-01T15:41:44.745Z",
+  "gateOutput": "gates passed"
 }

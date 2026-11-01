@@ -1,0 +1,62 @@
+{
+  "slug": "zoom-blur-slideshow",
+  "name": "Zoom Blur Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen WebGL image slideshow that transitions between photos with a radial zoom blur centered on the mouse, driven by wheel, click, swipe, keyboard or autoplay.",
+  "contents": [
+    "Full-screen WebGL canvas showing image slides",
+    "Dot indicators for the active slide",
+    "Previous and next arrow buttons"
+  ],
+  "behavior": [
+    "Zoom blur shader blends the current and next image",
+    "Blur center follows the mouse with smoothing",
+    "Wheel scrolling inside the slider scrubs progress",
+    "Click top or bottom half, arrow keys, swipe, or autoplay change slides",
+    "Intro blur resolves on load"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": ["https://images.pexels.com/photos/35061233/pexels-photo-35061233.jpeg", "https://images.pexels.com/photos/15052472/pexels-photo-15052472.jpeg", "https://images.pexels.com/photos/30389345/pexels-photo-30389345.jpeg"]},
+    {"name": "transitionSpeed", "type": "number", "default": 0.05},
+    {"name": "blurSamples", "type": "number", "default": 20},
+    {"name": "maxBlurStrength", "type": "number", "default": 1.0},
+    {"name": "introBlurDuration", "type": "number", "default": 2.0},
+    {"name": "enableMouseCenter", "type": "boolean", "default": true},
+    {"name": "mouseLerpSpeed", "type": "number", "default": 0.1},
+    {"name": "scrollSensitivity", "type": "number", "default": 0.05},
+    {"name": "enableKeyboard", "type": "boolean", "default": true},
+    {"name": "enableClick", "type": "boolean", "default": true},
+    {"name": "enableSwipe", "type": "boolean", "default": true},
+    {"name": "autoPlay", "type": "boolean", "default": false},
+    {"name": "autoPlayInterval", "type": "number", "default": 3000},
+    {"name": "showDots", "type": "boolean", "default": true},
+    {"name": "dotColor", "type": "string", "default": "rgba(255,255,255,0.4)"},
+    {"name": "dotActiveColor", "type": "string", "default": "#ffffff"},
+    {"name": "dotSize", "type": "number", "default": 8},
+    {"name": "backgroundColor", "type": "string", "default": "#000000"},
+    {"name": "fov", "type": "number", "default": 45},
+    {"name": "cameraZ", "type": "number", "default": 5},
+    {"name": "prevLabel", "type": "string", "default": "Previous"},
+    {"name": "nextLabel", "type": "string", "default": "Next"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, blur strength, samples, transition and intro timing",
+    "Input methods, autoplay, dots and their colors, background color, camera settings, button labels"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the blur algorithm or look", "where": "fragmentShader constant"},
+    {"change": "Restyle the arrow buttons", "where": "button elements inside the enableClick block"}
+  ],
+  "fixed": [
+    "Root is full-width and viewport height (h-screen). Override with className.",
+    "Wheel events over the slider are captured with preventDefault, so the page does not scroll while the pointer is over it",
+    "Arrow keys are listened to on window",
+    "Requires WebGL and at least 2 images"
+  ],
+  "mood": ["cinematic", "immersive", "dynamic", "modern"],
+  "industries": ["photography", "travel", "fashion", "portfolio", "real estate", "events"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": ["three"]
+}
