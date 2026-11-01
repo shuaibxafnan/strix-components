@@ -1,0 +1,52 @@
+{
+  "slug": "voyage-slider",
+  "name": "Voyage Slider",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen 3D tilt image slider showing a center slide flanked by blurred neighbors, with a blurred backdrop, staggered title text, arrow controls and a percentage loader.",
+  "contents": [
+    "Slides with image, title, subtitle and description",
+    "Previous and next arrow buttons",
+    "Blurred full-bleed backdrop of the current image",
+    "Loading overlay with percentage and label"
+  ],
+  "behavior": [
+    "Current slide scales up while previous and next tilt and fade to the sides",
+    "Mouse movement over a slide tilts it in 3D with eased interpolation and shifts the image",
+    "Text lines slide up in sequence when a slide becomes current",
+    "Loader counts up as images finish loading, then fades out",
+    "Slider wraps around at both ends"
+  ],
+  "props": [
+    { "name": "slidesData", "type": "{id,image,title,subtitle,description}[]", "default": "3 sample slides" },
+    { "name": "slideWidth", "type": "string", "default": "clamp(120px,25vw,300px)" },
+    { "name": "slideAspect", "type": "string", "default": "2/3" },
+    { "name": "transitionDuration", "type": "string", "default": "800ms" },
+    { "name": "backgroundColor", "type": "string", "default": "#0a0a0a" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "loadingLabel", "type": "string", "default": "Syncing Environments" },
+    { "name": "prevLabel", "type": "string", "default": "Previous Slide" },
+    { "name": "nextLabel", "type": "string", "default": "Next Slide" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Slides, images and all text",
+    "Slide size, aspect ratio and transition speed",
+    "Background and text colors, loader and button labels"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change tilt strength or smoothing", "where": "createTilt function" },
+    { "change": "Change side slide offset, rotation or blur", "where": "placementStyles in the slides map" },
+    { "change": "Change backdrop blur or darkness", "where": "bg- backdrop layer map with before: classes" }
+  ],
+  "fixed": [
+    "Backdrop layers and the loading overlay use fixed positioning over the whole viewport",
+    "Root fills the viewport height; override with className using an important modifier such as !h-auto",
+    "Runs its own requestAnimationFrame loop, cleaned up on unmount",
+    "Tilt effect responds to mouse only; touch devices use the arrows"
+  ],
+  "mood": ["cinematic", "immersive", "travel", "dark"],
+  "industries": ["travel", "tourism", "photography", "hospitality", "outdoor"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": ["imagesloaded"]
+}
