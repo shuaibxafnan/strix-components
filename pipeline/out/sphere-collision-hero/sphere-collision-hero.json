@@ -1,0 +1,72 @@
+{
+  "slug": "sphere-collision-hero",
+  "name": "Sphere Collision Hero",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen hero with a 3D cluster of pink spheres that fly in, settle into a breathing formation and repel from the cursor, with a reveal of nav, big labels and social links on top.",
+  "contents": [
+    "Fixed WebGL canvas with about 100 spheres of varied radius",
+    "Large centered brand title shown during the intro",
+    "Header with brand link, nav links and mobile menu button",
+    "Corner labels, tagline, description block, social icon links and rotated hint text",
+    "Custom dot and ring cursor"
+  ],
+  "behavior": [
+    "Spheres rise from below in a staggered looping arc and settle into place",
+    "After the intro the overlay text fades in and the center title fades out",
+    "Hovering spheres pushes them away, with collision resolution between spheres",
+    "Spheres gently breathe in place",
+    "Drag to orbit the camera with damping",
+    "Custom cursor follows the mouse on large screens"
+  ],
+  "props": [
+    {"name": "brandName", "type": "string", "default": "Festivity"},
+    {"name": "navLinks", "type": "{label,href}[]", "default": "5 sample links"},
+    {"name": "tagline", "type": "string", "default": "Dynamic Collisions"},
+    {"name": "leftLabel", "type": "string", "default": "X"},
+    {"name": "leftTitle", "type": "string", "default": "Pink & Rose Gold"},
+    {"name": "leftSubtitle", "type": "string", "default": "Lighting & Material Study"},
+    {"name": "rightLabel", "type": "string", "default": "01"},
+    {"name": "socialLinks", "type": "{icon,href}[]", "default": "4 sample links"},
+    {"name": "socialLabel", "type": "string", "default": "Social Links"},
+    {"name": "topDescTitle", "type": "string", "default": "Dispersion Collisions"},
+    {"name": "topDescSub", "type": "string", "default": "Research & Development"},
+    {"name": "rotatedText", "type": "string", "default": "Drag cursor to interact"},
+    {"name": "sphereColor", "type": "string", "default": "#c7a5a5"},
+    {"name": "sphereEmissive", "type": "string", "default": "#ff0000"},
+    {"name": "bgGradient", "type": "string", "default": "linear-gradient(to right,#fbfaff 0%,#fbfaff 80%,#ecf0fb 100%)"},
+    {"name": "textColor", "type": "string", "default": "#101117"},
+    {"name": "cameraZ", "type": "number", "default": 24},
+    {"name": "cameraFov", "type": "number", "default": 25},
+    {"name": "ambientIntensity", "type": "number", "default": 1.0},
+    {"name": "spotIntensity", "type": "number", "default": 0.52},
+    {"name": "breathingAmp", "type": "number", "default": 0.1},
+    {"name": "breathingSpeed", "type": "number", "default": 0.002},
+    {"name": "repulseStrength", "type": "number", "default": 0.2},
+    {"name": "revolutionDur", "type": "number", "default": 2},
+    {"name": "staggerDelay", "type": "number", "default": 0.02},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All text, nav links, social links and icons",
+    "Sphere color, emissive color, background gradient and text color",
+    "Camera distance and field of view, light intensities",
+    "Intro duration and stagger, breathing and repulsion strength"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change sphere sizes or layout", "where": "RADII and POSITIONS constants"},
+    {"change": "Change the intro arc height or start depth", "where": "INIT_Y and REVOLUTION_R constants"},
+    {"change": "Change the nav underline or right label bar", "where": "STYLES constant"}
+  ],
+  "fixed": [
+    "Fixed full-viewport canvas, cursor layer and centered intro title are positioned against the viewport",
+    "Hides the system-independent custom cursor only below the lg breakpoint, the system cursor is not hidden",
+    "Font Awesome icon classes and Oswald font are loaded through CSS imports in the STYLES constant",
+    "Sphere intro reveal timing is fixed to revolutionDur + 1 seconds",
+    "Rotated hint text is hidden below the md breakpoint"
+  ],
+  "mood": ["playful", "elegant", "modern", "soft", "immersive"],
+  "industries": ["creative studio", "design", "fashion", "art", "technology", "events"],
+  "sections": ["hero", "background"],
+  "dependencies": ["three", "gsap"]
+}
