@@ -4,11 +4,12 @@
   "sourceHash": "b7e224583bceea3a02e0d353e783c985e114ede53ef1a859a57ddb4db1df159d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-unroll-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.468Z"
+  "note": "Slug kept. Gates passed. Category cards-galleries. three and gsap CDN scripts replaced by dynamic imports, threeUrl/gsapUrl props removed. Demo header props removed. Removed outputEncoding line (sRGBEncoding gone in current three): may change colors, needs visual check. className and image alt props added. Replay controls kept as showControls/controls.",
+  "updatedAt": "2026-11-01T08:41:37.280Z",
+  "gateOutput": "gates passed"
 }
