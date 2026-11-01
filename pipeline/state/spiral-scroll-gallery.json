@@ -4,11 +4,12 @@
   "sourceHash": "38de63fbfaf7c55160e356f0891d518fac19e1d60eaf0eb41780200518066cc2",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "spiral-scroll-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.554Z"
+  "note": "CDN scripts replaced by npm dynamic imports: gsap, ScrollTrigger, lenis, imagesloaded. Style injection -> style element. className added. Fixed overlays and Lenis scroll takeover kept. Sway may clip at 360px.",
+  "updatedAt": "2026-11-01T13:09:04.878Z",
+  "gateOutput": "gates passed"
 }

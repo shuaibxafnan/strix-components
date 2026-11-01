@@ -1,0 +1,69 @@
+{
+  "slug": "spiral-scroll-gallery",
+  "name": "Spiral Scroll Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Dark scroll gallery where photos zigzag down the page and tumble in 3D as they scroll past, with a huge name marquee behind them, a focus color reveal and a frame counter.",
+  "contents": [
+    "Vertical stack of images with optional captions and index labels",
+    "Large horizontal marquee of names behind the images",
+    "Frame counter, vignette, film grain and loading line overlays"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Each image rotates in 3D and moves in depth, scrubbed by scroll",
+    "Images sway left and right along a sine path",
+    "Image in the viewport center turns from muted to full color",
+    "Marquee slides horizontally with scroll progress",
+    "Loading line shows until images are loaded"
+  ],
+  "props": [
+    {"name": "images", "type": "{src,alt,caption?}[]", "default": "10 sample mountain photos"},
+    {"name": "names", "type": "string[]", "default": "10 sample names"},
+    {"name": "bgColor", "type": "string", "default": "#0B0C0E"},
+    {"name": "textColor", "type": "string", "default": "#F2F1ED"},
+    {"name": "accentColor", "type": "string", "default": "#C9A66B"},
+    {"name": "mutedColor", "type": "string", "default": "#6E7570"},
+    {"name": "itemAspectRatio", "type": "string", "default": "14 / 9"},
+    {"name": "itemWidthPx", "type": "number", "default": 640},
+    {"name": "itemBorderRadius", "type": "number", "default": 3},
+    {"name": "itemGapRem", "type": "number", "default": 9},
+    {"name": "focusDesaturate", "type": "boolean", "default": true},
+    {"name": "marqueeColor", "type": "string", "default": "#C9A66B"},
+    {"name": "marqueeFontSize", "type": "string", "default": "clamp(2rem, 15vw, 7.5rem)"},
+    {"name": "blendMode", "type": "string", "default": "plus-lighter"},
+    {"name": "shadowInColor", "type": "string", "default": "rgba(0,0,0,0.15)"},
+    {"name": "shadowOutColor", "type": "string", "default": "rgba(0,0,0,0.75)"},
+    {"name": "amplitudeFactor", "type": "number", "default": 0.2},
+    {"name": "angleStep", "type": "number", "default": 0.45},
+    {"name": "rotationRange", "type": "[number, number]", "default": [70, 120]},
+    {"name": "zAmplitude", "type": "number", "default": 50},
+    {"name": "marginTopVh", "type": "number", "default": 28},
+    {"name": "marginBottomVh", "type": "number", "default": 38},
+    {"name": "showIndexRail", "type": "boolean", "default": true},
+    {"name": "showFrameCounter", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, captions, alt text and marquee names",
+    "All colors, blend mode and vignette strength",
+    "Image size, aspect ratio, radius, spacing, sway and rotation amounts",
+    "Toggle index labels, frame counter and focus color reveal"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the film grain strength or remove it", "where": "opacity-[0.05] mix-blend-overlay grain div"},
+    {"change": "Change the unfocused image filter", "where": ".rsg-frame rule in STYLES"},
+    {"change": "Change the perspective depth", "where": "perspective: \"900px\" in the item wrapper"},
+    {"change": "Disable smooth scrolling", "where": "new Lenis() setup in init"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Marquee, counter, vignette, grain and loader overlays are fixed to the viewport while the component is mounted",
+    "Uses window-level resize listener and GSAP ticker, both removed on unmount",
+    "Image sway is based on window width, so on narrow screens images shift near the edge and are clipped horizontally by the root"
+  ],
+  "mood": ["cinematic", "dark", "immersive", "editorial"],
+  "industries": ["photography", "travel", "outdoor", "film", "art"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap", "lenis", "imagesloaded"]
+}
