@@ -1,0 +1,54 @@
+{
+  "slug": "svg-sticker-effect",
+  "name": "SVG Sticker Effect",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "A hand-drawn style SVG illustration turned into a die-cut sticker with a dilated outline, textured border, specular shine that follows the pointer, and a soft drop shadow.",
+  "contents": [
+    "Inline SVG illustration styled as a sticker",
+    "Hidden SVG filter definition producing outline, shine and shadow"
+  ],
+  "behavior": [
+    "Specular light position follows the pointer across the window",
+    "Sticker scales fluidly with a minimum width of 200px"
+  ],
+  "props": [
+    {"name": "radius", "type": "number", "default": 4},
+    {"name": "outlineColor", "type": "string", "default": "#fafafa"},
+    {"name": "baseFrequency", "type": "number", "default": 0.03},
+    {"name": "numOctaves", "type": "number", "default": 3},
+    {"name": "seed", "type": "number", "default": 1},
+    {"name": "type", "type": "string", "default": "turbulence"},
+    {"name": "stdDeviation", "type": "number", "default": 3},
+    {"name": "surfaceScale", "type": "number", "default": 5},
+    {"name": "specularConstant", "type": "number", "default": 0.5},
+    {"name": "specularExponent", "type": "number", "default": 120},
+    {"name": "lightingColor", "type": "string", "default": "#ffffff"},
+    {"name": "lightZ", "type": "number", "default": 300},
+    {"name": "followPointer", "type": "boolean", "default": true},
+    {"name": "dx", "type": "number", "default": 0},
+    {"name": "dy", "type": "number", "default": 2},
+    {"name": "shadowBlur", "type": "number", "default": 2},
+    {"name": "shadowColor", "type": "string", "default": "#000000"},
+    {"name": "shadowOpacity", "type": "number", "default": 0.5},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Outline size, color and texture",
+    "Shine strength, color, height and pointer following",
+    "Drop shadow offset, blur, color and opacity"
+  ],
+  "needsCodeEdit": [
+    {"change": "Replace the illustration with another SVG or image", "where": "The svg with viewBox 885 1059 inside the div using ref stickerRef"},
+    {"change": "Change the filter id", "where": "nextjs-sticker-filter id and the filter url in the style of the sticker div"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Filter id is shared, so multiple instances on one page use the first filter definition",
+    "Listens to window pointer movement while followPointer is on and removes it on unmount"
+  ],
+  "mood": ["playful", "tactile", "quirky"],
+  "industries": ["creative studio", "e-commerce", "gaming", "education"],
+  "sections": ["hero", "other"],
+  "dependencies": []
+}
