@@ -4,11 +4,12 @@
   "sourceHash": "804801844d6cd9f9701e029c5d830a4c5466cb39acab85fbc7be4d3c9f2fae9c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "confetti-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.411Z"
+  "note": "Frame added; variant prop (dark, white, grey) replaces isWhiteVariant/isGreyVariant; CDN gsap -> import('gsap'); unmount cleanup; confettiColors prop. Behavior change: invalid rgba(hex) shadows replaced with color-mix, so cannon and button shadows now render. Gates passed.",
+  "updatedAt": "2026-11-01T05:15:01.437Z",
+  "gateOutput": "gates passed"
 }
