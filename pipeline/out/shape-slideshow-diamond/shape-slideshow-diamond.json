@@ -1,0 +1,269 @@
+{
+  "slug": "shape-slideshow-diamond",
+  "name": "Shape Slideshow Diamond",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen image slideshow where each slide collapses into a diamond clip shape and slides diagonally away while the next one arrives, with staggered headline text and an arrow navigation.",
+  "contents": [
+    "Slides with background image, two-row headline with italic and bold accent words, and a link",
+    "Title label, previous and next arrows, and a slide counter pill"
+  ],
+  "behavior": [
+    "Slide change animates a diamond clip-path collapse, diagonal slide with image parallax and staggered text",
+    "Hovering a slide link morphs the image into a diamond shape",
+    "Arrow keys navigate, optional wheel navigation and autoplay"
+  ],
+  "props": [
+    {
+      "name": "slides",
+      "type": "{image,rows,linkLabel,linkHref}[]",
+      "default": "4 sample slides"
+    },
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#000"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#fff"
+    },
+    {
+      "name": "frameColor",
+      "type": "string",
+      "default": "#ff5ba4"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "default": "Featured"
+    },
+    {
+      "name": "showTitle",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showNav",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "showIndex",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "autoplay",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "autoplayDelay",
+      "type": "number",
+      "default": 5000
+    },
+    {
+      "name": "enableKeyboard",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "enableWheel",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "headlineSize",
+      "type": "string",
+      "default": "clamp(2rem,6.5vw,6rem)"
+    },
+    {
+      "name": "accentSize",
+      "type": "string",
+      "default": "clamp(2rem,7vw,6rem)"
+    },
+    {
+      "name": "serifFamily",
+      "type": "string",
+      "default": "Georgia, serif"
+    },
+    {
+      "name": "height",
+      "type": "string",
+      "default": "100vh"
+    },
+    {
+      "name": "clipInitial",
+      "type": "string",
+      "default": "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
+    },
+    {
+      "name": "clipFinal",
+      "type": "string",
+      "default": "polygon(50% 10%, 60% 50%, 50% 90%, 40% 50%)"
+    },
+    {
+      "name": "clipHover",
+      "type": "string",
+      "default": "polygon(50% 10%, 60% 50%, 50% 90%, 40% 50%)"
+    },
+    {
+      "name": "hoverDuration",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "hoverEase",
+      "type": "string",
+      "default": "expo"
+    },
+    {
+      "name": "clipOutDuration",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "clipOutEase",
+      "type": "string",
+      "default": "expo"
+    },
+    {
+      "name": "clipInDuration",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "clipInEase",
+      "type": "string",
+      "default": "expo.inOut"
+    },
+    {
+      "name": "clipInDelay",
+      "type": "number",
+      "default": 0.9
+    },
+    {
+      "name": "slideOutDuration",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "slideOutEase",
+      "type": "string",
+      "default": "expo.inOut"
+    },
+    {
+      "name": "slideOutDelay",
+      "type": "number",
+      "default": 0.4
+    },
+    {
+      "name": "slideInDuration",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "slideInEase",
+      "type": "string",
+      "default": "expo"
+    },
+    {
+      "name": "slideInDelay",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "textOutDuration",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "textOutEase",
+      "type": "string",
+      "default": "power3"
+    },
+    {
+      "name": "textInDuration",
+      "type": "number",
+      "default": 0.7
+    },
+    {
+      "name": "textInEase",
+      "type": "string",
+      "default": "power3.inOut"
+    },
+    {
+      "name": "textInDelay",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "textStagger",
+      "type": "number",
+      "default": 0.1
+    },
+    {
+      "name": "linkFadeDuration",
+      "type": "number",
+      "default": 0.2
+    },
+    {
+      "name": "linkFadeDelay",
+      "type": "number",
+      "default": 1.3
+    },
+    {
+      "name": "imgParallax",
+      "type": "number",
+      "default": 100
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Slides, headline rows and styles, links, images",
+    "Colors, title, navigation and counter visibility",
+    "Clip shapes, durations, easings, delays, parallax amount",
+    "Autoplay, keyboard and wheel control, headline sizes, height"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the arrow icons",
+      "where": "The two button elements with aria-label Previous slide and Next slide"
+    },
+    {
+      "change": "Change the link underline style",
+      "where": "The -link::after rule in the css string"
+    }
+  ],
+  "fixed": [
+    "Loads gsap through a dynamic import and listens for keydown on window while mounted, removed on unmount",
+    "Slide height defaults to 100vh and the component fills the full width"
+  ],
+  "mood": [
+    "editorial",
+    "bold",
+    "dramatic",
+    "modern"
+  ],
+  "industries": [
+    "fashion",
+    "photography",
+    "travel",
+    "agency",
+    "art"
+  ],
+  "sections": [
+    "hero",
+    "gallery",
+    "portfolio"
+  ],
+  "dependencies": [
+    "gsap"
+  ]
+}
