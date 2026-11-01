@@ -1,0 +1,62 @@
+{
+    "slug": "fashion-menu",
+    "name": "Fashion Menu",
+    "category": "navigation-menus",
+    "isReactBits": false,
+    "description": "Full-screen list of large outlined names with counters and subtitles. Hovering a row shows a tilting image card that follows the cursor, with a custom two-ring cursor and grain overlay.",
+    "contents": [
+        "Vertical list of outlined uppercase names with numbered counters",
+        "Subtitle line per item that reveals character by character on hover",
+        "Hover image card per item",
+        "Custom dual-circle cursor",
+        "Animated film grain overlay"
+    ],
+    "behavior": [
+        "Names rise in with a staggered rotated entrance",
+        "Hover image card follows the mouse with eased tilt, skew and brightness based on mouse speed",
+        "Card pops in with an elastic rotation on enter and out on leave",
+        "Small cursor tracks instantly, large ring trails with a lag, shown only on fine pointers",
+        "Under 54em subtitles are hidden and sizes shrink"
+    ],
+    "props": [
+        {"name": "bgColor", "type": "string", "default": "#111111"},
+        {"name": "textColor", "type": "string", "default": "#e4e4e4"},
+        {"name": "fontFamily", "type": "string", "default": "Notable"},
+        {"name": "menuPaddingY", "type": "string", "default": "20vh"},
+        {"name": "menuPaddingLeft", "type": "string", "default": "25vw"},
+        {"name": "counterLeft", "type": "string", "default": "18%"},
+        {"name": "itemFontSize", "type": "string", "default": "4vw"},
+        {"name": "subFontSize", "type": "string", "default": "0.85rem"},
+        {"name": "imageWidth", "type": "number", "default": 200},
+        {"name": "imageHeight", "type": "number", "default": 300},
+        {"name": "cursorFill", "type": "string", "default": "#e2e2e2"},
+        {"name": "cursorStroke", "type": "string", "default": "#dddddd"},
+        {"name": "cursorStrokeWidth", "type": "number", "default": 2},
+        {"name": "largeCursorLag", "type": "number", "default": 0.4},
+        {"name": "showNoiseBg", "type": "boolean", "default": true},
+        {"name": "items", "type": "{name,subtitle,imgUrl}[]", "default": "10 sample items"},
+        {"name": "ariaLabel", "type": "string", "default": "Fashion models navigation"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Item names, subtitles and hover images",
+        "Background, text and cursor colors",
+        "Font family, text sizes, spacing, image card size",
+        "Cursor lag and stroke width, grain overlay on or off"
+    ],
+    "needsCodeEdit": [
+        {"change": "Make rows real links", "where": "the menu-item anchor inside items.map"},
+        {"change": "Change tilt, skew or brightness intensity of the image card", "where": "updateProps function"},
+        {"change": "Change the mobile breakpoint", "where": "@media screen and (max-width: 54em) block in buildStyles"}
+    ],
+    "fixed": [
+        "Root is a fixed full-viewport scroll container and sets html and body to overflow hidden while mounted, so it takes over page scrolling and should be the only content on the page",
+        "Loads the Google Font named by fontFamily through a link tag added to document head",
+        "Custom cursor follows the mouse and only appears on fine pointers",
+        "Image cards are hover-driven and do not appear on touch devices"
+    ],
+    "mood": ["editorial", "bold", "dark", "playful"],
+    "industries": ["fashion", "photography", "events", "creative agency", "portfolio"],
+    "sections": ["navbar", "portfolio"],
+    "dependencies": ["gsap", "splitting"]
+}
