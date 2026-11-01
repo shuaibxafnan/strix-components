@@ -1,0 +1,71 @@
+{
+  "slug": "elastic-stack",
+  "name": "Elastic Stack",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Draggable stack of polaroid-style photo cards in 3D perspective. Drag or key the top card aside and it flies off while the cards behind spring forward.",
+  "contents": [
+    "Title and subtitle header",
+    "Stack of photo cards with label and meta caption",
+    "Counter and drag hint"
+  ],
+  "behavior": [
+    "Front card follows pointer drag, with the cards behind following at reduced factors",
+    "Dragging past the threshold throws the card away and cycles it to the back",
+    "Releasing early springs the stack back with an overshoot ease",
+    "Arrow keys and Enter throw the front card when the root is focused",
+    "Optional random starting order"
+  ],
+  "props": [
+    {"name": "items", "type": "{image,label,meta}[]", "default": "6 sample plates"},
+    {"name": "bgColor", "type": "string", "default": "#dfe4e2"},
+    {"name": "cardColor", "type": "string", "default": "#faf8f4"},
+    {"name": "textColor", "type": "string", "default": "#1c2b30"},
+    {"name": "mutedColor", "type": "string", "default": "#8b9296"},
+    {"name": "accentColor", "type": "string", "default": "#b5533a"},
+    {"name": "headingFont", "type": "string", "default": "Georgia, \"Times New Roman\", serif"},
+    {"name": "bodyFont", "type": "string", "default": "Inter, \"Helvetica Neue\", Arial, sans-serif"},
+    {"name": "title", "type": "string", "default": "Elastic Stack"},
+    {"name": "subtitle", "type": "string", "default": "A deck of plates, held loosely"},
+    {"name": "showCounter", "type": "boolean", "default": true},
+    {"name": "showHint", "type": "boolean", "default": true},
+    {"name": "hintText", "type": "string", "default": "drag a card aside"},
+    {"name": "cardWidth", "type": "number", "default": 340},
+    {"name": "cardHeight", "type": "number", "default": 400},
+    {"name": "matTop", "type": "number", "default": 18},
+    {"name": "matSide", "type": "number", "default": 18},
+    {"name": "matBottom", "type": "number", "default": 84},
+    {"name": "visibleCards", "type": "number", "default": 3},
+    {"name": "depthStep", "type": "number", "default": 60},
+    {"name": "perspective", "type": "number", "default": 1000},
+    {"name": "perspectiveOriginY", "type": "string", "default": "150%"},
+    {"name": "followFactors", "type": "number[]", "default": [0.6, 0.3]},
+    {"name": "dragBackDistance", "type": "number", "default": 200},
+    {"name": "dragMaxDistance", "type": "number", "default": 450},
+    {"name": "throwDuration", "type": "number", "default": 0.3},
+    {"name": "settleDuration", "type": "number", "default": 0.4},
+    {"name": "settleEase", "type": "string", "default": "cubic-bezier(0.175, 0.885, 0.470, 1.515)"},
+    {"name": "tiltFactor", "type": "number", "default": 0.04},
+    {"name": "randomOrder", "type": "boolean", "default": false},
+    {"name": "enableKeyboard", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All photos, labels, captions, title, subtitle and hint text",
+    "Colors, fonts, card size, mat borders",
+    "Stack depth, perspective, drag thresholds, timings and easing",
+    "Counter, hint, keyboard control and random order toggles"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the card shadow", "where": "boxShadow in the cardStyle function"},
+    {"change": "Change the exit direction or fade behavior of the thrown card", "where": "throwAway function"}
+  ],
+  "fixed": [
+    "Root fills at least the viewport height and centers the header, stack and counter",
+    "Card width shrinks to the container on small screens"
+  ],
+  "mood": ["elegant", "tactile", "editorial", "playful"],
+  "industries": ["photography", "art", "fashion", "portfolio", "travel"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
