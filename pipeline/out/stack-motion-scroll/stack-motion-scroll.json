@@ -1,0 +1,273 @@
+{
+  "slug": "stack-motion-scroll",
+  "name": "Stack Motion Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Long scroll experience with a hero, a 3D tilting intro card grid, three stacks of cards that fly through space as you scroll, and an outro. Uses GSAP ScrollTrigger and Lenis smooth scroll.",
+  "contents": [
+    "Hero with subtitle, title and accent line",
+    "Intro title with a grid of detail cards (image, title, meta, subtitle, description)",
+    "Titled sections each holding a 3D stack of image cards",
+    "Outro with sliding text lines and a title"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis",
+    "Hero layers drift up, blur and fade as the page scrolls",
+    "Intro cards tilt back and darken while scrolling past",
+    "Card stacks fly through 3D space with rotation, scrubbed by scroll, using one of three motion presets per section",
+    "Outro lines slide in from alternating sides and the title scales in",
+    "Stacks rebuild on window resize"
+  ],
+  "props": [
+    {
+      "name": "images",
+      "type": "string[]",
+      "default": "15 sample image URLs"
+    },
+    {
+      "name": "introTitle",
+      "type": "string",
+      "default": "The Next Evolution"
+    },
+    {
+      "name": "introCards",
+      "type": "{title,subtitle,meta,description}[]",
+      "default": "9 sample cards"
+    },
+    {
+      "name": "sections",
+      "type": "{title,preset}[]",
+      "default": "3 sample sections with presets 1, 2, 3"
+    },
+    {
+      "name": "cardsPerStack",
+      "type": "number",
+      "default": 27
+    },
+    {
+      "name": "bgColor",
+      "type": "string",
+      "default": "#000000"
+    },
+    {
+      "name": "gradientInner",
+      "type": "string",
+      "default": "rgb(52 33 56)"
+    },
+    {
+      "name": "gradientOuter",
+      "type": "string",
+      "default": "rgb(0 0 0)"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "accentColors",
+      "type": "string[]",
+      "default": [
+        "#d09df2",
+        "#9df2eb",
+        "#f5e2a4",
+        "#d09df2",
+        "#9dcaf2",
+        "#f29dcc"
+      ]
+    },
+    {
+      "name": "cardBg",
+      "type": "string",
+      "default": "rgba(255, 255, 255, 0.2)"
+    },
+    {
+      "name": "cardInnerBg",
+      "type": "string",
+      "default": "rgb(41 27 41)"
+    },
+    {
+      "name": "stackCardBg",
+      "type": "string",
+      "default": "rgba(132, 128, 143, 0.36)"
+    },
+    {
+      "name": "cardRadius",
+      "type": "number",
+      "default": 10
+    },
+    {
+      "name": "cardMaxWidth",
+      "type": "number",
+      "default": 255
+    },
+    {
+      "name": "cardMinWidth",
+      "type": "number",
+      "default": 150
+    },
+    {
+      "name": "perspective",
+      "type": "number",
+      "default": 1000
+    },
+    {
+      "name": "scrollStart",
+      "type": "string",
+      "default": "top center"
+    },
+    {
+      "name": "scrollEnd",
+      "type": "string",
+      "default": "+=150%"
+    },
+    {
+      "name": "scrub",
+      "type": "boolean | number",
+      "default": true
+    },
+    {
+      "name": "staggerAmount",
+      "type": "number",
+      "default": 0.005
+    },
+    {
+      "name": "introBrightness",
+      "type": "number",
+      "default": 70
+    },
+    {
+      "name": "enableIntroScroll",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "enableSmoothScroll",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "smoothLerp",
+      "type": "number",
+      "default": 0.2
+    },
+    {
+      "name": "showIntro",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "fontFamily",
+      "type": "string",
+      "default": "'Chakra Petch', ui-monospace, SFMono-Regular, monospace"
+    },
+    {
+      "name": "displayFont",
+      "type": "string",
+      "default": "'Orbitron', 'Chakra Petch', ui-monospace, monospace"
+    },
+    {
+      "name": "fontUrl",
+      "type": "string",
+      "default": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500&family=Orbitron:wght@400;500;700;900&display=swap"
+    },
+    {
+      "name": "hideScrollbars",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "titleScale",
+      "type": "number",
+      "default": 1
+    },
+    {
+      "name": "showHero",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "heroTitle",
+      "type": "string",
+      "default": "Stack Protocol"
+    },
+    {
+      "name": "heroSubtitle",
+      "type": "string",
+      "default": "An archive in motion"
+    },
+    {
+      "name": "showOutro",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "outroTitle",
+      "type": "string",
+      "default": "End of Transmission"
+    },
+    {
+      "name": "outroLines",
+      "type": "string[]",
+      "default": [
+        "signal lost",
+        "archive sealed",
+        "return to origin"
+      ]
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "All text, images, intro cards, section titles and the outro lines",
+    "Number of cards per stack and the motion preset of each section",
+    "Colors, gradient, accents, card sizes, radius, perspective and fonts",
+    "Scroll trigger range, scrub, stagger, smooth scroll and which parts are shown"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Add or tweak stack motion presets",
+      "where": "PRESETS constant"
+    },
+    {
+      "change": "Change the hero fade-out motion",
+      "where": "data-hero tween in the useEffect"
+    },
+    {
+      "change": "Change the intro card layout columns",
+      "where": "gridTemplateColumns repeat(3, auto) in the intro cards grid"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when enableSmoothScroll is true, so it should be the only smooth scroll on the page",
+    "Injects a global style that hides html and body scrollbars while mounted when hideScrollbars is true",
+    "Loads the font stylesheet from fontUrl into document head",
+    "Includes spacers (25vh above stack titles, 30vh above the outro, 15vh at the end, min-h-screen stack areas) that the scroll effects need",
+    "Section preset values must be 1, 2 or 3, otherwise preset 1 is used"
+  ],
+  "mood": [
+    "futuristic",
+    "dramatic",
+    "immersive",
+    "dark"
+  ],
+  "industries": [
+    "technology",
+    "AI",
+    "gaming",
+    "creative agency",
+    "music"
+  ],
+  "sections": [
+    "hero",
+    "portfolio",
+    "gallery"
+  ],
+  "dependencies": [
+    "gsap",
+    "lenis"
+  ]
+}
