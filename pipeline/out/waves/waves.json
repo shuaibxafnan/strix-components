@@ -1,0 +1,113 @@
+{
+    "slug": "waves",
+    "name": "Waves",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 background of flowing Perlin-noise lines that react to the mouse with a spring displacement and click ripples, with an animated intro reveal and optional dashed style.",
+    "contents": [
+        "Absolutely positioned container with a single full-size WebGL canvas drawing parallel wavy lines"
+    ],
+    "behavior": [
+        "Lines drift continuously along a Perlin noise field",
+        "Moving the pointer pushes nearby lines, which spring back with damping controlled by bounce and returnDuration",
+        "Clicking or tapping emits ripples that travel outward (max 6 at once)",
+        "Lines near disturbed areas blend toward the accent color",
+        "Intro animation reveals lines from the center outward and grows the amplitude over about 2.2 seconds",
+        "Rendering pauses when offscreen or the tab is hidden",
+        "With prefers-reduced-motion, flow, intro, pointer push and ripples are disabled"
+    ],
+    "props": [
+        { "name": "lineColor", "type": "string", "default": "#ffffff" },
+        { "name": "accentColor", "type": "string", "default": "undefined (uses lineColor)" },
+        { "name": "backgroundColor", "type": "string", "default": "transparent" },
+        { "name": "lineStyle", "type": "'solid' | 'dashed'", "default": "solid" },
+        { "name": "spacing", "type": "number", "default": 10 },
+        { "name": "lineWidth", "type": "number", "default": 1 },
+        { "name": "rotation", "type": "number", "default": 0 },
+        { "name": "amplitude", "type": "number", "default": 32 },
+        { "name": "scale", "type": "number", "default": 1 },
+        { "name": "twist", "type": "number", "default": 1 },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "variation", "type": "number", "default": 0 },
+        { "name": "mouseInteraction", "type": "boolean", "default": true },
+        { "name": "mouseRadius", "type": "number", "default": 175 },
+        { "name": "mouseStrength", "type": "number", "default": 1 },
+        { "name": "bounce", "type": "number", "default": 0.5 },
+        { "name": "returnDuration", "type": "number", "default": 1.4 },
+        { "name": "clickRipple", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "fade", "type": "number", "default": 0 },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number", "default": "undefined (device pixel ratio, capped at 2)" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Line, accent and background colors, opacity, edge fade, and a darkened ink mode for light backgrounds",
+        "Solid or dashed lines, spacing, width, rotation angle",
+        "Wave amplitude, scale, twist, speed and a seed for different patterns",
+        "Mouse push radius, strength, bounce and return time, click ripple on or off",
+        "Intro on or off, pause, pixel ratio"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change ripple speed, size or strength",
+            "where": "RIPPLE_SPEED and RIPPLE_WIDTH constants and the ripple power formula in simulate"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change line smoothness or vertex budget",
+            "where": "STEP and MAX_VERTICES constants"
+        },
+        {
+            "change": "Change dash length or gap",
+            "where": "uPeriod uniform (spacing * 2.6) in render and the uStyle == 1 branch of the FRAGMENT shader"
+        },
+        {
+            "change": "Add a static fallback when WebGL2 is unavailable",
+            "where": "Early return after getContext at the start of the main useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2 with float RG32F textures, renders nothing if unavailable and has no fallback",
+        "Container is position absolute with inset 0, so the parent must be positioned and sized",
+        "Listens to pointer events on window, so interaction works even when other elements cover the canvas",
+        "The canvas is aria-hidden and decorative only",
+        "Pixel ratio is capped at 2",
+        "Respects prefers-reduced-motion by disabling flow, intro and interaction",
+        "Heavy GPU load on large screens with small spacing, vertex count is capped at 1.6 million",
+        "Touch input triggers ripples on tap but no continuous push, usable on mobile but GPU heavy on low-end devices"
+    ],
+    "mood": [
+        "futuristic",
+        "fluid",
+        "calm",
+        "technical"
+    ],
+    "industries": [
+        "technology",
+        "saas",
+        "music",
+        "creative agency",
+        "gaming"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "cta"
+    ],
+    "dependencies": [],
+    "variants": {
+        "prop": "lineStyle",
+        "default": "solid",
+        "options": [
+            { "value": "solid", "look": "Continuous flowing lines", "useWhen": "A clean, calm wave texture behind content" },
+            { "value": "dashed", "look": "Dashed lines whose dashes move along the line, offset per line", "useWhen": "A more technical, data-stream feel" }
+        ]
+    }
+}
