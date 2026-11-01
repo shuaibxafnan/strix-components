@@ -4,11 +4,12 @@
   "sourceHash": "b5b418d3e7e041e65ea174d39af12dddf4c2c396a26280d78960fc643318b27f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sliced-frame-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.523Z"
+  "note": "Renamed reveal-framed-slideshow -> sliced-frame-slideshow. Frame: none (slider). Variants: none. Responsive: already ok. Replaced CDN anime.js script with dynamic import of animejs (v3 API) and added unmount cleanup; added className, prevLabel, nextLabel props.",
+  "updatedAt": "2026-11-01T11:08:57.151Z",
+  "gateOutput": "gates passed"
 }
