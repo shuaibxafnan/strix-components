@@ -4,11 +4,12 @@
   "sourceHash": "66b240fbd5c1a70fe1df1422e38d95d07782525717ebd1b5f5dbf3e3b4e75c1c",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "svg-lighting",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.565Z"
+  "note": "Rewritten to template. Empty comment remnants removed; className added. Frame kept. Fixed-pixel sizes unchanged; outer icons may clip at 360px. Gates passed.",
+  "updatedAt": "2026-11-01T14:01:31.906Z",
+  "gateOutput": "gates passed"
 }
