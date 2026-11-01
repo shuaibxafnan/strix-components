@@ -1,0 +1,77 @@
+{
+  "slug": "folder-hover-preview",
+  "name": "Folder Hover Preview",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Grid of folder icons where hovering a folder opens its cover and fans out preview items in an arc, bounce, scatter or spray motion, surrounded by faded placeholder folders.",
+  "contents": [
+    "Grid of folder icons with badge, label and preview items",
+    "Faded placeholder folders filling the remaining grid cells"
+  ],
+  "behavior": [
+    "Hover opens the folder cover and animates items out using the folder's variant (arc, bounce, scatter, spray)",
+    "Leaving the folder returns items and cover to rest",
+    "Scatter variant plays a ripple ring; spray emits items repeatedly while hovered",
+    "Grid wraps to fewer columns on narrow screens"
+  ],
+  "props": [
+    { "name": "folders", "type": "{variant,label,badge,cell,coverTilt,iconShrink,ripple,items}[]", "default": "4 sample folders (arc, bounce, scatter, spray)" },
+    { "name": "items", "type": "{text,src,alt}[]", "default": "5 numbered items" },
+    { "name": "badge", "type": "string", "default": "users" },
+    { "name": "folderWidth", "type": "string", "default": "6em" },
+    { "name": "backColor", "type": "string", "default": "#8c8c99" },
+    { "name": "coverColor", "type": "string", "default": "#adadba" },
+    { "name": "backHoverColor", "type": "string", "default": "" },
+    { "name": "coverHoverColor", "type": "string", "default": "" },
+    { "name": "badgeColor", "type": "string", "default": "#76767f" },
+    { "name": "captionColor", "type": "string", "default": "#323437" },
+    { "name": "sheetColor", "type": "string", "default": "#ffffff" },
+    { "name": "showSheet", "type": "boolean", "default": false },
+    { "name": "bgColor", "type": "string", "default": "#f2f2f9" },
+    { "name": "dummyColor", "type": "string", "default": "#c6c6d3" },
+    { "name": "dummyCount", "type": "number", "default": 24 },
+    { "name": "columns", "type": "number", "default": 6 },
+    { "name": "gapSize", "type": "string", "default": "2.5em" },
+    { "name": "radius", "type": "number", "default": 150 },
+    { "name": "stagger", "type": "number", "default": 40 },
+    { "name": "duration", "type": "number", "default": 600 },
+    { "name": "easing", "type": "string", "default": "cubic-bezier(0.2, 1, 0.3, 1)" },
+    { "name": "scaleFrom", "type": "number", "default": 0.7 },
+    { "name": "thumbSize", "type": "string", "default": "" },
+    { "name": "coverTilt", "type": "number", "default": 0 },
+    { "name": "coverTiltMs", "type": "number", "default": 300 },
+    { "name": "liftAmount", "type": "number", "default": 0 },
+    { "name": "iconShrink", "type": "number", "default": 1 },
+    { "name": "ripple", "type": "boolean", "default": false },
+    { "name": "rippleColor", "type": "string", "default": "#181a1c" },
+    { "name": "rippleScale", "type": "number", "default": 10 },
+    { "name": "rippleMs", "type": "number", "default": 900 },
+    { "name": "sprayHeight", "type": "number", "default": 220 },
+    { "name": "sprayJitter", "type": "number", "default": 25 },
+    { "name": "sprayInterval", "type": "number", "default": 300 },
+    { "name": "showLabels", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Folders, their labels, badges, grid cells and per-folder motion settings",
+    "Preview items as text or images",
+    "All colors, folder size, grid columns, gap and timing"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Add more badge icons",
+      "where": "BADGE_PATHS constant"
+    },
+    {
+      "change": "Change the fan-out motion of a variant",
+      "where": "runIn function inside Folder"
+    }
+  ],
+  "fixed": [
+    "Hover only trigger: folders animate on mouse enter and leave, with no tap equivalent"
+  ],
+  "mood": ["playful", "clean", "interactive", "minimal"],
+  "industries": ["saas", "file storage", "portfolio", "agency", "education"],
+  "sections": ["features", "gallery", "portfolio"],
+  "dependencies": []
+}

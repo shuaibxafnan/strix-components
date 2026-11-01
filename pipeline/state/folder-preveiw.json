@@ -4,11 +4,12 @@
   "sourceHash": "40a9792ee30d5e81eea953fbd016920f7bf0edbbdf530848cb503087d513c827",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "folder-hover-preview",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.444Z"
+  "note": "folder-preveiw -> folder-hover-preview; no frame (section-like); no variant prop (variants are per-folder config in folders array); responsive: added max-w-full on grid so it wraps on mobile; kept placeholder dummy folders as part of look",
+  "updatedAt": "2026-11-01T07:18:08.137Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }
