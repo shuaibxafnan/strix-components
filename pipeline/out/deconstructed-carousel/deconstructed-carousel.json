@@ -1,0 +1,59 @@
+{
+  "slug": "deconstructed-carousel",
+  "name": "Deconstructed Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Horizontal card carousel with 3D tilt and layered parallax on hover, animated wave or line-grid card backgrounds, an outline that draws itself, arrow buttons, dots, swipe and keyboard navigation.",
+  "contents": [
+    "Cards with category label, heading, subheading, body text and link",
+    "Wave gradient or grid shape card backgrounds",
+    "Previous and next buttons and dot indicators"
+  ],
+  "behavior": [
+    "Track slides horizontally with an eased transition",
+    "Hovered card tilts in 3D and its layers shift with the pointer",
+    "Card outline draws on hover and text and lines animate in",
+    "Navigation by buttons, dots, left and right arrow keys, and touch swipe",
+    "Card size switches between mobile and desktop values at 768px"
+  ],
+  "props": [
+    { "name": "cardWidthMobile", "type": "number", "default": 280 },
+    { "name": "cardWidthDesktop", "type": "number", "default": 300 },
+    { "name": "cardHeightMobile", "type": "number", "default": 380 },
+    { "name": "cardHeightDesktop", "type": "number", "default": 400 },
+    { "name": "gap", "type": "number", "default": 40 },
+    { "name": "rotationFactor", "type": "number", "default": 8 },
+    { "name": "translationFactor", "type": "number", "default": 10 },
+    { "name": "cards", "type": "{id,type,category,heading,subheading,body,link,textColorClass,isRightAligned,gradients}[]", "default": "6 sample cards" },
+    { "name": "linkLabel", "type": "string", "default": "OPEN CALCULATOR" },
+    { "name": "backgroundColor", "type": "string", "default": "#f1f1f1" },
+    { "name": "textColor", "type": "string", "default": "#080808" },
+    { "name": "controlColor", "type": "string", "default": "#080808" },
+    { "name": "controlIconColor", "type": "string", "default": "#fafafa" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of cards, all text, links, card type (wave or grid) and wave gradient colors",
+    "Card sizes, gap, tilt and parallax strength",
+    "Background, text and control colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the wave shapes",
+      "where": "The three path elements inside the card.type === \"wave\" svg"
+    },
+    {
+      "change": "Change the grid card shapes",
+      "where": "calculateGridObjectTransform function"
+    }
+  ],
+  "fixed": [
+    "Adds window keydown listeners for left and right arrows, removed on unmount",
+    "Root is at least the viewport height and centers the carousel",
+    "Card text color is chosen per card with a Tailwind class (text-black or text-white)"
+  ],
+  "mood": ["playful", "modern", "layered", "interactive"],
+  "industries": ["tools", "health", "education", "saas", "ecommerce"],
+  "sections": ["features", "services", "portfolio"],
+  "dependencies": []
+}
