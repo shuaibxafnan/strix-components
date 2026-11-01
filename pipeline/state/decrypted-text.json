@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "decrypted-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.629Z"
+  "note": "Bits describe-only. Gates passed. Needs motion; effect variants scramble/fade/flip; 16ms min tick; hover unusable on touch; reduced motion skips animation; client-only; rest props not documented.",
+  "updatedAt": "2026-11-01T06:11:35.469Z",
+  "gateOutput": "gates passed"
 }

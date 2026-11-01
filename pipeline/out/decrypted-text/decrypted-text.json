@@ -1,0 +1,117 @@
+{
+    "slug": "decrypted-text",
+    "name": "Decrypted Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Inline text that scrambles into random glyphs and resolves letter by letter into the real text, triggered by hover, click, scroll into view, or both view and hover, with optional looping and cursor-radius scrambling.",
+    "contents": [
+        "Single inline text span with per-character cells",
+        "Screen-reader-only copy of the full text and aria-hidden animated glyphs"
+    ],
+    "behavior": [
+        "Characters are replaced by random glyphs from a pool and revealed in a chosen order (start, end, center, random), either all at once over iterations or one at a time when sequential",
+        "Trigger is set by animateOn: hover, click, view, inViewHover",
+        "Click mode can play once or toggle between decrypted and encrypted",
+        "Loop re-encrypts and decrypts repeatedly after a delay and pauses while offscreen",
+        "With hoverRadius above 0, letters near the pointer re-scramble with a smooth falloff",
+        "Scrambled glyphs are scaled horizontally to fit the width of the original letter",
+        "Reduced motion preference skips the animation and shows the final state"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "undefined" },
+        { "name": "speed", "type": "number", "default": 50 },
+        { "name": "maxIterations", "type": "number", "default": 10 },
+        { "name": "sequential", "type": "boolean", "default": false },
+        { "name": "revealDirection", "type": "'start' | 'end' | 'center' | 'random'", "default": "start" },
+        { "name": "useOriginalCharsOnly", "type": "boolean", "default": false },
+        { "name": "characters", "type": "string", "default": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "parentClassName", "type": "string", "default": "" },
+        { "name": "encryptedClassName", "type": "string", "default": "" },
+        { "name": "animateOn", "type": "'hover' | 'click' | 'view' | 'inViewHover'", "default": "hover" },
+        { "name": "clickMode", "type": "'once' | 'toggle'", "default": "once" },
+        { "name": "effect", "type": "'scramble' | 'fade' | 'flip'", "default": "scramble" },
+        { "name": "scrambleColor", "type": "string", "default": "" },
+        { "name": "loop", "type": "boolean", "default": false },
+        { "name": "loopDelay", "type": "number", "default": 2000 },
+        { "name": "hoverRadius", "type": "number", "default": 0 }
+    ],
+    "editableByProps": [
+        "Text, tick speed, number of iterations, sequential or simultaneous reveal and reveal direction",
+        "Scramble character set or reuse of the text's own letters",
+        "Trigger (hover, click, view, view plus hover), click mode, loop and loop delay",
+        "Pointer scramble radius",
+        "Scramble tint color and class names for revealed, scrambled and wrapper text"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change fade brightness range of scrambled letters",
+            "where": "FADE_FLOOR and FADE_PEAK constants"
+        },
+        {
+            "change": "Change flip animation angle or duration",
+            "where": "flipFrames function and the effect flip useIsomorphicLayoutEffect"
+        },
+        {
+            "change": "Change the settle transition timing of revealed letters",
+            "where": "SETTLE constant"
+        },
+        {
+            "change": "Change when the view trigger fires",
+            "where": "IntersectionObserver threshold in the view useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires motion (motion/react) and Tailwind CSS classes (sr-only, invisible, absolute, whitespace-pre-wrap)",
+        "Needs the 'use client' directive and runs only in the browser for measurement and observers",
+        "Minimum tick interval is 16ms, lower speed values are clamped",
+        "Words never break across lines (whitespace-nowrap per word)",
+        "Respects prefers-reduced-motion by skipping animation",
+        "Hover trigger needs a pointer, so touch devices only see it through click or view",
+        "Loop pauses while the element is offscreen",
+        "Text is not editable per character after mount, a changed text prop resets state"
+    ],
+    "mood": [
+        "techy",
+        "playful",
+        "futuristic",
+        "edgy"
+    ],
+    "industries": [
+        "cybersecurity",
+        "gaming",
+        "technology",
+        "crypto",
+        "creative agency"
+    ],
+    "sections": [
+        "hero",
+        "features",
+        "cta",
+        "about"
+    ],
+    "dependencies": [
+        "motion"
+    ],
+    "variants": {
+        "prop": "effect",
+        "default": "scramble",
+        "options": [
+            {
+                "value": "scramble",
+                "look": "Hidden letters show random glyphs that swap each tick until they resolve to the real letter",
+                "useWhen": "Hero headline or hacker-style tagline that should feel like code being decrypted"
+            },
+            {
+                "value": "fade",
+                "look": "Scrambled glyphs are dimmed and brighten as they approach reveal, then settle to full opacity",
+                "useWhen": "Subtle section heading or intro line that should emerge softly on scroll into view"
+            },
+            {
+                "value": "flip",
+                "look": "Each glyph change and final reveal tilts in with a 3D rotateX flip",
+                "useWhen": "Stats, labels or nav links where a mechanical split-flap feel suits hover or click"
+            }
+        ]
+    }
+}
