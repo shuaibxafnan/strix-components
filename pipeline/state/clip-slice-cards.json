@@ -4,11 +4,12 @@
   "sourceHash": "c4002033bc7204ecef24df70ad5b4ff63b20db1e1ecec407ab2249975c4af557",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "clip-slice-cards",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.408Z"
+  "note": "CDN gsap/imagesloaded -> npm dynamic imports; className prop; root fade-in tween killed on unmount; gsap.config trialWarn removed. Card link has no href (needsCodeEdit). Gates passed.",
+  "updatedAt": "2026-11-01T05:07:29.358Z",
+  "gateOutput": "gates passed"
 }

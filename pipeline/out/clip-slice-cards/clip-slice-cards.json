@@ -1,0 +1,72 @@
+{
+  "slug": "clip-slice-cards",
+  "name": "Clip Slice Cards",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Grid of monospace report cards that reveal a background image cut into sliding slices on hover, with scrambled-character text flicker. Rows use different slice counts and directions.",
+  "contents": [
+    "Large split title and subtitle line",
+    "Grid of cards, each with date, title, link label and a sliced background image"
+  ],
+  "behavior": [
+    "On hover the image enters as vertical or horizontal slices that slide in with staggered offsets, and slides out on leave",
+    "Date, title and link characters flicker through random characters on hover",
+    "Whole component fades in once the images have loaded",
+    "Each group of cards uses the next slice configuration from the configs list",
+    "Grid collapses to one column below the breakpoint"
+  ],
+  "props": [
+    { "name": "cards", "type": "{date,title,src?,link?}[]", "default": "12 sample cards" },
+    { "name": "images", "type": "string[]", "default": "25 sample photo URLs" },
+    { "name": "configs", "type": "{orientation,slicesTotal,duration,ease}[]", "default": "4 sample slice configs" },
+    { "name": "cardsPerConfig", "type": "number", "default": 3 },
+    { "name": "title", "type": "string[]", "default": ["Station", "Updates"] },
+    { "name": "subtitle", "type": "string", "default": "++ Each row of cards has a different image slice configuration ++" },
+    { "name": "linkLabel", "type": "string", "default": "Read the article" },
+    { "name": "bgColor", "type": "string", "default": "#0c0b10" },
+    { "name": "textColor", "type": "string", "default": "rgba(255,255,255,0.95)" },
+    { "name": "accentColor", "type": "string", "default": "rgb(124 20 244 / 90%)" },
+    { "name": "accentHover", "type": "string", "default": "rgb(94 54 176 / 75%)" },
+    { "name": "dateBoxColor", "type": "string", "default": "rgb(96 56 178 / 48%)" },
+    { "name": "borderColor", "type": "string", "default": "rgba(177,177,177,0.3)" },
+    { "name": "bodyFont", "type": "string", "default": "ui-monospace, \"Courier New\", monospace" },
+    { "name": "baseFontSize", "type": "string", "default": "12px" },
+    { "name": "titleSize", "type": "string", "default": "clamp(2rem, 8.5vw, 8rem)" },
+    { "name": "cardTitleSize", "type": "string", "default": "clamp(1rem, 3vw, 2rem)" },
+    { "name": "cardMinHeight", "type": "string", "default": "60vh" },
+    { "name": "cardPadding", "type": "string", "default": "4vw" },
+    { "name": "gridColumns", "type": "number", "default": 3 },
+    { "name": "brightness", "type": "number", "default": 0.6 },
+    { "name": "scrambleChars", "type": "string", "default": "abcdefghijklmnopqrstuvwxyz!@#$%^&*-_+=;:<>," },
+    { "name": "scrambleRepeat", "type": "number", "default": 3 },
+    { "name": "scrambleSpeed", "type": "number", "default": 0.03 },
+    { "name": "scrambleDelay", "type": "number", "default": 0.05 },
+    { "name": "enableScramble", "type": "boolean", "default": true },
+    { "name": "breakpoint", "type": "string", "default": "60em" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Cards, images, title, subtitle and link label",
+    "Slice count, direction, duration and easing per card group",
+    "Colors, font, sizes, card height, padding, column count and image brightness",
+    "Scramble effect characters, speed and on/off"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Make card links navigate to real URLs",
+      "where": "cph-link anchor with onClick preventDefault"
+    },
+    {
+      "change": "Change the slice slide offsets",
+      "where": "onEnter and onLeave timelines inside boot"
+    }
+  ],
+  "fixed": [
+    "Component stays invisible until its images finish loading, then fades in",
+    "Slice animation is triggered by mouse hover only"
+  ],
+  "mood": ["futuristic", "technical", "dark", "editorial"],
+  "industries": ["technology", "gaming", "science", "media", "agency"],
+  "sections": ["portfolio", "blog"],
+  "dependencies": ["gsap", "imagesloaded"]
+}
