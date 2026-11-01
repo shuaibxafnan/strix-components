@@ -1,0 +1,79 @@
+{
+    "slug": "circular-text",
+    "name": "Circular Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Text laid out around a circle that spins continuously, reacts to hover with speed changes, and can be dragged and flung. Supports a ring outline, 3D tilt, and centered children.",
+    "contents": [
+        "Circular container with each letter placed around the circle",
+        "Optional ring outline inside the letters",
+        "Optional centered children slot for an icon or image"
+    ],
+    "behavior": [
+        "Letters rotate continuously around the center, paused while offscreen",
+        "Hover changes spin speed (slow down, speed up, pause, or go bonkers with shrink)",
+        "Optional drag to spin with release fling momentum",
+        "Optional hover tilt in 3D following the pointer",
+        "Letters ease into position after mount",
+        "Spinning and hover effects are disabled with reduced motion"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "undefined" },
+        { "name": "spinDuration", "type": "number", "default": 20 },
+        { "name": "onHover", "type": "'slowDown' | 'speedUp' | 'pause' | 'goBonkers'", "default": "speedUp" },
+        { "name": "direction", "type": "'clockwise' | 'counterclockwise'", "default": "clockwise" },
+        { "name": "size", "type": "number", "default": 200 },
+        { "name": "fontSize", "type": "number", "default": 24 },
+        { "name": "fontWeight", "type": "number | string", "default": 900 },
+        { "name": "letterSpacing", "type": "number", "default": 0 },
+        { "name": "color", "type": "string", "default": "" },
+        { "name": "startAngle", "type": "number", "default": 0 },
+        { "name": "fill", "type": "boolean", "default": true },
+        { "name": "repeat", "type": "number", "default": 1 },
+        { "name": "ring", "type": "boolean", "default": false },
+        { "name": "ringColor", "type": "string", "default": "" },
+        { "name": "tilt", "type": "number", "default": 0 },
+        { "name": "hoverTilt", "type": "number", "default": 0 },
+        { "name": "draggable", "type": "boolean", "default": false },
+        { "name": "children", "type": "ReactNode", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Text, size, font size, weight, letter spacing and color",
+        "Spin speed, direction and hover reaction",
+        "Spread across full circle or natural spacing, repeat count, start angle",
+        "Ring outline and its color, static tilt, hover tilt, drag interaction",
+        "Centered children content"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change hover speed multipliers",
+            "where": "HOVER_SPEED constant"
+        },
+        {
+            "change": "Change maximum fling speed after drag",
+            "where": "MAX_FLING constant"
+        },
+        {
+            "change": "Change letter settle animation easing or duration",
+            "where": "LETTER_EASE constant"
+        },
+        {
+            "change": "Change spring feel of hover speed, scale and tilt",
+            "where": "useSpring calls for speed, scale, tiltX and tiltY"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package (motion/react)",
+        "Text is required, nothing renders without it",
+        "Centered horizontally with mx-auto and always a circle of size by size",
+        "Cursor is a pointer unless draggable, which uses grab cursors and disables touch scrolling on it",
+        "Pauses spinning when offscreen using IntersectionObserver",
+        "Drag scales the circle to 0.96 and goBonkers hover scales it to 0.8",
+        "Text is exposed as a single img with aria-label"
+    ],
+    "mood": ["playful", "bold", "modern", "interactive"],
+    "industries": ["creative agency", "music", "fashion", "gaming", "startup"],
+    "sections": ["hero", "cta", "other"],
+    "dependencies": ["motion"]
+}

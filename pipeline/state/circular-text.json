@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "circular-text",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.628Z"
+  "note": "Bits describe-only. Category text-effects. No variants (onHover is a speed behavior). Needs motion. text prop required; draggable disables touch scrolling. Gates passed.",
+  "updatedAt": "2026-11-01T05:05:43.134Z",
+  "gateOutput": "gates passed"
 }
