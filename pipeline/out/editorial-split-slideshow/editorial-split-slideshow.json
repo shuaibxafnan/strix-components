@@ -1,0 +1,41 @@
+{
+  "slug": "editorial-split-slideshow",
+  "name": "Editorial Split Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen split slideshow with a text panel on the left and a clip-path wipe image on the right, blurred background tint, autoplay and numbered navigation.",
+  "contents": [
+    "Label, serial counter, title, description and numbered buttons",
+    "Image panel with one image per slide and a blurred backdrop"
+  ],
+  "behavior": [
+    "Autoplay advances slides on an interval",
+    "Images wipe in with clip-path, fade and scale",
+    "Text fades up on each slide change",
+    "Numbered buttons jump to a slide",
+    "Stacks text above image on mobile"
+  ],
+  "props": [
+    {"name": "collection", "type": "{serial,title,description,imageUrl,imageAlt}[]", "default": "3 sample slides"},
+    {"name": "autoPlayInterval", "type": "number", "default": 6000},
+    {"name": "borderColor", "type": "string", "default": "border-zinc-800/80"},
+    {"name": "fontSerifClass", "type": "string", "default": "font-[Cinzel]"},
+    {"name": "label", "type": "string", "default": "Lookbook Series"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slides, text, images, label, border color, title font class, autoplay interval (0 disables)"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the dark zinc palette", "where": "bg-zinc-950 and bg-zinc-900/90 classes on the root and card"},
+    {"change": "Change the wipe direction", "where": "clipPath style in the image panel"}
+  ],
+  "fixed": [
+    "Imports the Cinzel Google font through a style tag",
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto."
+  ],
+  "mood": ["editorial", "luxury", "dark", "elegant"],
+  "industries": ["watches", "fashion", "jewelry", "luxury retail"],
+  "sections": ["hero", "gallery"],
+  "dependencies": []
+}
