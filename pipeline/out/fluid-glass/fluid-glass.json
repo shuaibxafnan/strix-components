@@ -1,0 +1,127 @@
+{
+    "slug": "fluid-glass",
+    "name": "Fluid Glass",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "WebGL2 glass object that refracts, reflects and disperses a text and image or video backdrop. It follows the pointer, can be dragged, and morphs between shapes on click.",
+    "contents": [
+        "Full-size canvas rendering a raymarched glass shape over a backdrop made of background color, optional image or video, and centered text",
+        "Hidden handle div for drag and click hit area",
+        "Screen reader only copy of the text",
+        "Optional children layered above the canvas"
+    ],
+    "behavior": [
+        "Glass shape refracts and reflects the backdrop with dispersion, frost, tint and a soft shadow with caustics",
+        "In follow mode the shape springs toward the pointer, in drag mode it can be grabbed and thrown with bounce off edges, in static mode it stays at position",
+        "Click on the shape morphs to the next shape in the cycle with a wobble",
+        "Idle drift and constant spin when enabled, shape stretches and tilts with velocity",
+        "Intro scale and fade in on first mount",
+        "Rendering pauses when offscreen or tab hidden and throttles when calm",
+        "Reduced motion preference lowers wobble, spin, drift and intro",
+        "Redraws text when theme class, style or data-theme changes on html, and when fonts load"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "Look closer." },
+        { "name": "textColor", "type": "string", "default": "undefined (uses computed color of container)" },
+        { "name": "fontFamily", "type": "string", "default": "undefined (uses computed font of container)" },
+        { "name": "fontWeight", "type": "number", "default": 600 },
+        { "name": "fontSize", "type": "number", "default": "undefined (auto fit to width and height)" },
+        { "name": "src", "type": "string", "default": "undefined" },
+        { "name": "fit", "type": "'cover' | 'contain'", "default": "cover" },
+        { "name": "background", "type": "string", "default": "transparent" },
+        { "name": "shape", "type": "'lens' | 'blob' | 'cube' | 'pill' | 'torus' | 'prism' | 'diamond'", "default": "torus" },
+        { "name": "shapes", "type": "string[]", "default": "undefined (all 7 shapes)" },
+        { "name": "size", "type": "number", "default": 260 },
+        { "name": "refraction", "type": "number", "default": 1 },
+        { "name": "dispersion", "type": "number", "default": 0.35 },
+        { "name": "reflection", "type": "number", "default": 1 },
+        { "name": "frost", "type": "number", "default": 0 },
+        { "name": "color", "type": "string", "default": "#ffffff" },
+        { "name": "tint", "type": "number", "default": 0 },
+        { "name": "shadow", "type": "number", "default": 0.5 },
+        { "name": "elevation", "type": "number", "default": 0.4 },
+        { "name": "interaction", "type": "'follow' | 'drag' | 'static'", "default": "follow" },
+        { "name": "smoothness", "type": "number", "default": 0.5 },
+        { "name": "wobble", "type": "number", "default": 0.5 },
+        { "name": "spin", "type": "number", "default": 0.3 },
+        { "name": "idle", "type": "boolean", "default": true },
+        { "name": "morphOnClick", "type": "boolean", "default": true },
+        { "name": "onShapeChange", "type": "(shape: string) => void", "default": "undefined" },
+        { "name": "position", "type": "[number, number]", "default": [0.5, 0.5] },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "maxDevicePixelRatio", "type": "number", "default": 2 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" },
+        { "name": "children", "type": "ReactNode", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Text, font, weight, size and color of the backdrop text",
+        "Backdrop image or video, fit mode and background color",
+        "Glass shape, shape cycle, size, refraction, dispersion, reflection, frost, tint color and strength",
+        "Shadow, elevation, interaction mode, smoothness, wobble, spin, idle drift, morph on click and start position",
+        "Intro, pixel ratio cap, container class and style, overlay children, shape change callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add a new glass shape",
+            "where": "SDF object, plus SHAPES, EXTENT, BASE and SPIN constants"
+        },
+        {
+            "change": "Move or recolor the studio light reflections",
+            "where": "studio function inside the fragmentFor shader string"
+        },
+        {
+            "change": "Change shadow light direction",
+            "where": "light array in the frame function"
+        },
+        {
+            "change": "Change morph duration",
+            "where": "morph.t update using 0.85 in the frame function"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if unavailable",
+        "Fills its parent (h-full w-full), the parent needs a defined height",
+        "Pointer listeners are attached to window and document element, so the shape reacts to pointer anywhere on the page within the container bounds",
+        "Container needs Tailwind classes, including group and data-[grabbing] variants for the grab cursor",
+        "Text is drawn in the canvas, so it is not selectable and children do not refract",
+        "Image and video src must allow CORS (crossOrigin anonymous)",
+        "Video is always muted, looped and autoplaying",
+        "Shape radius is capped at 36 percent of the smaller container side",
+        "Pixel count capped at about 5 million, heavy GPU shader that may be slow on low end and mobile devices",
+        "Shader compile happens on first use of each shape pair, so first morph may be delayed",
+        "Recovers from WebGL context loss by remounting the effect"
+    ],
+    "mood": [
+        "futuristic",
+        "premium",
+        "playful",
+        "glossy"
+    ],
+    "industries": [
+        "tech",
+        "creative agency",
+        "fashion",
+        "product design",
+        "gaming"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "cta"
+    ],
+    "dependencies": [],
+    "variants": {
+        "prop": "shape",
+        "default": "torus",
+        "options": [
+            { "value": "lens", "look": "Biconvex lens that magnifies the backdrop", "useWhen": "Magnifier or loupe effect over text or image" },
+            { "value": "blob", "look": "Organic wobbling liquid blob", "useWhen": "Playful or fluid brand feel" },
+            { "value": "cube", "look": "Rounded glass cube tumbling", "useWhen": "Techy or product showcase look" },
+            { "value": "pill", "look": "Flat rounded capsule", "useWhen": "UI like lens over a headline" },
+            { "value": "torus", "look": "Glass ring that sways, text visible through the hole", "useWhen": "Default, keeps text readable" },
+            { "value": "prism", "look": "Triangular prism with strong dispersion", "useWhen": "Rainbow light effect" },
+            { "value": "diamond", "look": "Faceted octahedron-like gem", "useWhen": "Luxury or jewel feel" }
+        ]
+    }
+}
