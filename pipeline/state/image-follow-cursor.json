@@ -4,11 +4,12 @@
   "sourceHash": "ea2e5c1041659beae5c05db7f09bb3f84ffce590fcb6a34b54935e0f92e0dd2d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-follow-cursor",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.463Z"
+  "note": "Slug kept. Gates passed. Root changed to w-full h-screen flex frame, className merged. Colors and href made props, defaults keep look. Mobile preview width default w-[40vw] md:w-[24vw]. Removed unused containerRef and empty comment placeholders. Touch: image does not follow cursor, recorded in fixed.",
+  "updatedAt": "2026-11-01T08:31:50.914Z",
+  "gateOutput": "gates passed"
 }
