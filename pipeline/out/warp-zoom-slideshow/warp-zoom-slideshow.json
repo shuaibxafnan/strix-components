@@ -1,0 +1,61 @@
+{
+  "slug": "warp-zoom-slideshow",
+  "name": "Warp Zoom Slideshow",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen image slideshow with zoom-warp transitions, staggered uppercase caption reveals, an animated slide counter with progress bar, and a custom arrow cursor for browsing.",
+  "contents": [
+    "Full-screen slides with background image and two-line uppercase caption",
+    "Series title and description in the top left, hint text in the top right",
+    "Slide counter with progress bar at the bottom center",
+    "Circular cursor with previous and next arrows"
+  ],
+  "behavior": [
+    "Navigates by wheel, click on left or right half, arrow keys, or touch swipe, looping at the ends",
+    "Slides zoom in or out with an image counter-scale depending on direction",
+    "Caption lines slide up with a stagger on each slide",
+    "Cursor ring follows the mouse, shows the arrow for the hovered half, and hides after inactivity"
+  ],
+  "props": [
+    { "name": "slidesData", "type": "{img,lines:string[]}[]", "default": "5 sample slides" },
+    { "name": "slideDuration", "type": "number", "default": 1.5 },
+    { "name": "cursorActiveTime", "type": "number", "default": 2000 },
+    { "name": "fontClass", "type": "string", "default": "font-sans" },
+    { "name": "textTracking", "type": "string", "default": "tracking-[-0.02em]" },
+    { "name": "seriesTitle", "type": "string", "default": "Contemplative Series" },
+    { "name": "seriesDesc", "type": "string", "default": "Navigate through a visual journey exploring the boundaries between form and emptiness." },
+    { "name": "hintText", "type": "string", "default": "scroll / click to browse" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Slide images, caption lines and number of slides",
+    "Transition duration and cursor idle time",
+    "Series title, description and hint text",
+    "Font and caption letter spacing classes"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the transition easing curves",
+      "where": "CustomEase.create calls inside the useEffect"
+    },
+    {
+      "change": "Change overlay colors or caption size",
+      "where": "js-text-line span className and the fixed overlay divs"
+    },
+    {
+      "change": "Disable wheel navigation",
+      "where": "handleWheel function"
+    }
+  ],
+  "fixed": [
+    "Listens for wheel, click, keyboard and touch on the whole document and window, removed on unmount",
+    "Wheel and click navigation applies page-wide, so it should be the only such slideshow on the page",
+    "Overlays and the cursor use fixed positioning relative to the viewport",
+    "Black background with white text",
+    "Renders nothing until mounted on the client"
+  ],
+  "mood": ["cinematic", "contemplative", "minimal", "dramatic"],
+  "industries": ["photography", "art", "fashion", "film", "architecture"],
+  "sections": ["hero", "gallery"],
+  "dependencies": ["gsap"]
+}
