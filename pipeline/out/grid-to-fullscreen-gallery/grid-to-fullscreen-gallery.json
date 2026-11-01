@@ -1,0 +1,103 @@
+{
+    "slug": "grid-to-fullscreen-gallery",
+    "name": "Grid To Fullscreen Gallery",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Image grid where clicking a thumbnail expands it to fullscreen through a WebGL mesh transition with configurable corner activation, flip, noise, wave or circle distortion, then closes back to the grid.",
+    "contents": [
+        "Heading label at the top",
+        "Three-column staggered grid of images, each with title and text",
+        "Outlined repeated background word",
+        "Fullscreen title overlay and close button"
+    ],
+    "behavior": [
+        "Click or tap on a thumbnail starts a WebGL transition from the thumbnail rectangle to the full viewport",
+        "Transition starts from the corner closest to the pointer and swaps the small texture for a large one",
+        "Title and close button animate in after opening, close reverses the transition",
+        "Grid collapses to a single column on small screens"
+    ],
+    "props": [
+        { "name": "items", "type": "{image,imageLarge,title,text}[]", "default": "6 sample city items" },
+        { "name": "bgColor", "type": "string", "default": "#151313" },
+        { "name": "textColor", "type": "string", "default": "#a96b5a" },
+        { "name": "gridTextColor", "type": "string", "default": "#444444" },
+        { "name": "titleColor", "type": "string", "default": "#ffffff" },
+        { "name": "decoColor", "type": "string", "default": "#191919" },
+        { "name": "decoText", "type": "string", "default": "Connect" },
+        { "name": "decoRows", "type": "number", "default": 5 },
+        { "name": "showDeco", "type": "boolean", "default": true },
+        { "name": "heading", "type": "string", "default": "Collection" },
+        { "name": "duration", "type": "number", "default": 1.8 },
+        { "name": "activation", "type": "string", "default": "closestCorner" },
+        { "name": "transformation", "type": "string", "default": "flipX" },
+        { "name": "timingType", "type": "string", "default": "sameEnd" },
+        { "name": "timingSections", "type": "number", "default": 1 },
+        { "name": "latestStart", "type": "number", "default": 0.5 },
+        { "name": "seed", "type": "number", "default": 0 },
+        { "name": "bezierC0X", "type": "number", "default": 0.4 },
+        { "name": "bezierC0Y", "type": "number", "default": -0.8 },
+        { "name": "bezierC1X", "type": "number", "default": 0.5 },
+        { "name": "bezierC1Y", "type": "number", "default": 0.9 },
+        { "name": "noiseAmplitudeX", "type": "number", "default": 0.5 },
+        { "name": "noiseAmplitudeY", "type": "number", "default": 0.5 },
+        { "name": "noiseFrequencyX", "type": "number", "default": 1 },
+        { "name": "noiseFrequencyY", "type": "number", "default": 0.75 },
+        { "name": "waveAmplitude", "type": "number", "default": 0.5 },
+        { "name": "waveFrequency", "type": "number", "default": 4 },
+        { "name": "segments", "type": "number", "default": 128 },
+        { "name": "easeToFullscreen", "type": "string", "default": "power4.out" },
+        { "name": "easeToGrid", "type": "string", "default": "power4.out" },
+        { "name": "gridColumns", "type": "string", "default": "31% 36% 33%" },
+        { "name": "gridMaxWidth", "type": "string", "default": "1200px" },
+        { "name": "displayFont", "type": "string", "default": "Futura, 'Century Gothic', Helvetica, Arial, sans-serif" },
+        { "name": "bodyFont", "type": "string", "default": "Futura, 'Century Gothic', Helvetica, Arial, sans-serif" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Items, images, titles and text",
+        "All colors, heading, background word and its row count",
+        "Transition style: activation origin, distortion type (none, flipX, simplex, wavy, circle), timing, easing, duration and mesh detail",
+        "Grid columns, max width and fonts"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add a new activation origin pattern",
+            "where": "ACTIVATIONS constant"
+        },
+        {
+            "change": "Add a new distortion type",
+            "where": "TRANSFORMS constant"
+        },
+        {
+            "change": "Change the staggered offsets of grid columns",
+            "where": "figure className with md:pt-[35%] and md:pt-[40%]"
+        }
+    ],
+    "fixed": [
+        "WebGL canvas and title overlay are fixed to the full viewport, so the component expects to be the main content of the page",
+        "Listens to window resize and scroll to keep the mesh aligned with the thumbnail",
+        "Includes the heading label as part of the layout",
+        "Transition measures against the window size, so the gallery is meant to span the full window width"
+    ],
+    "mood": [
+        "dark",
+        "cinematic",
+        "editorial",
+        "immersive"
+    ],
+    "industries": [
+        "photography",
+        "travel",
+        "fashion",
+        "art",
+        "agency"
+    ],
+    "sections": [
+        "gallery",
+        "portfolio"
+    ],
+    "dependencies": [
+        "three",
+        "gsap"
+    ]
+}
