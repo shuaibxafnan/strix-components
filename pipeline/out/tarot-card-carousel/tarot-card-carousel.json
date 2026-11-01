@@ -1,0 +1,53 @@
+{
+  "slug": "tarot-card-carousel",
+  "name": "Tarot Card Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Dark 3D ring carousel of tarot cards that rotate around a center axis, with click-to-flip card backs, dot indicators and prev/next controls over a faint red glow.",
+  "contents": [
+    "Eyebrow label and heading",
+    "3D ring of tarot cards with front (number, symbol, image, title, caption) and back (title, text)",
+    "Dot indicators and prev/next text buttons"
+  ],
+  "behavior": [
+    "Cards sit on a 3D ring and the ring rotates to bring the selected card to the front",
+    "Clicking a side card selects it, clicking the active card flips it",
+    "Active card lifts on hover, inactive cards are dimmed and desaturated",
+    "Image inside each card zooms slightly on hover"
+  ],
+  "props": [
+    { "name": "cards", "type": "{id,symbol,title,num,content,backText,img}[]", "default": "5 sample tarot cards" },
+    { "name": "radius", "type": "number", "default": 420 },
+    { "name": "eyebrow", "type": "string", "default": "Silent Hill III / Artifacts" },
+    { "name": "title", "type": "string", "default": "THE DOOR AWAITING THE TAROT CARDS" },
+    { "name": "reverseLabel", "type": "string", "default": "REVERSE" },
+    { "name": "prevLabel", "type": "string", "default": "Prev" },
+    { "name": "nextLabel", "type": "string", "default": "Next" },
+    { "name": "backgroundColor", "type": "string", "default": "#070302" },
+    { "name": "glowColor", "type": "string", "default": "rgba(185, 28, 28, 0.15)" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Cards list with images, titles, captions and back text",
+    "Heading, eyebrow and button labels",
+    "Ring radius, background color and glow color"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change card size",
+      "where": "w-[220px] h-[340px] classes on the card wrapper"
+    },
+    {
+      "change": "Change accent red tones",
+      "where": "red-500, red-900 and red-950 classes in the card and footer markup"
+    }
+  ],
+  "fixed": [
+    "Renders an empty background until mounted on the client",
+    "Ring stage is a fixed 460px tall with max width of 56rem"
+  ],
+  "mood": ["dark", "eerie", "gothic", "cinematic"],
+  "industries": ["gaming", "entertainment", "film", "publishing"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
