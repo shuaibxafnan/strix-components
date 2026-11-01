@@ -1,0 +1,51 @@
+{
+  "slug": "rainbow-canvas",
+  "name": "Rainbow Canvas",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Draggable 3D illustrated rainbow with soft clouds on a colored backdrop, drawn on a canvas with Zdog. It spins slowly on its own and pauses while dragged.",
+  "contents": [
+    "Six-band 3D rainbow arc",
+    "Two clusters of 3D clouds",
+    "Full-height colored backdrop"
+  ],
+  "behavior": [
+    "Auto-rotates around the vertical axis",
+    "Drag to rotate freely, auto-spin pauses while dragging and resumes on release",
+    "Canvas scales down to fit narrow screens"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#FABEF2" },
+    { "name": "rainbowColors", "type": "string[]", "default": ["#f25774", "#ffb65b", "#fdda74", "#4cbe5d", "#4080ff", "#7b64c0"] },
+    { "name": "cloudColors", "type": "string[]", "default": ["#F5F5F3", "#FAFAF8"] },
+    { "name": "zoomFactor", "type": "number", "default": 0.5 },
+    { "name": "initialXRotation", "type": "number", "default": -0.2225 },
+    { "name": "initialYRotation", "type": "number", "default": -202.39 },
+    { "name": "baseRainbowDiameter", "type": "number", "default": 400 },
+    { "name": "strokeThickness", "type": "number", "default": 30 },
+    { "name": "spinningSpeed", "type": "number", "default": 0.02 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Backdrop color, rainbow band colors and cloud colors",
+    "Size, zoom, band thickness, starting rotation and spin speed"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change cloud shapes or positions",
+      "where": "cloud1 shapes and copyGraph call inside the useEffect"
+    },
+    {
+      "change": "Change canvas resolution",
+      "where": "width and height attributes on the canvas element"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Canvas is drawn at 800x480 and scaled down by CSS on small screens"
+  ],
+  "mood": ["playful", "colorful", "friendly"],
+  "industries": ["kids", "education", "entertainment", "creative studio"],
+  "sections": ["hero", "background"],
+  "dependencies": ["zdog"]
+}
