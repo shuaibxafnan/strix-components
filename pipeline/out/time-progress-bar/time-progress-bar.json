@@ -1,0 +1,30 @@
+{
+  "slug": "time-progress-bar",
+  "name": "Time Progress Bar",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Five live progress bars showing how far the current year, month, day, hour and minute have elapsed, updating every second with a smooth width transition.",
+  "contents": ["Title heading", "Five labeled bars with percentage readouts for year, month, day, hour, minute"],
+  "behavior": ["Recalculates elapsed percentages from the local clock every second", "Bar widths animate with a CSS transition", "Renders nothing until mounted on the client"],
+  "props": [
+    {"name": "titleText", "type": "string", "default": "Progress."},
+    {"name": "labels", "type": "string[]", "default": ["Year Progress:", "Month Progress:", "Day Progress:", "Hour Progress:", "Minute Progress:"]},
+    {"name": "backgroundColor", "type": "string", "default": "#ffffff"},
+    {"name": "textColor", "type": "string", "default": "#000000"},
+    {"name": "barHeightClass", "type": "string", "default": "h-3"},
+    {"name": "transitionDuration", "type": "string", "default": "duration-500"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Title and the five labels", "Background and text/bar colors", "Bar height and transition duration"],
+  "needsCodeEdit": [
+    {"change": "Add or remove tracked time units", "where": "KEYS constant and updateMetrics function"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Always uses the visitor's local clock and updates once per second"
+  ],
+  "mood": ["minimal", "technical", "clean"],
+  "industries": ["productivity", "developer tools", "education", "agency"],
+  "sections": ["stats", "other"],
+  "dependencies": []
+}
