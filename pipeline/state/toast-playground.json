@@ -4,11 +4,12 @@
   "sourceHash": "a2bc89db81d934a936634c239abe70982cb7faf6c4fa63ded245593fda13e937",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "toast-playground",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.572Z"
+  "note": "Rewritten to template. Brand header, grid background and theme/animation pickers removed; now variant and animation props; text/color props added; className merged; frame added; mobile toast stack overflow fixed. Gates passed; warning setTimeout without clearTimeout, timers cleared on unmount.",
+  "updatedAt": "2026-11-01T14:23:34.363Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }
