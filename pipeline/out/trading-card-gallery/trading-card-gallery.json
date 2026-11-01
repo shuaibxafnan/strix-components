@@ -1,0 +1,64 @@
+{
+  "slug": "trading-card-gallery",
+  "name": "Trading Card Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Row of thumbnail tiles that open a full-screen modal with a 3D collectible trading card. The card flips in, tilts toward the mouse, and slides sideways with a spin when browsing prev or next.",
+  "contents": [
+    "Row of colored thumbnail tiles, one per card",
+    "Modal overlay with a 3D card showing pixel art, logo, number, description and QR code",
+    "Close, Prev and Next round buttons"
+  ],
+  "behavior": [
+    "Clicking a tile fades in a white overlay and flips the card in from below with a spin",
+    "Card tilts toward the mouse pointer with eased following",
+    "Prev and Next slide the current card out with a 360 degree spin and bring in the neighbor, wrapping at the ends",
+    "Close drops the card down and fades the overlay out",
+    "Below 640px the Prev and Next buttons move to the bottom and the card scales to 80vw"
+  ],
+  "props": [
+    {
+      "name": "ghouls",
+      "type": "{id,logo,number,qr,cardbg,riserbg,ghoullogofill,description}[]",
+      "default": "4 sample cards"
+    },
+    { "name": "prevLabel", "type": "string", "default": "Prev" },
+    { "name": "nextLabel", "type": "string", "default": "Next" },
+    { "name": "closeLabel", "type": "string", "default": "×" },
+    { "name": "controlColor", "type": "string", "default": "#222" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Card descriptions, card face colors, side riser colors and logo fill color per card",
+    "Which built-in artwork, logo, number and QR symbol each card uses, by id",
+    "Button labels and button color"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Add new card artwork, logos, numbers or QR codes",
+      "where": "The hidden svg blocks containing symbol elements with ids ghoul-1 to ghoul-4, logo-adamn, logo-choke, logo-evel, logo-1, no-1 and qr-1"
+    },
+    {
+      "change": "Change the card back face and header logo",
+      "where": "symbol ids back-logo and ghoul-logo, and the gg-back class in the style block"
+    },
+    {
+      "change": "Change the overlay color",
+      "where": "The fromTo on modalRef.current inside openModal"
+    },
+    {
+      "change": "Change tilt strength or smoothing",
+      "where": "speed constant and the multipliers 40 and -40 in tiltSetterRef"
+    }
+  ],
+  "fixed": [
+    "Card artwork, logos, number and QR are built-in SVG symbols referenced by id, so ids must be unique per page",
+    "Modal is fixed to the viewport and covers the page when open",
+    "Card size is fixed at 450 by 650 and shrinks to 80vw on small screens",
+    "Tilt follows the window mouse position, so there is no tilt on touch devices"
+  ],
+  "mood": ["playful", "retro", "collectible", "bold"],
+  "industries": ["gaming", "entertainment", "collectibles", "toys", "events"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}
