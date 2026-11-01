@@ -1,0 +1,55 @@
+{
+  "slug": "dual-wave-gallery",
+  "name": "Dual Wave Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Scroll-driven gallery of two mirrored columns of uppercase labels that sway in a sine wave while a central thumbnail follows the label nearest the viewport center and highlights it.",
+  "contents": [
+    "Two mirrored columns of uppercase text labels",
+    "Center thumbnail image that swaps to the focused item's image",
+    "Empty scroll spacers above and below the gallery"
+  ],
+  "behavior": [
+    "Labels move horizontally in a sine wave driven by scroll progress",
+    "The label closest to viewport center is highlighted and its image shown in the thumbnail",
+    "Thumbnail follows the viewport center, clamped inside the gallery",
+    "Optional smooth scrolling through GSAP ScrollSmoother"
+  ],
+  "props": [
+    {"name": "items", "type": "{label,rightLabel,image}[]", "default": "24 sample items"},
+    {"name": "waveNumber", "type": "number", "default": 12},
+    {"name": "waveSpeed", "type": "number", "default": 1},
+    {"name": "bgColor", "type": "string", "default": "#000"},
+    {"name": "textColor", "type": "string", "default": "#4d4d4d"},
+    {"name": "focusedColor", "type": "string", "default": "#fff"},
+    {"name": "columnGap", "type": "string", "default": "clamp(2.5rem, 15vw, 25vw)"},
+    {"name": "itemGap", "type": "string", "default": "1.25rem"},
+    {"name": "fontSize", "type": "string", "default": "clamp(1.1rem, 6vw, 3rem)"},
+    {"name": "thumbnailWidth", "type": "string", "default": "clamp(5.5rem, 20vw, 12rem)"},
+    {"name": "thumbnailMaxHeight", "type": "string", "default": "30vh"},
+    {"name": "spacerTop", "type": "string", "default": "75svh"},
+    {"name": "spacerBottom", "type": "string", "default": "100svh"},
+    {"name": "enableSmoothScroll", "type": "boolean", "default": false},
+    {"name": "smoothAmount", "type": "number", "default": 1.5},
+    {"name": "imageAlt", "type": "string", "default": "Gallery visual"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Labels, right column labels and images",
+    "Colors, font size, gaps, thumbnail size",
+    "Wave frequency and speed, spacer heights, smooth scroll"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the quickTo easing or duration of label motion", "where": "leftQuickSetters and rightQuickSetters"},
+    {"change": "Change when the scroll animation starts and ends", "where": "ScrollTrigger.create call with start and end"}
+  ],
+  "fixed": [
+    "Includes scroll spacers above and below the gallery so the wave has scroll range",
+    "Enabling smooth scroll takes over page scrolling with ScrollSmoother and normalizeScroll, so it should be the only smooth scroll on the page",
+    "Root paints its own background color across the full width"
+  ],
+  "mood": ["bold", "editorial", "dynamic", "dark"],
+  "industries": ["fashion", "automotive", "advertising", "portfolio", "technology"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}
