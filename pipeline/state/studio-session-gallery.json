@@ -4,11 +4,12 @@
   "sourceHash": "b1bc4ab18349ca85224e86caafe62cfc6f783721a55f7debbf1b07a313f87552",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "fisheye-hover-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.564Z"
+  "note": "Renamed StudioSessionGallery to FisheyeHoverGallery. CDN gsap loader replaced with npm dynamic import; deps gsap, three. Root w-full, className added; grid 2 cols below md, 12 above. Kept next/font Instrument_Serif.",
+  "updatedAt": "2026-11-01T13:59:21.551Z",
+  "gateOutput": "gates passed"
 }
