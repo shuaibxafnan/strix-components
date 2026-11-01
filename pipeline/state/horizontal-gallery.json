@@ -4,11 +4,12 @@
   "sourceHash": "56b836ba6afd3d0b1838f8eb0500fc490e74b2d5bf7f4dad75cc20304febb0d3",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "horizontal-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.460Z"
+  "note": "No rename. Component PrecisionGallery -> HorizontalGallery. Removed EXPOSURE header, showHeader prop, comments, style jsx global (scrollbar hiding now Tailwind arbitrary classes). Added className, dragLabel. Frame kept. Variants: none. Responsive ok. isClient mount gate kept.",
+  "updatedAt": "2026-11-01T08:09:11.674Z",
+  "gateOutput": "gates passed"
 }
