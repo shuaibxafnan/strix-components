@@ -1,0 +1,43 @@
+{
+  "slug": "infinite-inertial-menu",
+  "name": "Infinite Inertial Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-screen vertical menu of large serif labels that loops infinitely and is driven by wheel or drag, with inertial easing, scale and tilt that respond to scroll speed.",
+  "contents": [
+    "Vertical list of large menu labels with a numbered script-font index beside each"
+  ],
+  "behavior": [
+    "Mouse wheel and drag or touch move the list with lerped inertia",
+    "Items wrap endlessly in a vertical loop",
+    "Items shrink and rotate slightly based on scroll speed",
+    "Hovering a label scales it and nudges its number"
+  ],
+  "props": [
+    {"name": "bgColor", "type": "string", "default": "#ffffff"},
+    {"name": "fontColor", "type": "string", "default": "#020000"},
+    {"name": "accentColor", "type": "string", "default": "#862929"},
+    {"name": "lerpFactor", "type": "number", "default": 0.1},
+    {"name": "touchSpeedFactor", "type": "number", "default": 2.5},
+    {"name": "menuItems", "type": "{id,label}[]", "default": "9 sample brand labels"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Menu labels and count",
+    "Background, text and number colors",
+    "Inertia smoothness and drag speed"
+  ],
+  "needsCodeEdit": [
+    {"change": "Make labels link somewhere", "where": "button element inside the li in the menuItems map"},
+    {"change": "Change tilt and scale response", "where": "scaleValue and rotateValue in renderLoop"}
+  ],
+  "fixed": [
+    "Listens to window wheel events while mounted, without blocking page scroll",
+    "Uses Playfair Display and Playball fonts loaded from Google Fonts",
+    "Fills the viewport height"
+  ],
+  "mood": ["bold", "editorial", "playful"],
+  "industries": ["creative agency", "portfolio", "fashion", "media"],
+  "sections": ["navbar", "hero"],
+  "dependencies": []
+}

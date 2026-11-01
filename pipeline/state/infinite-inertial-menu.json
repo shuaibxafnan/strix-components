@@ -4,11 +4,12 @@
   "sourceHash": "da5486aae37e487a6c808943cc9c4fff3e0a39e7c8ae1fb2f5b6a6b536020561",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-inertial-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.472Z"
+  "note": "Slug kept. Gates passed. Removed empty JSX placeholders and a blank line. className added. Google Fonts import and pre-mount placeholder kept. Window wheel listener noted in fixed.",
+  "updatedAt": "2026-11-01T08:47:27.088Z",
+  "gateOutput": "gates passed"
 }
