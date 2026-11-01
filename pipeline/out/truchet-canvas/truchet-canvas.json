@@ -1,0 +1,45 @@
+{
+    "slug": "truchet-canvas",
+    "name": "Truchet Canvas",
+    "category": "backgrounds-3d",
+    "isReactBits": false,
+    "description": "Full-viewport p5 canvas of colored Truchet tiles with a grain texture. Hovering flips tiles under the cursor and clicking regenerates the whole pattern.",
+    "contents": [
+        "Full-size canvas grid of diagonal Truchet tiles with noise grain"
+    ],
+    "behavior": [
+        "Hovering a cell flips its tile and recolors the grid",
+        "Click or tap regenerates a random grid",
+        "Canvas resizes with the window and rebuilds the grid"
+    ],
+    "props": [
+        { "name": "baseHue", "type": "number", "default": 0.6 },
+        { "name": "cellSize", "type": "number", "default": 20 },
+        { "name": "outlineWeight", "type": "number", "default": 3 },
+        { "name": "strokeColor", "type": "string", "default": "#000000" },
+        { "name": "noiseOpacity", "type": "number", "default": 50 },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Tile hue, cell size, outline thickness and color, grain strength"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change tile shapes",
+            "where": "PATHS constant"
+        },
+        {
+            "change": "Change what hover and click do",
+            "where": "p.mouseMoved and p.mousePressed in the sketch"
+        }
+    ],
+    "fixed": [
+        "Canvas is sized to the window and the root is h-screen full width, override height with className",
+        "Background behind tiles is black",
+        "Saturation alternates between full and zero, only hue is configurable"
+    ],
+    "mood": ["playful", "geometric", "colorful", "interactive"],
+    "industries": ["creative agency", "gaming", "art", "technology"],
+    "sections": ["background", "hero"],
+    "dependencies": ["p5"]
+}
