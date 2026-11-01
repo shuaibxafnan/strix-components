@@ -1,0 +1,51 @@
+{
+  "slug": "stacked-carousel",
+  "name": "Stacked Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Vertical scroll stack of tilted image cards that pin near the top one after another, piling up on each other with title, year and genre tags overlaid on each card.",
+  "contents": [
+    "One full-height scroll slot per card with image, title, year and genre chips",
+    "Soft blurred glow behind the stack"
+  ],
+  "behavior": [
+    "Each card pins to the top while the page scrolls, so later cards slide over earlier ones",
+    "Cards sit at alternating tilt angles and straighten on hover",
+    "Hover scales the card and zooms the image"
+  ],
+  "props": [
+    { "name": "initialCards", "type": "{id,title,year,genres,image}[]", "default": "5 sample movie cards" },
+    { "name": "bodyBgColor", "type": "string", "default": "#0a0a0c" },
+    { "name": "cardWidth", "type": "string", "default": "315px" },
+    { "name": "cardHeight", "type": "string", "default": "560px" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of cards, titles, years, genre tags and images",
+    "Background color and card size"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the card tilt angles",
+      "where": "rotationClass logic inside the initialCards map"
+    },
+    {
+      "change": "Change the glow color or size",
+      "where": "fixed blurred div with bg-indigo-500/5"
+    },
+    {
+      "change": "Change the scroll distance each card stays pinned",
+      "where": "end function in ScrollTrigger.create"
+    }
+  ],
+  "fixed": [
+    "Pins each card with GSAP ScrollTrigger, using one viewport height of scroll per card",
+    "Includes a 30vh spacer below the stack to give the last pin scroll room",
+    "Glow behind the stack is fixed to the viewport",
+    "Card tilt angles are hardcoded and alternate by index"
+  ],
+  "mood": ["cinematic", "dark", "modern", "layered"],
+  "industries": ["entertainment", "film", "streaming", "media", "portfolio"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}
