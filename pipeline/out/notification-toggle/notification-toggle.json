@@ -1,0 +1,40 @@
+{
+  "slug": "notification-toggle",
+  "name": "Notification Toggle",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Notification on/off switch with a bell icon that buzzes when enabled, a title with status label and a short message that changes with the state.",
+  "contents": ["Bell icon that swaps between on and off", "Title with status label and message", "Checkbox styled as a sliding switch"],
+  "behavior": ["Bell icon shakes briefly when switched on", "Labels and messages change with state", "Calls onChange with the new value"],
+  "props": [
+    {"name":"id","type":"string","default":"notif-switch"},
+    {"name":"title","type":"string","default":"Notifications"},
+    {"name":"labelOn","type":"string","default":"On"},
+    {"name":"labelOff","type":"string","default":"Off"},
+    {"name":"msgOn","type":"string","default":"Spam on the way."},
+    {"name":"msgOff","type":"string","default":"Enjoy your day."},
+    {"name":"iconSize","type":"number","default":32},
+    {"name":"defaultChecked","type":"boolean","default":false},
+    {"name":"onChange","type":"(checked: boolean) => void","default":null},
+    {"name":"buzzDuration","type":"number","default":250},
+    {"name":"switchWidth","type":"string","default":"3.5rem"},
+    {"name":"switchHeight","type":"string","default":"2rem"},
+    {"name":"thumbSize","type":"string","default":"1.25rem"},
+    {"name":"thumbTravel","type":"string","default":"1.65rem"},
+    {"name":"textColor","type":"string","default":"#555"},
+    {"name":"activeColor","type":"string","default":"#555"},
+    {"name":"mutedColor","type":"string","default":"#888"},
+    {"name":"focusRingColor","type":"string","default":"#ff5449"},
+    {"name":"className","type":"string","default":""}
+  ],
+  "editableByProps": ["All text and labels", "Icon size, switch and thumb dimensions", "Text, active, muted and focus ring colors", "Initial state and buzz duration"],
+  "needsCodeEdit": [
+    {"change":"Replace the bell icons","where":"IconOn"},
+    {"change":"Change the buzz keyframes","where":"ntf-buzz"}
+  ],
+  "fixed": ["Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto."],
+  "mood": ["minimal","playful","clean"],
+  "industries": ["saas","apps","productivity","social"],
+  "sections": ["other"],
+  "dependencies": []
+}

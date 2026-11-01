@@ -4,11 +4,12 @@
   "sourceHash": "b6886be226c97bce703979f4553420962480804ea680974169d53d3478c59d02",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "pixel-canvas-card-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.513Z"
+  "note": "Renamed component PixelCards->PixelCanvasCardGrid. Removed comments. Added className. Frame added (w-full h-screen flex center p-4). Mobile grid 2 cols max-w-20rem. Hardcoded vignette/glow colors kept, in fixed.",
+  "updatedAt": "2026-11-01T10:34:33.728Z",
+  "gateOutput": "gates passed"
 }

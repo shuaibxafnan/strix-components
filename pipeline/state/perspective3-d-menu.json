@@ -4,11 +4,12 @@
   "sourceHash": "76adffcadab3e6d994e6642d381b9fe03408bcb35fd31f863bc9ffe1b5ed8445",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "perspective-3d-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.511Z"
+  "note": "Renamed perspective3-d-menu -> perspective-3d-menu; responsive adjusted",
+  "updatedAt": "2026-11-01T10:30:55.306Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

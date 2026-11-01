@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "peek-rating",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.623Z"
+  "note": "Bits describe-only. Needs @hugeicons/react and @hugeicons/core-free-icons. shape prop documented as variants (star, heart, bolt). Inline, no frame. Touch targets 44px on coarse pointers; may overflow at 360px with large size. Pointer capture may conflict with parent handlers.",
+  "updatedAt": "2026-11-01T10:28:47.498Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,29 @@
+{
+  "slug": "pan-gallery",
+  "name": "Pan Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Oversized scattered tile board that pans smoothly with the pointer or touch; colored tiles reveal their photo on hover and scale up slightly.",
+  "contents": ["Full-screen dark board with scattered colored tiles, each holding an image"],
+  "behavior": [
+    "Board is larger than the viewport and pans opposite to pointer position with a slow eased animation",
+    "Hovering a tile fades in its image and scales the tile",
+    "On touch devices the board pans with finger movement and images are always visible"
+  ],
+  "props": [
+    {"name": "tiles", "type": "{bg,img,alt,height,width,left,top}[]", "default": "9 sample tiles"},
+    {"name": "gallerySize", "type": "number", "default": 140},
+    {"name": "backgroundColor", "type": "string", "default": "#0a0a0a"},
+    {"name": "panDuration", "type": "number", "default": 4000},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Tile images, alt text, colors, sizes and positions", "Board size, pan speed and background color"],
+  "needsCodeEdit": [
+    {"change": "Change tile hover scale or reveal timing", "where": "className of the tile div inside tiles.map"}
+  ],
+  "fixed": ["Fills the full viewport width and height (w-screen h-screen) and hides overflow"],
+  "mood": ["playful", "creative", "dynamic"],
+  "industries": ["photography", "creative agency", "events", "fashion"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

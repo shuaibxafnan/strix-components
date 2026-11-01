@@ -1,0 +1,91 @@
+{
+    "slug": "particles",
+    "name": "Particles",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 field of drifting, softly glowing particles in 3D that slowly rotates and reacts to the pointer, with optional connection lines, click shockwaves and depth of field.",
+    "contents": [
+        "Container div with a single full-size aria-hidden WebGL2 canvas",
+        "Instanced particles in four shapes, optional lines between nearby particles"
+    ],
+    "behavior": [
+        "Particle cloud slowly rotates and each particle bobs; sizes twinkle",
+        "Pointer hover applies parallax, repel or attract depending on hoverEffect",
+        "Click or tap emits a shockwave burst (up to 4 at once)",
+        "Optional intro reveal, vertical or forward drift, and connection lines between close particles",
+        "Rendering pauses when offscreen, tab hidden or paused is true",
+        "Respects prefers-reduced-motion by skipping intro and click bursts"
+    ],
+    "props": [
+        { "name": "particleCount", "type": "number", "default": 200 },
+        { "name": "particleSpread", "type": "number", "default": 10 },
+        { "name": "speed", "type": "number", "default": 0.1 },
+        { "name": "particleColors", "type": "string[]", "default": ["#ffffff"] },
+        { "name": "moveParticlesOnHover", "type": "boolean", "default": true },
+        { "name": "particleHoverFactor", "type": "number", "default": 1 },
+        { "name": "alphaParticles", "type": "boolean", "default": false },
+        { "name": "particleBaseSize", "type": "number", "default": 100 },
+        { "name": "sizeRandomness", "type": "number", "default": 1 },
+        { "name": "cameraDistance", "type": "number", "default": 20 },
+        { "name": "disableRotation", "type": "boolean", "default": false },
+        { "name": "pixelRatio", "type": "number", "default": "undefined (device ratio, capped at 2)" },
+        { "name": "shape", "type": "'circle' | 'square' | 'ring' | 'sparkle'", "default": "circle" },
+        { "name": "glow", "type": "number", "default": 0.5 },
+        { "name": "twinkle", "type": "number (0-1)", "default": 0.3 },
+        { "name": "depthOfField", "type": "number", "default": 0 },
+        { "name": "connections", "type": "boolean", "default": false },
+        { "name": "connectionDistance", "type": "number", "default": 110 },
+        { "name": "hoverEffect", "type": "'parallax' | 'repel' | 'attract'", "default": "parallax" },
+        { "name": "hoverRadius", "type": "number", "default": 140 },
+        { "name": "clickBurst", "type": "boolean", "default": true },
+        { "name": "drift", "type": "'none' | 'up' | 'down' | 'forward'", "default": "none" },
+        { "name": "driftSpeed", "type": "number", "default": 1 },
+        { "name": "variation", "type": "number", "default": 0 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "opacity", "type": "number (0-1)", "default": 1 },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Particle count, spread, size, colors, shape, glow, twinkle, opacity and depth of field",
+        "Rotation, speed, drift direction and camera distance",
+        "Hover effect and radius, click bursts, connection lines, intro and pause",
+        "Dark or light background adaptation through lightMode, and layout through className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Raise or lower the maximum particle, line or burst limits",
+            "where": "MAX_COUNT, MAX_LINKED, MAX_LINES and MAX_BURSTS constants at the top of the file"
+        },
+        {
+            "change": "Change intro or shockwave timing and speed",
+            "where": "INTRO_SECONDS, BURST_SECONDS, BURST_SPEED and BURST_WIDTH constants"
+        },
+        {
+            "change": "Add a new particle shape or hover effect",
+            "where": "SHAPES and EFFECTS maps and the fragment and vertex shader strings"
+        },
+        {
+            "change": "Limit pointer tracking to the container instead of the whole window",
+            "where": "window pointer event listeners in the first useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; if unavailable nothing is drawn",
+        "Parent must have a defined height because the container is h-full w-full",
+        "Listens to pointer events on the whole window and document, not only the container",
+        "Particle count capped at 20000, at most 4 simultaneous click bursts",
+        "Pixel ratio capped at 2",
+        "Canvas is aria-hidden and decorative only",
+        "Uses Tailwind utility classes for container and canvas layout",
+        "Colors are re-parsed through a 2D canvas, so any CSS color string works",
+        "Particle layout is seeded and changes only with count, variation, colors or lightMode",
+        "Heavy settings (high counts with connections) can be costly on small or low-power devices"
+    ],
+    "mood": ["futuristic", "dreamy", "dark", "tech", "ambient"],
+    "industries": ["technology", "saas", "ai", "gaming", "creative agency"],
+    "sections": ["hero", "background"],
+    "dependencies": []
+}

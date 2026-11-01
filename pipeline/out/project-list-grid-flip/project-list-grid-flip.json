@@ -1,0 +1,71 @@
+{
+  "slug": "project-list-grid-flip",
+  "name": "Project List Grid Flip",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Dark portfolio showcase with a giant letter-reveal wordmark, a project list that flips into an image grid, hover image popup, Lenis smooth scrolling and a scroll-revealed footer wordmark.",
+  "contents": [
+    "Oversized wordmark with per-letter clip reveal",
+    "Section heading with count and list/grid toggle",
+    "Project rows with title, year and image",
+    "Full-screen hover popup showing the project image",
+    "Footer with two-line tagline and repeated wordmark"
+  ],
+  "behavior": [
+    "Smooth scrolling through Lenis, disabled for reduced motion",
+    "Items fade in with stagger on load",
+    "Toggle between list and grid animates with GSAP Flip and image clip-path wipes",
+    "Hovering a row wipes a color fill and shows a fullscreen image popup",
+    "Footer lines and wordmark reveal on scroll",
+    "Grid collapses from 5 to 3, 2 and 1 columns on smaller screens"
+  ],
+  "props": [
+    { "name": "projects", "type": "{id,title,year,image}[]", "default": "10 sample projects" },
+    { "name": "initialView", "type": "\"list\" | \"grid\"", "default": "list" },
+    { "name": "logoText", "type": "string", "default": "NOIR" },
+    { "name": "sectionLabel", "type": "string", "default": "SELECTED WORKS" },
+    { "name": "sectionCount", "type": "number", "default": "projects.length" },
+    { "name": "listLabel", "type": "string", "default": "List" },
+    { "name": "gridLabel", "type": "string", "default": "Grid" },
+    { "name": "footerTagline", "type": "string", "default": "Find the essence in simplicity," },
+    { "name": "footerBold", "type": "string", "default": "Create without boundaries." },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "textColor", "type": "string", "default": "text-white" },
+    { "name": "wipeColor", "type": "string", "default": "bg-white" },
+    { "name": "borderColor", "type": "string", "default": "border-white/10" },
+    { "name": "footerBackground", "type": "string", "default": "bg-white" },
+    { "name": "footerTextColor", "type": "string", "default": "text-black" },
+    { "name": "popupBg", "type": "string", "default": "bg-black/90" },
+    { "name": "popupFade", "type": "string", "default": "duration-500" },
+    { "name": "popupSwitch", "type": "string", "default": "duration-100" },
+    { "name": "fontFamily", "type": "string", "default": "Inter Tight" },
+    { "name": "fontUrlRegular", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/inter-tight@latest/latin-400-normal.woff2" },
+    { "name": "fontUrlBold", "type": "string", "default": "https://cdn.jsdelivr.net/fontsource/fonts/inter-tight@latest/latin-700-normal.woff2" },
+    { "name": "logoRevealDelay", "type": "number", "default": 0.3 },
+    { "name": "logoRevealStagger", "type": "number", "default": 0.15 },
+    { "name": "itemEntryStagger", "type": "number", "default": 0.08 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Projects, wordmark, headings, toggle labels and footer text",
+    "Background, text, wipe, border, footer and popup colors as Tailwind classes",
+    "Font family and font file URLs",
+    "Initial view and reveal timings"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change grid column counts", "where": "grid-cols-5 class string on the containerRef div" },
+    { "change": "Change Lenis smoothness", "where": "new Lenis options inside the gsap.context block" },
+    { "change": "Change flip timing", "where": "Flip.from call inside runFlip" }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Registers a GSAP ticker and ScrollTrigger instances, cleaned up on unmount",
+    "Hover popup is a fixed fullscreen overlay",
+    "Includes a min-h-screen list area and bottom margin that give the footer scroll room",
+    "Hover popup is hover-driven and does not show on touch devices"
+  ],
+  "mood": ["bold", "editorial", "minimal", "dark"],
+  "industries": ["design studio", "photography", "architecture", "creative agency", "fashion"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": ["gsap", "lenis"]
+}

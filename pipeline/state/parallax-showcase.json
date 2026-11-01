@@ -4,11 +4,12 @@
   "sourceHash": "626fb8809c769ab26e2620f1fa2c51fe6c611a3f03d1ed7f0a1142aa889c260b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "parallax-showcase",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.509Z"
+  "note": "Added className on root. Nothing removed. Google Fonts link and font props kept. GSAP ScrollSmoother takes over page scroll.",
+  "updatedAt": "2026-11-01T10:23:31.542Z",
+  "gateOutput": "gates passed"
 }

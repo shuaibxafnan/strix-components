@@ -4,11 +4,12 @@
   "sourceHash": "c5f7d4d089a871b01b06fa7f21c854fe29b9ca30b8de8534184d0e5737306df5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "parallax-3d-carousel",
+  "nameLocked": true,
+  "status": "gate_failed",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.507Z"
+  "note": "Renamed to parallax-3d-carousel. Removed empty comment placeholders and unused containerRef. CDN GSAP replaced by npm import (gsap); gsap in ref, context reverted on unmount. Added className. bodyBg prop name kept.",
+  "updatedAt": "2026-11-01T10:24:26.809Z",
+  "gateOutput": "ERROR default export is Parallax3DCarousel, expected Parallax3dCarousel"
 }

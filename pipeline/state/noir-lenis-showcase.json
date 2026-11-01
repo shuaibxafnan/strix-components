@@ -4,11 +4,12 @@
   "sourceHash": "4e2b3f8ddf9184e2e872b203bc37e5ad853947adc061bea0d9dffd3048df2772",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "project-list-grid-flip",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.504Z"
+  "note": "Renamed NoirLenisShowcase->ProjectListGridFlip. Deps gsap, lenis (CDN loader replaced by npm imports). Added className. No frame, no variants. Kept footer and logoText prop; review footer as possible demo chrome.",
+  "updatedAt": "2026-11-01T10:14:14.162Z",
+  "gateOutput": "gates passed"
 }

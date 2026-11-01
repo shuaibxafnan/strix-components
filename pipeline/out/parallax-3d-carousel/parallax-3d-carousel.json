@@ -1,0 +1,52 @@
+{
+  "slug": "parallax-3d-carousel",
+  "name": "Parallax 3D Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Draggable 3D ring carousel of image cards that rotates around a vertical axis, with inner image parallax shifting as the ring turns and hover focus that dims the other cards.",
+  "contents": [
+    "Ring of cards, each with a tag chip, image, title and meta line",
+    "Accent dot on each card that lights up on hover"
+  ],
+  "behavior": [
+    "Cards fly in from below with a staggered expo ease on mount",
+    "Drag or swipe horizontally to rotate the ring with eased motion",
+    "Card background images shift as the ring rotates for a parallax effect",
+    "Hovering a card enlarges it and dims the others"
+  ],
+  "props": [
+    { "name": "width", "type": "string", "default": "320px" },
+    { "name": "height", "type": "string", "default": "440px" },
+    { "name": "perspective", "type": "string", "default": "2300px" },
+    { "name": "ringRadius", "type": "number", "default": 520 },
+    { "name": "baseDuration", "type": "number", "default": 1.2 },
+    { "name": "bodyBg", "type": "string", "default": "#090b11" },
+    { "name": "cardAccentColor", "type": "string", "default": "#38bdf8" },
+    { "name": "carouselItems", "type": "{id,tag,title,meta,imageUrl}[]", "default": "10 sample architecture items" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of cards and their tag, title, meta and image",
+    "Card size, ring radius, perspective and intro duration",
+    "Background and accent colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change card surface colors and text colors",
+      "where": "carousel-card article className"
+    },
+    {
+      "change": "Change drag sensitivity or easing",
+      "where": "handleDragMove function"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height with its own background color",
+    "Drag uses pointer events and disables touch scrolling on the component",
+    "Hover dimming needs a pointer, touch users can only drag"
+  ],
+  "mood": ["modern", "dark", "immersive", "sleek"],
+  "industries": ["architecture", "interior design", "real estate", "photography", "portfolio"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["gsap"]
+}

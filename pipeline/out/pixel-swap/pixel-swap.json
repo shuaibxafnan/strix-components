@@ -1,0 +1,91 @@
+{
+    "slug": "pixel-swap",
+    "name": "Pixel Swap",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Container that swaps between two pieces of content through a grid of springy pixel squares revealing the second layer, triggered by hover or click, with selectable reveal patterns.",
+    "contents": [
+        "Two stacked content layers (firstContent and secondContent) filling an aspect-ratio frame",
+        "Clip-path mask built from a grid of animated pixel squares"
+    ],
+    "behavior": [
+        "Pixels grow with a spring (bounce) to reveal the second layer and shrink to restore the first",
+        "Reveal order follows the pattern prop, with optional randomness; pointer pattern radiates from the cursor entry or exit point",
+        "Plays an intro reveal of the first content on mount, waiting up to 3s for images to load",
+        "Hover trigger reacts to mouse and pen, touch and keyboard focus toggle it; click trigger toggles on click, Enter or Space",
+        "Can be controlled through active and onActiveChange",
+        "Skips animation and swaps instantly with prefers-reduced-motion"
+    ],
+    "props": [
+        { "name": "firstContent", "type": "ReactNode", "default": null },
+        { "name": "secondContent", "type": "ReactNode", "default": null },
+        { "name": "pattern", "type": "'pointer' | 'random' | 'center' | 'edges' | 'left-to-right' | 'right-to-left' | 'top-to-bottom' | 'bottom-to-top' | 'diagonal' | 'spiral'", "default": "pointer" },
+        { "name": "pixelSize", "type": "number", "default": 48 },
+        { "name": "gap", "type": "number", "default": 0 },
+        { "name": "pixelRadius", "type": "number", "default": 0 },
+        { "name": "pixelScale", "type": "number", "default": 0 },
+        { "name": "pixelSpin", "type": "number", "default": 0 },
+        { "name": "duration", "type": "number", "default": 400 },
+        { "name": "pixelDuration", "type": "number", "default": 350 },
+        { "name": "randomness", "type": "number", "default": 0.2 },
+        { "name": "bounce", "type": "number", "default": 0.3 },
+        { "name": "trigger", "type": "'hover' | 'click' | string", "default": "hover" },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "initialActive", "type": "boolean", "default": false },
+        { "name": "active", "type": "boolean", "default": null },
+        { "name": "onActiveChange", "type": "(active: boolean) => void", "default": null },
+        { "name": "onComplete", "type": "(active: boolean) => void", "default": null },
+        { "name": "aspectRatio", "type": "string", "default": "16 / 10" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": null }
+    ],
+    "editableByProps": [
+        "Both content layers, any React nodes such as images or cards",
+        "Reveal pattern, pixel size, gap, corner radius, start scale, spin, timing, randomness and bounce",
+        "Trigger mode, intro, initial and controlled state, aspect ratio, class and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change reveal patterns",
+            "where": "PATTERNS array and orderOf function"
+        },
+        {
+            "change": "Raise or lower the pixel count cap",
+            "where": "MAX_PIXELS constant"
+        },
+        {
+            "change": "Change focus outline style",
+            "where": "ROOT constant"
+        }
+    ],
+    "fixed": [
+        "Needs exactly two content layers; any trigger value other than hover or click gives no interaction (use active prop)",
+        "Pixel grid is capped at 600 cells, pixels are enlarged automatically on large areas",
+        "Minimum pixelSize is 8 and minimum pixelDuration is 60ms; values are clamped",
+        "Uses CSS clip-path path() on layers, redrawn every animation frame",
+        "Root is focusable (tabIndex 0) when trigger is hover or click",
+        "Frame is w-full with overflow hidden, size set by aspectRatio",
+        "Intro plays only when intro is true and initial state is not active",
+        "Client-only component ('use client'), relies on Tailwind classes"
+    ],
+    "mood": [
+        "playful",
+        "techy",
+        "dynamic",
+        "modern"
+    ],
+    "industries": [
+        "gaming",
+        "creative agency",
+        "technology",
+        "e-commerce",
+        "photography"
+    ],
+    "sections": [
+        "hero",
+        "gallery",
+        "portfolio",
+        "features"
+    ],
+    "dependencies": []
+}

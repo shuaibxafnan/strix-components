@@ -1,0 +1,69 @@
+{
+    "slug": "noise",
+    "name": "Noise",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "Animated film grain overlay with optional dust, hairs, scratches, scanlines and flicker. Sits on top of a section or the whole viewport without blocking clicks.",
+    "contents": [
+        "Tiled grayscale or colored grain layer with jittering position",
+        "Canvas layer for dust specks, hairs and vertical scratches",
+        "Optional scanline layer"
+    ],
+    "behavior": [
+        "Grain tile is generated once on a canvas and repositioned randomly at the set fps",
+        "Opacity flickers randomly when flicker is above 0",
+        "Dust, hairs and scratches are redrawn each frame step",
+        "Scanlines shift by one pixel step each frame",
+        "Animation pauses when offscreen and stops entirely with prefers-reduced-motion"
+    ],
+    "props": [
+        { "name": "opacity", "type": "number", "default": 0.2 },
+        { "name": "size", "type": "number", "default": 1 },
+        { "name": "fps", "type": "number", "default": 24 },
+        { "name": "blendMode", "type": "'normal' | 'overlay' | 'soft-light' | 'multiply' | 'screen' | 'difference'", "default": "overlay" },
+        { "name": "contrast", "type": "number", "default": 0.6 },
+        { "name": "colored", "type": "boolean", "default": false },
+        { "name": "dust", "type": "number", "default": 0 },
+        { "name": "scratches", "type": "number", "default": 0 },
+        { "name": "scanlines", "type": "number", "default": 0 },
+        { "name": "flicker", "type": "number", "default": 0 },
+        { "name": "fixed", "type": "boolean", "default": false },
+        { "name": "zIndex", "type": "number", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Grain strength, scale, contrast, color and animation speed",
+        "Blend mode against the content below",
+        "Dust, scratches, scanlines and flicker amounts",
+        "Cover the parent or the whole viewport, stacking order and extra classes or styles"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change dust and hair tones or scanline look",
+            "where": "drawSpeck, drawHair and the LINES constant"
+        },
+        {
+            "change": "Change grain tile resolution",
+            "where": "TILE constant"
+        },
+        {
+            "change": "Allow more simultaneous scratches",
+            "where": "scratchList.length < 3 check inside paintDust"
+        }
+    ],
+    "fixed": [
+        "Overlay is pointer-events-none and aria-hidden, purely decorative",
+        "Non-fixed mode is absolutely positioned, so the parent needs position relative",
+        "Fixed mode covers the whole viewport",
+        "Values are clamped: opacity, flicker, dust, scratches, scanlines 0 to 1, fps 0 to 60, size minimum 0.5",
+        "Unknown blendMode falls back to normal",
+        "Grain pattern is seeded and identical every render, only its position moves",
+        "Scanlines and dust use fixed dark and warm light tones",
+        "Uses browser canvas, ResizeObserver and IntersectionObserver, client only"
+    ],
+    "mood": ["gritty", "retro", "cinematic", "moody"],
+    "industries": ["film", "photography", "music", "fashion", "gaming"],
+    "sections": ["hero", "background", "global"],
+    "dependencies": []
+}

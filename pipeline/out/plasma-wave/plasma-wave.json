@@ -1,0 +1,73 @@
+{
+    "slug": "plasma-wave",
+    "name": "Plasma Wave",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "Full-container WebGL2 background of two glowing intertwined plasma ribbons with bloom, film grain and a pointer-driven swell and lens glow, with an intro fade-in.",
+    "contents": [
+        "Container div holding a single WebGL canvas that fills it"
+    ],
+    "behavior": [
+        "Raymarched twin ribbons animate continuously with wobble",
+        "Intro fades the ribbons in over 1.8 seconds",
+        "Pointer over the container swells the ribbons near the cursor and adds a lens glow",
+        "Renders only while visible and tab is active",
+        "Bloom and coarse-to-fine rendering with pixel cap for performance",
+        "Light mode renders opaque ink-like ribbons for light pages"
+    ],
+    "props": [
+        {"name": "colors", "type": "string[]", "default": ["#A855F7", "#06B6D4"]},
+        {"name": "speed", "type": "number", "default": 1},
+        {"name": "speed1", "type": "number", "default": 0.05},
+        {"name": "speed2", "type": "number", "default": 0.05},
+        {"name": "dir2", "type": "number", "default": 1},
+        {"name": "bend1", "type": "number", "default": 1},
+        {"name": "bend2", "type": "number", "default": 0.5},
+        {"name": "thickness", "type": "number", "default": 0.3},
+        {"name": "focalLength", "type": "number", "default": 1.25},
+        {"name": "rotationDeg", "type": "number", "default": 0},
+        {"name": "xOffset", "type": "number", "default": 0},
+        {"name": "yOffset", "type": "number", "default": 0},
+        {"name": "brightness", "type": "number", "default": 1},
+        {"name": "glow", "type": "number", "default": 1},
+        {"name": "core", "type": "number", "default": 0.6},
+        {"name": "grain", "type": "number", "default": 0.03},
+        {"name": "quality", "type": "number", "default": 1},
+        {"name": "mouseInteraction", "type": "boolean", "default": true},
+        {"name": "intro", "type": "boolean", "default": true},
+        {"name": "fade", "type": "number", "default": 0},
+        {"name": "opacity", "type": "number", "default": 1},
+        {"name": "lightMode", "type": "boolean", "default": false},
+        {"name": "paused", "type": "boolean", "default": false},
+        {"name": "dpr", "type": "number", "default": null},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Two ribbon colors",
+        "Animation speed, per-ribbon speed and direction, bend, thickness",
+        "Camera focal length, rotation and offset",
+        "Brightness, glow, core, grain, opacity, edge fade",
+        "Quality, pixel ratio, pause, intro and mouse interaction toggles",
+        "Light mode for light backgrounds",
+        "Container classes and extra div attributes"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change bloom strength levels or depth", "where": "BLOOM_LEVELS constant"},
+        {"change": "Change intro duration", "where": "INTRO_SECONDS constant"},
+        {"change": "Change pixel budget cap", "where": "MAX_LIGHT_PIXELS constant"},
+        {"change": "Change ribbon shape or number of ribbons", "where": "TRACE shader string, traceLight function"}
+    ],
+    "fixed": [
+        "Needs WebGL2; renders nothing if unsupported or shaders fail",
+        "Fills its parent, so the parent must have a defined height",
+        "Pointer listener is attached to window and tracks the whole page",
+        "Respects prefers-reduced-motion by disabling motion, intro and pointer effect",
+        "Device pixel ratio capped at 2 and light pixels capped at 2.4M, so large screens render at lower resolution",
+        "Heavy shader, may be slow on low-end mobile; lower quality prop helps",
+        "Settings other than quality and dpr update live without re-creating the context"
+    ],
+    "mood": ["futuristic", "energetic", "dramatic", "techy"],
+    "industries": ["technology", "AI", "gaming", "music", "crypto"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": []
+}

@@ -1,0 +1,75 @@
+{
+    "slug": "option-wheel",
+    "name": "Option Wheel",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Vertical curved picker wheel where options sit on an arc and blur and fade away from the selected one. Scroll, drag, click or use arrow keys to change the selection.",
+    "contents": [
+        "List of text options laid out along a curved arc",
+        "Selected option highlighted with the active color and heavier font weight"
+    ],
+    "behavior": [
+        "Mouse wheel or touchpad moves the selection, one option per notch",
+        "Pointer drag moves the wheel and snaps to the nearest option on release",
+        "Clicking an option selects it, arrow keys step through options",
+        "Eased animation with exponential smoothing, opacity, blur and color fade by distance from selection",
+        "Optional tick sound on selection change, throttled to 70ms",
+        "Calls onChange with index and label"
+    ],
+    "props": [
+        { "name": "items", "type": "string[]", "default": "12 music genres (Ambient, House, Techno, Jazz, Lo-Fi, Synthwave, Trance, Funk, Disco, Hip-Hop, Chillwave, Drum & Bass)" },
+        { "name": "defaultSelected", "type": "number", "default": 3 },
+        { "name": "onChange", "type": "(index: number, item: string) => void", "default": null },
+        { "name": "textColor", "type": "string", "default": "#a6a6a6" },
+        { "name": "activeColor", "type": "string", "default": "#ffffff" },
+        { "name": "side", "type": "'left' | 'right'", "default": "left" },
+        { "name": "fontSize", "type": "number (rem)", "default": 3 },
+        { "name": "spacing", "type": "number", "default": 1.4 },
+        { "name": "curve", "type": "number", "default": 1 },
+        { "name": "tilt", "type": "number (degrees per row)", "default": 6 },
+        { "name": "blur", "type": "number (px per row)", "default": 2 },
+        { "name": "fade", "type": "number", "default": 0.25 },
+        { "name": "minOpacity", "type": "number", "default": 0.05 },
+        { "name": "smoothing", "type": "number (ms)", "default": 200 },
+        { "name": "inset", "type": "number (px)", "default": 80 },
+        { "name": "loop", "type": "boolean", "default": false },
+        { "name": "draggable", "type": "boolean", "default": true },
+        { "name": "soundUrl", "type": "string", "default": "" },
+        { "name": "soundVolume", "type": "number (0 to 1)", "default": 0.5 },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Options list, initial selection and change callback",
+        "Text and active colors, font size, row spacing",
+        "Curvature, tilt, blur, fade and minimum opacity",
+        "Wheel side (left or right), edge inset, smoothing speed",
+        "Looping, drag on or off, tick sound and volume"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the accessible label",
+            "where": "aria-label on the root div with role listbox"
+        },
+        {
+            "change": "Change weights of selected and unselected options",
+            "where": "font-medium and font-extralight classes on the option div"
+        },
+        {
+            "change": "Change wheel step size or snap delay",
+            "where": "onWheel handler inside the wheel useEffect"
+        }
+    ],
+    "fixed": [
+        "Root is h-full w-full, so the parent must have a defined height or it collapses",
+        "Wheel events on the component are captured with preventDefault, so the page does not scroll while hovering it",
+        "Drag and touch gestures are fully captured (touch-action none), so vertical page scroll by touch is blocked over the component",
+        "Options are single-line and not wrapped, long labels can clip at narrow widths, and the default 80px inset with 3rem text suits desktop, so reduce fontSize and inset on mobile",
+        "Font size uses rem units, scaling with the root font size",
+        "Uses Audio element only when soundUrl is set",
+        "Uses Tailwind arbitrary value classes and color-mix"
+    ],
+    "mood": ["modern", "tactile", "minimal", "playful"],
+    "industries": ["music", "entertainment", "gaming", "audio hardware"],
+    "sections": ["other"],
+    "dependencies": []
+}

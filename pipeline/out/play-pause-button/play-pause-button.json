@@ -1,0 +1,33 @@
+{
+  "slug": "play-pause-button",
+  "name": "Play Pause Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Pill button that toggles between Play and Pause labels while its icon morphs between a play triangle and pause bars and a radial gradient wipes between two colors.",
+  "contents": ["Single pill button with morphing play/pause icon and animated Play/Pause label"],
+  "behavior": [
+    "Click toggles the label, icon morph and background color wipe",
+    "Starts in the Play state; the first click switches to the Pause state",
+    "Hover lifts the button slightly and press pushes it down"
+  ],
+  "props": [
+    { "name": "playColor", "type": "string", "default": "#6D58FF" },
+    { "name": "pauseColor", "type": "string", "default": "#2B3044" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "fontSize", "type": "string", "default": "14px" },
+    { "name": "iconColor", "type": "string", "default": "#ffffff" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": ["Play and pause colors, label color, icon color, font size", "Root class overrides"],
+  "needsCodeEdit": [
+    { "change": "Change the Play/Pause label text", "where": "the <i> letter elements inside the label div" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Renders nothing until mounted on the client"
+  ],
+  "mood": ["playful", "modern", "minimal"],
+  "industries": ["media", "music", "video", "saas", "education"],
+  "sections": ["other"],
+  "dependencies": []
+}

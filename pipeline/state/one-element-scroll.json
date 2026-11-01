@@ -4,11 +4,12 @@
   "sourceHash": "593804e7c42879e7e7ffa8f29e896897348bbf5e464888c70bee7597f17b7348",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "one-element-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.505Z"
+  "note": "CDN loaders replaced by npm imports (gsap, lenis). Removed demo links paragraphs, linkColor prop, console.error. Hover style scoped per instance. Added unmount cleanup and className. w-screen->w-full. Typekit loader kept. Large vh margins in outro kept.",
+  "updatedAt": "2026-11-01T10:16:41.622Z",
+  "gateOutput": "gates passed"
 }

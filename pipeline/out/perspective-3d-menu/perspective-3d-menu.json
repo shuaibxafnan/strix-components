@@ -1,0 +1,76 @@
+{
+  "slug": "perspective-3d-menu",
+  "name": "Perspective 3D Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-screen page with a hamburger menu that tilts the whole content into a 3D perspective stack and reveals a vertical link list, switching between home, about, contact, services and portfolio panels.",
+  "contents": [
+    "Top bar with two-part logo text and hamburger toggle",
+    "Five content panels: image hero with button, and four split text and image panels",
+    "Vertical link list on the right revealed when the menu opens",
+    "Two translucent layers behind the page that form the 3D stack"
+  ],
+  "behavior": [
+    "Hamburger tilts the page back with rotateY, translateZ and scale into a perspective stack",
+    "Clicking the tilted page or choosing a link closes the menu",
+    "Links fade in with staggered delays and the active link takes the accent color",
+    "Panels cross-fade with a slight scale when the link changes",
+    "Image side columns hide below 768px"
+  ],
+  "props": [
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "accentColor", "type": "string", "default": "#e20f2f" },
+    { "name": "logoPrimary", "type": "string", "default": "Perspective" },
+    { "name": "logoAccent", "type": "string", "default": "Menu" },
+    { "name": "links", "type": "{id,label}[]", "default": "home, about, contact, services, portfolio" },
+    { "name": "homeImage", "type": "string", "default": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920&auto=format&fit=crop" },
+    { "name": "aboutImage", "type": "string", "default": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" },
+    { "name": "servicesImage", "type": "string", "default": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop" },
+    { "name": "portfolioImage", "type": "string", "default": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1200&auto=format&fit=crop" },
+    { "name": "contactImage", "type": "string", "default": "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=1200&auto=format&fit=crop" },
+    { "name": "homeTitle", "type": "string", "default": "Future is here" },
+    { "name": "homeDesc", "type": "string", "default": "“All our dreams can come true, if we have the courage to pursue them.”" },
+    { "name": "homeButtonLabel", "type": "string", "default": "Read More" },
+    { "name": "aboutEyebrow", "type": "string", "default": "01 // Discovery" },
+    { "name": "aboutTitle", "type": "string", "default": "Architecting Realities" },
+    { "name": "aboutDesc", "type": "string", "default": "We push design parameters past typical industry limitations to craft immersive, minimalist experiences built to scale smoothly across corporate application ecosystems." },
+    { "name": "contactEyebrow", "type": "string", "default": "02 // Integration" },
+    { "name": "contactTitle", "type": "string", "default": "Let's Interface" },
+    { "name": "contactDesc", "type": "string", "default": "Have an optimization challenge, structural web development plan, or minimal sleek layout architecture parameters to talk over? Get in touch immediately." },
+    { "name": "contactEmail", "type": "string", "default": "hello@example.com" },
+    { "name": "servicesEyebrow", "type": "string", "default": "03 // Capabilities" },
+    { "name": "servicesTitle", "type": "string", "default": "Technical Deliverables" },
+    { "name": "servicesItems", "type": "string[]", "default": ["Next.js Systems Architecture", "UI/UX Interactive Mapping", "Visual Core Development"] },
+    { "name": "portfolioEyebrow", "type": "string", "default": "04 // Production Index" },
+    { "name": "portfolioTitle", "type": "string", "default": "Selected Showcases" },
+    { "name": "portfolioDesc", "type": "string", "default": "A retrospective review of modern optimized modules running natively over serverless edge structures global nodes." }
+  ],
+  "editableByProps": [
+    "Logo text, accent color, link labels",
+    "All panel images, titles, descriptions, eyebrows, button label, email and service list"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Add or remove panels beyond the five built-in ones",
+      "where": "linksList and the activeTab === blocks inside the panel container"
+    },
+    {
+      "change": "Change the 3D tilt angle or depth",
+      "where": "The [transform:perspective(1300px)_rotateY(20deg)... classes on the isActive page wrapper"
+    },
+    {
+      "change": "Change the link reveal delay step",
+      "where": "linksList mapping delay"
+    }
+  ],
+  "fixed": [
+    "Link ids must stay home, about, contact, services and portfolio to match the panels",
+    "Root is at least a full viewport tall and the page content is the five built-in panels",
+    "Menu links sit in the right 30% of the viewport (45% on mobile)",
+    "Renders a dark placeholder until mounted on the client"
+  ],
+  "mood": ["futuristic", "dark", "bold", "immersive"],
+  "industries": ["agency", "portfolio", "technology", "creative studio"],
+  "sections": ["navbar", "hero"],
+  "dependencies": []
+}

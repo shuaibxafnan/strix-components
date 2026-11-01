@@ -4,11 +4,12 @@
   "sourceHash": "8cd5cc5e6af09fb2b581811e38298baf0845d82624f907ed0f8a701f80781c05",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "not-found-feather",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.505Z"
+  "note": "Removed empty comment placeholders. Added className, touchmove handler, touch-none. w-screen->w-full. Hardcoded white h1 kept, invisible on default white bgColor.",
+  "updatedAt": "2026-11-01T10:15:21.232Z",
+  "gateOutput": "gates passed"
 }

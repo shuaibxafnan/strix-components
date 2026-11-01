@@ -1,0 +1,59 @@
+{
+  "slug": "parallax-showcase",
+  "name": "Parallax Showcase",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-screen smooth-scrolling story with alternating uppercase headings and wide images that move at different speeds, creating layered parallax depth over a dark background.",
+  "contents": [
+    "Story sections, each with a large heading, optional body text and a wide image",
+    "Alternating left and right text and image layout"
+  ],
+  "behavior": [
+    "Smooth scrolling through GSAP ScrollSmoother",
+    "Headings and images move at different speeds for parallax depth",
+    "Scroll triggers refresh when the content size changes"
+  ],
+  "props": [
+    { "name": "sections", "type": "{id,layout,heading,body,imageSrc,imageAlt}[]", "default": "4 sample sections" },
+    { "name": "smoothness", "type": "number", "default": 3 },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "textColor", "type": "string", "default": "text-white" },
+    { "name": "imageOpacity", "type": "string", "default": "opacity-60" },
+    { "name": "headerSpeed", "type": "number", "default": 1.25 },
+    { "name": "imageParallaxSpeed", "type": "string | number", "default": "auto" },
+    { "name": "maxWidth", "type": "string", "default": "1024px" },
+    { "name": "sectionPaddingY", "type": "string", "default": "8em" },
+    { "name": "bodyFont", "type": "string", "default": "Roboto" },
+    { "name": "headingFont", "type": "string", "default": "Bebas Neue" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Number of sections, headings, body text, images and left or right layout per section",
+    "Background, text color and image opacity through Tailwind classes",
+    "Smoothness, parallax speeds, content width and section spacing",
+    "Google font names for heading and body"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change heading letter spacing or size",
+      "where": "h2 className in StorySection"
+    },
+    {
+      "change": "Change the image aspect ratio",
+      "where": "aspect-[3/2] div in StorySection"
+    },
+    {
+      "change": "Change the five-column text and image overlap",
+      "where": "article grid className in StorySection"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with ScrollSmoother and renders as a fixed full-screen layer, so it should be the only scroll container on the page",
+    "Loads the heading and body fonts from Google Fonts",
+    "Section layout alternates through the layout value left or right on each section"
+  ],
+  "mood": ["cinematic", "dark", "immersive", "editorial"],
+  "industries": ["space", "photography", "storytelling", "travel", "film"],
+  "sections": ["features", "gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

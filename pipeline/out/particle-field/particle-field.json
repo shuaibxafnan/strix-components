@@ -1,0 +1,47 @@
+{
+  "slug": "particle-field",
+  "name": "Particle Field",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-screen black canvas where glowing particles are born on a grid, climb a radial field toward the center and leave fading colored trails.",
+  "contents": [
+    "Full-viewport canvas with a black background and animated particle trails"
+  ],
+  "behavior": [
+    "Particles spawn at random grid points and hop toward higher field values around the center",
+    "Trails fade through a translucent black overlay each frame",
+    "Hue slowly cycles over time when particleColor is hue",
+    "Canvas resizes with the window"
+  ],
+  "props": [
+    { "name": "maxPop", "type": "number", "default": 300 },
+    { "name": "birthFreq", "type": "number", "default": 2 },
+    { "name": "lifespan", "type": "number", "default": 1000 },
+    { "name": "gridSize", "type": "number", "default": 8 },
+    { "name": "zoom", "type": "number", "default": 1.6 },
+    { "name": "particleColor", "type": "\"hue\" | number", "default": "hue" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Particle count, spawn rate, lifespan, grid density, zoom",
+    "Particle color: cycling hue or a fixed hue value"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the background color and trail fade",
+      "where": "ctx.fillStyle = \"rgba(0, 0, 0, 0.1)\" in the draw function"
+    },
+    {
+      "change": "Change saturation and base hue",
+      "where": "birth function particle object (hue, sat, lum)"
+    }
+  ],
+  "fixed": [
+    "Canvas is sized to the window, not the container, and is always full-screen height",
+    "Black background"
+  ],
+  "mood": ["futuristic", "dark", "mysterious", "energetic"],
+  "industries": ["technology", "creative agency", "gaming", "music", "science"],
+  "sections": ["background", "hero"],
+  "dependencies": []
+}

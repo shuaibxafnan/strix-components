@@ -6,9 +6,10 @@
   "bitsFolder": "components",
   "slug": "pixel-card",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.616Z"
+  "note": "Bits describe-only. Fixed 300x400 unless className overrides. Document-level pointerdown listener while mounted. Client-only; needs canvas, ResizeObserver, IntersectionObserver. variant prop documented as variants (default, blue, yellow, pink). No deps.",
+  "updatedAt": "2026-11-01T10:35:09.716Z",
+  "gateOutput": "gates passed"
 }

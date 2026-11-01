@@ -1,0 +1,65 @@
+{
+  "slug": "particle-cards",
+  "name": "Particle Cards",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Row of image cards drawn as thousands of colored canvas particles. Hovering a card swaps its image to a second one, revealed under the cursor through a particle brush, with a slide-in intro.",
+  "contents": [
+    "Cards with a particle canvas image and an overlapping large label",
+    "Full-screen loading overlay shown until images are ready"
+  ],
+  "behavior": [
+    "Each card renders its image as moving particles sampled from the image pixels",
+    "On hover, particles within the mouse range switch to colors of the hover image",
+    "Cards and labels slide in with a GSAP timeline once all images load",
+    "Card size shrinks on narrow screens and cards wrap into rows"
+  ],
+  "props": [
+    { "name": "cards", "type": "{id,label,imageURL:{default,hovered}}[]", "default": "3 sample cards: desert, forest, ocean" },
+    { "name": "cardWidth", "type": "number", "default": 260 },
+    { "name": "cardHeight", "type": "number", "default": 360 },
+    { "name": "totalParticles", "type": "number", "default": 1500 },
+    { "name": "mouseRange", "type": "number", "default": 80 },
+    { "name": "particlesConfig", "type": "object", "default": { "jumpToRandomPosition": false, "fill": true, "randomRadius": true, "minRadius": 1, "maxRadius": 2 } },
+    { "name": "backgroundColor", "type": "string", "default": "#161616" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "loaderBg", "type": "string", "default": "#000000" },
+    { "name": "loaderTextColor", "type": "string", "default": "#ffffff" },
+    { "name": "textFont", "type": "string", "default": "'Red Rose', sans-serif" },
+    { "name": "textSize", "type": "string", "default": "3rem" },
+    { "name": "loaderFont", "type": "string", "default": "'Red Rose', sans-serif" },
+    { "name": "gsapDelay", "type": "number", "default": 0.8 },
+    { "name": "gsapDuration", "type": "number", "default": 1.5 },
+    { "name": "gsapStagger", "type": "number", "default": 0.1 },
+    { "name": "cardGap", "type": "string", "default": "2rem clamp(1.5rem, 5vw, 4rem)" },
+    { "name": "padding", "type": "string", "default": "clamp(1rem, 5vw, 4rem)" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Cards, labels, default and hover images",
+    "Card size, spacing, particle count, particle size and hover brush radius",
+    "Background, label and loader colors, label font and size",
+    "Intro animation delay, duration and stagger"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the loading text",
+      "where": "The Loading... paragraph at the end of the ParticleCards return"
+    },
+    {
+      "change": "Change particle shape or motion",
+      "where": "Particle class drawShape method and ParticlesCollection particlesConfig defaults"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Loads the Red Rose Google font by adding a link to document head",
+    "Loading overlay is fixed over the whole viewport until images load",
+    "Images must allow cross-origin fetching, they are read through XMLHttpRequest for pixel sampling",
+    "Card width is capped to the viewport width minus 96px on small screens"
+  ],
+  "mood": ["playful", "dynamic", "artistic", "modern"],
+  "industries": ["photography", "travel", "creative agency", "portfolio", "art"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}

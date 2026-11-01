@@ -1,0 +1,73 @@
+{
+    "slug": "photo-rip",
+    "name": "Photo Rip",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Full-screen WebGL photo that the visitor tears in two by dragging down. The halves fall away with a paper-rip edge and the next photo drops in.",
+    "contents": [
+        "Full-viewport WebGL canvas with a gradient backdrop and a stack of photos",
+        "Vignette overlay",
+        "Animated hint label with arrow"
+    ],
+    "behavior": [
+        "Dragging down on the photo tears it along a procedural jagged paper edge",
+        "Releasing past the threshold rips the photo away and the next one drops in, cycling through the list",
+        "Releasing early snaps the photo back",
+        "Backdrop gradient tweens to the colors of each photo",
+        "Hint animation appears after a delay until the first interaction",
+        "Camera distance changes below the mobile breakpoint and the canvas resizes with its container"
+    ],
+    "props": [
+        {"name": "images", "type": "{url,colorTop,colorBottom}[]", "default": "6 sample photos"},
+        {"name": "ripTextureUrl", "type": "string | null", "default": null},
+        {"name": "photoWidth", "type": "number", "default": 3},
+        {"name": "photoHeight", "type": "number", "default": 2},
+        {"name": "widthSegments", "type": "number", "default": 30},
+        {"name": "heightSegments", "type": "number", "default": 50},
+        {"name": "tearWidth", "type": "number", "default": 0.4},
+        {"name": "ripWhiteThreshold", "type": "number", "default": 0.7},
+        {"name": "ripResetThreshold", "type": "number", "default": 1.15},
+        {"name": "tearSensitivity", "type": "number", "default": 2},
+        {"name": "leftTearXAngle", "type": "number", "default": -0.01},
+        {"name": "leftTearYAngle", "type": "number", "default": -0.1},
+        {"name": "leftTearZAngle", "type": "number", "default": 0.05},
+        {"name": "leftShadeAmount", "type": "number", "default": 0.15},
+        {"name": "rightTearXAngle", "type": "number", "default": 0.2},
+        {"name": "rightTearYAngle", "type": "number", "default": 0.1},
+        {"name": "rightTearZAngle", "type": "number", "default": -0.1},
+        {"name": "rightShadeAmount", "type": "number", "default": 0.35},
+        {"name": "fov", "type": "number", "default": 30},
+        {"name": "cameraZ", "type": "number", "default": 6},
+        {"name": "cameraZMobile", "type": "number", "default": 10},
+        {"name": "mobileBreakpoint", "type": "number", "default": 800},
+        {"name": "showHint", "type": "boolean", "default": true},
+        {"name": "hintText", "type": "string", "default": "Drag down to tear"},
+        {"name": "hintDelayMs", "type": "number", "default": 4000},
+        {"name": "defaultColorTop", "type": "number[]", "default": [10, 10, 10]},
+        {"name": "defaultColorBottom", "type": "number[]", "default": [24, 24, 24]},
+        {"name": "onPhotoRipped", "type": "function | null", "default": null},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Photos and the backdrop gradient colors for each",
+        "Photo size, mesh density, tear width, sensitivity, and release threshold",
+        "Tear angles and shading for each half",
+        "Camera field of view, distance, and mobile breakpoint",
+        "Hint text, delay, and visibility",
+        "Custom rip edge texture and rip callback"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the vignette strength", "where": "radial-gradient overlay div in the returned JSX"},
+        {"change": "Change the paper edge roughness", "where": "octaves array in createRipTexture"},
+        {"change": "Change the drop-in or fall-away animation", "where": "addPhoto function and removePhoto timeline"}
+    ],
+    "fixed": [
+        "Root is full-bleed and fills the viewport height (h-screen)",
+        "Pointer move and up listeners are attached to window while mounted and removed on unmount",
+        "Requires WebGL support"
+    ],
+    "mood": ["dramatic", "tactile", "playful", "cinematic"],
+    "industries": ["photography", "creative agencies", "editorial", "portfolio", "entertainment"],
+    "sections": ["hero", "gallery", "portfolio"],
+    "dependencies": ["three", "gsap"]
+}

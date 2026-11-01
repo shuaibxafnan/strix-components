@@ -4,11 +4,12 @@
   "sourceHash": "bca6ee651b61424a46357850773952d9ce8b48be338105c706521f938da0cfda",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "perspective-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.511Z"
+  "note": "Removed empty comment placeholders and unused accentColor prop. Added viewLabel, prevLabel, nextLabel, className, slide.alt. Arrows now shown on mobile; card max 80vw/75vh; p-6 mobile. View Case button decorative, no link.",
+  "updatedAt": "2026-11-01T10:29:22.463Z",
+  "gateOutput": "gates passed"
 }

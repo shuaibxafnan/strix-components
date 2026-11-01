@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "pixel-transition",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.590Z"
+  "note": "Bits describe-only. Fixed 300px width (max 100%) via ROOT constant. Needs firstContent and secondContent. Hover/focus ignore touch; tap toggles. pattern prop documented as variants (random, dither, ripple, wipe), judgment call. No deps.",
+  "updatedAt": "2026-11-01T10:37:22.540Z",
+  "gateOutput": "gates passed"
 }

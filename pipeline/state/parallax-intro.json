@@ -4,11 +4,12 @@
   "sourceHash": "1fbd74e8f6d98de9e44246c0053ae0d1240b930193e74346ab645861c4a67800",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "parallax-intro",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.509Z"
+  "note": "CDN loaders replaced by npm imports (three, gsap). className now applied to root. Console tag fixed. Pointer tilt divides clientY by innerWidth, left as is. Fixed canvas relies on page scroll.",
+  "updatedAt": "2026-11-01T10:22:59.586Z",
+  "gateOutput": "gates passed"
 }

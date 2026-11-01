@@ -1,0 +1,99 @@
+{
+    "slug": "paper-crumble",
+    "name": "Paper Crumble",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Interactive WebGL image that crumples like a sheet of paper while you press and hold it, with draggable motion, soft shadow and keyboard support. Releasing restores, keeps creases, or leaves it crumpled.",
+    "contents": [
+        "Three.js canvas rendering the image as a deformable paper mesh with a front and optional back face",
+        "Invisible button covering the scene that receives pointer and keyboard input",
+        "Fallback img shown while loading or when WebGL fails, plus a screen reader status text"
+    ],
+    "behavior": [
+        "Press and hold to crumple the paper with a spring animation, release to restore, keep creases, or stay crumpled",
+        "Dragging while held moves and tilts the paper within a radius, and it can return to origin on release",
+        "Keyboard: hold Space or Enter to crumple, arrow keys to move, Escape to reset",
+        "Rendering pauses when offscreen or the tab is hidden, and recovers from WebGL context loss",
+        "Respects prefers-reduced-motion",
+        "Falls back to a plain image if the texture or WebGL fails, and reports through onError"
+    ],
+    "props": [
+        { "name": "src", "type": "string", "default": "undefined" },
+        { "name": "alt", "type": "string", "default": "Crumplable image" },
+        { "name": "backSrc", "type": "string", "default": "" },
+        { "name": "width", "type": "number", "default": 320 },
+        { "name": "height", "type": "number", "default": 400 },
+        { "name": "sceneHeight", "type": "number", "default": 560 },
+        { "name": "imageFit", "type": "string", "default": "cover" },
+        { "name": "releaseBehavior", "type": "'restore' | 'creased' | 'stay'", "default": "restore" },
+        { "name": "crumpleAmount", "type": "number", "default": 0.85 },
+        { "name": "crumpleDuration", "type": "number", "default": 0.55 },
+        { "name": "releaseDuration", "type": "number", "default": 0.4 },
+        { "name": "foldCount", "type": "number", "default": 6 },
+        { "name": "foldSharpness", "type": "number", "default": 0.6 },
+        { "name": "wrinkleDepth", "type": "number", "default": 0.65 },
+        { "name": "creaseStrength", "type": "number", "default": 0.18 },
+        { "name": "paperColor", "type": "string", "default": "#f4f0e8" },
+        { "name": "roughness", "type": "number", "default": 0.92 },
+        { "name": "paperTexture", "type": "number", "default": 0.08 },
+        { "name": "lightIntensity", "type": "number", "default": 1.8 },
+        { "name": "lightAngle", "type": "number", "default": -35 },
+        { "name": "shadow", "type": "boolean", "default": true },
+        { "name": "shadowOpacity", "type": "number", "default": 0.08 },
+        { "name": "draggable", "type": "boolean", "default": true },
+        { "name": "dragRotation", "type": "number", "default": 10 },
+        { "name": "dragRadius", "type": "number", "default": 180 },
+        { "name": "returnToOrigin", "type": "boolean", "default": true },
+        { "name": "rotation", "type": "number", "default": 0 },
+        { "name": "seed", "type": "number", "default": 7 },
+        { "name": "detail", "type": "number", "default": 64 },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "resetKey", "type": "number", "default": 0 },
+        { "name": "onStateChange", "type": "function", "default": "undefined" },
+        { "name": "onError", "type": "function", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Image, back image, alt text, paper size, scene height and image fit",
+        "Crumple strength, speeds, fold count, sharpness, wrinkle depth and crease strength",
+        "Paper color, roughness, grain, light intensity and angle, shadow",
+        "Drag behavior, rotation, release behavior, random seed, mesh detail, disabled and reset"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the aria label and keyboard shortcuts",
+            "where": "keyDown handler and the aria-label of the button in the returned JSX"
+        },
+        {
+            "change": "Change the shadow style",
+            "where": "shadowFilter constant before the return"
+        },
+        {
+            "change": "Change the loading fallback image layout",
+            "where": "img element rendered when status is not ready, using --pc-image-width and --pc-image-height CSS variables"
+        }
+    ],
+    "fixed": [
+        "Requires the three package and a browser with WebGL, client only ('use client')",
+        "Component is exported as PaperCrumple and needs a src image, otherwise nothing is shown",
+        "Images are loaded as textures, so cross-origin images need CORS headers",
+        "Uses Tailwind utility classes for layout",
+        "Scene fills the parent width with fixed pixel sceneHeight, so on small screens width and height should be reduced",
+        "Pointer based hold interaction, uses touch-none on the hit area which blocks scroll gestures over the paper",
+        "Pixel ratio capped at 2"
+    ],
+    "mood": ["playful", "tactile", "interactive", "creative"],
+    "industries": ["design studios", "stationery", "print", "creative agencies", "e-commerce"],
+    "sections": ["hero", "gallery", "portfolio", "other"],
+    "dependencies": ["three"],
+    "variants": {
+        "prop": "releaseBehavior",
+        "default": "restore",
+        "options": [
+            { "value": "restore", "look": "Paper smooths back to flat after release", "useWhen": "A playful, reusable interaction" },
+            { "value": "creased", "look": "Paper flattens but keeps visible crease marks", "useWhen": "You want a lasting trace of the interaction" },
+            { "value": "stay", "look": "Paper stays crumpled after release", "useWhen": "A destructive, one-way effect, reset through resetKey" }
+        ]
+    }
+}

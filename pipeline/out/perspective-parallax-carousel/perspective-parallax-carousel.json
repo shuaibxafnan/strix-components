@@ -1,0 +1,51 @@
+{
+  "slug": "perspective-parallax-carousel",
+  "name": "Perspective Parallax Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen image slider shown as a folded 3D triptych: a flat center panel with two angled side panels, all sliding together as the pointer moves horizontally across the screen.",
+  "contents": [
+    "Three perspective panels (center and two angled sides) showing the same image strip",
+    "Optional hint line at the bottom"
+  ],
+  "behavior": [
+    "Pointer position across the window maps to the slide position, with eased 500ms transitions",
+    "Side panels are rotated in 3D around the center panel edges",
+    "Touch dragging also moves the slides"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#2e2d31" },
+    { "name": "perspective", "type": "number", "default": 250 },
+    { "name": "rotationAngle", "type": "number", "default": 100 },
+    { "name": "initialSlide", "type": "number", "default": 2 },
+    { "name": "horizontalPadding", "type": "number", "default": 200 },
+    { "name": "imageOptions", "type": "string[]", "default": "3 sample image URLs" },
+    { "name": "hintText", "type": "string", "default": "Move your mouse horizontally" },
+    { "name": "textColor", "type": "string", "default": "#f5f5f5" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Images and number of slides",
+    "Background and hint text color, hint text",
+    "Perspective depth, side panel angle, starting slide, horizontal dead zone"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change panel size",
+      "where": "w-[60vw] h-[80vh] classes on the three pane divs"
+    },
+    {
+      "change": "Change slide transition speed",
+      "where": "duration-500 ease-out classes on the track divs"
+    }
+  ],
+  "fixed": [
+    "Listens to pointer movement on the whole window",
+    "Fills the viewport height",
+    "Horizontal padding is capped to a quarter of the width on narrow screens"
+  ],
+  "mood": ["immersive", "modern", "dramatic"],
+  "industries": ["photography", "travel", "architecture", "fashion"],
+  "sections": ["hero", "gallery"],
+  "dependencies": []
+}

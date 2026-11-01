@@ -4,11 +4,12 @@
   "sourceHash": "d912138e27d17e4de91c978ca87a03c9d5b5ed03c947b8b1257a03e373722de1",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "notification-toggle",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.505Z"
+  "note": "Removed empty comment placeholders. Added frame (w-full h-screen flex center) and className. Added timeout ref with unmount cleanup. Inline style block kept for switch pseudo-elements. Centering may shift if switchWidth changes.",
+  "updatedAt": "2026-11-01T10:15:56.262Z",
+  "gateOutput": "gates passed"
 }

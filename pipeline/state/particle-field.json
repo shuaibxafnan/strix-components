@@ -4,11 +4,12 @@
   "sourceHash": "2fedd529f89f056184dab66bec7aabfd6682c7850332fce853bcd670def7f4d1",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "particle-field",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.510Z"
+  "note": "Removed empty JSX expression, unused canvas classes, dead wrapper. Added className. Canvas follows window size, not container; recorded in fixed.",
+  "updatedAt": "2026-11-01T10:25:45.534Z",
+  "gateOutput": "gates passed"
 }

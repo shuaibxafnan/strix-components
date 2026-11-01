@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "particles",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.601Z"
+  "note": "Bits describe-only. Needs WebGL2 and parent with defined height. Pointer listeners on window/document. Caps: 20000 particles, 4 bursts, pixel ratio 2. Reduced motion skips intro and bursts. Heavy with connections at high counts. No deps, no variants.",
+  "updatedAt": "2026-11-01T10:26:59.726Z",
+  "gateOutput": "gates passed"
 }

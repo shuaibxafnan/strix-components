@@ -4,11 +4,12 @@
   "sourceHash": "d3edb35e02cd346cd8e0996a1acc78ffd7cb42b03029e16cde43f7f1c8c66e2e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "perspective-zoom-effect",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.512Z"
+  "note": "CDN GSAP loader replaced by npm imports (gsap, ScrollTrigger). Added className on root. Existing ctx.revert cleanup unchanged.",
+  "updatedAt": "2026-11-01T10:29:57.204Z",
+  "gateOutput": "gates passed"
 }

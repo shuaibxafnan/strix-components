@@ -1,0 +1,91 @@
+{
+    "slug": "pixel-trail",
+    "name": "Pixel Trail",
+    "category": "cursor-effects",
+    "isReactBits": true,
+    "description": "WebGL2 canvas that leaves a fading trail of lit pixel cells behind the cursor, with optional gooey blending, color ramp, image-colored cells, sparkle, gravity and click bursts.",
+    "contents": [
+        "Relative container div filling its parent with a single WebGL canvas",
+        "Pixel grid trail following the pointer anywhere in the window"
+    ],
+    "behavior": [
+        "Trail follows the pointer across the window and is drawn only where it overlaps the container",
+        "Trail points age out over maxAge milliseconds with fade, shrink or dither decay",
+        "Cells get beveled shading with shine and an optional soft glow",
+        "Optional gooey metaball blending merges neighboring cells",
+        "Optional click burst spawns 14 points radiating from the click",
+        "Render loop pauses when the container is offscreen or the trail is empty"
+    ],
+    "props": [
+        { "name": "gridSize", "type": "number", "default": 40 },
+        { "name": "trailSize", "type": "number", "default": 0.1 },
+        { "name": "maxAge", "type": "number", "default": 250 },
+        { "name": "interpolate", "type": "number", "default": 5 },
+        { "name": "easingFunction", "type": "(x:number)=>number", "default": "identity" },
+        { "name": "gooeyFilter", "type": "{strength:number} | null", "default": { "strength": 2 } },
+        { "name": "color", "type": "string", "default": "#ffffff" },
+        { "name": "trailColor", "type": "string", "default": "undefined" },
+        { "name": "shape", "type": "'square' | 'circle' | 'diamond'", "default": "square" },
+        { "name": "gap", "type": "number", "default": 0.08 },
+        { "name": "decay", "type": "'fade' | 'shrink' | 'dither'", "default": "fade" },
+        { "name": "flow", "type": "number", "default": 0 },
+        { "name": "gravity", "type": "number", "default": 0 },
+        { "name": "sparkle", "type": "number", "default": 0 },
+        { "name": "clickBurst", "type": "boolean", "default": false },
+        { "name": "shine", "type": "number", "default": 0.6 },
+        { "name": "glow", "type": "number", "default": 0.4 },
+        { "name": "imageSrc", "type": "string", "default": "undefined" },
+        { "name": "dpr", "type": "number", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Grid density, trail size, lifetime and easing",
+        "Cell color, trail-to-head color ramp, or image-sampled colors",
+        "Cell gap, decay style, shine, glow and sparkle",
+        "Pointer flow, gravity and click burst",
+        "Gooey blending strength or off with gooeyFilter null",
+        "Container size and position through className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the click burst particle count or speed",
+            "where": "burst function"
+        },
+        {
+            "change": "Add another cell shape",
+            "where": "SHAPES constant and the shape branches in the FRAGMENT shader"
+        },
+        {
+            "change": "Listen to pointer only inside the container",
+            "where": "window.addEventListener('pointermove', onMove) lines in the main useEffect"
+        },
+        {
+            "change": "Change the shading light direction",
+            "where": "LIGHT constant in the FRAGMENT shader"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if unavailable",
+        "Listens to pointer events on window, so the trail reacts to the pointer anywhere on the page",
+        "Container has pointer-events none and fills its parent, parent needs a defined size",
+        "Trail texture is fixed at 512px and the grid is square, based on the larger container side",
+        "Settings are read live but the WebGL setup runs once on mount",
+        "Image colors are sampled at gridSize resolution and need CORS-enabled image URLs",
+        "Pointer motion works on touch only as pointer events fire, no hover on mobile",
+        "Container class includes absolute z-1 while style forces position relative"
+    ],
+    "variants": {
+        "prop": "shape",
+        "default": "square",
+        "options": [
+            { "value": "square", "look": "Square pixel cells with beveled edges", "useWhen": "Retro or digital hero backgrounds where the cursor paints blocky pixels" },
+            { "value": "circle", "look": "Round dot cells", "useWhen": "Playful or soft landing pages wanting a dotted halftone cursor trail" },
+            { "value": "diamond", "look": "Rotated diamond cells", "useWhen": "Gem, luxury or geometric themed sections needing an angular sparkle trail" }
+        ]
+    },
+    "mood": ["playful", "techy", "retro", "interactive"],
+    "industries": ["gaming", "creative agency", "technology", "music", "portfolio"],
+    "sections": ["hero", "background", "other"],
+    "dependencies": []
+}

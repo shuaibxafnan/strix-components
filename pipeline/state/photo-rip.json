@@ -4,11 +4,12 @@
   "sourceHash": "b1531ef23bca5c74c8ab68ed88538e0b98934d38948475dc3a38e692f0ffdbb7",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "photo-rip",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.512Z"
+  "note": "Comment stripping only. Deps three, gsap. Window pointer listeners cleaned up on unmount, recorded in fixed. Full-bleed h-screen canvas, no frame.",
+  "updatedAt": "2026-11-01T10:33:10.635Z",
+  "gateOutput": "gates passed"
 }
