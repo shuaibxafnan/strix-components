@@ -1,0 +1,66 @@
+{
+    "slug": "week-scheduler",
+    "name": "Week Scheduler",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Weekly availability scheduler with a card per day, an on/off toggle that expands time slots, editable from/to times, and add and remove slot actions with animated transitions.",
+    "contents": [
+        "Heading with a row of weekday initial dots",
+        "One expandable card per day with index number, name and toggle",
+        "Time slot rows with From and To time inputs and a remove button",
+        "Add slot button per day"
+    ],
+    "behavior": [
+        "Toggling a day expands its card and creates a random starting slot if empty",
+        "Slots can be added, edited and removed with a fade and slide out",
+        "Card background, border and shadow change when a day is enabled"
+    ],
+    "props": [
+        {"name": "days", "type": "string[]", "default": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]},
+        {"name": "cardWidth", "type": "string", "default": "min(480px, 94vw)"},
+        {"name": "cardBorderRadius", "type": "string", "default": "16px"},
+        {"name": "cardGap", "type": "string", "default": "10px"},
+        {"name": "backgroundColor", "type": "string", "default": "#0c0c0c"},
+        {"name": "cardBackground", "type": "string", "default": "#141414"},
+        {"name": "cardBorder", "type": "string", "default": "rgba(255,255,255,0.07)"},
+        {"name": "cardExpandedBg", "type": "string", "default": "#161616"},
+        {"name": "accentColor", "type": "string", "default": "#c9a96e"},
+        {"name": "toggleOnColor", "type": "string", "default": "#c9a96e"},
+        {"name": "toggleOffColor", "type": "string", "default": "rgba(255,255,255,0.1)"},
+        {"name": "inputBackground", "type": "string", "default": "#1c1c1c"},
+        {"name": "inputBorder", "type": "string", "default": "rgba(255,255,255,0.08)"},
+        {"name": "addBtnBg", "type": "string", "default": "rgba(255,255,255,0.04)"},
+        {"name": "addBtnBorder", "type": "string", "default": "rgba(255,255,255,0.08)"},
+        {"name": "removeColor", "type": "string", "default": "rgba(255,255,255,0.2)"},
+        {"name": "bodyFont", "type": "string", "default": "'DM Sans', system-ui, sans-serif"},
+        {"name": "dayFont", "type": "string", "default": "'Cormorant Garamond', Georgia, serif"},
+        {"name": "daySize", "type": "string", "default": "1.4rem"},
+        {"name": "titleColor", "type": "string", "default": "#f0ece4"},
+        {"name": "dayColor", "type": "string", "default": "#f0ece4"},
+        {"name": "title", "type": "string", "default": "Schedule"},
+        {"name": "dayInitials", "type": "string[]", "default": ["M","T","W","T","F","S","S"]},
+        {"name": "fromLabel", "type": "string", "default": "From"},
+        {"name": "toLabel", "type": "string", "default": "To"},
+        {"name": "addLabel", "type": "string", "default": "Add slot"},
+        {"name": "removeLabel", "type": "string", "default": "Remove slot"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Day names, heading, weekday initials and all button and label text",
+        "Card, input, toggle and accent colors, fonts, card width, radius and gap"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change the range of random starting times", "where": "randomTime and makeSlot functions"},
+        {"change": "Change the expand animation or maximum height", "where": ".ws-container rules in the style block"},
+        {"change": "Read the schedule out of the component", "where": "schedule state in WeekScheduler"}
+    ],
+    "fixed": [
+        "Schedule state is internal and not exposed to the host",
+        "Imports Google Fonts Cormorant Garamond and DM Sans through the style block",
+        "Root has a minimum height of the viewport and paints the backgroundColor"
+    ],
+    "mood": ["elegant", "dark", "minimal"],
+    "industries": ["booking", "healthcare", "hospitality", "saas"],
+    "sections": ["other"],
+    "dependencies": []
+}
