@@ -1,0 +1,80 @@
+{
+    "slug": "sticker-peel",
+    "name": "Sticker Peel",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Draggable WebGL sticker made from any image. Its corner peels back on hover or press with a curled back side, a lit finish and a soft shadow, and it swings and bounces when dragged.",
+    "contents": [
+        "Single WebGL2 canvas rendering the image as a curlable sticker mesh with shadow and lighting",
+        "Invisible hit area over the sticker for hover, press and drag"
+    ],
+    "behavior": [
+        "Sticker peels back partially on hover and further while pressed",
+        "Drag moves the sticker with swing, friction and bounce, confined to the parent box",
+        "Light highlight follows the pointer when followPointer is on",
+        "Intro animation fades and settles the sticker in, skipped with reduced motion",
+        "Rendering pauses when offscreen or the tab is hidden",
+        "Touch pointers clear hover state on release"
+    ],
+    "props": [
+        {"name": "imageSrc", "type": "string", "default": null},
+        {"name": "width", "type": "number", "default": 200},
+        {"name": "rotate", "type": "number (degrees)", "default": 0},
+        {"name": "peelDirection", "type": "number (degrees)", "default": 0},
+        {"name": "peelBackHoverPct", "type": "number (0-100)", "default": 25},
+        {"name": "peelBackActivePct", "type": "number (0-100)", "default": 40},
+        {"name": "curlRadius", "type": "number", "default": 12},
+        {"name": "finish", "type": "'gloss' | 'matte' | 'holo'", "default": "gloss"},
+        {"name": "backColor", "type": "string", "default": "#d4d4d8"},
+        {"name": "lightingIntensity", "type": "number (0-1)", "default": 0.5},
+        {"name": "shadowIntensity", "type": "number (0-1)", "default": 0.6},
+        {"name": "followPointer", "type": "boolean", "default": true},
+        {"name": "draggable", "type": "boolean", "default": true},
+        {"name": "swing", "type": "number (0-3)", "default": 1},
+        {"name": "friction", "type": "number (0-1)", "default": 0.5},
+        {"name": "bounce", "type": "number (0-1)", "default": 0.35},
+        {"name": "intro", "type": "boolean", "default": true},
+        {"name": "initialPosition", "type": "'center' | {x,y}", "default": "center"},
+        {"name": "onDragStart", "type": "function", "default": null},
+        {"name": "onDragEnd", "type": "function", "default": null},
+        {"name": "dpr", "type": "number", "default": null},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "style", "type": "object", "default": null}
+    ],
+    "editableByProps": [
+        "Sticker image, width, rotation and peel direction",
+        "Peel amounts, curl radius, back color and finish (gloss, matte, holo)",
+        "Lighting, shadow, pointer-follow, drag, swing, friction, bounce",
+        "Intro on or off, start offset, drag callbacks, pixel ratio"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change mesh smoothness",
+            "where": "GRID constant"
+        },
+        {
+            "change": "Change transparent padding around the image or texture resolution",
+            "where": "PAD and MAX_TEXTURE constants"
+        },
+        {
+            "change": "Add another finish style",
+            "where": "FINISHES constant and the FRAGMENT shader"
+        },
+        {
+            "change": "Change the intro duration",
+            "where": "dt / 1.1 expression in the frame function"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if unavailable",
+        "Positioned absolute at the top left of its parent, so the parent must be a positioned container with a size; the sticker is confined to that box",
+        "Image is loaded with crossOrigin anonymous, so remote images need CORS headers",
+        "Listens to window pointermove for the light and uses ResizeObserver and IntersectionObserver, all cleaned up on unmount",
+        "Texture is capped at 1024px and pixel ratio at 2",
+        "Parent must be sized on small screens; hit area follows the width prop, so a large width can fill a phone-sized parent"
+    ],
+    "mood": ["playful", "tactile", "creative", "modern"],
+    "industries": ["design", "creative agency", "e-commerce", "gaming", "education"],
+    "sections": ["hero", "gallery", "other"],
+    "dependencies": []
+}
