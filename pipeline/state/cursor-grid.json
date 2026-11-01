@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "cursor-grid",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.584Z"
+  "note": "Bits describe-only. Gates passed. Needs WebGL2; parent needs height; window pointer listeners; touch tap/drag only; DPR capped 2; gridStyle variants lines/dashed/dots/crosses.",
+  "updatedAt": "2026-11-01T06:04:51.885Z",
+  "gateOutput": "gates passed"
 }

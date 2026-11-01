@@ -1,0 +1,96 @@
+{
+    "slug": "cursor-grid",
+    "name": "Cursor Grid",
+    "category": "cursor-effects",
+    "isReactBits": true,
+    "description": "WebGL2 grid overlay that lights up cells around the cursor with a fading trail, click shockwave pulses, optional ambient sparkle and an intro reveal. Can wrap children.",
+    "contents": [
+        "Full-size container with a WebGL2 canvas drawing the grid",
+        "Optional children rendered above the canvas"
+    ],
+    "behavior": [
+        "Cells near the pointer light up by radius or single cell, hold, then fade out",
+        "Soft spotlight follows the cursor with smoothing and brightens nearby grid lines",
+        "Click or tap sends a ring pulse across the grid",
+        "Intro reveal expands from the center on mount",
+        "Optional random ambient cell flashes",
+        "Edges fade out; rendering pauses when offscreen or tab hidden",
+        "Reduced motion disables intro, click pulses and ambient flashes"
+    ],
+    "props": [
+        { "name": "cellSize", "type": "number", "default": 60 },
+        { "name": "color", "type": "string", "default": "undefined (white, or #18181b in lightMode)" },
+        { "name": "gridColor", "type": "string", "default": "undefined (white, or #18181b in lightMode)" },
+        { "name": "radius", "type": "number", "default": 140 },
+        { "name": "falloff", "type": "'linear' | 'smooth' | 'sharp'", "default": "smooth" },
+        { "name": "highlight", "type": "'area' | 'cell'", "default": "area" },
+        { "name": "holdTime", "type": "number", "default": 400 },
+        { "name": "fadeDuration", "type": "number", "default": 800 },
+        { "name": "lineWidth", "type": "number", "default": 1 },
+        { "name": "maxOpacity", "type": "number", "default": 1 },
+        { "name": "fillOpacity", "type": "number", "default": 0.06 },
+        { "name": "gridOpacity", "type": "number", "default": 0.08 },
+        { "name": "gridStyle", "type": "'lines' | 'dashed' | 'dots' | 'crosses'", "default": "lines" },
+        { "name": "cellRadius", "type": "number", "default": 0 },
+        { "name": "cellGap", "type": "number", "default": 0 },
+        { "name": "spotlight", "type": "number", "default": 0.6 },
+        { "name": "clickPulse", "type": "boolean", "default": true },
+        { "name": "pulseSpeed", "type": "number", "default": 600 },
+        { "name": "ambient", "type": "number", "default": 0 },
+        { "name": "edgeFade", "type": "number", "default": 0.2 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number", "default": "undefined (device pixel ratio, capped at 2)" },
+        { "name": "children", "type": "ReactNode", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Grid style, cell size, line width, colors and light/dark ink",
+        "Highlight mode (area or single cell), radius, falloff, hold and fade timing",
+        "Cell corner radius and gap, fill and line opacity, spotlight strength, edge fade",
+        "Click pulse on/off and speed, ambient flashes, intro on/off",
+        "Children placed on top of the grid, container className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change intro reveal duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Add a new grid style",
+            "where": "STYLES constant and the uGridStyle branches in the FRAGMENT shader"
+        },
+        {
+            "change": "Add a new falloff curve",
+            "where": "FALLOFF_CURVES constant"
+        },
+        {
+            "change": "Limit pointer tracking to the component instead of the whole window",
+            "where": "window pointermove and pointerdown listeners in the main useEffect"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable",
+        "Fills its parent (h-full w-full), so the parent needs a defined height",
+        "Pointer listeners are attached to window, so the effect reacts to the cursor anywhere over the container bounds",
+        "Canvas is pointer-events-none and aria-hidden, purely decorative",
+        "Device pixel ratio capped at 2",
+        "Hover-driven lighting; touch gets only tap pulses and touch-drag highlights, no hover state",
+        "Works at all sizes since the grid sizes from the container with a resize observer"
+    ],
+    "mood": ["techy", "futuristic", "minimal", "interactive"],
+    "industries": ["saas", "developer tools", "ai", "agency", "fintech"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": [],
+    "variants": {
+        "prop": "gridStyle",
+        "default": "lines",
+        "options": [
+            { "value": "lines", "look": "Continuous thin grid lines", "useWhen": "Hero of a SaaS or developer landing page needing a clean blueprint backdrop" },
+            { "value": "dashed", "look": "Dashed grid lines", "useWhen": "Technical or documentation sections wanting a lighter, sketch-like grid" },
+            { "value": "dots", "look": "Dots at cell corners", "useWhen": "Minimal portfolio or CTA sections where a subtle dot-matrix backdrop should not compete with text" },
+            { "value": "crosses", "look": "Small plus marks at cell corners", "useWhen": "Design-tool or engineering-themed pages needing a registration-mark look" }
+        ]
+    }
+}
