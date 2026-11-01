@@ -4,11 +4,12 @@
   "sourceHash": "b2ee5ed4742a0b1478775173d77b33014587764b98314f32656bb51984e35f58",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "proximity-scale-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.518Z"
+  "note": "Gates passed. Removed demo slider panel and hint label (hint ambiguous). GSAP now dynamic import, added to dependencies. Pointer events for touch. Frame added. No variants.",
+  "updatedAt": "2026-11-01T10:59:04.009Z",
+  "gateOutput": "gates passed"
 }
