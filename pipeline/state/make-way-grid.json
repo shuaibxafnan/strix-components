@@ -4,11 +4,12 @@
   "sourceHash": "e2985ce31bd3d7f7da1a0ab2294d53aba4f24ed6739090c5bfd707a732dd51db",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "make-way-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.492Z"
+  "note": "gates passed with warning: style tag without template literal (per-instance column CSS kept). gsap via dynamic import; unmount kills timeline and tweens. No variants, no frame.",
+  "updatedAt": "2026-11-01T09:40:29.644Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }
