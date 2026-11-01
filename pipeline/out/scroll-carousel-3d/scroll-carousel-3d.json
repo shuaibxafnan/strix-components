@@ -1,0 +1,54 @@
+{
+  "slug": "scroll-carousel-3d",
+  "name": "Scroll Carousel 3D",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-page scroll showcase where each scene is a 3D ring of image cards that spins as you scroll. Clicking a scene title flips into a staggered 3D preview grid with a close button.",
+  "contents": [
+    "Scenes list, each with a title and a ring of images",
+    "Full-screen preview grid per scene with image captions and a close button"
+  ],
+  "behavior": [
+    "ScrollSmoother takes over page scrolling and scrubs each ring's rotation and card brightness with scroll",
+    "Scene titles reveal character by character when entering view",
+    "Clicking a title scrolls the scene to center, spins the ring away and fans in a 3D preview grid",
+    "Close returns to the carousel with a reverse animation; user scroll is locked during transitions"
+  ],
+  "props": [
+    {"name": "scenes", "type": "{title,images,radius?}[]", "default": "6 sample fashion scenes"},
+    {"name": "previewNames", "type": "string[]", "default": "24 sample names"},
+    {"name": "bgColor", "type": "string", "default": "#0f0e0e"},
+    {"name": "textColor", "type": "string", "default": "#fff"},
+    {"name": "accentColor", "type": "string", "default": "rgba(255,255,255,0.6)"},
+    {"name": "cardAspect", "type": "string", "default": "4/5"},
+    {"name": "cardRadius", "type": "string", "default": "4px"},
+    {"name": "carouselWidth", "type": "number", "default": 400},
+    {"name": "carouselHeight", "type": "number", "default": 500},
+    {"name": "previewColumnsDesktop", "type": "number", "default": 6},
+    {"name": "previewColumnsMobile", "type": "number", "default": 3},
+    {"name": "smoothness", "type": "number", "default": 1},
+    {"name": "closeLabel", "type": "string", "default": "Close ×"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Scene titles, images, ring radius and number of scenes",
+    "Preview captions, close label, colors, card shape and grid columns",
+    "Scroll smoothness"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the scroll rotation amount of the rings", "where": "createScrollAnimation function"},
+    {"change": "Change preview images independent of scene images", "where": "previewImages constant in the preview map"},
+    {"change": "Change card size", "where": "w-[350px] h-[420px] class on data-cell"}
+  ],
+  "fixed": [
+    "Takes over page scrolling with ScrollSmoother and normalizeScroll, so it should be the only smooth scroll on the page",
+    "Temporarily blocks wheel, touch and key scrolling during open transitions and removes the blocks afterward",
+    "Scroll wrapper is fixed to the viewport and fills the screen",
+    "Each scene is one viewport tall, which provides the scroll range for the effect",
+    "Preview images are cycled from the built-in image list"
+  ],
+  "mood": ["fashion", "dramatic", "editorial", "immersive"],
+  "industries": ["fashion", "photography", "events", "portfolio", "art"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": ["gsap"]
+}
