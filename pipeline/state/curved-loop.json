@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "curved-loop",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.629Z"
+  "note": "Bits describe-only. Gates passed. marqueeText default empty; root min-h-screen; uppercase forced; no font loaded; viewBox 1440x120; shape variants arc/line/wave/circle; reduced motion stops animation.",
+  "updatedAt": "2026-11-01T06:06:28.527Z",
+  "gateOutput": "gates passed"
 }
