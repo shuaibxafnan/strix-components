@@ -4,11 +4,12 @@
   "sourceHash": "03cbab154db71fee19f4ac19f8d16a1bc0e254231b8571176110f42ecfcf679b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "retro-3d-radio",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.522Z"
+  "note": "Renamed retro3-d-radio -> retro-3d-radio. Removed empty comment placeholders and the 'asiatic' class prefix. Frame kept (already present). No variants. Responsive: already ok (vw-based).",
+  "updatedAt": "2026-11-01T11:07:27.840Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }
