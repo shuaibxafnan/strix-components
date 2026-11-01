@@ -1,0 +1,57 @@
+{
+  "slug": "product-color-card",
+  "name": "Product Color Card",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Product showcase card with an image panel, color swatch selector that swaps the image and accent color, description and details tabs, price with discount badge, and an add to cart button.",
+  "contents": [
+    "Product image panel with optional badge and color strip",
+    "Name, category, selected color label",
+    "Description and dimensions tabs",
+    "Color swatches, price, discount, add to cart button"
+  ],
+  "behavior": [
+    "Selecting a color swaps the image with a slide-up fade and recolors accents",
+    "Tabs switch between description and dimensions with a short fade",
+    "Add to cart shows an Added state for 2 seconds and calls onAddToCart",
+    "Stacks vertically on small screens"
+  ],
+  "props": [
+    {"name": "productName", "type": "string", "default": "Terra Amphora"},
+    {"name": "category", "type": "string", "default": "Handmade Vase"},
+    {"name": "price", "type": "number", "default": 174},
+    {"name": "originalPrice", "type": "number", "default": 237},
+    {"name": "currency", "type": "string", "default": "$"},
+    {"name": "description", "type": "string", "default": "Hand thrown ceramic with a hand rubbed glaze. Each piece is fired and finished to order."},
+    {"name": "dimensions", "type": "{label,value,unit}[]", "default": "4 sample dimensions"},
+    {"name": "variants", "type": "{id,label,hex,image}[]", "default": "6 sample colors"},
+    {"name": "defaultVariant", "type": "string", "default": "v1"},
+    {"name": "onAddToCart", "type": "function", "default": "noop"},
+    {"name": "descriptionTabLabel", "type": "string", "default": "Description"},
+    {"name": "detailsTabLabel", "type": "string", "default": "Details"},
+    {"name": "cartLabel", "type": "string", "default": "Add to cart"},
+    {"name": "addedLabel", "type": "string", "default": "Added"},
+    {"name": "showBadge", "type": "boolean", "default": false},
+    {"name": "badgeText", "type": "string", "default": "New arrival"},
+    {"name": "cardColor", "type": "string", "default": "bg-neutral-950"},
+    {"name": "panelColor", "type": "string", "default": "bg-neutral-900"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All text, prices, labels, dimensions, color options and images",
+    "Card and image panel background classes",
+    "Cart callback"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the image height", "where": "h-[300px] class on the img element"},
+    {"change": "Change the add to cart success colors", "where": "style on the cart button using the added state"}
+  ],
+  "fixed": [
+    "Root fills at least the viewport height and centers the card. Override with className using an important modifier such as !min-h-0.",
+    "Card uses a dark text-white palette; fonts use the font-sans and font-serif utilities"
+  ],
+  "mood": ["elegant", "minimal", "dark", "premium"],
+  "industries": ["ecommerce", "home decor", "ceramics", "furniture", "fashion"],
+  "sections": ["features", "other"],
+  "dependencies": []
+}
