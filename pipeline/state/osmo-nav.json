@@ -4,11 +4,12 @@
   "sourceHash": "b4d6d4b2e2645aa520e4e15166a03a62f1cf612f33327a9c1075152a60adc315",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slide-in-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.506Z"
+  "note": "osmo-nav -> slide-in-menu; removed demo section with centered star and backgroundColor prop (ambiguous: kept logo star as brand icon prop-driven); hardcoded hover white made hoverTextColor prop; Anton next/font kept; frame: none (fixed nav); variants: none; responsive: already ok",
+  "updatedAt": "2026-11-01T10:19:10.005Z",
+  "gateOutput": "gates passed"
 }
