@@ -1,0 +1,48 @@
+{
+    "slug": "user-filter-panel",
+    "name": "User Filter Panel",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Dark card with a title, search input and scrollable list of user profiles fetched from a public API, filtered live by name or location with avatar, status dot and hover effects.",
+    "contents": [
+        "Title and subtitle header",
+        "Search input with icon",
+        "Scrollable list of user rows with avatar, name, city and country",
+        "Loading spinner and empty state message"
+    ],
+    "behavior": [
+        "Fetches random users on mount",
+        "Filters the list live by name or location as you type",
+        "Rows brighten the avatar and nudge the name on hover"
+    ],
+    "props": [
+        {"name": "panelTitle", "type": "string", "default": "Directory"},
+        {"name": "panelSubtitle", "type": "string", "default": "Active network profiles"},
+        {"name": "cardBg", "type": "string", "default": "#0B0B0F"},
+        {"name": "inputBg", "type": "string", "default": "rgba(255,255,255,0.03)"},
+        {"name": "accentColor", "type": "string", "default": "#F5F5F7"},
+        {"name": "listHeight", "type": "string", "default": "400px"},
+        {"name": "apiResultsCount", "type": "number", "default": 50},
+        {"name": "searchPlaceholder", "type": "string", "default": "Search profiles..."},
+        {"name": "emptyText", "type": "string", "default": "No active profiles match your query"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Title, subtitle, placeholder and empty state text",
+        "Card, input and heading colors",
+        "List height and number of fetched users"
+    ],
+    "needsCodeEdit": [
+        {"change": "Use a different data source or user fields", "where": "fetchUserData function inside the useEffect"},
+        {"change": "Change which fields the search matches", "where": "filteredUsers filter"}
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Data comes from randomuser.me, so it needs network access",
+        "Injects a Google Fonts link for Plus Jakarta Sans and removes it on unmount"
+    ],
+    "mood": ["minimal", "dark", "elegant", "modern"],
+    "industries": ["saas", "social", "recruiting", "community", "agency"],
+    "sections": ["other"],
+    "dependencies": []
+}
