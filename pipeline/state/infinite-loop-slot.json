@@ -4,11 +4,12 @@
   "sourceHash": "38853c63cb517b6bce870d8d6cbb09031b99aa8270c13c8b8aa01c1b92554c8f",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-word-loop",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.473Z"
+  "note": "renamed infinite-loop-slot -> infinite-word-loop; frame added (min-h-screen grid -> h-screen flex root); gsap CDN script loader replaced with dynamic npm import and gsap.context cleanup; removed unused fluidStyle and empty comment braces; responsive: already ok (fluid clamp font size)",
+  "updatedAt": "2026-11-01T08:49:14.902Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,57 @@
+{
+    "slug": "infinite-word-loop",
+    "name": "Infinite Word Loop",
+    "category": "text-effects",
+    "isReactBits": false,
+    "description": "Vertical looping word slot where words glide past a framed highlight box that resizes to the current word, with elastic GSAP stepping and an optional grid backdrop.",
+    "contents": [
+        "Looping list of words scrolling vertically through a masked window",
+        "Corner-bracket indicator box that matches the current word width",
+        "Optional faint grid backdrop"
+    ],
+    "behavior": [
+        "Words loop endlessly without duplication using a GSAP scrubbed timeline",
+        "Each step advances with an elastic ease then pauses",
+        "Indicator width animates to the active word",
+        "Font size scales fluidly with viewport width"
+    ],
+    "props": [
+        {"name": "words", "type": "string[]", "default": "10 sample words"},
+        {"name": "fontLevel", "type": "number", "default": 6},
+        {"name": "stepDuration", "type": "number", "default": 1},
+        {"name": "stepDelay", "type": "number", "default": 1},
+        {"name": "elasticity", "type": "number", "default": 1},
+        {"name": "elasticityDecay", "type": "number", "default": 0.875},
+        {"name": "indicatorColor", "type": "string", "default": "oklch(0.75 1 320)"},
+        {"name": "textColor", "type": "string | null", "default": null},
+        {"name": "showGrid", "type": "boolean", "default": true},
+        {"name": "fontFamily", "type": "string", "default": "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"},
+        {"name": "uppercase", "type": "boolean", "default": true},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Words, text size level, text color, indicator color",
+        "Step timing and elastic feel",
+        "Grid visibility, font family, uppercase"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the grid cell size or mask direction",
+            "where": "The showGrid block with the linear-gradient background"
+        },
+        {
+            "change": "Change how far words travel per step",
+            "where": "yPercent values inside the paddedLines forEach"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Grid backdrop is position fixed across the whole viewport",
+        "Text and grid colors follow the page color scheme (canvasText) unless textColor is set",
+        "The emoji word gets a fixed 1.5em width"
+    ],
+    "mood": ["bold", "playful", "modern"],
+    "industries": ["creative agency", "saas", "marketing", "startup"],
+    "sections": ["hero", "other"],
+    "dependencies": ["gsap"]
+}
