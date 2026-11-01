@@ -1,0 +1,74 @@
+{
+  "slug": "sticky-sections-scale",
+  "name": "Sticky Sections Scale",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-height cards stack as they scroll, each pinning at the top then scaling down, dimming and rounding its corners while the next card slides over, with image contrast easing in.",
+  "contents": [
+    "Hero heading with description",
+    "Stack of sticky full-screen cards, each with counter, image, title and text",
+    "Closing statement paragraph",
+    "Optional loading overlay"
+  ],
+  "behavior": [
+    "Each card pins to the top and scales down, dims and gains rounded corners while the next card covers it",
+    "Card images move from high to normal contrast as they scroll into view",
+    "Smooth scrolling through Lenis, skipped when reduced motion is preferred",
+    "Loader overlay hides once images have loaded"
+  ],
+  "props": [
+    { "name": "sections", "type": "{image,titleLead,title,text,cardColor}[]", "default": "6 sample sections" },
+    { "name": "heroTitleLead", "type": "string", "default": "The" },
+    { "name": "heroTitle", "type": "string", "default": "Denizens" },
+    { "name": "heroDescription", "type": "string", "default": "Their cognitive emissions, deemed inconsequential, formed a discarded wasteland of uncharted thoughts and untold narratives." },
+    { "name": "outro", "type": "string", "default": "Lost in perpetual dependency, inhabitants of the Synthetic Era found solace in cryptic simulations, where pain ebbed and cognitive loads momentarily lightened." },
+    { "name": "fontFamily", "type": "string", "default": "DM Sans" },
+    { "name": "fontFaces", "type": "{weight,url}[]", "default": "DM Sans 300, 500, 700 woff2" },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "textColor", "type": "string", "default": "text-white" },
+    { "name": "loaderColor", "type": "string", "default": "bg-white/60" },
+    { "name": "cardRadius", "type": "string", "default": "rounded-md" },
+    { "name": "imageSize", "type": "string", "default": "h-[50%]" },
+    { "name": "stickyOffset", "type": "number", "default": 0 },
+    { "name": "scrollLength", "type": "string", "default": "+=100%" },
+    { "name": "dimBrightness", "type": "number", "default": 50 },
+    { "name": "scaleTo", "type": "number", "default": 0.95 },
+    { "name": "borderRadiusTo", "type": "number", "default": 40 },
+    { "name": "keepLastSection", "type": "boolean", "default": true },
+    { "name": "imageFromContrast", "type": "number", "default": 400 },
+    { "name": "imageToContrast", "type": "number", "default": 100 },
+    { "name": "imageScrollStart", "type": "string", "default": "top bottom" },
+    { "name": "imageScrollEnd", "type": "string", "default": "max" },
+    { "name": "smoothScroll", "type": "boolean", "default": true },
+    { "name": "lerp", "type": "number", "default": 0.2 },
+    { "name": "smoothWheel", "type": "boolean", "default": true },
+    { "name": "showLoader", "type": "boolean", "default": true },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Hero text, closing text, card titles, texts, images and card colors",
+    "Page, text and loader colors, card radius and image size",
+    "Scale, dim, corner radius, contrast and scroll length values",
+    "Smooth scroll toggle and feel, loader toggle, font family and faces"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the scroll animation of the cards",
+      "where": "First gsap.timeline block inside gsap.context in the useEffect"
+    },
+    {
+      "change": "Change the counter label format",
+      "where": "pad function and the absolute counter span"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis when smoothScroll is on, so it should be the only smooth scroll on the page",
+    "Cards are full viewport height and pinned with position sticky",
+    "Includes hero and closing spacing that gives the scroll range its start and end",
+    "Loader overlay is fixed to the full viewport until images load"
+  ],
+  "mood": ["editorial", "dramatic", "modern", "cinematic"],
+  "industries": ["agency", "portfolio", "storytelling", "fashion", "media"],
+  "sections": ["features", "portfolio", "about"],
+  "dependencies": ["gsap", "lenis"]
+}
