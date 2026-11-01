@@ -4,11 +4,12 @@
   "sourceHash": "06b56fa29bca13dd7735d190d54f7ed8730b2b1edaaaa3525ca63ce0fc8ac07a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "bento-grid-slideshow",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.483Z"
+  "note": "Renamed from jarallax-bento-slideshow (brand name); component BentoGridSlideshow. Removed unused nameColor/nameSize/textColor/textSize props, textAlign data, -name/-text CSS. No frame, no variants, responsive ok. Category sliders-carousels, no deps. Host must provide Kanit font. Fixed: window keydown/mousemove listeners, viewport-height root.",
+  "updatedAt": "2026-11-01T09:08:14.915Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }
