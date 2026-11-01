@@ -1,0 +1,81 @@
+{
+  "slug": "drift-rail-gallery",
+  "name": "Drift Rail Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen horizontal gallery rail with smooth drag, wheel and keyboard scrolling, plates that tilt and drift as they enter, a custom trailing cursor, and numbered captions with tags and link pills.",
+  "contents": [
+    "Intro plate with title and meta lines",
+    "Image plates with number, title, tags and a round link pill",
+    "Outro plate with title and meta lines",
+    "Custom circular cursor"
+  ],
+  "behavior": [
+    "Wheel, drag and arrow/Home/End keys move a horizontal track with eased interpolation",
+    "Each image gets a random rotation and vertical drift as it enters from the right",
+    "Custom cursor follows the mouse with easing and scales over interactive targets on fine pointers",
+    "Vertical page scroll is released at the start and end of the rail",
+    "Respects reduced motion"
+  ],
+  "props": [
+    {"name": "items", "type": "{image,title,number,tags,link}[]", "default": "12 sample plates"},
+    {"name": "introTitle", "type": "string", "default": "Sidelong"},
+    {"name": "introMeta", "type": "string[]", "default": ["Twelve plates", "Drag or scroll to advance"]},
+    {"name": "outroTitle", "type": "string", "default": "Fin"},
+    {"name": "outroMeta", "type": "string[]", "default": ["Twelve of twelve", "Drag back to run it in reverse"]},
+    {"name": "bgColor", "type": "string", "default": "#121a27"},
+    {"name": "textColor", "type": "string", "default": "#4a525e"},
+    {"name": "titleColor", "type": "string", "default": "#4a525e"},
+    {"name": "numberColor", "type": "string", "default": "#54d7e4"},
+    {"name": "tagColor", "type": "string", "default": "#e95499"},
+    {"name": "plateTitleColor", "type": "string", "default": "#e95499"},
+    {"name": "linkColor", "type": "string", "default": "#ffffff"},
+    {"name": "linkBgColor", "type": "string", "default": "#e95499"},
+    {"name": "linkHoverColor", "type": "string", "default": "#e95499"},
+    {"name": "linkBgHoverColor", "type": "string", "default": "#ffffff"},
+    {"name": "cursorFill", "type": "string", "default": "#79e2e6"},
+    {"name": "cursorStroke", "type": "string", "default": "none"},
+    {"name": "cursorStrokeWidth", "type": "string", "default": "1px"},
+    {"name": "cursorSize", "type": "number", "default": 20},
+    {"name": "cursorHoverScale", "type": "number", "default": 2.5},
+    {"name": "scrollEase", "type": "number", "default": 0.085},
+    {"name": "cursorEase", "type": "number", "default": 0.2},
+    {"name": "scrollSpeed", "type": "number", "default": 1},
+    {"name": "dragSpeed", "type": "number", "default": 1.6},
+    {"name": "rotationRange", "type": "number", "default": 30},
+    {"name": "translationRange", "type": "number", "default": 100},
+    {"name": "effectStart", "type": "number", "default": 0.6},
+    {"name": "linkSize", "type": "number", "default": 120},
+    {"name": "linkOverlap", "type": "string", "default": "3.25rem"},
+    {"name": "imageWidth", "type": "string", "default": "21vmax"},
+    {"name": "imageHeight", "type": "string", "default": "28vmax"},
+    {"name": "itemGap", "type": "string", "default": "3vw"},
+    {"name": "plateWidth", "type": "string", "default": "26rem"},
+    {"name": "displayFont", "type": "string", "default": "'Instrument Serif', Georgia, 'Times New Roman', serif"},
+    {"name": "bodyFont", "type": "string", "default": "'Hanken Grotesk', system-ui, -apple-system, sans-serif"},
+    {"name": "loadFonts", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All plate content, images, titles, numbers, tags and link labels",
+    "Intro and outro text",
+    "All colors, cursor look and size",
+    "Scroll, drag and cursor easing, tilt and drift amounts, plate sizes and spacing, fonts"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the plate grid layout", "where": "gridTemplateAreas in the figure and figcaption styles"},
+    {"change": "Change the hover zoom on images", "where": "the -img rules in the css string"},
+    {"change": "Make the link pill an anchor", "where": "button element with the -pill class"}
+  ],
+  "fixed": [
+    "Root is h-screen and full width",
+    "Captures wheel events on the gallery while the rail can move, so the page does not scroll vertically there",
+    "Hides the native cursor on fine pointers and shows a custom cursor",
+    "Loads Instrument Serif and Hanken Grotesk from Google Fonts when loadFonts is true",
+    "Link pills render as buttons without link targets"
+  ],
+  "mood": ["editorial", "playful", "dark", "artistic"],
+  "industries": ["photography", "art", "fashion", "agency", "portfolio"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

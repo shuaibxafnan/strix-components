@@ -4,11 +4,12 @@
   "sourceHash": "cbdf942f1fc63394b2e7fccdb7841ec32498315350c3b5181761d09e60ee0fbe",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "drift-rail-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.426Z"
+  "note": "Added className prop; otherwise already to template. Gate warning: style tag without template literal (CSS built by concatenation with per-instance id, kept). No frame, no variants.",
+  "updatedAt": "2026-11-01T06:30:21.136Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }
