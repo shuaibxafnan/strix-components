@@ -1,0 +1,123 @@
+{
+  "slug": "scroll-progress-magazine",
+  "name": "Scroll Progress Magazine",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Long-form magazine article layout with a fixed top reading progress bar and live percent-read badge that fill as the page scrolls, with inline captioned figures.",
+  "contents": [
+    "Fixed top bar with gradient progress fill, label and percent badge",
+    "Article header with title and meta items",
+    "Body of paragraphs and captioned figures with credit links"
+  ],
+  "behavior": [
+    "Progress bar scales horizontally with page scroll position",
+    "Percent read badge updates live",
+    "Figure images zoom slightly on hover"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "string",
+      "default": "The Polar Bear"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "default": "Editorial Specimen Archive"
+    },
+    {
+      "name": "readSuffix",
+      "type": "string",
+      "default": "% Read"
+    },
+    {
+      "name": "meta",
+      "type": "string[]",
+      "default": [
+        "Published 2026",
+        "8 Min Read"
+      ]
+    },
+    {
+      "name": "blocks",
+      "type": "({text}|{imgSrc,imgAlt,caption,credit,creditHref})[]",
+      "default": "9 sample blocks"
+    },
+    {
+      "name": "barHeight",
+      "type": "string",
+      "default": "h-1.5"
+    },
+    {
+      "name": "progressColor",
+      "type": "string",
+      "default": "bg-gradient-to-r from-teal-500 via-emerald-400 to-indigo-500"
+    },
+    {
+      "name": "maxContentWidth",
+      "type": "string",
+      "default": "max-w-2xl"
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "default": "#0b0c10"
+    },
+    {
+      "name": "textColor",
+      "type": "string",
+      "default": "#d4d4d8"
+    },
+    {
+      "name": "titleColor",
+      "type": "string",
+      "default": "#f4f4f5"
+    },
+    {
+      "name": "mutedColor",
+      "type": "string",
+      "default": "#71717a"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "editableByProps": [
+    "Title, label, meta items, paragraphs, figures, captions and credits",
+    "Progress bar height, gradient, content width and all colors"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the border and badge zinc tones of the top bar",
+      "where": "fixed top-0 left-0 w-full z-50 bar container"
+    },
+    {
+      "change": "Change the glow under the progress bar",
+      "where": "shadow-[0_0_20px_rgba(20,184,166,0.3)] class on the progress fill"
+    }
+  ],
+  "fixed": [
+    "Progress bar is fixed to the top of the viewport and tracks the whole page scroll height",
+    "Component renders nothing until mounted on the client"
+  ],
+  "mood": [
+    "editorial",
+    "dark",
+    "minimal",
+    "calm"
+  ],
+  "industries": [
+    "publishing",
+    "media",
+    "blogging",
+    "education",
+    "travel"
+  ],
+  "sections": [
+    "blog",
+    "other"
+  ],
+  "dependencies": []
+}
