@@ -1,0 +1,103 @@
+{
+    "slug": "stepper",
+    "name": "Stepper",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Multi-step wizard with a segmented, dot or bar progress indicator, animated step transitions, a height-animating content area and Back/Continue buttons. Supports dark and light themes.",
+    "contents": [
+        "Progress indicator (numbered segments with a sliding glider, dots, or bars)",
+        "Animated content viewport showing the current Step child",
+        "Footer with Back and Continue/Complete buttons",
+        "Optional frosted glass frame around everything",
+        "Optional completed content shown after the last step"
+    ],
+    "behavior": [
+        "Works uncontrolled through initialStep or controlled through step",
+        "Content slides or fades between steps while the viewport height animates",
+        "Glider behind the active numbered segment moves with a spring easing",
+        "Completed steps show an animated checkmark",
+        "Vertical orientation shows a side rail with titles and descriptions, and folds to a row when the root is narrower than 520px",
+        "Labels collapse automatically when the row is too narrow for them",
+        "Reduced motion preference switches to fades and shorter durations",
+        "After the last step, the footer collapses and completedContent is shown"
+    ],
+    "props": [
+        { "name": "children", "type": "Step elements", "default": "undefined" },
+        { "name": "step", "type": "number", "default": "undefined" },
+        { "name": "initialStep", "type": "number", "default": 1 },
+        { "name": "onStepChange", "type": "(step:number)=>void", "default": "() => {}" },
+        { "name": "onFinalStepCompleted", "type": "()=>void", "default": "() => {}" },
+        { "name": "indicator", "type": "'numbers' | 'dots' | 'bars'", "default": "numbers" },
+        { "name": "orientation", "type": "'horizontal' | 'vertical'", "default": "horizontal" },
+        { "name": "transition", "type": "'slide' | 'fade' | 'none'", "default": "slide" },
+        { "name": "linear", "type": "boolean", "default": false },
+        { "name": "disableStepIndicators", "type": "boolean", "default": false },
+        { "name": "renderStepIndicator", "type": "({step,currentStep,onStepClick})=>ReactNode", "default": "undefined" },
+        { "name": "showFooter", "type": "boolean", "default": true },
+        { "name": "backButtonText", "type": "string", "default": "Back" },
+        { "name": "nextButtonText", "type": "string", "default": "Continue" },
+        { "name": "completeButtonText", "type": "string", "default": "Complete" },
+        { "name": "backButtonProps", "type": "object", "default": {} },
+        { "name": "nextButtonProps", "type": "object", "default": {} },
+        { "name": "completedContent", "type": "ReactNode", "default": "undefined" },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "accentColor", "type": "string", "default": "undefined" },
+        { "name": "frame", "type": "boolean", "default": true },
+        { "name": "radius", "type": "number", "default": 24 },
+        { "name": "width", "type": "number | string", "default": 440 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "stepCircleContainerClassName", "type": "string", "default": "" },
+        { "name": "stepContainerClassName", "type": "string", "default": "" },
+        { "name": "contentClassName", "type": "string", "default": "" },
+        { "name": "footerClassName", "type": "string", "default": "" },
+        { "name": "style", "type": "CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Step content, titles, descriptions and icons through Step children and their props",
+        "Button labels and button props, footer visibility",
+        "Initial or controlled step, linear mode, clickable indicators",
+        "Orientation, transition type, theme, accent color, frame, radius and width",
+        "Custom indicator rendering and completed content",
+        "Extra class names for the root, header, content and footer"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change theme colors beyond the accent",
+            "where": "THEMES constant"
+        },
+        {
+            "change": "Change animation spring or timing",
+            "where": "SPRING and SETTLE constants and the animate calls in the view.id layout effect"
+        },
+        {
+            "change": "Change the vertical rail width or folding breakpoint",
+            "where": "measure function (520 check) and the w-[212px] class in the header container"
+        },
+        {
+            "change": "Change slide distance",
+            "where": "shift constant in the view.id layout effect"
+        }
+    ],
+    "fixed": [
+        "Requires the @hugeicons/react and @hugeicons/core-free-icons packages",
+        "Children must be Step elements (exported from the same file), each with optional title, description and icon props",
+        "Does not center itself or fill the viewport, it renders at min(100%, width) and the host positions it",
+        "Uses ResizeObserver and the Web Animations API, no global page or body changes",
+        "Vertical orientation always uses numbered indicators regardless of the indicator prop",
+        "Titles and descriptions are single-line and truncated with ellipsis",
+        "Works on small screens: width is capped to 100% and labels or the rail collapse when narrow"
+    ],
+    "mood": ["clean", "modern", "glassy", "minimal"],
+    "industries": ["saas", "fintech", "e-commerce", "onboarding", "healthcare"],
+    "sections": ["other", "contact"],
+    "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+    "variants": {
+        "prop": "indicator",
+        "default": "numbers",
+        "options": [
+            { "value": "numbers", "look": "Segmented track with numbered badges, titles and a sliding glider behind the active step", "useWhen": "A signup or checkout wizard where users need labeled steps and can jump between them" },
+            { "value": "dots", "look": "Row of small centered dots with the active dot enlarged", "useWhen": "A short onboarding or intro flow in a compact card where step names are not needed" },
+            { "value": "bars", "look": "Row of thin progress bars that fill as steps are reached", "useWhen": "A quiz or survey form where overall progress matters more than step names" }
+        ]
+    }
+}
