@@ -4,11 +4,12 @@
   "sourceHash": "fbe5f8e1ac6409d373a69128e80012a1e6017033327090e716ee20980f6edc52",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-disintegrate",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.528Z"
+  "note": "No rename. Gates passed. CDN scripts replaced with npm gsap, html2canvas, imagesloaded dynamic imports. Cleanup scoped to own timelines. Added imageAlt, className props. Added max-w-[92vw] on image. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:24:42.047Z",
+  "gateOutput": "gates passed"
 }
