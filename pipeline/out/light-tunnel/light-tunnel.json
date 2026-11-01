@@ -1,0 +1,113 @@
+{
+    "slug": "light-tunnel",
+    "name": "Light Tunnel",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "Full-size WebGL2 background of glowing cables converging into a tunnel, with light pulses racing along them, optional mouse steering, click surge, intro reveal, and a light-mode ink rendering.",
+    "contents": [
+        "Container div holding a single absolutely positioned WebGL2 canvas",
+        "Fragment shader drawing radial cables, pulses, glow, tunnel body, and optional grain"
+    ],
+    "behavior": [
+        "Cables and pulses flow inward or outward, with slow drift, sway, and bend over time",
+        "Tunnel steers gently toward the pointer while it is over the page",
+        "Click or tap fires a surge ring that travels along the tunnel",
+        "Intro reveals the tunnel from the center over about 1.8 seconds",
+        "Pauses rendering when off screen or tab hidden, and stops motion with prefers-reduced-motion",
+        "Canvas resolution follows container size with pixel ratio capped at 2"
+    ],
+    "props": [
+        { "name": "cableColor", "type": "string", "default": "#ffffff" },
+        { "name": "pulseColor", "type": "string", "default": "#ffffff" },
+        { "name": "tunnelColor", "type": "string", "default": "#ffffff" },
+        { "name": "tunnelOpacity", "type": "number", "default": 0 },
+        { "name": "speed", "type": "number", "default": 0.1 },
+        { "name": "flowDirection", "type": "'inward' | 'outward'", "default": "inward" },
+        { "name": "pulseSpeed", "type": "number", "default": 2 },
+        { "name": "pulseLength", "type": "number", "default": 0.28 },
+        { "name": "pulseBlend", "type": "number", "default": 0.6 },
+        { "name": "pulseWidth", "type": "number", "default": 1 },
+        { "name": "pulseDensity", "type": "number", "default": 0.5 },
+        { "name": "cableCount", "type": "number", "default": 56 },
+        { "name": "thickness", "type": "number", "default": 0.35 },
+        { "name": "rimWidth", "type": "number", "default": 0.15 },
+        { "name": "waviness", "type": "number", "default": 0.3 },
+        { "name": "sway", "type": "number", "default": 0.5 },
+        { "name": "bend", "type": "number", "default": 0.4 },
+        { "name": "size", "type": "number", "default": 1 },
+        { "name": "centerX", "type": "number", "default": 0 },
+        { "name": "centerY", "type": "number", "default": 0 },
+        { "name": "glow", "type": "number", "default": 1 },
+        { "name": "fadeNear", "type": "number", "default": 0.5 },
+        { "name": "fadeFar", "type": "number", "default": 2 },
+        { "name": "brightness", "type": "number", "default": 1 },
+        { "name": "colorVariance", "type": "boolean", "default": true },
+        { "name": "grain", "type": "boolean", "default": false },
+        { "name": "grainIntensity", "type": "number", "default": 0.05 },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "mouseInteraction", "type": "boolean", "default": true },
+        { "name": "mouseStrength", "type": "number", "default": 0.1 },
+        { "name": "clickSurge", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "variation", "type": "number", "default": 0 },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number | undefined", "default": "undefined" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object | undefined", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Cable, pulse, and tunnel colors, opacity, brightness, glow, and optional grain",
+        "Flow direction, speed, pulse speed, length, width, density, and blend",
+        "Cable count, thickness, waviness, sway, bend, size, and tunnel center offset",
+        "Mouse steering, click surge, intro, light mode for bright pages, random seed through variation",
+        "Container size and placement through className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the surge speed or duration",
+            "where": "surge handling in the render function (travel, surgeLevel) and the surge.age < 2.4 checks"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Limit pixel ratio above 2",
+            "where": "resize function, Math.min(... , 2)"
+        },
+        {
+            "change": "Change the fragment look such as cable shape or pulse falloff",
+            "where": "FRAGMENT shader string"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if the context or shader fails",
+        "Fills its parent, so the parent needs a defined height",
+        "Pointer and click listeners are attached to window, so mouse steering and surge react to the whole page, not only the container",
+        "Click surge triggers only when the click lands inside the container",
+        "Respects prefers-reduced-motion by freezing motion, intro, steering, and surge",
+        "Canvas is aria-hidden and purely decorative",
+        "Numeric props are clamped internally, for example cableCount 4 to 200 and opacity 0 to 1",
+        "Default colors are all white, so it needs a dark background unless lightMode is on",
+        "Pulse spacing and surge width are hardcoded in the shader uniforms"
+    ],
+    "mood": [
+        "futuristic",
+        "immersive",
+        "techy",
+        "dramatic"
+    ],
+    "industries": [
+        "technology",
+        "AI",
+        "SaaS",
+        "gaming",
+        "crypto"
+    ],
+    "sections": [
+        "hero",
+        "background",
+        "cta"
+    ],
+    "dependencies": []
+}
