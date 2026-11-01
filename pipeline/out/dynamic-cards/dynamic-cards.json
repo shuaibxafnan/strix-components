@@ -1,0 +1,46 @@
+{
+  "slug": "dynamic-cards",
+  "name": "Dynamic Cards",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Editorial card grid with a section header, staggered fade-in cards, optional images, colored call-to-action buttons, and a toggle to remove or restore each card image.",
+  "contents": [
+    "Header with eyebrow, subtitle, title and description",
+    "Responsive grid of cards with index number, optional image, subtitle, title, body and optional CTA link"
+  ],
+  "behavior": [
+    "Cards fade and slide in with a staggered delay",
+    "Hover reveals the image in color, zooms it, tints the title and draws an accent line",
+    "Each card has a button that removes the image or restores a placeholder, switching the card to a text-only layout with a striped pattern",
+    "Grid goes from 1 to 4 columns by screen width"
+  ],
+  "props": [
+    {"name": "eyebrow", "type": "string", "default": "[INDEX // ARCHIVE]"},
+    {"name": "title", "type": "string", "default": "Dynamic Cards"},
+    {"name": "subtitle", "type": "string", "default": "Curated Archive"},
+    {"name": "description", "type": "string", "default": "A rigid, dark-mode technical matrix balancing editorial elegance with structural modularity."},
+    {"name": "cards", "type": "{id,image,imageAlt,title,subtitle,body,cta:{label,href,variant}}[]", "default": "6 sample cards"},
+    {"name": "placeholder", "type": "string", "default": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80"},
+    {"name": "accentColor", "type": "string", "default": "#f0a500"},
+    {"name": "bgColor", "type": "string", "default": "#0b0b0b"},
+    {"name": "textColor", "type": "string", "default": "#f0f0e8"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Header texts, number of cards, card texts, images, links and CTA style",
+    "Accent, background and text colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Add or change CTA button color styles", "where": "VARIANT_STYLES constant"},
+    {"change": "Change grid column counts", "where": "section grid classes with grid-cols"}
+  ],
+  "fixed": [
+    "Image remove and restore toggle is built in and applies per card",
+    "CTA variant values are primary, secondary, warning, success, danger",
+    "Uses Tailwind animate-in utilities for the entrance animation"
+  ],
+  "mood": ["editorial", "dark", "brutalist", "technical"],
+  "industries": ["publishing", "architecture", "design studios", "art galleries", "magazines"],
+  "sections": ["portfolio", "blog", "gallery"],
+  "dependencies": []
+}

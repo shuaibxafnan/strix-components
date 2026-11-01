@@ -4,11 +4,12 @@
   "sourceHash": "3565e606efaec8e9eaea358bad9e4146eeb93f5b1829b92c59b4e21cb8a8ade6",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "dynamic-cards",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.428Z"
+  "note": "Header kept, now prop-driven (eyebrow, bgColor, textColor, className, per-card imageAlt and cta.href). Subtitle default changed to Curated Archive. Per-card image toggle in fixed. No frame, no variants.",
+  "updatedAt": "2026-11-01T06:33:58.235Z",
+  "gateOutput": "gates passed"
 }
