@@ -1,0 +1,66 @@
+{
+  "slug": "horizontal-flip-gallery",
+  "name": "Horizontal Flip Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen horizontal gallery of staggered square images. Clicking one flips it into a centered frame over a blurred backdrop with split-text titles and side captions, and clicking again returns it.",
+  "contents": [
+    "Horizontally scrolling row of staggered square images",
+    "Detail view per item with blurred backdrop, large split title, and left and right caption blocks",
+    "Custom circular cursor that turns into a close icon when a detail is open"
+  ],
+  "behavior": [
+    "Lenis smooth horizontal scrolling inside the gallery wrapper",
+    "Click flips the image to the center using GSAP Flip while other images wipe away",
+    "Title characters and caption lines reveal with clip-path and line stagger",
+    "Custom cursor follows the mouse with easing and shows on hover over images",
+    "Side captions are hidden below 768px"
+  ],
+  "props": [
+    { "name": "items", "type": "{image,alt,titleTop,titleBottom,leftTitle,leftParagraph,rightTitle,rightParagraph}[]", "default": "7 sample pottery items" },
+    { "name": "backgroundColor", "type": "string", "default": "bg-black" },
+    { "name": "textColor", "type": "string", "default": "text-white" },
+    { "name": "labelColor", "type": "string", "default": "text-white/60" },
+    { "name": "galleryGapVw", "type": "number", "default": 7.5 },
+    { "name": "galleryImageHeightVh", "type": "number", "default": 45 },
+    { "name": "scrollEdgePaddingVw", "type": "number", "default": 35 },
+    { "name": "contentWidthVw", "type": "number", "default": 50 },
+    { "name": "titleFontSizeVw", "type": "number", "default": 6 },
+    { "name": "sideTextWidthVw", "type": "number", "default": 17 },
+    { "name": "animDuration", "type": "number", "default": 1.25 },
+    { "name": "animEase", "type": "string", "default": "power4.inOut" },
+    { "name": "cursorSizeRem", "type": "number", "default": 1.5 },
+    { "name": "lenisLerp", "type": "number", "default": 0.05 },
+    { "name": "lenisWheelMultiplier", "type": "number", "default": 0.85 },
+    { "name": "backdropBlurPx", "type": "number", "default": 60 },
+    { "name": "backdropOpacity", "type": "number", "default": 0.55 },
+    { "name": "scrimOpacity", "type": "number", "default": 0.82 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Items, images, titles and caption text",
+    "Background, text and label colors",
+    "Gap, image height, edge padding, detail width, title size and side text width",
+    "Flip duration and ease, scroll smoothness, backdrop blur and opacity, cursor size"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the staggered up and down offset of gallery images",
+      "where": "odd:translate-y-[30%] even:-translate-y-[30%] classes on the gallery wrapper"
+    },
+    {
+      "change": "Change the detail text reveal timing",
+      "where": "open function timeline"
+    }
+  ],
+  "fixed": [
+    "Fills the viewport (h-screen, full width) and scrolls horizontally with Lenis inside itself",
+    "Listens to mousemove on window for the custom cursor, removed on unmount",
+    "Uses next/font/google for Space Grotesk and Newsreader",
+    "Requires the next package for the font loader"
+  ],
+  "mood": ["editorial", "elegant", "dark", "cinematic", "artisanal"],
+  "industries": ["ceramics", "portfolio", "photography", "interior design", "ecommerce", "art"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["gsap", "lenis", "split-type", "next"]
+}
