@@ -1,0 +1,106 @@
+{
+    "slug": "fold-text",
+    "name": "Fold Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Text that unfolds in 3D from a hinge edge, split by character, word or line, with crease shading, three fold styles, several triggers, and an optional cursor-driven refold.",
+    "contents": [
+        "Inline text split into per-char, per-word or per-line animated pieces",
+        "Screen-reader-only copy of the text, animated copy hidden from assistive tech"
+    ],
+    "behavior": [
+        "Each piece rotates from a folded angle to flat while fading in, staggered across the text",
+        "Crease shading overlay darkens pieces while they are folded",
+        "Trigger can be on mount, on scroll into view, on mouse enter, or looping with a fold-back between cycles",
+        "With hoverRefold, pieces near the pointer tilt back with a smooth falloff and relax when it leaves",
+        "Reduced motion removes rotation and shading and shortens the fade"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "Design unfolds" },
+        { "name": "splitBy", "type": "'char' | 'word' | 'line'", "default": "char" },
+        { "name": "hinge", "type": "'top' | 'bottom' | 'left' | 'right'", "default": "top" },
+        { "name": "foldStyle", "type": "'paper' | 'blinds' | 'flip'", "default": "paper" },
+        { "name": "duration", "type": "number", "default": 0.65 },
+        { "name": "stagger", "type": "number", "default": 0.045 },
+        { "name": "staggerFrom", "type": "string | number (GSAP stagger from)", "default": "start" },
+        { "name": "foldAngle", "type": "number", "default": 92 },
+        { "name": "ease", "type": "string", "default": "power3.out" },
+        { "name": "perspective", "type": "number", "default": 700 },
+        { "name": "creaseShading", "type": "number", "default": 0.55 },
+        { "name": "trigger", "type": "'mount' | 'scroll' | 'hover' | 'loop'", "default": "mount" },
+        { "name": "loopDelay", "type": "number", "default": 1.4 },
+        { "name": "hoverRefold", "type": "boolean", "default": false },
+        { "name": "refoldRadius", "type": "number", "default": 140 },
+        { "name": "refoldAngle", "type": "number", "default": 45 },
+        { "name": "fontSize", "type": "number | string", "default": 80 },
+        { "name": "fontWeight", "type": "number | string", "default": 800 },
+        { "name": "color", "type": "string", "default": "currentColor" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": {} }
+    ],
+    "editableByProps": [
+        "Text and split mode (char, word, line with newlines)",
+        "Hinge edge, fold angle, perspective, crease shading strength",
+        "Duration, stagger, stagger origin, easing",
+        "Trigger mode and loop pause",
+        "Pointer refold on or off, radius and angle",
+        "Font size, weight, color, extra classes and inline style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change scroll trigger start position or make it replay",
+            "where": "ScrollTrigger.create call with start 'top 82%' and once: true"
+        },
+        {
+            "change": "Change hinge shading colors or gradient",
+            "where": "shadeClass entries in the HINGES constant"
+        },
+        {
+            "change": "Change blinds slat timing or split",
+            "where": "SLAT_DELAY and SLATS constants"
+        },
+        {
+            "change": "Change flip lift height",
+            "where": "lift constant inside the layout effect"
+        },
+        {
+            "change": "Change letter spacing or line height",
+            "where": "root span className with leading-[0.95] and tracking-[-0.04em]"
+        }
+    ],
+    "fixed": [
+        "Requires gsap and its ScrollTrigger plugin, registered globally on import",
+        "Pointer refold listens on window and the document element while hoverRefold is true",
+        "Flip style always rotates 180 degrees and ignores foldAngle",
+        "Hover trigger starts folded and only plays once per mouse enter on the text",
+        "Loop repeats forever with a fixed 0.35s repeat delay",
+        "Unknown hinge or foldStyle values fall back to top and paper",
+        "Default 80px font size is large, so set fontSize smaller for mobile screens (360px) to avoid wrapping or clipping",
+        "Hover trigger and pointer refold need a mouse, touch devices get no equivalent for hover trigger"
+    ],
+    "mood": ["bold", "playful", "modern", "dynamic"],
+    "industries": ["creative agency", "design studio", "portfolio", "fashion", "tech"],
+    "sections": ["hero", "about", "cta"],
+    "dependencies": ["gsap"],
+    "variants": {
+        "prop": "foldStyle",
+        "default": "paper",
+        "options": [
+            {
+                "value": "paper",
+                "look": "Each piece hinges open like a folded paper flap from the chosen edge with crease shading",
+                "useWhen": "Hero headline that should unfold on page load"
+            },
+            {
+                "value": "blinds",
+                "look": "Each piece splits into two slats that open in sequence like window blinds",
+                "useWhen": "Section title on a scroll reveal that needs a more mechanical feel"
+            },
+            {
+                "value": "flip",
+                "look": "Each piece flips a full 180 degrees around its center while lifting toward the viewer",
+                "useWhen": "Short playful tagline or looping rotating word in a banner"
+            }
+        ]
+    }
+}
