@@ -4,11 +4,12 @@
   "sourceHash": "ff57e845822435f9f07881b709821ccbf8da3723489fa7faeb3bc1de691d492e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slideshow-multi-curtain",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.546Z"
+  "note": "CDN loader replaced by gsap imports. className and nav aria-labels added, mobile nav offsets, trialWarn config removed. No variants.",
+  "updatedAt": "2026-11-01T12:46:12.100Z",
+  "gateOutput": "gates passed"
 }
