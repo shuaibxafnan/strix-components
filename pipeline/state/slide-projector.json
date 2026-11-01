@@ -4,11 +4,12 @@
   "sourceHash": "0d957f92abeeff1eaa54bb8d0a6ea89b9d3622f9f8622c568aa30756ecf97f94",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slide-projector",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.543Z"
+  "note": "baseBgColor replaced by baseColor and panelColor. Mote timeouts cleared on unmount, className on root. Caption fallback removed. No variants.",
+  "updatedAt": "2026-11-01T12:40:30.973Z",
+  "gateOutput": "gates passed"
 }
