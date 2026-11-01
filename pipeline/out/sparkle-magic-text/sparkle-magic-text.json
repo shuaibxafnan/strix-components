@@ -1,0 +1,44 @@
+{
+  "slug": "sparkle-magic-text",
+  "name": "Sparkle Magic Text",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Centered headline with one highlighted phrase in an animated flowing gradient, surrounded by small spinning, pulsing stars that drift to new positions and move faster on hover.",
+  "contents": [
+    "Headline made of prefix text, a highlighted gradient phrase and suffix text",
+    "Sparkle stars scattered around the highlighted phrase"
+  ],
+  "behavior": [
+    "Gradient on the highlighted phrase pans continuously",
+    "Stars spin, pulse and glide to random positions at an interval",
+    "Hovering the phrase makes every star relocate on each tick",
+    "Typography scales across mobile, tablet and desktop"
+  ],
+  "props": [
+    {"name": "prefixText", "type": "string", "default": "Sometimes I'll start a line of code and I"},
+    {"name": "magicText", "type": "string", "default": "don't even know"},
+    {"name": "suffixText", "type": "string", "default": "where it's going."},
+    {"name": "starCount", "type": "number", "default": 4},
+    {"name": "sparkleInterval", "type": "number", "default": 800},
+    {"name": "gradientColors", "type": "string", "default": "linear-gradient(to right, #7C3AED, #A78BFA, #F472B6, #7C3AED)"},
+    {"name": "starColor", "type": "string", "default": "#A78BFA"},
+    {"name": "textColor", "type": "string", "default": "#18181b"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All three text parts of the headline",
+    "Star count, sparkle speed, star color, gradient and text color"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the star glow color", "where": "drop-shadow class on the svg element"},
+    {"change": "Change the gradient pan speed", "where": "animate-[background-pan_4s_linear_infinite] class on the magic text span"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Renders nothing until mounted so star positions are random on the client only"
+  ],
+  "mood": ["magical", "playful", "creative"],
+  "industries": ["technology", "education", "creative agency", "gaming"],
+  "sections": ["hero", "about"],
+  "dependencies": []
+}
