@@ -1,0 +1,39 @@
+{
+  "slug": "elastic-morph-button",
+  "name": "Elastic Morph Button",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Button whose SVG background outline squishes inward on press and snaps back with an elastic overshoot on release, with color changes on hover.",
+  "contents": ["Single button with a label and a morphing SVG shape behind it"],
+  "behavior": [
+    "Pressing morphs the background path to a squished shape",
+    "Releasing springs back with an elastic cubic-bezier transition",
+    "Hover swaps text and fill colors",
+    "Leaving the button resets the shape"
+  ],
+  "props": [
+    {"name": "label", "type": "string", "default": "Normal"},
+    {"name": "color", "type": "string", "default": "#F6F8FF"},
+    {"name": "colorHover", "type": "string", "default": "#F6F8FF"},
+    {"name": "bg", "type": "string", "default": "#58607F"},
+    {"name": "bgHover", "type": "string", "default": "#535A79"},
+    {"name": "borderStroke", "type": "string", "default": "none"},
+    {"name": "strokeWidth", "type": "string", "default": "0"},
+    {"name": "width", "type": "number", "default": 132},
+    {"name": "height", "type": "number", "default": 48},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Label text, text and fill colors for rest and hover, border stroke and width, button size"],
+  "needsCodeEdit": [
+    {"change": "Change the button corner shape or squish depth", "where": "RESTING_PATH and SQUISHED_PATH constants"},
+    {"change": "Change spring timing", "where": ".elastic-snap rule in the style tag"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Path morph relies on the CSS d property transition, which is not supported in Safari"
+  ],
+  "mood": ["playful", "tactile", "modern"],
+  "industries": ["saas", "apps", "e-commerce", "gaming"],
+  "sections": ["hero", "cta"],
+  "dependencies": []
+}

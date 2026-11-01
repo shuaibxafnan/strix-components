@@ -4,11 +4,12 @@
   "sourceHash": "3b5eefb109f3486970bbe16aeba75470afffbf952c6da23243f24431f8fb03ca",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "elastic-morph-button",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.431Z"
+  "note": "Frame added (w-full h-screen centered) with className; removed empty comment placeholders; max-w-full on button and placeholder. isMounted placeholder kept; CSS d path transition unsupported in Safari (fixed). No variants.",
+  "updatedAt": "2026-11-01T06:39:17.330Z",
+  "gateOutput": "gates passed"
 }
