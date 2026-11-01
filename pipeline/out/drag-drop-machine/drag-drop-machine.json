@@ -1,0 +1,53 @@
+{
+  "slug": "drag-drop-machine",
+  "name": "Drag Drop Machine",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Interactive drag and drop demo where a file tile is dragged onto a folder target, with a live state badge, hover glow, drop confirmation and automatic reset.",
+  "contents": [
+    "Draggable file tile with gradient and icon",
+    "Folder drop target that opens and glows when hovered while dragging",
+    "Machine state badge, captions and instruction hint"
+  ],
+  "behavior": [
+    "Mouse down on the file starts a drag and the tile follows the cursor with a tilt",
+    "Entering the folder while dragging highlights it and changes captions",
+    "Releasing over the folder shows a done state, then resets after resetDuration",
+    "Releasing elsewhere snaps the tile back",
+    "Mouse events only, no touch dragging"
+  ],
+  "props": [
+    {"name": "fileBgColor", "type": "string", "default": "from-orange-500 to-amber-600"},
+    {"name": "folderBgColor", "type": "string", "default": "from-blue-500 to-indigo-600"},
+    {"name": "hintText", "type": "string", "default": "Drag the element to safely process the operation"},
+    {"name": "resetDuration", "type": "number", "default": 1200},
+    {"name": "bgColor", "type": "string", "default": "#0c0a09"},
+    {"name": "stateLabel", "type": "string", "default": "Machine State:"},
+    {"name": "sourceLabel", "type": "string", "default": "Source Asset"},
+    {"name": "targetLabel", "type": "string", "default": "Drop Target"},
+    {"name": "targetActiveLabel", "type": "string", "default": "Release Item"},
+    {"name": "doneLabel", "type": "string", "default": "Processing Done"},
+    {"name": "instructionsTitle", "type": "string", "default": "Instructions"},
+    {"name": "activeHintText", "type": "string", "default": "Drop to register element actions"},
+    {"name": "doneHintText", "type": "string", "default": "✔ Transaction successfully resolved"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All captions, hints and state label text",
+    "Tile gradients as Tailwind gradient classes and background color",
+    "Reset delay after a drop"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the icons", "where": "svg elements inside the file tile and folder target"},
+    {"change": "Change the folder glow and border colors", "where": "isInside class branch on the folder target div"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Window mousemove and mouseup listeners are used for dragging and removed on unmount; touch dragging is not supported",
+    "Text and badge colors use fixed stone tones suited to a dark background"
+  ],
+  "mood": ["playful", "technical", "dark", "interactive"],
+  "industries": ["saas", "developer tools", "file storage", "productivity"],
+  "sections": ["other"],
+  "dependencies": []
+}
