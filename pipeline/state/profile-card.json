@@ -4,11 +4,12 @@
   "sourceHash": "8eb6b16523a7aca63a71b6cfe0f4b26c2cb2302535340a2edcddee95d542ebbd",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "profile-card",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.516Z"
+  "note": "Gates passed. Frame added (h-screen centered). Kept dark prop, Lato/Montserrat @import, useId scoped CSS. max-width 100% on card. No variants.",
+  "updatedAt": "2026-11-01T10:54:17.542Z",
+  "gateOutput": "gates passed"
 }

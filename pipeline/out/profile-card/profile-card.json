@@ -1,0 +1,42 @@
+{
+  "slug": "profile-card",
+  "name": "Profile Card",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Portrait profile card that on hover slides away a blur overlay, shrinks the photo to a square and reveals the bio, follower count and a follow toggle button.",
+  "contents": ["Profile photo", "Name", "Bio text", "Follower count with icon", "Follow / Unfollow button"],
+  "behavior": [
+    "Hover or keyboard focus slides the blur overlay down and changes the image aspect ratio and focus position",
+    "Name, bio and footer row transition in with staggered delays",
+    "Follow button toggles between Follow and Unfollow and calls onFollowChange"
+  ],
+  "props": [
+    {"name": "imageSrc", "type": "string", "default": "https://i.pravatar.cc/400?img=47"},
+    {"name": "imageAlt", "type": "string", "default": "Profile photo"},
+    {"name": "name", "type": "string", "default": "Sophia Carter"},
+    {"name": "bio", "type": "string", "default": "Digital creator, travel storyteller, and coffee enthusiast sharing moments from around the world."},
+    {"name": "followers", "type": "string", "default": "2.4M"},
+    {"name": "dark", "type": "boolean", "default": false},
+    {"name": "initialFollowing", "type": "boolean", "default": false},
+    {"name": "onFollowChange", "type": "function", "default": null},
+    {"name": "width", "type": "string", "default": "20rem"},
+    {"name": "height", "type": "string", "default": "30rem"},
+    {"name": "imageObjectPos", "type": "string", "default": "20% 5%"},
+    {"name": "imageHoverPos", "type": "string", "default": "50% 10%"},
+    {"name": "borderRadius", "type": "string", "default": "2rem"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Photo, name, bio, follower count", "Card size, radius and image focus positions", "Dark or light palette", "Initial follow state and change callback"],
+  "needsCodeEdit": [
+    {"change": "Change dark and light palette colors", "where": "cardCssVars object"},
+    {"change": "Change hover animation timings", "where": "style template literal"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Google Fonts import for Lato and Montserrat inside the style block"
+  ],
+  "mood": ["clean", "modern", "playful", "elegant"],
+  "industries": ["social media", "creators", "portfolio", "agency", "community"],
+  "sections": ["about", "other"],
+  "dependencies": []
+}
