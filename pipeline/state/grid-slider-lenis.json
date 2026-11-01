@@ -4,11 +4,12 @@
   "sourceHash": "161bbcfe7a024b17ace6cf185748b63cdbbd5ebb43bcf5b86be63e855f0ce9dd",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "column-grid-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.455Z"
+  "note": "Renamed grid-slider-lenis -> column-grid-slider. CDN loading replaced with dynamic imports; deps gsap, lenis. Cleanup on unmount. Added className. Removed unused SpaceMono font-face and noise overlay (ambiguous). Mobile padding and stacked bottom row. Variants: none. Lenis takes over scroll; body overflow changed.",
+  "updatedAt": "2026-11-01T07:58:33.732Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }
