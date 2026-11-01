@@ -4,11 +4,12 @@
   "sourceHash": "2e88bee3a038374cc302e226585c56340f0c03aa03eff275bf4396d4dd932514",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "survey-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.565Z"
+  "note": "Rewritten to template. Hardcoded text moved to props label, returnLabel, elevationSuffix; className added; card width max(slotWidthVw, 180px); touch listeners added and removed on unmount. Gates passed.",
+  "updatedAt": "2026-11-01T14:00:56.258Z",
+  "gateOutput": "gates passed"
 }

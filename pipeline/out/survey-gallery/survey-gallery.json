@@ -1,0 +1,54 @@
+{
+  "slug": "survey-gallery",
+  "name": "Survey Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen horizontal gallery of captioned photos that loops endlessly with smooth wheel or touch scrolling. Clicking a photo opens a split detail view with coordinates, elevation and a short fact.",
+  "contents": [
+    "Looping row of image cards with title and elevation",
+    "Small elevation sparkline along the bottom edge",
+    "Top-left survey label",
+    "Full-screen detail overlay with large image, coordinates, title, elevation and fact text"
+  ],
+  "behavior": [
+    "Wheel and touch drag move the row horizontally with eased smoothing and seamless infinite looping",
+    "Images zoom slightly with a bottom shade on hover",
+    "Click opens an animated detail overlay, Escape or the Return button closes it",
+    "Detail view stacks image above text on mobile and splits side by side from 768px"
+  ],
+  "props": [
+    { "name": "items", "type": "{src,alt,title,elevation,coords,fact}[]", "default": "5 mountain sample items" },
+    { "name": "bgColor", "type": "string", "default": "#F4F5F1" },
+    { "name": "inkColor", "type": "string", "default": "#12181C" },
+    { "name": "stoneColor", "type": "string", "default": "#6E7A80" },
+    { "name": "accentColor", "type": "string", "default": "#2F5D62" },
+    { "name": "flagColor", "type": "string", "default": "#B5482A" },
+    { "name": "slotWidthVw", "type": "number", "default": 23 },
+    { "name": "gapPx", "type": "number", "default": 64 },
+    { "name": "wheelLerp", "type": "number", "default": 0.1 },
+    { "name": "overlayBg", "type": "string", "default": "#F4F5F1" },
+    { "name": "label", "type": "string", "default": "Field Survey / 5 Ascents" },
+    { "name": "returnLabel", "type": "string", "default": "Return" },
+    { "name": "elevationSuffix", "type": "string", "default": "m above sea level" },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Items with images, titles, elevations, coordinates and facts",
+    "All colors, card width, gap and scroll smoothing",
+    "Header label, return label and elevation suffix"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change fonts", "where": "ensureFonts function and fontFamily styles" },
+    { "change": "Change the sparkline look or remove it", "where": "svg with polyline using sparkPoints" }
+  ],
+  "fixed": [
+    "Takes over page wheel scrolling with preventDefault while the gallery is shown, so it should be the only scroll handler on the page",
+    "Root fills the viewport height",
+    "Loads Fraunces, Inter and IBM Plex Mono from Google Fonts",
+    "Detail overlay is fixed to the full viewport"
+  ],
+  "mood": ["editorial", "calm", "minimal", "elegant"],
+  "industries": ["travel", "outdoor", "photography", "publishing"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}
