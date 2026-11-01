@@ -6,9 +6,10 @@
   "bitsFolder": "text_animations",
   "slug": "masked-heading",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.630Z"
+  "note": "gates passed. text-effects. Dependency gsap. reveal variants documented. ...rest left out of props (gate), noted in fixed. Needs media src to show anything; touch gets no hover effects.",
+  "updatedAt": "2026-11-01T09:41:50.453Z",
+  "gateOutput": "gates passed"
 }

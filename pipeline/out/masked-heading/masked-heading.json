@@ -1,0 +1,128 @@
+{
+    "slug": "masked-heading",
+    "name": "Masked Heading",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Large heading whose letters act as a mask over an image or looping video, with pointer parallax, slow drift, optional spotlight and outline, and several letter reveal animations.",
+    "contents": [
+        "Heading element (configurable tag) with text split into words and letters",
+        "Image or video layer clipped to the letter shapes through an SVG clipPath",
+        "Optional color tint layer, spotlight layer and letter outline"
+    ],
+    "behavior": [
+        "Media is visible only inside the letter shapes and slowly drifts in a sine path",
+        "Pointer movement shifts the media in the opposite direction (parallax)",
+        "Hover zooms the media by hoverZoom on non-touch pointers",
+        "Optional spotlight dims and desaturates the media except around a soft circle that wanders on its own and follows the pointer on hover",
+        "Reveal animation plays on view, on hover, or on mount depending on trigger",
+        "Font size scales with container width, clamped between 20px and 200px",
+        "Animation loop pauses when offscreen and stops entirely under prefers-reduced-motion, which also pauses video and skips reveals"
+    ],
+    "props": [
+        { "name": "text", "type": "string", "default": "Designed in the details" },
+        { "name": "tag", "type": "string", "default": "h2" },
+        { "name": "mediaType", "type": "'image' | 'video'", "default": "image" },
+        { "name": "src", "type": "string", "default": "" },
+        { "name": "poster", "type": "string", "default": "" },
+        { "name": "fillScale", "type": "number", "default": 1.25 },
+        { "name": "parallax", "type": "number", "default": 26 },
+        { "name": "drift", "type": "number", "default": 18 },
+        { "name": "hoverZoom", "type": "number", "default": 0 },
+        { "name": "brightness", "type": "number", "default": 1 },
+        { "name": "saturation", "type": "number", "default": 1 },
+        { "name": "grayscale", "type": "boolean", "default": false },
+        { "name": "tint", "type": "string", "default": "" },
+        { "name": "spotlight", "type": "boolean", "default": false },
+        { "name": "spotlightRadius", "type": "number", "default": 160 },
+        { "name": "outline", "type": "boolean", "default": false },
+        { "name": "outlineColor", "type": "string", "default": "" },
+        { "name": "outlineWidth", "type": "number", "default": 1 },
+        { "name": "reveal", "type": "'rise' | 'scale' | 'blur' | 'wipe' | 'fade' | 'none'", "default": "rise" },
+        { "name": "duration", "type": "number", "default": 1.1 },
+        { "name": "stagger", "type": "number", "default": 0.09 },
+        { "name": "trigger", "type": "'view' | 'hover' | 'load'", "default": "view" },
+        { "name": "align", "type": "string", "default": "center" },
+        { "name": "weight", "type": "number", "default": 700 },
+        { "name": "tracking", "type": "number", "default": -0.03 },
+        { "name": "lineHeight", "type": "number", "default": 1.06 },
+        { "name": "textScale", "type": "number", "default": 0.115 },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Heading text, HTML tag, alignment, weight, tracking, line height and size ratio",
+        "Image or video source, poster, fill scale, brightness, saturation, grayscale and tint",
+        "Parallax strength, drift amount, hover zoom",
+        "Spotlight on or off and its radius",
+        "Outline on or off, color and width",
+        "Reveal style, duration, stagger and trigger"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change spotlight darkness or falloff curve",
+            "where": "SPOT_MASK constant and the opacity-55 span in the spotlight block"
+        },
+        {
+            "change": "Change drift speed or path",
+            "where": "frame function, the Math.sin and Math.cos lines using clock"
+        },
+        {
+            "change": "Change reveal easing",
+            "where": "play function inside the reveal useIsomorphicLayoutEffect"
+        },
+        {
+            "change": "Change the view trigger threshold",
+            "where": "IntersectionObserver options with threshold 0.25"
+        },
+        {
+            "change": "Add alt text for the image",
+            "where": "img element with alt empty string"
+        }
+    ],
+    "fixed": [
+        "Requires a media src, with the default empty src only a faint tinted letter fill shows",
+        "Requires the gsap npm package",
+        "Extra props are spread onto the heading element",
+        "Font family is inherited from the page, so set it through className or style",
+        "Root is a full-width heading element with no viewport frame, so media size follows the heading box and the font size",
+        "Letter shapes depend on JS text measurement with Range and SVG text, so layout recalculates on resize and font load",
+        "Video is always muted, looping, autoplaying and inline",
+        "Image alt text is hardcoded empty, the layer is decorative",
+        "Touch pointers do not trigger hover zoom or spotlight following",
+        "Text is split by whitespace, so long headings wrap at word boundaries and very narrow containers scale text down to a 20px minimum"
+    ],
+    "mood": [
+        "bold",
+        "editorial",
+        "cinematic",
+        "modern"
+    ],
+    "industries": [
+        "agency",
+        "photography",
+        "fashion",
+        "film",
+        "architecture",
+        "travel"
+    ],
+    "sections": [
+        "hero",
+        "about",
+        "portfolio"
+    ],
+    "dependencies": [
+        "gsap"
+    ],
+    "variants": {
+        "prop": "reveal",
+        "default": "rise",
+        "options": [
+            { "value": "rise", "look": "Letters slide up into place word by word with a strong ease-out", "useWhen": "Hero headline that should enter confidently as the visitor scrolls to it" },
+            { "value": "scale", "look": "Letters pop from zero size one after another", "useWhen": "Playful brand or event landing headline" },
+            { "value": "blur", "look": "Heading fades in from a heavy blur while letters settle sideways", "useWhen": "Cinematic film or travel intro that should feel like coming into focus" },
+            { "value": "wipe", "look": "Heading is uncovered left to right", "useWhen": "Section title in a portfolio or case study that should read like a curtain opening" },
+            { "value": "fade", "look": "Heading fades in while shrinking slightly from 108 percent", "useWhen": "Subtle intro for a calm editorial or luxury page" },
+            { "value": "none", "look": "No animation, heading is shown immediately", "useWhen": "Headings that repeat often on a page or for users who need no motion" }
+        ]
+    }
+}
