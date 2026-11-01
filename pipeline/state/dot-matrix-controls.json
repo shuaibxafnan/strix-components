@@ -4,11 +4,12 @@
   "sourceHash": "17c6c1c0c92fffbc05574e890f99a56bb830f47c271f847125aa3e7de377d388",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "dot-matrix-controls",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.422Z"
+  "note": "Rewritten. Gates passed. Added className. Sliders sized to fit 360px; gap smaller on mobile; w-screen to w-full; mode label fixed to absolute. Google Fonts links kept. Global listeners and Web Audio tone kept (fixed). No frame change; no variants.",
+  "updatedAt": "2026-11-01T06:21:05.735Z",
+  "gateOutput": "gates passed"
 }

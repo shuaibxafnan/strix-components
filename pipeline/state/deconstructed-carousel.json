@@ -4,11 +4,12 @@
   "sourceHash": "a8018bcc221fce1eaa2347508ef6f32d1af8200638ee9b197c504476eef39d76",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "deconstructed-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.418Z"
+  "note": "Rewritten. Gates passed. Removed calculatequick.com credit link and dark: stroke class. Default card links changed to # (ambiguous). Added cards prop, linkLabel, color props, className. Keydown stale-closure pattern kept. No frame; no variants.",
+  "updatedAt": "2026-11-01T06:10:57.248Z",
+  "gateOutput": "gates passed"
 }

@@ -1,0 +1,54 @@
+{
+    "slug": "drag-float-3d-gallery",
+    "name": "Drag Float 3D Gallery",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Full-screen gallery where images float at random depths in a pseudo 3D space and can be dragged to rotate the whole scene, with inertia and perspective scaling.",
+    "contents": [
+        "Images scattered at seeded random positions and depths inside a full-screen stage"
+    ],
+    "behavior": [
+        "Drag with mouse or touch rotates the scene around both axes",
+        "Momentum continues after release and decays smoothly",
+        "Images scale and stack by perspective depth and hide when behind the camera",
+        "Layout recomputes on window resize"
+    ],
+    "props": [
+        {"name": "images", "type": "string[]", "default": "5 sample Unsplash landscape images"},
+        {"name": "bgColor", "type": "string", "default": "#ffffff"},
+        {"name": "baseHeightVh", "type": "number", "default": 22},
+        {"name": "viewportPadding", "type": "number", "default": 0.3},
+        {"name": "focalLength", "type": "number", "default": 600},
+        {"name": "zSpread", "type": "number", "default": 350},
+        {"name": "nearClip", "type": "number", "default": 50},
+        {"name": "dragSensitivity", "type": "number", "default": 0.003},
+        {"name": "momentumDecay", "type": "number", "default": 0.95},
+        {"name": "momentumMin", "type": "number", "default": 0.00005},
+        {"name": "cornerRadius", "type": "number", "default": 8},
+        {"name": "seed", "type": "number", "default": 0},
+        {"name": "imageAlt", "type": "string", "default": ""},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Image list, background color, image size, corner radius",
+        "Depth range, perspective, drag feel and inertia, random layout seed"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change how images are positioned in space",
+            "where": "computeLayout function"
+        },
+        {
+            "change": "Change the projection or rotation math",
+            "where": "project function"
+        }
+    ],
+    "fixed": [
+        "Stage is full-bleed and 100vh tall, sized from the window",
+        "Drag is captured on the stage with touch scrolling disabled, so vertical page scroll over it is blocked on touch"
+    ],
+    "mood": ["immersive", "playful", "minimal", "modern"],
+    "industries": ["photography", "art", "travel", "portfolio", "fashion"],
+    "sections": ["gallery", "portfolio", "hero"],
+    "dependencies": []
+}

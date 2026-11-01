@@ -4,11 +4,12 @@
   "sourceHash": "6766f40ac5b987e87e15a6476e73cbb70dec9604be927669d76f7b8ce55435fd",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "displace-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.421Z"
+  "note": "Rewritten. Gates passed. three and gsap via dynamic import; threeUrl/gsapUrl props removed; killTweensOf on unmount. Removed demo header: nav, ATELIER logo, cart badge, vertical text (ambiguous). Added className; photo min-w responsive. Window wheel listener kept (fixed). No frame; no variants.",
+  "updatedAt": "2026-11-01T06:16:23.270Z",
+  "gateOutput": "gates passed"
 }

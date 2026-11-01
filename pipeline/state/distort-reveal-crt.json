@@ -4,11 +4,12 @@
   "sourceHash": "9ae0c585e7c36606c023e01ad25ad48c73fcf5df09dab509d9f87bd53a13f644",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "distort-reveal-crt",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.421Z"
+  "note": "Rewritten. Gates passed. Component renamed DistortRevealCrt (PascalCase gate). esm.sh import replaced with @vfx-js/core dependency; vfx.destroy on unmount; className added. Rows stack below 640px; vh font sizes and 60% section width kept. No frame; no variants.",
+  "updatedAt": "2026-11-01T06:17:02.629Z",
+  "gateOutput": "gates passed"
 }

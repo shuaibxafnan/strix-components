@@ -4,11 +4,12 @@
   "sourceHash": "3e4ad3726909b58ff6a2bb1718b705c64dcd01e342166238b1f2406087fff76a",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "drag-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.423Z"
+  "note": "Rewritten. Gates passed. Removed logo block and logoHref prop (ambiguous, brand chrome). Added className; w-screen to w-full; vignette fixed to absolute. Inter Tight font links kept per template; review. Fixed-pixel tiles wider than 360px, inside draggable canvas (fixed). No frame; no variants.",
+  "updatedAt": "2026-11-01T06:23:11.876Z",
+  "gateOutput": "gates passed"
 }

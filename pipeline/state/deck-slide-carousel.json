@@ -4,11 +4,12 @@
   "sourceHash": "ede6619ac19416648fb7e3357b40077bdd2abfbc2d42170b92473fa4c8b05733",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "deck-slide-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.418Z"
+  "note": "Rewritten. Gates passed. No removals. itemWidth capped with min(..., 80cqw) for narrow screens. Needs CSS scroll-driven animations (current Chromium); fallback text kept. No frame; no variants.",
+  "updatedAt": "2026-11-01T06:10:13.107Z",
+  "gateOutput": "gates passed"
 }

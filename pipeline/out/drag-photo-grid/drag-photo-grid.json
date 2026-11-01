@@ -1,0 +1,267 @@
+{
+    "slug": "drag-photo-grid",
+    "name": "Drag Photo Grid",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Full-screen draggable title menu where dragging between large outlined titles cross-fades photo previews, and an explore button collapses scattered photos into an editorial grid layout.",
+    "contents": [
+        "Horizontal menu of large section titles with numbering and an explore link",
+        "Scattered photo previews per section that collapse into a 9-image grid",
+        "Back arrow button and custom circular cursor with drag arrows"
+    ],
+    "behavior": [
+        "Drag horizontally to move between sections with lerped menu motion and filled-to-outline letter blending",
+        "Preview images stretch, shift and fade between sections while dragging",
+        "Explore expands the active section into a scrollable grid layout, back returns to the scattered preview",
+        "Custom cursor scales on hover and drag, hidden on touch devices",
+        "GSAP loaded by dynamic import, all listeners, frames and tweens cleaned on unmount"
+    ],
+    "props": [
+        {
+            "name": "sections",
+            "type": "{title,images:string[]}[]",
+            "default": "5 sample sections of 8-9 photos"
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#f1f1f1"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#1e1e1e"
+        },
+        {
+            "name": "strokeColor",
+            "type": "string",
+            "default": "#1e1e1e"
+        },
+        {
+            "name": "accentColor",
+            "type": "string",
+            "default": "#de6565"
+        },
+        {
+            "name": "fontFamily",
+            "type": "string",
+            "default": "\"Helvetica Neue\", Helvetica, Arial, sans-serif"
+        },
+        {
+            "name": "menuFontSize",
+            "type": "string",
+            "default": "12vw"
+        },
+        {
+            "name": "menuGap",
+            "type": "string",
+            "default": "10vw"
+        },
+        {
+            "name": "exploreLabel",
+            "type": "string",
+            "default": "explore"
+        },
+        {
+            "name": "dragFactor",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "dragThreshold",
+            "type": "number",
+            "default": 0.04
+        },
+        {
+            "name": "gridHeight",
+            "type": "string",
+            "default": "80vw"
+        },
+        {
+            "name": "gridGap",
+            "type": "string",
+            "default": "1vw"
+        },
+        {
+            "name": "gridPadding",
+            "type": "string",
+            "default": "2.5rem 3rem"
+        },
+        {
+            "name": "previewFilter",
+            "type": "string",
+            "default": "grayscale(0.5) contrast(0.4) brightness(1.5)"
+        },
+        {
+            "name": "enableCursor",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "cursorSize",
+            "type": "number",
+            "default": 25
+        },
+        {
+            "name": "initialSection",
+            "type": "number",
+            "default": 0
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "letterExitShift",
+            "type": "string",
+            "default": "40%"
+        },
+        {
+            "name": "letterExitStagger",
+            "type": "number",
+            "default": 0.02
+        },
+        {
+            "name": "menuLerp",
+            "type": "number",
+            "default": 0.1
+        },
+        {
+            "name": "letterLerp",
+            "type": "number",
+            "default": 0.1
+        },
+        {
+            "name": "imageLerp",
+            "type": "number",
+            "default": 0.1
+        },
+        {
+            "name": "imageScaleLerp",
+            "type": "number",
+            "default": 0.06
+        },
+        {
+            "name": "imgScaleXTarget",
+            "type": "number",
+            "default": 2
+        },
+        {
+            "name": "imgScaleYTarget",
+            "type": "number",
+            "default": 0.8
+        },
+        {
+            "name": "imgShiftTarget",
+            "type": "number",
+            "default": 150
+        },
+        {
+            "name": "settleDuration",
+            "type": "number",
+            "default": 0.8
+        },
+        {
+            "name": "settleEase",
+            "type": "string",
+            "default": "power2.out"
+        },
+        {
+            "name": "imageDuration",
+            "type": "number",
+            "default": 1
+        },
+        {
+            "name": "imageEase",
+            "type": "string",
+            "default": "power4.out"
+        },
+        {
+            "name": "gridDuration",
+            "type": "number",
+            "default": 0.8
+        },
+        {
+            "name": "gridEase",
+            "type": "string",
+            "default": "expo.out"
+        },
+        {
+            "name": "spreadScale",
+            "type": "number",
+            "default": 0.35
+        },
+        {
+            "name": "spreadMarginX",
+            "type": "number",
+            "default": 0.02
+        },
+        {
+            "name": "spreadMarginY",
+            "type": "number",
+            "default": 0.04
+        },
+        {
+            "name": "cursorHoverScale",
+            "type": "number",
+            "default": 1.9
+        },
+        {
+            "name": "cursorDragScale",
+            "type": "number",
+            "default": 1.5
+        },
+        {
+            "name": "cursorLerp",
+            "type": "number",
+            "default": 0.2
+        }
+    ],
+    "editableByProps": [
+        "Section titles and images",
+        "Colors for background, text, outline and accent",
+        "Menu font family, size and gap",
+        "Explore label",
+        "Drag sensitivity and animation timing, easing and lerp values",
+        "Grid height, gap and padding",
+        "Preview image filter",
+        "Custom cursor on/off, size and scales",
+        "Starting section"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the 9 cell placements of each grid layout",
+            "where": "LAYOUTS"
+        },
+        {
+            "change": "Change the default image pool",
+            "where": "IMAGES"
+        }
+    ],
+    "fixed": [
+        "Each section shows at most 9 images and layouts cycle through 5 presets",
+        "Root is 100vh tall and clips overflow",
+        "Listens to window pointer and resize events while mounted, removed on unmount"
+    ],
+    "mood": [
+        "editorial",
+        "playful",
+        "minimal",
+        "artistic"
+    ],
+    "industries": [
+        "photography",
+        "fashion",
+        "art",
+        "portfolio",
+        "agency"
+    ],
+    "sections": [
+        "portfolio",
+        "gallery"
+    ],
+    "dependencies": [
+        "gsap"
+    ]
+}

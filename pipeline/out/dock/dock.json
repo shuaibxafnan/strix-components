@@ -1,0 +1,205 @@
+{
+    "slug": "dock",
+    "name": "Dock",
+    "category": "navigation-menus",
+    "isReactBits": true,
+    "description": "macOS-style magnifying dock of icon buttons that grow near the pointer with spring physics, with labels, badges, active dots, hop on click, long-press or right-click menus with submenus, and optional auto-hide.",
+    "contents": [
+        "Floating glass toolbar panel with one tile button per item, optional separators",
+        "Hover labels, notification badges (count or dot), active indicator dots",
+        "Context menu per item with icons, shortcuts, checks, separators and nested submenus"
+    ],
+    "behavior": [
+        "Items magnify by a cosine falloff based on pointer distance, animated with a spring simulation in requestAnimationFrame",
+        "Clicking an item makes it hop with a gravity bounce, then calls its onClick",
+        "Long press (450ms), right-click, context menu key or arrow toward the screen opens a popover menu with a tail pointing at the item",
+        "Menu supports keyboard navigation, hover highlight, delayed submenu opening and closes on outside click, scroll, resize or blur",
+        "Arrow keys, Home and End move focus between items, focused item magnifies",
+        "Auto-hide slides the dock off its edge and reveals it when the pointer nears that edge or the dock gets focus",
+        "Dock scales down (to a minimum of 40 percent) to fit the available width or height of its container",
+        "Reduced motion setting disables springs, hop and scale animation"
+    ],
+    "props": [
+        {
+            "name": "items",
+            "type": "{icon,label,onClick,className,badge,active,menu,separator}[]",
+            "default": []
+        },
+        {
+            "name": "position",
+            "type": "'bottom' | 'top' | 'left' | 'right'",
+            "default": "bottom"
+        },
+        {
+            "name": "theme",
+            "type": "'dark' | 'light'",
+            "default": "dark"
+        },
+        {
+            "name": "baseItemSize",
+            "type": "number",
+            "default": 50
+        },
+        {
+            "name": "magnification",
+            "type": "number",
+            "default": 70
+        },
+        {
+            "name": "distance",
+            "type": "number",
+            "default": 200
+        },
+        {
+            "name": "panelHeight",
+            "type": "number",
+            "default": 68
+        },
+        {
+            "name": "gap",
+            "type": "number",
+            "default": 10
+        },
+        {
+            "name": "roundness",
+            "type": "number",
+            "default": 0.5
+        },
+        {
+            "name": "spring",
+            "type": "{mass,stiffness,damping}",
+            "default": {
+                "mass": 0.1,
+                "stiffness": 150,
+                "damping": 12
+            }
+        },
+        {
+            "name": "bounce",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "autoHide",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "tiles",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "showLabels",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "showIndicators",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "showBadges",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "badgeColor",
+            "type": "string",
+            "default": "#ff453a"
+        },
+        {
+            "name": "accentColor",
+            "type": "string",
+            "default": "#0a84ff"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "style",
+            "type": "React.CSSProperties",
+            "default": "undefined"
+        }
+    ],
+    "editableByProps": [
+        "Items: icons, labels, click handlers, badges, active state, separators, context menus and submenus",
+        "Screen edge via position (bottom, top, left, right)",
+        "Item size, magnification, reach distance, panel thickness, gap, corner roundness",
+        "Spring mass, stiffness and damping, hop bounce on or off",
+        "Auto-hide, bare icons instead of tiles, labels, indicators and badges on or off",
+        "Badge and accent colors, extra class name and inline style or CSS variable overrides"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add more color themes",
+            "where": "THEMES constant"
+        },
+        {
+            "change": "Change long-press duration or hop height",
+            "where": "HOLD_TIME, HOP and HOP_TIME constants"
+        },
+        {
+            "change": "Change distance of the dock from the screen edge",
+            "where": "EDGE constant and the ROOT_SIDES classes"
+        },
+        {
+            "change": "Change menu size, corner radius or tail shape",
+            "where": "MENU_LIST, MENU_RADIUS, TAIL and TAIL_HALF constants and the menuPath function"
+        },
+        {
+            "change": "Change the glass blur of the panel",
+            "where": "backdrop-blur classes in the ROOT constant"
+        }
+    ],
+    "fixed": [
+        "Positioned absolutely, so the parent container must be position relative with a defined size, the dock sits at the container edge with a 12px offset",
+        "Menus render in a portal on document.body with fixed positioning at z-index 1000",
+        "Adds window pointermove and pointerdown listeners for auto-hide, and scroll, resize and blur listeners while a menu is open",
+        "Dock shrinks to fit its container, never below 40 percent of the set sizes, so very narrow screens get tiny tiles",
+        "Magnification is pointer based, on touch screens only long-press menus and focus magnify",
+        "Toolbar aria-label is hardcoded to Dock and uses a client component directive",
+        "Theme colors are hardcoded dark or light tokens, unknown theme falls back to dark, unknown position falls back to bottom",
+        "Icons must be supplied by the caller as React nodes, no icons are built in"
+    ],
+    "mood": [
+        "polished",
+        "playful",
+        "modern",
+        "glassy"
+    ],
+    "industries": [
+        "saas",
+        "portfolio",
+        "creative agency",
+        "developer tools",
+        "productivity"
+    ],
+    "sections": [
+        "navbar",
+        "global"
+    ],
+    "dependencies": [
+        "react",
+        "react-dom"
+    ],
+    "variants": {
+        "prop": "theme",
+        "default": "dark",
+        "options": [
+            {
+                "value": "dark",
+                "look": "Dark translucent glass panel with dark gradient tiles, light icons and dark menus",
+                "useWhen": "Dark or media-heavy page where the dock floats over a dark hero or app background"
+            },
+            {
+                "value": "light",
+                "look": "Light frosted glass panel with white tiles, dark icons and light menus",
+                "useWhen": "Light, bright page or product site where the dock floats over white or pastel content"
+            }
+        ]
+    }
+}

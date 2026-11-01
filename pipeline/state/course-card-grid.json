@@ -4,11 +4,12 @@
   "sourceHash": "501a4ac1c25de0bb69ceda6749ff9a57eb949800facb33c351a57faf449cbbf3",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "course-card-grid",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.414Z"
+  "note": "Rewritten. Gates passed. Removed header block (label, count, h1, description) and showHeader/headerTitle/headerDesc props as placeholder hero; ambiguous, restore if intended. Responsive padding fixed; no frame; no variants. duration-[transitionSpeed] class kept as is.",
+  "updatedAt": "2026-11-01T06:00:43.251Z",
+  "gateOutput": "gates passed"
 }

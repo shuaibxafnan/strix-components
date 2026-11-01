@@ -4,11 +4,12 @@
   "sourceHash": "1b6c6ea0822067dd3f648352c97fa67b6c706d9888ef8fe084c91452296ed07e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "cubic-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.416Z"
+  "note": "Rewritten. Gates passed, 1 warning: addEventListener once without removeEventListener (tiles removed on rebuild). Added className; min-w-[240px] on hero; h-screen root in fixed. Mona Sans @import kept, conflicts with no-font-imports rule; review. No frame; no variants.",
+  "updatedAt": "2026-11-01T06:04:17.172Z",
+  "gateOutput": "WARN  addEventListener with once and no removeEventListener\ngates passed"
 }

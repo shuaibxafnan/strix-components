@@ -4,11 +4,12 @@
   "sourceHash": "f2b2e11aa342d9bb5dffa70acb449c2c113ba657dd0629f2f8fe7de6395dbce0",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "destination-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.419Z"
+  "note": "Rewritten. Gates passed. Removed navbar, logo, nav links, mobile menu (ambiguous, demo page), Barlow font class, min-h-screen. Added label, textColor, mutedColor, backgroundColor, per-slide href, className. Arrow hover invert to opacity. Keydown listener kept. No frame; no variants.",
+  "updatedAt": "2026-11-01T06:12:57.241Z",
+  "gateOutput": "gates passed"
 }

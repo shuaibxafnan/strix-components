@@ -1,0 +1,76 @@
+{
+    "slug": "decay-card",
+    "name": "Decay Card",
+    "category": "cards-galleries",
+    "isReactBits": true,
+    "description": "Image card rendered in WebGL that follows the cursor with tilt and travel, and tears apart into noise-driven displacement when the pointer moves fast, then recovers smoothly.",
+    "contents": [
+        "Single card sized by width and height, drawn on a WebGL2 canvas with a noise distortion shader",
+        "Optional children overlay at the bottom of the card, in white text",
+        "Plain img fallback when WebGL2 or the image texture fails"
+    ],
+    "behavior": [
+        "Card drifts and rotates toward the cursor with eased follow, either across the whole window or only while hovered",
+        "Fast cursor movement raises a decay level that displaces the image with turbulence noise, strongest at the edges, then recovers",
+        "Idle noise slowly eats at the card rim even without interaction",
+        "Optional chromatic split, grayscale, flowing noise and rounded corners",
+        "Render loop pauses when the card is offscreen or settled",
+        "Prefers-reduced-motion disables movement, tilt and flow"
+    ],
+    "props": [
+        {"name": "image", "type": "string", "default": "https://images.unsplash.com/photo-1762846818262-33c197852fa8?w=900&q=80&auto=format&fit=crop"},
+        {"name": "width", "type": "number", "default": 300},
+        {"name": "height", "type": "number", "default": 400},
+        {"name": "intensity", "type": "number", "default": 0.5},
+        {"name": "sensitivity", "type": "number", "default": 0.5},
+        {"name": "hoverDecay", "type": "number", "default": 0.05},
+        {"name": "recovery", "type": "number", "default": 0.6},
+        {"name": "grain", "type": "number", "default": 0.25},
+        {"name": "detail", "type": "number", "default": 5},
+        {"name": "pattern", "type": "number", "default": 4},
+        {"name": "idle", "type": "number", "default": 0.35},
+        {"name": "flow", "type": "number", "default": 0},
+        {"name": "chroma", "type": "number", "default": 0},
+        {"name": "travel", "type": "number", "default": 50},
+        {"name": "tilt", "type": "number", "default": 10},
+        {"name": "scope", "type": "'window' | 'card'", "default": "window"},
+        {"name": "radius", "type": "number", "default": 0},
+        {"name": "grayscale", "type": "boolean", "default": false},
+        {"name": "children", "type": "ReactNode", "default": null},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "style", "type": "object", "default": null}
+    ],
+    "editableByProps": [
+        "Image, card size, corner radius, grayscale and chromatic split",
+        "Decay strength, cursor sensitivity, hover decay, recovery speed, grain size, detail, noise pattern seed, idle erosion and flow",
+        "Cursor travel distance, tilt angle and whether the cursor tracked is the whole window or the card only",
+        "Overlay content through children, extra classes and inline style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the overlay text color or position",
+            "where": "CONTENT constant"
+        },
+        {
+            "change": "Change the aspect ratio the shader assumes for the image crop",
+            "where": "sampleImage function in the FRAGMENT shader"
+        },
+        {
+            "change": "Change cursor follow smoothness",
+            "where": "follow constant inside the frame function"
+        }
+    ],
+    "fixed": [
+        "Needs WebGL2, otherwise it shows a static image without effects",
+        "Listens to window pointermove for the whole lifetime, even in card scope",
+        "Image must allow cross-origin loading (crossOrigin anonymous), otherwise the fallback img shows",
+        "Canvas bleeds 24 percent beyond the card box, so surrounding space should not clip overflow",
+        "Card is flex-none with a pixel width and height, not responsive by itself; wrap or pass smaller width and height on small screens",
+        "Window scope follows cursor position across the viewport, so it has no effect on touch devices without pointer movement",
+        "Device pixel ratio capped at 2"
+    ],
+    "mood": ["edgy", "experimental", "dramatic", "interactive"],
+    "industries": ["fashion", "photography", "music", "art", "creative agency"],
+    "sections": ["hero", "portfolio", "gallery"],
+    "dependencies": []
+}

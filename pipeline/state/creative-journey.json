@@ -4,11 +4,12 @@
   "sourceHash": "5efbe46efba7025788b35bd667a664c200b2798e402b4c9263e948d8e2e67cb5",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "converging-circles-scroll",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.415Z"
+  "note": "creative-journey -> converging-circles-scroll. Replaced CDN script loading with npm gsap, ScrollTrigger, lenis dynamic imports. Frame: none (full-page scroll piece). Variants: none. Responsive: already ok. Kept loader counter and font links (original).",
+  "updatedAt": "2026-11-01T06:02:02.807Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

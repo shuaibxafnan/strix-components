@@ -1,0 +1,88 @@
+{
+    "slug": "curved-loop",
+    "name": "Curved Loop",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Endless text marquee that flows along an SVG path (arc, wave, straight line or full circle), with drag and fling, optional outline, edge fade, separator and scroll-speed boost.",
+    "contents": [
+        "Single SVG text repeated along a path, filling the path length",
+        "Optional separator mark between repeats, with its own color",
+        "Hidden measuring text used to size the repeat spacing"
+    ],
+    "behavior": [
+        "Text scrolls endlessly along the path at a constant speed in the chosen direction",
+        "Drag with pointer to move the text, release to fling with momentum; fling direction becomes the new scroll direction",
+        "Optional pause while hovered",
+        "Optional scroll boost speeds the loop up while the page or a scroll parent scrolls",
+        "Animation pauses when offscreen and stops under prefers-reduced-motion",
+        "Remeasures on resize and when fonts finish loading",
+        "Component stays hidden until text is measured"
+    ],
+    "props": [
+        { "name": "marqueeText", "type": "string", "default": "" },
+        { "name": "speed", "type": "number", "default": 2 },
+        { "name": "className", "type": "string", "default": "undefined" },
+        { "name": "curveAmount", "type": "number", "default": 400 },
+        { "name": "direction", "type": "'left' | 'right'", "default": "left" },
+        { "name": "interactive", "type": "boolean", "default": true },
+        { "name": "pauseOnHover", "type": "boolean", "default": false },
+        { "name": "color", "type": "string", "default": "currentColor" },
+        { "name": "edgeFade", "type": "number (0 to 1)", "default": 0 },
+        { "name": "shape", "type": "'arc' | 'line' | 'wave' | 'circle'", "default": "arc" },
+        { "name": "fontSize", "type": "number", "default": 96 },
+        { "name": "fontWeight", "type": "number | string", "default": 700 },
+        { "name": "letterSpacing", "type": "number | string", "default": 0 },
+        { "name": "outline", "type": "boolean", "default": false },
+        { "name": "separator", "type": "string", "default": "" },
+        { "name": "separatorColor", "type": "string", "default": "undefined" },
+        { "name": "scrollBoost", "type": "number", "default": 0 }
+    ],
+    "editableByProps": [
+        "Marquee text, separator mark and separator color",
+        "Path shape, curve depth, scroll speed and direction",
+        "Text color, outline mode, font size, weight, letter spacing and font via className",
+        "Edge fade amount, drag interaction, pause on hover, scroll boost"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the wave length or circle ring size",
+            "where": "WAVE_LENGTH and RING_RADIUS constants"
+        },
+        {
+            "change": "Change the drag fling speed limit",
+            "where": "MAX_FLING constant"
+        },
+        {
+            "change": "Allow lowercase text instead of uppercase",
+            "where": "uppercase class on the svg element"
+        },
+        {
+            "change": "Remove the full viewport height wrapper",
+            "where": "min-h-screen class on the root div (jacketRef)"
+        }
+    ],
+    "fixed": [
+        "Root is a div with min-h-screen that centers the svg; it fills at least the viewport height",
+        "Text is forced uppercase",
+        "marqueeText defaults to an empty string, so nothing renders until text is passed",
+        "Font is not loaded by the component, supply it with className or page styles",
+        "Honors prefers-reduced-motion by not animating",
+        "Adds a capture scroll listener on window only when scrollBoost is set, removed on unmount",
+        "Viewbox is 1440 by 120 and scales to container width; on narrow screens the text shrinks with it, so a smaller fontSize is advised for mobile",
+        "Circle shape sizes the ring from fontSize and needs a wide container"
+    ],
+    "mood": ["bold", "playful", "dynamic", "editorial"],
+    "industries": ["creative agency", "fashion", "music", "events", "e-commerce"],
+    "sections": ["hero", "logos", "cta", "other"],
+    "dependencies": [],
+    "variants": {
+        "prop": "shape",
+        "default": "arc",
+        "options": [
+            { "value": "arc", "look": "Text follows a single smooth quadratic curve whose depth is set by curveAmount", "useWhen": "A hero banner needs a gentle sweeping curved ribbon of text" },
+            { "value": "line", "look": "Text runs along a flat straight line like a classic marquee", "useWhen": "A divider strip between sections or a ticker under the navbar" },
+            { "value": "wave", "look": "Text follows a repeating sine wave with amplitude from curveAmount", "useWhen": "A playful event or music page needs a rippling banner" },
+            { "value": "circle", "look": "Text loops around a full ring that rotates", "useWhen": "A badge or centerpiece spinning text seal in a landing page hero" }
+        ]
+    }
+}

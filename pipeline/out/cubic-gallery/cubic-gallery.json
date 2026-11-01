@@ -1,0 +1,66 @@
+{
+    "slug": "cubic-gallery",
+    "name": "Cubic Gallery",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Full-screen 3D tunnel of four photo walls that fill in tile by tile around a centered title. Clicking a tile unfolds it to full screen, and a Focus button fades the walls in.",
+    "contents": [
+        "Four perspective walls (top, right, bottom, left) of image tiles",
+        "Centered blurred hero block with title, subtitle and Focus button",
+        "Back button shown while a tile is open"
+    ],
+    "behavior": [
+        "Images are preloaded then assigned to random empty tiles at a set interval",
+        "Hovering a loaded tile shows an outline",
+        "Clicking a tile unfolds its wall to fill the viewport and pauses filling",
+        "Back button closes the open tile and resumes filling",
+        "Focus button animates the wall edge fade in and out"
+    ],
+    "props": [
+        { "name": "images", "type": "string[]", "default": "26 sample picsum image URLs" },
+        { "name": "density", "type": "number", "default": 5 },
+        { "name": "fillSpeed", "type": "number", "default": 200 },
+        { "name": "wallSize", "type": "string", "default": "1800px" },
+        { "name": "perspective", "type": "string", "default": "1000px" },
+        { "name": "tileGap", "type": "number", "default": 6 },
+        { "name": "revealDistance", "type": "number", "default": 0 },
+        { "name": "themeColor", "type": "string", "default": "#fff" },
+        { "name": "accentColor", "type": "string", "default": "orangered" },
+        { "name": "tileBorderColor", "type": "string", "default": "#fff" },
+        { "name": "showHeroContent", "type": "boolean", "default": true },
+        { "name": "heroTitle", "type": "string", "default": "Photo" },
+        { "name": "heroSubtitle", "type": "string", "default": "A cubic photo gallery experiment." },
+        { "name": "focusBtnLabel", "type": "string", "default": "Focus" },
+        { "name": "backBtnLabel", "type": "string", "default": "Back to Gallery" },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Images, grid density, fill speed, wall depth, perspective and tile gap",
+        "Background, accent and tile outline colors",
+        "Hero title, subtitle and button labels, or hide the hero block"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change how deep each wall tile starts before it flies in",
+            "where": "TILE_DEPTH constant"
+        },
+        {
+            "change": "Change the unfold animation of an opened tile",
+            "where": ".cg-selectedPane rule in the style block"
+        },
+        {
+            "change": "Remove the superscript mark after the title",
+            "where": "h2 element with the accentColor span"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height (h-screen) and clips overflow; override with className using an important modifier such as !h-auto",
+        "Loads the Mona Sans font through an @import in the style block",
+        "Tiles are built as DOM nodes imperatively, so changing images or density rebuilds the walls",
+        "Opened tile uses 100vw by 100vh, so the component is intended to span the full viewport"
+    ],
+    "mood": ["immersive", "modern", "playful", "clean"],
+    "industries": ["photography", "travel", "portfolio", "art", "fashion"],
+    "sections": ["gallery", "hero", "portfolio"],
+    "dependencies": []
+}

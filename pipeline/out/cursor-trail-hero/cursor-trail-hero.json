@@ -1,0 +1,229 @@
+{
+  "slug": "cursor-trail-hero",
+  "name": "Cursor Trail Hero",
+  "category": "cursor-effects",
+  "isReactBits": false,
+  "description": "Full-screen dark hero where moving the cursor, dragging a finger or scrolling leaves a trail of images that pop in and out over big centered lettering, with six reveal styles.",
+  "contents": [
+    "Full-screen gradient hero with large centered SVG lettering",
+    "Image trail spawned at the pointer",
+    "Film grain noise overlay",
+    "Touch instruction line shown on small screens"
+  ],
+  "behavior": [
+    "Images spawn along mouse movement, touch drag and page scroll, sized and rotated by pointer speed",
+    "Each image reveals and collapses with the chosen effect, then is removed after its lifespan",
+    "Images cycle through the image list in order",
+    "Mobile thresholds and image sizes are used under 768px or on mobile user agents"
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "\"flame\" | \"venetian\" | \"curtain\" | \"hexagon\" | \"liquid\" | \"zoomsplit\"",
+      "default": "flame"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "bgGradient",
+      "type": "string",
+      "default": "linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)"
+    },
+    {
+      "name": "letterColor",
+      "type": "string",
+      "default": "#ffffff"
+    },
+    {
+      "name": "touchInstructionText",
+      "type": "string",
+      "default": "Swipe your finger to see the magic unfold"
+    },
+    {
+      "name": "fontMono",
+      "type": "string",
+      "default": "JetBrains Mono"
+    },
+    {
+      "name": "images",
+      "type": "string[]",
+      "default": "14 sample photo URLs"
+    },
+    {
+      "name": "imageLifespan",
+      "type": "number",
+      "default": 600
+    },
+    {
+      "name": "removalDelay",
+      "type": "number",
+      "default": 16
+    },
+    {
+      "name": "mouseThresholdDesktop",
+      "type": "number",
+      "default": 40
+    },
+    {
+      "name": "mouseThresholdMobile",
+      "type": "number",
+      "default": 20
+    },
+    {
+      "name": "scrollThreshold",
+      "type": "number",
+      "default": 50
+    },
+    {
+      "name": "inDuration",
+      "type": "number",
+      "default": 600
+    },
+    {
+      "name": "outDuration",
+      "type": "number",
+      "default": 800
+    },
+    {
+      "name": "touchImageInterval",
+      "type": "number",
+      "default": 40
+    },
+    {
+      "name": "minMovementForImage",
+      "type": "number",
+      "default": 5
+    },
+    {
+      "name": "minImageSizeDesktop",
+      "type": "number",
+      "default": 160
+    },
+    {
+      "name": "maxImageSizeDesktop",
+      "type": "number",
+      "default": 340
+    },
+    {
+      "name": "minImageSizeMobile",
+      "type": "number",
+      "default": 120
+    },
+    {
+      "name": "maxImageSizeMobile",
+      "type": "number",
+      "default": 260
+    },
+    {
+      "name": "baseRotation",
+      "type": "number",
+      "default": 30
+    },
+    {
+      "name": "maxRotationFactor",
+      "type": "number",
+      "default": 3
+    },
+    {
+      "name": "speedSmoothingFactor",
+      "type": "number",
+      "default": 0.25
+    },
+    {
+      "name": "staggerRange",
+      "type": "number",
+      "default": 50
+    },
+    {
+      "name": "noiseOpacity",
+      "type": "number",
+      "default": 0.05
+    }
+  ],
+  "editableByProps": [
+    "Reveal effect through variant",
+    "Images, background gradient, lettering color, touch hint text and mono font name",
+    "Trail timing, spacing, sizes, rotation and stagger",
+    "Grain overlay opacity"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the centered lettering",
+      "where": "the five svg path elements inside the section filled with letterColor"
+    },
+    {
+      "change": "Change the easing curves",
+      "where": "the config object inEasing, outEasing and easing entries"
+    },
+    {
+      "change": "Change fragment layouts of an effect",
+      "where": "PATTERNS object"
+    }
+  ],
+  "fixed": [
+    "Centered lettering is hardcoded SVG paths",
+    "Film grain overlay is a fixed full-viewport SVG at z-index 9999 with pointer events disabled",
+    "Listens on document and window for mouse, touch and scroll, all removed on unmount",
+    "Loads the JetBrains Mono Google font through link tags",
+    "Root is h-screen and full width, override with className",
+    "Mobile mode is chosen once at mount from user agent or width up to 768px"
+  ],
+  "mood": [
+    "bold",
+    "playful",
+    "dark",
+    "dynamic",
+    "editorial"
+  ],
+  "industries": [
+    "creative agency",
+    "photography",
+    "fashion",
+    "portfolio",
+    "events",
+    "art"
+  ],
+  "sections": [
+    "hero"
+  ],
+  "dependencies": [],
+  "variants": {
+    "prop": "variant",
+    "default": "flame",
+    "options": [
+      {
+        "value": "flame",
+        "look": "Whole images scale in with a random tilt and spin out when removed",
+        "useWhen": "Playful photographer or creative portfolio landing page"
+      },
+      {
+        "value": "venetian",
+        "look": "Image opens as horizontal blind strips flipping from the center",
+        "useWhen": "Fashion or interiors hero wanting a sleek shutter reveal"
+      },
+      {
+        "value": "curtain",
+        "look": "Image opens as vertical strips parting from their centers",
+        "useWhen": "Theatre, events or film landing page"
+      },
+      {
+        "value": "hexagon",
+        "look": "Image appears through a cluster of growing hexagon shapes",
+        "useWhen": "Tech or product studio hero with a geometric feel"
+      },
+      {
+        "value": "liquid",
+        "look": "Image blooms from several expanding circles like droplets",
+        "useWhen": "Beauty, wellness or art brand hero with an organic feel"
+      },
+      {
+        "value": "zoomsplit",
+        "look": "Image pops open from a 3 by 3 grid of tiles expanding from the center",
+        "useWhen": "Gallery or magazine intro with a punchy tiled reveal"
+      }
+    ]
+  }
+}

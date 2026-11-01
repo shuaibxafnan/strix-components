@@ -4,11 +4,12 @@
   "sourceHash": "4ba67e66c6c0ee52da53d098f9dc17526ef4b1808e1b056ea49e6175c51198aa",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "diagonal-thumbnails",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.420Z"
+  "note": "Rewritten. Gates passed. GSAP CDN script replaced with import(gsap), listed in dependencies. Removed unused useId, sid, data-dt attrs. fontUrl prop and Google Fonts link kept per template 1.5; review. Keydown listener and fixed custom cursor kept (fixed). No frame; no variants.",
+  "updatedAt": "2026-11-01T06:14:29.067Z",
+  "gateOutput": "gates passed"
 }

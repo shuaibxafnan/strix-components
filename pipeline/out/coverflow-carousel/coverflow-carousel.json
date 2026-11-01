@@ -1,0 +1,66 @@
+{
+    "slug": "coverflow-carousel",
+    "name": "Coverflow Carousel",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "3D coverflow carousel of image cards with tilt, depth and blur on side slides, drag and swipe, arrows, dots, autoplay with progress bar and mouse parallax.",
+    "contents": [
+        "Image cards with title, kicker, text and button",
+        "Prev and next arrows, pagination dots, progress bar"
+    ],
+    "behavior": [
+        "Autoplay advances on an interval and pauses on hover or drag",
+        "Drag or swipe with momentum snapping to the nearest slide",
+        "Arrow keys navigate when the carousel is focused",
+        "Side slides rotate, scale down, recede in depth and blur",
+        "Pointer movement adds parallax to card layers and background",
+        "Spacing and rotation values adapt per media query breakpoint"
+    ],
+    "props": [
+        {"name": "slides", "type": "{title,kicker,text,buttonText,image}[]", "default": "5 sample slides"},
+        {"name": "background", "type": "string", "default": "dark radial and linear gradient"},
+        {"name": "fgColor", "type": "string", "default": "#e7ecf2"},
+        {"name": "accentColor", "type": "string", "default": "#9ef7d2"},
+        {"name": "accent2Color", "type": "string", "default": "#82a0ff"},
+        {"name": "glassColor", "type": "string", "default": "rgba(255, 255, 255, 0.06)"},
+        {"name": "glowColor", "type": "string", "default": "rgba(130, 160, 255, 0.75)"},
+        {"name": "gap", "type": "number", "default": 28},
+        {"name": "peek", "type": "number", "default": 0.15},
+        {"name": "rotateY", "type": "number", "default": 34},
+        {"name": "zDepth", "type": "number", "default": 150},
+        {"name": "scaleDrop", "type": "number", "default": 0.09},
+        {"name": "blurMax", "type": "number", "default": 2.0},
+        {"name": "activeLeftBias", "type": "number", "default": 0.12},
+        {"name": "interval", "type": "number", "default": 4500},
+        {"name": "transitionMs", "type": "number", "default": 900},
+        {"name": "keyboard", "type": "boolean", "default": true},
+        {"name": "autoplay", "type": "boolean", "default": true},
+        {"name": "showArrows", "type": "boolean", "default": true},
+        {"name": "showDots", "type": "boolean", "default": true},
+        {"name": "showProgress", "type": "boolean", "default": true},
+        {"name": "prevIcon", "type": "node", "default": "‹"},
+        {"name": "nextIcon", "type": "node", "default": "›"},
+        {"name": "breakpoints", "type": "{mq,gap,peek,rotateY,zDepth,scaleDrop,activeLeftBias}[]", "default": "4 breakpoints"},
+        {"name": "ariaLabel", "type": "string", "default": "Featured cards"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Slides, all text, button labels and images",
+        "Colors, background, 3D depth, rotation, spacing, timing",
+        "Autoplay, keyboard, arrows, dots, progress toggles and breakpoints"
+    ],
+    "needsCodeEdit": [
+        {"change": "Change card layout, radius or text positions", "where": "CAROUSEL_CSS constant"},
+        {"change": "Change easing of slide transitions", "where": "ease function inside goTo"},
+        {"change": "Change drag release sensitivity", "where": "threshold constant in onDragEnd"}
+    ],
+    "fixed": [
+        "Root is 100vh tall with hidden overflow",
+        "Slide cards use a fixed button style and the system font stack",
+        "Turning off showDots or showProgress is not supported by the engine and may error"
+    ],
+    "mood": ["immersive", "modern", "dark", "cinematic"],
+    "industries": ["agency", "portfolio", "media", "e-commerce", "SaaS"],
+    "sections": ["hero", "portfolio", "gallery"],
+    "dependencies": []
+}

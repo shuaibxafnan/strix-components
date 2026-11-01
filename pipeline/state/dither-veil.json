@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "dither-veil",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.584Z"
+  "note": "Bits describe-only. Gates passed. Needs ogl, WebGL2; parent needs height; image needs CORS; src change restarts WebGL; floyd/atkinson CPU-heavy at small pixelSize; touch tap shockwaves only; pattern variants floyd/atkinson/bayer/noise/lines.",
+  "updatedAt": "2026-11-01T06:18:23.249Z",
+  "gateOutput": "gates passed"
 }

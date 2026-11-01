@@ -1,0 +1,66 @@
+{
+  "slug": "converging-circles-scroll",
+  "name": "Converging Circles Scroll",
+  "category": "scroll-section-layouts",
+  "isReactBits": false,
+  "description": "Full-page dark scroll story with fixed background photo sections, a line grid and orbiting circles that converge and rotate into one glowing circle as you scroll, ending in a fade-in closing message.",
+  "contents": [
+    "Counter loader shown before the page appears",
+    "Stack of tall full-bleed image sections with a dark dim overlay",
+    "Fixed SVG grid and outlined circles that converge into one center circle",
+    "Glowing center circle that scales up with scroll",
+    "Closing footer with title and text"
+  ],
+  "behavior": [
+    "Loader counts 0 to 100 then a black gradient slides away",
+    "Circles move, rotate and fade with overall page scroll progress, the grid fades out",
+    "Center circle grows and gains a glow as scroll progresses",
+    "Section backgrounds shift with scroll-scrubbed parallax",
+    "Footer text rises and fades in, the circle layers fade out near the footer",
+    "Smooth scrolling through Lenis"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#0a0a0a" },
+    { "name": "textColor", "type": "string", "default": "rgba(245, 245, 245, 0.9)" },
+    { "name": "fontFamily", "type": "string", "default": "Newsreader" },
+    { "name": "monoFont", "type": "string", "default": "JetBrains Mono" },
+    { "name": "circleSize", "type": "string", "default": "80px" },
+    { "name": "circleScaleMax", "type": "number", "default": 2.8 },
+    { "name": "circleGlowColor", "type": "string", "default": "255, 255, 0" },
+    { "name": "sections", "type": "{image}[]", "default": "3 sample photo sections" },
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "imageDim", "type": "number", "default": 0.55 },
+    { "name": "footerTitle", "type": "string", "default": "Light begins in the dark." },
+    { "name": "footerText", "type": "string", "default": "A slow scroll through shape and stillness. Stay as long as you like." }
+  ],
+  "editableByProps": [
+    "Number of sections and their images, image dimming",
+    "Background, text and glow colors, circle size and max scale",
+    "Footer title and text, fonts"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the circle layout or count",
+      "where": "transitions array in buildGeometry"
+    },
+    {
+      "change": "Change section height",
+      "where": "h-[200vh] class on the section element"
+    },
+    {
+      "change": "Disable smooth scrolling",
+      "where": "new Lenis block inside the useEffect"
+    }
+  ],
+  "fixed": [
+    "Takes over page scrolling with Lenis, so it should be the only smooth scroll on the page",
+    "Adds a window scroll listener that drives the circle animation, removed on unmount",
+    "Fixed full-screen overlays: film grain, circle layer and a loader that covers the page for about 5.5 seconds",
+    "Animation progress uses whole-page scroll height, so it expects to be the main content of the page",
+    "Sections are 200vh tall to give the scroll range"
+  ],
+  "mood": ["cinematic", "dark", "immersive", "atmospheric", "minimal"],
+  "industries": ["film", "photography", "art", "luxury", "agency"],
+  "sections": ["hero", "portfolio"],
+  "dependencies": ["gsap", "lenis"]
+}

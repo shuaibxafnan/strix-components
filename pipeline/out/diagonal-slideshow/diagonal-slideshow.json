@@ -1,0 +1,303 @@
+{
+    "slug": "diagonal-slideshow",
+    "name": "Diagonal Slideshow",
+    "category": "sliders-carousels",
+    "isReactBits": false,
+    "description": "Full-height slideshow where image cards glide diagonally in and out of a central slot, with scrambled-letter titles, tilt on hover and a click-to-open detail panel with a stretched backdrop.",
+    "contents": [
+        "Slide stack with image, vertical side label, number, title and subtitle per slide",
+        "Previous and next arrow buttons",
+        "Detail panel per slide with number, title, subtitle, multi-column text and a close button",
+        "Dark backdrop block behind the current image"
+    ],
+    "behavior": [
+        "Slides move along a diagonal path, the next and previous slides peek from the corners",
+        "Titles and side labels scramble into place and disassemble letter by letter",
+        "Current image tilts toward the pointer and scales on hover",
+        "Clicking the current image opens details and expands the backdrop to fill the view",
+        "Arrow keys navigate, Escape closes details, side slides are clickable",
+        "GSAP loads by dynamic import and all timers, listeners and tweens are cleaned on unmount"
+    ],
+    "props": [
+        {
+            "name": "slides",
+            "type": "{image,side,title,subtitle,text}[]",
+            "default": "11 sample slides"
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#0c0c0c"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#f1f1f1"
+        },
+        {
+            "name": "decoColor",
+            "type": "string",
+            "default": "#141414"
+        },
+        {
+            "name": "sideColor",
+            "type": "string",
+            "default": "#353535"
+        },
+        {
+            "name": "fontFamily",
+            "type": "string",
+            "default": "Futura, \"Futura PT\", \"Trebuchet MS\", sans-serif"
+        },
+        {
+            "name": "height",
+            "type": "string",
+            "default": "100vh"
+        },
+        {
+            "name": "columnWidth",
+            "type": "number",
+            "default": 27
+        },
+        {
+            "name": "columnGap",
+            "type": "number",
+            "default": 9.5
+        },
+        {
+            "name": "imageHeight",
+            "type": "number",
+            "default": 80
+        },
+        {
+            "name": "slidePaddingTop",
+            "type": "number",
+            "default": 10
+        },
+        {
+            "name": "slidePaddingBottom",
+            "type": "number",
+            "default": 7
+        },
+        {
+            "name": "offsetDivisor",
+            "type": "number",
+            "default": 3
+        },
+        {
+            "name": "exitRotation",
+            "type": "number",
+            "default": 30
+        },
+        {
+            "name": "showNav",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "showNumbers",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "showSideLabel",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "enableTilt",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "tiltTranslate",
+            "type": "number",
+            "default": 20
+        },
+        {
+            "name": "tiltRotate",
+            "type": "number",
+            "default": 15
+        },
+        {
+            "name": "tiltCounterTexts",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "hoverScale",
+            "type": "number",
+            "default": 1.1
+        },
+        {
+            "name": "hoverScaleDuration",
+            "type": "number",
+            "default": 0.8
+        },
+        {
+            "name": "tiltDuration",
+            "type": "number",
+            "default": 1.5
+        },
+        {
+            "name": "tiltResetDuration",
+            "type": "number",
+            "default": 1.8
+        },
+        {
+            "name": "navDuration",
+            "type": "number",
+            "default": 0.8
+        },
+        {
+            "name": "navStagger",
+            "type": "number",
+            "default": 0.07
+        },
+        {
+            "name": "navEase",
+            "type": "string",
+            "default": "power4.inOut"
+        },
+        {
+            "name": "decoBounce",
+            "type": "number",
+            "default": 40
+        },
+        {
+            "name": "decoOffsetX",
+            "type": "number",
+            "default": -20
+        },
+        {
+            "name": "decoOffsetY",
+            "type": "number",
+            "default": 20
+        },
+        {
+            "name": "enableContent",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "contentWidth",
+            "type": "number",
+            "default": 50.5
+        },
+        {
+            "name": "contentRight",
+            "type": "number",
+            "default": 7.5
+        },
+        {
+            "name": "contentColumns",
+            "type": "number",
+            "default": 2
+        },
+        {
+            "name": "contentTitleSize",
+            "type": "string",
+            "default": "7vw"
+        },
+        {
+            "name": "slideTitleSize",
+            "type": "string",
+            "default": "3.25rem"
+        },
+        {
+            "name": "scrambleChars",
+            "type": "string[]",
+            "default": "36 characters: $ % # & = * a-z . : , ^"
+        },
+        {
+            "name": "scrambleMinDelay",
+            "type": "number",
+            "default": 50
+        },
+        {
+            "name": "scrambleMaxDelay",
+            "type": "number",
+            "default": 500
+        },
+        {
+            "name": "disassembleStep",
+            "type": "number",
+            "default": 30
+        },
+        {
+            "name": "loop",
+            "type": "boolean",
+            "default": true
+        },
+        {
+            "name": "initialSlide",
+            "type": "number",
+            "default": 0
+        },
+        {
+            "name": "prevLabel",
+            "type": "string",
+            "default": "Previous slide"
+        },
+        {
+            "name": "nextLabel",
+            "type": "string",
+            "default": "Next slide"
+        },
+        {
+            "name": "closeLabel",
+            "type": "string",
+            "default": "Close details"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Slides: images, side labels, titles, subtitles and body text",
+        "Colors, font, height, column and image proportions",
+        "Tilt, hover scale, navigation timing, easing and backdrop bounce",
+        "Scramble characters and timing, loop, start slide, enable or hide nav, numbers, side label and detail panel",
+        "Accessible labels for buttons"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the diagonal travel positions of slides",
+            "where": "calcTransforms method in the Slide class"
+        },
+        {
+            "change": "Change the arrow icon or close icon",
+            "where": "navArrow constant and the close button svg"
+        }
+    ],
+    "fixed": [
+        "Requires at least 4 slides, otherwise nothing is initialized",
+        "Slide titles and subtitles are hidden below the md breakpoint, details panel stacks full width on small screens",
+        "Listens to window keydown for arrow keys and Escape while mounted, removed on unmount"
+    ],
+    "mood": [
+        "editorial",
+        "bold",
+        "dynamic",
+        "moody",
+        "artistic"
+    ],
+    "industries": [
+        "portfolio",
+        "photography",
+        "agency",
+        "fashion",
+        "magazine",
+        "architecture"
+    ],
+    "sections": [
+        "hero",
+        "portfolio",
+        "gallery"
+    ],
+    "dependencies": [
+        "gsap"
+    ]
+}

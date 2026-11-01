@@ -4,11 +4,12 @@
   "sourceHash": "e9cd6cf1c047652b3c9fb923f0c4ce837f4325fe4bb3e42c278c315e33d0c28d",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "drag-trail-scatter",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.424Z"
+  "note": "Rewritten. Gates passed. Source already compliant; comment-stripped only. Title default Marlow Vance is a prop. Body cursor change while dragging reset on release/unmount (fixed). No frame; no variants.",
+  "updatedAt": "2026-11-01T06:24:33.319Z",
+  "gateOutput": "gates passed"
 }

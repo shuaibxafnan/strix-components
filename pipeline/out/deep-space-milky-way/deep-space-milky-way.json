@@ -1,0 +1,49 @@
+{
+  "slug": "deep-space-milky-way",
+  "name": "Deep Space Milky Way",
+  "category": "backgrounds-3d",
+  "isReactBits": false,
+  "description": "Full-area canvas night sky with twinkling colored stars, a dense procedural Milky Way band built from thousands of dots and soft star clusters, and occasional shooting stars over a radial gradient.",
+  "contents": [
+    "Static Milky Way canvas drawn once per resize",
+    "Animated canvas with twinkling stars and shooting stars",
+    "Radial gradient backdrop"
+  ],
+  "behavior": [
+    "Stars twinkle by cycling through a precomputed random array each frame",
+    "Shooting stars spawn randomly near the top and fade in and out with a gradient trail",
+    "Both canvases resize to the window and the sky is redrawn on window resize"
+  ],
+  "props": [
+    {"name": "starCount", "type": "number", "default": 600},
+    {"name": "minStarSize", "type": "number", "default": 0.3},
+    {"name": "starSizeRandomness", "type": "number", "default": 0.6},
+    {"name": "alphaRandomness", "type": "number", "default": 0.5},
+    {"name": "shootingStarDensity", "type": "number", "default": 0.01},
+    {"name": "mwStarCount", "type": "number", "default": 100000},
+    {"name": "mwClusterCount", "type": "number", "default": 300},
+    {"name": "mwClusterStarCount", "type": "number", "default": 1500},
+    {"name": "mwAngle", "type": "number", "default": 0.6},
+    {"name": "radialGradStart", "type": "string", "default": "#100826"},
+    {"name": "radialGradEnd", "type": "string", "default": "#060212"},
+    {"name": "shootingStarColors", "type": "string[]", "default": ["#a1ffba", "#a1d2ff", "#fffaa1", "#ffa1a1"]},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Star count, size, twinkle strength and shooting star frequency and colors",
+    "Milky Way density, cluster count and tilt angle",
+    "Background gradient colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change Milky Way hue range or cluster size", "where": "mwHueMin constant"},
+    {"change": "Change shooting star speed, length or lifespan", "where": "shootingStarBaseLifespan constant"}
+  ],
+  "fixed": [
+    "Root is absolutely positioned to fill its nearest positioned parent and sizes canvases from the window dimensions",
+    "Window resize listener redraws the sky and is removed on unmount"
+  ],
+  "mood": ["cosmic", "dreamy", "dark", "atmospheric", "cinematic"],
+  "industries": ["space", "technology", "gaming", "entertainment", "education", "astronomy"],
+  "sections": ["background", "hero"],
+  "dependencies": []
+}

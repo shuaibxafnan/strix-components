@@ -1,0 +1,68 @@
+{
+  "slug": "drag-gallery",
+  "name": "Drag Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Infinite two-dimensional canvas of captioned photo tiles you drag in any direction with eased momentum. Tap a tile to center and highlight it, with soft vignette edges around the viewport.",
+  "contents": [
+    "Endless grid of alternating short and tall image tiles with name and numbered caption",
+    "Page-edge vignette overlay"
+  ],
+  "behavior": [
+    "Drag with mouse or touch to pan with eased inertia and momentum on release",
+    "Tiles are created and removed on the fly as the viewport moves, repeating the items and images endlessly",
+    "Click or tap a tile to glide it to the center and outline it, click again to deselect",
+    "Hover zooms the image slightly"
+  ],
+  "props": [
+    { "name": "bgColor", "type": "string", "default": "#000000" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "fontFamily", "type": "string", "default": "Inter Tight" },
+    { "name": "items", "type": "string[]", "default": "20 sample titles" },
+    { "name": "imageUrls", "type": "string[]", "default": "7 sample Unsplash photos" },
+    { "name": "baseWidth", "type": "number", "default": 400 },
+    { "name": "smallHeight", "type": "number", "default": 330 },
+    { "name": "largeHeight", "type": "number", "default": 500 },
+    { "name": "itemGap", "type": "number", "default": 65 },
+    { "name": "hoverScale", "type": "number", "default": 1.05 },
+    { "name": "focusScale", "type": "number", "default": 1.04 },
+    { "name": "dragEase", "type": "number", "default": 0.075 },
+    { "name": "momentumFactor", "type": "number", "default": 200 },
+    { "name": "bufferZone", "type": "number", "default": 1 },
+    { "name": "borderRadius", "type": "number", "default": 0 },
+    { "name": "itemVignetteSize", "type": "number", "default": 0 },
+    { "name": "pageVignetteStrength", "type": "number", "default": 0.7 },
+    { "name": "pageVignetteSize", "type": "number", "default": 200 },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Tile titles and images",
+    "Background and text colors, font family",
+    "Tile sizes, gaps, corner radius and vignettes",
+    "Drag smoothness, momentum, hover and focus scale"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the number of columns used for tile numbering and size alternation",
+      "where": "columns constant inside the useEffect"
+    },
+    {
+      "change": "Change the caption number format",
+      "where": "numberElement.textContent line in updateVisibleItems"
+    },
+    {
+      "change": "Add more tile size variations",
+      "where": "itemSizes array inside the useEffect"
+    }
+  ],
+  "fixed": [
+    "Loads the Inter Tight font from Google Fonts, other font families need their own font loading",
+    "Tiles are built imperatively in the DOM and removed on unmount",
+    "Root fills the viewport height, override with className using an important modifier such as !h-auto",
+    "Tile pixel sizes are fixed, on narrow screens tiles are wider than the viewport and are panned by dragging"
+  ],
+  "mood": ["immersive", "playful", "editorial", "dark"],
+  "industries": ["photography", "art", "fashion", "creative agency", "music"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": []
+}

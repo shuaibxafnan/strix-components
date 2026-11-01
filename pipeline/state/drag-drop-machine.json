@@ -4,11 +4,12 @@
   "sourceHash": "2552174807b4f585cf682ff632555c1d409ca176fde1505a4ea4a08bf1eb483e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "drag-drop-machine",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.423Z"
+  "note": "Rewritten. Gates passed. bg-stone-950 replaced by bgColor prop; label props added; className added; clearTimeout on unmount; mobile gap-12. Mouse events only, no touch support (fixed). Machine State badge kept. No frame change; no variants.",
+  "updatedAt": "2026-11-01T06:21:48.335Z",
+  "gateOutput": "gates passed"
 }

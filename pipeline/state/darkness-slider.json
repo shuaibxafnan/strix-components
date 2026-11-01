@@ -4,11 +4,12 @@
   "sourceHash": "f71a82d740a47cd4cae74975dceabc235a6f4955b0c5a00abb1d9831407f7fbe",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "darkness-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.417Z"
+  "note": "Rewritten. Gates passed. Added className, backgroundColor (default #050505); w-screen to w-full. Hanken Grotesk font links kept (template allows existing font imports); review. Cursor light position fixed, no touch equivalent (fixed). No frame; no variants.",
+  "updatedAt": "2026-11-01T06:09:07.646Z",
+  "gateOutput": "gates passed"
 }

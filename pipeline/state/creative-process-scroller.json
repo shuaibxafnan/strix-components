@@ -4,11 +4,12 @@
   "sourceHash": "445a69b7fa217af5adaae87c5e0d07e37fdd1c6f053ea339b5540446d67997c7",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "creative-process-scroller",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.416Z"
+  "note": "Rewritten. Gates passed, 1 warning: setTimeout without clearTimeout (loader, column stagger). CDN loading replaced with npm gsap, lenis dynamic imports; CDN URL props removed; className added. No frame; no variants. Lenis takeover, loader overlay, scroll length in fixed.",
+  "updatedAt": "2026-11-01T06:02:55.232Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

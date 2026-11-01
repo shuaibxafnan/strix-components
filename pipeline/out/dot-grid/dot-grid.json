@@ -1,0 +1,86 @@
+{
+    "slug": "dot-grid",
+    "name": "Dot Grid",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 canvas grid of dots that fills its container. Dots swell, stretch, glow and spring back as the cursor moves, and clicks send ripple shockwaves across the grid.",
+    "contents": [
+        "Wrapper div sized to its parent with an absolutely positioned WebGL canvas",
+        "Instanced grid of dots rendered by GLSL shaders, circle or rounded square"
+    ],
+    "behavior": [
+        "Dots are pushed by pointer movement and spring back with spring-damper physics and neighbor coupling",
+        "Moving dots swell, stretch along their motion direction and blend from base to active color with a halo glow",
+        "Clicking inside the canvas emits a shockwave ring (up to 6 at once)",
+        "Intro animation pops dots in outward from the center with overshoot",
+        "Render loop sleeps once the grid settles and pauses when offscreen, tab hidden or paused",
+        "Respects prefers-reduced-motion by disabling swell, stretch, shockwaves and intro",
+        "Optional edge fade toward the borders"
+    ],
+    "props": [
+        {"name": "dotSize", "type": "number", "default": 5},
+        {"name": "gap", "type": "number", "default": 18},
+        {"name": "baseColor", "type": "string", "default": "#3a3446"},
+        {"name": "activeColor", "type": "string", "default": "#ffffff"},
+        {"name": "proximity", "type": "number", "default": 140},
+        {"name": "strength", "type": "number", "default": 1},
+        {"name": "bounce", "type": "number", "default": 0.6},
+        {"name": "tension", "type": "number", "default": 0.4},
+        {"name": "returnDuration", "type": "number", "default": 0.8},
+        {"name": "shockRadius", "type": "number", "default": 320},
+        {"name": "shockStrength", "type": "number", "default": 5},
+        {"name": "swell", "type": "number", "default": 0.8},
+        {"name": "stretch", "type": "number", "default": 0.5},
+        {"name": "glow", "type": "number", "default": 0.5},
+        {"name": "shape", "type": "'circle' | 'square'", "default": "circle"},
+        {"name": "fade", "type": "number", "default": 0},
+        {"name": "opacity", "type": "number", "default": 1},
+        {"name": "intro", "type": "boolean", "default": true},
+        {"name": "mouseInteraction", "type": "boolean", "default": true},
+        {"name": "clickShock", "type": "boolean", "default": true},
+        {"name": "paused", "type": "boolean", "default": false},
+        {"name": "dpr", "type": "number | undefined", "default": null},
+        {"name": "className", "type": "string", "default": ""},
+        {"name": "style", "type": "object | undefined", "default": null}
+    ],
+    "editableByProps": [
+        "Dot size, spacing, shape, base and active colors, opacity, edge fade",
+        "Pointer reach and strength, spring bounce, tension and return time",
+        "Shockwave radius and strength, click shock on or off",
+        "Swell, stretch and glow amounts, intro on or off, pause, pixel ratio",
+        "Container sizing through className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change shockwave travel speed",
+            "where": "travel constant inside the step function"
+        },
+        {
+            "change": "Add a third dot shape",
+            "where": "uShape branch in the FRAGMENT shader and the gl.uniform1i(uniforms.uShape) line"
+        },
+        {
+            "change": "Change intro spread speed or overshoot",
+            "where": "introFront in render and the backOut function"
+        },
+        {
+            "change": "Limit pointer tracking to the canvas instead of the window",
+            "where": "window.addEventListener calls for pointermove, pointerdown, pointerout"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable or shader linking fails",
+        "Parent must provide a height; the component fills 100% width and height",
+        "Canvas has pointer-events none, pointer and click tracking use window listeners, so interaction works over content layered above it",
+        "Pixel ratio is capped at 2",
+        "Color props accept only hex (3 or 6 digits), invalid values fall back to white",
+        "Maximum 6 simultaneous shockwaves, intro and shockwaves disabled under prefers-reduced-motion",
+        "Intro is read only at mount; changing the intro prop later has no effect",
+        "Touch devices get no hover effect, only pointer events and tap shocks",
+        "Large areas with small dots create many instances and run a CPU physics loop, costly on low-end mobile"
+    ],
+    "mood": ["techy", "futuristic", "interactive", "minimal"],
+    "industries": ["SaaS", "technology", "AI", "creative agency", "gaming"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": []
+}

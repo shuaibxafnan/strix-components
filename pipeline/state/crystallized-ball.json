@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "crystallized-ball",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.584Z"
+  "note": "Bits describe-only. Gates passed. Needs ogl; renders nothing without WebGL2; parent must be sized; window pointer listeners; GPU-heavy up to 15000 particles; 8 presets, default plasma.",
+  "updatedAt": "2026-11-01T06:03:37.699Z",
+  "gateOutput": "gates passed"
 }

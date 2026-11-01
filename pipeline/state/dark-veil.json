@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "dark-veil",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.594Z"
+  "note": "Bits describe-only. Gates passed. Needs WebGL2, no fallback; parent needs height; window pointermove; heavy shader, quality prop; light pages need lightMode; rest div props not documented.",
+  "updatedAt": "2026-11-01T06:08:34.128Z",
+  "gateOutput": "gates passed"
 }

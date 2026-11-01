@@ -1,0 +1,74 @@
+{
+  "slug": "deck-slide-carousel",
+  "name": "Deck Slide Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Horizontal snap-scroll carousel where photos stack like a deck of cards and fly off with a rotation as you scroll, with a color-shifting background, rolling oversized captions and a numeric progress indicator.",
+  "contents": [
+    "Optional heading label at the top",
+    "Stacked photo deck, one image per slide",
+    "Large serif caption roller at the bottom",
+    "Side counter with progress bar",
+    "Fallback message for browsers without scroll-driven animations"
+  ],
+  "behavior": [
+    "Horizontal scroll with snap drives all animations through CSS scroll-driven timelines",
+    "Top photo rotates and slides off to the left while the next one settles",
+    "Background color cross-fades to each slide's color",
+    "Captions roll vertically and stretch with scroll velocity",
+    "Browsers without scroll-timeline support show only the fallback text"
+  ],
+  "props": [
+    { "name": "slides", "type": "{image,alt,caption,bgColor}[]", "default": "6 sample slides" },
+    { "name": "baseColor", "type": "string", "default": "#2a2a2a" },
+    { "name": "textColor", "type": "string", "default": "#ffffff" },
+    { "name": "heading", "type": "string", "default": "Collections" },
+    { "name": "showHeader", "type": "boolean", "default": true },
+    { "name": "showIndicator", "type": "boolean", "default": true },
+    { "name": "showCaptions", "type": "boolean", "default": true },
+    { "name": "itemAspect", "type": "number", "default": 0.655 },
+    { "name": "itemMaxHeight", "type": "number", "default": 1000 },
+    { "name": "photoInsetY", "type": "string", "default": "7.5cqh" },
+    { "name": "stageMinHeight", "type": "string", "default": "300px" },
+    { "name": "deckRotations", "type": "number[]", "default": [-5, 5, -9, 9.5, 9.5, 9.5] },
+    { "name": "exitRotation", "type": "number", "default": -22 },
+    { "name": "exitShiftX", "type": "string", "default": "-120%" },
+    { "name": "scrollSmooth", "type": "boolean", "default": true },
+    { "name": "captionOpacity", "type": "number", "default": 0.5 },
+    { "name": "captionSize", "type": "string", "default": "min(15.625rem,20vh)" },
+    { "name": "captionLeading", "type": "number", "default": 1.2 },
+    { "name": "velocityScale", "type": "number", "default": 2 },
+    { "name": "velocityLag", "type": "string", "default": "0.15s" },
+    { "name": "serifFamily", "type": "string", "default": "Cardo, ui-serif, Georgia, serif" },
+    { "name": "sansFamily", "type": "string", "default": "Inter, ui-sans-serif, system-ui, sans-serif" },
+    { "name": "progressHeight", "type": "string", "default": "8rem" },
+    { "name": "noiseUrl", "type": "string", "default": "" },
+    { "name": "fallbackText", "type": "string", "default": "This browser does not support scroll-driven animations." },
+    { "name": "className", "type": "string", "default": "" }
+  ],
+  "editableByProps": [
+    "Slides, images, captions, per-slide background colors and heading",
+    "Base and text colors, fonts, caption size and opacity",
+    "Photo aspect, rotations and exit motion, scroll smoothing",
+    "Toggle header, indicator and captions"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Move the counter indicator to the right side",
+      "where": "showIndicator block with the left-7 class"
+    },
+    {
+      "change": "Change the indicator bar color",
+      "where": "bg-white classes inside the showIndicator block"
+    }
+  ],
+  "fixed": [
+    "Relies on CSS scroll-driven animations and timeline-scope, supported in current Chromium browsers only, others see the fallback text",
+    "Root is at least one viewport tall and clips its overflow",
+    "Photo width is capped at 80% of the stage width so it fits small screens"
+  ],
+  "mood": ["editorial", "elegant", "cinematic", "modern"],
+  "industries": ["photography", "fashion", "art", "portfolio", "wedding"],
+  "sections": ["portfolio", "gallery", "hero"],
+  "dependencies": []
+}

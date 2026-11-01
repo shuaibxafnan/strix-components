@@ -1,0 +1,111 @@
+{
+    "slug": "crystallized-ball",
+    "name": "Crystallized Ball",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL glowing crystal sphere with electric strands, flares, sparks and a cloud of dust particles. Reacts to the pointer with heat and stirring, and ships eight color presets.",
+    "contents": [
+        "Single full-size container div that holds a WebGL canvas",
+        "Glowing ball with crackling strands, flares and sparks",
+        "Particle dust cloud around the ball with haze"
+    ],
+    "behavior": [
+        "Renders through OGL with WebGL2 and float render targets when available",
+        "Pointer movement and press on the window heat and stir the ball and dust, with a looking-toward-pointer sway",
+        "Optional intro animation when the ball appears",
+        "Pauses rendering when scrolled out of view or the tab is hidden",
+        "Resolution scales down on large areas to stay within a pixel budget, device pixel ratio capped at 2",
+        "Reacts to prefers-reduced-motion"
+    ],
+    "props": [
+        { "name": "preset", "type": "'plasma' | 'aurora' | 'nebula' | 'ember' | 'frost' | 'solar' | 'eclipse' | 'abyss'", "default": "plasma" },
+        { "name": "color", "type": "string", "default": "preset color" },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "size", "type": "number", "default": 0.7 },
+        { "name": "strands", "type": "number", "default": "preset value" },
+        { "name": "crackle", "type": "number", "default": "preset value" },
+        { "name": "flares", "type": "number", "default": "preset value" },
+        { "name": "glow", "type": "number", "default": "preset value" },
+        { "name": "sparks", "type": "number", "default": "preset value" },
+        { "name": "particleCount", "type": "number", "default": "preset value" },
+        { "name": "fill", "type": "number", "default": "preset value" },
+        { "name": "motion", "type": "'rise' | 'fall' | 'orbit' | 'drift'", "default": "preset value" },
+        { "name": "particleShape", "type": "'square' | 'round'", "default": "preset value" },
+        { "name": "depth", "type": "number", "default": "preset value" },
+        { "name": "sway", "type": "number", "default": "preset value" },
+        { "name": "twinkle", "type": "number", "default": "preset value" },
+        { "name": "haze", "type": "number", "default": "preset value" },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "dustSpeed", "type": "number", "default": "preset value" },
+        { "name": "interactive", "type": "boolean", "default": true },
+        { "name": "hoverStrength", "type": "number", "default": 0.7 },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Preset look, ball color, light or dark theme and ball size",
+        "Strand, crackle, flare, glow and spark intensity",
+        "Dust particle count, motion direction, shape, depth, twinkle, haze and speed",
+        "Pointer interaction on or off and its strength",
+        "Intro animation, pause, overall speed, container class and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change a preset",
+            "where": "BALL_PRESETS constant at the top of the file"
+        },
+        {
+            "change": "Change the maximum rendering resolution",
+            "where": "PIXEL_BUDGET constant and the renderer.dpr line in the resize function"
+        },
+        {
+            "change": "Listen to pointer only inside the container instead of the whole window",
+            "where": "window.addEventListener calls for pointermove, pointerdown, pointerout and pointerup in the main useEffect"
+        }
+    ],
+    "fixed": [
+        "Needs the ogl package",
+        "Needs WebGL2, renders nothing and releases the context when WebGL2 is unavailable",
+        "Container fills its parent (w-full h-full), the parent must have a size",
+        "Pointer listeners are attached to the window, so the ball reacts to the pointer anywhere on the page",
+        "Canvas is aria-hidden and decorative",
+        "Random layout uses a fixed seed, so the strand and dust layout is the same every load",
+        "GPU heavy with large particle counts, may be slow on low-end mobile devices"
+    ],
+    "mood": [
+        "futuristic",
+        "mystical",
+        "energetic",
+        "dramatic"
+    ],
+    "industries": [
+        "technology",
+        "gaming",
+        "ai",
+        "music",
+        "crypto"
+    ],
+    "sections": [
+        "hero",
+        "background"
+    ],
+    "dependencies": [
+        "ogl"
+    ],
+    "variants": {
+        "prop": "preset",
+        "default": "plasma",
+        "options": [
+            { "value": "plasma", "look": "Hot pink ball with rising square particles", "useWhen": "Bold energetic hero on a dark page" },
+            { "value": "aurora", "look": "Mint green ball with rising square particles", "useWhen": "Fresh, natural tech or wellness brands" },
+            { "value": "nebula", "look": "Violet ball with rising square particles", "useWhen": "Cosmic or AI product feel" },
+            { "value": "ember", "look": "Orange ball with rising round particles like embers", "useWhen": "Warm, fiery or energy themes" },
+            { "value": "frost", "look": "Icy light blue ball with falling round particles", "useWhen": "Cool, clean or winter themes" },
+            { "value": "solar", "look": "Golden ball with orbiting square particles", "useWhen": "Premium, luxurious or sun themed sites" },
+            { "value": "eclipse", "look": "White ball with drifting square particles", "useWhen": "Minimal monochrome designs" },
+            { "value": "abyss", "look": "Deep blue ball with orbiting round particles", "useWhen": "Deep, calm, ocean or finance themes" }
+        ]
+    }
+}

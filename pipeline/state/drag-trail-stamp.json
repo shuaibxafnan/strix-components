@@ -4,11 +4,12 @@
   "sourceHash": "3fd6357293ffd070373744641f31b5b6d4d3104ef8c101fe7e2e3203f32c6c38",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "drag-trail-stamp",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.424Z"
+  "note": "Rewritten. Gates passed. IMAGES list cut from 12 to the one default image (ambiguous). min-h-screen to h-screen. GSAP CDN loader and gsapUrl prop replaced with import(gsap), in dependencies. Body cursor change kept, reset on unmount (fixed). No variants.",
+  "updatedAt": "2026-11-01T06:25:10.200Z",
+  "gateOutput": "gates passed"
 }
