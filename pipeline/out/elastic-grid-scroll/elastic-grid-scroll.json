@@ -1,0 +1,58 @@
+{
+    "slug": "elastic-grid-scroll",
+    "name": "Elastic Grid Scroll",
+    "category": "cards-galleries",
+    "isReactBits": false,
+    "description": "Image grid with smooth scrolling where each column lags behind by a different amount, stretching the grid elastically from the center outward as you scroll.",
+    "contents": [
+        "Grid of captioned images, 25 sample items"
+    ],
+    "behavior": [
+        "ScrollSmoother smooth scrolling over the grid",
+        "Items are regrouped into columns, outer columns lag more than the center ones",
+        "Columns rebuild when the responsive column count changes",
+        "Fades in once images have loaded"
+    ],
+    "props": [
+        {"name": "items", "type": "{img,caption}[]", "default": "25 sample items"},
+        {"name": "bgColor", "type": "string", "default": "#fff"},
+        {"name": "textColor", "type": "string", "default": "#333"},
+        {"name": "showCaptions", "type": "boolean", "default": true},
+        {"name": "pagePadding", "type": "string", "default": "5vw"},
+        {"name": "columnGap", "type": "string", "default": "5vw"},
+        {"name": "rowGap", "type": "string", "default": "5vw"},
+        {"name": "columnMinWidth", "type": "string", "default": "80px"},
+        {"name": "columnCountMobile", "type": "number", "default": 3},
+        {"name": "columnCountDesktop", "type": "number", "default": 7},
+        {"name": "desktopBreakpoint", "type": "string", "default": "65em"},
+        {"name": "baseLag", "type": "number", "default": 0.5},
+        {"name": "lagScale", "type": "number", "default": 0.1},
+        {"name": "smoothness", "type": "number", "default": 1},
+        {"name": "normalizeScroll", "type": "boolean", "default": true},
+        {"name": "captionFontSize", "type": "string", "default": "11px"},
+        {"name": "className", "type": "string", "default": ""}
+    ],
+    "editableByProps": [
+        "Images and captions, number of items",
+        "Colors, spacing, column counts and breakpoint",
+        "Lag amount and smoothness"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change image aspect ratio",
+            "where": "aspect-[128/160] class on the data-egs-img div"
+        },
+        {
+            "change": "Change which columns lag most",
+            "where": "buildGrid function, distance and lag calculation"
+        }
+    ],
+    "fixed": [
+        "Takes over page scrolling with ScrollSmoother, so it should be the only smooth scroll on the page",
+        "Grid has 10rem vertical padding to give the effect room"
+    ],
+    "mood": ["modern", "playful", "editorial"],
+    "industries": ["photography", "fashion", "art", "agency"],
+    "sections": ["gallery", "portfolio"],
+    "dependencies": ["gsap", "imagesloaded"]
+}
