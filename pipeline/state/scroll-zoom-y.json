@@ -4,11 +4,12 @@
   "sourceHash": "de5157e2b0677ccbbb85c096f4647bb68aa6e5887c76eea38b116d059e859932",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "scroll-zoom-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.534Z"
+  "note": "Renamed to scroll-zoom-gallery. Removed unused accentColor, scrollbar CSS. Fixed 0$1 label bug. items prop, color props, className. Needs CSS animation-timeline. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:39:04.532Z",
+  "gateOutput": "gates passed"
 }
