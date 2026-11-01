@@ -1,0 +1,51 @@
+{
+  "slug": "image-zoom-hover",
+  "name": "Image Zoom Hover",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen list of project titles and years where hovering a row fills it with a color wipe and zooms a full-bleed background image in behind the list.",
+  "contents": [
+    "Scrollable list of numbered rows with title and year",
+    "Full-screen background image layer that shows the hovered row image"
+  ],
+  "behavior": [
+    "Rows fade and slide in with a staggered delay on mount",
+    "Hovering a row wipes a fill up from the bottom and shifts the title and year apart",
+    "Background image fades in and zooms from 1.2 to 1 scale on hover, fades out on leave",
+    "All images are preloaded on mount"
+  ],
+  "props": [
+    { "name": "projectData", "type": "{id,title,year,image}[]", "default": "10 sample projects" },
+    { "name": "backgroundColor", "type": "string", "default": "#1a1917" },
+    { "name": "textColor", "type": "string", "default": "#f8f5f2" },
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "zoomDuration", "type": "string", "default": "0.8s" },
+    { "name": "staggerDelay", "type": "number", "default": 60 },
+    { "name": "maxContainerHeight", "type": "string", "default": "max-h-[80vh]" },
+    { "name": "listItemPadding", "type": "string", "default": "py-[0.7rem]" }
+  ],
+  "editableByProps": [
+    "Number of rows, titles, years and images",
+    "Background and text colors",
+    "Zoom duration, stagger delay, list height and row padding"
+  ],
+  "needsCodeEdit": [
+    {
+      "change": "Change the starting zoom scale of the background image",
+      "where": "scale(1.2) in the style of the img with id background-image"
+    },
+    {
+      "change": "Change the font family",
+      "where": "font-['PP_Neue_Montreal',sans-serif] in the root className"
+    }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Background image layer is fixed to the full viewport",
+    "Hover-driven: on touch devices a tap on a row triggers the hover effect"
+  ],
+  "mood": ["dark", "editorial", "minimal", "bold"],
+  "industries": ["portfolio", "design studio", "photography", "agency", "art"],
+  "sections": ["portfolio", "gallery"],
+  "dependencies": []
+}
