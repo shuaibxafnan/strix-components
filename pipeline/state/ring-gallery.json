@@ -4,11 +4,12 @@
   "sourceHash": "03a4dc69944c4271aa9882ff4d011768ad0f49d3ed03bb03567eeada48093b57",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "ring-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.525Z"
+  "note": "Gates passed. esm.sh injection replaced by dynamic imports of kokomi.js, three, gsap, listed in dependencies (untested). Added heroTitleColor, loadingColor. Mobile text scaling. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:11:22.334Z",
+  "gateOutput": "gates passed"
 }
