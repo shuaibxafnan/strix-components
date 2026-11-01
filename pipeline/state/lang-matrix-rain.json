@@ -4,11 +4,12 @@
   "sourceHash": "818c5a66b0965b8a7dde5ad74a994572e5f6b4c88db358371d341a0619b7bd3b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "multilingual-matrix-rain",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.485Z"
+  "note": "renamed lang-matrix-rain -> multilingual-matrix-rain; added phrases/className props; removed centering flex classes; no frame (full-bleed background); responsive: already ok",
+  "updatedAt": "2026-11-01T09:13:01.162Z",
+  "gateOutput": "gates passed"
 }
