@@ -1,0 +1,48 @@
+{
+  "slug": "stagger-toggle-switches",
+  "name": "Stagger Toggle Switches",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Row of striped checkbox toggle switches whose bars slide across the rail with staggered GSAP elastic or glitchy rough easing, with glow on active and focus.",
+  "contents": ["Row of labeled toggle switches, each a striped rail with a bar stack that slides on toggle"],
+  "behavior": [
+    "Checking or unchecking slides each bar across the rail with a stagger, in random or sequential order",
+    "Elastic or rough ease is chosen per switch",
+    "Border and glow change on checked and keyboard focus"
+  ],
+  "props": [
+    {"name": "switches", "type": "{id,label,duration,offset,random,easeType,elasticAmplitude,elasticPeriod,easeStrength,easePoints}[]", "default": "4 sample switches (Elastic, Elastic 2, Glitch, Glitch 2)"},
+    {"name": "rows", "type": "number", "default": 12},
+    {"name": "railWidth", "type": "number", "default": 84},
+    {"name": "railHeight", "type": "number", "default": 36},
+    {"name": "travelDistance", "type": "number", "default": 48},
+    {"name": "stripeColorA", "type": "string", "default": "#181a29"},
+    {"name": "stripeColorB", "type": "string", "default": "#202436"},
+    {"name": "dotColor", "type": "string", "default": "#484a57"},
+    {"name": "dotColorActive", "type": "string", "default": "#76b3fa"},
+    {"name": "borderColor", "type": "string", "default": "#575969"},
+    {"name": "borderColorActive", "type": "string", "default": "#76b3fa"},
+    {"name": "borderColorFocus", "type": "string", "default": "#faed76"},
+    {"name": "glowColorActive", "type": "string", "default": "#0763f7"},
+    {"name": "glowColorFocus", "type": "string", "default": "#c96220"},
+    {"name": "labelColor", "type": "string", "default": "#a3a7ad"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Number of switches, labels, ids, durations, stagger, ease type and order",
+    "Rail size, bar rows, travel distance",
+    "All stripe, bar, border, glow and label colors"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change bar shape or size", "where": "rect elements inside the g.switch group"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Each switch id must be unique and is used as a DOM selector",
+    "Travel distance should match rail width minus bar width and margins"
+  ],
+  "mood": ["playful", "techy", "dark"],
+  "industries": ["saas", "gaming", "developer tools", "creative agency"],
+  "sections": ["other"],
+  "dependencies": ["gsap"]
+}
