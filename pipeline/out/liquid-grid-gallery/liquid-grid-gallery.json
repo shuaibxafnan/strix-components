@@ -1,0 +1,67 @@
+{
+  "slug": "liquid-grid-gallery",
+  "name": "Liquid Grid Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Staggered image grid where clicking a thumbnail expands it to fullscreen with a wavy liquid WebGL distortion that starts from the click point, with a title reveal and close button.",
+  "contents": [
+    "Heading and staggered three-column image grid with title and text per item",
+    "Outlined decorative background text rows",
+    "Fullscreen WebGL canvas with large title and close button for the opened image"
+  ],
+  "behavior": [
+    "Press on a thumbnail to morph it into a fullscreen image with a wavy vertex distortion starting from the pointer position",
+    "Close button reverses the morph back to the grid",
+    "Grid collapses to a single column on small screens",
+    "Canvas re-measures on resize and scroll"
+  ],
+  "props": [
+    {"name": "items", "type": "{image,imageLarge,title,text}[]", "default": "3 sample items"},
+    {"name": "bgColor", "type": "string", "default": "#2701ad"},
+    {"name": "textColor", "type": "string", "default": "#fe952c"},
+    {"name": "gridTextColor", "type": "string", "default": "#08afef"},
+    {"name": "titleColor", "type": "string", "default": "#ffffff"},
+    {"name": "decoColor", "type": "string", "default": "#320db9"},
+    {"name": "decoText", "type": "string", "default": "Connect"},
+    {"name": "decoRows", "type": "number", "default": 5},
+    {"name": "showDeco", "type": "boolean", "default": true},
+    {"name": "heading", "type": "string", "default": "Collection"},
+    {"name": "duration", "type": "number", "default": 1.6},
+    {"name": "timingSections", "type": "number", "default": 1},
+    {"name": "latestStart", "type": "number", "default": 0.5},
+    {"name": "seed", "type": "number", "default": 800},
+    {"name": "waveAmplitude", "type": "number", "default": 1},
+    {"name": "waveFrequency", "type": "number", "default": 0.1},
+    {"name": "segments", "type": "number", "default": 128},
+    {"name": "easeToFullscreen", "type": "string", "default": "power2.out"},
+    {"name": "easeToGrid", "type": "string", "default": "power3.inOut"},
+    {"name": "seedPerItem", "type": "number", "default": 10},
+    {"name": "revealDelayFactor", "type": "number", "default": 0.15},
+    {"name": "titleScaleFrom", "type": "number", "default": 0.2},
+    {"name": "gridColumns", "type": "string", "default": "31% 36% 33%"},
+    {"name": "gridMaxWidth", "type": "string", "default": "1200px"},
+    {"name": "displayFont", "type": "string", "default": "Futura, 'Century Gothic', Helvetica, Arial, sans-serif"},
+    {"name": "bodyFont", "type": "string", "default": "Futura, 'Century Gothic', Helvetica, Arial, sans-serif"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Items with images, large images, titles and text",
+    "Heading, decorative text and rows, all colors and fonts",
+    "Animation duration, easing, wave amplitude, frequency and seeds",
+    "Grid columns and max width"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change the wave distortion shape", "where": "WAVY_TRANSFORM function"},
+    {"change": "Change where the distortion starts", "where": "MOUSE_ACTIVATION constant"},
+    {"change": "Change the staggered column offsets", "where": "md:pt-[35%] and md:pt-[40%] classes in the figure"}
+  ],
+  "fixed": [
+    "Fullscreen canvas is fixed to the viewport and overlays the page while an image is open",
+    "Adds window resize and scroll listeners while mounted and removes them on unmount",
+    "Requires WebGL and the three and gsap packages"
+  ],
+  "mood": ["bold", "playful", "immersive", "vibrant"],
+  "industries": ["photography", "fashion", "art", "agency", "travel"],
+  "sections": ["gallery", "portfolio"],
+  "dependencies": ["three", "gsap"]
+}

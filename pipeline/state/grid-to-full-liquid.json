@@ -4,11 +4,12 @@
   "sourceHash": "ccb4831cfec61a4b26213499f669c532217e9a228c2983b69af39ba306f18627",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "liquid-grid-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.456Z"
+  "note": "Renamed grid-to-full-liquid -> liquid-grid-gallery. CDN loader and threeUrl, gsapUrl props removed; three and gsap dynamic imports. PlaneBufferGeometry -> PlaneGeometry. Cleanup disposes geometry and material, kills tween. Added className. Frame: none. Variants: none.",
+  "updatedAt": "2026-11-01T07:59:27.392Z",
+  "gateOutput": "gates passed"
 }
