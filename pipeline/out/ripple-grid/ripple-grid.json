@@ -1,0 +1,88 @@
+{
+    "slug": "ripple-grid",
+    "name": "Ripple Grid",
+    "category": "backgrounds-3d",
+    "isReactBits": true,
+    "description": "WebGL2 shader background of a thin grid (lines, dots or crosses) that bends and glows with ripple waves from auto timers, pointer movement and clicks, with optional perspective tilt.",
+    "contents": [
+        "Full-size container div with an absolutely positioned WebGL canvas",
+        "Fragment shader drawing the grid, ripple distortion, glow, pointer highlight and edge fade"
+    ],
+    "behavior": [
+        "Intro reveal expands the grid outward from the center over 1.6 seconds",
+        "Auto ripples spawn from the center or random spots at a set interval",
+        "Pointer movement spawns small ripples and adds a glow near the cursor",
+        "Click or tap adds a stronger ripple",
+        "Rendering pauses when offscreen, tab hidden, or paused prop is set, and stops animating with reduced motion",
+        "Canvas resizes with the container and caps pixel ratio at 2"
+    ],
+    "props": [
+        { "name": "color", "type": "string", "default": "#ffffff" },
+        { "name": "variant", "type": "'lines' | 'dots' | 'cross'", "default": "lines" },
+        { "name": "cellSize", "type": "number", "default": 48 },
+        { "name": "lineWidth", "type": "number", "default": 1 },
+        { "name": "glow", "type": "number", "default": 0.6 },
+        { "name": "rippleStrength", "type": "number", "default": 1 },
+        { "name": "rippleSpeed", "type": "number", "default": 1 },
+        { "name": "rippleSize", "type": "number", "default": 1 },
+        { "name": "autoRipple", "type": "'center' | 'random' | 'none'", "default": "center" },
+        { "name": "rippleInterval", "type": "number", "default": 2.6 },
+        { "name": "tilt", "type": "number", "default": 0 },
+        { "name": "rotation", "type": "number", "default": 0 },
+        { "name": "mouseInteraction", "type": "boolean", "default": true },
+        { "name": "clickRipple", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "fade", "type": "number", "default": 0.5 },
+        { "name": "opacity", "type": "number", "default": 1 },
+        { "name": "lightMode", "type": "boolean", "default": false },
+        { "name": "paused", "type": "boolean", "default": false },
+        { "name": "dpr", "type": "number", "default": null },
+        { "name": "className", "type": "string", "default": "" }
+    ],
+    "editableByProps": [
+        "Grid style, color, cell size, line width, glow, rotation and perspective tilt",
+        "Ripple strength, speed, size, auto mode and interval",
+        "Pointer and click interaction, intro, edge fade, opacity, light mode, pause",
+        "Pixel ratio and container className or extra div attributes"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Raise the number of simultaneous ripples",
+            "where": "MAX_RIPPLES constant"
+        },
+        {
+            "change": "Change intro duration",
+            "where": "INTRO_SECONDS constant"
+        },
+        {
+            "change": "Change ripple decay or lifetime",
+            "where": "render function (Math.exp(-age * 0.55)) and lifetime in frame function"
+        },
+        {
+            "change": "Change the pixel ratio cap",
+            "where": "resize function (Math.min(..., 2))"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2; renders nothing if unavailable",
+        "Fills its parent (h-full w-full), so the parent needs a defined height",
+        "Listens to pointer events on window, so interaction works even when other content covers it",
+        "Canvas is aria-hidden and decorative only",
+        "Max 12 ripples at once",
+        "Grid is drawn as a faint overlay with low alpha, best on dark backgrounds unless lightMode is on",
+        "Fills any container size and resizes with it, usable on mobile, with hover glow absent on touch"
+    ],
+    "mood": ["futuristic", "technical", "calm", "dark"],
+    "industries": ["saas", "technology", "ai", "developer tools", "fintech"],
+    "sections": ["hero", "background", "cta"],
+    "dependencies": [],
+    "variants": {
+        "prop": "variant",
+        "default": "lines",
+        "options": [
+            { "value": "lines", "look": "Continuous thin grid lines", "useWhen": "Hero of a SaaS or developer product wanting a clean technical blueprint backdrop" },
+            { "value": "dots", "look": "Dots at grid intersections", "useWhen": "Minimal landing page needing a soft, subtle texture behind text" },
+            { "value": "cross", "look": "Small plus marks at grid intersections", "useWhen": "Design or engineering portfolio wanting a drafting-paper feel" }
+        ]
+    }
+}

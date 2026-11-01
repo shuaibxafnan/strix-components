@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "ripple-grid",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.603Z"
+  "note": "Gates passed. Category backgrounds-3d. Variants: lines, dots, cross. Needs WebGL2; parent needs height; window pointer listeners.",
+  "updatedAt": "2026-11-01T11:11:59.555Z",
+  "gateOutput": "gates passed"
 }
