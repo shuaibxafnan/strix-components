@@ -4,11 +4,12 @@
   "sourceHash": "5ccdfd4a2ac4e85edd705b1c813f8273b784e02e16f6e8d7943984e2f5ce8525",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "rotated-panel-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.525Z"
+  "note": "Renamed ScrambleText -> RotatedPanelReveal (file exported RotatedRevealer; not a scramble text). GSAP CDN script replaced by dynamic import of gsap, gsapUrl prop removed, className added, hover timeline cleaned up, unused rootRef removed. Frame: kept existing h-screen root. Variants: none. Responsive: already ok. Note: near-duplicate of existing rotated-revealer.",
+  "updatedAt": "2026-11-01T11:16:13.950Z",
+  "gateOutput": "gates passed"
 }
