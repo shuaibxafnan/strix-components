@@ -1,0 +1,97 @@
+{
+    "slug": "star-border",
+    "name": "Star Border",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "Button or link with a canvas-drawn light that travels around its rounded border, leaving a glowing trail, with optional sparkles, hover effects and a click pulse. Dark and light themes.",
+    "contents": [
+        "Polymorphic root element (button by default) with children as content",
+        "Canvas overlay drawing the animated star light, trail, glow and dust particles around the border"
+    ],
+    "behavior": [
+        "One or more star heads continuously travel around the rounded border with a fading trail",
+        "Hover mode lap makes the star do an extra eased lap on pointer enter or keyboard focus",
+        "Hover mode brighten raises glow while hovered or focused",
+        "Hover mode reveal hides the star until hover and starts it at the pointer position",
+        "Click or tap emits a pulse in both directions from the press point and flashes the border",
+        "Sparkle option adds cross-shaped star cores and drifting dust",
+        "Animation loop pauses when offscreen or idle, and cruise motion stops with prefers-reduced-motion",
+        "Canvas resizes with the element through ResizeObserver"
+    ],
+    "props": [
+        { "name": "as", "type": "React.ElementType", "default": "button" },
+        { "name": "children", "type": "ReactNode", "default": null },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "React.CSSProperties", "default": null },
+        { "name": "color", "type": "string", "default": null },
+        { "name": "trailColor", "type": "string", "default": null },
+        { "name": "duration", "type": "number", "default": 4 },
+        { "name": "thickness", "type": "number", "default": 1 },
+        { "name": "radius", "type": "number", "default": 12 },
+        { "name": "trailLength", "type": "number", "default": 0.3 },
+        { "name": "stars", "type": "number", "default": 1 },
+        { "name": "glow", "type": "number", "default": 0.6 },
+        { "name": "sparkle", "type": "boolean", "default": false },
+        { "name": "direction", "type": "'clockwise' | 'counterclockwise'", "default": "clockwise" },
+        { "name": "hover", "type": "'lap' | 'brighten' | 'reveal' | 'none'", "default": "lap" },
+        { "name": "clickPulse", "type": "boolean", "default": true },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "backgroundColor", "type": "string", "default": null },
+        { "name": "textColor", "type": "string", "default": null },
+        { "name": "borderColor", "type": "string", "default": null }
+    ],
+    "editableByProps": [
+        "Button content through children and the rendered element through as (button, a, div)",
+        "Star and trail colors, background, text and border track colors",
+        "Speed, border thickness, corner radius, trail length, number of stars (1 to 6), glow strength",
+        "Sparkle on or off, travel direction, hover behavior, click pulse on or off",
+        "Dark or light theme, extra classes and inline style, any native element attributes via rest props"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change padding, font weight or base layout of the element",
+            "where": "ROOT constant"
+        },
+        {
+            "change": "Change theme default colors or add a new theme",
+            "where": "THEMES constant"
+        },
+        {
+            "change": "Change the glow spread outside the element",
+            "where": "BLEED constant and LIGHT constant"
+        },
+        {
+            "change": "Change duration of the hover lap",
+            "where": "LAP constant"
+        }
+    ],
+    "fixed": [
+        "Canvas extends 48px beyond the element on every side, so the glow can overflow and be clipped by ancestors with overflow hidden",
+        "Uses canvas, ResizeObserver, IntersectionObserver and matchMedia, so it is client-only",
+        "Reads colors through a canvas context, so color props must be valid CSS colors",
+        "Values are clamped: duration min 0.3, thickness min 0.5, stars 1 to 6, trailLength and glow 0 to 1",
+        "Unknown hover values fall back to lap, unknown theme falls back to dark",
+        "Root is inline-flex with fixed px-6 py-3.5 padding and no frame, so it sits where placed",
+        "Works on small screens, size follows content, hover effects have no touch equivalent except the tap pulse"
+    ],
+    "mood": ["futuristic", "sleek", "glowing", "premium"],
+    "industries": ["technology", "saas", "gaming", "ai", "crypto"],
+    "sections": ["hero", "cta"],
+    "dependencies": [],
+    "variants": {
+        "prop": "theme",
+        "default": "dark",
+        "options": [
+            {
+                "value": "dark",
+                "look": "Near-black surface, white text, additive white light with bright glow",
+                "useWhen": "Call-to-action button on a dark hero or dark landing page"
+            },
+            {
+                "value": "light",
+                "look": "White surface, dark text, dark light trail with softer glow",
+                "useWhen": "Call-to-action button on a white or pastel marketing page"
+            }
+        ]
+    }
+}

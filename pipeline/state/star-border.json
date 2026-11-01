@@ -6,9 +6,10 @@
   "bitsFolder": "animations",
   "slug": "star-border",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.591Z"
+  "note": "Gates passed. Source copied unchanged. Category ui-elements. Variants theme dark/light. Canvas bleeds 48px, clipped by overflow hidden ancestors. Client-only.",
+  "updatedAt": "2026-11-01T13:22:50.591Z",
+  "gateOutput": "gates passed"
 }
