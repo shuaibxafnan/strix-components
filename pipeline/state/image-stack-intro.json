@@ -4,11 +4,12 @@
   "sourceHash": "fe9e99a68905abf807f0a258a237daa02f92a70c8f13205b52d450d1daccdaaa",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "image-stack-intro",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.467Z"
+  "note": "Slug kept. Gates passed, warning: style tag without template literal. Category cards-galleries. GSAP CDN script replaced by import(gsap), added to dependencies; removed .catch fallback forcing visibility. className added. Font loading props kept. body overflow hidden and scrollTo on mount kept, noted in fixed.",
+  "updatedAt": "2026-11-01T08:39:05.860Z",
+  "gateOutput": "WARN  style tag without template literal\ngates passed"
 }
