@@ -4,11 +4,12 @@
   "sourceHash": "fd235d9b4b656ee40ab771d74d757f5e90c308c68f27f1adcd0bf4d93201a746",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "slide-crossroads",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.542Z"
+  "note": "CDN loader and gsapUrl removed, gsap imported. className added. Cramped on small phones, layout unchanged, needs review. No variants.",
+  "updatedAt": "2026-11-01T12:39:49.073Z",
+  "gateOutput": "gates passed"
 }
