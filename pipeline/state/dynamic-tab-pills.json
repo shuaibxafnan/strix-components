@@ -4,11 +4,12 @@
   "sourceHash": "b9de5c46eb6940af4a3dbf57cc6bd34252b40298f5ddfa0af070d2c61567f06b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "dynamic-tab-pills",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.429Z"
+  "note": "Removed author credit; frame h-screen with backgroundColor prop and className; initialItems renamed items; fixed dynamic Tailwind classes via CSS vars (hoverBorder, separatorColor) and malformed max-[600px] class. isMounted gate kept in fixed. No variants.",
+  "updatedAt": "2026-11-01T06:35:24.611Z",
+  "gateOutput": "gates passed"
 }
