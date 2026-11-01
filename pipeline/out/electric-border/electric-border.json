@@ -1,0 +1,94 @@
+{
+    "slug": "electric-border",
+    "name": "Electric Border",
+    "category": "ui-elements",
+    "isReactBits": true,
+    "description": "WebGL2 wrapper that draws a living electric border of glowing, jittering strands and random sparks around its children, reacting to the cursor and clicks with heat and pulses.",
+    "contents": [
+        "Container div wrapping the children with a rounded border radius",
+        "Absolutely positioned WebGL canvas extending 64px beyond the container on every side, drawing the electric border"
+    ],
+    "behavior": [
+        "Several noise-driven strands wobble along the rounded rectangle edge with glow and flicker",
+        "Random sparks arc off the border, more often near the cursor",
+        "Cursor near the container adds a smoothly following heat spot that brightens and adds strands",
+        "Click on the container sends a pulse wave along the border and spawns a spark",
+        "Intro reveal sweeps the border in around the perimeter, and toggling active fades it out or back in",
+        "Pauses rendering when offscreen or tab hidden, recovers from WebGL context loss",
+        "Reduced motion preference slows animation, disables sparks, pulses and flicker"
+    ],
+    "props": [
+        { "name": "children", "type": "ReactNode", "default": "undefined" },
+        { "name": "color", "type": "string", "default": "#7df9ff" },
+        { "name": "glowColor", "type": "string", "default": "undefined (uses color)" },
+        { "name": "speed", "type": "number", "default": 1 },
+        { "name": "chaos", "type": "number", "default": 0.5 },
+        { "name": "spread", "type": "number", "default": 0.6 },
+        { "name": "thickness", "type": "number", "default": 1.5 },
+        { "name": "strands", "type": "number", "default": 3 },
+        { "name": "glow", "type": "number", "default": 0.6 },
+        { "name": "intensity", "type": "number", "default": 0.8 },
+        { "name": "arcs", "type": "number", "default": 1 },
+        { "name": "flicker", "type": "number", "default": 0.5 },
+        { "name": "borderRadius", "type": "number", "default": 24 },
+        { "name": "offset", "type": "number", "default": 0 },
+        { "name": "active", "type": "boolean", "default": true },
+        { "name": "intro", "type": "boolean", "default": true },
+        { "name": "interactive", "type": "boolean", "default": true },
+        { "name": "cursorRadius", "type": "number", "default": 90 },
+        { "name": "theme", "type": "'dark' | 'light'", "default": "dark" },
+        { "name": "className", "type": "string", "default": "" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "Border color and separate glow color",
+        "Animation speed, chaos, spread, thickness, strand count (1 to 6), glow, intensity, flicker",
+        "Spark frequency, corner radius, border offset from the box",
+        "Turning the effect on or off, intro reveal, cursor and click interaction, cursor heat radius",
+        "Dark or light theme rendering, wrapper className and style"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change number of simultaneous sparks or click pulses",
+            "where": "ARCS and PULSES constants at the top of the file"
+        },
+        {
+            "change": "Change how far the effect extends beyond the container",
+            "where": "MARGIN constant"
+        },
+        {
+            "change": "Change click pulse travel speed",
+            "where": "SURGE_SPEED constant"
+        },
+        {
+            "change": "Change the core color brightness relative to color",
+            "where": "core calculation in the settings object inside ElectricBorder"
+        },
+        {
+            "change": "Change spark lifetime and size",
+            "where": "spawnArc function"
+        }
+    ],
+    "fixed": [
+        "Requires WebGL2, renders nothing if unavailable or if shader compile fails",
+        "Listens to pointermove and pointerdown on window for the whole page while mounted",
+        "Canvas extends 64px outside the container, so parents must not clip overflow and neighbors need spacing",
+        "Canvas pixel count is capped by a 3 million pixel budget and device pixel ratio capped at 2",
+        "Content is not styled, the component draws only the border and the children define the box size",
+        "Uses Tailwind classes (relative, isolate, absolute, z-[1], pointer-events-none) on the wrapper and canvas",
+        "Border color is additive light on a transparent canvas, so it reads best on dark backgrounds unless theme is light",
+        "Heavy shader work on every frame, costly on low-end mobile GPUs and many instances"
+    ],
+    "mood": ["futuristic", "energetic", "techy", "dramatic"],
+    "industries": ["gaming", "technology", "crypto", "SaaS", "entertainment"],
+    "sections": ["hero", "features", "pricing", "cta"],
+    "dependencies": [],
+    "variants": {
+        "prop": "theme",
+        "default": "dark",
+        "options": [
+            { "value": "dark", "look": "Additive glowing light strands with bright cores, best on dark backgrounds", "useWhen": "The page background is dark or saturated" },
+            { "value": "light", "look": "Ink-like opaque colored strands with a darker blended color for visibility", "useWhen": "The page background is light" }
+        ]
+    }
+}
