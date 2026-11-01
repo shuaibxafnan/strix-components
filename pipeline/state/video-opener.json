@@ -4,11 +4,12 @@
   "sourceHash": "7d7258e4c0945011bd9ae93becf21c2bafb735a00b3517f854f3dfea3cea1b0b",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "video-opener",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.575Z"
+  "note": "No rename. Source already clean. Kept next/font/google imports (Bodoni Moda, Hanken Grotesk); possible conflict with no-font-imports rule, reviewer to check. Frame existing. No variants. Gate warning setTimeout without clearTimeout; timers cleared on unmount and hide.",
+  "updatedAt": "2026-11-01T15:21:07.136Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

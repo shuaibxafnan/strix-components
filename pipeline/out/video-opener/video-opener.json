@@ -1,0 +1,116 @@
+{
+    "slug": "video-opener",
+    "name": "Video Opener",
+    "category": "ui-elements",
+    "isReactBits": false,
+    "description": "Full-screen hero with a fanned row of polaroid-style photo cards and a play button that expands the middle card into a full-screen video player with a close button.",
+    "contents": [
+        "Up to three polaroid cards with image and caption",
+        "Watch button with loading spinner and error message",
+        "Full-screen video overlay with close button",
+        "Background image with tinted overlay and thick border"
+    ],
+    "behavior": [
+        "Cards tilt and lift on hover",
+        "Button appears once the video has loaded",
+        "Middle card expands to full screen, then the video fades and scales in and plays",
+        "Escape key, close button or video end collapses the player",
+        "Page scroll is locked while the video is open",
+        "Respects reduced motion"
+    ],
+    "props": [
+        {
+            "name": "cards",
+            "type": "{image,alt,caption}[]",
+            "default": "3 forest sample cards"
+        },
+        {
+            "name": "video",
+            "type": "string",
+            "default": "https://videos.pexels.com/video-files/5214219/5214219-hd_1920_1080_25fps.mp4"
+        },
+        {
+            "name": "backgroundImage",
+            "type": "string",
+            "default": "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1800&q=80"
+        },
+        {
+            "name": "buttonLabel",
+            "type": "string",
+            "default": "Watch the video"
+        },
+        {
+            "name": "closeLabel",
+            "type": "string",
+            "default": "Close preview"
+        },
+        {
+            "name": "loadingLabel",
+            "type": "string",
+            "default": "Loading video"
+        },
+        {
+            "name": "errorLabel",
+            "type": "string",
+            "default": "The video could not be loaded."
+        },
+        {
+            "name": "muted",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "bgColor",
+            "type": "string",
+            "default": "#000000"
+        },
+        {
+            "name": "textColor",
+            "type": "string",
+            "default": "#ffffff"
+        },
+        {
+            "name": "className",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "editableByProps": [
+        "Card images, alt text and captions (first three used)",
+        "Video source and background image",
+        "Button, close, loading and error labels",
+        "Muted playback, background and text colors"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Change the expand and fade timing",
+            "where": "frames object"
+        },
+        {
+            "change": "Change the card tilt angles",
+            "where": "slots array"
+        }
+    ],
+    "fixed": [
+        "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+        "Locks body scroll while the video is open and restores it afterwards",
+        "Listens for the Escape key on window while the video is open",
+        "Uses Bodoni Moda and Hanken Grotesk through next/font/google, so it needs Next.js"
+    ],
+    "mood": [
+        "cinematic",
+        "editorial",
+        "immersive"
+    ],
+    "industries": [
+        "film",
+        "travel",
+        "outdoor brands",
+        "photography",
+        "events"
+    ],
+    "sections": [
+        "hero"
+    ],
+    "dependencies": []
+}
