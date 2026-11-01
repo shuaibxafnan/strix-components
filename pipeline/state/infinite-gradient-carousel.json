@@ -4,11 +4,12 @@
   "sourceHash": "8616268d05eee63bcaa8ef8f71c2b9e3e0885b614a07e1d5bf13d3d6e4a655ff",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-gradient-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.471Z"
+  "note": "Slug kept. Gates passed. GSAP CDN loader and gsapVersion prop replaced by import(gsap), added to dependencies. Unmount now kills timeline and tween, removes preload links and stage classes. className added, w-screen -> w-full. Removed header pointer-down guard. Wheel preventDefault captures scroll; image color extraction needs CORS, both in fixed.",
+  "updatedAt": "2026-11-01T08:46:55.978Z",
+  "gateOutput": "gates passed"
 }

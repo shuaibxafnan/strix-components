@@ -1,0 +1,58 @@
+{
+  "slug": "infinite-gradient-carousel",
+  "name": "Infinite Gradient Carousel",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen infinite 3D image carousel with inertial wheel and drag scrolling, where a blurred animated gradient background takes its colors from the image nearest the center.",
+  "contents": [
+    "Looping row of portrait image cards in 3D perspective",
+    "Blurred canvas gradient background tinted by the centered image",
+    "Loading spinner overlay shown until images are decoded"
+  ],
+  "behavior": [
+    "Cards fade and rise in sequentially after images load",
+    "Mouse wheel and drag add velocity with friction-based inertia, looping endlessly",
+    "Cards rotate, scale and push in depth by distance from center, outer cards blur",
+    "Background gradient colors are extracted from each image and tween when the centered card changes",
+    "Animation pauses when the tab is hidden"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "11 sample image URLs"},
+    {"name": "bgColor", "type": "string", "default": "#f0f0f0"},
+    {"name": "canvasBaseColor", "type": "string", "default": "#f6f7f9"},
+    {"name": "cardWidth", "type": "string", "default": "min(26vw,360px)"},
+    {"name": "cardRadius", "type": "string", "default": "15px"},
+    {"name": "gap", "type": "number", "default": 28},
+    {"name": "friction", "type": "number", "default": 0.9},
+    {"name": "wheelSensitivity", "type": "number", "default": 0.6},
+    {"name": "dragSensitivity", "type": "number", "default": 1.0},
+    {"name": "maxRotation", "type": "number", "default": 28},
+    {"name": "maxDepth", "type": "number", "default": 140},
+    {"name": "minScale", "type": "number", "default": 0.92},
+    {"name": "scaleRange", "type": "number", "default": 0.1},
+    {"name": "gradientDuration", "type": "number", "default": 0.45},
+    {"name": "loaderColor", "type": "string", "default": "#333"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Images, card width, radius and spacing",
+    "Scroll feel: friction, wheel and drag sensitivity",
+    "3D look: rotation, depth and scale",
+    "Background colors, gradient transition speed and loader color"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change card aspect ratio", "where": "card.style.aspectRatio in createCards"},
+    {"change": "Change entry animation timing or offsets", "where": "animateEntry function"},
+    {"change": "Change gradient blur or opacity", "where": "canvas element className with the blur filter"}
+  ],
+  "fixed": [
+    "Mouse wheel over the carousel is captured and prevented from scrolling the page",
+    "Image color extraction needs CORS-enabled image sources",
+    "Preload link tags are added to document head and removed on unmount",
+    "Stage is full-bleed and fills the viewport height"
+  ],
+  "mood": ["immersive", "modern", "colorful", "dynamic", "elegant"],
+  "industries": ["photography", "fashion", "portfolio", "art", "travel", "ecommerce"],
+  "sections": ["hero", "gallery", "portfolio"],
+  "dependencies": ["gsap"]
+}
