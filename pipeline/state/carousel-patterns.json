@@ -4,11 +4,12 @@
   "sourceHash": "38cb587c8956f4571470923bbca1d17e8170f5d0e1c8ceeb1b6bde215d29ffab",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "carousel-patterns",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.405Z"
+  "note": "CDN gsap/Draggable/InertiaPlugin -> npm imports (InertiaPlugin in npm gsap since 3.13 not verified). Removed RESET/pattern button bar; added variant prop (circle, wave, stagger, grid, fan, depth). Cleanup: onmousemove cleared, font link removed on unmount. Depth supports 12 cards, stagger fixed 4x3. Gates passed.",
+  "updatedAt": "2026-11-01T05:00:12.327Z",
+  "gateOutput": "gates passed"
 }
