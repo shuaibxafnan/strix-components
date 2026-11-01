@@ -6,9 +6,10 @@
   "bitsFolder": "micro",
   "slug": "flying-button",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.621Z"
+  "note": "Category ui-elements. No variants, no deps. Needs WebGL2 and parent size. JSX unchanged.",
+  "updatedAt": "2026-11-01T07:14:55.792Z",
+  "gateOutput": "gates passed"
 }
