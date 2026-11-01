@@ -1,0 +1,52 @@
+{
+  "slug": "emoji-reaction-slider",
+  "name": "Emoji Reaction Slider",
+  "category": "ui-elements",
+  "isReactBits": false,
+  "description": "Rating card with a draggable slider thumb that snaps to five steps while an emoji face morphs its mouth, eyes and colors from awful to great.",
+  "contents": [
+    "Card with title and current rating label",
+    "Morphing emoji face with five moods",
+    "Dotted slider track with colored fill and draggable thumb"
+  ],
+  "behavior": [
+    "Dragging the thumb updates the rating live and the face morphs through SVG path transitions",
+    "Thumb snaps to the nearest of five stops on release with an overshoot ease",
+    "Emoji bounces when the rating changes",
+    "Colors of the face, fill and label transition between ratings",
+    "Calls onChange with the label of the selected rating"
+  ],
+  "props": [
+    { "name": "cardBg", "type": "string", "default": "#ffffff" },
+    { "name": "cardBorderColor", "type": "string", "default": "#D1D6EE" },
+    { "name": "cardShadow", "type": "string", "default": "0 1px 6px -1px rgba(0,9,61,0.16)" },
+    { "name": "trackColor", "type": "string", "default": "#E1E6F9" },
+    { "name": "labelColor", "type": "string", "default": "#2B3044" },
+    { "name": "ratingLabelColor", "type": "string", "default": "#BBC1E1" },
+    { "name": "morphDuration", "type": "number", "default": 0.35 },
+    { "name": "snapDuration", "type": "number", "default": 0.25 },
+    { "name": "title", "type": "string", "default": "Rate your experience" },
+    { "name": "labels", "type": "string[]", "default": ["awful", "bad", "okay", "good", "great"] },
+    { "name": "className", "type": "string", "default": "" },
+    { "name": "onChange", "type": "(label: string) => void", "default": "undefined" }
+  ],
+  "editableByProps": [
+    "Title and the five rating labels",
+    "Card, border, shadow, track and text colors",
+    "Morph and snap timing",
+    "Change callback"
+  ],
+  "needsCodeEdit": [
+    { "change": "Change face colors per rating", "where": "RATINGS constant" },
+    { "change": "Change number of steps or track length", "where": "SNAP_X and TRACK_WIDTH constants" },
+    { "change": "Change face shapes", "where": "mouth and eye paths in RATINGS" }
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto.",
+    "Always five rating steps and a fixed 264px track width"
+  ],
+  "mood": ["playful", "friendly", "clean"],
+  "industries": ["saas", "e-commerce", "customer support", "hospitality"],
+  "sections": ["other"],
+  "dependencies": []
+}
