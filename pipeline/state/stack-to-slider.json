@@ -4,11 +4,12 @@
   "sourceHash": "10a21fdfd1f872adf1c116324fc342c477076a5cae5d42522a9ba4a05e6e19a4",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "stack-content-reveal",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.557Z"
+  "note": "Renamed to stack-content-reveal. CDN gsap/Flip/Observer replaced with npm dynamic imports. Removed header block (brandTitle, brandSubtitle, frameLabel, frameLinkText, frameLinkHref props) and loader. className added. No frame, no variants. Kept font props, spacers, body overflow lock.",
+  "updatedAt": "2026-11-01T13:18:35.895Z",
+  "gateOutput": "gates passed"
 }
