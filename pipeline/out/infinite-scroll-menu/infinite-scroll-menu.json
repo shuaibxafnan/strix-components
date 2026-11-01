@@ -1,0 +1,42 @@
+{
+  "slug": "infinite-scroll-menu",
+  "name": "Infinite Scroll Menu",
+  "category": "navigation-menus",
+  "isReactBits": false,
+  "description": "Full-screen list of large right-aligned links that scrolls endlessly in a seamless loop, with italic slide-in hover and a line marker. Falls back to a plain list on mobile devices.",
+  "contents": ["Right-aligned list of large text links"],
+  "behavior": [
+    "Items are cloned at the end and scroll position is wrapped so the list loops infinitely",
+    "Hovering a link italicizes it, shifts it right, recolors it and shows a short line",
+    "Mobile user agents get a static non-looping list"
+  ],
+  "props": [
+    {"name": "items", "type": "{label,href}[]", "default": "14 sample links"},
+    {"name": "bgColor", "type": "string", "default": "#fff"},
+    {"name": "textColor", "type": "string", "default": "#111"},
+    {"name": "menuColor", "type": "string", "default": "#000"},
+    {"name": "menuHoverColor", "type": "string", "default": "#c0092b"},
+    {"name": "linkColor", "type": "string", "default": "#c0092b"},
+    {"name": "linkHoverColor", "type": "string", "default": "#000"},
+    {"name": "fontSizeMobile", "type": "string", "default": "7vw"},
+    {"name": "fontSizeDesktop", "type": "string", "default": "9.5vh"},
+    {"name": "itemGapMobile", "type": "string", "default": "4rem"},
+    {"name": "itemGapDesktop", "type": "string", "default": "25vw"},
+    {"name": "desktopBreakpoint", "type": "string", "default": "848px"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": ["Link labels, hrefs and count", "Background, text, link and hover colors", "Font sizes and item spacing"],
+  "needsCodeEdit": [
+    {"change": "Change the mobile detection", "where": "MOBILE_REGEX constant"},
+    {"change": "Change the hover effect", "where": "MenuLink function"}
+  ],
+  "fixed": [
+    "Desktop list fills the viewport height and scrolls inside itself with a hidden scrollbar",
+    "Looping is disabled on mobile user agents, which get a static list",
+    "desktopBreakpoint and linkColor props are exposed but the layout switches at the Tailwind md breakpoint"
+  ],
+  "mood": ["bold", "editorial", "playful"],
+  "industries": ["music", "film", "art", "fashion"],
+  "sections": ["navbar", "other"],
+  "dependencies": []
+}

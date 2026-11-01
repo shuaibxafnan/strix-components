@@ -4,11 +4,12 @@
   "sourceHash": "739d49631c48659fcd2c4e69094bb10eaebd98ccd619de2c52de507fecaa3c13",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "infinite-scroll-menu",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.531Z"
+  "note": "Renamed to infinite-scroll-menu. Removed demo title bar, title, showFrame props. Added className. Nav w-screen to w-full. Unused props linkColor, linkHoverColor, desktopBreakpoint kept, noted in fixed. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:30:38.320Z",
+  "gateOutput": "gates passed"
 }
