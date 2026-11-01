@@ -4,11 +4,12 @@
   "sourceHash": "01018bc12e0ac44721817a176d727cdb92401c7493536659962c24ab151e751e",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "glitch-scroll-gallery",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.532Z"
+  "note": "Renamed to glitch-scroll-gallery. Three.js CDN replaced with npm dynamic import; render parity vs r128 unchecked. Removed unused refIndex, console.error. No frame, no variants.",
+  "updatedAt": "2026-11-01T11:34:23.728Z",
+  "gateOutput": "gates passed"
 }
