@@ -4,11 +4,12 @@
   "sourceHash": "b6cca6e8f90a2ca909e69dc461e362e2cd5766d06c1754cc725eddeddef53cf6",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "expanding-carousel",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.435Z"
+  "note": "Removed empty comment remnants. Responsive: activeCardWidth min(380px, 40vw), collapsedCardWidth clamp(14px, 4vw, 56px). Gate warning: setTimeout without clearTimeout (startAuto restarts uncleared, interval cleared on unmount). Google Fonts import kept. Root h-full relies on parent height (fixed). No frame, no variants.",
+  "updatedAt": "2026-11-01T06:46:40.940Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }
