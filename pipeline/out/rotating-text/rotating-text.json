@@ -1,0 +1,99 @@
+{
+    "slug": "rotating-text",
+    "name": "Rotating Text",
+    "category": "text-effects",
+    "isReactBits": true,
+    "description": "Cycles through a list of phrases, animating each one in and out per character, word, or line with selectable motion effects, optional stagger, blur, and a highlighted pill that resizes to fit.",
+    "contents": [
+        "Inline rotating text span with per-character, word, line, or custom-separator animation",
+        "Optional colored highlight pill with auto contrast text color and spring width",
+        "Screen reader only copy of the current text"
+    ],
+    "behavior": [
+        "Advances to the next text every rotationInterval ms and loops by default",
+        "Characters animate in and out with the chosen effect, direction, and stagger order",
+        "Highlight mode animates the pill width to fit each new text",
+        "Optionally pauses while hovered",
+        "Exposes next, previous, jumpTo, and reset through a ref",
+        "Respects the user reduced motion setting"
+    ],
+    "props": [
+        { "name": "texts", "type": "string[]", "default": "required, no default" },
+        { "name": "transition", "type": "object", "default": "undefined" },
+        { "name": "initial", "type": "object", "default": "undefined" },
+        { "name": "animate", "type": "object", "default": "undefined" },
+        { "name": "exit", "type": "object", "default": "undefined" },
+        { "name": "effect", "type": "'slide' | 'flip' | 'blur' | 'scale' | 'drop'", "default": "slide" },
+        { "name": "direction", "type": "'up' | 'down'", "default": "up" },
+        { "name": "highlight", "type": "boolean", "default": false },
+        { "name": "highlightColor", "type": "string", "default": "#a855f7" },
+        { "name": "animatePresenceMode", "type": "'wait' | 'sync' | 'popLayout'", "default": "wait" },
+        { "name": "animatePresenceInitial", "type": "boolean", "default": false },
+        { "name": "rotationInterval", "type": "number", "default": 2000 },
+        { "name": "staggerDuration", "type": "number", "default": 0 },
+        { "name": "staggerFrom", "type": "'first' | 'last' | 'center' | 'random' | number", "default": "first" },
+        { "name": "loop", "type": "boolean", "default": true },
+        { "name": "auto", "type": "boolean", "default": true },
+        { "name": "pauseOnHover", "type": "boolean", "default": false },
+        { "name": "blur", "type": "number", "default": 0 },
+        { "name": "splitBy", "type": "'characters' | 'words' | 'lines' | string", "default": "characters" },
+        { "name": "onNext", "type": "(index: number) => void", "default": "undefined" },
+        { "name": "onMouseEnter", "type": "function", "default": "undefined" },
+        { "name": "onMouseLeave", "type": "function", "default": "undefined" },
+        { "name": "mainClassName", "type": "string", "default": "undefined" },
+        { "name": "splitLevelClassName", "type": "string", "default": "undefined" },
+        { "name": "elementLevelClassName", "type": "string", "default": "undefined" },
+        { "name": "style", "type": "object", "default": "undefined" }
+    ],
+    "editableByProps": [
+        "List of texts, rotation timing, looping, auto play, and pause on hover",
+        "Effect, direction, stagger amount and origin, blur, and split unit",
+        "Custom initial, animate, exit, and transition motion states",
+        "Highlight pill on or off and its color",
+        "Classes for the root, word, and character levels, plus inline style",
+        "Manual control through ref methods and onNext callback"
+    ],
+    "needsCodeEdit": [
+        {
+            "change": "Add or change a built-in effect",
+            "where": "EFFECTS constant"
+        },
+        {
+            "change": "Change the highlight pill padding or corner radius",
+            "where": "className branch for highlight in the root motion.span"
+        },
+        {
+            "change": "Change the light or dark text contrast threshold on highlight",
+            "where": "readableText function"
+        },
+        {
+            "change": "Tune pill width or layout spring feel",
+            "where": "WIDTH_SPRING and LAYOUT_SPRING constants"
+        }
+    ],
+    "fixed": [
+        "Requires the motion package (motion/react) and Tailwind CSS classes",
+        "texts is required and must be an array of strings",
+        "Inline element with no frame, size and font come from the parent or mainClassName",
+        "Animated characters are aria-hidden, a sr-only span carries the current text",
+        "Segmentation uses Intl.Segmenter for English graphemes when available",
+        "Random stagger order is reshuffled whenever the text changes",
+        "Wrapped in MotionConfig reducedMotion user, so transform animations are skipped for reduced motion users",
+        "Highlight mode disables layout animation and forces no wrapping"
+    ],
+    "mood": ["playful", "dynamic", "modern"],
+    "industries": ["saas", "startups", "marketing", "creative agencies"],
+    "sections": ["hero", "features", "cta"],
+    "dependencies": ["motion"],
+    "variants": {
+        "prop": "effect",
+        "default": "slide",
+        "options": [
+            { "value": "slide", "look": "Text slides vertically in and out with a spring", "useWhen": "Hero headline where a word swaps in a line such as 'Built for teams'" },
+            { "value": "flip", "look": "Characters flip around the X axis like a departure board", "useWhen": "Stats or status line that should feel mechanical and precise" },
+            { "value": "blur", "look": "Soft vertical drift with a blur fade, blur defaults to 10px", "useWhen": "Calm, premium tagline in an editorial or luxury hero" },
+            { "value": "scale", "look": "Characters pop in from small and out to large with a bouncy spring", "useWhen": "Playful headline or kids and entertainment landing page" },
+            { "value": "drop", "look": "Characters fall in from above and drop out below", "useWhen": "Bold, energetic headline for events or product launches" }
+        ]
+    }
+}
