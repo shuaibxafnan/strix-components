@@ -4,11 +4,12 @@
   "sourceHash": "d96cf0084d0e2628f5e60546f9a3a443fd686e27c42ca4000dcc0283de1550fd",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "vertical-split-slider",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.575Z"
+  "note": "No rename. Comments removed (strip-comments failed, removed by script). Added className. No frame; w-screen to w-full. Responsive padding/clamp tweaks. 35% split stays side by side on mobile. Kept Google Font import. No variants.",
+  "updatedAt": "2026-11-01T15:20:29.559Z",
+  "gateOutput": "gates passed"
 }

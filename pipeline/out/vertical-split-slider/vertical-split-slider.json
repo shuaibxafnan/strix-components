@@ -1,0 +1,45 @@
+{
+  "slug": "vertical-split-slider",
+  "name": "Vertical Split Slider",
+  "category": "sliders-carousels",
+  "isReactBits": false,
+  "description": "Full-screen split slider where a text panel slides down while an image panel slides up in mirror, driven by previous and next buttons straddling the split line.",
+  "contents": [
+    "Left text panel per slide with eyebrow, title, body line, accent rule and watermark index",
+    "Right full-bleed image panel per slide",
+    "Previous and next pill buttons on the split line and a slide counter"
+  ],
+  "behavior": [
+    "Clicking next moves the image strip up and the text strip down by one viewport height with an ease-in-out transition",
+    "Slides loop from last to first and back",
+    "Accent color of the active slide tints the rule, watermark, counter and buttons"
+  ],
+  "props": [
+    {"name": "slides", "type": "{title,subtitle,body,image,accent}[]", "default": "4 planet slides"},
+    {"name": "splitRatio", "type": "number", "default": 35},
+    {"name": "transitionMs", "type": "number", "default": 500},
+    {"name": "leftBg", "type": "string", "default": "#0d0d0d"},
+    {"name": "leftTextColor", "type": "string", "default": "#e8e8e8"},
+    {"name": "leftMutedColor", "type": "string", "default": "#555555"},
+    {"name": "fontFamily", "type": "string", "default": "Sometype Mono"},
+    {"name": "showCounter", "type": "boolean", "default": true},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "Slide count, titles, text, images and accent colors",
+    "Split position, transition speed, panel colors, font and counter visibility"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change button size or shape", "where": "ps-nav-btn buttons with borderRadius and width in the nav wrapper"},
+    {"change": "Change the vignette over the image edge", "where": "linear-gradient overlay div inside the right panel map"}
+  ],
+  "fixed": [
+    "Slider is full width and one viewport tall (h-screen), and each slide is sized to the viewport height",
+    "Loads the chosen Google Font through a CSS import inside the component",
+    "Split stays side by side on small screens, so the text panel is narrow on mobile"
+  ],
+  "mood": ["bold", "minimal", "cinematic", "techy"],
+  "industries": ["science", "education", "travel", "photography", "portfolio"],
+  "sections": ["hero", "gallery"],
+  "dependencies": []
+}
