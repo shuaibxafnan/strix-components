@@ -6,9 +6,10 @@
   "bitsFolder": "background",
   "slug": "sliced-waves",
   "nameLocked": true,
-  "status": "analyze_queued",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-10-31T17:23:39.605Z"
+  "note": "Bits: JSON only. Needs WebGL2, fills parent, window pointermove. dpr has no default. No variants.",
+  "updatedAt": "2026-11-01T12:38:26.401Z",
+  "gateOutput": "gates passed"
 }
