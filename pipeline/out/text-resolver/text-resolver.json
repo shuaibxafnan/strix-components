@@ -1,0 +1,38 @@
+{
+  "slug": "text-resolver",
+  "name": "Text Resolver",
+  "category": "text-effects",
+  "isReactBits": false,
+  "description": "Large uppercase headline that types out a list of strings one after another, scrambling each new character through random glyphs before it resolves, then moving on to the next string.",
+  "contents": ["Single centered heading that cycles through the strings array"],
+  "behavior": [
+    "Each character flickers through random glyphs before settling",
+    "Pauses after each string, then loops to the next and repeats forever",
+    "Timers are cleared on unmount"
+  ],
+  "props": [
+    {"name": "strings", "type": "string[]", "default": "12 sample lines"},
+    {"name": "characters", "type": "string[]", "default": "lowercase letters and symbols # % & - + _ ? / \\ ="},
+    {"name": "timeout", "type": "number", "default": 5},
+    {"name": "iterations", "type": "number", "default": 10},
+    {"name": "delayBetweenStrings", "type": "number", "default": 1000},
+    {"name": "textColor", "type": "string", "default": "#eeeeee"},
+    {"name": "backgroundColor", "type": "string", "default": "#111111"},
+    {"name": "fontClass", "type": "string", "default": "font-sans"},
+    {"name": "className", "type": "string", "default": ""}
+  ],
+  "editableByProps": [
+    "All strings, glyph set, scramble speed and iteration count, pause between strings",
+    "Text color, background color, font class"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change heading size or casing", "where": "h1 className in the returned markup"}
+  ],
+  "fixed": [
+    "Root fills the viewport height and centers its content. Override with className using an important modifier such as !h-auto."
+  ],
+  "mood": ["cinematic", "techy", "bold"],
+  "industries": ["gaming", "entertainment", "technology", "film"],
+  "sections": ["hero", "other"],
+  "dependencies": []
+}
