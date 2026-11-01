@@ -1,0 +1,69 @@
+{
+  "slug": "image-tube-gallery",
+  "name": "Image Tube Gallery",
+  "category": "cards-galleries",
+  "isReactBits": false,
+  "description": "Full-screen 3D gallery where image tiles wrap rotating cylindrical rows over a warped grid backdrop. Wheel input spins and scrolls the tube, hover slows it and shows a label.",
+  "contents": [
+    "Rows of image tiles arranged around a 3D cylinder",
+    "Animated shader grid backdrop that bulges toward the pointer",
+    "Hover tooltip with image label and custom cursor dot"
+  ],
+  "behavior": [
+    "Rows rotate continuously at different speeds",
+    "Mouse wheel adds spin and vertical scroll with inertia and endless looping",
+    "Hovering a tile slows rotation and shows a following tooltip",
+    "Grid backdrop distorts around the pointer and screen edges",
+    "Custom circular cursor follows the pointer with easing"
+  ],
+  "props": [
+    {"name": "images", "type": "string[]", "default": "25 sample image URLs"},
+    {"name": "labels", "type": "string[]", "default": []},
+    {"name": "fallbackLabel", "type": "string", "default": "Project"},
+    {"name": "className", "type": "string", "default": ""},
+    {"name": "bgClassName", "type": "string", "default": "bg-black"},
+    {"name": "rows", "type": "number", "default": 5},
+    {"name": "cols", "type": "number", "default": 12},
+    {"name": "radius", "type": "number", "default": 4},
+    {"name": "tileWidth", "type": "number", "default": 0.72},
+    {"name": "tileHeight", "type": "number", "default": 1},
+    {"name": "rowSpacing", "type": "number", "default": 2.7},
+    {"name": "baseSpeed", "type": "number", "default": 0.25},
+    {"name": "hoverSlowdownEnabled", "type": "boolean", "default": true},
+    {"name": "hoverSlowdownScale", "type": "number", "default": 0.35},
+    {"name": "dragToSpin", "type": "boolean", "default": true},
+    {"name": "showGridBackdrop", "type": "boolean", "default": true},
+    {"name": "gridScale", "type": "number", "default": 28},
+    {"name": "gridLineOpacity", "type": "number", "default": 0.18},
+    {"name": "gridLineColor", "type": "string", "default": "#ffffff"},
+    {"name": "gridBaseColor", "type": "string", "default": "#000000"},
+    {"name": "showTooltip", "type": "boolean", "default": true},
+    {"name": "showCustomCursor", "type": "boolean", "default": true},
+    {"name": "cameraFov", "type": "number", "default": 50},
+    {"name": "cameraDistance", "type": "number", "default": 6.5},
+    {"name": "ambientIntensity", "type": "number", "default": 0.5},
+    {"name": "directionalIntensity", "type": "number", "default": 1},
+    {"name": "environmentPreset", "type": "string", "default": "studio"}
+  ],
+  "editableByProps": [
+    "Images, labels and tile count and size",
+    "Tube radius, row count, spacing, speed and camera",
+    "Grid backdrop colors, scale and visibility",
+    "Tooltip and custom cursor toggles, background class"
+  ],
+  "needsCodeEdit": [
+    {"change": "Change per-row rotation speed range", "where": "rowSpeed useMemo in ImageDrum"},
+    {"change": "Change grid warp strength and radius", "where": "uniforms useMemo in GridBackdrop"},
+    {"change": "Change tooltip styling", "where": "role=\"status\" div with ref tooltipElRef"}
+  ],
+  "fixed": [
+    "Root is fixed to the full viewport and captures wheel input, so it covers the page",
+    "Hides the native cursor over the gallery",
+    "Includes a drei Loader progress overlay while textures load",
+    "Wheel events drive the spin, page scrolling is not used"
+  ],
+  "mood": ["immersive", "futuristic", "dramatic", "modern"],
+  "industries": ["photography", "creative agency", "fashion", "art", "architecture"],
+  "sections": ["gallery", "portfolio", "hero"],
+  "dependencies": ["@react-three/fiber", "@react-three/drei", "three"]
+}
