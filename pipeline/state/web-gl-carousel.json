@@ -6,10 +6,10 @@
   "bitsFolder": null,
   "slug": "webgl-scroll-carousel",
   "nameLocked": true,
-  "status": "gate_failed",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
   "note": "Renamed web-gl-carousel -> webgl-scroll-carousel. CDN loaders replaced by dynamic imports (gsap, ScrollTrigger, three, lenis). three npm version vs CDN r134 shaders unchecked. Added className, disposed guard, local cleanup. Removed {} remnants, debug log prefix. No frame, no variants. Clash Display font string kept, no import.",
-  "updatedAt": "2026-11-01T15:32:40.978Z",
-  "gateOutput": "ERROR missing pipeline/out/webgl-scroll-carousel/webgl-scroll-carousel.jsx"
+  "updatedAt": "2026-11-07T05:15:29.141Z",
+  "gateOutput": "gates passed"
 }

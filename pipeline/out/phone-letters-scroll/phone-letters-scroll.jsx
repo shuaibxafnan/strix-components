@@ -93,7 +93,7 @@ export default function PhoneLettersScroll({
 
   useEffect(() => {
     let disposed = false;
-    let cleanup = () => {};
+    let cleanup = () => { };
 
     (async () => {
       const gsapModule = await import("gsap");
@@ -103,139 +103,141 @@ export default function PhoneLettersScroll({
       const ScrollTrigger = stModule.ScrollTrigger || stModule.default;
       gsap.registerPlugin(ScrollTrigger);
 
-    const content = contentRef.current;
-    const articleElems = articleRefs.current;
-    if (!content || !articleElems.length) return;
+      const content = contentRef.current;
+      const articleElems = articleRefs.current;
+      if (!content || !articleElems.length) return;
 
-    const triggers = [];
+      const triggers = [];
 
-    articleElems.forEach((article, index) => {
-      if (!article) return;
-      const cfg =
-        ARTICLE_CONFIGS[index] ?? ARTICLE_CONFIGS[ARTICLE_CONFIGS.length - 1];
+      articleElems.forEach((article, index) => {
+        if (!article) return;
+        const cfg =
+          ARTICLE_CONFIGS[index] ?? ARTICLE_CONFIGS[ARTICLE_CONFIGS.length - 1];
 
-      const tl = gsap
-        .timeline()
-        .to(article, {
-          "--clip": `${article.offsetHeight + 112}px`,
-          "--compact-s": 1,
-          "--compact-o": 1,
-          duration: 1,
-          delay: 0.05,
-          ease: "none",
-        })
-        .to(
-          article,
-          {
-            "--border-radius-h": "180px",
-            "--border-radius-v": "20px",
-            repeat: 1,
-            yoyo: true,
+        const tl = gsap
+          .timeline()
+          .to(article, {
+            "--clip": `${article.offsetHeight + 112}px`,
+            "--compact-s": 1,
+            "--compact-o": 1,
+            duration: 1,
+            delay: 0.05,
+            ease: "none",
+          })
+          .to(
+            article,
+            {
+              "--border-radius-h": "180px",
+              "--border-radius-v": "20px",
+              repeat: 1,
+              yoyo: true,
+              duration: 0.15,
+              onStart() {
+                article.style.overflow = "hidden";
+              },
+              onComplete() {
+                article.style.overflow = "visible";
+              },
+            },
+            0,
+          )
+          .to(article, {
+            "--article-r": cfg.toR,
+            "--article-x": cfg.toX,
+            "--article-y": cfg.toY,
             duration: 0.15,
-            onStart() {
-              article.style.overflow = "hidden";
-            },
-            onComplete() {
-              article.style.overflow = "visible";
-            },
-          },
-          0,
-        )
-        .to(article, {
-          "--article-r": cfg.toR,
-          "--article-x": cfg.toX,
-          "--article-y": cfg.toY,
-          duration: 0.15,
-        });
+          });
 
-      if (index === 0) {
-        tl.to(,
-          {
-            duration: 0.3,
-            onUpdate() {
-              setHeadlineY(-28 * this.progress());
-            },
-          },
-          1.05,
-        );
-      }
-
-      if (index === 1 && articleElems[0]) {
-        tl.to(
-          articleElems[0],
-          { "--article-y": "-64px", "--article-r": "-2deg", duration: 0.15 },
-          1.08,
-        );
-      }
-
-      if (index === 2) {
-        if (articleElems[0]) {
+        if (index === 0) {
           tl.to(
-            articleElems[0],
-            { "--article-y": "-70px", duration: 0.15 },
-            1.14,
+            {},
+            {
+              duration: 0.3,
+              onUpdate() {
+                setHeadlineY(-28 * this.progress());
+              },
+            },
+            1.05,
           );
         }
-        if (articleElems[1]) {
+
+        if (index === 1 && articleElems[0]) {
           tl.to(
-            articleElems[1],
-            { "--article-y": "-42px", "--article-r": "-2deg", duration: 0.15 },
+            articleElems[0],
+            { "--article-y": "-64px", "--article-r": "-2deg", duration: 0.15 },
             1.08,
           );
         }
-      }
 
-      if (index === articleElems.length - 1) {
-        tl.to(,
-          {
-            duration: 0.3,
-            onUpdate() {
-              setEmptyMask(100 - 100 * this.progress());
+        if (index === 2) {
+          if (articleElems[0]) {
+            tl.to(
+              articleElems[0],
+              { "--article-y": "-70px", duration: 0.15 },
+              1.14,
+            );
+          }
+          if (articleElems[1]) {
+            tl.to(
+              articleElems[1],
+              { "--article-y": "-42px", "--article-r": "-2deg", duration: 0.15 },
+              1.08,
+            );
+          }
+        }
+
+        if (index === articleElems.length - 1) {
+          tl.to(
+            {},
+            {
+              duration: 0.3,
+              onUpdate() {
+                setEmptyMask(100 - 100 * this.progress());
+              },
             },
-          },
-        );
-      }
+          );
+        }
 
-      const st = ScrollTrigger.create({
-        animation: tl,
-        trigger: article,
-        scroller: content,
-        scrub: true,
-        start: "top top+=184",
-        end: "bottom top+=112",
+        const st = ScrollTrigger.create({
+          animation: tl,
+          trigger: article,
+          scroller: content,
+          scrub: true,
+          start: "top top+=184",
+          end: "bottom top+=112",
+        });
+        triggers.push(st);
       });
-      triggers.push(st);
-    });
 
-    const handleScroll = () => {
-      if (content.scrollTop > scrollLimit) content.scrollTop = scrollLimit;
-    };
-    content.addEventListener("scroll", handleScroll);
+      const handleScroll = () => {
+        if (content.scrollTop > scrollLimit) content.scrollTop = scrollLimit;
+      };
+      content.addEventListener("scroll", handleScroll);
 
-    const progressST = ScrollTrigger.create({
-      scroller: content,
-      start: 0,
-      end: scrollLimit,
-    });
-    let oldProgress = 0;
-    const onRefreshInit = () => {
-      oldProgress = progressST.progress;
-      content.scrollTop = 0;
-    };
-    const onRefresh = () => {
-      progressST.scroll(oldProgress * scrollLimit);
-    };
-    ScrollTrigger.addEventListener("refreshInit", onRefreshInit);
-    ScrollTrigger.addEventListener("refresh", onRefresh);
+      const progressST = ScrollTrigger.create({
+        scroller: content,
+        start: 0,
+        end: scrollLimit,
+      });
+      let oldProgress = 0;
+      const onRefreshInit = () => {
+        oldProgress = progressST.progress;
+        content.scrollTop = 0;
+      };
+      const onRefresh = () => {
+        progressST.scroll(oldProgress * scrollLimit);
+      };
+      ScrollTrigger.addEventListener("refreshInit", onRefreshInit);
+      ScrollTrigger.addEventListener("refresh", onRefresh);
 
-    cleanup = () => {
-      ScrollTrigger.removeEventListener("refreshInit", onRefreshInit);
-      ScrollTrigger.removeEventListener("refresh", onRefresh);
-      triggers.forEach((t) => t.kill());
-      progressST.kill();
-      content.removeEventListener("scroll", handleScroll);
-      articleElems.forEach((el) => el && gsap.killTweensOf(el));
-    };
+      cleanup = () => {
+        ScrollTrigger.removeEventListener("refreshInit", onRefreshInit);
+        ScrollTrigger.removeEventListener("refresh", onRefresh);
+        triggers.forEach((t) => t.kill());
+        progressST.kill();
+        content.removeEventListener("scroll", handleScroll);
+        articleElems.forEach((el) => el && gsap.killTweensOf(el));
+      };
     })();
 
     return () => {
@@ -260,14 +262,14 @@ export default function PhoneLettersScroll({
         className={`relative font-sans text-sm w-[375px] max-w-[calc(100%-24px)] ${frameClasses}`}
         style={phoneStyle}
       >
-                {showPhoneFrame && (
+        {showPhoneFrame && (
           <div
             className="absolute z-[1] top-0 left-1/2 -translate-x-1/2 h-[30px] w-[180px] rounded-b-[20px]"
             style={{ background: frameColor }}
           />
         )}
 
-                {showStatusBar && (
+        {showStatusBar && (
           <>
             <span
               ref={timeRef}
@@ -277,7 +279,7 @@ export default function PhoneLettersScroll({
                 fontFamily: "'Inter', sans-serif",
               }}
             />
-                        <svg
+            <svg
               className="absolute top-[16px] right-[18px] w-[25px] h-[12px] z-10"
               style={{ color: statusBarColor }}
               viewBox="0 0 25 12"
@@ -306,7 +308,7 @@ export default function PhoneLettersScroll({
                 fill="currentColor"
               />
             </svg>
-                        <svg
+            <svg
               className="absolute top-[16px] right-[67px] w-[18px] h-[12px] z-10"
               style={{ color: statusBarColor }}
               viewBox="0 0 18 12"
@@ -318,7 +320,7 @@ export default function PhoneLettersScroll({
                 fill="currentColor"
               />
             </svg>
-                        <svg
+            <svg
               className="absolute top-[16px] right-[47px] w-[16px] h-[12px] z-10"
               style={{ color: statusBarColor }}
               viewBox="0 0 16 12"
@@ -333,15 +335,14 @@ export default function PhoneLettersScroll({
           </>
         )}
 
-                <div
-          className={`relative w-full ${
-            showPhoneFrame
-              ? "pb-[216.533333%] rounded-[40px] overflow-hidden [-webkit-mask-image:-webkit-radial-gradient(white,black)]"
-              : "h-screen"
-          }`}
+        <div
+          className={`relative w-full ${showPhoneFrame
+            ? "pb-[216.533333%] rounded-[40px] overflow-hidden [-webkit-mask-image:-webkit-radial-gradient(white,black)]"
+            : "h-screen"
+            }`}
           style={{ background: screenBg }}
         >
-                    <h1
+          <h1
             className="absolute top-[88px] left-0 right-0 text-[32px] tracking-tight text-center m-0 font-medium z-10 pointer-events-none"
             style={{
               fontFamily: "'Playfair Display', serif",
@@ -353,7 +354,7 @@ export default function PhoneLettersScroll({
             {title}
           </h1>
 
-                    <div
+          <div
             className="absolute left-0 right-0 top-1/2 -translate-y-1/2 text-center pointer-events-none"
             style={{
               color: emptyIconColor,
@@ -378,18 +379,17 @@ export default function PhoneLettersScroll({
             </span>
           </div>
 
-                    <div
+          <div
             ref={contentRef}
             className="absolute inset-0 overflow-y-scroll overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
-                        <div style={{ height: "4000px" }}>
+            <div style={{ height: "4000px" }}>
               {letters.map((letter, index) => (
                 <article
                   key={index}
                   ref={(el) => (articleRefs.current[index] = el)}
-                  className={`mx-5 mb-0 sticky origin-[50%_12px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] [transform:translate(var(--article-x),var(--article-y))_rotate(var(--article-r))_translateZ(0)] [border-radius:var(--border-radius-h)_0px_0px_0px_/_var(--border-radius-v)_0px_0px_0px] ${
-                    index === 0 ? "mt-[184px]" : "mt-8"
-                  }`}
+                  className={`mx-5 mb-0 sticky origin-[50%_12px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] [transform:translate(var(--article-x),var(--article-y))_rotate(var(--article-r))_translateZ(0)] [border-radius:var(--border-radius-h)_0px_0px_0px_/_var(--border-radius-v)_0px_0px_0px] ${index === 0 ? "mt-[184px]" : "mt-8"
+                    }`}
                   style={{
                     top: "184px",
                     "--clip": "0px",
@@ -402,13 +402,13 @@ export default function PhoneLettersScroll({
                     "--compact-o": "0",
                   }}
                 >
-                                    <div className="absolute left-0 right-0 z-[1] origin-top [transform:scaleY(var(--compact-s))] before:content-[''] before:absolute before:inset-x-0 before:top-0 before:h-[60px] before:blur-[3px] before:bg-[linear-gradient(rgba(0,0,0,0.12),rgba(0,0,0,0))] before:[opacity:var(--compact-o)] after:content-[''] after:relative after:z-10 after:block after:w-full after:h-[24px] after:bg-[linear-gradient(#e4e4e7,#ffffff_65%,#f4f4f5)] after:shadow-[0_4px_5px_rgba(0,0,0,0.04)]" />
+                  <div className="absolute left-0 right-0 z-[1] origin-top [transform:scaleY(var(--compact-s))] before:content-[''] before:absolute before:inset-x-0 before:top-0 before:h-[60px] before:blur-[3px] before:bg-[linear-gradient(rgba(0,0,0,0.12),rgba(0,0,0,0))] before:[opacity:var(--compact-o)] after:content-[''] after:relative after:z-10 after:block after:w-full after:h-[24px] after:bg-[linear-gradient(#e4e4e7,#ffffff_65%,#f4f4f5)] after:shadow-[0_4px_5px_rgba(0,0,0,0.04)]" />
 
-                                    <div
+                  <div
                     className="rounded-2xl border border-black/5 overflow-hidden [transform:translateY(calc(var(--clip)*-1))] [clip-path:polygon(0_var(--clip),100%_var(--clip),100%_100%,0%_100%)]"
                     style={{ background: letterBg }}
                   >
-                                        <div className="px-6 py-7 border-b border-black/5">
+                    <div className="px-6 py-7 border-b border-black/5">
                       <strong
                         className="block text-[22px] mb-1.5 tracking-tight"
                         style={{
@@ -430,7 +430,7 @@ export default function PhoneLettersScroll({
                       </small>
                     </div>
 
-                                        <div
+                    <div
                       className="px-6 py-7 text-sm leading-[1.7] tracking-wide"
                       style={{
                         color: bodyTextColor,

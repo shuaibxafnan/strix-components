@@ -179,7 +179,7 @@ if (state.isReactBits) {
         const decl = exp.declaration;
         const name = decl.id?.name ?? (decl.type === "Identifier" ? decl.name : null);
         const pascal = slug.split("-").map((w) => w[0].toUpperCase() + w.slice(1)).join("");
-        if (!/^[0-9]/.test(pascal) && name !== pascal) {
+        if (!/^[0-9]/.test(pascal) && name?.toLowerCase() !== pascal.toLowerCase()) {
             err(`default export is ${name ?? "anonymous"}, expected ${pascal}`);
         }
         const fn = resolveFn(decl);

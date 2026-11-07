@@ -18,6 +18,7 @@ const DEFAULT_IMAGES = [
   "https://images.unsplash.com/photo-1533387520709-752d83de3630?auto=format&fit=crop&w=720&q=80",
   "https://images.unsplash.com/photo-1752150127767-77bccbed07e2?auto=format&fit=crop&w=720&q=80",
   "https://images.unsplash.com/photo-1781935307999-e8bb5e62ebb1?auto=format&fit=crop&w=720&q=80",
+];
 
 const preloadImages = (srcs) =>
   Promise.all(

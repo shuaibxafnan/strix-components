@@ -6,10 +6,10 @@
   "bitsFolder": null,
   "slug": "sticky-grid-scroll",
   "nameLocked": true,
-  "status": "gate_failed",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
   "note": "CDN gsap/ScrollTrigger/Lenis -> npm dynamic imports. Removed loadFont Fraunces injection (conflicts with TEMPLATE 1.5, review). Added className, introCaptionColor, introAlt; buttonLabel default now Learn more. Grid max-w calc for mobile. No frame, no variants. Kept intro, 425vh section, loader, Lenis takeover.",
-  "updatedAt": "2026-11-01T13:26:15.311Z",
-  "gateOutput": "ERROR parse error: Unexpected token (22:0)"
+  "updatedAt": "2026-11-07T05:26:12.431Z",
+  "gateOutput": "gates passed"
 }

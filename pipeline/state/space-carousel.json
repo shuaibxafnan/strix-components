@@ -6,10 +6,10 @@
   "bitsFolder": null,
   "slug": "backdrop-image-carousel",
   "nameLocked": true,
-  "status": "gate_failed",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
   "note": "Renamed to backdrop-image-carousel. Removed empty comments and dead overlay div. Props added: backgroundColor, textColor, altText, className. No frame, no variants.",
-  "updatedAt": "2026-11-01T13:05:01.880Z",
-  "gateOutput": "ERROR missing pipeline/out/backdrop-image-carousel/backdrop-image-carousel.jsx"
+  "updatedAt": "2026-11-07T05:24:58.659Z",
+  "gateOutput": "gates passed"
 }

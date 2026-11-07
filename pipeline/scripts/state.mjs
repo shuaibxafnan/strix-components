@@ -111,6 +111,20 @@ if (cmd === "list") {
     s.status = "retry_requested";
     writeState(s);
     console.log(`${s.sourceSlug} -> retry_requested (attempt ${s.attempt})`);
+} else if (cmd === "requeue") {
+    const s = need(args[0]);
+    if (["published", "in_progress"].includes(s.status)) fail(`${s.sourceSlug} is ${s.status}`);
+    s.status = s.isReactBits ? "analyze_queued" : "rewrite_queued";
+    s.attempt = 0;
+    s.comments = [];
+    s.note = "";
+    delete s.gateOutput;
+    if (!s.isReactBits) {
+        s.slug = "";
+        s.nameLocked = false;
+    }
+    writeState(s);
+    console.log(`${s.sourceSlug} -> ${s.status}`);
 } else if (cmd === "reset-stale") {
     const limit = config.staleInProgressMinutes * 60 * 1000;
     let count = 0;

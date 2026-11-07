@@ -241,7 +241,6 @@ export default function SquircleAvatarGenerator({
       style={{ backgroundColor: accentBgColor }}
     >
       {!imgSource ? (
-        /* Center-Screen Balanced Modern Upload Area */
         <div className="w-full max-w-md mx-4 bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 p-8 text-center transition-all duration-300">
           <div className="mb-6">
             <h1 className="text-2xl font-bold tracking-tight text-slate-900">
@@ -296,7 +295,6 @@ export default function SquircleAvatarGenerator({
           </div>
         </div>
       ) : (
-        /* Modern Studio Editor Viewport Dashboard Layout */
         <div className="w-full max-w-4xl mx-4 bg-white rounded-3xl shadow-[0_30px_70px_rgba(15,23,42,0.04)] border border-slate-100 p-4 sm:p-6 md:p-8 flex flex-col md:flex-row gap-8">
           <div className="flex flex-col items-center justify-center bg-slate-50 rounded-2xl p-3 sm:p-6 border border-slate-100 w-full md:w-[360px] shrink-0">
             <div className="relative w-full max-w-[300px] aspect-square rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.03)] overflow-hidden">

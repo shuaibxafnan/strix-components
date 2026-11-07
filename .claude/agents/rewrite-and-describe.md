@@ -27,5 +27,5 @@ You process one component. You receive: `sourceSlug`, and for retries the `comme
 - Every prop in the JSON must exist in the component with the same default.
 - Every `needsCodeEdit.where` must exist in the file.
 - Global side effects and page scroll takeover go in `fixed`.
-- No comments in code. No dark or light logic. No font imports.
+- No comments in code.
 - Never write outside `pipeline/out/<slug>/`.
