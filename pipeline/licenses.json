@@ -4,1007 +4,1007 @@
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "animated-content": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "animated-list": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "animations-ghost-cursor": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "ballpit": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "beams": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "bell-toggle": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "blur-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "border-glow": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "bounce-cards": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "branched-menu": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "bubble-menu": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "call-chip": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "card-nav": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "card-swap": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "carousel": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "circular-carousel": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "circular-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "click-spark": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "code-slots": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "color-bends": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "comet-dail": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "components-profile-card": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "count-up": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "counter": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "crystallized-ball": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "cursor-grid": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "curved-loop": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "dark-veil": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "decay-card": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "decrypted-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "dither": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "dither-veil": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "dock": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "dot-grid": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "electric-border": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "electric-logo": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "fade-content": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "falling-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "faulty-terminal": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "flex-carousel": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "flip-card": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "flowing-menu": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "fluid-glass": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "flux-lines": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "flying-button": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "fold-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "folder": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "folder-float": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "fuzzy-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "ghost-fibers": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "glare-hover": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "glide-select": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "glow-cursor": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "gooey-nav": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "gradient-ascii": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "gradient-blinds": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "gradient-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "grainient": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "halftone-reveal": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "infinite-spiral": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "iridescence": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "jelly-radio": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "lanyard": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "laser-flow": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "lattice-loader": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "light-pillar": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "light-tunnel": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "lightning": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "line-waves": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "liquid-ether": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "magic-bento": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "magic-rings": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "magnet": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "masked-heading": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "masonry": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "metallic-paint": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "micro-stats": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "morph-slider": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "noise": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "option-wheel": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "orbit-images": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "paper-crumble": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "particles": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "pattern-waves": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "peek-rating": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "pixel-card": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "pixel-snow": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "pixel-swap": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "pixel-trail": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "pixel-transition": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "plasma": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "plasma-wave": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "prism": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "prompt-bar": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "refine-frame": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "ripple-grid": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "rotating-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "rubber-segment": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "scanner": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "scrambled-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "scroll-expand": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "scroll-reveal": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "scroll-velocity": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "shape-blur": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "shape-grid": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "shape-waves": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "shredder": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "shuffle": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "side-rays": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "silk": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "sliced-waves": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "slide-commit": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "sling-button": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "soft-aurora": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "specular-button": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "split-flap-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "split-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "spring-check": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "stack": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "star-border": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "status-mark": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "stepper": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "sticker-peel": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "stroke-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "swarm-cursor": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "swipe-row": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "swipe-toast": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "target-cursor": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "tear-ticket": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "tech-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "text-cursor": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "text-loop": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "text-type": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "thought-line": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "threads": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "tilted-card": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "true-focus": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "voice-pill": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "wake-slider": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "warm-tooltip": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "warp-text": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "waves": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   },
   "web-threads": {
     "decision": "attribution",
     "license": "MIT + Commons Clause",
     "author": "David Haz",
     "sourceUrl": "https://github.com/DavidHDev/react-bits",
-    "notes": "Free components only. Use in websites and products allowed. No selling, sublicensing, or redistributing the components themselves. Internal retrieval only, no public bucket, not in npm library."
+    "notes": ""
   }
 }
