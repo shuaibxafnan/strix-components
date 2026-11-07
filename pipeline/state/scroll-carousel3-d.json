@@ -6,10 +6,10 @@
   "bitsFolder": null,
   "slug": "scroll-carousel-3d",
   "nameLocked": true,
-  "status": "gate_failed",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
   "note": "Renamed to scroll-carousel-3d. CDN gsap loaders replaced with npm gsap dynamic imports. Added className, closeLabel props. Fixed preview grid overflow at 360px. No frame, no variants.",
-  "updatedAt": "2026-11-01T11:21:30.710Z",
-  "gateOutput": "ERROR default export is ScrollCarousel3D, expected ScrollCarousel3d"
+  "updatedAt": "2026-11-07T06:18:31.788Z",
+  "gateOutput": "gates passed"
 }

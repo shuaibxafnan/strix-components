@@ -6,10 +6,10 @@
   "bitsFolder": null,
   "slug": "draggable-coin-spinner",
   "nameLocked": true,
-  "status": "gate_failed",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
   "note": "Renamed from coin-spin-card3-d (cryptic). Frame added; CDN gsap/Draggable/InertiaPlugin -> npm imports; CodePen inertia URL and fallback removed; className prop.",
-  "updatedAt": "2026-11-01T05:11:14.893Z",
-  "gateOutput": "ERROR missing pipeline/out/draggable-coin-spinner/draggable-coin-spinner.jsx"
+  "updatedAt": "2026-11-07T06:18:12.566Z",
+  "gateOutput": "WARN  setTimeout without clearTimeout\ngates passed"
 }

@@ -6,10 +6,10 @@
   "bitsFolder": null,
   "slug": "split-section-slider",
   "nameLocked": true,
-  "status": "gate_failed",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
   "note": "Renamed to split-section-slider. Removed Outdoors wordmark and brand prop. Added seeMoreLabel, seeLessLabel, galleryTitle, galleryCaption. No frame, no variants.",
-  "updatedAt": "2026-11-01T11:43:13.457Z",
-  "gateOutput": "ERROR missing pipeline/out/split-section-slider/split-section-slider.jsx"
+  "updatedAt": "2026-11-07T06:21:21.293Z",
+  "gateOutput": "WARN  requestAnimationFrame without cancelAnimationFrame\ngates passed"
 }

@@ -6,10 +6,10 @@
   "bitsFolder": null,
   "slug": "stagger-toggle-switches",
   "nameLocked": true,
-  "status": "gate_failed",
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
   "note": "Renamed gsap-toggle-switches -> stagger-toggle-switches. CDN loader replaced with dynamic imports (gsap, gsap/EasePack). Removed h1 heading and props, bgColor demo background, min-h-screen, font classes (heading removal ambiguous). Frame added. CSS scoped under .stagger-toggle-root. Variants: none.",
-  "updatedAt": "2026-11-01T08:03:25.600Z",
-  "gateOutput": "ERROR missing pipeline/out/stagger-toggle-switches/stagger-toggle-switches.jsx"
+  "updatedAt": "2026-11-07T06:17:43.523Z",
+  "gateOutput": "gates passed"
 }
