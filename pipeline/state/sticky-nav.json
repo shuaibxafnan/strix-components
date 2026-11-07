@@ -4,11 +4,12 @@
   "sourceHash": "760b53d6b05c4516203ce43c3918a97518f5b0a82cc148bfa6f381eda8b010e2",
   "isReactBits": false,
   "bitsFolder": null,
-  "slug": "",
-  "nameLocked": false,
-  "status": "rewrite_queued",
+  "slug": "sticky-nav",
+  "nameLocked": true,
+  "status": "in_review",
   "attempt": 0,
   "comments": [],
-  "note": "",
-  "updatedAt": "2026-11-07T05:37:48.993Z"
+  "note": "Rewritten. Removed face-logo SVG (now logoLabel text), theme toggle, social X link, min-h-screen wrapper. Default links generic, ebook->extra, target=_blank removed, mobile menu closes on click, aria-expanded added. No frame, no variants. Kept: DM Mono not loaded, hardcoded wave offsets, desktop-only wave.",
+  "updatedAt": "2026-11-07T05:58:29.738Z",
+  "gateOutput": "gates passed"
 }
